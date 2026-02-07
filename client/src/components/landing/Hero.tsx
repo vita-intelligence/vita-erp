@@ -4,6 +4,7 @@ import { Button } from "@heroui/react";
 import React, { Dispatch, SetStateAction, useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ThreeBg from "../bg/ThreeBg";
+import { usePageTransition } from "@/app/hooks/usePageTransition";
 
 // ============================================================================
 // CONSTANTS
@@ -76,6 +77,12 @@ export default function Hero({ setIsVideoOpen }: HeroProps) {
     const cta = useRef<HTMLDivElement | null>(null);
     const video = useRef<HTMLDivElement | null>(null);
     const bgRef = useRef<HTMLDivElement | null>(null);
+
+    // ========================================================================
+    // HOOKS
+    // ========================================================================
+
+    const transitionTo = usePageTransition();
 
     // ========================================================================
     // STATE
@@ -243,6 +250,7 @@ export default function Hero({ setIsVideoOpen }: HeroProps) {
                             radius="sm"
                             size="lg"
                             className="font-semibold text-lg px-10 py-7"
+                            onPress={() => transitionTo('/auth')}
                         >
                             Get Started →
                         </Button>

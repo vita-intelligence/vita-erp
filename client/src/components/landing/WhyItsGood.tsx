@@ -17,6 +17,7 @@ import {
 import { Button } from "@heroui/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePageTransition } from "@/app/hooks/usePageTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -168,6 +169,12 @@ type WhyItsGoodProps = {
 };
 
 export default function WhyItsGood({ setIsVideoOpen }: WhyItsGoodProps) {
+
+    // ========================================================================
+    // HOOKS
+    // ========================================================================
+    const transitionTo = usePageTransition();
+
     // ========================================================================
     // REFS
     // ========================================================================
@@ -458,6 +465,7 @@ export default function WhyItsGood({ setIsVideoOpen }: WhyItsGoodProps) {
                             color="primary"
                             disableRipple
                             className="min-w-[220px] font-semibold text-lg shadow-lg shadow-primary/20"
+                            onPress={() => transitionTo('/auth')}
                         >
                             Get Started
                         </Button>
