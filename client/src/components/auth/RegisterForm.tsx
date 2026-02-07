@@ -3,41 +3,10 @@
 import { Input, Button } from '@heroui/react';
 import React, { useState, useEffect, useRef } from 'react';
 import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import gsap from 'gsap';
-
-// ============================================================================
-// TYPES
-// ============================================================================
-
-interface FormErrors {
-    email?: string;
-    username?: string;
-    password?: string;
-    confirmPassword?: string;
-}
-
-// ============================================================================
-// VALIDATION
-// ============================================================================
-
-const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-};
-
-const validateUsername = (username: string): boolean => {
-    // 3-20 characters, alphanumeric and underscore only
-    return username.length >= 3 &&
-        username.length <= 20 &&
-        /^[a-zA-Z0-9_]+$/.test(username);
-};
-
-const validatePassword = (password: string): boolean => {
-    return password.length >= 8 &&
-        /[A-Z]/.test(password) &&
-        /[a-z]/.test(password) &&
-        /[0-9]/.test(password);
-};
+import { RegisterFormData, registerSchema } from '@/lib/ValidationSchemas';
 
 // ============================================================================
 // COMPONENT
@@ -50,15 +19,19 @@ export default function RegisterForm() {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    // ========================================================================
+    // FORM
+    // ========================================================================
 
-    const [errors, setErrors] = useState<FormErrors>({});
-    const [touched, setTouched] = useState<Record<string, boolean>>({});
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting, touchedFields },
+    } = useForm<RegisterFormData>({
+        resolver: zodResolver(registerSchema),
+        mode: 'onBlur', // Validate on blur
+    });
 
     // ========================================================================
     // REFS
@@ -124,67 +97,16 @@ export default function RegisterForm() {
     }, []);
 
     // ========================================================================
-    // VALIDATION
-    // ========================================================================
-
-    const validateForm = (): boolean => {
-        const newErrors: FormErrors = {};
-
-        if (!email) {
-            newErrors.email = 'Email is required';
-        } else if (!validateEmail(email)) {
-            newErrors.email = 'Please enter a valid email';
-        }
-
-        if (!username) {
-            newErrors.username = 'Username is required';
-        } else if (!validateUsername(username)) {
-            newErrors.username = '3-20 characters, letters, numbers, and underscore only';
-        }
-
-        if (!password) {
-            newErrors.password = 'Password is required';
-        } else if (!validatePassword(password)) {
-            newErrors.password = 'Password must be 8+ characters with uppercase, lowercase, and number';
-        }
-
-        if (!confirmPassword) {
-            newErrors.confirmPassword = 'Please confirm your password';
-        } else if (password !== confirmPassword) {
-            newErrors.confirmPassword = 'Passwords do not match';
-        }
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
-    // ========================================================================
     // HANDLERS
     // ========================================================================
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        setTouched({
-            email: true,
-            username: true,
-            password: true,
-            confirmPassword: true,
-        });
-
-        if (!validateForm()) return;
-
-        setIsLoading(true);
+    const onSubmit = async (data: RegisterFormData) => {
+        console.log('Register data:', data);
 
         // TODO: Replace with actual API call
         await new Promise(resolve => setTimeout(resolve, 1500));
-        console.log('Register:', { email, username, password });
 
-        setIsLoading(false);
-    };
-
-    const handleFieldBlur = (field: string) => {
-        setTouched({ ...touched, [field]: true });
+        // TODO: Navigate to dashboard or show error
     };
 
     // ========================================================================
@@ -207,17 +129,15 @@ export default function RegisterForm() {
             </div>
 
             {/* Form */}
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+            <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-5">
 
                 {/* Email */}
                 <div className="form-field">
                     <Input
+                        {...register('email')}
                         type="email"
                         label="Email Address"
                         placeholder="you@company.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        onBlur={() => handleFieldBlur('email')}
                         startContent={<Mail className="text-gray-500" size={20} />}
                         variant="bordered"
                         radius="none"
@@ -226,20 +146,18 @@ export default function RegisterForm() {
                             input: "text-black",
                             inputWrapper: "border-2 border-black hover:border-black data-[focus=true]:border-black shadow-none",
                         }}
-                        isInvalid={touched.email && !!errors.email}
-                        errorMessage={touched.email && errors.email}
+                        isInvalid={touchedFields.email && !!errors.email}
+                        errorMessage={errors.email?.message}
                     />
                 </div>
 
                 {/* Username */}
                 <div className="form-field">
                     <Input
+                        {...register('username')}
                         type="text"
                         label="Username"
                         placeholder="johndoe"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        onBlur={() => handleFieldBlur('username')}
                         startContent={<User className="text-gray-500" size={20} />}
                         variant="bordered"
                         radius="none"
@@ -248,20 +166,18 @@ export default function RegisterForm() {
                             input: "text-black",
                             inputWrapper: "border-2 border-black hover:border-black data-[focus=true]:border-black shadow-none",
                         }}
-                        isInvalid={touched.username && !!errors.username}
-                        errorMessage={touched.username && errors.username}
+                        isInvalid={touchedFields.username && !!errors.username}
+                        errorMessage={errors.username?.message}
                     />
                 </div>
 
                 {/* Password */}
                 <div className="form-field">
                     <Input
+                        {...register('password')}
                         type={showPassword ? "text" : "password"}
                         label="Password"
                         placeholder="Create a strong password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        onBlur={() => handleFieldBlur('password')}
                         startContent={<Lock className="text-gray-500" size={20} />}
                         endContent={
                             <button
@@ -284,20 +200,18 @@ export default function RegisterForm() {
                             input: "text-black",
                             inputWrapper: "border-2 border-black hover:border-black data-[focus=true]:border-black shadow-none",
                         }}
-                        isInvalid={touched.password && !!errors.password}
-                        errorMessage={touched.password && errors.password}
+                        isInvalid={touchedFields.password && !!errors.password}
+                        errorMessage={errors.password?.message}
                     />
                 </div>
 
                 {/* Confirm Password */}
                 <div className="form-field">
                     <Input
+                        {...register('confirmPassword')}
                         type={showConfirmPassword ? "text" : "password"}
                         label="Confirm Password"
                         placeholder="Re-enter your password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        onBlur={() => handleFieldBlur('confirmPassword')}
                         startContent={<Lock className="text-gray-500" size={20} />}
                         endContent={
                             <button
@@ -320,8 +234,8 @@ export default function RegisterForm() {
                             input: "text-black",
                             inputWrapper: "border-2 border-black hover:border-black data-[focus=true]:border-black shadow-none",
                         }}
-                        isInvalid={touched.confirmPassword && !!errors.confirmPassword}
-                        errorMessage={touched.confirmPassword && errors.confirmPassword}
+                        isInvalid={touchedFields.confirmPassword && !!errors.confirmPassword}
+                        errorMessage={errors.confirmPassword?.message}
                     />
                 </div>
 
@@ -332,7 +246,7 @@ export default function RegisterForm() {
                         size="lg"
                         radius="none"
                         className="w-full bg-black text-white font-bold text-base border-2 border-black hover:bg-white hover:text-black transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none mt-2"
-                        isLoading={isLoading}
+                        isLoading={isSubmitting}
                     >
                         Create Account
                     </Button>

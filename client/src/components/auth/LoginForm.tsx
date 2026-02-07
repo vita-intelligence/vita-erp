@@ -3,25 +3,10 @@
 import { Input, Button } from '@heroui/react';
 import React, { useState, useEffect, useRef } from 'react';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import gsap from 'gsap';
-
-// ============================================================================
-// TYPES
-// ============================================================================
-
-interface FormErrors {
-    email?: string;
-    password?: string;
-}
-
-// ============================================================================
-// VALIDATION
-// ============================================================================
-
-const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-};
+import { LoginFormData, loginSchema } from '@/lib/ValidationSchemas';
 
 // ============================================================================
 // COMPONENT
@@ -33,13 +18,19 @@ export default function LoginForm() {
     // ========================================================================
 
     const [showPassword, setShowPassword] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    // ========================================================================
+    // FORM
+    // ========================================================================
 
-    const [errors, setErrors] = useState<FormErrors>({});
-    const [touched, setTouched] = useState<Record<string, boolean>>({});
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting, touchedFields },
+    } = useForm<LoginFormData>({
+        resolver: zodResolver(loginSchema),
+        mode: 'onBlur', // Validate on blur
+    });
 
     // ========================================================================
     // REFS
@@ -105,50 +96,16 @@ export default function LoginForm() {
     }, []);
 
     // ========================================================================
-    // VALIDATION
-    // ========================================================================
-
-    const validateForm = (): boolean => {
-        const newErrors: FormErrors = {};
-
-        if (!email) {
-            newErrors.email = 'Email is required';
-        } else if (!validateEmail(email)) {
-            newErrors.email = 'Please enter a valid email';
-        }
-
-        if (!password) {
-            newErrors.password = 'Password is required';
-        } else if (password.length < 6) {
-            newErrors.password = 'Password must be at least 6 characters';
-        }
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
-    // ========================================================================
     // HANDLERS
     // ========================================================================
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        setTouched({ email: true, password: true });
-
-        if (!validateForm()) return;
-
-        setIsLoading(true);
+    const onSubmit = async (data: LoginFormData) => {
+        console.log('Login data:', data);
 
         // TODO: Replace with actual API call
         await new Promise(resolve => setTimeout(resolve, 1500));
-        console.log('Login:', { email, password });
 
-        setIsLoading(false);
-    };
-
-    const handleFieldBlur = (field: string) => {
-        setTouched({ ...touched, [field]: true });
+        // TODO: Navigate to dashboard or show error
     };
 
     // ========================================================================
@@ -171,17 +128,15 @@ export default function LoginForm() {
             </div>
 
             {/* Form */}
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
                 {/* Email */}
                 <div className="form-field">
                     <Input
+                        {...register('email')}
                         type="email"
                         label="Email Address"
                         placeholder="you@company.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        onBlur={() => handleFieldBlur('email')}
                         startContent={<Mail className="text-gray-500" size={20} />}
                         variant="bordered"
                         radius="none"
@@ -190,20 +145,18 @@ export default function LoginForm() {
                             input: "text-black",
                             inputWrapper: "border-2 border-black hover:border-black data-[focus=true]:border-black shadow-none",
                         }}
-                        isInvalid={touched.email && !!errors.email}
-                        errorMessage={touched.email && errors.email}
+                        isInvalid={touchedFields.email && !!errors.email}
+                        errorMessage={errors.email?.message}
                     />
                 </div>
 
                 {/* Password */}
                 <div className="form-field">
                     <Input
+                        {...register('password')}
                         type={showPassword ? "text" : "password"}
                         label="Password"
                         placeholder="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        onBlur={() => handleFieldBlur('password')}
                         startContent={<Lock className="text-gray-500" size={20} />}
                         endContent={
                             <button
@@ -226,8 +179,8 @@ export default function LoginForm() {
                             input: "text-black",
                             inputWrapper: "border-2 border-black hover:border-black data-[focus=true]:border-black shadow-none",
                         }}
-                        isInvalid={touched.password && !!errors.password}
-                        errorMessage={touched.password && errors.password}
+                        isInvalid={touchedFields.password && !!errors.password}
+                        errorMessage={errors.password?.message}
                     />
                 </div>
 
@@ -249,7 +202,7 @@ export default function LoginForm() {
                         size="lg"
                         radius="none"
                         className="w-full bg-black text-white font-bold text-base border-2 border-black hover:bg-white hover:text-black transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none"
-                        isLoading={isLoading}
+                        isLoading={isSubmitting}
                     >
                         Sign In
                     </Button>
