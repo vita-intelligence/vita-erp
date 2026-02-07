@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from "react";
+import React, { Dispatch, SetStateAction, useLayoutEffect, useRef } from "react";
 import {
     Calendar,
     Package,
@@ -151,7 +151,7 @@ const ANIMATION_CONFIG = {
 // ============================================================================
 
 /**
- * WhyVitaERM - Feature showcase section
+ * WhyItsGood - Feature showcase section
  * 
  * Features:
  * - Background color transition on scroll (white → black)
@@ -163,7 +163,11 @@ const ANIMATION_CONFIG = {
  * 
  * @returns A full feature showcase section
  */
-export default function WhyVitaERM() {
+type WhyItsGoodProps = {
+    setIsVideoOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function WhyItsGood({ setIsVideoOpen }: WhyItsGoodProps) {
     // ========================================================================
     // REFS
     // ========================================================================
@@ -463,6 +467,9 @@ export default function WhyVitaERM() {
                             radius="none"
                             variant="bordered"
                             disableRipple
+                            onPress={() => {
+                                setIsVideoOpen(prev => !prev)
+                            }}
                             className="
                                 min-w-[220px] 
                                 font-semibold 

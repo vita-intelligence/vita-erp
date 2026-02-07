@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@heroui/react";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ThreeBg from "../bg/ThreeBg";
 
@@ -40,8 +40,6 @@ const ANIMATION_CONFIG = {
     },
 } as const;
 
-const DEMO_VIDEO_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1";
-
 // ============================================================================
 // COMPONENT
 // ============================================================================
@@ -63,7 +61,11 @@ const DEMO_VIDEO_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w
  * 4. CTA buttons fade up
  * 5. Video preview slides in from right
  */
-export default function Hero() {
+type HeroProps = {
+    setIsVideoOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function Hero({ setIsVideoOpen }: HeroProps) {
     // ========================================================================
     // REFS - DOM Elements
     // ========================================================================
@@ -172,7 +174,7 @@ export default function Hero() {
     // ========================================================================
 
     const handleDemoClick = () => {
-        window.open(DEMO_VIDEO_URL, "_blank");
+        setIsVideoOpen(prev => !prev)
     };
 
     // ========================================================================
