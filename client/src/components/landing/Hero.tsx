@@ -190,8 +190,9 @@ export default function Hero() {
             <div ref={bgRef} className="absolute inset-0 z-0 opacity-0 hidden lg:block">
                 <ThreeBg eventSource={eventSourceEl} />
                 {/* Overlay to darken 3D background for text readability */}
-                <div className="absolute inset-0 bg-black/60" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/60 to-black" />
             </div>
+
 
             {/* ============================================================ */}
             {/* CONTENT LAYER */}
