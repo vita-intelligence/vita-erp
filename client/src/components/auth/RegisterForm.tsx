@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import gsap from 'gsap';
 import { RegisterFormData, registerSchema } from '@/lib/ValidationSchemas';
+import { useRegister } from '@/hooks/useAuth';
 
 // ============================================================================
 // COMPONENT
@@ -21,16 +22,22 @@ export default function RegisterForm() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     // ========================================================================
+    // HOOKS
+    // ========================================================================
+
+    const registerMutation = useRegister();
+
+    // ========================================================================
     // FORM
     // ========================================================================
 
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting, touchedFields },
+        formState: { errors, touchedFields },
     } = useForm<RegisterFormData>({
         resolver: zodResolver(registerSchema),
-        mode: 'onBlur', // Validate on blur
+        mode: 'onBlur',
     });
 
     // ========================================================================
@@ -54,7 +61,6 @@ export default function RegisterForm() {
 
         const tl = gsap.timeline();
 
-        // Set initial states
         gsap.set(container, {
             opacity: 0,
             y: 30,
@@ -72,7 +78,6 @@ export default function RegisterForm() {
             x: -20,
         });
 
-        // Animate in
         tl.to(container, {
             opacity: 1,
             y: 0,
@@ -101,12 +106,10 @@ export default function RegisterForm() {
     // ========================================================================
 
     const onSubmit = async (data: RegisterFormData) => {
-        console.log('Register data:', data);
+        // Remove confirmPassword before sending to API
+        const { confirmPassword, ...registerData } = data;
 
-        // TODO: Replace with actual API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
-        // TODO: Navigate to dashboard or show error
+        registerMutation.mutate(registerData);
     };
 
     // ========================================================================
@@ -246,7 +249,7 @@ export default function RegisterForm() {
                         size="lg"
                         radius="none"
                         className="w-full bg-black text-white font-bold text-base border-2 border-black hover:bg-white hover:text-black transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none mt-2"
-                        isLoading={isSubmitting}
+                        isLoading={registerMutation.isPending}
                     >
                         Create Account
                     </Button>

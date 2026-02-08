@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
+from datetime import timedelta
 
 
 # ========== INITS ==========
@@ -42,8 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third party
     'rest_framework',
+    'rest_framework_simplejwt',
     'corsheaders',
+    
+    # Your apps
+    'users',  # We'll create this
 ]
 
 MIDDLEWARE = [
@@ -97,12 +103,17 @@ else:
 
 
 # ========== AUTH ==========
+AUTH_USER_MODEL = 'users.User'
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 8,
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -112,6 +123,56 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 # ==========================
+
+
+# ========== REST FRAMEWORK ==========
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'users.authentication.CookieJWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+}
+# ====================================
+
+
+# ========== JWT SETTINGS ==========
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': True,
+
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+
+    'JTI_CLAIM': 'jti',
+}
+
+# Cookie settings for JWT
+JWT_AUTH_COOKIE = 'access_token'  # Name of access token cookie
+JWT_AUTH_REFRESH_COOKIE = 'refresh_token'  # Name of refresh token cookie
+JWT_AUTH_COOKIE_SECURE = not DEBUG  # Set to True in production
+JWT_AUTH_COOKIE_HTTP_ONLY = True  # Prevents JavaScript access
+JWT_AUTH_COOKIE_SAMESITE = 'Lax'  # CSRF protection
+JWT_AUTH_COOKIE_PATH = '/'
+# ==================================
 
 
 # ========== INTERNATIONALIZATION (I18N) ==========

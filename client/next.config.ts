@@ -8,6 +8,20 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  
+  // API Proxy - Forward /api requests to backend
+  rewrites() {
+    return [
+      {
+        source: '/api/:path*/',      // WITH trailing slash
+        destination: 'http://localhost:8000/api/:path*/',
+      },
+      {
+        source: '/api/:path*',       // WITHOUT trailing slash
+        destination: 'http://localhost:8000/api/:path*/',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

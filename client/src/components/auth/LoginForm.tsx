@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import gsap from 'gsap';
 import { LoginFormData, loginSchema } from '@/lib/ValidationSchemas';
+import { useLogin } from '@/hooks/useAuth';
 
 // ============================================================================
 // COMPONENT
@@ -20,16 +21,22 @@ export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
 
     // ========================================================================
+    // HOOKS
+    // ========================================================================
+
+    const loginMutation = useLogin();
+
+    // ========================================================================
     // FORM
     // ========================================================================
 
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting, touchedFields },
+        formState: { errors, touchedFields },
     } = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
-        mode: 'onBlur', // Validate on blur
+        mode: 'onBlur',
     });
 
     // ========================================================================
@@ -53,7 +60,6 @@ export default function LoginForm() {
 
         const tl = gsap.timeline();
 
-        // Set initial states
         gsap.set(container, {
             opacity: 0,
             y: 30,
@@ -71,7 +77,6 @@ export default function LoginForm() {
             x: -20,
         });
 
-        // Animate in
         tl.to(container, {
             opacity: 1,
             y: 0,
@@ -100,12 +105,7 @@ export default function LoginForm() {
     // ========================================================================
 
     const onSubmit = async (data: LoginFormData) => {
-        console.log('Login data:', data);
-
-        // TODO: Replace with actual API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
-        // TODO: Navigate to dashboard or show error
+        loginMutation.mutate(data);
     };
 
     // ========================================================================
@@ -202,7 +202,7 @@ export default function LoginForm() {
                         size="lg"
                         radius="none"
                         className="w-full bg-black text-white font-bold text-base border-2 border-black hover:bg-white hover:text-black transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none"
-                        isLoading={isSubmitting}
+                        isLoading={loginMutation.isPending}
                     >
                         Sign In
                     </Button>
