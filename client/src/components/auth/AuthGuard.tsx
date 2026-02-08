@@ -3,6 +3,7 @@
 import { useCurrentUser, useRefreshToken } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
+import { FullScreenLoader3D } from '../loaders/FullScreenLoader3D';
 
 /**
  * AuthGuard - Protects routes and handles automatic token refresh
@@ -38,12 +39,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     // Loading state
     if (isLoading) {
         return (
-            <div className="flex items-center justify-center min-h-screen">
-                <div className="text-center">
-                    <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-black border-r-transparent"></div>
-                    <p className="mt-4 text-gray-600">Loading...</p>
-                </div>
-            </div>
+            <FullScreenLoader3D />
         );
     }
 
