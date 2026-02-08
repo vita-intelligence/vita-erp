@@ -3,7 +3,7 @@
 import { Button } from "@heroui/react";
 import React, { Dispatch, SetStateAction, useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import ThreeBg from "../bg/ThreeBg";
+import ThreeBg from "@/components/ui/bg/ThreeBg";
 import { usePageTransition } from "@/hooks/usePageTransition";
 
 // ============================================================================

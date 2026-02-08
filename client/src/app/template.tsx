@@ -1,6 +1,6 @@
 "use client";
 
-import { animatePageIn } from "@/components/animations/PageTransitions";
+import { animatePageIn } from "@/components/ui/animations/PageTransitions";
 import { useEffect } from "react";
 
 /**

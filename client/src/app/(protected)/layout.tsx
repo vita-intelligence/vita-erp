@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthGuard } from "@/components/auth/AuthGuard";
+import { AuthGuard } from "@/components/pages/auth/AuthGuard";
 
 // Toggle this to skip auth during development
 const DEV_MODE = process.env.NEXT_PUBLIC_DEV_SKIP_AUTH === 'true';

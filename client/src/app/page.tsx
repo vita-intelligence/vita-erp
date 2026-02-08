@@ -1,9 +1,9 @@
 'use client';
 
-import Hero from "@/components/landing/Hero";
-import SmallDetails from "@/components/landing/SmallDetails";
-import WhyItsGood from "@/components/landing/WhyItsGood";
-import VideoModal from "@/components/modals/VideoModal";
+import Hero from "@/components/pages/landing/Hero";
+import SmallDetails from "@/components/pages/landing/SmallDetails";
+import WhyItsGood from "@/components/pages/landing/WhyItsGood";
+import VideoModal from "@/components/ui/modals/VideoModal";
 import { useState } from "react";
 
 export default function Home() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { animatePageOut } from "@/components/animations/PageTransitions";
+import { animatePageOut } from "@/components/ui/animations/PageTransitions";
 import { usePathname, useRouter } from "next/navigation";
 
 /**

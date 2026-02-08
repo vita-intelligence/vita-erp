@@ -1,7 +1,7 @@
 'use client';
 
-import LoginForm from '@/components/auth/LoginForm';
-import RegisterForm from '@/components/auth/RegisterForm';
+import LoginForm from '@/components/pages/auth/LoginForm';
+import RegisterForm from '@/components/pages/auth/RegisterForm';
 import React, { useState } from 'react';
 
 export default function AuthPage() {

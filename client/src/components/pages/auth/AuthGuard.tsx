@@ -3,7 +3,7 @@
 import { useCurrentUser, useRefreshToken } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
-import { FullScreenLoader3D } from '../loaders/FullScreenLoader3D';
+import { FullScreenLoader3D } from '@/components/ui/loaders/FullScreenLoader3D';
 
 /**
  * AuthGuard - Protects routes and handles automatic token refresh
