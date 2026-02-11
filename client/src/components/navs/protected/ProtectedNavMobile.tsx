@@ -2,30 +2,20 @@
 
 import React, { useMemo, useState, useCallback } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button, Modal, ModalBody, ModalContent, ModalHeader } from "@heroui/react";
-import { LogOut, MoreHorizontal } from "lucide-react";
+import { LogOut, MoreHorizontal, Building2, ChevronLeft } from "lucide-react";
 
-import { useLogout } from "@/hooks/useAuth";
-import { NAV_GROUPS, MOBILE_PRIMARY_KEYS, NAV_UI, cx } from "./nav.config";
-
-/**
- * ProtectedNavMobile
- * -----------------------------
- * Mobile navigation strategy:
- * - Bottom bar: 3–5 primary routes + "More"
- * - "More" opens a bottom sheet with grouped navigation (scales for many items)
- *
- * Edit:
- * - NAV_GROUPS (routes + grouping)
- * - MOBILE_PRIMARY_KEYS (which routes go to the bottom bar)
- */
+import { useLogout } from "@/hooks/api/useAuth";
+import { NAV_UI, cx } from "./nav.config";
+import { useNavConfig } from "@/hooks/ui/useNavConfig";
 
 export default function ProtectedNavMobile() {
     const pathname = usePathname();
+    const router = useRouter();
     const logout = useLogout();
+    const navConfig = useNavConfig();
 
-    // Controlled modal state is the most reliable option with UI libs.
     const [isSheetOpen, setSheetOpen] = useState(false);
 
     const { ICON_BOX } = NAV_UI;
@@ -38,22 +28,18 @@ export default function ProtectedNavMobile() {
     const openSheet = useCallback(() => setSheetOpen(true), []);
     const closeSheet = useCallback(() => setSheetOpen(false), []);
 
-    /**
-     * Bottom bar should remain small. We pull only keys from MOBILE_PRIMARY_KEYS.
-     * Everything else remains grouped for the "More" sheet.
-     */
     const primaryItems = useMemo(() => {
-        return NAV_GROUPS.flatMap((g) => g.items).filter((i) =>
-            MOBILE_PRIMARY_KEYS.has(i.key)
+        return navConfig.groups.flatMap((g) => g.items).filter((i) =>
+            navConfig.mobileKeys.has(i.key)
         );
-    }, []);
+    }, [navConfig]);
 
     const overflowGroups = useMemo(() => {
-        return NAV_GROUPS.map((g) => ({
+        return navConfig.groups.map((g) => ({
             ...g,
-            items: g.items.filter((i) => !MOBILE_PRIMARY_KEYS.has(i.key)),
+            items: g.items.filter((i) => !navConfig.mobileKeys.has(i.key)),
         })).filter((g) => g.items.length > 0);
-    }, []);
+    }, [navConfig]);
 
     return (
         <>
@@ -108,7 +94,7 @@ export default function ProtectedNavMobile() {
                 </ul>
             </nav>
 
-            {/* ========================= “More” Sheet ========================= */}
+            {/* ========================= "More" Sheet ========================= */}
             <Modal
                 isOpen={isSheetOpen}
                 onOpenChange={setSheetOpen}
@@ -123,7 +109,7 @@ export default function ProtectedNavMobile() {
                 <ModalContent>
                     <>
                         <ModalHeader className="flex flex-col gap-3 pb-2">
-                            {/* Center “drag handle” — clickable close */}
+                            {/* Center "drag handle" — clickable close */}
                             <div className="flex justify-center">
                                 <Button
                                     variant="light"
@@ -136,10 +122,39 @@ export default function ProtectedNavMobile() {
                                 </Button>
                             </div>
 
-                            <div className="flex flex-col">
-                                <span className="text-sm font-semibold">Vita ERM</span>
-                                <span className="text-xs text-white/60">Navigation</span>
+                            {/* Dynamic header based on context */}
+                            <div className="flex items-center gap-3">
+                                {navConfig.isCompanyContext && (
+                                    <div className={cx(ICON_BOX, "bg-white/10")}>
+                                        <Building2 size={20} />
+                                    </div>
+                                )}
+                                <div className="flex flex-col flex-1">
+                                    <span className="text-sm font-semibold">
+                                        {navConfig.isCompanyContext ? 'Company' : 'Vita ERM'}
+                                    </span>
+                                    <span className="text-xs text-white/60">
+                                        {navConfig.isCompanyContext ? 'Workspace' : 'Navigation'}
+                                    </span>
+                                </div>
                             </div>
+
+                            {/* Back to Companies button */}
+                            {navConfig.isCompanyContext && (
+                                <Button
+                                    variant="bordered"
+                                    size="sm"
+                                    fullWidth
+                                    startContent={<ChevronLeft size={16} />}
+                                    onPress={() => {
+                                        router.push('/companies');
+                                        closeSheet();
+                                    }}
+                                    className="border-white/20 text-white/75 hover:bg-white/8 hover:text-white"
+                                >
+                                    Back to Companies
+                                </Button>
+                            )}
                         </ModalHeader>
 
                         <ModalBody>
@@ -155,7 +170,6 @@ export default function ProtectedNavMobile() {
                                                 </div>
                                             )}
 
-                                            {/* Grid scales well even with many items */}
                                             <div className="grid grid-cols-2 gap-2">
                                                 {group.items.map((item) => {
                                                     const active = isActive(item.href);
@@ -192,7 +206,7 @@ export default function ProtectedNavMobile() {
                                 </div>
                             )}
 
-                            {/* Logout: safe placement (no accidental tap on close) */}
+                            {/* Logout */}
                             <div className="mt-6 border-t border-white/10 pt-4">
                                 <Button
                                     variant="flat"

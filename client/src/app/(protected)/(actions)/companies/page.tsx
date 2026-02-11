@@ -5,7 +5,7 @@ import { Button, Card, CardBody, Pagination, Skeleton } from '@heroui/react';
 import { Building2, Plus, Calendar, FileText } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
-import { useMyCompanies } from '@/hooks/useCompany';
+import { useMyCompanies } from '@/hooks/api/useCompany';
 
 export default function CompaniesPage() {
     const router = useRouter();
@@ -59,9 +59,13 @@ export default function CompaniesPage() {
                     <h1 className="text-3xl sm:text-4xl font-bold text-black mb-2">
                         My Companies
                     </h1>
-                    <p className="text-gray-600">
-                        {data ? `${data.count} ${data.count === 1 ? 'company' : 'companies'}` : 'Loading...'}
-                    </p>
+                    {isLoading ? (
+                        <Skeleton className="h-5 w-32 rounded-none" />
+                    ) : (
+                        <p className="text-gray-600">
+                            {data ? `${data.count} ${data.count === 1 ? 'company' : 'companies'}` : '0 companies'}
+                        </p>
+                    )}
                 </div>
 
                 <Button

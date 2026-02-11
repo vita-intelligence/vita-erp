@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import gsap from 'gsap';
 import { LoginFormData, loginSchema } from '@/lib/ValidationSchemas';
-import { useLogin } from '@/hooks/useAuth';
+import { useLogin } from '@/hooks/api/useAuth';
 
 // ============================================================================
 // COMPONENT

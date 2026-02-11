@@ -1,7 +1,7 @@
 import { authAPI, LoginCredentials, RegisterData, User } from '@/lib/api/auth';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useToast } from '@/hooks/useToast';
+import { useToast } from '@/hooks/ui/useToast';
 
 // ============================================================================
 // MUTATION HOOKS

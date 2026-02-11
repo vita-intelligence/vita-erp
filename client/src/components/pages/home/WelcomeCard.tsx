@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useLayoutEffect, useMemo, useRef } from "react";
-import { useCurrentUser } from "@/hooks/useAuth";
+import { useCurrentUser } from "@/hooks/api/useAuth";
 import { FullScreenLoader3D } from "@/components/ui/loaders/FullScreenLoader3D";
 import { Card, Avatar } from "@heroui/react";
 import { User as UserIcon } from "lucide-react";

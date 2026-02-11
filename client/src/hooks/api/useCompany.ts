@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { companyAPI, CreateCompanyData, Company } from '@/lib/api/company';
-import { useToast } from '@/hooks/useToast';
+import { useToast } from '@/hooks/ui/useToast';
 
 // ============================================================================
 // MUTATION HOOKS

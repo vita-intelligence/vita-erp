@@ -6,7 +6,7 @@ import { Building2, FileText } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import gsap from 'gsap';
-import { useCreateCompany } from '@/hooks/useCompany';
+import { useCreateCompany } from '@/hooks/api/useCompany';
 import { useRouter } from 'next/navigation';
 import { CompanyFormData, companySchema } from '@/lib/ValidationSchemas';
 import BrutalistBreadcrumbs from '@/components/ui/breadcrumbs/BrutalistBreadCrumb';

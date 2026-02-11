@@ -1,6 +1,6 @@
 'use client';
 
-import { useCurrentUser, useRefreshToken } from '@/hooks/useAuth';
+import { useCurrentUser, useRefreshToken } from '@/hooks/api/useAuth';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { FullScreenLoader3D } from '@/components/ui/loaders/FullScreenLoader3D';

@@ -17,7 +17,7 @@ import {
 import { Button } from "@heroui/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { usePageTransition } from "@/hooks/usePageTransition";
+import { usePageTransition } from "@/hooks/ui/usePageTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
