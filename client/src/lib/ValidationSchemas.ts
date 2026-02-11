@@ -77,3 +77,24 @@ export const companySchema = z.object({
 });
 
 export type CompanyFormData = z.infer<typeof companySchema>;
+
+
+// ============================================================================
+// COMPANY INVITATIONS
+// ============================================================================
+
+export const inviteSchema = z.object({
+    invitee_email: z
+        .string()
+        .email('Invalid email address')
+        .max(254, 'Email is too long'),
+    role: z
+        .string()
+        .min(1, 'Please select a role'),
+    message: z
+        .string()
+        .max(500, 'Message is too long')
+        .optional(),
+});
+
+export type InviteFormData = z.infer<typeof inviteSchema>;
