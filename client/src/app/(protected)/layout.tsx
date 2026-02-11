@@ -19,7 +19,9 @@ export default function ProtectedLayout({
             <>
                 <ProtectedNavDesktop />
                 <ProtectedNavMobile />
-                {children}
+                <main className="pb-28 md:pb-8 pt-4 md:pt-8 px-4 md:px-8 max-w-7xl mx-auto">
+                    {children}
+                </main>
             </>
         );
     }
@@ -29,7 +31,9 @@ export default function ProtectedLayout({
         <AuthGuard>
             <ProtectedNavDesktop />
             <ProtectedNavMobile />
-            {children}
+            <main className="pb-28 md:pb-8 pt-4 md:pt-8 px-4 md:px-8 max-w-7xl mx-auto">
+                {children}
+            </main>
         </AuthGuard>
     );
 }

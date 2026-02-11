@@ -108,9 +108,6 @@ export default function ProtectedNavMobile() {
                 </ul>
             </nav>
 
-            {/* Prevent content from hiding behind bottom bar */}
-            <div className="md:hidden h-16" />
-
             {/* ========================= “More” Sheet ========================= */}
             <Modal
                 isOpen={isSheetOpen}

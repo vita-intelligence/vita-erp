@@ -57,3 +57,23 @@ export const registerSchema = z.object({
 });
 
 export type RegisterFormData = z.infer<typeof registerSchema>;
+
+
+// ============================================================================
+// COMPANY NAME
+// ============================================================================
+
+
+export const companySchema = z.object({
+    name: z
+        .string()
+        .min(1, 'Company name is required')
+        .max(255, 'Company name is too long')
+        .regex(
+            /^[\w\s&.,'()+\-\/]+$/,
+            'Company name contains invalid characters'
+        ),
+    description: z.string().optional(),
+});
+
+export type CompanyFormData = z.infer<typeof companySchema>;

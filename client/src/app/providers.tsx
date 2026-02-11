@@ -48,7 +48,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
                 maxAge: 24 * 60 * 60 * 1000,
                 dehydrateOptions: {
                     shouldDehydrateQuery: (query) =>
-                        query.queryKey[0] === "user",
+                        // Things to persist
+                        query.queryKey[0] === "user" || query.queryKey[0] === "companies",
                 },
             }}
         >

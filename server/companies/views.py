@@ -69,6 +69,7 @@ class CompanyCreateView(generics.CreateAPIView):
 class MyCompaniesListView(generics.ListAPIView):
     """
     List companies where the current user has an active membership.
+    Ordered by most recently joined first.
     """
     permission_classes = [IsAuthenticated]
     serializer_class = CompanyListSerializer
@@ -81,5 +82,5 @@ class MyCompaniesListView(generics.ListAPIView):
                 memberships__is_active=True,
             )
             .distinct()
-            .order_by("-date_created")
+            .order_by("-memberships__joined_at")  # Most recently joined first
         )
