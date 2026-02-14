@@ -48,8 +48,11 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     
-    # Your apps
-    'users',  # We'll create this
+    # Custom apps
+    'users',
+    'companies',
+    'access',
+    'invites',
 ]
 
 MIDDLEWARE = [
