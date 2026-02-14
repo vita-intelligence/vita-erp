@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'companies',
     'access',
     'invites',
+    'items',
 ]
 
 MIDDLEWARE = [

@@ -35,6 +35,16 @@ PERMISSION_CATALOG = {
             "roles.assign": "Assign roles to members",
         },
     },
+
+    "items": {
+        "label": "Items Registration",
+        "permissions": {
+            "items.view": "View items",
+            "items.create": "Create items",
+            "items.edit": "Edit items",
+            "items.delete": "Delete items"
+        },
+    }
 }
 
 
