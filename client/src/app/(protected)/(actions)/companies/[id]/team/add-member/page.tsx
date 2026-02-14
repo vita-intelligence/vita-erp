@@ -2,34 +2,23 @@
 
 import { Input, Textarea, Button, Select, SelectItem } from '@heroui/react';
 import React, { useEffect, useRef } from 'react';
-import { UserPlus, Mail, Shield, MessageSquare, Building2 } from 'lucide-react';
+import { UserPlus, Mail, Shield, MessageSquare } from 'lucide-react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import gsap from 'gsap';
 import { useParams, useRouter } from 'next/navigation';
 import { useCreateInvite } from '@/hooks/api/useInvite';
+import { useCompanyRoles } from '@/hooks/api/useAccess';
 import BrutalistBreadcrumbs from '@/components/ui/breadcrumbs/BrutalistBreadCrumb';
 import { InviteFormData, inviteSchema } from '@/lib/ValidationSchemas';
-
-
-// ============================================================================
-// MOCK ROLES (Replace with actual API call)
-// ============================================================================
-const ROLES = [
-    { id: 1, name: 'Member', description: 'Basic access to company resources' },
-    { id: 2, name: 'Manager', description: 'Can manage projects and team members' },
-    { id: 3, name: 'Admin', description: 'Full administrative access' },
-];
-
-// ============================================================================
-// COMPONENT
-// ============================================================================
 
 export default function AddMemberPage() {
     const params = useParams();
     const router = useRouter();
     const companyId = Number(params.id);
+
     const createInvite = useCreateInvite(companyId);
+    const { data: roles, isLoading: rolesLoading } = useCompanyRoles(companyId);
 
     // ========================================================================
     // FORM
@@ -107,7 +96,6 @@ export default function AddMemberPage() {
     // ========================================================================
 
     const breadcrumbItems = [
-        { label: 'Company', href: `/companies/${companyId}`, icon: <Building2 size={14} /> },
         { label: 'Team', href: `/companies/${companyId}/team` },
         { label: 'Invite Member' },
     ];
@@ -179,6 +167,7 @@ export default function AddMemberPage() {
                                     variant="bordered"
                                     radius="none"
                                     startContent={<Shield className="text-gray-500" size={18} />}
+                                    isLoading={rolesLoading}
                                     classNames={{
                                         label: "text-black font-semibold text-sm sm:text-base",
                                         value: "text-black text-sm sm:text-base",
@@ -187,8 +176,8 @@ export default function AddMemberPage() {
                                     isInvalid={touchedFields.role && !!errors.role}
                                     errorMessage={errors.role?.message}
                                 >
-                                    {ROLES.map((role) => (
-                                        <SelectItem key={role.id}>
+                                    {(roles ?? []).map((role) => (
+                                        <SelectItem key={role.id.toString()}>
                                             {role.name}
                                         </SelectItem>
                                     ))}

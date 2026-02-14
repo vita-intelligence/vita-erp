@@ -49,7 +49,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
                 dehydrateOptions: {
                     shouldDehydrateQuery: (query) =>
                         // Things to persist
-                        query.queryKey[0] === "user" || query.queryKey[0] === "companies",
+                        query.queryKey[0] === "user" ||
+                        query.queryKey[0] === "companies" ||
+                        query.queryKey[0] === "permissions",
                 },
             }}
         >

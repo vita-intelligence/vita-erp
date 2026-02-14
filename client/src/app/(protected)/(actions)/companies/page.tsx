@@ -103,7 +103,7 @@ export default function CompaniesPage() {
                                 isPressable
                                 radius="none"
                                 className="border-2 border-black hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer"
-                                onPress={() => router.push(`/companies/${company.id}`)}
+                                onPress={() => router.push(`/companies/${company.id}/overview`)}
                             >
                                 <CardBody className="p-6">
                                     <div className="flex items-start gap-4">

@@ -25,7 +25,7 @@ export const COMPANY_NAV_GROUPS: NavGroup[] = [
         key: "main",
         label: "Main",
         items: [
-            { key: "overview", label: "Overview", href: "", icon: <LayoutDashboard size={20} /> },
+            { key: "overview", label: "Overview", href: "/overview", icon: <LayoutDashboard size={20} /> },
             { key: "team", label: "Team", href: "/team", icon: <Users size={20} /> },
         ],
     },
