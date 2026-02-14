@@ -1,11 +1,12 @@
 import React from "react";
-import { Users, LayoutDashboard, DollarSign, FlaskConical } from "lucide-react";
+import { Users, LayoutDashboard, DollarSign, FlaskConical, Box } from "lucide-react";
 
 export type NavItem = {
     key: string;
     label: string;
     href: string;
     icon: React.ReactNode;
+    permission?: string;
 };
 
 export type NavGroup = {
@@ -17,8 +18,9 @@ export type NavGroup = {
 /**
  * COMPANY_NAV_GROUPS
  * ------------------
- * Navigation shown when inside a company context
+ * Navigation shown when inside a company context.
  * hrefs are relative - will be prefixed with /companies/{id}
+ * permission — if set, item is hidden unless the user has that permission.
  */
 export const COMPANY_NAV_GROUPS: NavGroup[] = [
     {
@@ -26,7 +28,8 @@ export const COMPANY_NAV_GROUPS: NavGroup[] = [
         label: "Main",
         items: [
             { key: "overview", label: "Overview", href: "/overview", icon: <LayoutDashboard size={20} /> },
-            { key: "team", label: "Team", href: "/team", icon: <Users size={20} /> },
+            { key: "team", label: "Team", href: "/team", icon: <Users size={20} />, permission: "members.view" },
+            { key: "items", label: "Items", href: "/items", icon: <Box size={20} />, permission: "items.view" },
         ],
     },
     {
