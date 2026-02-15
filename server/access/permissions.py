@@ -44,6 +44,23 @@ PERMISSION_CATALOG = {
             "items.edit": "Edit items",
             "items.delete": "Delete items"
         },
+    },
+
+    "procurements": {
+        "label": "Procurements Operations",
+        "permissions": {
+            "procurements.view": "View procurements",
+        }
+    },
+
+    "suppliers": {
+        "label": "Suppliers Registration",
+        "permissions": {
+            "suppliers.view": "View suppliers",
+            "suppliers.edit": "Edit suppliers",
+            "suppliers.delete": "Delete suppliers",
+            "suppliers.create": "Create suppliers",
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Building2, Users, Lock, Package } from 'lucide-react';
+import { Building2, Users, Lock, Package, ShoppingBasket, Truck } from 'lucide-react';
 import { Permission } from '@/lib/api/access';
 
 // ============================================================================
@@ -14,6 +14,8 @@ export const PERMISSION_GROUPS: { key: string; label: string; icon: React.ReactN
     { key: 'members', label: 'Member Management', icon: <Users size={16} /> },
     { key: 'roles', label: 'Role & Access Control', icon: <Lock size={16} /> },
     { key: 'items', label: 'Items Registration', icon: <Package size={16} /> },
+    { key: 'procurements', label: 'Procurements', icon: <ShoppingBasket size={16} /> },
+    { key: 'suppliers', label: 'Suppliers', icon: <Truck size={16} /> },
 ];
 
 // ============================================================================

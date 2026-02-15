@@ -123,3 +123,15 @@ export const createItemSchema = z.object({
 });
 
 export type CreateItemFormData = z.infer<typeof createItemSchema>;
+
+
+// ============================================================================
+// SUPPLIERS
+// ============================================================================
+
+export const createSupplierSchema = z.object({
+    name:        z.string().min(1, { message: 'Supplier name is required' }).max(255),
+    description: z.string().max(1000).optional(),
+});
+
+export type CreateSupplierFormData = z.infer<typeof createSupplierSchema>;
