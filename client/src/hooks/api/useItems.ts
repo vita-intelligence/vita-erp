@@ -5,7 +5,9 @@ import {
     itemAPI,
     recipeAPI,
     recipeLineAPI,
+    itemAttributeAPI,
     Category,
+    ItemDetail,
     CreateCategoryData,
     UpdateCategoryData,
     CreateItemData,
@@ -14,6 +16,9 @@ import {
     UpdateRecipeData,
     CreateRecipeLineData,
     UpdateRecipeLineData,
+    CreateItemAttributeData,
+    UpdateItemAttributeData,
+
     ItemFilters,
     RecipeDetail,
 } from '@/lib/api/items';
@@ -320,6 +325,80 @@ export function useDeleteRecipeLine(companyId: number, itemId: number, recipeId:
         },
         onError: (error: Error) => {
             toast.error('Failed to remove ingredient', error.message);
+        },
+    });
+}
+
+
+// ============================================================================
+// ITEM ATTRIBUTES
+// ============================================================================
+
+export function useCreateItemAttribute(companyId: number, itemId: number) {
+    const queryClient = useQueryClient();
+    const toast = useToast();
+
+    return useMutation({
+        mutationFn: (data: CreateItemAttributeData) =>
+            itemAttributeAPI.create(companyId, itemId, data),
+        onSuccess: (newAttr) => {
+            // Patch the attribute directly into the cached item — no refetch needed
+            queryClient.setQueryData<ItemDetail>(
+                ['items', companyId, itemId],
+                (old) => old ? { ...old, attributes: [...old.attributes, newAttr] } : old
+            );
+            toast.success('Attribute added', `"${newAttr.key}" has been added.`);
+        },
+        onError: (error: Error) => {
+            toast.error('Failed to add attribute', error.message);
+        },
+    });
+}
+
+export function useUpdateItemAttribute(companyId: number, itemId: number) {
+    const queryClient = useQueryClient();
+    const toast = useToast();
+
+    return useMutation({
+        mutationFn: ({ attrId, data }: { attrId: number; data: UpdateItemAttributeData }) =>
+            itemAttributeAPI.update(companyId, itemId, attrId, data),
+        onSuccess: (updated) => {
+            // Patch the specific attribute in the cached item
+            queryClient.setQueryData<ItemDetail>(
+                ['items', companyId, itemId],
+                (old) => old ? {
+                    ...old,
+                    attributes: old.attributes.map(a => a.id === updated.id ? updated : a),
+                } : old
+            );
+            toast.success('Attribute updated');
+        },
+        onError: (error: Error) => {
+            toast.error('Failed to update attribute', error.message);
+        },
+    });
+}
+
+export function useDeleteItemAttribute(companyId: number, itemId: number) {
+    const queryClient = useQueryClient();
+    const toast = useToast();
+
+    return useMutation({
+        mutationFn: (attrId: number) =>
+            itemAttributeAPI.delete(companyId, itemId, attrId),
+        onSuccess: (_, attrId) => {
+            // Remove the attribute directly from the cached item
+            queryClient.setQueryData<ItemDetail>(
+                ['items', companyId, itemId],
+                (old) => old ? {
+                    ...old,
+                    attributes: old.attributes.filter(a => a.id !== attrId),
+                } : old
+            );
+            toast.info('Attribute removed');
+        },
+        onError: (error: Error) => {
+            toast.error('Failed to remove attribute', error.message);
         },
     });
 }

@@ -10,7 +10,7 @@ from access.models import Membership
 from companies.models import Company
 from access.services.permissions import membership_has_perm
 
-from .models import Category, Item, Recipe, RecipeLine, UnitOfMeasure
+from .models import Category, Item, Recipe, RecipeLine, UnitOfMeasure, ItemAttribute
 from .serializers import (
     CategorySerializer,
     ItemSerializer,
@@ -19,6 +19,7 @@ from .serializers import (
     RecipeDetailSerializer,
     RecipeLineSerializer,
     UOMSerializer,
+    ItemAttributeSerializer
 )
 
 
@@ -248,7 +249,7 @@ class ItemDetailView(CompanyMemberMixin, APIView):
     def get_item(self):
         return get_object_or_404(
             Item.objects.select_related('unit_of_measurement', 'category')
-                        .prefetch_related('recipes'),
+                        .prefetch_related('recipes', 'attributes'),
             id=self.kwargs['item_id'],
             company=self.get_company(),
         )
@@ -583,4 +584,98 @@ class RecipeLineDetailView(CompanyMemberMixin, APIView):
             )
 
         line.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
+# ============================================================================
+# ITEM ATTRIBUTES
+# ============================================================================
+
+class ItemAttributeListCreateView(CompanyMemberMixin, APIView):
+    """
+    GET  /api/items/companies/{company_id}/items/{item_id}/attributes/   → items.view
+    POST /api/items/companies/{company_id}/items/{item_id}/attributes/   → items.edit
+
+    POST body: { "key": "Color", "value": "Red" }
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get_item(self):
+        return get_object_or_404(Item, id=self.kwargs['item_id'], company=self.get_company())
+
+    def get(self, request, company_id, item_id):
+        if denied := self.require_perm('items.view'):
+            return denied
+        attributes = self.get_item().attributes.all()
+        return Response(ItemAttributeSerializer(attributes, many=True).data)
+
+    def post(self, request, company_id, item_id):
+        if denied := self.require_perm('items.edit'):
+            return denied
+
+        key   = request.data.get('key', '').strip()
+        value = request.data.get('value', '').strip()
+
+        if not key:
+            return Response({'detail': 'key is required.'}, status=status.HTTP_400_BAD_REQUEST)
+        if not value:
+            return Response({'detail': 'value is required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        item = self.get_item()
+
+        if ItemAttribute.objects.filter(item=item, key=key).exists():
+            return Response(
+                {'detail': f'Attribute "{key}" already exists on this item. Edit it instead.'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        attr = ItemAttribute.objects.create(item=item, key=key, value=value)
+        return Response(ItemAttributeSerializer(attr).data, status=status.HTTP_201_CREATED)
+
+
+class ItemAttributeDetailView(CompanyMemberMixin, APIView):
+    """
+    PATCH  /api/items/companies/{company_id}/items/{item_id}/attributes/{attr_id}/  → items.edit
+    DELETE /api/items/companies/{company_id}/items/{item_id}/attributes/{attr_id}/  → items.edit
+
+    PATCH body: { "key": "Color", "value": "Blue" }
+    Both key and value are optional — send only what you want to change.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get_attribute(self):
+        return get_object_or_404(
+            ItemAttribute,
+            id=self.kwargs['attr_id'],
+            item__id=self.kwargs['item_id'],
+            item__company=self.get_company(),
+        )
+
+    def patch(self, request, company_id, item_id, attr_id):
+        if denied := self.require_perm('items.edit'):
+            return denied
+
+        attr  = self.get_attribute()
+        key   = request.data.get('key', '').strip()
+        value = request.data.get('value', '').strip()
+
+        if key and key != attr.key:
+            # Prevent renaming to a key that already exists on this item
+            if ItemAttribute.objects.filter(item=attr.item, key=key).exists():
+                return Response(
+                    {'detail': f'Attribute "{key}" already exists on this item.'},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            attr.key = key
+
+        if value:
+            attr.value = value
+
+        attr.save()
+        return Response(ItemAttributeSerializer(attr).data)
+
+    def delete(self, request, company_id, item_id, attr_id):
+        if denied := self.require_perm('items.edit'):
+            return denied
+        self.get_attribute().delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

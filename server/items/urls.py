@@ -31,4 +31,9 @@ urlpatterns = [
     path('companies/<int:company_id>/items/<int:item_id>/recipes/<int:recipe_id>/lines/<int:line_id>/',
          views.RecipeLineDetailView.as_view()),
 
+     # ── Item Attributes ───────────────────────────────────────────────────────────
+     path('companies/<int:company_id>/items/<int:item_id>/attributes/',
+          views.ItemAttributeListCreateView.as_view()),
+     path('companies/<int:company_id>/items/<int:item_id>/attributes/<int:attr_id>/',
+          views.ItemAttributeDetailView.as_view()),
 ]

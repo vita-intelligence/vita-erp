@@ -33,6 +33,7 @@ export interface Item {
 
 export interface ItemDetail extends Item {
     recipes: Recipe[];            // lightweight summaries, no lines
+    attributes: ItemAttribute[];
 }
 
 export interface RecipeLine {
@@ -116,6 +117,22 @@ export interface ItemFilters {
     active?: boolean;
     category?: number;
     search?: string;
+}
+
+export interface ItemAttribute {
+    id: number;
+    key: string;
+    value: string;
+}
+
+export interface CreateItemAttributeData {
+    key: string;
+    value: string;
+}
+
+export interface UpdateItemAttributeData {
+    key?: string;
+    value?: string;
 }
 
 // ============================================================================
@@ -239,6 +256,29 @@ export const recipeLineAPI = {
     /** Remove an ingredient from a recipe. Cannot remove the last line. */
     delete: (companyId: number, itemId: number, recipeId: number, lineId: number): Promise<void> =>
         apiRequest(`/api/items/companies/${companyId}/items/${itemId}/recipes/${recipeId}/lines/${lineId}/`, {
+            method: 'DELETE',
+        }),
+};
+
+
+export const itemAttributeAPI = {
+    list: (companyId: number, itemId: number): Promise<ItemAttribute[]> =>
+        apiRequest(`/api/items/companies/${companyId}/items/${itemId}/attributes/`),
+
+    create: (companyId: number, itemId: number, data: CreateItemAttributeData): Promise<ItemAttribute> =>
+        apiRequest(`/api/items/companies/${companyId}/items/${itemId}/attributes/`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+        }),
+
+    update: (companyId: number, itemId: number, attrId: number, data: UpdateItemAttributeData): Promise<ItemAttribute> =>
+        apiRequest(`/api/items/companies/${companyId}/items/${itemId}/attributes/${attrId}/`, {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+        }),
+
+    delete: (companyId: number, itemId: number, attrId: number): Promise<void> =>
+        apiRequest(`/api/items/companies/${companyId}/items/${itemId}/attributes/${attrId}/`, {
             method: 'DELETE',
         }),
 };

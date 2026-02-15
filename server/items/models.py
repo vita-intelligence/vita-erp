@@ -107,3 +107,31 @@ class RecipeLine(models.Model):
         db_table = 'recipeline'
         verbose_name = 'Recipe Line'
         verbose_name_plural = 'Recipe Lines'
+
+
+class ItemAttribute(models.Model):
+    """
+    Dynamic key-value attributes attached to an Item.
+
+    Allows each item to carry arbitrary metadata without schema changes —
+    e.g. "Color: Red", "Shelf Life: 12 months", "Storage Temp: -18°C".
+    Value is always stored as a string — interpretation is up to the consumer.
+    """
+    item  = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='attributes')
+    key   = models.CharField(max_length=100)
+    value = models.CharField(max_length=500)
+
+    def __str__(self):
+        return f"{self.item.name} — {self.key}: {self.value}"
+
+    class Meta:
+        db_table = 'item_attributes'
+        verbose_name = 'Item Attribute'
+        verbose_name_plural = 'Item Attributes'
+        ordering = ['key']
+        constraints = [
+            # One item can't have two attributes with the same key
+            # e.g. you can't have "Color: Red" and "Color: Blue" on the same item —
+            # update the value instead
+            models.UniqueConstraint(fields=['item', 'key'], name='uniq_attribute_key_per_item')
+        ]

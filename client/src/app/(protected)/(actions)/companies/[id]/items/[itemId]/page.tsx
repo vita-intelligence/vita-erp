@@ -11,6 +11,7 @@ import { useMyPermissions } from '@/hooks/api/useAccess';
 import BrutalistBreadcrumbs from '@/components/ui/breadcrumbs/BrutalistBreadCrumb';
 import { RecipesSection } from '@/components/pages/companies/items/itemPage/RecipesSection';
 import { ItemDetailHeader } from '@/components/pages/companies/items/itemPage/ItemDetailsHeader';
+import { AttributesSection } from '@/components/pages/companies/items/itemPage/AttributesSection';
 
 
 
@@ -110,6 +111,14 @@ export default function ItemPage() {
                     uoms={uoms}
                     canEdit={can('items.edit')}
                     canDelete={can('items.delete')}
+                />
+
+                {/* Attributes — available for all item types */}
+                <AttributesSection
+                    attributes={item.attributes}
+                    companyId={companyId}
+                    itemId={item.id}
+                    canEdit={can('items.edit')}
                 />
 
                 {/* Recipes section — only for BOM items */}

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Item, Recipe, RecipeLine, UnitOfMeasure
+from .models import Category, Item, Recipe, RecipeLine, UnitOfMeasure, ItemAttribute
 
 
 # ============================================================================
@@ -85,4 +85,15 @@ class ItemDetailSerializer(serializers.ModelSerializer):
             'category', 'category_name',
             'is_active', 'date_added',
             'recipes',
+            'attributes',
         ]
+
+
+# ============================================================================
+# ITEM ATTRIBUTES
+# ============================================================================
+
+class ItemAttributeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemAttribute
+        fields = ['id', 'key', 'value']
