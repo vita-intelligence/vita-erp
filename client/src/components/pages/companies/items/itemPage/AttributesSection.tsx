@@ -269,8 +269,6 @@ export function AttributesSection({ attributes, companyId, itemId, canEdit }: At
 
             {/* Body */}
             <div className="p-4 space-y-2">
-
-                {/* Add row at top */}
                 {adding && (
                     <AddAttributeRow
                         companyId={companyId}
@@ -279,7 +277,6 @@ export function AttributesSection({ attributes, companyId, itemId, canEdit }: At
                     />
                 )}
 
-                {/* Existing attributes */}
                 {attributes.length === 0 && !adding ? (
                     <div className="text-center py-6">
                         <SlidersHorizontal size={28} className="text-gray-200 mx-auto mb-2" />
@@ -295,15 +292,17 @@ export function AttributesSection({ attributes, companyId, itemId, canEdit }: At
                         )}
                     </div>
                 ) : (
-                    attributes.map(attr => (
-                        <AttributeRow
-                            key={attr.id}
-                            attr={attr}
-                            companyId={companyId}
-                            itemId={itemId}
-                            canEdit={canEdit}
-                        />
-                    ))
+                    <>
+                        {attributes.map(attr => (
+                            <AttributeRow
+                                key={attr.id}
+                                attr={attr}
+                                companyId={companyId}
+                                itemId={itemId}
+                                canEdit={canEdit}
+                            />
+                        ))}
+                    </>
                 )}
             </div>
         </div>
