@@ -12,6 +12,7 @@ export interface UnitOfMeasure {
 
 export interface Category {
     id: number;
+    company: number;      // read-only — set by backend from URL
     name: string;
 }
 
@@ -31,7 +32,7 @@ export interface Item {
 }
 
 export interface ItemDetail extends Item {
-    recipes: Recipe[];
+    recipes: Recipe[];            // lightweight summaries, no lines
 }
 
 export interface RecipeLine {
@@ -98,18 +99,37 @@ export interface UpdateRecipeData {
     name?: string;
     output_quantity?: number;
     is_default?: boolean;
-    lines?: RecipeLineData[];   // omit to keep existing lines unchanged
+    lines?: RecipeLineData[];     // omit to keep existing lines unchanged
+}
+
+export interface CreateRecipeLineData {
+    ingredient: number;
+    quantity: number;
+}
+
+export interface UpdateRecipeLineData {
+    quantity: number;             // ingredient is immutable — only quantity can change
 }
 
 export interface ItemFilters {
     type?: ItemType;
     active?: boolean;
     category?: number;
+    search?: string;
 }
 
 // ============================================================================
 // API
 // ============================================================================
+
+export const uomAPI = {
+    /**
+     * Global list — no company scope.
+     * Seeded by migration, never changes at runtime.
+     */
+    list: (): Promise<UnitOfMeasure[]> =>
+        apiRequest('/api/items/uom/'),
+};
 
 export const categoryAPI = {
     list: (companyId: number): Promise<Category[]> =>
@@ -139,9 +159,10 @@ export const categoryAPI = {
 export const itemAPI = {
     list: (companyId: number, filters?: ItemFilters): Promise<Item[]> => {
         const params = new URLSearchParams();
-        if (filters?.type)     params.set('type', filters.type);
-        if (filters?.active !== undefined) params.set('active', String(filters.active));
-        if (filters?.category) params.set('category', String(filters.category));
+        if (filters?.type)                    params.set('type', filters.type);
+        if (filters?.active !== undefined)    params.set('active', String(filters.active));
+        if (filters?.category !== undefined)  params.set('category', String(filters.category));
+        if (filters?.search)                  params.set('search', filters.search);
         const qs = params.toString();
         return apiRequest(`/api/items/companies/${companyId}/items/${qs ? `?${qs}` : ''}`);
     },
@@ -188,6 +209,36 @@ export const recipeAPI = {
 
     delete: (companyId: number, itemId: number, recipeId: number): Promise<void> =>
         apiRequest(`/api/items/companies/${companyId}/items/${itemId}/recipes/${recipeId}/`, {
+            method: 'DELETE',
+        }),
+};
+
+export const recipeLineAPI = {
+    /**
+     * List all lines for a recipe.
+     * Prefer using recipeAPI.get() which returns lines embedded — use this
+     * only when you need the lines independently of the recipe header.
+     */
+    list: (companyId: number, itemId: number, recipeId: number): Promise<RecipeLine[]> =>
+        apiRequest(`/api/items/companies/${companyId}/items/${itemId}/recipes/${recipeId}/lines/`),
+
+    /** Add a single ingredient to a recipe. */
+    create: (companyId: number, itemId: number, recipeId: number, data: CreateRecipeLineData): Promise<RecipeLine> =>
+        apiRequest(`/api/items/companies/${companyId}/items/${itemId}/recipes/${recipeId}/lines/`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+        }),
+
+    /** Update quantity of an existing ingredient line. Ingredient itself is immutable. */
+    update: (companyId: number, itemId: number, recipeId: number, lineId: number, data: UpdateRecipeLineData): Promise<RecipeLine> =>
+        apiRequest(`/api/items/companies/${companyId}/items/${itemId}/recipes/${recipeId}/lines/${lineId}/`, {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+        }),
+
+    /** Remove an ingredient from a recipe. Cannot remove the last line. */
+    delete: (companyId: number, itemId: number, recipeId: number, lineId: number): Promise<void> =>
+        apiRequest(`/api/items/companies/${companyId}/items/${itemId}/recipes/${recipeId}/lines/${lineId}/`, {
             method: 'DELETE',
         }),
 };

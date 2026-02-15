@@ -41,9 +41,13 @@ function PermissionGroup({ label, icon, permissions, selectedIds, onToggle }: Pe
     };
 
     return (
-        <div className="border-2 border-black" onClick={toggleAll}>
+        // No onClick here — was causing double-fires when clicking individual rows
+        <div className="border-2 border-black">
+
+            {/* Group header — clicking anywhere on it toggles all */}
             <button
                 type="button"
+                onClick={toggleAll}
                 className="w-full cursor-pointer flex items-center justify-between px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors border-b-2 border-black"
             >
                 <div className="flex items-center gap-2 font-bold text-black">
@@ -67,11 +71,15 @@ function PermissionGroup({ label, icon, permissions, selectedIds, onToggle }: Pe
                 </div>
             </button>
 
+            {/* Individual permission rows — full row is clickable */}
             <div className="divide-y divide-gray-100">
                 {permissions.map(permission => (
                     <label
                         key={permission.id}
-                        onClick={() => onToggle(permission.id)}
+                        onClick={(e) => {
+                            e.stopPropagation(); // prevent event bubbling to parent
+                            onToggle(permission.id);
+                        }}
                         className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-gray-50 transition-colors"
                     >
                         <div className="flex-1 min-w-0 pr-4">

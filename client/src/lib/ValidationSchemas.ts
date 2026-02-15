@@ -98,3 +98,28 @@ export const inviteSchema = z.object({
 });
 
 export type InviteFormData = z.infer<typeof inviteSchema>;
+
+
+// ============================================================================
+// ITEMS
+// ============================================================================
+
+export const createItemSchema = z.object({
+    name: z
+        .string()
+        .min(1, 'Name is required')
+        .max(255, 'Name must be under 255 characters'),
+    description: z
+        .string()
+        .max(750, 'Description must be under 750 characters')
+        .optional(),
+    item_type: z.enum(['raw', 'bom'], {
+        message: 'Please select an item type',
+    }),
+    unit_of_measurement: z
+        .string()
+        .min(1, 'Unit of measurement is required'),
+    category: z.string().optional(),
+});
+
+export type CreateItemFormData = z.infer<typeof createItemSchema>;

@@ -1,17 +1,35 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
+    uomAPI,
     categoryAPI,
     itemAPI,
     recipeAPI,
+    recipeLineAPI,
+    Category,
     CreateCategoryData,
     UpdateCategoryData,
     CreateItemData,
     UpdateItemData,
     CreateRecipeData,
     UpdateRecipeData,
+    CreateRecipeLineData,
+    UpdateRecipeLineData,
     ItemFilters,
+    RecipeDetail,
 } from '@/lib/api/items';
 import { useToast } from '../ui/useToast';
+
+// ============================================================================
+// UNITS OF MEASURE
+// ============================================================================
+
+export function useUnitOfMeasures() {
+    return useQuery({
+        queryKey: ['uom'],
+        queryFn: () => uomAPI.list(),
+        staleTime: Infinity, // seeded by migration, never changes at runtime
+    });
+}
 
 // ============================================================================
 // CATEGORIES
@@ -21,7 +39,7 @@ export function useCategories(companyId: number) {
     return useQuery({
         queryKey: ['categories', companyId],
         queryFn: () => categoryAPI.list(companyId),
-        staleTime: 5 * 60 * 1000, // 5 min — categories rarely change
+        staleTime: 5 * 60 * 1000,
     });
 }
 
@@ -47,9 +65,15 @@ export function useUpdateCategory(companyId: number, categoryId: number) {
 
     return useMutation({
         mutationFn: (data: UpdateCategoryData) => categoryAPI.update(companyId, categoryId, data),
-        onSuccess: (data) => {
-            queryClient.invalidateQueries({ queryKey: ['categories', companyId] });
-            toast.success('Category updated', `Renamed to "${data.name}".`);
+        onSuccess: (updated) => {
+            // Instantly patch the category in the list cache — no waiting for refetch
+            queryClient.setQueryData<Category[]>(
+                ['categories', companyId],
+                (old) => old?.map(c => c.id === categoryId ? updated : c) ?? []
+            );
+            // Invalidate items — they embed category_name which is now stale
+            queryClient.invalidateQueries({ queryKey: ['items', companyId] });
+            toast.success('Category updated', `Renamed to "${updated.name}".`);
         },
         onError: (error: Error) => {
             toast.error('Failed to update category', error.message);
@@ -93,6 +117,20 @@ export function useItem(companyId: number, itemId: number) {
     });
 }
 
+/**
+ * useItemSearch — debounced search for ingredients in recipe line picker.
+ * Only fires when `enabled` is true and query is at least 2 characters.
+ * Results are cached for 30s per query string.
+ */
+export function useItemSearch(companyId: number, search: string, enabled: boolean) {
+    return useQuery({
+        queryKey: ['items', companyId, { search }],
+        queryFn: () => itemAPI.list(companyId, { search, active: true }),
+        staleTime: 30 * 1000,
+        enabled: enabled && search.length >= 2,
+    });
+}
+
 export function useCreateItem(companyId: number) {
     const queryClient = useQueryClient();
     const toast = useToast();
@@ -100,7 +138,6 @@ export function useCreateItem(companyId: number) {
     return useMutation({
         mutationFn: (data: CreateItemData) => itemAPI.create(companyId, data),
         onSuccess: (data) => {
-            // Invalidate all item lists for this company (any filter combo)
             queryClient.invalidateQueries({ queryKey: ['items', companyId] });
             toast.success('Item created', `"${data.name}" has been added.`);
         },
@@ -117,7 +154,6 @@ export function useUpdateItem(companyId: number, itemId: number) {
     return useMutation({
         mutationFn: (data: UpdateItemData) => itemAPI.update(companyId, itemId, data),
         onSuccess: (data) => {
-            // Update the specific item cache + invalidate lists
             queryClient.setQueryData(['items', companyId, itemId], data);
             queryClient.invalidateQueries({ queryKey: ['items', companyId] });
             toast.success('Item updated', `"${data.name}" has been saved.`);
@@ -173,7 +209,6 @@ export function useCreateRecipe(companyId: number, itemId: number) {
         mutationFn: (data: CreateRecipeData) => recipeAPI.create(companyId, itemId, data),
         onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey: ['recipes', companyId, itemId] });
-            // Also refresh the parent item since it embeds recipe summaries
             queryClient.invalidateQueries({ queryKey: ['items', companyId, itemId] });
             toast.success('Recipe created', `"${data.name}" has been added.`);
         },
@@ -214,6 +249,77 @@ export function useDeleteRecipe(companyId: number, itemId: number) {
         },
         onError: (error: Error) => {
             toast.error('Failed to delete recipe', error.message);
+        },
+    });
+}
+
+// ============================================================================
+// RECIPE LINES
+// ============================================================================
+
+export function useCreateRecipeLine(companyId: number, itemId: number, recipeId: number) {
+    const queryClient = useQueryClient();
+    const toast = useToast();
+
+    return useMutation({
+        mutationFn: (data: CreateRecipeLineData) =>
+            recipeLineAPI.create(companyId, itemId, recipeId, data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['recipes', companyId, itemId, recipeId] });
+            queryClient.invalidateQueries({ queryKey: ['recipes', companyId, itemId] });
+            toast.success('Ingredient added');
+        },
+        onError: (error: Error) => {
+            toast.error('Failed to add ingredient', error.message);
+        },
+    });
+}
+
+export function useUpdateRecipeLine(companyId: number, itemId: number, recipeId: number) {
+    const queryClient = useQueryClient();
+    const toast = useToast();
+
+    return useMutation({
+        mutationFn: ({ lineId, data }: { lineId: number; data: UpdateRecipeLineData }) =>
+            recipeLineAPI.update(companyId, itemId, recipeId, lineId, data),
+        onSuccess: (updatedLine) => {
+            // Patch the line in-place inside the cached recipe
+            queryClient.setQueryData<RecipeDetail>(
+                ['recipes', companyId, itemId, recipeId],
+                (old) => {
+                    if (!old) return old;
+                    return {
+                        ...old,
+                        lines: old.lines.map(l =>
+                            l.id === updatedLine.id ? updatedLine : l
+                        ),
+                    };
+                }
+            );
+            // Also invalidate the list so recipe summaries stay fresh
+            queryClient.invalidateQueries({ queryKey: ['recipes', companyId, itemId] });
+            toast.success('Quantity updated');
+        },
+        onError: (error: Error) => {
+            toast.error('Failed to update quantity', error.message);
+        },
+    });
+}
+
+export function useDeleteRecipeLine(companyId: number, itemId: number, recipeId: number) {
+    const queryClient = useQueryClient();
+    const toast = useToast();
+
+    return useMutation({
+        mutationFn: (lineId: number) =>
+            recipeLineAPI.delete(companyId, itemId, recipeId, lineId),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['recipes', companyId, itemId, recipeId] });
+            queryClient.invalidateQueries({ queryKey: ['recipes', companyId, itemId] });
+            toast.info('Ingredient removed');
+        },
+        onError: (error: Error) => {
+            toast.error('Failed to remove ingredient', error.message);
         },
     });
 }

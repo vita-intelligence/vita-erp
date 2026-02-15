@@ -1,14 +1,34 @@
 from rest_framework import serializers
-from .models import Category, Item, Recipe, RecipeLine
+from .models import Category, Item, Recipe, RecipeLine, UnitOfMeasure
 
+
+# ============================================================================
+# UNITS OF MEASURE
+# ============================================================================
+
+class UOMSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UnitOfMeasure
+        fields = ['id', 'name', 'abbreviation']
+
+
+# ============================================================================
+# CATEGORIES
+# ============================================================================
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name']
+        fields = ['id', 'company', 'name']
+        read_only_fields = ['company']  # set from URL kwargs in the view, never from request body
 
+
+# ============================================================================
+# RECIPE LINES
+# ============================================================================
 
 class RecipeLineSerializer(serializers.ModelSerializer):
+    """Single ingredient row — used both nested in recipes and standalone in line endpoints."""
     ingredient_name = serializers.CharField(source='ingredient.name', read_only=True)
     ingredient_uom  = serializers.CharField(source='ingredient.unit_of_measurement.abbreviation', read_only=True)
 
@@ -17,15 +37,19 @@ class RecipeLineSerializer(serializers.ModelSerializer):
         fields = ['id', 'ingredient', 'ingredient_name', 'ingredient_uom', 'quantity']
 
 
+# ============================================================================
+# RECIPES
+# ============================================================================
+
 class RecipeSerializer(serializers.ModelSerializer):
-    """Lightweight — used in list views."""
+    """Lightweight — used in item detail to embed recipe summaries without expanding lines."""
     class Meta:
         model = Recipe
         fields = ['id', 'name', 'output_quantity', 'is_default', 'created_at']
 
 
 class RecipeDetailSerializer(serializers.ModelSerializer):
-    """Full recipe with all lines expanded."""
+    """Full recipe with all ingredient lines expanded."""
     lines = RecipeLineSerializer(many=True, read_only=True)
 
     class Meta:
@@ -33,10 +57,14 @@ class RecipeDetailSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'output_quantity', 'is_default', 'created_at', 'lines']
 
 
+# ============================================================================
+# ITEMS
+# ============================================================================
+
 class ItemSerializer(serializers.ModelSerializer):
     """Lightweight — used in list views."""
     category_name = serializers.CharField(source='category.name', read_only=True)
-    uom            = serializers.CharField(source='unit_of_measurement.abbreviation', read_only=True)
+    uom           = serializers.CharField(source='unit_of_measurement.abbreviation', read_only=True)
 
     class Meta:
         model = Item
@@ -44,12 +72,17 @@ class ItemSerializer(serializers.ModelSerializer):
 
 
 class ItemDetailSerializer(serializers.ModelSerializer):
-    """Full item — includes recipes if it is a BOM item."""
+    """Full item — includes recipe summaries if it is a BOM item."""
     category_name = serializers.CharField(source='category.name', read_only=True)
-    uom            = serializers.CharField(source='unit_of_measurement.abbreviation', read_only=True)
-    recipes        = RecipeSerializer(many=True, read_only=True)
+    uom           = serializers.CharField(source='unit_of_measurement.abbreviation', read_only=True)
+    recipes       = RecipeSerializer(many=True, read_only=True)  # lightweight, lines not expanded here
 
     class Meta:
         model = Item
-        fields = ['id', 'name', 'description', 'item_type', 'unit_of_measurement', 'uom',
-                  'category', 'category_name', 'is_active', 'date_added', 'recipes']
+        fields = [
+            'id', 'name', 'description', 'item_type',
+            'unit_of_measurement', 'uom',
+            'category', 'category_name',
+            'is_active', 'date_added',
+            'recipes',
+        ]
