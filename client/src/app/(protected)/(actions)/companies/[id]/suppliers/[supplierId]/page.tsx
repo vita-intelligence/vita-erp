@@ -9,6 +9,7 @@ import gsap from 'gsap';
 import { useSupplier, useUpdateSupplier, useDeleteSupplier } from '@/hooks/api/useSuppliers';
 import { useMyPermissions } from '@/hooks/api/useAccess';
 import BrutalistBreadcrumbs from '@/components/ui/breadcrumbs/BrutalistBreadCrumb';
+import { AddressesSection } from '@/components/pages/companies/suppliers/supplierPage/AddressesSection';
 
 
 export default function SupplierPage() {
@@ -278,12 +279,12 @@ export default function SupplierPage() {
                     </div>
                 </div>
 
-                {/* Placeholder for future sections — contacts, addresses, purchase history */}
-                <div className="bg-gray-50 border-2 border-dashed border-gray-200 p-6 text-center">
-                    <Building2 size={28} className="text-gray-200 mx-auto mb-2" />
-                    <p className="text-sm text-gray-400 font-medium">Contacts & addresses coming soon</p>
-                    <p className="text-xs text-gray-300 mt-1">Purchase history will appear here once orders are placed</p>
-                </div>
+                <AddressesSection
+                    addresses={supplier.addresses}
+                    companyId={companyId}
+                    supplierId={supplierId}
+                    canEdit={can('suppliers.edit')}
+                />
             </div>
         </>
     );
