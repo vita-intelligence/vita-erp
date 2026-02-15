@@ -96,10 +96,10 @@ export function useRole(companyId: number, roleId: number) {
  * const { can } = useMyPermissions(companyId);
  * can('roles.create') // → true/false
  */
-export function useMyPermissions(companyId: number) {
+export function useMyPermissions(companyId: number | null) {
     const query = useQuery({
         queryKey: ['permissions', companyId],
-        queryFn: () => accessAPI.getMyPermissions(companyId),
+        queryFn: () => accessAPI.getMyPermissions(companyId!),
         staleTime: 10 * 60 * 1000,
         enabled: !!companyId,
     });
