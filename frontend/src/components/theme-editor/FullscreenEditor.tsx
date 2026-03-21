@@ -1,7 +1,7 @@
 "use client";
 
 import { RotateCcw, X } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 
 import { Button } from "@/components/ui/button";
 import { useThemeStore } from "@/stores/theme";
@@ -11,6 +11,20 @@ import { ModeSwitcher } from "./ModeSwitcher";
 import { PreviewExternalProvider } from "./modules/_shared";
 
 const GROUPS = groupedModules();
+
+/** Tailwind lg breakpoint (1024px) — true when viewport is lg or wider. */
+const LG_QUERY = "(min-width: 1024px)";
+const subscribe = (cb: () => void) => {
+  const mql = window.matchMedia(LG_QUERY);
+  mql.addEventListener("change", cb);
+  return () => mql.removeEventListener("change", cb);
+};
+const getSnapshot = () => window.matchMedia(LG_QUERY).matches;
+const getServerSnapshot = () => false;
+
+function useIsLg() {
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
 
 type Props = {
   activeTab: string;
@@ -35,7 +49,9 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
     if (first) setActiveTab(first.id);
   }
 
+  const isLg = useIsLg();
   const hasPreview = !!active.preview;
+  const showSplitPreview = hasPreview && isLg;
 
   // Lock background scroll while open
   useEffect(() => {
@@ -170,13 +186,13 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
         <div className="flex-1 overflow-y-auto p-4 md:p-8">
           <div
             className={
-              hasPreview
+              showSplitPreview
                 ? "mx-auto max-w-5xl lg:flex lg:items-start lg:gap-8"
                 : "mx-auto max-w-2xl"
             }
           >
             {/* Controls column */}
-            <div className={hasPreview ? "min-w-0 flex-1" : undefined}>
+            <div className={showSplitPreview ? "min-w-0 flex-1" : undefined}>
               <div className="mb-6 flex items-center justify-between">
                 <div>
                   <h2 className="text-sm font-semibold text-vita-neutral-900">
@@ -195,7 +211,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
                   Reset section
                 </Button>
               </div>
-              {hasPreview ? (
+              {showSplitPreview ? (
                 <PreviewExternalProvider value={true}>
                   <active.component />
                 </PreviewExternalProvider>
@@ -204,9 +220,9 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
               )}
             </div>
 
-            {/* Sticky preview pane — lg+ only, when module has a preview */}
-            {hasPreview && active.preview && (
-              <div className="hidden shrink-0 lg:block lg:w-[400px] lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
+            {/* Sticky preview pane — only rendered on lg+ */}
+            {showSplitPreview && active.preview && (
+              <div className="w-[400px] shrink-0 sticky top-4 self-start max-h-[calc(100vh-7rem)] overflow-y-auto">
                 <active.preview />
               </div>
             )}
