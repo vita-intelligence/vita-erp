@@ -1,0 +1,52 @@
+/* ── Input ────────────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <Input> component (.input).
+ * Covers shape, border, shadow, padding, typography, placeholder, focus ring,
+ * label, and motion — all values injected at runtime via applyTokens().
+ */
+
+/* Wrapper — shape, border, shadow, transition */
+.input {
+  border-radius: var(--vita-input-radius) !important;
+  border-top-width: var(--vita-input-border-top) !important;
+  border-right-width: var(--vita-input-border-right) !important;
+  border-bottom-width: var(--vita-input-border-bottom) !important;
+  border-left-width: var(--vita-input-border-left) !important;
+  border-style: var(--vita-input-border-style, solid) !important;
+  box-shadow: var(--vita-input-shadow, none) !important;
+  transition-property: border-color, box-shadow, outline, background-color !important;
+  transition-timing-function: ease !important;
+  transition-duration: var(--vita-input-transition-duration, 150ms) !important;
+}
+
+/* Inner <input> element — padding, font, alignment */
+.input input,
+[data-slot="input"] {
+  padding-left: var(--vita-input-padding-x, 0.75rem) !important;
+  padding-right: var(--vita-input-padding-x, 0.75rem) !important;
+  padding-top: var(--vita-input-padding-y, 0.5rem) !important;
+  padding-bottom: var(--vita-input-padding-y, 0.5rem) !important;
+  font-size: var(--vita-input-font-size, 0.875rem) !important;
+  text-align: var(--vita-input-text-align, left) !important;
+}
+
+/* Placeholder */
+.input input::placeholder,
+[data-slot="input"]::placeholder {
+  opacity: var(--vita-input-placeholder-opacity, 0.45) !important;
+}
+
+/* Focus ring — shown on the wrapper when any child is focused */
+.input:focus-within {
+  outline-style: solid !important;
+  outline-width: var(--vita-input-focus-ring-width, 2px) !important;
+  outline-offset: var(--vita-input-focus-ring-offset, 0px) !important;
+  outline-color: var(--vita-primary) !important;
+}
+
+/* Label */
+.input ~ label,
+.input + label,
+[data-slot="label"] {
+  font-weight: var(--vita-input-label-weight) !important;
+  font-size: var(--vita-input-label-size, 0.75rem) !important;
+}

@@ -1,0 +1,35 @@
+/* ── Button ───────────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <Button> component (.button).
+ * All shape, typography, border, shadow, and motion tokens are forwarded here.
+ * Values are injected at runtime by the theme store via applyTokens().
+ */
+
+.button {
+  border-radius: var(--vita-btn-radius) !important;
+  font-weight: var(--vita-btn-font-weight) !important;
+  letter-spacing: var(--vita-btn-letter-spacing) !important;
+  text-transform: var(--vita-btn-text-transform) !important;
+  border-style: var(--vita-btn-border-style) !important;
+  border-top-width: var(--vita-btn-border-top) !important;
+  border-right-width: var(--vita-btn-border-right) !important;
+  border-bottom-width: var(--vita-btn-border-bottom) !important;
+  border-left-width: var(--vita-btn-border-left) !important;
+  box-shadow: var(--vita-btn-shadow) !important;
+  transition-property: color, background-color, border-color, box-shadow, transform, filter, opacity !important;
+  transition-timing-function: ease !important;
+  transition-duration: var(--vita-btn-transition-duration) !important;
+}
+
+/* Hover — only on true pointer devices to avoid sticky hover on touch */
+@media (hover: hover) {
+  .button:not([data-disabled="true"]):not([aria-disabled="true"]):hover {
+    transform: var(--vita-btn-hover-transform, none) !important;
+    filter: var(--vita-btn-hover-filter, none) !important;
+  }
+}
+
+/* Press / active feedback */
+.button:active,
+.button[data-pressed="true"] {
+  transform: scale(var(--vita-btn-press-scale, 0.97)) !important;
+}

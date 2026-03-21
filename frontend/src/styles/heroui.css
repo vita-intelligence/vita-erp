@@ -1,0 +1,54 @@
+/*
+ * HeroUI v3 semantic variable bridge.
+ *
+ * Maps Vita ERP brand tokens → HeroUI internal CSS variables so HeroUI
+ * components automatically reflect our design system at runtime.
+ *
+ * Token → HeroUI var
+ * ─────────────────────────────────────────────────
+ *  vita-primary         → --accent      (buttons, focus rings, active states)
+ *  vita-error           → --danger      (destructive actions, error states)
+ *  vita-background      → --background  (page background)
+ *  vita-surface         → --surface     (card / panel background)
+ *  vita-neutral-900     → --foreground  (primary text)
+ *  vita-neutral-200     → --border      (default border)
+ */
+
+:root {
+  --accent: var(--vita-primary);
+  --accent-foreground: var(--vita-text-on-primary);
+
+  --success: var(--vita-success);
+  --success-foreground: var(--vita-text-on-primary);
+
+  --warning: var(--vita-warning);
+  --warning-foreground: var(--vita-text-on-warning);
+
+  --danger: var(--vita-error);
+  --danger-foreground: var(--vita-text-on-danger);
+
+  --background: var(--vita-background);
+  --surface: var(--vita-surface);
+  --foreground: var(--vita-neutral-900);
+
+  --border: var(--vita-neutral-200);
+  --focus: var(--vita-primary);
+}
+
+/*
+ * Dark mode — toggled by adding .dark to <html> via the theme store.
+ *
+ * The neutral scale is INVERTED in dark mode:
+ *   neutral-50  = near-black  (darkest)
+ *   neutral-950 = near-white  (lightest)
+ *
+ * We therefore reference the same named vars as in light mode because
+ * applyTokens() already writes the correct dark values into them at runtime.
+ */
+.dark {
+  --accent: var(--vita-primary);
+  --background: var(--vita-background);
+  --surface: var(--vita-surface);
+  --foreground: var(--vita-neutral-900);
+  --border: var(--vita-neutral-200);
+}

@@ -1,0 +1,9 @@
+/* ── Card ─────────────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <Card> component (.card).
+ */
+
+.card {
+  border-radius: var(--vita-card-radius) !important;
+  border-width: var(--vita-card-border-width) !important;
+  box-shadow: var(--vita-card-shadow) !important;
+}

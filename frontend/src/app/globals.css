@@ -1,139 +1,24 @@
+/* ── Entry point ──────────────────────────────────────────────────────────────
+ * This file is the single CSS entry point loaded by Next.js (layout.tsx).
+ * It only contains @import statements — all actual rules live in src/styles/.
+ *
+ * Load order matters:
+ *   1. tailwindcss     — utility classes + reset
+ *   2. @heroui/styles  — HeroUI component base styles
+ *   3. tokens          — Vita ERP brand CSS variables (--vita-*)
+ *   4. heroui          — bridges --vita-* tokens → HeroUI semantic vars
+ *   5. components/*    — per-component token overrides
+ */
+
 @import "tailwindcss";
 @import "@heroui/styles";
+
 @import "../styles/tokens.css";
+@import "../styles/heroui.css";
 
-/*
- * HeroUI v3 semantic variable overrides.
- * Maps our brand tokens onto HeroUI's internal CSS variables.
- *
- *   primary    → --accent      (buttons, focus rings, active states)
- *   error      → --danger      (destructive actions, error states)
- *   background → --background  (page background)
- *   surface    → --surface     (card/panel background)
- */
-:root {
-  --accent: var(--vita-primary);
-  --accent-foreground: var(--vita-text-on-primary);
-
-  --success: var(--vita-success);
-  --success-foreground: var(--vita-text-on-primary);
-
-  --warning: var(--vita-warning);
-  --warning-foreground: var(--vita-text-on-warning);
-
-  --danger: var(--vita-error);
-  --danger-foreground: var(--vita-text-on-danger);
-
-  --background: var(--vita-background);
-  --surface: var(--vita-surface);
-  --foreground: var(--vita-neutral-900);
-
-  --border: var(--vita-neutral-200);
-  --focus: var(--vita-primary);
-}
-
-/* Dark mode — toggled by adding .dark to <html> via the theme store.
- * The neutral scale is INVERTED in dark mode (neutral-50 = darkest, neutral-950 = lightest),
- * so we reference the opposite end of the scale compared to light mode. */
-.dark {
-  --accent: var(--vita-primary);
-  --background: var(--vita-background);
-  --surface: var(--vita-surface);
-  --foreground: var(--vita-neutral-900);
-  --border: var(--vita-neutral-200);
-}
-
-/* ── Component token overrides ────────────────────────────────────────────────
- * Override HeroUI v3 defaults with Vita ERP design tokens.
- * These CSS vars are set at runtime by the theme store via applyTokens().
- * --------------------------------------------------------------------------- */
-
-.button {
-  border-radius: var(--vita-btn-radius) !important;
-  font-weight: var(--vita-btn-font-weight) !important;
-  letter-spacing: var(--vita-btn-letter-spacing) !important;
-  text-transform: var(--vita-btn-text-transform) !important;
-  border-style: var(--vita-btn-border-style) !important;
-  border-top-width: var(--vita-btn-border-top) !important;
-  border-right-width: var(--vita-btn-border-right) !important;
-  border-bottom-width: var(--vita-btn-border-bottom) !important;
-  border-left-width: var(--vita-btn-border-left) !important;
-  box-shadow: var(--vita-btn-shadow) !important;
-  transition-property: color, background-color, border-color, box-shadow, transform, filter, opacity !important;
-  transition-timing-function: ease !important;
-  transition-duration: var(--vita-btn-transition-duration) !important;
-}
-
-@media (hover: hover) {
-  .button:not([data-disabled="true"]):not([aria-disabled="true"]):hover {
-    transform: var(--vita-btn-hover-transform, none) !important;
-    filter: var(--vita-btn-hover-filter, none) !important;
-  }
-}
-
-.button:active,
-.button[data-pressed="true"] {
-  transform: scale(var(--vita-btn-press-scale, 0.97)) !important;
-}
-
-.card {
-  border-radius: var(--vita-card-radius) !important;
-  border-width: var(--vita-card-border-width) !important;
-  box-shadow: var(--vita-card-shadow) !important;
-}
-
-.chip {
-  border-radius: var(--vita-badge-radius) !important;
-  font-weight: var(--vita-badge-font-weight) !important;
-}
-
-.input {
-  border-radius: var(--vita-input-radius) !important;
-  border-top-width: var(--vita-input-border-top) !important;
-  border-right-width: var(--vita-input-border-right) !important;
-  border-bottom-width: var(--vita-input-border-bottom) !important;
-  border-left-width: var(--vita-input-border-left) !important;
-  border-style: var(--vita-input-border-style, solid) !important;
-  box-shadow: var(--vita-input-shadow, none) !important;
-  transition-property: border-color, box-shadow, outline, background-color !important;
-  transition-timing-function: ease !important;
-  transition-duration: var(--vita-input-transition-duration, 150ms) !important;
-}
-
-.input input,
-[data-slot="input"] {
-  padding-left: var(--vita-input-padding-x, 0.75rem) !important;
-  padding-right: var(--vita-input-padding-x, 0.75rem) !important;
-  padding-top: var(--vita-input-padding-y, 0.5rem) !important;
-  padding-bottom: var(--vita-input-padding-y, 0.5rem) !important;
-  font-size: var(--vita-input-font-size, 0.875rem) !important;
-  text-align: var(--vita-input-text-align, left) !important;
-}
-
-.input input::placeholder,
-[data-slot="input"]::placeholder {
-  opacity: var(--vita-input-placeholder-opacity, 0.45) !important;
-}
-
-.input:focus-within {
-  outline-width: var(--vita-input-focus-ring-width, 2px) !important;
-  outline-offset: var(--vita-input-focus-ring-offset, 0px) !important;
-  outline-style: solid !important;
-  outline-color: var(--vita-primary) !important;
-}
-
-.input ~ label,
-.input + label,
-[data-slot="label"] {
-  font-weight: var(--vita-input-label-weight) !important;
-  font-size: var(--vita-input-label-size, 0.75rem) !important;
-}
-
-.select__trigger {
-  border-radius: var(--vita-select-radius) !important;
-  border-width: var(--vita-select-border-width) !important;
-}
-
-.modal__dialog {
-  border-radius: var(--vita-modal-radius) !important;
-}
+@import "../styles/components/button.css";
+@import "../styles/components/card.css";
+@import "../styles/components/input.css";
+@import "../styles/components/badge.css";
+@import "../styles/components/select.css";
+@import "../styles/components/modal.css";

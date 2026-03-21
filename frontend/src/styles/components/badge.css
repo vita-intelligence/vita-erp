@@ -1,0 +1,9 @@
+/* ── Badge / Chip ─────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <Chip> component (.chip),
+ * which is used as the badge primitive across the ERP interface.
+ */
+
+.chip {
+  border-radius: var(--vita-badge-radius) !important;
+  font-weight: var(--vita-badge-font-weight) !important;
+}
