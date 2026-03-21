@@ -84,8 +84,22 @@ export type ThemeTokens = {
   btnTransitionDuration: string; // transition-duration for hover/active states
   // Input / Textarea / Search
   inputRadius: string; // border-radius of the input wrapper
-  inputBorderWidth: string; // border-width of the input wrapper
-  inputLabelWeight: string; // font-weight of the floating/static label
+  inputBorderTop: string; // border-top-width
+  inputBorderRight: string; // border-right-width
+  inputBorderBottom: string; // border-bottom-width
+  inputBorderLeft: string; // border-left-width
+  inputBorderStyle: string; // border-style: solid | dashed | dotted
+  inputLabelWeight: string; // font-weight of the label
+  inputLabelSize: string; // font-size of the label
+  inputShadow: string; // box-shadow of the input wrapper
+  inputPaddingX: string; // horizontal internal padding
+  inputPaddingY: string; // vertical internal padding
+  inputFontSize: string; // font-size of the input text
+  inputPlaceholderOpacity: string; // opacity of placeholder text (0–1)
+  inputFocusRingWidth: string; // outline-width on focus
+  inputFocusRingOffset: string; // outline-offset on focus
+  inputTransitionDuration: string; // transition-duration for focus/hover
+  inputTextAlign: string; // text-align: left | center | right
   // Card
   cardRadius: string; // border-radius of card panels
   cardBorderWidth: string; // border-width of card panels
@@ -166,8 +180,22 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   btnPressScale: "--vita-btn-press-scale",
   btnTransitionDuration: "--vita-btn-transition-duration",
   inputRadius: "--vita-input-radius",
-  inputBorderWidth: "--vita-input-border-width",
+  inputBorderTop: "--vita-input-border-top",
+  inputBorderRight: "--vita-input-border-right",
+  inputBorderBottom: "--vita-input-border-bottom",
+  inputBorderLeft: "--vita-input-border-left",
+  inputBorderStyle: "--vita-input-border-style",
   inputLabelWeight: "--vita-input-label-weight",
+  inputLabelSize: "--vita-input-label-size",
+  inputShadow: "--vita-input-shadow",
+  inputPaddingX: "--vita-input-padding-x",
+  inputPaddingY: "--vita-input-padding-y",
+  inputFontSize: "--vita-input-font-size",
+  inputPlaceholderOpacity: "--vita-input-placeholder-opacity",
+  inputFocusRingWidth: "--vita-input-focus-ring-width",
+  inputFocusRingOffset: "--vita-input-focus-ring-offset",
+  inputTransitionDuration: "--vita-input-transition-duration",
+  inputTextAlign: "--vita-input-text-align",
   cardRadius: "--vita-card-radius",
   cardBorderWidth: "--vita-card-border-width",
   cardShadow: "--vita-card-shadow",
@@ -362,8 +390,22 @@ export const lightTheme: ThemeTokens = {
   btnPressScale: "0.97",
   btnTransitionDuration: "150ms",
   inputRadius: "0px",
-  inputBorderWidth: "1px",
+  inputBorderTop: "1px",
+  inputBorderRight: "1px",
+  inputBorderBottom: "1px",
+  inputBorderLeft: "1px",
+  inputBorderStyle: "solid",
   inputLabelWeight: "500",
+  inputLabelSize: "12px",
+  inputShadow: "none",
+  inputPaddingX: "12px",
+  inputPaddingY: "8px",
+  inputFontSize: "14px",
+  inputPlaceholderOpacity: "0.45",
+  inputFocusRingWidth: "2px",
+  inputFocusRingOffset: "0px",
+  inputTransitionDuration: "150ms",
+  inputTextAlign: "left",
   cardRadius: "0px",
   cardBorderWidth: "1px",
   cardShadow: "none",
@@ -447,8 +489,22 @@ export const darkTheme: ThemeTokens = {
   btnPressScale: "0.97",
   btnTransitionDuration: "150ms",
   inputRadius: "0px",
-  inputBorderWidth: "1px",
+  inputBorderTop: "1px",
+  inputBorderRight: "1px",
+  inputBorderBottom: "1px",
+  inputBorderLeft: "1px",
+  inputBorderStyle: "solid",
   inputLabelWeight: "500",
+  inputLabelSize: "12px",
+  inputShadow: "none",
+  inputPaddingX: "12px",
+  inputPaddingY: "8px",
+  inputFontSize: "14px",
+  inputPlaceholderOpacity: "0.45",
+  inputFocusRingWidth: "2px",
+  inputFocusRingOffset: "0px",
+  inputTransitionDuration: "150ms",
+  inputTextAlign: "left",
   cardRadius: "0px",
   cardBorderWidth: "1px",
   cardShadow: "none",
