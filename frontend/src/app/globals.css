@@ -1,2 +1,42 @@
 @import "tailwindcss";
 @import "@heroui/styles";
+@import "../styles/tokens.css";
+
+/*
+ * HeroUI v3 color overrides
+ * Maps our brand tokens onto HeroUI's semantic CSS variables so that
+ * HeroUI components (Button, Badge, Input…) use the Vita ERP palette.
+ */
+:root {
+  --accent:             var(--color-vita-accent);
+  --accent-foreground:  oklch(1 0 0);
+
+  --success:            var(--color-vita-success);
+  --success-foreground: oklch(1 0 0);
+
+  --warning:            var(--color-vita-warning);
+  --warning-foreground: oklch(0.15 0 0);
+
+  --danger:             var(--color-vita-danger);
+  --danger-foreground:  oklch(1 0 0);
+
+  --background:         var(--color-vita-neutral-50);
+  --foreground:         var(--color-vita-neutral-900);
+
+  --border:             var(--color-vita-neutral-200);
+  --focus:              var(--color-vita-accent);
+}
+
+/*
+ * Dark mode overrides
+ * Toggled via .dark class on <html> (controlled by the theme store)
+ */
+.dark {
+  --accent:             var(--color-vita-accent-light);
+  --accent-foreground:  oklch(0.10 0 0);
+
+  --background:         var(--color-vita-neutral-950);
+  --foreground:         var(--color-vita-neutral-100);
+
+  --border:             var(--color-vita-neutral-800);
+}
