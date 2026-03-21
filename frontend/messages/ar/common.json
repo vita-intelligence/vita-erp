@@ -1,0 +1,12 @@
+{
+  "appName": "Vita ERP",
+  "loading": "جارٍ التحميل...",
+  "error": "حدث خطأ ما",
+  "save": "حفظ",
+  "cancel": "إلغاء",
+  "delete": "حذف",
+  "edit": "تعديل",
+  "create": "إنشاء",
+  "search": "بحث",
+  "noResults": "لا توجد نتائج"
+}

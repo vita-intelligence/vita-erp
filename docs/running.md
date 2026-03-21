@@ -1,6 +1,6 @@
 # Running the Project
 
-Django runs locally. Docker handles PostgreSQL and Redis.
+Both backend and frontend run locally. Docker handles PostgreSQL and Redis.
 
 ## Daily workflow
 
@@ -11,9 +11,16 @@ docker compose up -d
 # 2. Start Django (from backend/)
 cd backend
 uv run python manage.py runserver
+
+# 3. Start Next.js (from frontend/, in a separate terminal)
+cd frontend
+npm run dev
 ```
 
-That's it. API available at `http://localhost:8000`.
+| Service | URL |
+|---|---|
+| API | `http://localhost:8000` |
+| Frontend | `http://localhost:3000` |
 
 ---
 
@@ -59,3 +66,15 @@ uv run python manage.py shell_plus       # interactive shell (django-extensions)
 | `uv run <command>` | Run any command inside the venv |
 
 > Never use `source .venv/bin/activate`. Always prefix commands with `uv run`.
+
+## Common frontend commands
+
+```bash
+cd frontend
+
+npm run dev        # start dev server
+npm run build      # production build
+npm run lint       # biome lint + format check
+npm run format     # biome format and fix
+npm run typecheck  # TypeScript check
+```

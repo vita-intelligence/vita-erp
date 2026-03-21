@@ -1,0 +1,12 @@
+{
+  "appName": "Vita ERP",
+  "loading": "Yükleniyor...",
+  "error": "Bir şeyler yanlış gitti",
+  "save": "Kaydet",
+  "cancel": "İptal",
+  "delete": "Sil",
+  "edit": "Düzenle",
+  "create": "Oluştur",
+  "search": "Ara",
+  "noResults": "Sonuç bulunamadı"
+}

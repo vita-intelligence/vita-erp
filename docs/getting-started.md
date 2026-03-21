@@ -7,7 +7,7 @@
 | Python | 3.13+ | Backend runtime |
 | uv | latest | Python package manager |
 | Docker Desktop | latest | Runs PostgreSQL and Redis locally |
-| Node.js | 18+ | Frontend (coming soon) |
+| Node.js | 20+ | Frontend runtime |
 
 ### Install uv
 
@@ -66,3 +66,22 @@ uv run python manage.py runserver
 ```
 
 The API is now available at `http://localhost:8000`.
+
+---
+
+## Frontend setup
+
+### 1. Install dependencies
+
+```bash
+cd frontend
+npm install
+```
+
+### 2. Start the dev server
+
+```bash
+npm run dev
+```
+
+The frontend is now available at `http://localhost:3000`.

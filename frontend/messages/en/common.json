@@ -1,0 +1,12 @@
+{
+  "appName": "Vita ERP",
+  "loading": "Loading...",
+  "error": "Something went wrong",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "edit": "Edit",
+  "create": "Create",
+  "search": "Search",
+  "noResults": "No results found"
+}

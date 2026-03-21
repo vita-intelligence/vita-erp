@@ -1,0 +1,12 @@
+{
+  "appName": "Vita ERP",
+  "loading": "Caricamento...",
+  "error": "Qualcosa è andato storto",
+  "save": "Salva",
+  "cancel": "Annulla",
+  "delete": "Elimina",
+  "edit": "Modifica",
+  "create": "Crea",
+  "search": "Cerca",
+  "noResults": "Nessun risultato trovato"
+}

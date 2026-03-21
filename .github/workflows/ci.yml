@@ -98,7 +98,7 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      - name: Lint (eslint)
+      - name: Lint and format check (biome)
         if: steps.check.outputs.exists == 'true'
         working-directory: frontend
         run: npm run lint
