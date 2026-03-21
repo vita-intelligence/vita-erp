@@ -14,16 +14,23 @@ jobs:
   backend-ci:
     name: Backend CI
     runs-on: ubuntu-latest
-    if: hashFiles('server/**') != ''
-    defaults:
-      run:
-        working-directory: server
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check server directory exists
+        id: check
+        run: |
+          if [ -d "server" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "server/ not found — skipping backend CI"
+          fi
+
       - name: Set up Python
+        if: steps.check.outputs.exists == 'true'
         uses: actions/setup-python@v5
         with:
           python-version-file: server/.python-version
@@ -31,18 +38,28 @@ jobs:
           cache-dependency-path: server/requirements*.txt
 
       - name: Install dependencies
+        if: steps.check.outputs.exists == 'true'
+        working-directory: server
         run: pip install -r requirements.txt -r requirements-dev.txt
 
       - name: Lint (ruff)
+        if: steps.check.outputs.exists == 'true'
+        working-directory: server
         run: ruff check .
 
       - name: Format check (ruff)
+        if: steps.check.outputs.exists == 'true'
+        working-directory: server
         run: ruff format --check .
 
       - name: Type check (mypy)
+        if: steps.check.outputs.exists == 'true'
+        working-directory: server
         run: mypy .
 
       - name: Tests (pytest)
+        if: steps.check.outputs.exists == 'true'
+        working-directory: server
         run: pytest --tb=short -q
         env:
           DJANGO_SETTINGS_MODULE: config.settings.test
@@ -50,16 +67,23 @@ jobs:
   frontend-ci:
     name: Frontend CI
     runs-on: ubuntu-latest
-    if: hashFiles('client/**') != ''
-    defaults:
-      run:
-        working-directory: client
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check client directory exists
+        id: check
+        run: |
+          if [ -d "client" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "client/ not found — skipping frontend CI"
+          fi
+
       - name: Set up Node
+        if: steps.check.outputs.exists == 'true'
         uses: actions/setup-node@v4
         with:
           node-version-file: client/.nvmrc
@@ -67,15 +91,23 @@ jobs:
           cache-dependency-path: client/package-lock.json
 
       - name: Install dependencies
+        if: steps.check.outputs.exists == 'true'
+        working-directory: client
         run: npm ci
 
       - name: Lint (eslint)
+        if: steps.check.outputs.exists == 'true'
+        working-directory: client
         run: npm run lint
 
       - name: Type check (tsc)
+        if: steps.check.outputs.exists == 'true'
+        working-directory: client
         run: npm run typecheck
 
       - name: Tests (vitest)
+        if: steps.check.outputs.exists == 'true'
+        working-directory: client
         run: npm run test -- --run
 
   ci-success:
