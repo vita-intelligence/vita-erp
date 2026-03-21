@@ -8,16 +8,19 @@ import {
 } from "@/config/themes";
 
 type ThemeState = {
-  /** Active preset name — "light" | "dark" */
+  /** Active preset name */
   mode: ThemeName;
-  /** Live token values — may differ from preset if user customised individual tokens */
-  tokens: ThemeTokens;
+  /** Per-mode token storage — each mode keeps its own customised colors */
+  tokensByMode: Record<ThemeName, ThemeTokens>;
 
-  /** Switch to a built-in preset and apply it immediately */
+  /** Convenience getter — tokens for the active mode */
+  readonly tokens: ThemeTokens;
+
+  /** Switch mode and apply its tokens immediately */
   setMode: (mode: ThemeName) => void;
-  /** Merge a partial token override into the current theme and apply */
+  /** Merge token overrides into the CURRENT mode and apply */
   setTokens: (overrides: Partial<ThemeTokens>) => void;
-  /** Re-apply the current tokens to the DOM (called on mount after hydration) */
+  /** Re-apply current mode tokens to the DOM (called on mount after hydration) */
   applyTheme: () => void;
 };
 
@@ -25,31 +28,39 @@ export const useThemeStore = create<ThemeState>()(
   persist(
     (set, get) => ({
       mode: "light",
-      tokens: themes.light,
+      tokensByMode: {
+        light: themes.light,
+        dark: themes.dark,
+      },
+
+      get tokens() {
+        const { mode, tokensByMode } = get();
+        return tokensByMode[mode];
+      },
 
       setMode(mode) {
-        const tokens = themes[mode];
-        set({ mode, tokens });
+        set({ mode });
+        const tokens = get().tokensByMode[mode];
         applyTokens(tokens);
         document.documentElement.classList.toggle("dark", mode === "dark");
       },
 
       setTokens(overrides) {
-        const tokens = { ...get().tokens, ...overrides };
-        set({ tokens });
+        const { mode, tokensByMode } = get();
+        const updated = { ...tokensByMode[mode], ...overrides };
+        set({ tokensByMode: { ...tokensByMode, [mode]: updated } });
         applyTokens(overrides);
       },
 
       applyTheme() {
-        const { tokens, mode } = get();
-        applyTokens(tokens);
+        const { mode, tokensByMode } = get();
+        applyTokens(tokensByMode[mode]);
         document.documentElement.classList.toggle("dark", mode === "dark");
       },
     }),
     {
       name: "vita-theme",
-      // Persist only data, not the functions
-      partialize: ({ mode, tokens }) => ({ mode, tokens }),
+      partialize: ({ mode, tokensByMode }) => ({ mode, tokensByMode }),
     },
   ),
 );

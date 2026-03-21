@@ -7,17 +7,18 @@ import { Separator } from "@/components/ui/separator";
 import { THEME } from "@/config";
 import { useThemeStore } from "@/stores/theme";
 
+const brandColors = ["accent", "success", "warning", "danger", "info"] as const;
 const neutralShades = [
   50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950,
 ] as const;
 
 export default function DesignSystemPage() {
-  const { mode, setMode, setTokens } = useThemeStore();
+  const { mode, setMode, setTokens, tokens } = useThemeStore();
 
   return (
     <main className="min-h-screen bg-vita-neutral-50 p-8 font-vita-sans">
       <div className="mx-auto max-w-4xl space-y-10">
-        {/* Header + Theme switcher */}
+        {/* Header + mode switcher */}
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-3xl font-bold text-vita-neutral-900">
@@ -42,36 +43,48 @@ export default function DesignSystemPage() {
             >
               Dark
             </ButtonRoot>
-            {/* Live token override — accent color picker for theme constructor demo */}
-            <input
-              type="color"
-              title="Override accent color"
-              className="h-8 w-8 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
-              onChange={(e) => {
-                setTokens({ accent: e.target.value });
-              }}
-            />
           </div>
         </div>
 
         <Separator />
 
-        {/* Brand colors */}
-        <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-vita-neutral-800">
-            Brand colors
-          </h2>
-          <div className="flex flex-wrap gap-3">
-            {(["accent", "success", "warning", "danger", "info"] as const).map(
-              (name) => (
-                <div key={name} className="flex flex-col items-center gap-1">
-                  <div
-                    className={`h-12 w-20 rounded-vita-md bg-vita-${name}`}
-                  />
-                  <span className="text-xs text-vita-neutral-500">{name}</span>
-                </div>
-              ),
-            )}
+        {/* Brand colors — per-mode, each color has its own picker */}
+        <section className="space-y-3">
+          <div>
+            <h2 className="text-lg font-semibold text-vita-neutral-800">
+              Brand colors
+            </h2>
+            <p className="text-xs text-vita-neutral-500">
+              Editing <span className="font-medium">{mode}</span> mode — switch
+              modes above to customise each independently.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            {brandColors.map((name) => (
+              <label
+                key={name}
+                className="flex cursor-pointer flex-col items-center gap-2"
+              >
+                {/* Swatch — reads from live CSS var, not dynamic class */}
+                <div
+                  className="h-16 w-24 rounded-vita-md shadow-vita-sm"
+                  style={{ background: `var(--vita-${name})` }}
+                />
+                <span className="text-xs font-medium text-vita-neutral-600">
+                  {name}
+                </span>
+                <input
+                  type="color"
+                  title={`Override ${name} (${mode})`}
+                  className="h-7 w-24 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
+                  onChange={(e) =>
+                    setTokens({ [name]: e.target.value } as Partial<
+                      typeof tokens
+                    >)
+                  }
+                />
+              </label>
+            ))}
           </div>
         </section>
 
@@ -198,15 +211,13 @@ export default function DesignSystemPage() {
           <p className="text-xl font-medium text-vita-neutral-700">
             Heading xl
           </p>
-          <p className="text-base text-vita-neutral-600">
-            Body — base size, neutral 600
-          </p>
+          <p className="text-base text-vita-neutral-600">Body — base size</p>
           <p className="text-sm text-vita-neutral-500">Small — neutral 500</p>
           <p className="text-xs text-vita-neutral-400">
             Extra small — neutral 400
           </p>
           <p className="font-vita-mono text-sm text-vita-neutral-700">
-            Mono: const token = useThemeStore.getState().tokens.accent;
+            const accent = &quot;{tokens.accent}&quot;
           </p>
         </section>
 
