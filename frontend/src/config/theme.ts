@@ -1,54 +1,20 @@
 /**
- * Design token constants — TypeScript mirror of src/styles/tokens.css
+ * Static structural design constants — Vita ERP
  *
- * Use these when you need token values in JavaScript/TypeScript:
- * - GSAP animations (gsap.to(el, { backgroundColor: THEME.colors.accent }))
- * - Inline styles
- * - Dynamic className logic
+ * Use these in TypeScript/JS when you need token values programmatically:
+ * - GSAP animations: gsap.to(el, { borderRadius: THEME.radii.lg })
+ * - Dynamic z-index logic: style={{ zIndex: THEME.zIndex.modal }}
+ * - Inline styles for structural properties (not colors)
  *
- * For static Tailwind classes, use the generated utilities directly:
- * bg-vita-accent, text-vita-success, shadow-vita-md, etc.
+ * For COLORS at runtime, read the live CSS variable instead:
+ *   getComputedStyle(document.documentElement).getPropertyValue('--vita-accent')
+ * Or use the theme store: useThemeStore.getState().tokens.accent
  *
- * Keep in sync with tokens.css.
+ * For static Tailwind classes, use generated utilities directly:
+ *   bg-vita-accent, shadow-vita-md, rounded-vita-lg, z-vita-modal, etc.
  */
 
 export const THEME = {
-  colors: {
-    accent: "oklch(0.58 0.22 265)",
-    accentLight: "oklch(0.72 0.18 265)",
-    accentDark: "oklch(0.44 0.24 265)",
-
-    success: "oklch(0.64 0.16 155)",
-    successLight: "oklch(0.78 0.12 155)",
-    successDark: "oklch(0.50 0.18 155)",
-
-    warning: "oklch(0.74 0.18 65)",
-    warningLight: "oklch(0.86 0.13 65)",
-    warningDark: "oklch(0.60 0.20 65)",
-
-    danger: "oklch(0.62 0.22 28)",
-    dangerLight: "oklch(0.76 0.16 28)",
-    dangerDark: "oklch(0.48 0.24 28)",
-
-    info: "oklch(0.64 0.14 220)",
-    infoLight: "oklch(0.78 0.10 220)",
-    infoDark: "oklch(0.50 0.16 220)",
-
-    neutral: {
-      50: "oklch(0.98 0 0)",
-      100: "oklch(0.95 0 0)",
-      200: "oklch(0.90 0 0)",
-      300: "oklch(0.82 0 0)",
-      400: "oklch(0.70 0 0)",
-      500: "oklch(0.56 0 0)",
-      600: "oklch(0.44 0 0)",
-      700: "oklch(0.32 0 0)",
-      800: "oklch(0.22 0 0)",
-      900: "oklch(0.14 0 0)",
-      950: "oklch(0.09 0 0)",
-    },
-  },
-
   fonts: {
     sans: '"Inter", ui-sans-serif, system-ui, sans-serif',
     mono: '"JetBrains Mono", ui-monospace, "Cascadia Code", monospace',
@@ -89,5 +55,3 @@ export const THEME = {
     slower: "600ms",
   },
 } as const;
-
-export type ThemeColor = keyof Omit<typeof THEME.colors, "neutral">;
