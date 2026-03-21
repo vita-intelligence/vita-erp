@@ -1,0 +1,46 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy-staging:
+    name: Deploy — Staging
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+    environment:
+      name: staging
+      url: https://staging.vita-erp.com  # TODO: update when staging URL is known
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # TODO: Add staging deploy steps when infrastructure is ready
+      # Examples: build Docker images, push to registry, SSH deploy, kubectl apply, etc.
+      - name: Deploy to staging (placeholder)
+        run: echo "Deploying branch '${{ github.ref_name }}' @ ${{ github.sha }} to staging"
+
+  deploy-production:
+    name: Deploy — Production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://vita-erp.com  # TODO: update when production URL is known
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # TODO: Add production deploy steps when infrastructure is ready
+      # Examples: build Docker images, push to registry, SSH deploy, kubectl apply, etc.
+      - name: Deploy to production (placeholder)
+        run: echo "Deploying branch '${{ github.ref_name }}' @ ${{ github.sha }} to production"

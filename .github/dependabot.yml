@@ -1,0 +1,44 @@
+version: 2
+
+updates:
+  # Python dependencies (Django backend)
+  - package-ecosystem: pip
+    directory: /server
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: UTC
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 10
+    labels:
+      - task
+
+  # Node.js dependencies (Next.js frontend)
+  - package-ecosystem: npm
+    directory: /client
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: UTC
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 10
+    labels:
+      - task
+
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: UTC
+    commit-message:
+      prefix: "chore(ci)"
+    open-pull-requests-limit: 5
+    labels:
+      - task
