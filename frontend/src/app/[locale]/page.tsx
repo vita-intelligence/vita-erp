@@ -12,10 +12,6 @@ import {
 } from "@/config";
 import { useThemeStore } from "@/stores/theme";
 
-const neutralShades = [
-  50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950,
-] as const;
-
 export default function DesignSystemPage() {
   const { mode, setMode, setTokens, resetColor, resetAll } = useThemeStore();
 
@@ -182,24 +178,6 @@ export default function DesignSystemPage() {
                     />
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Neutral scale */}
-        <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-vita-neutral-900">
-            Neutral scale
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {neutralShades.map((shade) => (
-              <div key={shade} className="flex flex-col items-center gap-1">
-                <div
-                  className="h-10 w-12 rounded-vita-sm border border-vita-neutral-200"
-                  style={{ background: `var(--vita-neutral-${shade})` }}
-                />
-                <span className="text-xs text-vita-neutral-500">{shade}</span>
               </div>
             ))}
           </div>
