@@ -22,7 +22,7 @@ export function TypographyModule() {
 
   return (
     <div className="space-y-6">
-      <p className="text-xs text-vita-neutral-500">
+      <p className="text-xs text-vita-text-muted">
         Non-Latin scripts (Arabic, Hindi, Chinese, Japanese, Korean) fall back
         to your device system font automatically.
       </p>
@@ -30,17 +30,17 @@ export function TypographyModule() {
       {/* Interface size */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
+          <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
             Interface size
           </p>
           <div className="flex items-center gap-1">
-            <span className="text-xs font-semibold text-vita-neutral-600">
+            <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
               {tokens.fontSizeBase}
             </span>
             <button
               type="button"
               title="Reset"
-              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
+              className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
               onClick={() => resetColor(["fontSizeBase"])}
             >
               <RotateCcw size={12} />
@@ -56,7 +56,7 @@ export function TypographyModule() {
           className="w-full accent-vita-primary"
           onChange={(e) => setTokens({ fontSizeBase: `${e.target.value}px` })}
         />
-        <div className="flex justify-between text-xs text-vita-neutral-400">
+        <div className="flex justify-between text-xs text-vita-text-muted">
           <span>12px — compact</span>
           <span>20px — large</span>
         </div>
@@ -65,17 +65,17 @@ export function TypographyModule() {
       {/* Line height */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
+          <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
             Line height
           </p>
           <div className="flex items-center gap-1">
-            <span className="text-xs font-semibold text-vita-neutral-600">
+            <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
               {parseFloat(tokens.lineHeight).toFixed(2)}
             </span>
             <button
               type="button"
               title="Reset"
-              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
+              className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
               onClick={() => resetColor(["lineHeight"])}
             >
               <RotateCcw size={12} />
@@ -91,7 +91,7 @@ export function TypographyModule() {
           className="w-full accent-vita-primary"
           onChange={(e) => setTokens({ lineHeight: e.target.value })}
         />
-        <div className="flex justify-between text-xs text-vita-neutral-400">
+        <div className="flex justify-between text-xs text-vita-text-muted">
           <span>1.00 — tight</span>
           <span>3.00 — spacious</span>
         </div>
@@ -100,13 +100,13 @@ export function TypographyModule() {
       {/* Body weight */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
+          <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
             Body weight
           </p>
           <button
             type="button"
             title="Reset"
-            className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
+            className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
             onClick={() => resetColor(["fontWeightBody"])}
           >
             <RotateCcw size={12} />
@@ -129,7 +129,7 @@ export function TypographyModule() {
                   : {
                       borderColor: "var(--vita-neutral-200)",
                       background: "var(--vita-surface)",
-                      color: "var(--vita-neutral-700)",
+                      color: "var(--vita-text-secondary)",
                       fontWeight: value,
                     }
               }
@@ -154,7 +154,7 @@ export function TypographyModule() {
           tokenKey="fontHeading"
           options={HEADING_FONT_OPTIONS}
           preview="Manufacturing Dashboard"
-          previewClassName="text-sm font-semibold text-vita-neutral-700"
+          previewClassName="text-sm font-semibold text-vita-text-secondary"
         />
         <FontSelector
           label="Numbers & codes"

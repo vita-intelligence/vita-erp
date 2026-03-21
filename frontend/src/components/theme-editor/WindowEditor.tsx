@@ -301,7 +301,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
     // Outer shell — NO overflow-hidden so resize handles are never clipped
     <div
       ref={windowRef}
-      className="fixed z-vita-modal rounded-vita-xl"
+      className="fixed z-vita-modal rounded-vita-xl font-vita-sans"
       style={{
         left: pos.x,
         top: pos.y,
@@ -339,11 +339,11 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
               aria-hidden="true"
               size={14}
               className="shrink-0"
-              style={{ color: "var(--vita-neutral-300)" }}
+              style={{ color: "var(--vita-text-muted)" }}
             />
             <span
-              className="text-sm font-semibold"
-              style={{ color: "var(--vita-neutral-800)" }}
+              className="text-sm font-semibold font-vita-heading"
+              style={{ color: "var(--vita-text-primary)" }}
             >
               Brand &amp; Theme
             </span>
@@ -359,12 +359,12 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
                 type="button"
                 aria-label="Reset all to defaults"
                 className="flex h-7 w-7 items-center justify-center transition-colors"
-                style={{ color: "var(--vita-neutral-500)" }}
+                style={{ color: "var(--vita-text-muted)" }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--vita-neutral-900)";
+                  e.currentTarget.style.color = "var(--vita-text-primary)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "var(--vita-neutral-500)";
+                  e.currentTarget.style.color = "var(--vita-text-muted)";
                 }}
                 onClick={resetAll}
               >
@@ -377,12 +377,12 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
                 type="button"
                 aria-label="Close"
                 className="flex h-7 w-7 items-center justify-center transition-colors"
-                style={{ color: "var(--vita-neutral-500)" }}
+                style={{ color: "var(--vita-text-muted)" }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--vita-neutral-900)";
+                  e.currentTarget.style.color = "var(--vita-text-primary)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "var(--vita-neutral-500)";
+                  e.currentTarget.style.color = "var(--vita-text-muted)";
                 }}
                 onClick={onClose}
               >
@@ -416,7 +416,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
                     }
                   : {
                       background: "transparent",
-                      color: "var(--vita-neutral-600)",
+                      color: "var(--vita-text-secondary)",
                     }
               }
               onClick={() => switchGroup(group)}
@@ -437,11 +437,11 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
             <button
               key={m.id}
               type="button"
-              className="relative px-3 py-2 text-xs font-medium whitespace-nowrap transition-colors"
+              className="relative px-3 py-2 text-xs font-medium font-vita-heading whitespace-nowrap transition-colors"
               style={
                 activeTab === m.id
                   ? { color: "var(--vita-primary)" }
-                  : { color: "var(--vita-neutral-500)" }
+                  : { color: "var(--vita-text-muted)" }
               }
               onClick={() => setActiveTab(m.id)}
             >
@@ -466,7 +466,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
           <div className="mb-4 flex items-center justify-between">
             <span
               className="text-xs font-semibold uppercase tracking-widest"
-              style={{ color: "var(--vita-neutral-400)" }}
+              style={{ color: "var(--vita-text-muted)" }}
             >
               {active.label}
             </span>

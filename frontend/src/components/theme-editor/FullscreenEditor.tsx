@@ -63,17 +63,17 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-vita-modal flex flex-col bg-vita-background">
+    <div className="fixed inset-0 z-vita-modal flex flex-col bg-vita-background font-vita-sans">
       {/* Header */}
       <div className="flex h-14 shrink-0 items-center justify-between border-b border-vita-neutral-200 bg-vita-surface px-4 md:px-6">
-        <h1 className="text-sm font-semibold text-vita-neutral-900 md:text-base">
+        <h1 className="text-sm font-semibold font-vita-heading text-vita-text-primary md:text-base">
           Brand &amp; Theme Editor
         </h1>
         <div className="flex items-center gap-2">
           <ModeSwitcher />
           <button
             type="button"
-            className="hidden h-8 items-center rounded-vita-md border border-vita-neutral-200 px-3 text-xs text-vita-neutral-600 transition-colors hover:bg-vita-neutral-100 sm:flex"
+            className="hidden h-8 items-center rounded-vita-md border border-vita-neutral-200 px-3 text-xs text-vita-text-secondary transition-colors hover:bg-vita-neutral-100 sm:flex"
             onClick={resetAll}
           >
             Reset all
@@ -81,7 +81,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
           <button
             type="button"
             aria-label="Close"
-            className="flex h-8 w-8 items-center justify-center rounded-vita-md text-vita-neutral-500 transition-colors hover:bg-vita-neutral-100 hover:text-vita-neutral-800"
+            className="flex h-8 w-8 items-center justify-center rounded-vita-md text-vita-text-muted transition-colors hover:bg-vita-neutral-100 hover:text-vita-text-primary"
             onClick={onClose}
           >
             <X size={16} />
@@ -112,11 +112,11 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
               <button
                 key={m.id}
                 type="button"
-                className="relative shrink-0 px-3 py-2.5 text-sm font-medium whitespace-nowrap transition-colors"
+                className="relative shrink-0 px-3 py-2.5 text-sm font-medium font-vita-heading whitespace-nowrap transition-colors"
                 style={
                   activeTab === m.id
                     ? { color: "var(--vita-primary)" }
-                    : { color: "var(--vita-neutral-500)" }
+                    : { color: "var(--vita-text-muted)" }
                 }
                 onClick={() => setActiveTab(m.id)}
               >
@@ -137,7 +137,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
           <div className="flex-1 overflow-y-auto py-2">
             {GROUPS.map(({ group, items }) => (
               <div key={group} className="mb-1">
-                <p className="px-4 pb-1 pt-3 text-[10px] font-semibold uppercase tracking-widest text-vita-neutral-400">
+                <p className="px-4 pb-1 pt-3 text-[10px] font-semibold uppercase tracking-widest text-vita-text-muted">
                   {group}
                 </p>
                 {items.map((m) => (
@@ -151,17 +151,19 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
                             background: "var(--vita-primary)",
                             color: "var(--vita-text-on-primary)",
                           }
-                        : { color: "var(--vita-neutral-700)" }
+                        : { color: "var(--vita-text-secondary)" }
                     }
                     onClick={() => setActiveTab(m.id)}
                   >
-                    <p className="text-sm font-medium">{m.label}</p>
+                    <p className="text-sm font-medium font-vita-heading">
+                      {m.label}
+                    </p>
                     <p
                       className="text-xs leading-tight"
                       style={
                         activeTab === m.id
                           ? { color: "var(--vita-text-on-primary-muted)" }
-                          : { color: "var(--vita-neutral-400)" }
+                          : { color: "var(--vita-text-muted)" }
                       }
                     >
                       {m.description}
@@ -174,7 +176,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
           <div className="border-t border-vita-neutral-200 p-3">
             <button
               type="button"
-              className="w-full rounded-vita-md border border-vita-neutral-200 py-2 text-xs text-vita-neutral-600 transition-colors hover:bg-vita-neutral-100"
+              className="w-full rounded-vita-md border border-vita-neutral-200 py-2 text-xs text-vita-text-secondary transition-colors hover:bg-vita-neutral-100"
               onClick={resetAll}
             >
               Reset all to defaults
@@ -195,10 +197,10 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
             <div className={showSplitPreview ? "min-w-0 flex-1" : undefined}>
               <div className="mb-6 flex items-center justify-between">
                 <div>
-                  <h2 className="text-sm font-semibold text-vita-neutral-900">
+                  <h2 className="text-sm font-semibold font-vita-heading text-vita-text-primary">
                     {active.label}
                   </h2>
-                  <p className="text-xs text-vita-neutral-400">
+                  <p className="text-xs text-vita-text-muted">
                     {active.description}
                   </p>
                 </div>

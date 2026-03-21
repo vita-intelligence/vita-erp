@@ -19,7 +19,7 @@ export function ModeSwitcher() {
                 }
               : {
                   background: "var(--vita-surface)",
-                  color: "var(--vita-neutral-600)",
+                  color: "var(--vita-text-secondary)",
                 }
           }
           onClick={() => setMode(m)}

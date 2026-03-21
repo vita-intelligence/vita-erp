@@ -25,7 +25,7 @@ export function BadgesModule() {
 
   return (
     <div className="space-y-6">
-      <p className="text-xs text-vita-neutral-500">
+      <p className="text-xs text-vita-text-muted">
         Controls the appearance of status badges, chips, and tags. Shape affects
         how rounded they appear — from sharp square labels to full pill shapes.
       </p>
@@ -53,8 +53,8 @@ export function BadgesModule() {
         {!isPill && (
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-vita-neutral-500">Fine-tune</span>
-              <span className="text-xs font-semibold text-vita-neutral-600">
+              <span className="text-xs text-vita-text-muted">Fine-tune</span>
+              <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
                 {parseFloat(tokens.badgeRadius)}px
               </span>
             </div>
@@ -69,7 +69,7 @@ export function BadgesModule() {
                 setTokens({ badgeRadius: `${e.target.value}px` })
               }
             />
-            <div className="flex justify-between text-xs text-vita-neutral-400">
+            <div className="flex justify-between text-xs text-vita-text-muted">
               <span>0 — square</span>
               <span>32px — rounded</span>
             </div>

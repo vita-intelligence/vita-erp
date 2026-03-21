@@ -32,27 +32,27 @@ export function FontSelector({
   tokenKey,
   options,
   preview,
-  previewClassName = "text-xs text-vita-neutral-500",
+  previewClassName = "text-xs text-vita-text-muted",
 }: FontSelectorProps) {
   const { tokens, setTokens, resetColor } = useThemeStore();
 
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
+        <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
           {label}
         </p>
         <button
           type="button"
           title="Reset"
-          className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
+          className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
           onClick={() => resetColor([tokenKey])}
         >
           <RotateCcw size={12} />
         </button>
       </div>
       <select
-        className="w-full rounded-vita-md border border-vita-neutral-200 bg-vita-surface px-3 py-2 text-sm text-vita-neutral-800 focus:outline-none"
+        className="w-full rounded-vita-md border border-vita-neutral-200 bg-vita-surface px-3 py-2 text-sm text-vita-text-primary focus:outline-none"
         value={tokens[tokenKey]}
         onChange={(e) => {
           const opt = options.find((o) => o.value === e.target.value);

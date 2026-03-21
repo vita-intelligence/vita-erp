@@ -19,7 +19,7 @@ export function CardsModule() {
 
   return (
     <div className="space-y-6">
-      <p className="text-xs text-vita-neutral-500">
+      <p className="text-xs text-vita-text-muted">
         Controls the appearance of all cards and panels — the primary content
         containers across the ERP interface.
       </p>
@@ -30,15 +30,17 @@ export function CardsModule() {
       <Section title="Shape">
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-vita-neutral-600">Corner radius</span>
+            <span className="text-xs text-vita-text-secondary">
+              Corner radius
+            </span>
             <div className="flex items-center gap-1">
-              <span className="text-xs font-semibold text-vita-neutral-600">
+              <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
                 {radiusPx}px
               </span>
               <button
                 type="button"
                 title="Reset"
-                className="p-0.5 text-vita-neutral-300 hover:text-vita-neutral-500"
+                className="p-0.5 text-vita-text-muted hover:text-vita-text-secondary"
                 onClick={() => resetColor(["cardRadius"])}
               >
                 <RotateCcw size={11} />
@@ -54,7 +56,7 @@ export function CardsModule() {
             className="w-full accent-vita-primary"
             onChange={(e) => setTokens({ cardRadius: `${e.target.value}px` })}
           />
-          <div className="flex justify-between text-xs text-vita-neutral-400">
+          <div className="flex justify-between text-xs text-vita-text-muted">
             <span>0 — sharp</span>
             <span>24px — rounded</span>
           </div>

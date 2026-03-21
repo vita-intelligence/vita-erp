@@ -120,10 +120,10 @@ export function NeutralControls() {
   return (
     <section className="space-y-3">
       <div>
-        <h3 className="text-sm font-semibold text-vita-neutral-800">
+        <h3 className="text-sm font-semibold font-vita-heading text-vita-text-primary">
           Neutrals
         </h3>
-        <p className="text-xs text-vita-neutral-500">
+        <p className="text-xs text-vita-text-muted">
           Controls all grays, surfaces, borders, and body text. Adjust the tint
           to warm or cool the entire interface.
         </p>
@@ -134,15 +134,15 @@ export function NeutralControls() {
       {/* Hue slider */}
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
-          <span className="text-xs text-vita-neutral-600">Tint hue</span>
+          <span className="text-xs text-vita-text-secondary">Tint hue</span>
           <div className="flex items-center gap-1">
-            <span className="text-xs font-semibold text-vita-neutral-600">
+            <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
               {Math.round(currentTint.hue)}°
             </span>
             <button
               type="button"
               title="Reset neutrals"
-              className="p-0.5 text-vita-neutral-400 hover:text-vita-neutral-600"
+              className="p-0.5 text-vita-text-muted hover:text-vita-text-secondary"
               onClick={() => resetColor([...NEUTRAL_DERIVED_KEYS])}
             >
               <RotateCcw size={11} />
@@ -176,7 +176,7 @@ export function NeutralControls() {
             applyNeutralTint(Number(e.target.value), currentTint.chroma)
           }
         />
-        <div className="flex justify-between text-xs text-vita-neutral-400">
+        <div className="flex justify-between text-xs text-vita-text-muted">
           <span>Red</span>
           <span>Green</span>
           <span>Blue</span>
@@ -187,8 +187,10 @@ export function NeutralControls() {
       {/* Chroma slider */}
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
-          <span className="text-xs text-vita-neutral-600">Tint strength</span>
-          <span className="text-xs font-semibold text-vita-neutral-600">
+          <span className="text-xs text-vita-text-secondary">
+            Tint strength
+          </span>
+          <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
             {currentTint.chroma === 0
               ? "None"
               : (currentTint.chroma * 100).toFixed(1)}
@@ -205,7 +207,7 @@ export function NeutralControls() {
             applyNeutralTint(currentTint.hue, Number(e.target.value))
           }
         />
-        <div className="flex justify-between text-xs text-vita-neutral-400">
+        <div className="flex justify-between text-xs text-vita-text-muted">
           <span>Pure gray</span>
           <span>Strong tint</span>
         </div>

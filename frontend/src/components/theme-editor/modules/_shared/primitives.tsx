@@ -29,7 +29,7 @@ export function Chip({ active, onClick, children, wide }: ChipProps) {
             }
           : {
               background: "var(--vita-surface)",
-              color: "var(--vita-neutral-700)",
+              color: "var(--vita-text-secondary)",
               borderColor: "var(--vita-neutral-200)",
             }
       }
@@ -52,12 +52,12 @@ export function Row({ label, onReset, children }: RowProps) {
   return (
     <div className="flex items-start justify-between gap-3">
       <div className="flex shrink-0 items-center gap-1 pt-0.5">
-        <span className="w-28 text-xs text-vita-neutral-600">{label}</span>
+        <span className="w-28 text-xs text-vita-text-secondary">{label}</span>
         {onReset && (
           <button
             type="button"
             title="Reset"
-            className="p-0.5 text-vita-neutral-300 hover:text-vita-neutral-500"
+            className="p-0.5 text-vita-text-muted hover:text-vita-text-secondary"
             onClick={onReset}
           >
             <RotateCcw size={11} />
@@ -96,12 +96,12 @@ export function SliderRow({
   return (
     <div className="flex items-start gap-3">
       <div className="flex w-28 shrink-0 items-center gap-1 pt-0.5">
-        <span className="flex-1 text-xs text-vita-neutral-600">{label}</span>
+        <span className="flex-1 text-xs text-vita-text-secondary">{label}</span>
         {onReset && (
           <button
             type="button"
             title="Reset"
-            className="p-0.5 text-vita-neutral-300 hover:text-vita-neutral-500"
+            className="p-0.5 text-vita-text-muted hover:text-vita-text-secondary"
             onClick={onReset}
           >
             <RotateCcw size={11} />
@@ -119,7 +119,7 @@ export function SliderRow({
           onChange={(e) => onChange(Number(e.target.value))}
         />
         {hint && (
-          <div className="flex justify-between text-xs text-vita-neutral-400">
+          <div className="flex justify-between text-xs text-vita-text-muted">
             <span>{hint[0]}</span>
             <span>{hint[1]}</span>
           </div>
@@ -136,7 +136,7 @@ export type SectionProps = { title: string; children: React.ReactNode };
 export function Section({ title, children }: SectionProps) {
   return (
     <div className="space-y-3">
-      <p className="text-xs font-semibold uppercase tracking-widest text-vita-neutral-400">
+      <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
         {title}
       </p>
       <div className="space-y-3">{children}</div>

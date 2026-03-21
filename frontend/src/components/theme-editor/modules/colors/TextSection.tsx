@@ -67,8 +67,10 @@ export function TextSection() {
   return (
     <section className="space-y-3">
       <div>
-        <h3 className="text-sm font-semibold text-vita-neutral-800">Text</h3>
-        <p className="text-xs text-vita-neutral-500">
+        <h3 className="text-sm font-semibold font-vita-heading text-vita-text-primary">
+          Text
+        </h3>
+        <p className="text-xs text-vita-text-muted">
           Body text colors are auto-linked to neutrals. Override individually
           with the color pickers below.
         </p>
@@ -97,7 +99,7 @@ export function TextSection() {
                 style={{
                   color: previewBg
                     ? `var(--vita-${key.replace(/([A-Z])/g, "-$1").toLowerCase()})`
-                    : "var(--vita-neutral-400)",
+                    : "var(--vita-text-muted)",
                 }}
               >
                 {description}
@@ -107,7 +109,7 @@ export function TextSection() {
               <button
                 type="button"
                 title={`Reset ${label} text`}
-                className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
+                className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
                 onClick={() => resetColor([key])}
               >
                 <RotateCcw size={12} />

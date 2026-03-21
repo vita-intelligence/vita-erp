@@ -49,7 +49,7 @@ const SOLID_BADGES: BadgeEntry[] = [
   {
     label: "Draft",
     bg: "var(--vita-neutral-200)",
-    color: "var(--vita-neutral-700)",
+    color: "var(--vita-text-secondary)",
   },
   {
     label: "Active",
@@ -85,7 +85,7 @@ const SOFT_BADGES: BadgeEntry[] = [
   {
     label: "Neutral",
     bg: "var(--vita-neutral-50)",
-    color: "var(--vita-neutral-600)",
+    color: "var(--vita-text-secondary)",
     border: "var(--vita-neutral-300)",
   },
   {
@@ -119,7 +119,7 @@ const CONTEXT_ORDERS = [
     name: "ORD-00839 · Cover Plate D1",
     status: "Draft",
     bg: "var(--vita-neutral-200)",
-    color: "var(--vita-neutral-700)",
+    color: "var(--vita-text-secondary)",
   },
 ];
 
@@ -128,12 +128,12 @@ const CONTEXT_ORDERS = [
 export function Preview() {
   return (
     <div className="space-y-4 rounded-vita-md border border-vita-neutral-200 bg-vita-neutral-50 p-4">
-      <p className="text-xs font-semibold uppercase tracking-widest text-vita-neutral-400">
+      <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
         Live preview
       </p>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-neutral-400">Solid</p>
+        <p className="text-xs text-vita-text-muted">Solid</p>
         <div className="flex flex-wrap gap-2">
           {SOLID_BADGES.map(({ label, bg, color }) => (
             <span key={label} style={badgeStyle(bg, color)}>
@@ -144,7 +144,7 @@ export function Preview() {
       </div>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-neutral-400">Soft / outlined</p>
+        <p className="text-xs text-vita-text-muted">Soft / outlined</p>
         <div className="flex flex-wrap gap-2">
           {SOFT_BADGES.map(({ label, bg, color, border }) => (
             <span key={label} style={badgeStyle(bg, color, border)}>
@@ -155,7 +155,7 @@ export function Preview() {
       </div>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-neutral-400">In context</p>
+        <p className="text-xs text-vita-text-muted">In context</p>
         <div
           style={{
             background: "var(--vita-surface)",
@@ -164,28 +164,34 @@ export function Preview() {
             overflow: "hidden",
           }}
         >
-          {CONTEXT_ORDERS.map(({ name, status, bg, color }) => (
-            <div
-              key={name}
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "0.5rem 0.875rem",
-                borderBottom: "1px solid var(--vita-neutral-100)",
-              }}
-            >
-              <span
+          {CONTEXT_ORDERS.map(({ name, status, bg, color }) => {
+            const [orderId, ...rest] = name.split(" · ");
+            return (
+              <div
+                key={name}
                 style={{
-                  fontSize: "0.75rem",
-                  color: "var(--vita-text-primary)",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "0.5rem 0.875rem",
+                  borderBottom: "1px solid var(--vita-neutral-100)",
                 }}
               >
-                {name}
-              </span>
-              <span style={badgeStyle(bg, color)}>{status}</span>
-            </div>
-          ))}
+                <span
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "var(--vita-text-primary)",
+                  }}
+                >
+                  <span style={{ fontFamily: "var(--vita-font-mono)" }}>
+                    {orderId}
+                  </span>
+                  {rest.length > 0 && ` · ${rest.join(" · ")}`}
+                </span>
+                <span style={badgeStyle(bg, color)}>{status}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

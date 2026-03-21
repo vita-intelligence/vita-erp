@@ -48,16 +48,16 @@ export function Preview() {
   return (
     <div className="space-y-4 rounded-vita-md border border-vita-neutral-200 bg-vita-neutral-50 p-4">
       <div className="flex items-center justify-between">
-        <p className="text-xs font-semibold uppercase tracking-widest text-vita-neutral-400">
+        <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
           Live preview
         </p>
-        <p className="text-xs text-vita-neutral-400">
+        <p className="text-xs text-vita-text-muted">
           hover &amp; click to test
         </p>
       </div>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-neutral-400">Variants</p>
+        <p className="text-xs text-vita-text-muted">Variants</p>
         <div className="flex flex-wrap gap-2">
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
@@ -69,7 +69,7 @@ export function Preview() {
       </div>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-neutral-400">Semantic colors</p>
+        <p className="text-xs text-vita-text-muted">Semantic colors</p>
         <div className="flex flex-wrap gap-2">
           {SEMANTIC_BUTTONS.map(({ label, vars }) => (
             <Button key={label} variant="primary" style={vars}>
@@ -81,7 +81,7 @@ export function Preview() {
       </div>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-neutral-400">Sizes &amp; states</p>
+        <p className="text-xs text-vita-text-muted">Sizes &amp; states</p>
         <div className="flex flex-wrap items-center gap-2">
           <Button variant="primary" size="sm">
             Small

@@ -24,10 +24,10 @@ export function ColorsModule() {
       {/* ── Brand colors ── */}
       <section className="space-y-3">
         <div>
-          <h3 className="text-sm font-semibold text-vita-neutral-800">
+          <h3 className="text-sm font-semibold font-vita-heading text-vita-text-primary">
             Brand colors
           </h3>
-          <p className="text-xs text-vita-neutral-500">
+          <p className="text-xs text-vita-text-muted">
             Each color auto-generates light and dark variants from your base
             pick.
           </p>
@@ -55,10 +55,10 @@ export function ColorsModule() {
                 </div>
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <p className="text-xs font-semibold text-vita-neutral-800">
+                    <p className="text-xs font-semibold text-vita-text-primary">
                       {label}
                     </p>
-                    <p className="text-xs text-vita-neutral-400 leading-tight">
+                    <p className="text-xs text-vita-text-muted leading-tight">
                       {description}
                     </p>
                   </div>
@@ -66,7 +66,7 @@ export function ColorsModule() {
                     <button
                       type="button"
                       title={`Reset ${label}`}
-                      className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
+                      className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
                       onClick={() => resetColor([key, lightKey, darkKey])}
                     >
                       <RotateCcw size={12} />
@@ -96,10 +96,10 @@ export function ColorsModule() {
       {/* ── Surfaces ── */}
       <section className="space-y-3">
         <div>
-          <h3 className="text-sm font-semibold text-vita-neutral-800">
+          <h3 className="text-sm font-semibold font-vita-heading text-vita-text-primary">
             Surfaces
           </h3>
-          <p className="text-xs text-vita-neutral-500">
+          <p className="text-xs text-vita-text-muted">
             Page and card backgrounds — auto-linked to neutral tint, or pick
             custom values.
           </p>
@@ -116,10 +116,10 @@ export function ColorsModule() {
               />
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
-                  <p className="text-xs font-semibold text-vita-neutral-800">
+                  <p className="text-xs font-semibold text-vita-text-primary">
                     {label}
                   </p>
-                  <p className="text-xs text-vita-neutral-400 leading-tight">
+                  <p className="text-xs text-vita-text-muted leading-tight">
                     {description}
                   </p>
                 </div>
@@ -127,7 +127,7 @@ export function ColorsModule() {
                   <button
                     type="button"
                     title={`Reset ${label}`}
-                    className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
+                    className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
                     onClick={() => resetColor([key])}
                   >
                     <RotateCcw size={12} />

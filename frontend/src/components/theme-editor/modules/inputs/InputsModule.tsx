@@ -35,7 +35,7 @@ export function InputsModule() {
 
   return (
     <div className="space-y-6">
-      <p className="text-xs" style={{ color: "var(--vita-neutral-500)" }}>
+      <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
         Click any field in the preview to see the focus ring live. Use the label
         placement and error controls to explore layout options.
       </p>

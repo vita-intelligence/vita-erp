@@ -67,7 +67,10 @@ export function BorderControls({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <span className="text-xs" style={{ color: "var(--vita-neutral-600)" }}>
+        <span
+          className="text-xs"
+          style={{ color: "var(--vita-text-secondary)" }}
+        >
           Width
         </span>
         <div className="flex items-center gap-1">
@@ -78,7 +81,7 @@ export function BorderControls({
             style={{
               color: individual
                 ? "var(--vita-primary)"
-                : "var(--vita-neutral-300)",
+                : "var(--vita-text-muted)",
             }}
             onClick={() => setIndividual((v) => !v)}
           >
@@ -88,7 +91,7 @@ export function BorderControls({
             type="button"
             title="Reset borders"
             className="p-0.5 transition-colors"
-            style={{ color: "var(--vita-neutral-300)" }}
+            style={{ color: "var(--vita-text-muted)" }}
             onClick={() =>
               resetColor([keys.top, keys.right, keys.bottom, keys.left])
             }

@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * Live input preview — renders interactive fields with focus ring,
- * label placement variants, and error display modes.
+ * Live input preview — a realistic mini-form inside a card container.
+ * Demonstrates normal, focused, placeholder, and error states.
  */
 
 import { useState } from "react";
@@ -13,20 +13,38 @@ import { Chip } from "../_shared";
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 type LabelPlacement = "above" | "left" | "inside";
-type ErrorDisplay = "text" | "ring-only";
-type ErrorPosition = "below" | "right";
+
+// ── Field data ────────────────────────────────────────────────────────────────
+
+const FIELDS = [
+  { id: "order-id", label: "Order ID", value: "ORD-00842", mono: true },
+  { id: "product", label: "Product", value: "Steel Frame A-14" },
+  { id: "quantity", label: "Quantity", value: "3,891", mono: true },
+  {
+    id: "notes",
+    label: "Notes",
+    value: "",
+    placeholder: "Add a note…",
+  },
+  {
+    id: "date",
+    label: "Due date",
+    value: "2026-13-45",
+    error: true,
+    errorMsg: "Invalid date format",
+    mono: true,
+  },
+];
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export function Preview() {
   const { tokens } = useThemeStore();
   const [placement, setPlacement] = useState<LabelPlacement>("above");
-  const [errorDisplay, setErrorDisplay] = useState<ErrorDisplay>("text");
-  const [errorPosition, setErrorPosition] = useState<ErrorPosition>("below");
-  // Default one field to focused so the ring is visible immediately
-  const [focusedField, setFocusedField] = useState<string | null>("notes");
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  // Use actual token values (not CSS var strings) so React re-renders apply them immediately
+  // ── Shared styles derived from tokens ───────────────────────────────────
+
   const wrapperBase: React.CSSProperties = {
     borderTopWidth: tokens.inputBorderTop ?? "1px",
     borderRightWidth: tokens.inputBorderRight ?? "1px",
@@ -46,16 +64,16 @@ export function Preview() {
     paddingRight: tokens.inputPaddingX ?? "12px",
     paddingTop: tokens.inputPaddingY ?? "8px",
     paddingBottom: tokens.inputPaddingY ?? "8px",
-    transition: `border-color ${tokens.inputTransitionDuration ?? "150ms"} ease, box-shadow ${tokens.inputTransitionDuration ?? "150ms"} ease, outline ${tokens.inputTransitionDuration ?? "150ms"} ease`,
+    transition: `border-color ${tokens.inputTransitionDuration ?? "150ms"} ease, outline ${tokens.inputTransitionDuration ?? "150ms"} ease`,
   };
 
   function getWrapperStyle(
     focused: boolean,
     error = false,
   ): React.CSSProperties {
-    const focusRingW = tokens.inputFocusRingWidth ?? "2px";
-    const focusRingO = tokens.inputFocusRingOffset ?? "0px";
-    const hasFocusRing = parseFloat(focusRingW) > 0;
+    const ringW = tokens.inputFocusRingWidth ?? "2px";
+    const ringO = tokens.inputFocusRingOffset ?? "0px";
+    const hasRing = parseFloat(ringW) > 0;
     return {
       ...wrapperBase,
       borderColor: error
@@ -63,11 +81,11 @@ export function Preview() {
         : focused
           ? "var(--vita-primary)"
           : "var(--vita-neutral-300)",
-      ...(focused && hasFocusRing
+      ...(focused && hasRing
         ? {
             outlineStyle: "solid" as const,
-            outlineWidth: focusRingW,
-            outlineOffset: focusRingO,
+            outlineWidth: ringW,
+            outlineOffset: ringO,
             outlineColor: error ? "var(--vita-error)" : "var(--vita-primary)",
           }
         : {}),
@@ -90,340 +108,227 @@ export function Preview() {
     fontWeight: (tokens.inputLabelWeight ??
       "500") as React.CSSProperties["fontWeight"],
     fontSize: tokens.inputLabelSize ?? "12px",
-    color: "var(--vita-neutral-600)",
+    color: "var(--vita-text-secondary)",
     display: "block",
-    marginBottom: "0.2rem",
     lineHeight: 1.3,
-  };
-
-  const hintStyle: React.CSSProperties = {
-    fontSize: "0.6875rem",
-    marginTop: "0.2rem",
-    color: "var(--vita-neutral-400)",
-  };
-
-  const hintErrorStyle: React.CSSProperties = {
-    ...hintStyle,
-    color: "var(--vita-error)",
   };
 
   const placeholderOpacity = parseFloat(
     tokens.inputPlaceholderOpacity ?? "0.45",
   );
 
-  const leftFields = [
-    {
-      id: "order-id",
-      label: "Order ID",
-      value: "ORD-00842",
-      placeholder: undefined as string | undefined,
-      error: false,
-    },
-    {
-      id: "quantity",
-      label: "Quantity",
-      value: "3,891 units",
-      placeholder: undefined as string | undefined,
-      error: false,
-    },
-    {
-      id: "date",
-      label: "Due date",
-      value: "2026-13-45",
-      placeholder: undefined as string | undefined,
-      error: true,
-    },
-    {
-      id: "search",
-      label: "Notes",
-      value: "",
-      placeholder: "Add a note…",
-      error: false,
-    },
-  ];
+  // ── Field renderer (shared across placements) ───────────────────────────
+
+  function renderField(f: (typeof FIELDS)[number]) {
+    const focused = focusedField === f.id;
+    const error = "error" in f && f.error;
+
+    const fieldInputStyle =
+      "mono" in f && f.mono
+        ? { ...inputStyle, fontFamily: "var(--vita-font-mono)" }
+        : inputStyle;
+
+    const input = (
+      <input
+        className="vita-field"
+        style={fieldInputStyle}
+        defaultValue={f.value}
+        placeholder={"placeholder" in f ? f.placeholder : undefined}
+        onFocus={() => setFocusedField(f.id)}
+        onBlur={() => setFocusedField(null)}
+        readOnly
+      />
+    );
+
+    const errorHint = error && "errorMsg" in f && (
+      <p
+        style={{
+          fontSize: "0.6875rem",
+          marginTop: "0.15rem",
+          color: "var(--vita-error)",
+        }}
+      >
+        {f.errorMsg}
+      </p>
+    );
+
+    const errorLabelColor = error ? { color: "var(--vita-error)" } : {};
+
+    if (placement === "left") {
+      return (
+        <div key={f.id}>
+          <div
+            style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}
+          >
+            <span
+              style={{
+                ...labelStyle,
+                width: "4.5rem",
+                flexShrink: 0,
+                textAlign: "right",
+                ...errorLabelColor,
+              }}
+            >
+              {f.label}
+            </span>
+            <div style={{ flex: 1 }}>
+              <div style={getWrapperStyle(focused, !!error)}>{input}</div>
+              {errorHint}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (placement === "inside") {
+      return (
+        <div key={f.id}>
+          <div style={getWrapperStyle(focused, !!error)}>
+            <span
+              style={{
+                fontWeight: labelStyle.fontWeight,
+                fontSize: `calc(${tokens.inputLabelSize ?? "12px"} * 0.85)`,
+                color: error ? "var(--vita-error)" : "var(--vita-text-muted)",
+                display: "block",
+                lineHeight: 1.2,
+                marginBottom: "0.1rem",
+              }}
+            >
+              {f.label}
+            </span>
+            {input}
+          </div>
+          {errorHint}
+        </div>
+      );
+    }
+
+    // "above" (default)
+    return (
+      <div key={f.id}>
+        <span
+          style={{ ...labelStyle, marginBottom: "0.25rem", ...errorLabelColor }}
+        >
+          {f.label}
+        </span>
+        <div style={getWrapperStyle(focused, !!error)}>{input}</div>
+        {errorHint}
+      </div>
+    );
+  }
+
+  // ── Render ──────────────────────────────────────────────────────────────
 
   return (
     <div className="space-y-3 rounded-vita-md border border-vita-neutral-200 bg-vita-neutral-50 p-4">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center justify-between">
-          <p
-            className="text-xs font-medium uppercase tracking-wide"
-            style={{ color: "var(--vita-neutral-400)" }}
-          >
-            Live preview
-          </p>
-          <div className="flex items-center gap-1">
-            {(["above", "left", "inside"] as LabelPlacement[]).map((p) => (
-              <Chip
-                key={p}
-                active={placement === p}
-                onClick={() => setPlacement(p)}
-              >
-                {p}
-              </Chip>
-            ))}
-          </div>
-        </div>
-
-        {/* Error display controls */}
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1">
-            <span
-              className="text-xs"
-              style={{ color: "var(--vita-neutral-400)" }}
+      {/* Toolbar */}
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p
+          className="text-xs font-medium uppercase tracking-wide"
+          style={{ color: "var(--vita-text-muted)" }}
+        >
+          Live preview
+        </p>
+        <div className="flex items-center gap-1">
+          {(["above", "left", "inside"] as LabelPlacement[]).map((p) => (
+            <Chip
+              key={p}
+              active={placement === p}
+              onClick={() => setPlacement(p)}
             >
-              Error:
-            </span>
-            {(
-              [
-                { label: "Text + ring", value: "text" },
-                { label: "Ring only", value: "ring-only" },
-              ] as { label: string; value: ErrorDisplay }[]
-            ).map((o) => (
-              <Chip
-                key={o.value}
-                active={errorDisplay === o.value}
-                onClick={() => setErrorDisplay(o.value)}
-              >
-                {o.label}
-              </Chip>
-            ))}
-          </div>
-          {errorDisplay === "text" && placement === "left" && (
-            <div className="flex items-center gap-1">
-              <span
-                className="text-xs"
-                style={{ color: "var(--vita-neutral-400)" }}
-              >
-                Position:
-              </span>
-              {(["below", "right"] as ErrorPosition[]).map((v) => (
-                <Chip
-                  key={v}
-                  active={errorPosition === v}
-                  onClick={() => setErrorPosition(v)}
-                >
-                  {v}
-                </Chip>
-              ))}
-            </div>
-          )}
+              {p}
+            </Chip>
+          ))}
         </div>
       </div>
 
       {/* Scoped placeholder style */}
-      <style>{`.vita-input-preview .vita-field::placeholder { opacity: ${placeholderOpacity}; color: var(--vita-neutral-500); }`}</style>
+      <style>{`.vita-input-preview .vita-field::placeholder { opacity: ${placeholderOpacity}; color: var(--vita-text-muted); }`}</style>
 
-      <div className="vita-input-preview space-y-3">
-        {/* ── Above ── */}
-        {placement === "above" && (
-          <>
-            <div>
-              <label htmlFor="prev-order-id" style={labelStyle}>
-                Order ID
-              </label>
-              <div style={getWrapperStyle(focusedField === "order-id")}>
-                <input
-                  id="prev-order-id"
-                  className="vita-field"
-                  style={inputStyle}
-                  defaultValue="ORD-00842"
-                  onFocus={() => setFocusedField("order-id")}
-                  onBlur={() => setFocusedField(null)}
-                  readOnly
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="prev-notes" style={labelStyle}>
-                Notes
-              </label>
-              <div style={getWrapperStyle(focusedField === "notes")}>
-                <input
-                  id="prev-notes"
-                  className="vita-field"
-                  style={inputStyle}
-                  defaultValue="Rush order — priority lane"
-                  onFocus={() => setFocusedField("notes")}
-                  onBlur={() => setFocusedField(null)}
-                  readOnly
-                />
-              </div>
-              {focusedField === "notes" && (
-                <p style={hintStyle}>Focus ring active</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="prev-search" style={labelStyle}>
-                Search
-              </label>
-              <div style={getWrapperStyle(focusedField === "search")}>
-                <input
-                  id="prev-search"
-                  className="vita-field"
-                  style={inputStyle}
-                  placeholder="Search production orders…"
-                  onFocus={() => setFocusedField("search")}
-                  onBlur={() => setFocusedField(null)}
-                  readOnly
-                />
-              </div>
-            </div>
-            <div>
-              <label
-                htmlFor="prev-date"
-                style={{
-                  ...labelStyle,
-                  ...(errorDisplay === "text"
-                    ? { color: "var(--vita-error)" }
-                    : {}),
-                }}
-              >
-                Due date
-              </label>
-              <div style={getWrapperStyle(focusedField === "date", true)}>
-                <input
-                  id="prev-date"
-                  className="vita-field"
-                  style={inputStyle}
-                  defaultValue="2026-13-45"
-                  onFocus={() => setFocusedField("date")}
-                  onBlur={() => setFocusedField(null)}
-                  readOnly
-                />
-              </div>
-              {errorDisplay === "text" && (
-                <p style={hintErrorStyle}>Invalid date format</p>
-              )}
-            </div>
-          </>
-        )}
+      {/* Card-wrapped form */}
+      <div
+        className="vita-input-preview overflow-hidden"
+        style={{
+          background: "var(--vita-surface)",
+          borderRadius: "var(--vita-card-radius)",
+          borderWidth: "var(--vita-card-border-width)",
+          borderStyle: "solid",
+          borderColor: "var(--vita-neutral-200)",
+          boxShadow: "var(--vita-card-shadow)",
+        }}
+      >
+        {/* Form header */}
+        <div
+          style={{
+            padding: "0.625rem 0.875rem",
+            borderBottom: "1px solid var(--vita-neutral-200)",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "0.8125rem",
+              fontWeight: 600,
+              color: "var(--vita-text-primary)",
+              fontFamily: "var(--vita-font-heading)",
+            }}
+          >
+            New Production Order
+          </span>
+          <span
+            style={{
+              fontSize: "0.6875rem",
+              color: "var(--vita-text-muted)",
+            }}
+          >
+            Click fields to focus
+          </span>
+        </div>
 
-        {/* ── Left ── */}
-        {placement === "left" && (
-          <div className="space-y-2">
-            {leftFields.map(({ id, label, value, placeholder, error }) => (
-              <div key={id}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.75rem",
-                  }}
-                >
-                  <span
-                    style={{
-                      ...labelStyle,
-                      marginBottom: 0,
-                      width: "5.5rem",
-                      flexShrink: 0,
-                      textAlign: "right",
-                      ...(error && errorDisplay === "text"
-                        ? { color: "var(--vita-error)" }
-                        : {}),
-                    }}
-                  >
-                    {label}
-                  </span>
-                  <div style={{ flex: 1 }}>
-                    <div style={getWrapperStyle(focusedField === id, error)}>
-                      <input
-                        className="vita-field"
-                        style={inputStyle}
-                        defaultValue={value}
-                        placeholder={placeholder}
-                        onFocus={() => setFocusedField(id)}
-                        onBlur={() => setFocusedField(null)}
-                        readOnly
-                      />
-                    </div>
-                    {error &&
-                      errorDisplay === "text" &&
-                      errorPosition === "below" && (
-                        <p style={hintErrorStyle}>Invalid date format</p>
-                      )}
-                  </div>
-                  {error &&
-                    errorDisplay === "text" &&
-                    errorPosition === "right" && (
-                      <p
-                        style={{
-                          ...hintErrorStyle,
-                          marginTop: 0,
-                          flexShrink: 0,
-                        }}
-                      >
-                        Invalid date format
-                      </p>
-                    )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        {/* Form body */}
+        <div style={{ padding: "0.75rem 0.875rem" }} className="space-y-2.5">
+          {FIELDS.map(renderField)}
+        </div>
 
-        {/* ── Inside ── */}
-        {placement === "inside" && (
-          <div className="space-y-2">
-            {[
-              {
-                id: "order-id",
-                label: "Production order ID",
-                value: "ORD-00842",
-                placeholder: undefined as string | undefined,
-                error: false,
-              },
-              {
-                id: "notes",
-                label: "Notes",
-                value: "",
-                placeholder: "Add a note…",
-                error: false,
-              },
-              {
-                id: "date",
-                label: "Due date",
-                value: "2026-13-45",
-                placeholder: undefined as string | undefined,
-                error: true,
-              },
-            ].map(({ id, label, value, placeholder, error }) => (
-              <div key={id}>
-                <div style={getWrapperStyle(focusedField === id, error)}>
-                  <span
-                    style={{
-                      fontWeight: (tokens.inputLabelWeight ??
-                        "500") as React.CSSProperties["fontWeight"],
-                      fontSize: `calc(${tokens.inputLabelSize ?? "12px"} * 0.85)`,
-                      color:
-                        error && errorDisplay === "text"
-                          ? "var(--vita-error)"
-                          : "var(--vita-neutral-500)",
-                      display: "block",
-                      lineHeight: 1.2,
-                      marginBottom: "0.1rem",
-                    }}
-                  >
-                    {label}
-                  </span>
-                  <input
-                    className="vita-field"
-                    style={inputStyle}
-                    defaultValue={value}
-                    placeholder={placeholder}
-                    onFocus={() => setFocusedField(id)}
-                    onBlur={() => setFocusedField(null)}
-                    readOnly
-                  />
-                </div>
-                {error && errorDisplay === "text" && (
-                  <p style={hintErrorStyle}>Invalid date format</p>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
+        {/* Form footer */}
+        <div
+          style={{
+            padding: "0.5rem 0.875rem",
+            borderTop: "1px solid var(--vita-neutral-200)",
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "0.375rem",
+          }}
+        >
+          {["Cancel", "Create Order"].map((label, i) => (
+            <button
+              key={label}
+              type="button"
+              style={{
+                borderRadius: "var(--vita-btn-radius)",
+                fontWeight:
+                  "var(--vita-btn-font-weight)" as React.CSSProperties["fontWeight"],
+                fontSize: "0.6875rem",
+                padding: "0.3rem 0.625rem",
+                borderStyle: "solid",
+                borderWidth: "1px",
+                cursor: "default",
+                background:
+                  i === 1 ? "var(--vita-primary)" : "var(--vita-surface)",
+                color:
+                  i === 1
+                    ? "var(--vita-text-on-primary)"
+                    : "var(--vita-text-secondary)",
+                borderColor:
+                  i === 1 ? "var(--vita-primary)" : "var(--vita-neutral-200)",
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
