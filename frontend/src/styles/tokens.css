@@ -113,6 +113,17 @@
 }
 
 /* ---------------------------------------------------------------------------
+ * Surface gradient support
+ *
+ * Tailwind's bg-* utilities compile to background-color, which doesn't support
+ * gradients. These overrides use the background shorthand so surface tokens
+ * can hold solid colors OR gradient values interchangeably.
+ * --------------------------------------------------------------------------- */
+
+.bg-vita-background { background: var(--vita-background) !important; }
+.bg-vita-surface { background: var(--vita-surface) !important; }
+
+/* ---------------------------------------------------------------------------
  * Default light theme values — fallback before store hydration.
  * Must stay in sync with lightTheme in src/config/themes.ts.
  * --------------------------------------------------------------------------- */

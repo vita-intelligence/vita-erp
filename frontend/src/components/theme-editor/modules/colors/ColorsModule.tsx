@@ -6,10 +6,11 @@
 
 import { RotateCcw } from "lucide-react";
 
-import { BRAND_COLOR_META, deriveVariants, SURFACE_COLOR_META } from "@/config";
+import { BRAND_COLOR_META, deriveVariants } from "@/config";
 import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
+import { GradientPicker } from "./GradientPicker";
 import { NeutralControls } from "./NeutralControls";
 import { TextSection } from "./TextSection";
 
@@ -100,53 +101,20 @@ export function ColorsModule() {
             Surfaces
           </h3>
           <p className="text-xs text-vita-text-muted">
-            Page and card backgrounds — auto-linked to neutral tint, or pick
-            custom values.
+            Page and card backgrounds — solid color or gradient.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-3">
-          {SURFACE_COLOR_META.map(({ key, label, description }) => (
-            <div
-              key={key}
-              className="flex flex-col gap-2 rounded-vita-lg border border-vita-neutral-200 bg-vita-surface p-3"
-            >
-              <div
-                className="h-10 w-full rounded-vita-md border border-vita-neutral-200 shadow-vita-xs"
-                style={{ background: `var(--vita-${key})` }}
-              />
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold text-vita-text-primary">
-                    {label}
-                  </p>
-                  <p className="text-xs text-vita-text-muted leading-tight">
-                    {description}
-                  </p>
-                </div>
-                <div className="flex shrink-0 items-center gap-1">
-                  <button
-                    type="button"
-                    title={`Reset ${label}`}
-                    className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
-                    onClick={() => resetColor([key])}
-                  >
-                    <RotateCcw size={12} />
-                  </button>
-                  <input
-                    type="color"
-                    title={`Change ${label}`}
-                    className="h-7 w-7 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
-                    value={cssColorToHex(tokens[key])}
-                    onChange={(e) =>
-                      setTokens({
-                        [key]: e.target.value,
-                      } as Parameters<typeof setTokens>[0])
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
+          <GradientPicker
+            tokenKey="background"
+            label="Background"
+            description="Page background — tint to match warm or cool brand feel"
+          />
+          <GradientPicker
+            tokenKey="surface"
+            label="Surface"
+            description="Cards and panels — slightly offset from background"
+          />
         </div>
       </section>
 
