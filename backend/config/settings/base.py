@@ -44,6 +44,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -107,10 +108,34 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalisation
 # ---------------------------------------------------------------------------
 
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
+
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
+
+# Languages supported across the platform — must stay in sync with frontend I18N.locales.
+# Note: Django uses "zh-hans" for Simplified Chinese; the frontend uses "zh".
+# Accept-Language header partial matching handles the mapping automatically.
+LANGUAGES = [
+    ("en", "English"),
+    ("zh-hans", "Chinese (Simplified)"),
+    ("es", "Spanish"),
+    ("hi", "Hindi"),
+    ("ar", "Arabic"),
+    ("fr", "French"),
+    ("pt", "Portuguese"),
+    ("ru", "Russian"),
+    ("de", "German"),
+    ("ja", "Japanese"),
+    ("ko", "Korean"),
+    ("it", "Italian"),
+    ("tr", "Turkish"),
+    ("id", "Indonesian"),
+]
+
+# Where Django looks for .po / .mo translation files
+LOCALE_PATHS = [BASE_DIR / "locale"]
 
 # ---------------------------------------------------------------------------
 # Static files
