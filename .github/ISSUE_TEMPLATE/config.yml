@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: 💬 Discussion & Questions
+    url: https://github.com/maxchergik/vita-erp/discussions
+    about: For general questions, ideas, or open-ended discussions — use GitHub Discussions instead of issues.

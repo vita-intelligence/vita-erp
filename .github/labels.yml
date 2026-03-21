@@ -1,0 +1,90 @@
+# GitHub Labels Configuration
+# Apply with: gh label create or a labels sync action
+
+# --- Type ---
+- name: bug
+  color: "d73a4a"
+  description: Something is broken or behaving unexpectedly
+
+- name: feature
+  color: "0075ca"
+  description: New feature or capability
+
+- name: improvement
+  color: "a2eeef"
+  description: Enhancement to existing functionality
+
+- name: task
+  color: "e4e669"
+  description: Technical work, tooling, infrastructure, refactoring
+
+# --- Status ---
+- name: needs-triage
+  color: "ededed"
+  description: Newly opened, not yet reviewed or prioritized
+
+- name: in-progress
+  color: "fbca04"
+  description: Actively being worked on
+
+- name: blocked
+  color: "b60205"
+  description: Cannot proceed due to a dependency or blocker
+
+- name: on-hold
+  color: "cccccc"
+  description: Intentionally paused
+
+- name: ready-for-review
+  color: "0e8a16"
+  description: Work is done and waiting for code review
+
+- name: needs-changes
+  color: "e99695"
+  description: Review requested changes before merging
+
+# --- Priority ---
+- name: "priority: critical"
+  color: "b60205"
+  description: Must be resolved immediately
+
+- name: "priority: high"
+  color: "d93f0b"
+  description: High priority — tackle this sprint
+
+- name: "priority: medium"
+  color: "fbca04"
+  description: Medium priority — schedule soon
+
+- name: "priority: low"
+  color: "c5def5"
+  description: Low priority — nice to have
+
+# --- Special ---
+- name: breaking-change
+  color: "b60205"
+  description: Introduces breaking changes to APIs or data
+
+- name: security
+  color: "e11d48"
+  description: Security-related issue or fix
+
+- name: performance
+  color: "0052cc"
+  description: Performance improvement or degradation
+
+- name: needs-discussion
+  color: "d876e3"
+  description: Requires team discussion before proceeding
+
+- name: good-first-issue
+  color: "7057ff"
+  description: Good for newcomers to the codebase
+
+- name: wontfix
+  color: "ffffff"
+  description: This will not be addressed
+
+- name: duplicate
+  color: "cfd3d7"
+  description: This issue already exists

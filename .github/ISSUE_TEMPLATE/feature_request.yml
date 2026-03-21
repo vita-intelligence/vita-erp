@@ -1,0 +1,93 @@
+name: 🚀 Feature Request
+description: Propose a new feature or capability
+title: "[Feature]: "
+labels: ["feature", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose a new feature. Great feature requests are rooted in a real problem — start with the **why**.
+        **Before submitting**, please search [existing issues](../../issues) to avoid duplicates.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight Checklist
+      options:
+        - label: I have searched existing issues and this is not a duplicate
+          required: true
+        - label: This is a feature request, not a bug report
+          required: true
+
+  - type: input
+    id: module
+    attributes:
+      label: Target Area
+      description: Which part of the app does this feature belong to?
+      placeholder: e.g. authentication, stock management, reporting
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - "High — core functionality, blocks other work"
+        - "Medium — important but not blocking"
+        - "Low — nice to have"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? Who is affected and how?
+      placeholder: |
+        As a [type of user], I need [capability] because [reason/impact]...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the feature you want to see implemented. Be as specific as possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Define what "done" looks like. List conditions that must be true for this feature to be considered complete.
+      placeholder: |
+        - [ ] User can do X
+        - [ ] System validates Y
+        - [ ] API returns Z
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other approaches did you consider? Why is your proposed solution better?
+
+  - type: checkboxes
+    id: breaking
+    attributes:
+      label: Impact
+      options:
+        - label: This feature requires a breaking change or database migration
+        - label: This feature has dependencies on other features or external services
+        - label: This feature affects API contracts (adds/modifies endpoints)
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Wireframes, mockups, references to similar implementations, or any other relevant context.

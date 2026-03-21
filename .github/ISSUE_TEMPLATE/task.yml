@@ -1,0 +1,72 @@
+name: 🔧 Task
+description: Technical work — setup, refactoring, migrations, tooling, DevOps
+title: "[Task]: "
+labels: ["task", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for technical tasks that are not directly user-facing features or bugs — infrastructure setup, refactoring, tooling, CI/CD, database migrations, etc.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Task Type
+      options:
+        - Infrastructure / DevOps
+        - Database / Migration
+        - Refactoring / Code Quality
+        - Tooling / CI/CD
+        - Security
+        - Performance
+        - Documentation
+        - Testing
+        - Dependency Update
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - "High — blocks other work or is a security/stability risk"
+        - "Medium — should be done soon"
+        - "Low — can be deferred"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What needs to be done and why?
+    validations:
+      required: true
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: Definition of Done
+      description: How do we know this task is complete?
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+        - [ ] Tests pass
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies / Blockers
+      description: Does this task depend on other issues or block anything else?
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any relevant links, references, or technical notes.

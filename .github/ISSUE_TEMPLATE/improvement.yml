@@ -1,0 +1,77 @@
+name: ✨ Improvement
+description: Enhance or optimize something that already exists
+title: "[Improvement]: "
+labels: ["improvement", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template when you want to improve existing functionality — better UX, performance optimization, enhanced validation, smarter defaults, etc.
+        This is not a new feature, and not a bug — it's making something good even better.
+
+  - type: input
+    id: module
+    attributes:
+      label: Affected Area
+      description: Which part of the app does this improvement target?
+      placeholder: e.g. invoice generation, user settings, API performance
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Improvement Category
+      options:
+        - UX / Usability
+        - Performance / Speed
+        - Code Quality / Maintainability
+        - Security
+        - Accessibility
+        - API / Developer Experience
+        - Data Accuracy / Validation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Behavior
+      description: Describe how it works today.
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired
+    attributes:
+      label: Desired Behavior
+      description: Describe how it should work after the improvement.
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / Business Value
+      description: Why does this improvement matter? What is the impact?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Impact Assessment
+      options:
+        - label: This change is backwards-compatible
+        - label: This change requires a database migration
+        - label: This change modifies existing API contracts
+        - label: This change affects the UI/UX significantly
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Benchmarks, screenshots, references, or any supporting material.
