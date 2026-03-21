@@ -151,7 +151,7 @@ export function Preview() {
             className="text-xs font-medium uppercase tracking-wide"
             style={{ color: "var(--vita-neutral-400)" }}
           >
-            Live preview — click any field to focus
+            Live preview
           </p>
           <div className="flex items-center gap-1">
             {(["above", "left", "inside"] as LabelPlacement[]).map((p) => (
