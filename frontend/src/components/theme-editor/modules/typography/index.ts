@@ -1,0 +1,1 @@
+export { TypographyModule } from "./TypographyModule";

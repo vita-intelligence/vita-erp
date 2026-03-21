@@ -3,11 +3,12 @@
 import { RotateCcw } from "lucide-react";
 import {
   HEADING_FONT_OPTIONS,
-  loadGoogleFont,
   MONO_FONT_OPTIONS,
   SANS_FONT_OPTIONS,
 } from "@/config";
 import { useThemeStore } from "@/stores/theme";
+
+import { FontSelector } from "./FontSelector";
 
 const WEIGHT_OPTIONS = [
   { label: "Light", value: "300" },
@@ -142,125 +143,25 @@ export function TypographyModule() {
 
       {/* Font selectors */}
       <div className="space-y-4">
-        {/* Body font */}
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
-              Body font
-            </p>
-            <button
-              type="button"
-              title="Reset"
-              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
-              onClick={() => resetColor(["fontBody"])}
-            >
-              <RotateCcw size={12} />
-            </button>
-          </div>
-          <select
-            className="w-full rounded-vita-md border border-vita-neutral-200 bg-vita-surface px-3 py-2 text-sm text-vita-neutral-800 focus:outline-none"
-            value={tokens.fontBody}
-            onChange={(e) => {
-              const opt = SANS_FONT_OPTIONS.find(
-                (o) => o.value === e.target.value,
-              );
-              if (opt?.googleFamily) loadGoogleFont(opt.googleFamily);
-              setTokens({ fontBody: e.target.value });
-            }}
-          >
-            {SANS_FONT_OPTIONS.map((o) => (
-              <option key={o.value} value={o.value}>
-                {o.label} — {o.scripts}
-              </option>
-            ))}
-          </select>
-          <p
-            className="text-xs text-vita-neutral-500"
-            style={{ fontFamily: tokens.fontBody }}
-          >
-            The quick brown fox jumps over the lazy dog.
-          </p>
-        </div>
-
-        {/* Heading font */}
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
-              Heading font
-            </p>
-            <button
-              type="button"
-              title="Reset"
-              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
-              onClick={() => resetColor(["fontHeading"])}
-            >
-              <RotateCcw size={12} />
-            </button>
-          </div>
-          <select
-            className="w-full rounded-vita-md border border-vita-neutral-200 bg-vita-surface px-3 py-2 text-sm text-vita-neutral-800 focus:outline-none"
-            value={tokens.fontHeading}
-            onChange={(e) => {
-              const opt = HEADING_FONT_OPTIONS.find(
-                (o) => o.value === e.target.value,
-              );
-              if (opt?.googleFamily) loadGoogleFont(opt.googleFamily);
-              setTokens({ fontHeading: e.target.value });
-            }}
-          >
-            {HEADING_FONT_OPTIONS.map((o) => (
-              <option key={o.value} value={o.value}>
-                {o.label} — {o.scripts}
-              </option>
-            ))}
-          </select>
-          <p
-            className="text-sm font-semibold text-vita-neutral-700"
-            style={{ fontFamily: tokens.fontHeading }}
-          >
-            Manufacturing Dashboard
-          </p>
-        </div>
-
-        {/* Mono font */}
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
-              Numbers & codes
-            </p>
-            <button
-              type="button"
-              title="Reset"
-              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
-              onClick={() => resetColor(["fontMono"])}
-            >
-              <RotateCcw size={12} />
-            </button>
-          </div>
-          <select
-            className="w-full rounded-vita-md border border-vita-neutral-200 bg-vita-surface px-3 py-2 text-sm text-vita-neutral-800 focus:outline-none"
-            value={tokens.fontMono}
-            onChange={(e) => {
-              const opt = MONO_FONT_OPTIONS.find(
-                (o) => o.value === e.target.value,
-              );
-              if (opt?.googleFamily) loadGoogleFont(opt.googleFamily);
-              setTokens({ fontMono: e.target.value });
-            }}
-          >
-            {MONO_FONT_OPTIONS.map((o) => (
-              <option key={o.value} value={o.value}>
-                {o.label} — {o.scripts}
-              </option>
-            ))}
-          </select>
-          <p
-            className="text-xs text-vita-neutral-500"
-            style={{ fontFamily: tokens.fontMono }}
-          >
-            ORD-00842 · $12,400.00 · 3,891 units
-          </p>
-        </div>
+        <FontSelector
+          label="Body font"
+          tokenKey="fontBody"
+          options={SANS_FONT_OPTIONS}
+          preview="The quick brown fox jumps over the lazy dog."
+        />
+        <FontSelector
+          label="Heading font"
+          tokenKey="fontHeading"
+          options={HEADING_FONT_OPTIONS}
+          preview="Manufacturing Dashboard"
+          previewClassName="text-sm font-semibold text-vita-neutral-700"
+        />
+        <FontSelector
+          label="Numbers & codes"
+          tokenKey="fontMono"
+          options={MONO_FONT_OPTIONS}
+          preview="ORD-00842 · $12,400.00 · 3,891 units"
+        />
       </div>
     </div>
   );

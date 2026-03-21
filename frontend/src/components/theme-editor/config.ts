@@ -14,13 +14,13 @@
 import type { ComponentType } from "react";
 
 import type { ThemeTokens } from "@/config/themes";
-import { BadgesModule } from "./modules/BadgesModule";
-import { ButtonsModule } from "./modules/ButtonsModule";
-import { CardsModule } from "./modules/CardsModule";
-import { ColorsModule } from "./modules/ColorsModule";
-import { InputsModule } from "./modules/InputsModule";
-import { SpacingModule } from "./modules/SpacingModule";
-import { TypographyModule } from "./modules/TypographyModule";
+import { BadgesModule } from "./modules/badges";
+import { ButtonsModule } from "./modules/buttons";
+import { CardsModule } from "./modules/cards";
+import { ColorsModule } from "./modules/colors";
+import { InputsModule } from "./modules/inputs";
+import { SpacingModule } from "./modules/spacing";
+import { TypographyModule } from "./modules/typography";
 
 export type ThemeModule = {
   id: string;
