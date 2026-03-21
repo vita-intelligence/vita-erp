@@ -15,6 +15,7 @@ import {
   ShadowBuilder,
   SliderRow,
   TransitionRow,
+  usePreviewExternal,
 } from "../_shared";
 import {
   computeHoverVars,
@@ -28,6 +29,7 @@ import { Preview } from "./Preview";
 
 export function ButtonsModule() {
   const { tokens, setTokens, resetColor } = useThemeStore();
+  const previewExternal = usePreviewExternal();
   const radiusPx = parseFloat(tokens.btnRadius);
   const pressScale = parseFloat(tokens.btnPressScale ?? "0.97");
 
@@ -72,7 +74,7 @@ export function ButtonsModule() {
         Hover and click the preview buttons to see animations live.
       </p>
 
-      <Preview />
+      {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
       <Section title="Shape">

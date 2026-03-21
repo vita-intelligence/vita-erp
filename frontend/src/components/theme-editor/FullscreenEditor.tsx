@@ -8,6 +8,7 @@ import { useThemeStore } from "@/stores/theme";
 
 import { groupedModules, THEME_EDITOR_MODULES } from "./config";
 import { ModeSwitcher } from "./ModeSwitcher";
+import { PreviewExternalProvider } from "./modules/_shared";
 
 const GROUPS = groupedModules();
 
@@ -33,6 +34,8 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
     const first = GROUPS.find((g) => g.group === group)?.items[0];
     if (first) setActiveTab(first.id);
   }
+
+  const hasPreview = !!active.preview;
 
   // Lock background scroll while open
   useEffect(() => {
@@ -163,28 +166,50 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
           </div>
         </nav>
 
-        {/* Content */}
+        {/* Content — two-column on lg+ when module has a preview */}
         <div className="flex-1 overflow-y-auto p-4 md:p-8">
-          <div className="mx-auto max-w-2xl">
-            <div className="mb-6 flex items-center justify-between">
-              <div>
-                <h2 className="text-sm font-semibold text-vita-neutral-900">
-                  {active.label}
-                </h2>
-                <p className="text-xs text-vita-neutral-400">
-                  {active.description}
-                </p>
+          <div
+            className={
+              hasPreview
+                ? "mx-auto max-w-5xl lg:flex lg:items-start lg:gap-8"
+                : "mx-auto max-w-2xl"
+            }
+          >
+            {/* Controls column */}
+            <div className={hasPreview ? "min-w-0 flex-1" : undefined}>
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <h2 className="text-sm font-semibold text-vita-neutral-900">
+                    {active.label}
+                  </h2>
+                  <p className="text-xs text-vita-neutral-400">
+                    {active.description}
+                  </p>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onPress={() => resetColor(active.resetKeys)}
+                >
+                  <RotateCcw size={11} />
+                  Reset section
+                </Button>
               </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onPress={() => resetColor(active.resetKeys)}
-              >
-                <RotateCcw size={11} />
-                Reset section
-              </Button>
+              {hasPreview ? (
+                <PreviewExternalProvider value={true}>
+                  <active.component />
+                </PreviewExternalProvider>
+              ) : (
+                <active.component />
+              )}
             </div>
-            <active.component />
+
+            {/* Sticky preview pane — lg+ only, when module has a preview */}
+            {hasPreview && active.preview && (
+              <div className="hidden shrink-0 lg:block lg:w-[400px] lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
+                <active.preview />
+              </div>
+            )}
           </div>
         </div>
       </div>

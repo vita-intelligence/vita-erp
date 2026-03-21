@@ -1,7 +1,13 @@
 "use client";
 
 import { useThemeStore } from "@/stores/theme";
-import { Chip, FontWeightRow, Row, Section } from "../_shared";
+import {
+  Chip,
+  FontWeightRow,
+  Row,
+  Section,
+  usePreviewExternal,
+} from "../_shared";
 import { Preview } from "./Preview";
 
 const SHAPE_PRESETS = [
@@ -14,6 +20,7 @@ const SHAPE_PRESETS = [
 
 export function BadgesModule() {
   const { tokens, setTokens, resetColor } = useThemeStore();
+  const previewExternal = usePreviewExternal();
   const isPill = parseFloat(tokens.badgeRadius) >= 100;
 
   return (
@@ -23,7 +30,7 @@ export function BadgesModule() {
         how rounded they appear — from sharp square labels to full pill shapes.
       </p>
 
-      <Preview />
+      {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
       <Section title="Shape">

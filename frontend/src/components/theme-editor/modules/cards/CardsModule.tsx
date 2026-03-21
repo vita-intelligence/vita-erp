@@ -3,11 +3,18 @@
 import { RotateCcw } from "lucide-react";
 
 import { useThemeStore } from "@/stores/theme";
-import { Chip, Row, Section, ShadowBuilder } from "../_shared";
+import {
+  Chip,
+  Row,
+  Section,
+  ShadowBuilder,
+  usePreviewExternal,
+} from "../_shared";
 import { Preview } from "./Preview";
 
 export function CardsModule() {
   const { tokens, setTokens, resetColor } = useThemeStore();
+  const previewExternal = usePreviewExternal();
   const radiusPx = parseFloat(tokens.cardRadius);
 
   return (
@@ -17,7 +24,7 @@ export function CardsModule() {
         containers across the ERP interface.
       </p>
 
-      <Preview />
+      {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
       <Section title="Shape">

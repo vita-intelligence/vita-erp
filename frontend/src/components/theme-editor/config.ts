@@ -15,10 +15,14 @@ import type { ComponentType } from "react";
 
 import type { ThemeTokens } from "@/config/themes";
 import { BadgesModule } from "./modules/badges";
+import { Preview as BadgesPreview } from "./modules/badges/Preview";
 import { ButtonsModule } from "./modules/buttons";
+import { Preview as ButtonsPreview } from "./modules/buttons/Preview";
 import { CardsModule } from "./modules/cards";
+import { Preview as CardsPreview } from "./modules/cards/Preview";
 import { ColorsModule } from "./modules/colors";
 import { InputsModule } from "./modules/inputs";
+import { Preview as InputsPreview } from "./modules/inputs/Preview";
 import { SpacingModule } from "./modules/spacing";
 import { TypographyModule } from "./modules/typography";
 
@@ -27,6 +31,8 @@ export type ThemeModule = {
   label: string;
   description: string;
   component: ComponentType;
+  /** Standalone preview — rendered in a sticky side pane on large screens. */
+  preview?: ComponentType;
   /** Sidebar group label — modules sharing the same group are rendered together. */
   group: string;
   /** Token keys owned by this module — used to reset only this section. */
@@ -120,6 +126,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     label: "Buttons",
     description: "Shape, weight, shadow, and border of all button variants",
     component: ButtonsModule,
+    preview: ButtonsPreview,
     group: "Components",
     resetKeys: [
       "btnRadius",
@@ -143,6 +150,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     label: "Inputs",
     description: "Radius, border, and label style of text inputs and fields",
     component: InputsModule,
+    preview: InputsPreview,
     group: "Components",
     resetKeys: [
       "inputRadius",
@@ -169,6 +177,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     label: "Cards",
     description: "Shape, border, and shadow of cards and content panels",
     component: CardsModule,
+    preview: CardsPreview,
     group: "Components",
     resetKeys: ["cardRadius", "cardBorderWidth", "cardShadow"],
   },
@@ -177,6 +186,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     label: "Badges",
     description: "Shape and weight of status badges, chips, and tags",
     component: BadgesModule,
+    preview: BadgesPreview,
     group: "Components",
     resetKeys: ["badgeRadius", "badgeFontWeight"],
   },

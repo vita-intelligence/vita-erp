@@ -12,6 +12,7 @@ import {
   ShadowBuilder,
   SliderRow,
   TransitionRow,
+  usePreviewExternal,
 } from "../_shared";
 import { Preview } from "./Preview";
 
@@ -19,6 +20,7 @@ import { Preview } from "./Preview";
 
 export function InputsModule() {
   const { tokens, setTokens, resetColor } = useThemeStore();
+  const previewExternal = usePreviewExternal();
 
   const radiusPx = parseFloat(tokens.inputRadius ?? "0");
   const paddingXPx = parseFloat(tokens.inputPaddingX ?? "12");
@@ -38,7 +40,7 @@ export function InputsModule() {
         placement and error controls to explore layout options.
       </p>
 
-      <Preview />
+      {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
       <Section title="Shape">

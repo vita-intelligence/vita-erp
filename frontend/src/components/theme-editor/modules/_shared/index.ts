@@ -9,6 +9,8 @@ export type { BorderControlsProps } from "./BorderControls";
 // Reusable token-bound controls
 export { BorderControls } from "./BorderControls";
 export { BorderStyleRow, FontWeightRow, TransitionRow } from "./controls";
+// Preview context
+export { PreviewExternalProvider, usePreviewExternal } from "./PreviewContext";
 export type {
   ChipProps,
   RowProps,
