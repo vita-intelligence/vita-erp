@@ -12,9 +12,8 @@ type ThemeState = {
   mode: ThemeName;
   /** Per-mode token storage — each mode keeps its own customised colors */
   tokensByMode: Record<ThemeName, ThemeTokens>;
-
-  /** Tokens for the active mode */
-  readonly tokens: ThemeTokens;
+  /** Tokens for the active mode — always = tokensByMode[mode], kept in sync */
+  tokens: ThemeTokens;
 
   /** Switch mode and apply its tokens immediately */
   setMode: (mode: ThemeName) => void;
@@ -36,23 +35,19 @@ export const useThemeStore = create<ThemeState>()(
         light: themes.light,
         dark: themes.dark,
       },
-
-      get tokens() {
-        const { mode, tokensByMode } = get();
-        return tokensByMode[mode];
-      },
+      tokens: themes.light,
 
       setMode(mode) {
-        set({ mode });
         const tokens = get().tokensByMode[mode];
+        set({ mode, tokens });
         applyTokens(tokens);
         document.documentElement.classList.toggle("dark", mode === "dark");
       },
 
       setTokens(overrides) {
         const { mode, tokensByMode } = get();
-        const updated = { ...tokensByMode[mode], ...overrides };
-        set({ tokensByMode: { ...tokensByMode, [mode]: updated } });
+        const tokens = { ...tokensByMode[mode], ...overrides };
+        set({ tokensByMode: { ...tokensByMode, [mode]: tokens }, tokens });
         applyTokens(overrides);
       },
 
@@ -62,30 +57,38 @@ export const useThemeStore = create<ThemeState>()(
         const restored = Object.fromEntries(
           keys.map((k) => [k, preset[k]]),
         ) as Partial<ThemeTokens>;
-        const updated = { ...tokensByMode[mode], ...restored };
-        set({ tokensByMode: { ...tokensByMode, [mode]: updated } });
+        const tokens = { ...tokensByMode[mode], ...restored };
+        set({ tokensByMode: { ...tokensByMode, [mode]: tokens }, tokens });
         applyTokens(restored);
       },
 
       resetAll() {
         const { mode } = get();
-        const preset = themes[mode];
+        const tokens = themes[mode];
         set({
-          tokensByMode: { ...get().tokensByMode, [mode]: preset },
+          tokensByMode: { ...get().tokensByMode, [mode]: tokens },
+          tokens,
         });
-        applyTokens(preset);
+        applyTokens(tokens);
         document.documentElement.classList.toggle("dark", mode === "dark");
       },
 
       applyTheme() {
         const { mode, tokensByMode } = get();
-        applyTokens(tokensByMode[mode]);
+        const tokens = tokensByMode[mode];
+        set({ tokens });
+        applyTokens(tokens);
         document.documentElement.classList.toggle("dark", mode === "dark");
       },
     }),
     {
       name: "vita-theme",
       partialize: ({ mode, tokensByMode }) => ({ mode, tokensByMode }),
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.tokens = state.tokensByMode[state.mode];
+        }
+      },
     },
   ),
 );

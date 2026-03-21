@@ -12,31 +12,31 @@
  *   surface    → --surface     (card/panel background)
  */
 :root {
-  --accent:             var(--vita-primary);
-  --accent-foreground:  oklch(1 0 0);
+  --accent: var(--vita-primary);
+  --accent-foreground: var(--vita-text-on-primary);
 
-  --success:            var(--vita-success);
-  --success-foreground: oklch(1 0 0);
+  --success: var(--vita-success);
+  --success-foreground: var(--vita-text-on-primary);
 
-  --warning:            var(--vita-warning);
-  --warning-foreground: oklch(0.15 0 0);
+  --warning: var(--vita-warning);
+  --warning-foreground: var(--vita-text-on-warning);
 
-  --danger:             var(--vita-error);
-  --danger-foreground:  oklch(1 0 0);
+  --danger: var(--vita-error);
+  --danger-foreground: var(--vita-text-on-danger);
 
-  --background:         var(--vita-background);
-  --surface:            var(--vita-surface);
-  --foreground:         var(--vita-neutral-900);
+  --background: var(--vita-background);
+  --surface: var(--vita-surface);
+  --foreground: var(--vita-neutral-900);
 
-  --border:             var(--vita-neutral-200);
-  --focus:              var(--vita-primary);
+  --border: var(--vita-neutral-200);
+  --focus: var(--vita-primary);
 }
 
 /* Dark mode — toggled by adding .dark to <html> via the theme store */
 .dark {
-  --accent:     var(--vita-primary);
+  --accent: var(--vita-primary);
   --background: var(--vita-background);
-  --surface:    var(--vita-surface);
+  --surface: var(--vita-surface);
   --foreground: var(--vita-neutral-100);
-  --border:     var(--vita-neutral-800);
+  --border: var(--vita-neutral-800);
 }

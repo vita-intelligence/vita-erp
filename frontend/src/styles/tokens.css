@@ -15,34 +15,42 @@
  * --------------------------------------------------------------------------- */
 
 @theme inline {
-  --color-vita-primary:        var(--vita-primary);
-  --color-vita-primary-light:  var(--vita-primary-light);
-  --color-vita-primary-dark:   var(--vita-primary-dark);
+  --color-vita-primary: var(--vita-primary);
+  --color-vita-primary-light: var(--vita-primary-light);
+  --color-vita-primary-dark: var(--vita-primary-dark);
 
-  --color-vita-secondary:       var(--vita-secondary);
+  --color-vita-secondary: var(--vita-secondary);
   --color-vita-secondary-light: var(--vita-secondary-light);
-  --color-vita-secondary-dark:  var(--vita-secondary-dark);
+  --color-vita-secondary-dark: var(--vita-secondary-dark);
 
-  --color-vita-success:       var(--vita-success);
+  --color-vita-success: var(--vita-success);
   --color-vita-success-light: var(--vita-success-light);
-  --color-vita-success-dark:  var(--vita-success-dark);
+  --color-vita-success-dark: var(--vita-success-dark);
 
-  --color-vita-warning:       var(--vita-warning);
+  --color-vita-warning: var(--vita-warning);
   --color-vita-warning-light: var(--vita-warning-light);
-  --color-vita-warning-dark:  var(--vita-warning-dark);
+  --color-vita-warning-dark: var(--vita-warning-dark);
 
-  --color-vita-error:       var(--vita-error);
+  --color-vita-error: var(--vita-error);
   --color-vita-error-light: var(--vita-error-light);
-  --color-vita-error-dark:  var(--vita-error-dark);
+  --color-vita-error-dark: var(--vita-error-dark);
 
-  --color-vita-info:       var(--vita-info);
+  --color-vita-info: var(--vita-info);
   --color-vita-info-light: var(--vita-info-light);
-  --color-vita-info-dark:  var(--vita-info-dark);
+  --color-vita-info-dark: var(--vita-info-dark);
+
+  --color-vita-text-primary: var(--vita-text-primary);
+  --color-vita-text-secondary: var(--vita-text-secondary);
+  --color-vita-text-muted: var(--vita-text-muted);
+  --color-vita-text-on-primary: var(--vita-text-on-primary);
+  --color-vita-text-on-primary-muted: var(--vita-text-on-primary-muted);
+  --color-vita-text-on-warning: var(--vita-text-on-warning);
+  --color-vita-text-on-danger: var(--vita-text-on-danger);
 
   --color-vita-background: var(--vita-background);
-  --color-vita-surface:    var(--vita-surface);
+  --color-vita-surface: var(--vita-surface);
 
-  --color-vita-neutral-50:  var(--vita-neutral-50);
+  --color-vita-neutral-50: var(--vita-neutral-50);
   --color-vita-neutral-100: var(--vita-neutral-100);
   --color-vita-neutral-200: var(--vita-neutral-200);
   --color-vita-neutral-300: var(--vita-neutral-300);
@@ -59,35 +67,48 @@
  * Static structural tokens
  * --------------------------------------------------------------------------- */
 
-@theme {
-  --font-vita-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-vita-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
+/* Font tokens are dynamic — defined inline so Tailwind utilities reference CSS vars */
+@theme inline {
+  --font-vita-sans: var(--vita-font-body);
+  --font-vita-heading: var(--vita-font-heading);
+  --font-vita-mono: var(--vita-font-mono);
+}
 
-  --radius-vita-xs:   0.125rem;
-  --radius-vita-sm:   0.25rem;
-  --radius-vita-md:   0.5rem;
-  --radius-vita-lg:   0.75rem;
-  --radius-vita-xl:   1rem;
-  --radius-vita-2xl:  1.5rem;
+/* Spacing — overrides Tailwind's base unit so all padding/gap/margin utilities scale at runtime */
+@theme inline {
+  --spacing: var(--vita-spacing);
+}
+
+@theme {
+  --radius-vita-xs: 0.125rem;
+  --radius-vita-sm: 0.25rem;
+  --radius-vita-md: 0.5rem;
+  --radius-vita-lg: 0.75rem;
+  --radius-vita-xl: 1rem;
+  --radius-vita-2xl: 1.5rem;
   --radius-vita-full: 9999px;
 
   --shadow-vita-xs: 0 1px 2px 0 oklch(0 0 0 / 0.05);
-  --shadow-vita-sm: 0 1px 3px 0 oklch(0 0 0 / 0.10), 0 1px 2px -1px oklch(0 0 0 / 0.10);
-  --shadow-vita-md: 0 4px 6px -1px oklch(0 0 0 / 0.10), 0 2px 4px -2px oklch(0 0 0 / 0.10);
-  --shadow-vita-lg: 0 10px 15px -3px oklch(0 0 0 / 0.10), 0 4px 6px -4px oklch(0 0 0 / 0.10);
-  --shadow-vita-xl: 0 20px 25px -5px oklch(0 0 0 / 0.10), 0 8px 10px -6px oklch(0 0 0 / 0.10);
+  --shadow-vita-sm:
+    0 1px 3px 0 oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow-vita-md:
+    0 4px 6px -1px oklch(0 0 0 / 0.1), 0 2px 4px -2px oklch(0 0 0 / 0.1);
+  --shadow-vita-lg:
+    0 10px 15px -3px oklch(0 0 0 / 0.1), 0 4px 6px -4px oklch(0 0 0 / 0.1);
+  --shadow-vita-xl:
+    0 20px 25px -5px oklch(0 0 0 / 0.1), 0 8px 10px -6px oklch(0 0 0 / 0.1);
 
-  --z-vita-base:     0;
-  --z-vita-raised:   10;
+  --z-vita-base: 0;
+  --z-vita-raised: 10;
   --z-vita-dropdown: 1000;
-  --z-vita-sticky:   1100;
-  --z-vita-modal:    1200;
-  --z-vita-toast:    1300;
-  --z-vita-tooltip:  1400;
+  --z-vita-sticky: 1100;
+  --z-vita-modal: 1200;
+  --z-vita-toast: 1300;
+  --z-vita-tooltip: 1400;
 
-  --duration-vita-fast:   150ms;
-  --duration-vita-base:   250ms;
-  --duration-vita-slow:   400ms;
+  --duration-vita-fast: 150ms;
+  --duration-vita-base: 250ms;
+  --duration-vita-slow: 400ms;
   --duration-vita-slower: 600ms;
 }
 
@@ -96,39 +117,64 @@
  * Must stay in sync with lightTheme in src/config/themes.ts.
  * --------------------------------------------------------------------------- */
 
+html {
+  font-size: var(--vita-font-size-base, 15px);
+}
+
+body {
+  line-height: var(--vita-line-height, 1.5);
+  font-weight: var(--vita-font-weight-body, 400);
+}
+
 :root {
-  --vita-primary:       oklch(0.58 0.22 265);
-  --vita-primary-light: oklch(0.72 0.18 265);
-  --vita-primary-dark:  oklch(0.44 0.24 265);
+  --vita-font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --vita-font-heading: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --vita-font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --vita-font-size-base: 15px;
+  --vita-text-primary: oklch(0.09 0 0);
+  --vita-text-secondary: oklch(0.38 0 0);
+  --vita-text-muted: oklch(0.56 0 0);
+  --vita-text-on-primary: oklch(1 0 0);
+  --vita-text-on-primary-muted: oklch(1 0 0 / 0.65);
+  --vita-text-on-warning: oklch(0.15 0 0);
+  --vita-text-on-danger: oklch(1 0 0);
 
-  --vita-secondary:       oklch(0.58 0.18 300);
-  --vita-secondary-light: oklch(0.72 0.14 300);
-  --vita-secondary-dark:  oklch(0.44 0.20 300);
+  --vita-line-height: 1.5;
+  --vita-font-weight-body: 400;
+  --vita-spacing: 0.25rem;
 
-  --vita-success:       oklch(0.64 0.16 155);
-  --vita-success-light: oklch(0.78 0.12 155);
-  --vita-success-dark:  oklch(0.50 0.18 155);
+  --vita-primary: oklch(0.09 0 0);
+  --vita-primary-light: oklch(0.32 0 0);
+  --vita-primary-dark: oklch(0 0 0);
 
-  --vita-warning:       oklch(0.74 0.18 65);
-  --vita-warning-light: oklch(0.86 0.13 65);
-  --vita-warning-dark:  oklch(0.60 0.20 65);
+  --vita-secondary: oklch(0.44 0 0);
+  --vita-secondary-light: oklch(0.62 0 0);
+  --vita-secondary-dark: oklch(0.28 0 0);
 
-  --vita-error:       oklch(0.62 0.22 28);
-  --vita-error-light: oklch(0.76 0.16 28);
-  --vita-error-dark:  oklch(0.48 0.24 28);
+  --vita-success: oklch(0.56 0.18 148);
+  --vita-success-light: oklch(0.72 0.13 148);
+  --vita-success-dark: oklch(0.42 0.19 148);
 
-  --vita-info:       oklch(0.64 0.14 220);
-  --vita-info-light: oklch(0.78 0.10 220);
-  --vita-info-dark:  oklch(0.50 0.16 220);
+  --vita-warning: oklch(0.74 0.18 68);
+  --vita-warning-light: oklch(0.86 0.13 68);
+  --vita-warning-dark: oklch(0.6 0.2 68);
 
-  --vita-background: oklch(0.98 0 0);
-  --vita-surface:    oklch(1 0 0);
+  --vita-error: oklch(0.6 0.22 27);
+  --vita-error-light: oklch(0.74 0.16 27);
+  --vita-error-dark: oklch(0.46 0.24 27);
 
-  --vita-neutral-50:  oklch(0.98 0 0);
+  --vita-info: oklch(0.62 0.14 222);
+  --vita-info-light: oklch(0.76 0.1 222);
+  --vita-info-dark: oklch(0.48 0.16 222);
+
+  --vita-background: oklch(1 0 0);
+  --vita-surface: oklch(1 0 0);
+
+  --vita-neutral-50: oklch(0.98 0 0);
   --vita-neutral-100: oklch(0.95 0 0);
-  --vita-neutral-200: oklch(0.90 0 0);
+  --vita-neutral-200: oklch(0.9 0 0);
   --vita-neutral-300: oklch(0.82 0 0);
-  --vita-neutral-400: oklch(0.70 0 0);
+  --vita-neutral-400: oklch(0.7 0 0);
   --vita-neutral-500: oklch(0.56 0 0);
   --vita-neutral-600: oklch(0.44 0 0);
   --vita-neutral-700: oklch(0.32 0 0);

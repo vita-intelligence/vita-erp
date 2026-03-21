@@ -15,6 +15,14 @@
  */
 
 export type ThemeTokens = {
+  // Typography
+  fontBody: string; // body text, UI labels, navigation
+  fontHeading: string; // headings h1-h6, page titles
+  fontMono: string; // numbers in tables, codes, IDs
+  fontSizeBase: string; // root font size — scales the entire rem system
+  lineHeight: string; // body line height — affects readability in dense tables/forms
+  fontWeightBody: string; // body font weight — 300/400/500/600
+  spacing: string; // base spacing unit — scales all padding/gap/margin (Tailwind --spacing)
   // Brand
   primary: string;
   primaryLight: string;
@@ -35,6 +43,14 @@ export type ThemeTokens = {
   info: string;
   infoLight: string;
   infoDark: string;
+  // Text colors — independent control per mode
+  textPrimary: string; // headings, active labels, important content
+  textSecondary: string; // body text, descriptions, navigation
+  textMuted: string; // hints, timestamps, placeholders
+  textOnPrimary: string; // text/icons on a primary-colored background
+  textOnPrimaryMuted: string; // secondary text/icons on a primary-colored background
+  textOnWarning: string; // text/icons on a warning-colored background
+  textOnDanger: string; // text/icons on a danger/error-colored background
   // Surfaces — independent from neutral scale so background tint is possible
   background: string;
   surface: string;
@@ -57,6 +73,13 @@ export type ThemeTokens = {
  * Single source of truth for JS ↔ CSS coupling.
  */
 export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
+  fontBody: "--vita-font-body",
+  fontHeading: "--vita-font-heading",
+  fontMono: "--vita-font-mono",
+  fontSizeBase: "--vita-font-size-base",
+  lineHeight: "--vita-line-height",
+  fontWeightBody: "--vita-font-weight-body",
+  spacing: "--vita-spacing",
   primary: "--vita-primary",
   primaryLight: "--vita-primary-light",
   primaryDark: "--vita-primary-dark",
@@ -75,6 +98,13 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   info: "--vita-info",
   infoLight: "--vita-info-light",
   infoDark: "--vita-info-dark",
+  textPrimary: "--vita-text-primary",
+  textSecondary: "--vita-text-secondary",
+  textMuted: "--vita-text-muted",
+  textOnPrimary: "--vita-text-on-primary",
+  textOnPrimaryMuted: "--vita-text-on-primary-muted",
+  textOnWarning: "--vita-text-on-warning",
+  textOnDanger: "--vita-text-on-danger",
   background: "--vita-background",
   surface: "--vita-surface",
   neutral50: "--vita-neutral-50",
@@ -201,31 +231,49 @@ export const SURFACE_COLOR_META: {
 // ---------------------------------------------------------------------------
 
 export const lightTheme: ThemeTokens = {
-  primary: "oklch(0.58 0.22 265)",
-  primaryLight: "oklch(0.72 0.18 265)",
-  primaryDark: "oklch(0.44 0.24 265)",
+  fontBody: '"Inter", ui-sans-serif, system-ui, sans-serif',
+  fontHeading: '"Inter", ui-sans-serif, system-ui, sans-serif',
+  fontMono: '"JetBrains Mono", ui-monospace, monospace',
+  fontSizeBase: "15px",
+  lineHeight: "1.5",
+  fontWeightBody: "400",
+  spacing: "0.25rem",
 
-  secondary: "oklch(0.58 0.18 300)",
-  secondaryLight: "oklch(0.72 0.14 300)",
-  secondaryDark: "oklch(0.44 0.20 300)",
+  // Brutalist black — primary actions use pure black
+  primary: "oklch(0.09 0 0)",
+  primaryLight: "oklch(0.32 0 0)",
+  primaryDark: "oklch(0 0 0)",
 
-  success: "oklch(0.64 0.16 155)",
-  successLight: "oklch(0.78 0.12 155)",
-  successDark: "oklch(0.50 0.18 155)",
+  secondary: "oklch(0.44 0 0)",
+  secondaryLight: "oklch(0.62 0 0)",
+  secondaryDark: "oklch(0.28 0 0)",
 
-  warning: "oklch(0.74 0.18 65)",
-  warningLight: "oklch(0.86 0.13 65)",
-  warningDark: "oklch(0.60 0.20 65)",
+  // Status colors keep semantic meaning
+  success: "oklch(0.56 0.18 148)",
+  successLight: "oklch(0.72 0.13 148)",
+  successDark: "oklch(0.42 0.19 148)",
 
-  error: "oklch(0.62 0.22 28)",
-  errorLight: "oklch(0.76 0.16 28)",
-  errorDark: "oklch(0.48 0.24 28)",
+  warning: "oklch(0.74 0.18 68)",
+  warningLight: "oklch(0.86 0.13 68)",
+  warningDark: "oklch(0.60 0.20 68)",
 
-  info: "oklch(0.64 0.14 220)",
-  infoLight: "oklch(0.78 0.10 220)",
-  infoDark: "oklch(0.50 0.16 220)",
+  error: "oklch(0.60 0.22 27)",
+  errorLight: "oklch(0.74 0.16 27)",
+  errorDark: "oklch(0.46 0.24 27)",
 
-  background: "oklch(0.98 0 0)",
+  info: "oklch(0.62 0.14 222)",
+  infoLight: "oklch(0.76 0.10 222)",
+  infoDark: "oklch(0.48 0.16 222)",
+
+  textPrimary: "oklch(0.09 0 0)",
+  textSecondary: "oklch(0.38 0 0)",
+  textMuted: "oklch(0.56 0 0)",
+  textOnPrimary: "oklch(1 0 0)",
+  textOnPrimaryMuted: "oklch(1 0 0 / 0.65)",
+  textOnWarning: "oklch(0.15 0 0)",
+  textOnDanger: "oklch(1 0 0)",
+
+  background: "oklch(1 0 0)",
   surface: "oklch(1 0 0)",
 
   neutral50: "oklch(0.98 0 0)",
@@ -242,29 +290,46 @@ export const lightTheme: ThemeTokens = {
 };
 
 export const darkTheme: ThemeTokens = {
-  primary: "oklch(0.72 0.18 265)",
-  primaryLight: "oklch(0.84 0.14 265)",
-  primaryDark: "oklch(0.58 0.22 265)",
+  fontBody: '"Inter", ui-sans-serif, system-ui, sans-serif',
+  fontHeading: '"Inter", ui-sans-serif, system-ui, sans-serif',
+  fontMono: '"JetBrains Mono", ui-monospace, monospace',
+  fontSizeBase: "15px",
+  lineHeight: "1.5",
+  fontWeightBody: "400",
+  spacing: "0.25rem",
 
-  secondary: "oklch(0.72 0.14 300)",
-  secondaryLight: "oklch(0.84 0.10 300)",
-  secondaryDark: "oklch(0.58 0.18 300)",
+  // Brutalist white — primary actions use pure white on dark
+  primary: "oklch(0.96 0 0)",
+  primaryLight: "oklch(1 0 0)",
+  primaryDark: "oklch(0.80 0 0)",
 
-  success: "oklch(0.72 0.14 155)",
-  successLight: "oklch(0.84 0.10 155)",
-  successDark: "oklch(0.58 0.18 155)",
+  secondary: "oklch(0.62 0 0)",
+  secondaryLight: "oklch(0.76 0 0)",
+  secondaryDark: "oklch(0.46 0 0)",
 
-  warning: "oklch(0.82 0.16 65)",
-  warningLight: "oklch(0.90 0.11 65)",
-  warningDark: "oklch(0.68 0.20 65)",
+  success: "oklch(0.68 0.18 148)",
+  successLight: "oklch(0.80 0.13 148)",
+  successDark: "oklch(0.54 0.20 148)",
 
-  error: "oklch(0.72 0.20 28)",
-  errorLight: "oklch(0.84 0.14 28)",
-  errorDark: "oklch(0.58 0.24 28)",
+  warning: "oklch(0.82 0.16 68)",
+  warningLight: "oklch(0.90 0.11 68)",
+  warningDark: "oklch(0.68 0.20 68)",
 
-  info: "oklch(0.72 0.12 220)",
-  infoLight: "oklch(0.84 0.08 220)",
-  infoDark: "oklch(0.58 0.16 220)",
+  error: "oklch(0.70 0.20 27)",
+  errorLight: "oklch(0.82 0.14 27)",
+  errorDark: "oklch(0.56 0.24 27)",
+
+  info: "oklch(0.70 0.12 222)",
+  infoLight: "oklch(0.82 0.08 222)",
+  infoDark: "oklch(0.56 0.16 222)",
+
+  textPrimary: "oklch(0.96 0 0)",
+  textSecondary: "oklch(0.72 0 0)",
+  textMuted: "oklch(0.54 0 0)",
+  textOnPrimary: "oklch(0.09 0 0)",
+  textOnPrimaryMuted: "oklch(0.09 0 0 / 0.65)",
+  textOnWarning: "oklch(0.15 0 0)",
+  textOnDanger: "oklch(0.96 0 0)",
 
   background: "oklch(0.09 0 0)",
   surface: "oklch(0.14 0 0)",
