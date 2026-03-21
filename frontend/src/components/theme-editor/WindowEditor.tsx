@@ -1,11 +1,16 @@
 "use client";
 
+import { GripHorizontal, RotateCcw, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { Button } from "@/components/ui/button";
+import { Tooltip } from "@/components/ui/tooltip";
 import { useThemeStore } from "@/stores/theme";
 
-import { THEME_EDITOR_MODULES } from "./config";
+import { groupedModules, THEME_EDITOR_MODULES } from "./config";
 import { ModeSwitcher } from "./ModeSwitcher";
+
+const GROUPS = groupedModules();
 
 // ---------------------------------------------------------------------------
 // Resize handles
@@ -144,9 +149,9 @@ function ResizeHandles({
 // ---------------------------------------------------------------------------
 
 const WIN_MIN_W = 320;
-const WIN_MIN_H = 380;
-const WIN_DEFAULT_W = 460;
-const WIN_DEFAULT_H = 580;
+const WIN_MIN_H = 420;
+const WIN_DEFAULT_W = 480;
+const WIN_DEFAULT_H = 600;
 
 type Props = {
   activeTab: string;
@@ -155,10 +160,21 @@ type Props = {
 };
 
 export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
-  const { resetAll } = useThemeStore();
+  const { resetAll, resetColor } = useThemeStore();
   const active =
     THEME_EDITOR_MODULES.find((m) => m.id === activeTab) ??
     THEME_EDITOR_MODULES[0];
+
+  const activeGroup =
+    GROUPS.find((g) => g.items.some((m) => m.id === activeTab))?.group ??
+    GROUPS[0].group;
+  const activeGroupItems =
+    GROUPS.find((g) => g.group === activeGroup)?.items ?? [];
+
+  function switchGroup(group: string) {
+    const first = GROUPS.find((g) => g.group === group)?.items[0];
+    if (first) setActiveTab(first.id);
+  }
 
   const [pos, setPos] = useState(() => {
     const w = Math.min(WIN_DEFAULT_W, window.innerWidth - 16);
@@ -295,34 +311,40 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
     >
       <ResizeHandles onStart={startResize} />
 
-      {/* Inner content — overflow-hidden clips content to rounded corners */}
-      <div className="flex h-full flex-col overflow-hidden rounded-vita-xl border border-vita-neutral-200 bg-vita-surface shadow-vita-xl">
+      {/* Inner content — card tokens applied so radius/shadow/border reflect theme live */}
+      <div
+        className="flex h-full flex-col overflow-hidden"
+        style={{
+          background: "var(--vita-surface)",
+          borderRadius: "var(--vita-card-radius)",
+          borderWidth: "var(--vita-card-border-width)",
+          borderStyle: "solid",
+          borderColor: "var(--vita-neutral-200)",
+          boxShadow:
+            "var(--vita-card-shadow, 0 20px 25px -5px oklch(0 0 0 / 0.1))",
+        }}
+      >
         {/* Title bar */}
         {/* biome-ignore lint/a11y/noStaticElementInteractions: drag handle */}
         <div
-          className="flex h-11 shrink-0 select-none items-center justify-between border-b border-vita-neutral-200 bg-vita-surface px-3 cursor-grab"
+          className="flex h-11 shrink-0 select-none items-center justify-between border-b px-3 cursor-grab"
+          style={{
+            background: "var(--vita-surface)",
+            borderBottomColor: "var(--vita-neutral-200)",
+          }}
           onMouseDown={onDragMouseDown}
         >
           <div className="flex items-center gap-2">
-            <svg
+            <GripHorizontal
               aria-hidden="true"
-              width="10"
-              height="10"
-              viewBox="0 0 12 12"
-              fill="currentColor"
-              className="shrink-0 text-vita-neutral-300"
+              size={14}
+              className="shrink-0"
+              style={{ color: "var(--vita-neutral-300)" }}
+            />
+            <span
+              className="text-sm font-semibold"
+              style={{ color: "var(--vita-neutral-800)" }}
             >
-              <circle cx="2" cy="2" r="1.2" />
-              <circle cx="6" cy="2" r="1.2" />
-              <circle cx="10" cy="2" r="1.2" />
-              <circle cx="2" cy="6" r="1.2" />
-              <circle cx="6" cy="6" r="1.2" />
-              <circle cx="10" cy="6" r="1.2" />
-              <circle cx="2" cy="10" r="1.2" />
-              <circle cx="6" cy="10" r="1.2" />
-              <circle cx="10" cy="10" r="1.2" />
-            </svg>
-            <span className="text-sm font-semibold text-vita-neutral-800">
               Brand &amp; Theme
             </span>
           </div>
@@ -332,36 +354,90 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
             onMouseDown={(e) => e.stopPropagation()}
           >
             <ModeSwitcher />
-            <button
-              type="button"
-              title="Reset all"
-              className="rounded-vita-sm px-1.5 py-0.5 text-xs text-vita-neutral-500 transition-colors hover:bg-vita-neutral-100 hover:text-vita-neutral-800"
-              onClick={resetAll}
-            >
-              ↺
-            </button>
-            <button
-              type="button"
-              aria-label="Close"
-              className="flex h-6 w-6 items-center justify-center rounded-vita-sm text-xs text-vita-neutral-400 transition-colors hover:bg-vita-neutral-100 hover:text-vita-neutral-800"
-              onClick={onClose}
-            >
-              ✕
-            </button>
+            <Tooltip>
+              <button
+                type="button"
+                aria-label="Reset all to defaults"
+                className="flex h-7 w-7 items-center justify-center transition-colors"
+                style={{ color: "var(--vita-neutral-500)" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--vita-neutral-900)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "var(--vita-neutral-500)";
+                }}
+                onClick={resetAll}
+              >
+                <RotateCcw size={13} />
+              </button>
+              <Tooltip.Content>Reset all to defaults</Tooltip.Content>
+            </Tooltip>
+            <Tooltip>
+              <button
+                type="button"
+                aria-label="Close"
+                className="flex h-7 w-7 items-center justify-center transition-colors"
+                style={{ color: "var(--vita-neutral-500)" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--vita-neutral-900)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "var(--vita-neutral-500)";
+                }}
+                onClick={onClose}
+              >
+                <X size={13} />
+              </button>
+              <Tooltip.Content>Close</Tooltip.Content>
+            </Tooltip>
           </div>
         </div>
 
-        {/* Tabs */}
+        {/* Group selector */}
         {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
         <div
-          className="flex shrink-0 overflow-x-auto border-b border-vita-neutral-200 bg-vita-surface px-2"
+          className="flex shrink-0 items-center gap-1 border-b px-3 py-1.5"
+          style={{
+            background: "var(--vita-surface)",
+            borderBottomColor: "var(--vita-neutral-200)",
+          }}
           onMouseDown={(e) => e.stopPropagation()}
         >
-          {THEME_EDITOR_MODULES.map((m) => (
+          {GROUPS.map(({ group }) => (
+            <button
+              key={group}
+              type="button"
+              className="px-2.5 py-0.5 text-xs font-medium transition-colors"
+              style={
+                activeGroup === group
+                  ? {
+                      background: "var(--vita-primary)",
+                      color: "var(--vita-text-on-primary)",
+                    }
+                  : {
+                      background: "transparent",
+                      color: "var(--vita-neutral-600)",
+                    }
+              }
+              onClick={() => switchGroup(group)}
+            >
+              {group}
+            </button>
+          ))}
+        </div>
+
+        {/* Module tabs — only active group's items */}
+        {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
+        <div
+          className="flex shrink-0 items-center border-b px-1"
+          style={{ borderBottomColor: "var(--vita-neutral-200)" }}
+          onMouseDown={(e) => e.stopPropagation()}
+        >
+          {activeGroupItems.map((m) => (
             <button
               key={m.id}
               type="button"
-              className="relative shrink-0 whitespace-nowrap px-3 py-2.5 text-xs font-medium transition-colors"
+              className="relative px-3 py-2 text-xs font-medium whitespace-nowrap transition-colors"
               style={
                 activeTab === m.id
                   ? { color: "var(--vita-primary)" }
@@ -372,7 +448,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
               {m.label}
               {activeTab === m.id && (
                 <span
-                  className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full"
+                  className="absolute bottom-0 left-0 right-0 h-0.5"
                   style={{ background: "var(--vita-primary)" }}
                 />
               )}
@@ -387,6 +463,22 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
           className="flex-1 overflow-y-auto overscroll-contain p-4"
           onMouseDown={(e) => e.stopPropagation()}
         >
+          <div className="mb-4 flex items-center justify-between">
+            <span
+              className="text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "var(--vita-neutral-400)" }}
+            >
+              {active.label}
+            </span>
+            <Button
+              variant="ghost"
+              size="sm"
+              onPress={() => resetColor(active.resetKeys)}
+            >
+              <RotateCcw size={10} />
+              Reset
+            </Button>
+          </div>
           <active.component />
         </div>
       </div>

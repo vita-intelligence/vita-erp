@@ -5,12 +5,12 @@ import { useThemeStore } from "@/stores/theme";
 export function ModeSwitcher() {
   const { mode, setMode } = useThemeStore();
   return (
-    <div className="flex overflow-hidden rounded-vita-sm border border-vita-neutral-200">
+    <div className="flex h-8 overflow-hidden rounded-vita-sm border border-vita-neutral-200">
       {(["light", "dark"] as const).map((m) => (
         <button
           key={m}
           type="button"
-          className="px-2.5 py-1 text-xs font-medium capitalize transition-colors"
+          className="px-2.5 text-xs font-medium capitalize transition-colors"
           style={
             mode === m
               ? {

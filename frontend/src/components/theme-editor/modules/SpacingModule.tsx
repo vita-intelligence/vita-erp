@@ -1,5 +1,6 @@
 "use client";
 
+import { RotateCcw } from "lucide-react";
 import { useThemeStore } from "@/stores/theme";
 
 export function SpacingModule() {
@@ -27,10 +28,10 @@ export function SpacingModule() {
             <button
               type="button"
               title="Reset"
-              className="px-1 text-xs text-vita-neutral-400 hover:text-vita-neutral-600"
+              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
               onClick={() => resetColor(["spacing"])}
             >
-              ↺
+              <RotateCcw size={12} />
             </button>
           </div>
         </div>

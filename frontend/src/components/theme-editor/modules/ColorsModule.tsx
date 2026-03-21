@@ -1,5 +1,6 @@
 "use client";
 
+import { RotateCcw } from "lucide-react";
 import { BRAND_COLOR_META, deriveVariants, SURFACE_COLOR_META } from "@/config";
 import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
@@ -54,10 +55,10 @@ export function ColorsModule() {
                     <button
                       type="button"
                       title={`Reset ${label}`}
-                      className="px-1 text-xs text-vita-neutral-400 hover:text-vita-neutral-600"
+                      className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
                       onClick={() => resetColor([key, lightKey, darkKey])}
                     >
-                      ↺
+                      <RotateCcw size={12} />
                     </button>
                     <input
                       type="color"
@@ -114,10 +115,10 @@ export function ColorsModule() {
                   <button
                     type="button"
                     title={`Reset ${label}`}
-                    className="px-1 text-xs text-vita-neutral-400 hover:text-vita-neutral-600"
+                    className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
                     onClick={() => resetColor([key])}
                   >
-                    ↺
+                    <RotateCcw size={12} />
                   </button>
                   <input
                     type="color"
@@ -227,10 +228,10 @@ export function ColorsModule() {
                 <button
                   type="button"
                   title={`Reset ${label} text`}
-                  className="px-1 text-xs text-vita-neutral-400 hover:text-vita-neutral-600"
+                  className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
                   onClick={() => resetColor([key])}
                 >
-                  ↺
+                  <RotateCcw size={12} />
                 </button>
                 <input
                   type="color"

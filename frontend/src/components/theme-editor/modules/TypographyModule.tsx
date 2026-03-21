@@ -1,5 +1,6 @@
 "use client";
 
+import { RotateCcw } from "lucide-react";
 import {
   HEADING_FONT_OPTIONS,
   loadGoogleFont,
@@ -38,10 +39,10 @@ export function TypographyModule() {
             <button
               type="button"
               title="Reset"
-              className="px-1 text-xs text-vita-neutral-400 hover:text-vita-neutral-600"
+              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
               onClick={() => resetColor(["fontSizeBase"])}
             >
-              ↺
+              <RotateCcw size={12} />
             </button>
           </div>
         </div>
@@ -73,10 +74,10 @@ export function TypographyModule() {
             <button
               type="button"
               title="Reset"
-              className="px-1 text-xs text-vita-neutral-400 hover:text-vita-neutral-600"
+              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
               onClick={() => resetColor(["lineHeight"])}
             >
-              ↺
+              <RotateCcw size={12} />
             </button>
           </div>
         </div>
@@ -104,10 +105,10 @@ export function TypographyModule() {
           <button
             type="button"
             title="Reset"
-            className="px-1 text-xs text-vita-neutral-400 hover:text-vita-neutral-600"
+            className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
             onClick={() => resetColor(["fontWeightBody"])}
           >
-            ↺
+            <RotateCcw size={12} />
           </button>
         </div>
         <div className="flex gap-1.5">
@@ -150,10 +151,10 @@ export function TypographyModule() {
             <button
               type="button"
               title="Reset"
-              className="px-1 text-xs text-vita-neutral-400 hover:text-vita-neutral-600"
+              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
               onClick={() => resetColor(["fontBody"])}
             >
-              ↺
+              <RotateCcw size={12} />
             </button>
           </div>
           <select
@@ -190,10 +191,10 @@ export function TypographyModule() {
             <button
               type="button"
               title="Reset"
-              className="px-1 text-xs text-vita-neutral-400 hover:text-vita-neutral-600"
+              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
               onClick={() => resetColor(["fontHeading"])}
             >
-              ↺
+              <RotateCcw size={12} />
             </button>
           </div>
           <select
@@ -230,10 +231,10 @@ export function TypographyModule() {
             <button
               type="button"
               title="Reset"
-              className="px-1 text-xs text-vita-neutral-400 hover:text-vita-neutral-600"
+              className="p-1 text-vita-neutral-400 hover:text-vita-neutral-600"
               onClick={() => resetColor(["fontMono"])}
             >
-              ↺
+              <RotateCcw size={12} />
             </button>
           </div>
           <select

@@ -66,6 +66,38 @@ export type ThemeTokens = {
   neutral800: string;
   neutral900: string;
   neutral950: string;
+  // ── Component tokens ────────────────────────────────────────────────────────
+  // Button
+  btnRadius: string; // border-radius applied to all button variants
+  btnBorderTop: string; // border-top-width
+  btnBorderRight: string; // border-right-width
+  btnBorderBottom: string; // border-bottom-width
+  btnBorderLeft: string; // border-left-width
+  btnBorderStyle: string; // border-style: solid | dashed | dotted
+  btnFontWeight: string; // font-weight of button label
+  btnLetterSpacing: string; // letter-spacing of button label
+  btnTextTransform: string; // text-transform: none | uppercase | capitalize
+  btnShadow: string; // box-shadow — full CSS value, composed by shadow builder
+  btnHoverTransform: string; // CSS transform applied on hover — "none" | "translateY(-2px)" | "scale(1.03)" | combined
+  btnHoverFilter: string; // CSS filter applied on hover — "none" | "drop-shadow(...)" | "brightness(1.1)"
+  btnPressScale: string; // scale factor on press/click — "0.97" (default), "0.95" (strong), "1" (none)
+  btnTransitionDuration: string; // transition-duration for hover/active states
+  // Input / Textarea / Search
+  inputRadius: string; // border-radius of the input wrapper
+  inputBorderWidth: string; // border-width of the input wrapper
+  inputLabelWeight: string; // font-weight of the floating/static label
+  // Card
+  cardRadius: string; // border-radius of card panels
+  cardBorderWidth: string; // border-width of card panels
+  cardShadow: string; // box-shadow of card panels
+  // Badge / Chip / Tag
+  badgeRadius: string; // border-radius (0 = square tag, 9999px = pill)
+  badgeFontWeight: string; // font-weight of badge/chip text
+  // Select / Dropdown
+  selectRadius: string; // border-radius of select trigger
+  selectBorderWidth: string; // border-width of select trigger
+  // Modal / Drawer / Popover
+  modalRadius: string; // border-radius of overlay panels
 };
 
 /**
@@ -118,6 +150,32 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   neutral800: "--vita-neutral-800",
   neutral900: "--vita-neutral-900",
   neutral950: "--vita-neutral-950",
+  // Component tokens
+  btnRadius: "--vita-btn-radius",
+  btnBorderTop: "--vita-btn-border-top",
+  btnBorderRight: "--vita-btn-border-right",
+  btnBorderBottom: "--vita-btn-border-bottom",
+  btnBorderLeft: "--vita-btn-border-left",
+  btnBorderStyle: "--vita-btn-border-style",
+  btnFontWeight: "--vita-btn-font-weight",
+  btnLetterSpacing: "--vita-btn-letter-spacing",
+  btnTextTransform: "--vita-btn-text-transform",
+  btnShadow: "--vita-btn-shadow",
+  btnHoverTransform: "--vita-btn-hover-transform",
+  btnHoverFilter: "--vita-btn-hover-filter",
+  btnPressScale: "--vita-btn-press-scale",
+  btnTransitionDuration: "--vita-btn-transition-duration",
+  inputRadius: "--vita-input-radius",
+  inputBorderWidth: "--vita-input-border-width",
+  inputLabelWeight: "--vita-input-label-weight",
+  cardRadius: "--vita-card-radius",
+  cardBorderWidth: "--vita-card-border-width",
+  cardShadow: "--vita-card-shadow",
+  badgeRadius: "--vita-badge-radius",
+  badgeFontWeight: "--vita-badge-font-weight",
+  selectRadius: "--vita-select-radius",
+  selectBorderWidth: "--vita-select-border-width",
+  modalRadius: "--vita-modal-radius",
 };
 
 /** Apply a full or partial set of tokens to the document root. */
@@ -287,6 +345,33 @@ export const lightTheme: ThemeTokens = {
   neutral800: "oklch(0.22 0 0)",
   neutral900: "oklch(0.14 0 0)",
   neutral950: "oklch(0.09 0 0)",
+
+  // Brutalist component defaults — sharp, flat, no decorative radius or shadow
+  btnRadius: "0px",
+  btnBorderTop: "1px",
+  btnBorderRight: "1px",
+  btnBorderBottom: "1px",
+  btnBorderLeft: "1px",
+  btnBorderStyle: "solid",
+  btnFontWeight: "500",
+  btnLetterSpacing: "0.02em",
+  btnTextTransform: "none",
+  btnShadow: "none",
+  btnHoverTransform: "none",
+  btnHoverFilter: "none",
+  btnPressScale: "0.97",
+  btnTransitionDuration: "150ms",
+  inputRadius: "0px",
+  inputBorderWidth: "1px",
+  inputLabelWeight: "500",
+  cardRadius: "0px",
+  cardBorderWidth: "1px",
+  cardShadow: "none",
+  badgeRadius: "0px",
+  badgeFontWeight: "600",
+  selectRadius: "0px",
+  selectBorderWidth: "1px",
+  modalRadius: "0px",
 };
 
 export const darkTheme: ThemeTokens = {
@@ -345,6 +430,33 @@ export const darkTheme: ThemeTokens = {
   neutral800: "oklch(0.90 0 0)",
   neutral900: "oklch(0.95 0 0)",
   neutral950: "oklch(0.98 0 0)",
+
+  // Brutalist component defaults — same structural values across modes
+  btnRadius: "0px",
+  btnBorderTop: "1px",
+  btnBorderRight: "1px",
+  btnBorderBottom: "1px",
+  btnBorderLeft: "1px",
+  btnBorderStyle: "solid",
+  btnFontWeight: "500",
+  btnLetterSpacing: "0.02em",
+  btnTextTransform: "none",
+  btnShadow: "none",
+  btnHoverTransform: "none",
+  btnHoverFilter: "none",
+  btnPressScale: "0.97",
+  btnTransitionDuration: "150ms",
+  inputRadius: "0px",
+  inputBorderWidth: "1px",
+  inputLabelWeight: "500",
+  cardRadius: "0px",
+  cardBorderWidth: "1px",
+  cardShadow: "none",
+  badgeRadius: "0px",
+  badgeFontWeight: "600",
+  selectRadius: "0px",
+  selectBorderWidth: "1px",
+  modalRadius: "0px",
 };
 
 export const themes = {

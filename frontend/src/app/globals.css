@@ -32,11 +32,77 @@
   --focus: var(--vita-primary);
 }
 
-/* Dark mode — toggled by adding .dark to <html> via the theme store */
+/* Dark mode — toggled by adding .dark to <html> via the theme store.
+ * The neutral scale is INVERTED in dark mode (neutral-50 = darkest, neutral-950 = lightest),
+ * so we reference the opposite end of the scale compared to light mode. */
 .dark {
   --accent: var(--vita-primary);
   --background: var(--vita-background);
   --surface: var(--vita-surface);
-  --foreground: var(--vita-neutral-100);
-  --border: var(--vita-neutral-800);
+  --foreground: var(--vita-neutral-900);
+  --border: var(--vita-neutral-200);
+}
+
+/* ── Component token overrides ────────────────────────────────────────────────
+ * Override HeroUI v3 defaults with Vita ERP design tokens.
+ * These CSS vars are set at runtime by the theme store via applyTokens().
+ * --------------------------------------------------------------------------- */
+
+.button {
+  border-radius: var(--vita-btn-radius) !important;
+  font-weight: var(--vita-btn-font-weight) !important;
+  letter-spacing: var(--vita-btn-letter-spacing) !important;
+  text-transform: var(--vita-btn-text-transform) !important;
+  border-style: var(--vita-btn-border-style) !important;
+  border-top-width: var(--vita-btn-border-top) !important;
+  border-right-width: var(--vita-btn-border-right) !important;
+  border-bottom-width: var(--vita-btn-border-bottom) !important;
+  border-left-width: var(--vita-btn-border-left) !important;
+  box-shadow: var(--vita-btn-shadow) !important;
+  transition-property: color, background-color, border-color, box-shadow, transform, filter, opacity !important;
+  transition-timing-function: ease !important;
+  transition-duration: var(--vita-btn-transition-duration) !important;
+}
+
+@media (hover: hover) {
+  .button:not([data-disabled="true"]):not([aria-disabled="true"]):hover {
+    transform: var(--vita-btn-hover-transform, none) !important;
+    filter: var(--vita-btn-hover-filter, none) !important;
+  }
+}
+
+.button:active,
+.button[data-pressed="true"] {
+  transform: scale(var(--vita-btn-press-scale, 0.97)) !important;
+}
+
+.card {
+  border-radius: var(--vita-card-radius) !important;
+  border-width: var(--vita-card-border-width) !important;
+  box-shadow: var(--vita-card-shadow) !important;
+}
+
+.chip {
+  border-radius: var(--vita-badge-radius) !important;
+  font-weight: var(--vita-badge-font-weight) !important;
+}
+
+.input {
+  border-radius: var(--vita-input-radius) !important;
+  border-width: var(--vita-input-border-width) !important;
+}
+
+.input ~ label,
+.input + label,
+[data-slot="label"] {
+  font-weight: var(--vita-input-label-weight) !important;
+}
+
+.select__trigger {
+  border-radius: var(--vita-select-radius) !important;
+  border-width: var(--vita-select-border-width) !important;
+}
+
+.modal__dialog {
+  border-radius: var(--vita-modal-radius) !important;
 }
