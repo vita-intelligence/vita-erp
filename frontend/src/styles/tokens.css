@@ -5,10 +5,9 @@
  *   bg-vita-primary compiles to: background-color: var(--vita-primary)
  *   Changing --vita-primary at runtime updates all bg-vita-primary elements instantly.
  *
- * @theme (no inline) — structural tokens inlined at build time (radii, z-index, etc.)
+ * @theme (no inline) — structural tokens inlined at build time.
  *
- * :root — default light theme values (fallback before the theme store hydrates).
- *   Must stay in sync with lightTheme in src/config/themes.ts.
+ * :root — default light theme values. Must stay in sync with lightTheme in src/config/themes.ts.
  */
 
 /* ---------------------------------------------------------------------------
@@ -39,6 +38,9 @@
   --color-vita-info:       var(--vita-info);
   --color-vita-info-light: var(--vita-info-light);
   --color-vita-info-dark:  var(--vita-info-dark);
+
+  --color-vita-background: var(--vita-background);
+  --color-vita-surface:    var(--vita-surface);
 
   --color-vita-neutral-50:  var(--vita-neutral-50);
   --color-vita-neutral-100: var(--vita-neutral-100);
@@ -90,8 +92,8 @@
 }
 
 /* ---------------------------------------------------------------------------
- * Default light theme values — fallback before store hydration
- * Must stay in sync with lightTheme in src/config/themes.ts
+ * Default light theme values — fallback before store hydration.
+ * Must stay in sync with lightTheme in src/config/themes.ts.
  * --------------------------------------------------------------------------- */
 
 :root {
@@ -118,6 +120,9 @@
   --vita-info:       oklch(0.64 0.14 220);
   --vita-info-light: oklch(0.78 0.10 220);
   --vita-info-dark:  oklch(0.50 0.16 220);
+
+  --vita-background: oklch(0.98 0 0);
+  --vita-surface:    oklch(1 0 0);
 
   --vita-neutral-50:  oklch(0.98 0 0);
   --vita-neutral-100: oklch(0.95 0 0);

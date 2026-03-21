@@ -1,33 +1,28 @@
 /**
  * Theme presets — Vita ERP
  *
- * Each theme is a flat map of token name → CSS value (oklch string).
+ * Each theme is a flat map of token name → CSS value.
  * The theme store (src/stores/theme.ts) writes these as CSS custom properties
  * onto document.documentElement at runtime.
  *
- * Token names map 1-to-1 with CSS variable names:
- *   primary   → --vita-primary
- *   neutral50 → --vita-neutral-50
+ * Token names map 1-to-1 with CSS variable names via CSS_VAR_MAP.
  *
- * To add a new preset: add an entry to `themes` satisfying ThemeTokens.
- * To add a new token: extend ThemeTokens, add to CSS_VAR_MAP, update tokens.css :root.
- *
- * Note on HeroUI mapping (globals.css):
- *   --accent  = var(--vita-primary)    primary   → HeroUI accent (buttons, focus rings)
- *   --danger  = var(--vita-error)      error     → HeroUI danger (destructive states)
- *   --success = var(--vita-success)    success   → HeroUI success
- *   --warning = var(--vita-warning)    warning   → HeroUI warning
+ * HeroUI mapping (globals.css):
+ *   primary   → --accent  (buttons, focus rings)
+ *   error     → --danger  (destructive states)
+ *   background → --background
+ *   surface   → --surface
  */
 
 export type ThemeTokens = {
-  // Brand — user-facing colors shown in the theme constructor
+  // Brand
   primary: string;
   primaryLight: string;
   primaryDark: string;
   secondary: string;
   secondaryLight: string;
   secondaryDark: string;
-  // Status — semantic meaning, still user-customisable
+  // Status
   success: string;
   successLight: string;
   successDark: string;
@@ -40,6 +35,9 @@ export type ThemeTokens = {
   info: string;
   infoLight: string;
   infoDark: string;
+  // Surfaces — independent from neutral scale so background tint is possible
+  background: string;
+  surface: string;
   // Neutral scale
   neutral50: string;
   neutral100: string;
@@ -55,8 +53,8 @@ export type ThemeTokens = {
 };
 
 /**
- * Maps each ThemeTokens key to the CSS custom property name on :root.
- * Single source of truth for JS token names ↔ CSS variable names.
+ * Maps each ThemeTokens key to the CSS custom property on :root.
+ * Single source of truth for JS ↔ CSS coupling.
  */
 export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   primary: "--vita-primary",
@@ -77,6 +75,8 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   info: "--vita-info",
   infoLight: "--vita-info-light",
   infoDark: "--vita-info-dark",
+  background: "--vita-background",
+  surface: "--vita-surface",
   neutral50: "--vita-neutral-50",
   neutral100: "--vita-neutral-100",
   neutral200: "--vita-neutral-200",
@@ -103,46 +103,96 @@ export function applyTokens(tokens: Partial<ThemeTokens>): void {
 }
 
 /**
- * Human-readable metadata for the theme constructor UI.
- * Shown to non-technical users (e.g. manufacturing company admins).
+ * Auto-derive light and dark variants from a base color using CSS color-mix().
+ * Supported in all modern browsers (Chrome 111+, Firefox 113+, Safari 16.2+).
+ *
+ * Usage: when a user picks primary = "#3b82f6", call deriveVariants to get
+ * primaryLight and primaryDark without requiring a color library.
+ */
+export function deriveVariants(base: string): { light: string; dark: string } {
+  return {
+    light: `color-mix(in oklch, ${base} 65%, white)`,
+    dark: `color-mix(in oklch, ${base} 75%, black)`,
+  };
+}
+
+/**
+ * Human-readable metadata for the brand color constructor UI.
+ * Shown to non-technical users (manufacturing company admins).
+ *
+ * baseKey: the token the user picks — variants are auto-derived from it.
  */
 export const BRAND_COLOR_META: {
   key: keyof Pick<
     ThemeTokens,
     "primary" | "secondary" | "success" | "warning" | "error" | "info"
   >;
+  lightKey: keyof ThemeTokens;
+  darkKey: keyof ThemeTokens;
   label: string;
   description: string;
 }[] = [
   {
     key: "primary",
+    lightKey: "primaryLight",
+    darkKey: "primaryDark",
     label: "Primary",
     description: "Main brand color — buttons, active states, links",
   },
   {
     key: "secondary",
+    lightKey: "secondaryLight",
+    darkKey: "secondaryDark",
     label: "Secondary",
     description: "Complementary brand color — highlights, badges, accents",
   },
   {
     key: "success",
+    lightKey: "successLight",
+    darkKey: "successDark",
     label: "Success",
     description: "Positive outcomes — completed orders, approvals",
   },
   {
     key: "warning",
+    lightKey: "warningLight",
+    darkKey: "warningDark",
     label: "Warning",
     description: "Needs attention — low stock, pending reviews",
   },
   {
     key: "error",
+    lightKey: "errorLight",
+    darkKey: "errorDark",
     label: "Error",
     description: "Critical issues — failed operations, urgent alerts",
   },
   {
     key: "info",
+    lightKey: "infoLight",
+    darkKey: "infoDark",
     label: "Information",
     description: "General info — tips, neutral status updates",
+  },
+];
+
+/**
+ * Metadata for surface tokens — background and card/panel color.
+ */
+export const SURFACE_COLOR_META: {
+  key: keyof Pick<ThemeTokens, "background" | "surface">;
+  label: string;
+  description: string;
+}[] = [
+  {
+    key: "background",
+    label: "Background",
+    description: "Page background — tint to match warm or cool brand feel",
+  },
+  {
+    key: "surface",
+    label: "Surface",
+    description: "Cards and panels — slightly offset from background",
   },
 ];
 
@@ -174,6 +224,9 @@ export const lightTheme: ThemeTokens = {
   info: "oklch(0.64 0.14 220)",
   infoLight: "oklch(0.78 0.10 220)",
   infoDark: "oklch(0.50 0.16 220)",
+
+  background: "oklch(0.98 0 0)",
+  surface: "oklch(1 0 0)",
 
   neutral50: "oklch(0.98 0 0)",
   neutral100: "oklch(0.95 0 0)",
@@ -212,6 +265,9 @@ export const darkTheme: ThemeTokens = {
   info: "oklch(0.72 0.12 220)",
   infoLight: "oklch(0.84 0.08 220)",
   infoDark: "oklch(0.58 0.16 220)",
+
+  background: "oklch(0.09 0 0)",
+  surface: "oklch(0.14 0 0)",
 
   neutral50: "oklch(0.09 0 0)",
   neutral100: "oklch(0.14 0 0)",

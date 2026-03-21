@@ -4,7 +4,12 @@ import { ButtonRoot } from "@/components/ui/button";
 import { CardContent, CardHeader, CardRoot } from "@/components/ui/card";
 import { ChipRoot } from "@/components/ui/chip";
 import { Separator } from "@/components/ui/separator";
-import { BRAND_COLOR_META, THEME } from "@/config";
+import {
+  BRAND_COLOR_META,
+  deriveVariants,
+  SURFACE_COLOR_META,
+  THEME,
+} from "@/config";
 import { useThemeStore } from "@/stores/theme";
 
 const neutralShades = [
@@ -12,12 +17,12 @@ const neutralShades = [
 ] as const;
 
 export default function DesignSystemPage() {
-  const { mode, setMode, setTokens } = useThemeStore();
+  const { mode, setMode, setTokens, resetColor, resetAll } = useThemeStore();
 
   return (
-    <main className="min-h-screen bg-vita-neutral-50 p-8 font-vita-sans">
+    <main className="min-h-screen bg-vita-background p-8 font-vita-sans">
       <div className="mx-auto max-w-4xl space-y-10">
-        {/* Header + mode switcher */}
+        {/* Header */}
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-3xl font-bold text-vita-neutral-900">
@@ -42,36 +47,113 @@ export default function DesignSystemPage() {
             >
               Dark
             </ButtonRoot>
+            <ButtonRoot variant="ghost" size="sm" onPress={resetAll}>
+              Reset all
+            </ButtonRoot>
           </div>
         </div>
 
         <Separator />
 
-        {/* Brand color constructor */}
+        {/* Brand colors */}
         <section className="space-y-4">
           <div>
-            <h2 className="text-lg font-semibold text-vita-neutral-800">
+            <h2 className="text-lg font-semibold text-vita-neutral-900">
               Brand colors
             </h2>
             <p className="text-sm text-vita-neutral-500">
               Editing <span className="font-medium capitalize">{mode}</span>{" "}
-              mode. Switch modes above to set different colors for light and
-              dark.
+              mode — switch above to set light and dark independently.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {BRAND_COLOR_META.map(({ key, label, description }) => (
-              <label
-                key={key}
-                className="group flex cursor-pointer flex-col gap-2 rounded-vita-lg border border-vita-neutral-200 bg-vita-neutral-50 p-4 transition-shadow hover:shadow-vita-sm"
-              >
-                {/* Live swatch */}
+            {BRAND_COLOR_META.map(
+              ({ key, lightKey, darkKey, label, description }) => (
                 <div
-                  className="h-14 w-full rounded-vita-md shadow-vita-xs"
+                  key={key}
+                  className="flex flex-col gap-2 rounded-vita-lg border border-vita-neutral-200 bg-vita-surface p-4"
+                >
+                  {/* Swatch showing base + light + dark variants */}
+                  <div className="flex h-12 w-full overflow-hidden rounded-vita-md shadow-vita-xs">
+                    <div
+                      className="flex-1"
+                      style={{ background: `var(--vita-${key}-dark)` }}
+                    />
+                    <div
+                      className="flex-[2]"
+                      style={{ background: `var(--vita-${key})` }}
+                    />
+                    <div
+                      className="flex-1"
+                      style={{ background: `var(--vita-${key}-light)` }}
+                    />
+                  </div>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-vita-neutral-800">
+                        {label}
+                      </p>
+                      <p className="text-xs text-vita-neutral-400">
+                        {description}
+                      </p>
+                    </div>
+                    <div className="flex shrink-0 items-center gap-1">
+                      {/* Reset this color */}
+                      <button
+                        type="button"
+                        title={`Reset ${label} to default`}
+                        className="text-vita-neutral-400 hover:text-vita-neutral-600 text-xs px-1"
+                        onClick={() => resetColor([key, lightKey, darkKey])}
+                      >
+                        ↺
+                      </button>
+                      {/* Color picker — auto-derives light/dark variants */}
+                      <input
+                        type="color"
+                        title={`Change ${label} color`}
+                        className="h-8 w-8 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
+                        onChange={(e) => {
+                          const { light, dark } = deriveVariants(
+                            e.target.value,
+                          );
+                          setTokens({
+                            [key]: e.target.value,
+                            [lightKey]: light,
+                            [darkKey]: dark,
+                          } as Parameters<typeof setTokens>[0]);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ),
+            )}
+          </div>
+        </section>
+
+        {/* Surfaces */}
+        <section className="space-y-4">
+          <div>
+            <h2 className="text-lg font-semibold text-vita-neutral-900">
+              Surfaces
+            </h2>
+            <p className="text-sm text-vita-neutral-500">
+              Page and card background colors — tint to warm or cool to match
+              your brand.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {SURFACE_COLOR_META.map(({ key, label, description }) => (
+              <div
+                key={key}
+                className="flex flex-col gap-2 rounded-vita-lg border border-vita-neutral-200 bg-vita-surface p-4"
+              >
+                <div
+                  className="h-12 w-full rounded-vita-md border border-vita-neutral-200 shadow-vita-xs"
                   style={{ background: `var(--vita-${key})` }}
                 />
-                <div className="flex items-center justify-between">
-                  <div>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0">
                     <p className="text-sm font-semibold text-vita-neutral-800">
                       {label}
                     </p>
@@ -79,26 +161,35 @@ export default function DesignSystemPage() {
                       {description}
                     </p>
                   </div>
-                  {/* Color picker */}
-                  <input
-                    type="color"
-                    title={`Change ${label} color`}
-                    className="h-8 w-8 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
-                    onChange={(e) =>
-                      setTokens({ [key]: e.target.value } as Parameters<
-                        typeof setTokens
-                      >[0])
-                    }
-                  />
+                  <div className="flex shrink-0 items-center gap-1">
+                    <button
+                      type="button"
+                      title={`Reset ${label} to default`}
+                      className="text-vita-neutral-400 hover:text-vita-neutral-600 text-xs px-1"
+                      onClick={() => resetColor([key])}
+                    >
+                      ↺
+                    </button>
+                    <input
+                      type="color"
+                      title={`Change ${label} color`}
+                      className="h-8 w-8 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
+                      onChange={(e) =>
+                        setTokens({ [key]: e.target.value } as Parameters<
+                          typeof setTokens
+                        >[0])
+                      }
+                    />
+                  </div>
                 </div>
-              </label>
+              </div>
             ))}
           </div>
         </section>
 
         {/* Neutral scale */}
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-vita-neutral-800">
+          <h2 className="text-lg font-semibold text-vita-neutral-900">
             Neutral scale
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -118,7 +209,7 @@ export default function DesignSystemPage() {
 
         {/* Component preview */}
         <section className="space-y-6">
-          <h2 className="text-lg font-semibold text-vita-neutral-800">
+          <h2 className="text-lg font-semibold text-vita-neutral-900">
             Component preview
           </h2>
 
@@ -156,7 +247,7 @@ export default function DesignSystemPage() {
                 Error
               </ChipRoot>
               <ChipRoot color="accent" variant="soft">
-                Accent Soft
+                Primary Soft
               </ChipRoot>
               <ChipRoot color="success" variant="soft">
                 Success Soft
@@ -194,7 +285,7 @@ export default function DesignSystemPage() {
 
         {/* Typography */}
         <section className="space-y-3">
-          <h2 className="text-lg font-semibold text-vita-neutral-800">
+          <h2 className="text-lg font-semibold text-vita-neutral-900">
             Typography
           </h2>
           <p className="text-4xl font-bold text-vita-neutral-900">
@@ -215,7 +306,7 @@ export default function DesignSystemPage() {
 
         {/* Radii */}
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-vita-neutral-800">
+          <h2 className="text-lg font-semibold text-vita-neutral-900">
             Border radii
           </h2>
           <div className="flex flex-wrap gap-4">

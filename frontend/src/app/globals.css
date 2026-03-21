@@ -4,12 +4,12 @@
 
 /*
  * HeroUI v3 semantic variable overrides.
- * Maps our brand tokens onto HeroUI's internal CSS variables so that
- * HeroUI components update automatically when the theme store changes.
+ * Maps our brand tokens onto HeroUI's internal CSS variables.
  *
- *   primary   → --accent   (buttons, focus rings, active states)
- *   error     → --danger   (destructive actions, error states)
- *   secondary has no direct HeroUI mapping — used in our own components
+ *   primary    → --accent      (buttons, focus rings, active states)
+ *   error      → --danger      (destructive actions, error states)
+ *   background → --background  (page background)
+ *   surface    → --surface     (card/panel background)
  */
 :root {
   --accent:             var(--vita-primary);
@@ -24,7 +24,8 @@
   --danger:             var(--vita-error);
   --danger-foreground:  oklch(1 0 0);
 
-  --background:         var(--vita-neutral-50);
+  --background:         var(--vita-background);
+  --surface:            var(--vita-surface);
   --foreground:         var(--vita-neutral-900);
 
   --border:             var(--vita-neutral-200);
@@ -34,7 +35,8 @@
 /* Dark mode — toggled by adding .dark to <html> via the theme store */
 .dark {
   --accent:     var(--vita-primary);
-  --background: var(--vita-neutral-950);
+  --background: var(--vita-background);
+  --surface:    var(--vita-surface);
   --foreground: var(--vita-neutral-100);
   --border:     var(--vita-neutral-800);
 }
