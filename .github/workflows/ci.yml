@@ -19,50 +19,53 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check server directory exists
+      - name: Check backend directory exists
         id: check
         run: |
-          if [ -d "server" ]; then
+          if [ -d "backend" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
-            echo "server/ not found — skipping backend CI"
+            echo "backend/ not found — skipping backend CI"
           fi
+
+      - name: Install uv
+        if: steps.check.outputs.exists == 'true'
+        uses: astral-sh/setup-uv@v5
 
       - name: Set up Python
         if: steps.check.outputs.exists == 'true'
         uses: actions/setup-python@v5
         with:
-          python-version-file: server/.python-version
-          cache: pip
-          cache-dependency-path: server/requirements*.txt
+          python-version-file: backend/.python-version
 
       - name: Install dependencies
         if: steps.check.outputs.exists == 'true'
-        working-directory: server
-        run: pip install -r requirements.txt -r requirements-dev.txt
+        working-directory: backend
+        run: uv sync --group dev
 
       - name: Lint (ruff)
         if: steps.check.outputs.exists == 'true'
-        working-directory: server
-        run: ruff check .
+        working-directory: backend
+        run: uv run ruff check .
 
       - name: Format check (ruff)
         if: steps.check.outputs.exists == 'true'
-        working-directory: server
-        run: ruff format --check .
+        working-directory: backend
+        run: uv run ruff format --check .
 
       - name: Type check (mypy)
         if: steps.check.outputs.exists == 'true'
-        working-directory: server
-        run: mypy .
+        working-directory: backend
+        run: uv run mypy .
 
-      - name: Tests (pytest)
+      - name: Tests
         if: steps.check.outputs.exists == 'true'
-        working-directory: server
-        run: pytest --tb=short -q
+        working-directory: backend
+        run: uv run python manage.py test --verbosity=2
         env:
           DJANGO_SETTINGS_MODULE: config.settings.test
+          SECRET_KEY: ci-secret-key
 
   frontend-ci:
     name: Frontend CI
@@ -72,42 +75,42 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check client directory exists
+      - name: Check frontend directory exists
         id: check
         run: |
-          if [ -d "client" ]; then
+          if [ -d "frontend" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
-            echo "client/ not found — skipping frontend CI"
+            echo "frontend/ not found — skipping frontend CI"
           fi
 
       - name: Set up Node
         if: steps.check.outputs.exists == 'true'
         uses: actions/setup-node@v4
         with:
-          node-version-file: client/.nvmrc
+          node-version-file: frontend/.nvmrc
           cache: npm
-          cache-dependency-path: client/package-lock.json
+          cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
         if: steps.check.outputs.exists == 'true'
-        working-directory: client
+        working-directory: frontend
         run: npm ci
 
       - name: Lint (eslint)
         if: steps.check.outputs.exists == 'true'
-        working-directory: client
+        working-directory: frontend
         run: npm run lint
 
       - name: Type check (tsc)
         if: steps.check.outputs.exists == 'true'
-        working-directory: client
+        working-directory: frontend
         run: npm run typecheck
 
-      - name: Tests (vitest)
+      - name: Tests
         if: steps.check.outputs.exists == 'true'
-        working-directory: client
+        working-directory: frontend
         run: npm run test -- --run
 
   ci-success:
