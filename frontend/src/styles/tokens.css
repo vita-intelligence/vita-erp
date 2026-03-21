@@ -1,32 +1,28 @@
 /*
  * Design Tokens — Vita ERP
  *
- * HOW IT WORKS:
+ * @theme inline  — Tailwind utilities reference CSS vars at runtime.
+ *   bg-vita-primary compiles to: background-color: var(--vita-primary)
+ *   Changing --vita-primary at runtime updates all bg-vita-primary elements instantly.
  *
- * 1. @theme inline  — generates Tailwind utilities that reference CSS variables.
- *    e.g. bg-vita-accent compiles to: background-color: var(--vita-accent)
- *    This means changing --vita-accent at runtime updates ALL bg-vita-accent elements.
+ * @theme (no inline) — structural tokens inlined at build time (radii, z-index, etc.)
  *
- * 2. @theme (no inline) — structural tokens (radii, z-index, etc.) inlined at build time.
- *    These are never changed dynamically so there is no need for the indirection.
- *
- * 3. :root — default token values (light theme).
- *    The theme store (src/stores/theme.ts) overwrites these at runtime via
- *    document.documentElement.style.setProperty() to switch themes.
- *
- * To change the default brand color: update :root below AND the lightTheme preset
- * in src/config/themes.ts. Both must stay in sync.
+ * :root — default light theme values (fallback before the theme store hydrates).
+ *   Must stay in sync with lightTheme in src/config/themes.ts.
  */
 
 /* ---------------------------------------------------------------------------
  * Dynamic color tokens
- * @theme inline → bg-vita-accent = background-color: var(--vita-accent)
  * --------------------------------------------------------------------------- */
 
 @theme inline {
-  --color-vita-accent:       var(--vita-accent);
-  --color-vita-accent-light: var(--vita-accent-light);
-  --color-vita-accent-dark:  var(--vita-accent-dark);
+  --color-vita-primary:        var(--vita-primary);
+  --color-vita-primary-light:  var(--vita-primary-light);
+  --color-vita-primary-dark:   var(--vita-primary-dark);
+
+  --color-vita-secondary:       var(--vita-secondary);
+  --color-vita-secondary-light: var(--vita-secondary-light);
+  --color-vita-secondary-dark:  var(--vita-secondary-dark);
 
   --color-vita-success:       var(--vita-success);
   --color-vita-success-light: var(--vita-success-light);
@@ -36,9 +32,9 @@
   --color-vita-warning-light: var(--vita-warning-light);
   --color-vita-warning-dark:  var(--vita-warning-dark);
 
-  --color-vita-danger:       var(--vita-danger);
-  --color-vita-danger-light: var(--vita-danger-light);
-  --color-vita-danger-dark:  var(--vita-danger-dark);
+  --color-vita-error:       var(--vita-error);
+  --color-vita-error-light: var(--vita-error-light);
+  --color-vita-error-dark:  var(--vita-error-dark);
 
   --color-vita-info:       var(--vita-info);
   --color-vita-info-light: var(--vita-info-light);
@@ -59,7 +55,6 @@
 
 /* ---------------------------------------------------------------------------
  * Static structural tokens
- * @theme (no inline) → values are inlined at build time, no runtime switching needed
  * --------------------------------------------------------------------------- */
 
 @theme {
@@ -95,15 +90,18 @@
 }
 
 /* ---------------------------------------------------------------------------
- * Default light theme CSS variable values
- * These are the fallback values before the theme store hydrates from localStorage.
- * Must stay in sync with lightTheme in src/config/themes.ts.
+ * Default light theme values — fallback before store hydration
+ * Must stay in sync with lightTheme in src/config/themes.ts
  * --------------------------------------------------------------------------- */
 
 :root {
-  --vita-accent:       oklch(0.58 0.22 265);
-  --vita-accent-light: oklch(0.72 0.18 265);
-  --vita-accent-dark:  oklch(0.44 0.24 265);
+  --vita-primary:       oklch(0.58 0.22 265);
+  --vita-primary-light: oklch(0.72 0.18 265);
+  --vita-primary-dark:  oklch(0.44 0.24 265);
+
+  --vita-secondary:       oklch(0.58 0.18 300);
+  --vita-secondary-light: oklch(0.72 0.14 300);
+  --vita-secondary-dark:  oklch(0.44 0.20 300);
 
   --vita-success:       oklch(0.64 0.16 155);
   --vita-success-light: oklch(0.78 0.12 155);
@@ -113,9 +111,9 @@
   --vita-warning-light: oklch(0.86 0.13 65);
   --vita-warning-dark:  oklch(0.60 0.20 65);
 
-  --vita-danger:       oklch(0.62 0.22 28);
-  --vita-danger-light: oklch(0.76 0.16 28);
-  --vita-danger-dark:  oklch(0.48 0.24 28);
+  --vita-error:       oklch(0.62 0.22 28);
+  --vita-error-light: oklch(0.76 0.16 28);
+  --vita-error-dark:  oklch(0.48 0.24 28);
 
   --vita-info:       oklch(0.64 0.14 220);
   --vita-info-light: oklch(0.78 0.10 220);

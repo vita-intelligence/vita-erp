@@ -4,16 +4,15 @@ import { ButtonRoot } from "@/components/ui/button";
 import { CardContent, CardHeader, CardRoot } from "@/components/ui/card";
 import { ChipRoot } from "@/components/ui/chip";
 import { Separator } from "@/components/ui/separator";
-import { THEME } from "@/config";
+import { BRAND_COLOR_META, THEME } from "@/config";
 import { useThemeStore } from "@/stores/theme";
 
-const brandColors = ["accent", "success", "warning", "danger", "info"] as const;
 const neutralShades = [
   50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950,
 ] as const;
 
 export default function DesignSystemPage() {
-  const { mode, setMode, setTokens, tokens } = useThemeStore();
+  const { mode, setMode, setTokens } = useThemeStore();
 
   return (
     <main className="min-h-screen bg-vita-neutral-50 p-8 font-vita-sans">
@@ -22,10 +21,10 @@ export default function DesignSystemPage() {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-3xl font-bold text-vita-neutral-900">
-              Vita ERP — Design System
+              Brand & Theme
             </h1>
             <p className="mt-1 text-vita-neutral-500">
-              Visual reference for tokens, components, and palette.
+              Customise the look of your Vita ERP to match your company brand.
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -48,41 +47,50 @@ export default function DesignSystemPage() {
 
         <Separator />
 
-        {/* Brand colors — per-mode, each color has its own picker */}
-        <section className="space-y-3">
+        {/* Brand color constructor */}
+        <section className="space-y-4">
           <div>
             <h2 className="text-lg font-semibold text-vita-neutral-800">
               Brand colors
             </h2>
-            <p className="text-xs text-vita-neutral-500">
-              Editing <span className="font-medium">{mode}</span> mode — switch
-              modes above to customise each independently.
+            <p className="text-sm text-vita-neutral-500">
+              Editing <span className="font-medium capitalize">{mode}</span>{" "}
+              mode. Switch modes above to set different colors for light and
+              dark.
             </p>
           </div>
-          <div className="flex flex-wrap gap-4">
-            {brandColors.map((name) => (
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {BRAND_COLOR_META.map(({ key, label, description }) => (
               <label
-                key={name}
-                className="flex cursor-pointer flex-col items-center gap-2"
+                key={key}
+                className="group flex cursor-pointer flex-col gap-2 rounded-vita-lg border border-vita-neutral-200 bg-vita-neutral-50 p-4 transition-shadow hover:shadow-vita-sm"
               >
-                {/* Swatch — reads from live CSS var, not dynamic class */}
+                {/* Live swatch */}
                 <div
-                  className="h-16 w-24 rounded-vita-md shadow-vita-sm"
-                  style={{ background: `var(--vita-${name})` }}
+                  className="h-14 w-full rounded-vita-md shadow-vita-xs"
+                  style={{ background: `var(--vita-${key})` }}
                 />
-                <span className="text-xs font-medium text-vita-neutral-600">
-                  {name}
-                </span>
-                <input
-                  type="color"
-                  title={`Override ${name} (${mode})`}
-                  className="h-7 w-24 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
-                  onChange={(e) =>
-                    setTokens({ [name]: e.target.value } as Partial<
-                      typeof tokens
-                    >)
-                  }
-                />
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-semibold text-vita-neutral-800">
+                      {label}
+                    </p>
+                    <p className="text-xs text-vita-neutral-400">
+                      {description}
+                    </p>
+                  </div>
+                  {/* Color picker */}
+                  <input
+                    type="color"
+                    title={`Change ${label} color`}
+                    className="h-8 w-8 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
+                    onChange={(e) =>
+                      setTokens({ [key]: e.target.value } as Parameters<
+                        typeof setTokens
+                      >[0])
+                    }
+                  />
+                </div>
               </label>
             ))}
           </div>
@@ -108,90 +116,77 @@ export default function DesignSystemPage() {
 
         <Separator />
 
-        {/* Buttons */}
-        <section className="space-y-4">
+        {/* Component preview */}
+        <section className="space-y-6">
           <h2 className="text-lg font-semibold text-vita-neutral-800">
-            Buttons
+            Component preview
           </h2>
-          <div className="flex flex-wrap gap-3">
-            <ButtonRoot variant="primary">Primary</ButtonRoot>
-            <ButtonRoot variant="secondary">Secondary</ButtonRoot>
-            <ButtonRoot variant="tertiary">Tertiary</ButtonRoot>
-            <ButtonRoot variant="outline">Outline</ButtonRoot>
-            <ButtonRoot variant="ghost">Ghost</ButtonRoot>
-            <ButtonRoot variant="danger">Danger</ButtonRoot>
-            <ButtonRoot variant="danger-soft">Danger Soft</ButtonRoot>
-            <ButtonRoot isDisabled>Disabled</ButtonRoot>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <ButtonRoot variant="primary" size="sm">
-              Small
-            </ButtonRoot>
-            <ButtonRoot variant="primary" size="md">
-              Medium
-            </ButtonRoot>
-            <ButtonRoot variant="primary" size="lg">
-              Large
-            </ButtonRoot>
-          </div>
-        </section>
 
-        {/* Chips */}
-        <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-vita-neutral-800">Chips</h2>
-          <div className="flex flex-wrap gap-3">
-            <ChipRoot color="accent" variant="primary">
-              Accent
-            </ChipRoot>
-            <ChipRoot color="success" variant="primary">
-              Success
-            </ChipRoot>
-            <ChipRoot color="warning" variant="primary">
-              Warning
-            </ChipRoot>
-            <ChipRoot color="danger" variant="primary">
-              Danger
-            </ChipRoot>
-            <ChipRoot color="default" variant="primary">
-              Default
-            </ChipRoot>
+          <div className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
+              Buttons
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <ButtonRoot variant="primary">Primary</ButtonRoot>
+              <ButtonRoot variant="secondary">Secondary</ButtonRoot>
+              <ButtonRoot variant="tertiary">Tertiary</ButtonRoot>
+              <ButtonRoot variant="outline">Outline</ButtonRoot>
+              <ButtonRoot variant="ghost">Ghost</ButtonRoot>
+              <ButtonRoot variant="danger">Error</ButtonRoot>
+              <ButtonRoot variant="danger-soft">Error Soft</ButtonRoot>
+              <ButtonRoot isDisabled>Disabled</ButtonRoot>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <ChipRoot color="accent" variant="secondary">
-              Secondary
-            </ChipRoot>
-            <ChipRoot color="accent" variant="soft">
-              Soft
-            </ChipRoot>
-            <ChipRoot color="accent" variant="tertiary">
-              Tertiary
-            </ChipRoot>
+
+          <div className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
+              Status chips
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <ChipRoot color="accent" variant="primary">
+                Primary
+              </ChipRoot>
+              <ChipRoot color="success" variant="primary">
+                Success
+              </ChipRoot>
+              <ChipRoot color="warning" variant="primary">
+                Warning
+              </ChipRoot>
+              <ChipRoot color="danger" variant="primary">
+                Error
+              </ChipRoot>
+              <ChipRoot color="accent" variant="soft">
+                Accent Soft
+              </ChipRoot>
+              <ChipRoot color="success" variant="soft">
+                Success Soft
+              </ChipRoot>
+            </div>
           </div>
-        </section>
 
-        <Separator />
-
-        {/* Cards */}
-        <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-vita-neutral-800">Cards</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {(["Orders", "Revenue", "Inventory"] as const).map((title, i) => (
-              <CardRoot key={title} className="shadow-vita-sm">
-                <CardHeader>
-                  <span className="text-sm font-medium text-vita-neutral-500">
-                    {title}
-                  </span>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-2xl font-bold text-vita-neutral-900">
-                    {["1,240", "$84,200", "3,891"][i]}
-                  </p>
-                  <span className="text-xs text-vita-success">
-                    ↑ {["12%", "8%", "3%"][i]} this month
-                  </span>
-                </CardContent>
-              </CardRoot>
-            ))}
+          <div className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
+              Cards
+            </p>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {(["Orders", "Revenue", "Inventory"] as const).map((title, i) => (
+                <CardRoot key={title} className="shadow-vita-sm">
+                  <CardHeader>
+                    <span className="text-sm font-medium text-vita-neutral-500">
+                      {title}
+                    </span>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-2xl font-bold text-vita-neutral-900">
+                      {["1,240", "$84,200", "3,891"][i]}
+                    </p>
+                    <span className="text-xs text-vita-success">
+                      ↑ {["12%", "8%", "3%"][i]} this month
+                    </span>
+                  </CardContent>
+                </CardRoot>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -216,19 +211,18 @@ export default function DesignSystemPage() {
           <p className="text-xs text-vita-neutral-400">
             Extra small — neutral 400
           </p>
-          <p className="font-vita-mono text-sm text-vita-neutral-700">
-            const accent = &quot;{tokens.accent}&quot;
-          </p>
         </section>
 
         {/* Radii */}
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-vita-neutral-800">Radii</h2>
+          <h2 className="text-lg font-semibold text-vita-neutral-800">
+            Border radii
+          </h2>
           <div className="flex flex-wrap gap-4">
             {(["xs", "sm", "md", "lg", "xl", "2xl"] as const).map((r) => (
               <div
                 key={r}
-                className="flex h-14 w-14 items-center justify-center bg-vita-accent text-xs text-white shadow-vita-md"
+                className="flex h-14 w-14 items-center justify-center bg-vita-primary text-xs text-white shadow-vita-md"
                 style={{ borderRadius: THEME.radii[r] }}
               >
                 {r}

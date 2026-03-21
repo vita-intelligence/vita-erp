@@ -6,28 +6,37 @@
  * onto document.documentElement at runtime.
  *
  * Token names map 1-to-1 with CSS variable names:
- *   accent → --vita-accent
+ *   primary   → --vita-primary
  *   neutral50 → --vita-neutral-50
  *
  * To add a new preset: add an entry to `themes` satisfying ThemeTokens.
  * To add a new token: extend ThemeTokens, add to CSS_VAR_MAP, update tokens.css :root.
+ *
+ * Note on HeroUI mapping (globals.css):
+ *   --accent  = var(--vita-primary)    primary   → HeroUI accent (buttons, focus rings)
+ *   --danger  = var(--vita-error)      error     → HeroUI danger (destructive states)
+ *   --success = var(--vita-success)    success   → HeroUI success
+ *   --warning = var(--vita-warning)    warning   → HeroUI warning
  */
 
 export type ThemeTokens = {
-  // Brand
-  accent: string;
-  accentLight: string;
-  accentDark: string;
-  // Semantic
+  // Brand — user-facing colors shown in the theme constructor
+  primary: string;
+  primaryLight: string;
+  primaryDark: string;
+  secondary: string;
+  secondaryLight: string;
+  secondaryDark: string;
+  // Status — semantic meaning, still user-customisable
   success: string;
   successLight: string;
   successDark: string;
   warning: string;
   warningLight: string;
   warningDark: string;
-  danger: string;
-  dangerLight: string;
-  dangerDark: string;
+  error: string;
+  errorLight: string;
+  errorDark: string;
   info: string;
   infoLight: string;
   infoDark: string;
@@ -47,21 +56,24 @@ export type ThemeTokens = {
 
 /**
  * Maps each ThemeTokens key to the CSS custom property name on :root.
- * This is the single place where JS token names ↔ CSS variable names are coupled.
+ * Single source of truth for JS token names ↔ CSS variable names.
  */
 export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
-  accent: "--vita-accent",
-  accentLight: "--vita-accent-light",
-  accentDark: "--vita-accent-dark",
+  primary: "--vita-primary",
+  primaryLight: "--vita-primary-light",
+  primaryDark: "--vita-primary-dark",
+  secondary: "--vita-secondary",
+  secondaryLight: "--vita-secondary-light",
+  secondaryDark: "--vita-secondary-dark",
   success: "--vita-success",
   successLight: "--vita-success-light",
   successDark: "--vita-success-dark",
   warning: "--vita-warning",
   warningLight: "--vita-warning-light",
   warningDark: "--vita-warning-dark",
-  danger: "--vita-danger",
-  dangerLight: "--vita-danger-light",
-  dangerDark: "--vita-danger-dark",
+  error: "--vita-error",
+  errorLight: "--vita-error-light",
+  errorDark: "--vita-error-dark",
   info: "--vita-info",
   infoLight: "--vita-info-light",
   infoDark: "--vita-info-dark",
@@ -90,14 +102,62 @@ export function applyTokens(tokens: Partial<ThemeTokens>): void {
   }
 }
 
+/**
+ * Human-readable metadata for the theme constructor UI.
+ * Shown to non-technical users (e.g. manufacturing company admins).
+ */
+export const BRAND_COLOR_META: {
+  key: keyof Pick<
+    ThemeTokens,
+    "primary" | "secondary" | "success" | "warning" | "error" | "info"
+  >;
+  label: string;
+  description: string;
+}[] = [
+  {
+    key: "primary",
+    label: "Primary",
+    description: "Main brand color — buttons, active states, links",
+  },
+  {
+    key: "secondary",
+    label: "Secondary",
+    description: "Complementary brand color — highlights, badges, accents",
+  },
+  {
+    key: "success",
+    label: "Success",
+    description: "Positive outcomes — completed orders, approvals",
+  },
+  {
+    key: "warning",
+    label: "Warning",
+    description: "Needs attention — low stock, pending reviews",
+  },
+  {
+    key: "error",
+    label: "Error",
+    description: "Critical issues — failed operations, urgent alerts",
+  },
+  {
+    key: "info",
+    label: "Information",
+    description: "General info — tips, neutral status updates",
+  },
+];
+
 // ---------------------------------------------------------------------------
 // Built-in presets
 // ---------------------------------------------------------------------------
 
 export const lightTheme: ThemeTokens = {
-  accent: "oklch(0.58 0.22 265)",
-  accentLight: "oklch(0.72 0.18 265)",
-  accentDark: "oklch(0.44 0.24 265)",
+  primary: "oklch(0.58 0.22 265)",
+  primaryLight: "oklch(0.72 0.18 265)",
+  primaryDark: "oklch(0.44 0.24 265)",
+
+  secondary: "oklch(0.58 0.18 300)",
+  secondaryLight: "oklch(0.72 0.14 300)",
+  secondaryDark: "oklch(0.44 0.20 300)",
 
   success: "oklch(0.64 0.16 155)",
   successLight: "oklch(0.78 0.12 155)",
@@ -107,9 +167,9 @@ export const lightTheme: ThemeTokens = {
   warningLight: "oklch(0.86 0.13 65)",
   warningDark: "oklch(0.60 0.20 65)",
 
-  danger: "oklch(0.62 0.22 28)",
-  dangerLight: "oklch(0.76 0.16 28)",
-  dangerDark: "oklch(0.48 0.24 28)",
+  error: "oklch(0.62 0.22 28)",
+  errorLight: "oklch(0.76 0.16 28)",
+  errorDark: "oklch(0.48 0.24 28)",
 
   info: "oklch(0.64 0.14 220)",
   infoLight: "oklch(0.78 0.10 220)",
@@ -129,10 +189,13 @@ export const lightTheme: ThemeTokens = {
 };
 
 export const darkTheme: ThemeTokens = {
-  // Slightly brighter accent for dark backgrounds
-  accent: "oklch(0.72 0.18 265)",
-  accentLight: "oklch(0.84 0.14 265)",
-  accentDark: "oklch(0.58 0.22 265)",
+  primary: "oklch(0.72 0.18 265)",
+  primaryLight: "oklch(0.84 0.14 265)",
+  primaryDark: "oklch(0.58 0.22 265)",
+
+  secondary: "oklch(0.72 0.14 300)",
+  secondaryLight: "oklch(0.84 0.10 300)",
+  secondaryDark: "oklch(0.58 0.18 300)",
 
   success: "oklch(0.72 0.14 155)",
   successLight: "oklch(0.84 0.10 155)",
@@ -142,15 +205,14 @@ export const darkTheme: ThemeTokens = {
   warningLight: "oklch(0.90 0.11 65)",
   warningDark: "oklch(0.68 0.20 65)",
 
-  danger: "oklch(0.72 0.20 28)",
-  dangerLight: "oklch(0.84 0.14 28)",
-  dangerDark: "oklch(0.58 0.24 28)",
+  error: "oklch(0.72 0.20 28)",
+  errorLight: "oklch(0.84 0.14 28)",
+  errorDark: "oklch(0.58 0.24 28)",
 
   info: "oklch(0.72 0.12 220)",
   infoLight: "oklch(0.84 0.08 220)",
   infoDark: "oklch(0.58 0.16 220)",
 
-  // Neutral scale is inverted for dark mode
   neutral50: "oklch(0.09 0 0)",
   neutral100: "oklch(0.14 0 0)",
   neutral200: "oklch(0.22 0 0)",
