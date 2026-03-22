@@ -12,7 +12,6 @@ import {
   ColorArea,
   ColorPicker,
   ColorSlider,
-  ColorSwatch,
   parseColor,
 } from "@/components/ui/color-picker";
 
@@ -43,9 +42,11 @@ export function ColorInput({ value, onChange, title }: ColorInputProps) {
       aria-label={title ?? "Pick color"}
     >
       <ColorPicker.Trigger>
-        <ColorSwatch
-          color={value}
+        {/* Use a plain div with CSS background instead of ColorSwatch
+            because ColorSwatch crashes on oklch() colors */}
+        <div
           className="h-7 w-7 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
+          style={{ background: value }}
         />
       </ColorPicker.Trigger>
       <ColorPicker.Popover>
