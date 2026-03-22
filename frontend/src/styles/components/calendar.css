@@ -1,0 +1,47 @@
+/* ── Calendar ─────────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to calendar / date-picker components.
+ */
+
+:root {
+  --vita-calendar-radius: 0px;
+  --vita-calendar-border-top: 1px;
+  --vita-calendar-border-right: 1px;
+  --vita-calendar-border-bottom: 1px;
+  --vita-calendar-border-left: 1px;
+  --vita-calendar-border-style: solid;
+  --vita-calendar-shadow: none;
+  --vita-calendar-cell-size: 36px;
+  --vita-calendar-cell-radius: 0px;
+  --vita-calendar-cell-font-size: 13px;
+  --vita-calendar-header-font-size: 15px;
+  --vita-calendar-header-font-weight: 600;
+  --vita-calendar-weekday-font-size: 11px;
+  --vita-calendar-padding: 12px;
+}
+
+.calendar {
+  border-radius: var(--vita-calendar-radius) !important;
+  border-top-width: var(--vita-calendar-border-top) !important;
+  border-right-width: var(--vita-calendar-border-right) !important;
+  border-bottom-width: var(--vita-calendar-border-bottom) !important;
+  border-left-width: var(--vita-calendar-border-left) !important;
+  border-style: var(--vita-calendar-border-style) !important;
+  box-shadow: var(--vita-calendar-shadow) !important;
+  padding: var(--vita-calendar-padding) !important;
+}
+
+.calendar__cell {
+  width: var(--vita-calendar-cell-size) !important;
+  height: var(--vita-calendar-cell-size) !important;
+  border-radius: var(--vita-calendar-cell-radius) !important;
+  font-size: var(--vita-calendar-cell-font-size) !important;
+}
+
+.calendar__header {
+  font-size: var(--vita-calendar-header-font-size) !important;
+  font-weight: var(--vita-calendar-header-font-weight) !important;
+}
+
+.calendar__weekday {
+  font-size: var(--vita-calendar-weekday-font-size) !important;
+}

@@ -1,0 +1,75 @@
+/* ── Breadcrumbs ──────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to breadcrumb navigation components.
+ *
+ * Underline modes:
+ *   "none"      → no text-decoration
+ *   "underline" → always underlined
+ *   "hover"     → underlined on hover only (requires separate :hover rule)
+ *
+ * Since CSS custom properties can't conditionally switch :hover rules,
+ * we use two layers: base always applies the var, and a separate hover
+ * rule forces underline when the var value is "hover". The trick: when
+ * --vita-breadcrumbs-underline is "hover", the base rule sets
+ * text-decoration: hover (invalid → ignored → no decoration), and the
+ * :hover rule explicitly sets underline.
+ */
+
+:root {
+  --vita-breadcrumbs-font-size: 14px;
+  --vita-breadcrumbs-font-weight: 400;
+  --vita-breadcrumbs-active-font-weight: 600;
+  --vita-breadcrumbs-letter-spacing: 0em;
+  --vita-breadcrumbs-text-transform: none;
+  --vita-breadcrumbs-gap: 8px;
+  --vita-breadcrumbs-item-padding-x: 0px;
+  --vita-breadcrumbs-item-padding-y: 0px;
+  --vita-breadcrumbs-item-radius: 0px;
+  --vita-breadcrumbs-item-border-width: 0px;
+  --vita-breadcrumbs-item-border-style: solid;
+  --vita-breadcrumbs-separator-icon: chevron-right;
+  --vita-breadcrumbs-separator-size: 16px;
+  --vita-breadcrumbs-separator-opacity: 0.5;
+  --vita-breadcrumbs-underline: none;
+}
+
+.breadcrumbs {
+  gap: var(--vita-breadcrumbs-gap) !important;
+  flex-wrap: wrap !important;
+}
+
+.breadcrumbs__link {
+  font-size: var(--vita-breadcrumbs-font-size) !important;
+  font-weight: var(--vita-breadcrumbs-font-weight) !important;
+  letter-spacing: var(--vita-breadcrumbs-letter-spacing) !important;
+  text-transform: var(--vita-breadcrumbs-text-transform) !important;
+  padding-left: var(--vita-breadcrumbs-item-padding-x) !important;
+  padding-right: var(--vita-breadcrumbs-item-padding-x) !important;
+  padding-top: var(--vita-breadcrumbs-item-padding-y) !important;
+  padding-bottom: var(--vita-breadcrumbs-item-padding-y) !important;
+  border-radius: var(--vita-breadcrumbs-item-radius) !important;
+  border-width: var(--vita-breadcrumbs-item-border-width) !important;
+  border-style: var(--vita-breadcrumbs-item-border-style) !important;
+  text-decoration: none !important;
+}
+
+/* "underline" mode — always show underline on non-current links */
+:root[style*="--vita-breadcrumbs-underline: underline"] .breadcrumbs__link:not([data-current="true"]),
+:root[style*="--vita-breadcrumbs-underline:underline"] .breadcrumbs__link:not([data-current="true"]) {
+  text-decoration: underline !important;
+}
+
+/* "hover" mode — show underline only on hover */
+:root[style*="--vita-breadcrumbs-underline: hover"] .breadcrumbs__link:not([data-current="true"]):hover,
+:root[style*="--vita-breadcrumbs-underline:hover"] .breadcrumbs__link:not([data-current="true"]):hover {
+  text-decoration: underline !important;
+}
+
+.breadcrumbs__link[data-current="true"] {
+  font-weight: var(--vita-breadcrumbs-active-font-weight) !important;
+}
+
+.breadcrumbs__separator {
+  width: var(--vita-breadcrumbs-separator-size) !important;
+  height: var(--vita-breadcrumbs-separator-size) !important;
+  opacity: var(--vita-breadcrumbs-separator-opacity) !important;
+}

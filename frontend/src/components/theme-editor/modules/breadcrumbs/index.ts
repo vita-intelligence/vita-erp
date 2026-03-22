@@ -1,0 +1,1 @@
+export { BreadcrumbsModule } from "./BreadcrumbsModule";

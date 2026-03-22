@@ -24,8 +24,14 @@ import { AvatarModule } from "./modules/avatar";
 import { Preview as AvatarPreview } from "./modules/avatar/Preview";
 import { BadgesModule } from "./modules/badges";
 import { Preview as BadgesPreview } from "./modules/badges/Preview";
+import { BreadcrumbsModule } from "./modules/breadcrumbs";
+import { Preview as BreadcrumbsPreview } from "./modules/breadcrumbs/Preview";
+import { ButtonGroupModule } from "./modules/button-group";
+import { Preview as ButtonGroupPreview } from "./modules/button-group/Preview";
 import { ButtonsModule } from "./modules/buttons";
 import { Preview as ButtonsPreview } from "./modules/buttons/Preview";
+import { CalendarModule } from "./modules/calendar";
+import { Preview as CalendarPreview } from "./modules/calendar/Preview";
 import { CardsModule } from "./modules/cards";
 import { Preview as CardsPreview } from "./modules/cards/Preview";
 import { ColorsModule } from "./modules/colors";
@@ -315,6 +321,74 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "avatarRingOffset",
       "avatarShadow",
       "avatarGroupSpacing",
+    ],
+  },
+  {
+    id: "breadcrumbs",
+    label: "Breadcrumbs",
+    description: "Font, spacing, and separator style of navigation trails",
+    component: BreadcrumbsModule,
+    preview: BreadcrumbsPreview,
+    group: "Components",
+    resetKeys: [
+      "breadcrumbsFontSize",
+      "breadcrumbsFontWeight",
+      "breadcrumbsActiveFontWeight",
+      "breadcrumbsLetterSpacing",
+      "breadcrumbsTextTransform",
+      "breadcrumbsGap",
+      "breadcrumbsItemPaddingX",
+      "breadcrumbsItemPaddingY",
+      "breadcrumbsItemRadius",
+      "breadcrumbsItemBorderWidth",
+      "breadcrumbsItemBorderStyle",
+      "breadcrumbsSeparatorIcon",
+      "breadcrumbsSeparatorSize",
+      "breadcrumbsSeparatorOpacity",
+      "breadcrumbsUnderline",
+    ],
+  },
+  {
+    id: "button-group",
+    label: "Button Group",
+    description: "Shape, gap, and border of connected button containers",
+    component: ButtonGroupModule,
+    preview: ButtonGroupPreview,
+    group: "Components",
+    resetKeys: [
+      "buttonGroupGap",
+      "buttonGroupBorderTop",
+      "buttonGroupBorderRight",
+      "buttonGroupBorderBottom",
+      "buttonGroupBorderLeft",
+      "buttonGroupBorderStyle",
+      "buttonGroupShadow",
+      "buttonGroupSeparatorWidth",
+    ],
+  },
+  {
+    id: "calendar",
+    label: "Calendar",
+    description:
+      "Shape, cell sizing, and typography of calendar panels and date pickers",
+    component: CalendarModule,
+    preview: CalendarPreview,
+    group: "Components",
+    resetKeys: [
+      "calendarRadius",
+      "calendarBorderTop",
+      "calendarBorderRight",
+      "calendarBorderBottom",
+      "calendarBorderLeft",
+      "calendarBorderStyle",
+      "calendarShadow",
+      "calendarCellSize",
+      "calendarCellRadius",
+      "calendarCellFontSize",
+      "calendarHeaderFontSize",
+      "calendarHeaderFontWeight",
+      "calendarWeekdayFontSize",
+      "calendarPadding",
     ],
   },
 ];

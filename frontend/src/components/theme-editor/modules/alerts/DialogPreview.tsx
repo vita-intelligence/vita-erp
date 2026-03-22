@@ -15,7 +15,7 @@ export function DialogPreview() {
   const py = tokens.alertDialogPaddingY ?? "20px";
 
   return (
-    <div className="space-y-3 rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
+    <div className="space-y-3 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
         Dialog preview
       </p>
@@ -117,13 +117,20 @@ export function DialogPreview() {
           </div>
         </div>
 
-        {/* Backdrop overlay */}
+        {/* Backdrop blur layer — must be separate from color for blur to work */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backdropFilter: `blur(${tokens.alertDialogBackdropBlur ?? "0px"})`,
+            WebkitBackdropFilter: `blur(${tokens.alertDialogBackdropBlur ?? "0px"})`,
+          }}
+        />
+        {/* Backdrop color layer */}
         <div
           className="absolute inset-0"
           style={{
             background: tokens.alertDialogBackdropColor ?? "oklch(0 0 0 / 0.4)",
             opacity: tokens.alertDialogBackdropOpacity ?? "1",
-            backdropFilter: `blur(${tokens.alertDialogBackdropBlur ?? "0px"})`,
           }}
         />
 

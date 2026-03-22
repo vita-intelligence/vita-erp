@@ -190,6 +190,49 @@ export type ThemeTokens = {
   avatarShadow: string; // box-shadow
   avatarGroupSpacing: string; // negative margin overlap for avatar groups
 
+  // ── Component tokens: Breadcrumbs ─────────────────────────────────────────
+  breadcrumbsFontSize: string; // link font size
+  breadcrumbsFontWeight: string; // link font weight
+  breadcrumbsActiveFontWeight: string; // current/active item font weight
+  breadcrumbsLetterSpacing: string; // letter-spacing
+  breadcrumbsTextTransform: string; // text-transform: none | uppercase | capitalize
+  breadcrumbsGap: string; // gap between items
+  breadcrumbsItemPaddingX: string; // item horizontal padding (0 = plain text, >0 = tag-style)
+  breadcrumbsItemPaddingY: string; // item vertical padding
+  breadcrumbsItemRadius: string; // item border-radius (for tag/pill-style breadcrumbs)
+  breadcrumbsItemBorderWidth: string; // item border-width (0 = no border)
+  breadcrumbsItemBorderStyle: string; // item border-style
+  breadcrumbsSeparatorIcon: string; // separator icon name: chevron-right | slash | dot | arrow-right | minus
+  breadcrumbsSeparatorSize: string; // separator icon size
+  breadcrumbsSeparatorOpacity: string; // separator opacity (0–1)
+  breadcrumbsUnderline: string; // link underline: none | hover | underline
+
+  // ── Component tokens: ButtonGroup ───────────────────────────────────────
+  buttonGroupGap: string; // gap between buttons (0 = connected)
+  buttonGroupBorderTop: string; // border-top-width
+  buttonGroupBorderRight: string; // border-right-width
+  buttonGroupBorderBottom: string; // border-bottom-width
+  buttonGroupBorderLeft: string; // border-left-width
+  buttonGroupBorderStyle: string; // border-style: solid | dashed | dotted
+  buttonGroupShadow: string; // container shadow
+  buttonGroupSeparatorWidth: string; // separator between buttons (0 = hidden)
+
+  // ── Component tokens: Calendar ──────────────────────────────────────────
+  calendarRadius: string; // container border-radius
+  calendarBorderTop: string; // border-top-width
+  calendarBorderRight: string; // border-right-width
+  calendarBorderBottom: string; // border-bottom-width
+  calendarBorderLeft: string; // border-left-width
+  calendarBorderStyle: string; // border-style: solid | dashed | dotted
+  calendarShadow: string; // container box-shadow
+  calendarCellSize: string; // day cell size (width & height)
+  calendarCellRadius: string; // day cell border-radius for selected/hover
+  calendarCellFontSize: string; // day number font size
+  calendarHeaderFontSize: string; // month/year header font size
+  calendarHeaderFontWeight: string; // header font weight
+  calendarWeekdayFontSize: string; // weekday labels font size
+  calendarPadding: string; // container internal padding
+
   // ── Component tokens: Select / Dropdown ───────────────────────────────────
   selectRadius: string; // border-radius of select trigger
   selectBorderWidth: string; // border-width of select trigger

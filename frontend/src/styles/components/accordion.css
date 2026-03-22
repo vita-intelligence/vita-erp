@@ -23,8 +23,22 @@
   box-shadow: var(--vita-accordion-shadow) !important;
 }
 
+/* Separator — target both the dedicated separator element and item borders */
 .accordion__separator {
   height: var(--vita-accordion-separator-height) !important;
+}
+
+/* Fallback: if HeroUI uses borders between items instead of a separator element */
+.accordion [data-slot="accordion-item"] + [data-slot="accordion-item"] {
+  border-top-width: var(--vita-accordion-separator-height) !important;
+  border-top-style: solid !important;
+}
+
+/* Also target the HeroUI hideSeparator pattern */
+.accordion hr,
+.accordion [role="separator"] {
+  height: var(--vita-accordion-separator-height) !important;
+  border: none !important;
 }
 
 .accordion__trigger {

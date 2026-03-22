@@ -116,6 +116,43 @@ export const componentDefaults: Pick<
   | "avatarRingOffset"
   | "avatarShadow"
   | "avatarGroupSpacing"
+  | "breadcrumbsFontSize"
+  | "breadcrumbsFontWeight"
+  | "breadcrumbsActiveFontWeight"
+  | "breadcrumbsLetterSpacing"
+  | "breadcrumbsTextTransform"
+  | "breadcrumbsGap"
+  | "breadcrumbsItemPaddingX"
+  | "breadcrumbsItemPaddingY"
+  | "breadcrumbsItemRadius"
+  | "breadcrumbsItemBorderWidth"
+  | "breadcrumbsItemBorderStyle"
+  | "breadcrumbsSeparatorIcon"
+  | "breadcrumbsSeparatorSize"
+  | "breadcrumbsSeparatorOpacity"
+  | "breadcrumbsUnderline"
+  | "buttonGroupGap"
+  | "buttonGroupBorderTop"
+  | "buttonGroupBorderRight"
+  | "buttonGroupBorderBottom"
+  | "buttonGroupBorderLeft"
+  | "buttonGroupBorderStyle"
+  | "buttonGroupShadow"
+  | "buttonGroupSeparatorWidth"
+  | "calendarRadius"
+  | "calendarBorderTop"
+  | "calendarBorderRight"
+  | "calendarBorderBottom"
+  | "calendarBorderLeft"
+  | "calendarBorderStyle"
+  | "calendarShadow"
+  | "calendarCellSize"
+  | "calendarCellRadius"
+  | "calendarCellFontSize"
+  | "calendarHeaderFontSize"
+  | "calendarHeaderFontWeight"
+  | "calendarWeekdayFontSize"
+  | "calendarPadding"
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
@@ -244,6 +281,49 @@ export const componentDefaults: Pick<
   avatarRingOffset: "2px",
   avatarShadow: "none",
   avatarGroupSpacing: "-8px",
+
+  // Breadcrumbs
+  breadcrumbsFontSize: "14px",
+  breadcrumbsFontWeight: "400",
+  breadcrumbsActiveFontWeight: "600",
+  breadcrumbsLetterSpacing: "0em",
+  breadcrumbsTextTransform: "none",
+  breadcrumbsGap: "8px",
+  breadcrumbsItemPaddingX: "0px",
+  breadcrumbsItemPaddingY: "0px",
+  breadcrumbsItemRadius: "0px",
+  breadcrumbsItemBorderWidth: "0px",
+  breadcrumbsItemBorderStyle: "solid",
+  breadcrumbsSeparatorIcon: "chevron-right",
+  breadcrumbsSeparatorSize: "16px",
+  breadcrumbsSeparatorOpacity: "0.5",
+  breadcrumbsUnderline: "none",
+
+  // ButtonGroup
+  buttonGroupGap: "0px",
+  buttonGroupBorderTop: "0px",
+  buttonGroupBorderRight: "1px",
+  buttonGroupBorderBottom: "1px",
+  buttonGroupBorderLeft: "1px",
+  buttonGroupBorderStyle: "solid",
+  buttonGroupShadow: "none",
+  buttonGroupSeparatorWidth: "1px",
+
+  // Calendar
+  calendarRadius: "0px",
+  calendarBorderTop: "1px",
+  calendarBorderRight: "1px",
+  calendarBorderBottom: "1px",
+  calendarBorderLeft: "1px",
+  calendarBorderStyle: "solid",
+  calendarShadow: "none",
+  calendarCellSize: "36px",
+  calendarCellRadius: "0px",
+  calendarCellFontSize: "13px",
+  calendarHeaderFontSize: "15px",
+  calendarHeaderFontWeight: "600",
+  calendarWeekdayFontSize: "11px",
+  calendarPadding: "12px",
 
   // Select
   selectRadius: "0px",

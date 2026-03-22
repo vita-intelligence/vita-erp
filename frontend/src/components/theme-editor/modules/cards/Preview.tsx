@@ -1,8 +1,13 @@
 "use client";
 
 /**
- * Live card preview — production order card with header, rows, and action buttons.
+ * Live card preview — uses real HeroUI Card and Button so CSS tokens
+ * from card.css and button.css apply automatically.
  */
+
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Chip } from "@/components/ui/chip";
 
 const PREVIEW_ROWS = [
   { label: "Product", value: "Steel Frame A-14" },
@@ -13,154 +18,66 @@ const PREVIEW_ROWS = [
 ];
 
 export function Preview() {
-  const card: React.CSSProperties = {
-    borderRadius: "var(--vita-card-radius)",
-    borderTopWidth: "var(--vita-card-border-top)",
-    borderRightWidth: "var(--vita-card-border-right)",
-    borderBottomWidth: "var(--vita-card-border-bottom)",
-    borderLeftWidth: "var(--vita-card-border-left)",
-    borderStyle:
-      "var(--vita-card-border-style)" as React.CSSProperties["borderStyle"],
-    borderColor: "var(--vita-neutral-200)",
-    boxShadow: "var(--vita-card-shadow)",
-    background: "var(--vita-surface)",
-    overflow: "hidden",
-  };
-
   return (
-    <div className="space-y-4 rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
+    <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
         Live preview
       </p>
-      <div style={card}>
-        <div
-          style={{
-            padding: "0.75rem 1rem",
-            borderBottom: `var(--vita-card-border-top) solid var(--vita-neutral-200)`,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+
+      <Card>
+        {/* Header */}
+        <Card.Header className="flex-row items-center justify-between">
           <div>
-            <p
-              style={{
-                fontSize: "0.875rem",
-                fontWeight: 600,
-                color: "var(--vita-text-primary)",
-                fontFamily: "var(--vita-font-heading)",
-              }}
-            >
+            <Card.Title className="font-vita-heading text-sm">
               Production Order
-            </p>
-            <p
-              style={{
-                fontSize: "0.75rem",
-                color: "var(--vita-text-muted)",
-                fontFamily: "var(--vita-font-mono)",
-              }}
-            >
+            </Card.Title>
+            <Card.Description className="font-vita-mono text-xs">
               #00842 · Created Mar 21, 2026
-            </p>
+            </Card.Description>
           </div>
-          <span
+          <Chip
             style={{
               background: "var(--vita-warning-light)",
               color: "var(--vita-text-on-warning)",
-              borderRadius: "var(--vita-badge-radius)",
-              fontWeight:
-                "var(--vita-badge-font-weight)" as React.CSSProperties["fontWeight"],
-              fontSize: "var(--vita-badge-font-size)",
-              letterSpacing: "var(--vita-badge-letter-spacing)",
-              textTransform:
-                "var(--vita-badge-text-transform)" as React.CSSProperties["textTransform"],
-              paddingLeft: "var(--vita-badge-padding-x)",
-              paddingRight: "var(--vita-badge-padding-x)",
-              paddingTop: "var(--vita-badge-padding-y)",
-              paddingBottom: "var(--vita-badge-padding-y)",
-              borderTopWidth: "var(--vita-badge-border-top)",
-              borderRightWidth: "var(--vita-badge-border-right)",
-              borderBottomWidth: "var(--vita-badge-border-bottom)",
-              borderLeftWidth: "var(--vita-badge-border-left)",
-              borderStyle:
-                "var(--vita-badge-border-style)" as React.CSSProperties["borderStyle"],
               borderColor: "var(--vita-warning)",
             }}
           >
             In Progress
-          </span>
-        </div>
-        <div style={{ padding: "0 1rem" }}>
+          </Chip>
+        </Card.Header>
+
+        {/* Data rows */}
+        <Card.Content className="px-4 py-0">
           {PREVIEW_ROWS.map(({ label, value, mono }) => (
             <div
               key={label}
+              className="flex items-center justify-between"
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
                 padding: "0.6rem 0",
                 borderBottom: "1px solid var(--vita-neutral-100)",
               }}
             >
+              <span className="text-xs text-vita-text-muted">{label}</span>
               <span
-                style={{ fontSize: "0.75rem", color: "var(--vita-text-muted)" }}
-              >
-                {label}
-              </span>
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  fontWeight: 500,
-                  color: "var(--vita-text-primary)",
-                  ...(mono ? { fontFamily: "var(--vita-font-mono)" } : {}),
-                }}
+                className={`text-xs font-medium ${mono ? "font-vita-mono" : ""}`}
+                style={{ color: "var(--vita-text-primary)" }}
               >
                 {value}
               </span>
             </div>
           ))}
-        </div>
-        <div
-          style={{
-            padding: "0.75rem 1rem",
-            borderTop: `var(--vita-card-border-top) solid var(--vita-neutral-200)`,
-            display: "flex",
-            justifyContent: "flex-end",
-            gap: "0.5rem",
-          }}
-        >
-          {["Reject", "Approve"].map((label, i) => (
-            <button
-              key={label}
-              type="button"
-              style={{
-                borderRadius: "var(--vita-btn-radius)",
-                fontWeight:
-                  "var(--vita-btn-font-weight)" as React.CSSProperties["fontWeight"],
-                letterSpacing: "var(--vita-btn-letter-spacing)",
-                borderStyle: "solid",
-                borderTopWidth: "var(--vita-btn-border-top)",
-                borderRightWidth: "var(--vita-btn-border-right)",
-                borderBottomWidth: "var(--vita-btn-border-bottom)",
-                borderLeftWidth: "var(--vita-btn-border-left)",
-                cursor: "pointer",
-                fontSize: "0.75rem",
-                padding: "0.35rem 0.75rem",
-                background:
-                  i === 1 ? "var(--vita-primary)" : "var(--vita-surface)",
-                color:
-                  i === 1
-                    ? "var(--vita-text-on-primary)"
-                    : "var(--vita-text-secondary)",
-                borderColor:
-                  i === 1 ? "var(--vita-primary)" : "var(--vita-neutral-200)",
-              }}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </div>
+        </Card.Content>
+
+        {/* Footer actions */}
+        <Card.Footer className="justify-end gap-2">
+          <Button variant="outline" size="sm">
+            Reject
+          </Button>
+          <Button variant="primary" size="sm">
+            Approve
+          </Button>
+        </Card.Footer>
+      </Card>
     </div>
   );
 }
