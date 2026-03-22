@@ -173,6 +173,23 @@ export type ThemeTokens = {
   autocompletePopoverBorderStyle: string; // popover border-style
   autocompleteMaxHeight: string; // max dropdown height
 
+  // ── Component tokens: Avatar ──────────────────────────────────────────────
+  avatarRadius: string; // border-radius (0 = square, 9999px = circle)
+  avatarBorderTop: string; // border-top-width
+  avatarBorderRight: string; // border-right-width
+  avatarBorderBottom: string; // border-bottom-width
+  avatarBorderLeft: string; // border-left-width
+  avatarBorderStyle: string; // border-style: solid | dashed | dotted
+  avatarSizeSm: string; // small avatar size (width & height)
+  avatarSizeMd: string; // medium avatar size
+  avatarSizeLg: string; // large avatar size
+  avatarFallbackFontWeight: string; // fallback initials font-weight
+  avatarFallbackFontSize: string; // fallback initials font-size
+  avatarRingWidth: string; // ring/outline width (0 = none)
+  avatarRingOffset: string; // ring offset (gap between avatar and ring)
+  avatarShadow: string; // box-shadow
+  avatarGroupSpacing: string; // negative margin overlap for avatar groups
+
   // ── Component tokens: Select / Dropdown ───────────────────────────────────
   selectRadius: string; // border-radius of select trigger
   selectBorderWidth: string; // border-width of select trigger

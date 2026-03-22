@@ -101,6 +101,21 @@ export const componentDefaults: Pick<
   | "autocompleteItemRadius"
   | "autocompleteItemDivider"
   | "autocompleteMaxHeight"
+  | "avatarRadius"
+  | "avatarBorderTop"
+  | "avatarBorderRight"
+  | "avatarBorderBottom"
+  | "avatarBorderLeft"
+  | "avatarBorderStyle"
+  | "avatarSizeSm"
+  | "avatarSizeMd"
+  | "avatarSizeLg"
+  | "avatarFallbackFontWeight"
+  | "avatarFallbackFontSize"
+  | "avatarRingWidth"
+  | "avatarRingOffset"
+  | "avatarShadow"
+  | "avatarGroupSpacing"
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
@@ -212,6 +227,23 @@ export const componentDefaults: Pick<
   autocompleteItemRadius: "0px",
   autocompleteItemDivider: "0px",
   autocompleteMaxHeight: "256px",
+
+  // Avatar
+  avatarRadius: "9999px",
+  avatarBorderTop: "0px",
+  avatarBorderRight: "0px",
+  avatarBorderBottom: "0px",
+  avatarBorderLeft: "0px",
+  avatarBorderStyle: "solid",
+  avatarSizeSm: "32px",
+  avatarSizeMd: "40px",
+  avatarSizeLg: "48px",
+  avatarFallbackFontWeight: "600",
+  avatarFallbackFontSize: "14px",
+  avatarRingWidth: "0px",
+  avatarRingOffset: "2px",
+  avatarShadow: "none",
+  avatarGroupSpacing: "-8px",
 
   // Select
   selectRadius: "0px",

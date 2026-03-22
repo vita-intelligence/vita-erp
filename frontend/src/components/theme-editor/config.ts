@@ -20,6 +20,8 @@ import { AlertsModule } from "./modules/alerts";
 import { Preview as AlertsPreview } from "./modules/alerts/Preview";
 import { AutocompleteModule } from "./modules/autocomplete";
 import { Preview as AutocompletePreview } from "./modules/autocomplete/Preview";
+import { AvatarModule } from "./modules/avatar";
+import { Preview as AvatarPreview } from "./modules/avatar/Preview";
 import { BadgesModule } from "./modules/badges";
 import { Preview as BadgesPreview } from "./modules/badges/Preview";
 import { ButtonsModule } from "./modules/buttons";
@@ -287,6 +289,32 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "autocompleteItemRadius",
       "autocompleteItemDivider",
       "autocompleteMaxHeight",
+    ],
+  },
+  {
+    id: "avatar",
+    label: "Avatar",
+    description:
+      "Size, shape, border, ring, and group overlap for user avatars",
+    component: AvatarModule,
+    preview: AvatarPreview,
+    group: "Components",
+    resetKeys: [
+      "avatarRadius",
+      "avatarBorderTop",
+      "avatarBorderRight",
+      "avatarBorderBottom",
+      "avatarBorderLeft",
+      "avatarBorderStyle",
+      "avatarSizeSm",
+      "avatarSizeMd",
+      "avatarSizeLg",
+      "avatarFallbackFontWeight",
+      "avatarFallbackFontSize",
+      "avatarRingWidth",
+      "avatarRingOffset",
+      "avatarShadow",
+      "avatarGroupSpacing",
     ],
   },
 ];

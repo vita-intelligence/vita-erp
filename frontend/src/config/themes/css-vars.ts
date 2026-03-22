@@ -172,6 +172,23 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   autocompleteItemDivider: "--vita-autocomplete-item-divider",
   autocompleteMaxHeight: "--vita-autocomplete-max-height",
 
+  // Avatar
+  avatarRadius: "--vita-avatar-radius",
+  avatarBorderTop: "--vita-avatar-border-top",
+  avatarBorderRight: "--vita-avatar-border-right",
+  avatarBorderBottom: "--vita-avatar-border-bottom",
+  avatarBorderLeft: "--vita-avatar-border-left",
+  avatarBorderStyle: "--vita-avatar-border-style",
+  avatarSizeSm: "--vita-avatar-size-sm",
+  avatarSizeMd: "--vita-avatar-size-md",
+  avatarSizeLg: "--vita-avatar-size-lg",
+  avatarFallbackFontWeight: "--vita-avatar-fallback-font-weight",
+  avatarFallbackFontSize: "--vita-avatar-fallback-font-size",
+  avatarRingWidth: "--vita-avatar-ring-width",
+  avatarRingOffset: "--vita-avatar-ring-offset",
+  avatarShadow: "--vita-avatar-shadow",
+  avatarGroupSpacing: "--vita-avatar-group-spacing",
+
   // Select
   selectRadius: "--vita-select-radius",
   selectBorderWidth: "--vita-select-border-width",

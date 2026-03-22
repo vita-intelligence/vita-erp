@@ -1,0 +1,59 @@
+/* ── Avatar ───────────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <Avatar> component.
+ */
+
+:root {
+  --vita-avatar-radius: 9999px;
+  --vita-avatar-border-top: 0px;
+  --vita-avatar-border-right: 0px;
+  --vita-avatar-border-bottom: 0px;
+  --vita-avatar-border-left: 0px;
+  --vita-avatar-border-style: solid;
+  --vita-avatar-size-sm: 32px;
+  --vita-avatar-size-md: 40px;
+  --vita-avatar-size-lg: 48px;
+  --vita-avatar-fallback-font-weight: 600;
+  --vita-avatar-fallback-font-size: 14px;
+  --vita-avatar-ring-width: 0px;
+  --vita-avatar-ring-offset: 2px;
+  --vita-avatar-shadow: none;
+  --vita-avatar-group-spacing: -8px;
+}
+
+.avatar {
+  border-radius: var(--vita-avatar-radius) !important;
+  border-top-width: var(--vita-avatar-border-top) !important;
+  border-right-width: var(--vita-avatar-border-right) !important;
+  border-bottom-width: var(--vita-avatar-border-bottom) !important;
+  border-left-width: var(--vita-avatar-border-left) !important;
+  border-style: var(--vita-avatar-border-style) !important;
+  box-shadow: var(--vita-avatar-shadow) !important;
+  outline-width: var(--vita-avatar-ring-width) !important;
+  outline-offset: var(--vita-avatar-ring-offset) !important;
+  outline-style: solid !important;
+}
+
+.avatar--sm {
+  width: var(--vita-avatar-size-sm) !important;
+  height: var(--vita-avatar-size-sm) !important;
+}
+
+.avatar--md {
+  width: var(--vita-avatar-size-md) !important;
+  height: var(--vita-avatar-size-md) !important;
+}
+
+.avatar--lg {
+  width: var(--vita-avatar-size-lg) !important;
+  height: var(--vita-avatar-size-lg) !important;
+}
+
+.avatar__fallback {
+  font-weight: var(--vita-avatar-fallback-font-weight) !important;
+  font-size: var(--vita-avatar-fallback-font-size) !important;
+  border-radius: var(--vita-avatar-radius) !important;
+}
+
+.avatar__image {
+  border-radius: var(--vita-avatar-radius) !important;
+}
