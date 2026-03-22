@@ -48,9 +48,12 @@ const LIGHTNESS_STOPS = [
 ];
 
 /**
- * Derive the full neutral scale, surfaces, and body text colors from a
- * hue + chroma tint. This is the "connected color" engine — one adjustment
- * ripples through 16 tokens.
+ * Derive the neutral scale and body text colors from a hue + chroma tint.
+ * This is the "connected color" engine — one adjustment ripples through
+ * 14 tokens (11 neutrals + 3 text).
+ *
+ * Background and surface are NOT included — those are managed independently
+ * by the GradientPicker and should not be overwritten by tint adjustments.
  *
  * @param hue    Oklch hue angle (0–360). 0 = neutral gray when chroma is 0.
  * @param chroma Oklch chroma (0–0.04). 0 = pure achromatic gray.
@@ -68,12 +71,6 @@ export function deriveNeutralScale(
     neutrals[NEUTRAL_KEYS[i]] = `oklch(${stops[i]} ${chroma} ${hue})`;
   }
 
-  // Surfaces — derived from the extreme ends of the scale
-  const bgL = isDark ? 0.09 : 1;
-  const surfL = isDark ? 0.14 : 1;
-  // Surfaces use reduced chroma to keep them subtle
-  const surfChroma = chroma * 0.5;
-
   // Body text — derived from the scale with minimal chroma for readability
   const textChroma = chroma * 0.3;
   const textPrimaryL = isDark ? 0.96 : 0.09;
@@ -82,8 +79,6 @@ export function deriveNeutralScale(
 
   return {
     ...neutrals,
-    background: `oklch(${bgL} ${surfChroma} ${hue})`,
-    surface: `oklch(${surfL} ${surfChroma} ${hue})`,
     textPrimary: `oklch(${textPrimaryL} ${textChroma} ${hue})`,
     textSecondary: `oklch(${textSecondaryL} ${textChroma} ${hue})`,
     textMuted: `oklch(${textMutedL} ${textChroma} ${hue})`,

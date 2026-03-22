@@ -1,124 +1,42 @@
 "use client";
 
 /**
- * Surface editor — solid color, custom gradient builder, or preset picker.
+ * Surface editor — solid color or custom gradient builder.
  * Outputs a full CSS `background` value.
  */
 
-import { Minus, Plus, RotateCcw } from "lucide-react";
+import { Plus, RotateCcw } from "lucide-react";
 import { useCallback, useState } from "react";
 
 import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
-import { Chip } from "../_shared";
+import { Chip } from "../../_shared";
 
 import {
-  DARK_GRADIENT_PRESETS,
-  GRADIENT_PRESETS,
-  type GradientPreset,
-} from "./gradient-presets";
+  buildGradient,
+  type ColorStop,
+  createStop,
+  defaultStops,
+  type GradientType,
+  isGradient,
+} from "./helpers";
+import { DARK_GRADIENT_PRESETS, GRADIENT_PRESETS } from "./presets";
+import { StopEditor } from "./StopEditor";
 
-// ── Types ────────────────────────────────────────────────────────────────────
+// ── Constants ────────────────────────────────────────────────────────────────
+
+const MAX_STOPS = 6;
+const MIN_STOPS = 2;
+
+// ── Props ────────────────────────────────────────────────────────────────────
 
 type Mode = "solid" | "gradient";
-type GradientType = "linear" | "radial";
-
-type ColorStop = {
-  id: number;
-  color: string;
-  position: number; // 0–100
-};
-
-let nextStopId = 1;
 
 type GradientPickerProps = {
   tokenKey: "background" | "surface";
   label: string;
   description: string;
 };
-
-// ── Helpers ──────────────────────────────────────────────────────────────────
-
-function isGradient(value: string): boolean {
-  return value.includes("gradient(");
-}
-
-function buildLinearGradient(angle: number, stops: ColorStop[]): string {
-  const sorted = [...stops].sort((a, b) => a.position - b.position);
-  const stopsStr = sorted.map((s) => `${s.color} ${s.position}%`).join(", ");
-  return `linear-gradient(${angle}deg, ${stopsStr})`;
-}
-
-function buildRadialGradient(stops: ColorStop[]): string {
-  const sorted = [...stops].sort((a, b) => a.position - b.position);
-  const stopsStr = sorted.map((s) => `${s.color} ${s.position}%`).join(", ");
-  return `radial-gradient(circle at 50% 50%, ${stopsStr})`;
-}
-
-function defaultStops(isDark: boolean): ColorStop[] {
-  return isDark
-    ? [
-        { id: nextStopId++, color: "#1a1a2e", position: 0 },
-        { id: nextStopId++, color: "#0f0f1a", position: 100 },
-      ]
-    : [
-        { id: nextStopId++, color: "#f8f9fa", position: 0 },
-        { id: nextStopId++, color: "#e9ecef", position: 100 },
-      ];
-}
-
-// ── Stop Editor ──────────────────────────────────────────────────────────────
-
-function StopEditor({
-  stop,
-  index,
-  total,
-  onChange,
-  onRemove,
-}: {
-  stop: ColorStop;
-  index: number;
-  total: number;
-  onChange: (index: number, stop: ColorStop) => void;
-  onRemove: (index: number) => void;
-}) {
-  return (
-    <div className="flex items-center gap-2">
-      <input
-        type="color"
-        className="h-6 w-6 shrink-0 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
-        value={stop.color}
-        onChange={(e) => onChange(index, { ...stop, color: e.target.value })}
-        title={`Stop ${index + 1} color`}
-      />
-      <input
-        type="range"
-        min={0}
-        max={100}
-        step={1}
-        value={stop.position}
-        className="flex-1 accent-vita-primary"
-        onChange={(e) =>
-          onChange(index, { ...stop, position: Number(e.target.value) })
-        }
-        title={`Stop ${index + 1} position`}
-      />
-      <span className="w-8 text-right text-xs font-vita-mono text-vita-text-muted">
-        {stop.position}%
-      </span>
-      {total > 2 && (
-        <button
-          type="button"
-          title="Remove stop"
-          className="p-0.5 text-vita-text-muted hover:text-vita-text-secondary"
-          onClick={() => onRemove(index)}
-        >
-          <Minus size={10} />
-        </button>
-      )}
-    </div>
-  );
-}
 
 // ── Component ────────────────────────────────────────────────────────────────
 
@@ -140,61 +58,48 @@ export function GradientPicker({
 
   const presets = isDark ? DARK_GRADIENT_PRESETS : GRADIENT_PRESETS;
 
-  // ── Gradient builder ────────────────────────────────────────────────────
-
-  const applyGradient = useCallback(
+  const apply = useCallback(
     (type: GradientType, a: number, s: ColorStop[]) => {
-      const css =
-        type === "linear" ? buildLinearGradient(a, s) : buildRadialGradient(s);
-      setTokens({ [tokenKey]: css } as Parameters<typeof setTokens>[0]);
+      setTokens({
+        [tokenKey]: buildGradient(type, a, s),
+      } as Parameters<typeof setTokens>[0]);
     },
     [tokenKey, setTokens],
   );
 
+  // ── Actions ─────────────────────────────────────────────────────────────
+
   function updateAngle(a: number) {
     setAngle(a);
-    applyGradient(gradientType, a, stops);
+    apply(gradientType, a, stops);
   }
 
   function updateStop(index: number, stop: ColorStop) {
     const next = stops.map((s, i) => (i === index ? stop : s));
     setStops(next);
-    applyGradient(gradientType, angle, next);
+    apply(gradientType, angle, next);
   }
 
   function removeStop(index: number) {
-    if (stops.length <= 2) return;
+    if (stops.length <= MIN_STOPS) return;
     const next = stops.filter((_, i) => i !== index);
     setStops(next);
-    applyGradient(gradientType, angle, next);
+    apply(gradientType, angle, next);
   }
 
   function addStop() {
-    if (stops.length >= 6) return;
+    if (stops.length >= MAX_STOPS) return;
     const sorted = [...stops].sort((a, b) => a.position - b.position);
-    // Place new stop between the last two
     const lastTwo = sorted.slice(-2);
     const midPos = Math.round((lastTwo[0].position + lastTwo[1].position) / 2);
-    const newStop: ColorStop = {
-      id: nextStopId++,
-      color: isDark ? "#1a1a2e" : "#dee2e6",
-      position: midPos,
-    };
-    const next = [...stops, newStop];
+    const next = [...stops, createStop(isDark ? "#1a1a2e" : "#dee2e6", midPos)];
     setStops(next);
-    applyGradient(gradientType, angle, next);
+    apply(gradientType, angle, next);
   }
 
   function switchGradientType(type: GradientType) {
     setGradientType(type);
-    applyGradient(type, angle, stops);
-  }
-
-  function applyPreset(preset: GradientPreset) {
-    setMode("gradient");
-    setTokens({
-      [tokenKey]: preset.value,
-    } as Parameters<typeof setTokens>[0]);
+    apply(type, angle, stops);
   }
 
   function switchToSolid() {
@@ -204,18 +109,26 @@ export function GradientPicker({
 
   function switchToGradient() {
     setMode("gradient");
-    applyGradient(gradientType, angle, stops);
+    apply(gradientType, angle, stops);
   }
+
+  function reset() {
+    setMode("solid");
+    setStops(defaultStops(isDark));
+    resetColor([tokenKey]);
+  }
+
+  // ── Render ──────────────────────────────────────────────────────────────
 
   return (
     <div className="space-y-3 rounded-vita-lg border border-vita-neutral-200 bg-vita-surface p-3">
-      {/* Preview swatch */}
+      {/* Preview */}
       <div
         className="h-14 w-full rounded-vita-md border border-vita-neutral-200 shadow-vita-xs"
         style={{ background: value }}
       />
 
-      {/* Header + controls */}
+      {/* Header */}
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <p className="text-xs font-semibold text-vita-text-primary">
@@ -230,11 +143,7 @@ export function GradientPicker({
             type="button"
             title={`Reset ${label}`}
             className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
-            onClick={() => {
-              setMode("solid");
-              setStops(defaultStops(isDark));
-              resetColor([tokenKey]);
-            }}
+            onClick={reset}
           >
             <RotateCcw size={12} />
           </button>
@@ -254,7 +163,7 @@ export function GradientPicker({
         </div>
       </div>
 
-      {/* Mode switcher */}
+      {/* Mode */}
       <div className="flex items-center gap-1">
         <Chip active={mode === "solid"} onClick={switchToSolid}>
           Solid
@@ -264,10 +173,10 @@ export function GradientPicker({
         </Chip>
       </div>
 
-      {/* ── Gradient controls ── */}
+      {/* Gradient controls */}
       {mode === "gradient" && (
         <div className="space-y-3">
-          {/* Gradient type */}
+          {/* Type */}
           <div className="flex items-center gap-1">
             <Chip
               active={gradientType === "linear"}
@@ -283,7 +192,7 @@ export function GradientPicker({
             </Chip>
           </div>
 
-          {/* Angle control (linear only) */}
+          {/* Angle (linear only) */}
           {gradientType === "linear" && (
             <div className="flex items-center gap-3">
               <span className="w-16 text-xs text-vita-text-secondary">
@@ -304,13 +213,13 @@ export function GradientPicker({
             </div>
           )}
 
-          {/* Color stops */}
+          {/* Stops */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs text-vita-text-secondary">
                 Color stops
               </span>
-              {stops.length < 6 && (
+              {stops.length < MAX_STOPS && (
                 <button
                   type="button"
                   title="Add color stop"
@@ -327,14 +236,14 @@ export function GradientPicker({
                 key={stop.id}
                 stop={stop}
                 index={i}
-                total={stops.length}
+                canRemove={stops.length > MIN_STOPS}
                 onChange={updateStop}
                 onRemove={removeStop}
               />
             ))}
           </div>
 
-          {/* Quick presets */}
+          {/* Presets */}
           <div className="space-y-1.5">
             <span className="text-xs text-vita-text-muted">Quick presets</span>
             <div className="grid grid-cols-7 gap-1">
@@ -351,7 +260,12 @@ export function GradientPicker({
                         ? "var(--vita-primary)"
                         : "var(--vita-neutral-200)",
                   }}
-                  onClick={() => applyPreset(preset)}
+                  onClick={() => {
+                    setMode("gradient");
+                    setTokens({
+                      [tokenKey]: preset.value,
+                    } as Parameters<typeof setTokens>[0]);
+                  }}
                 />
               ))}
             </div>
