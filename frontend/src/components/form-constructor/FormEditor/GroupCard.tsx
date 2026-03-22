@@ -203,6 +203,7 @@ export function GroupCard({
                     field={child}
                     index={childIndex}
                     total={group.elements.length}
+                    isDragActive={isDragActive}
                     onEdit={() => onEdit(child)}
                     onDuplicate={() => onDuplicateChild(child.id)}
                     onDelete={() => onRemoveChild(child.id)}

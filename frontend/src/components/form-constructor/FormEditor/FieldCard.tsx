@@ -33,6 +33,7 @@ type FieldCardProps = {
   onDuplicate: () => void;
   onDelete: () => void;
   onMove: (direction: "up" | "down") => void;
+  isDragActive?: boolean;
 };
 
 export function FieldCard({
@@ -40,6 +41,7 @@ export function FieldCard({
   index,
   total,
   onEdit,
+  isDragActive = false,
   onDuplicate,
   onDelete,
   onMove,
@@ -55,7 +57,7 @@ export function FieldCard({
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: field.id });
+  } = useSortable({ id: field.id, disabled: isDragActive });
 
   const style: React.CSSProperties = {
     // Only apply transform when THIS field is being dragged

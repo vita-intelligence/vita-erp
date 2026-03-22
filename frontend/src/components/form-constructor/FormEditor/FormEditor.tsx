@@ -240,29 +240,8 @@ export function FormEditor({
         }
         return next;
       });
-    } else if (activeId !== overId) {
-      // Simple same-level reorder
-      updateElements((els) => {
-        const oldIdx = els.findIndex((e) => e.id === activeId);
-        const newIdx = els.findIndex((e) => e.id === overId);
-        if (oldIdx !== -1 && newIdx !== -1) {
-          const next = [...els];
-          const [moved] = next.splice(oldIdx, 1);
-          next.splice(newIdx, 0, moved);
-          return next;
-        }
-        return els.map((el) => {
-          if (el.kind !== "group") return el;
-          const oI = el.elements.findIndex((c) => c.id === activeId);
-          const nI = el.elements.findIndex((c) => c.id === overId);
-          if (oI === -1 || nI === -1) return el;
-          const children = [...el.elements];
-          const [moved] = children.splice(oI, 1);
-          children.splice(nI, 0, moved);
-          return { ...el, elements: children };
-        });
-      });
     }
+    // No fallback reorder — all drops go through DropZones
   }
 
   // ── Render ─────────────────────────────────────────────────────────────────
@@ -333,6 +312,7 @@ export function FormEditor({
                         field={element}
                         index={index}
                         total={schema.elements.length}
+                        isDragActive={isDragActive}
                         onEdit={() => setConfigField(element)}
                         onDuplicate={() => duplicateEl(element.id)}
                         onDelete={() => removeElement(element.id)}
