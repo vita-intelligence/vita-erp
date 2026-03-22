@@ -9,22 +9,36 @@
  */
 
 import { CalendarDays } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { useThemeStore } from "@/stores/theme";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
-function formatDate(date: Date): string {
-  return date.toLocaleDateString("en-US", {
+function formatDate(date: Date, locale: string): string {
+  return date.toLocaleDateString(locale, {
     month: "short",
     day: "numeric",
     year: "numeric",
   });
 }
 
-const WEEKDAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+function getWeekdays(locale: string): string[] {
+  const base = new Date(2024, 0, 7); // Sunday
+  return Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(base);
+    d.setDate(base.getDate() + i);
+    return d.toLocaleDateString(locale, { weekday: "short" });
+  });
+}
+
+function getMonthYear(year: number, month: number, locale: string): string {
+  return new Date(year, month, 1).toLocaleDateString(locale, {
+    month: "long",
+    year: "numeric",
+  });
+}
 
 function getDaysInMonth(year: number, month: number): number {
   return new Date(year, month + 1, 0).getDate();
@@ -38,6 +52,7 @@ function getFirstDayOfWeek(year: number, month: number): number {
 
 export function Preview() {
   const t = useTranslations("themeEditor");
+  const locale = useLocale();
   const { tokens } = useThemeStore();
   const [selectedDate] = useState(() => new Date());
   const [isOpen, setIsOpen] = useState(true);
@@ -116,7 +131,7 @@ export function Preview() {
             color: "var(--vita-text-primary)",
           }}
         >
-          {formatDate(selectedDate)}
+          {formatDate(selectedDate, locale)}
         </span>
         <CalendarDays
           style={{
@@ -147,10 +162,7 @@ export function Preview() {
                 color: "var(--vita-text-primary)",
               }}
             >
-              {now.toLocaleDateString("en-US", {
-                month: "long",
-                year: "numeric",
-              })}
+              {getMonthYear(year, month, locale)}
             </span>
           </div>
 
@@ -164,7 +176,7 @@ export function Preview() {
               marginBottom: "4px",
             }}
           >
-            {WEEKDAYS.map((d) => (
+            {getWeekdays(locale).map((d) => (
               <span
                 key={d}
                 style={{
