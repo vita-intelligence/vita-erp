@@ -62,7 +62,7 @@ export function GroupCard({
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: group.id, disabled: isDragActive && !isDragging });
+  } = useSortable({ id: group.id, disabled: isDragActive });
 
   const style: React.CSSProperties = {
     // Only apply transform when THIS group is being dragged, not when
