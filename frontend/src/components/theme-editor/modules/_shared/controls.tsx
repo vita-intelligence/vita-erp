@@ -7,6 +7,8 @@
  * rendering a Row of Chips with preset options and a reset button.
  */
 
+import { useTranslations } from "next-intl";
+
 import type { ThemeTokens } from "@/config/themes";
 import { useThemeStore } from "@/stores/theme";
 
@@ -14,32 +16,37 @@ import { Chip, Row } from "./primitives";
 
 // ── Font weight ──────────────────────────────────────────────────────────────
 
-const WEIGHT_OPTIONS = [
-  { label: "Regular", value: "400" },
-  { label: "Medium", value: "500" },
-  { label: "Semibold", value: "600" },
-  { label: "Bold", value: "700" },
-];
+const WEIGHT_KEYS = ["regular", "medium", "semibold", "bold"] as const;
+const WEIGHT_VALUES: Record<(typeof WEIGHT_KEYS)[number], string> = {
+  regular: "400",
+  medium: "500",
+  semibold: "600",
+  bold: "700",
+};
 
 export function FontWeightRow({
   tokenKey,
-  label = "Font weight",
+  label,
 }: {
   tokenKey: keyof ThemeTokens;
   label?: string;
 }) {
   const { tokens, setTokens, resetColor } = useThemeStore();
+  const t = useTranslations("themeEditor");
   return (
-    <Row label={label} onReset={() => resetColor([tokenKey])}>
-      {WEIGHT_OPTIONS.map((o) => (
+    <Row
+      label={label ?? t("controls.fontWeight")}
+      onReset={() => resetColor([tokenKey])}
+    >
+      {WEIGHT_KEYS.map((k) => (
         <Chip
-          key={o.value}
-          active={tokens[tokenKey] === o.value}
+          key={k}
+          active={tokens[tokenKey] === WEIGHT_VALUES[k]}
           onClick={() =>
-            setTokens({ [tokenKey]: o.value } as Partial<ThemeTokens>)
+            setTokens({ [tokenKey]: WEIGHT_VALUES[k] } as Partial<ThemeTokens>)
           }
         >
-          {o.label}
+          {t(`controls.${k}`)}
         </Chip>
       ))}
     </Row>
@@ -48,27 +55,40 @@ export function FontWeightRow({
 
 // ── Transition duration ──────────────────────────────────────────────────────
 
-const TRANSITION_OPTIONS = [
-  { label: "Instant", value: "0ms" },
-  { label: "Fast", value: "100ms" },
-  { label: "Normal", value: "150ms" },
-  { label: "Smooth", value: "250ms" },
-  { label: "Slow", value: "400ms" },
-];
+const TRANSITION_KEYS = [
+  "instant",
+  "fast",
+  "normal",
+  "smooth",
+  "slow",
+] as const;
+const TRANSITION_VALUES: Record<(typeof TRANSITION_KEYS)[number], string> = {
+  instant: "0ms",
+  fast: "100ms",
+  normal: "150ms",
+  smooth: "250ms",
+  slow: "400ms",
+};
 
 export function TransitionRow({ tokenKey }: { tokenKey: keyof ThemeTokens }) {
   const { tokens, setTokens, resetColor } = useThemeStore();
+  const t = useTranslations("themeEditor");
   return (
-    <Row label="Transition" onReset={() => resetColor([tokenKey])}>
-      {TRANSITION_OPTIONS.map((o) => (
+    <Row
+      label={t("controls.transition")}
+      onReset={() => resetColor([tokenKey])}
+    >
+      {TRANSITION_KEYS.map((k) => (
         <Chip
-          key={o.value}
-          active={tokens[tokenKey] === o.value}
+          key={k}
+          active={tokens[tokenKey] === TRANSITION_VALUES[k]}
           onClick={() =>
-            setTokens({ [tokenKey]: o.value } as Partial<ThemeTokens>)
+            setTokens({
+              [tokenKey]: TRANSITION_VALUES[k],
+            } as Partial<ThemeTokens>)
           }
         >
-          {o.label}
+          {t(`controls.${k}`)}
         </Chip>
       ))}
     </Row>
@@ -77,25 +97,33 @@ export function TransitionRow({ tokenKey }: { tokenKey: keyof ThemeTokens }) {
 
 // ── Border style ─────────────────────────────────────────────────────────────
 
-const BORDER_STYLE_OPTIONS = [
-  { label: "— Solid", value: "solid" },
-  { label: "- - Dashed", value: "dashed" },
-  { label: "··· Dotted", value: "dotted" },
-];
+const BORDER_STYLE_KEYS = ["solid", "dashed", "dotted"] as const;
+const BORDER_STYLE_VALUES: Record<(typeof BORDER_STYLE_KEYS)[number], string> =
+  {
+    solid: "solid",
+    dashed: "dashed",
+    dotted: "dotted",
+  };
 
 export function BorderStyleRow({ tokenKey }: { tokenKey: keyof ThemeTokens }) {
   const { tokens, setTokens, resetColor } = useThemeStore();
+  const t = useTranslations("themeEditor");
   return (
-    <Row label="Style" onReset={() => resetColor([tokenKey])}>
-      {BORDER_STYLE_OPTIONS.map((o) => (
+    <Row
+      label={t("controls.borderStyle")}
+      onReset={() => resetColor([tokenKey])}
+    >
+      {BORDER_STYLE_KEYS.map((k) => (
         <Chip
-          key={o.value}
-          active={tokens[tokenKey] === o.value}
+          key={k}
+          active={tokens[tokenKey] === BORDER_STYLE_VALUES[k]}
           onClick={() =>
-            setTokens({ [tokenKey]: o.value } as Partial<ThemeTokens>)
+            setTokens({
+              [tokenKey]: BORDER_STYLE_VALUES[k],
+            } as Partial<ThemeTokens>)
           }
         >
-          {o.label}
+          {t(`controls.${k}`)}
         </Chip>
       ))}
     </Row>

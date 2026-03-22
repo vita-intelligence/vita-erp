@@ -1,9 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 export function ModeSwitcher() {
   const { mode, setMode } = useThemeStore();
+  const t = useTranslations("themeEditor");
   return (
     <div className="flex h-8 overflow-hidden rounded-vita-sm border border-vita-neutral-200">
       {(["light", "dark"] as const).map((m) => (
@@ -24,7 +27,7 @@ export function ModeSwitcher() {
           }
           onClick={() => setMode(m)}
         >
-          {m}
+          {t(`modes.${m}`)}
         </button>
       ))}
     </div>

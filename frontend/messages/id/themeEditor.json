@@ -1,0 +1,360 @@
+{
+  "chrome": {
+    "title": "Merek & Tema",
+    "titleFull": "Editor Merek & Tema",
+    "resetAll": "Atur ulang semua",
+    "resetAllTooltip": "Atur ulang semua ke default",
+    "resetSection": "Atur ulang bagian",
+    "reset": "Atur ulang",
+    "close": "Tutup",
+    "livePreview": "Pratinjau langsung",
+    "hoverToTest": "arahkan & klik untuk menguji",
+    "clickToPreview": "klik untuk pratinjau",
+    "moveCursor": "gerakkan kursor ke atas kartu"
+  },
+  "groups": {
+    "foundation": "Fondasi",
+    "components": "Komponen"
+  },
+  "modes": {
+    "light": "terang",
+    "dark": "gelap"
+  },
+  "controls": {
+    "fontWeight": "Ketebalan font",
+    "regular": "Reguler",
+    "medium": "Sedang",
+    "semibold": "Semi tebal",
+    "bold": "Tebal",
+    "transition": "Transisi",
+    "instant": "Instan",
+    "fast": "Cepat",
+    "normal": "Normal",
+    "smooth": "Halus",
+    "slow": "Lambat",
+    "borderStyle": "Gaya",
+    "solid": "— Solid",
+    "dashed": "- - Putus-putus",
+    "dotted": "··· Titik-titik",
+    "shadow": "Bayangan",
+    "shadowNone": "Tidak ada",
+    "shadowCustom": "Kustom",
+    "shadowOuter": "Luar",
+    "shadowInset": "Dalam",
+    "shadowX": "Offset X",
+    "shadowY": "Offset Y",
+    "shadowBlur": "Buram",
+    "shadowSpread": "Sebaran",
+    "shadowOpacity": "Opasitas",
+    "borderAll": "Semua sisi",
+    "borderSync": "Sinkron",
+    "borderIndividual": "Individual",
+    "borderTop": "Atas",
+    "borderRight": "Kanan",
+    "borderBottom": "Bawah",
+    "borderLeft": "Kiri"
+  },
+  "presets": {
+    "sharp": "Tajam",
+    "soft": "Lembut",
+    "rounded": "Bulat",
+    "large": "Besar",
+    "pill": "Pil",
+    "circle": "Lingkaran",
+    "square": "Kotak",
+    "none": "Tidak ada",
+    "subtle": "Halus",
+    "moderate": "Sedang",
+    "strong": "Kuat",
+    "dramatic": "Dramatis",
+    "flat": "Datar",
+    "subtleTilt": "Kemiringan halus",
+    "forwardLean": "Condong ke depan",
+    "sideLean": "Condong ke samping",
+    "twist": "Putaran",
+    "small": "Kecil",
+    "medium": "Sedang",
+    "large2": "Besar",
+    "xl": "XL",
+    "default": "Default",
+    "snug": "Rapat",
+    "wide": "Lebar",
+    "widest": "Paling lebar",
+    "tight": "Ketat",
+    "relaxed": "Longgar",
+    "spacious": "Lapang",
+    "compact": "Kompak",
+    "wider": "Lebih lebar",
+    "hover": "Hover",
+    "always": "Selalu",
+    "4px": "4px",
+    "8px": "8px"
+  },
+  "transform3d": {
+    "title": "Transformasi 3D",
+    "presets": "Preset",
+    "rotateX": "Rotasi X",
+    "rotateY": "Rotasi Y",
+    "rotateZ": "Rotasi Z",
+    "hintXBack": "penuh ke belakang",
+    "hintXForward": "penuh ke depan",
+    "hintYLeft": "penuh ke kiri",
+    "hintYRight": "penuh ke kanan",
+    "hintZCcw": "berlawanan jarum jam",
+    "hintZCw": "searah jarum jam"
+  },
+  "hover3d": {
+    "title": "Animasi hover",
+    "effect": "Efek",
+    "none": "Tidak ada",
+    "lift": "Angkat",
+    "scale": "Skala",
+    "liftScale": "Angkat + Skala",
+    "tiltForward": "Miring ke depan",
+    "tiltSide": "Miring ke samping",
+    "tilt3d": "Miring 3D",
+    "flipPeek": "Balik intip",
+    "liftTilt": "Angkat + Miring",
+    "hoverX": "Hover X",
+    "hoverY": "Hover Y",
+    "hoverZ": "Hover Z"
+  },
+  "cursorTrack": {
+    "title": "Pelacakan kursor",
+    "description": "Elemen berputar secara dinamis berdasarkan posisi kursor — semakin dekat ke tepi, semakin miring ke arah Anda.",
+    "intensity": "Intensitas",
+    "restore": "Pulihkan",
+    "off": "Mati",
+    "subtle": "Halus",
+    "moderate": "Sedang",
+    "strong": "Kuat",
+    "dramatic": "Dramatis"
+  },
+  "sections": {
+    "shape": "Bentuk",
+    "typography": "Tipografi",
+    "border": "Batas",
+    "shadow": "Bayangan",
+    "motion": "Gerakan",
+    "spacing": "Jarak",
+    "sizes": "Ukuran",
+    "trigger": "Pemicu",
+    "popover": "Popover",
+    "popoverShadow": "Bayangan popover",
+    "triggerShadow": "Bayangan pemicu",
+    "indicator": "Indikator",
+    "track": "Trek",
+    "thumb": "Penggeser",
+    "fill": "Isian",
+    "label": "Label",
+    "stroke": "Garis",
+    "animation": "Animasi",
+    "thickness": "Ketebalan",
+    "container": "Kontainer",
+    "groupLabel": "Label grup",
+    "listItems": "Item daftar",
+    "menuItems": "Item menu",
+    "separator": "Pemisah",
+    "colorArea": "Area warna",
+    "sliders": "Penggeser",
+    "thumbs": "Penggeser",
+    "swatches": "Sampel warna",
+    "controlBox": "Kotak kontrol",
+    "fallbackText": "Teks cadangan",
+    "group": "Grup",
+    "tabList": "Daftar tab",
+    "tabItems": "Item tab",
+    "panel": "Panel",
+    "header": "Header",
+    "body": "Isi",
+    "footer": "Footer",
+    "heading": "Judul",
+    "backdrop": "Latar belakang",
+    "handle": "Pegangan",
+    "content": "Konten",
+    "dropdownShape": "Bentuk dropdown",
+    "dropdownBorder": "Batas dropdown",
+    "dropdownSpacing": "Jarak dropdown",
+    "dropdownShadow": "Bayangan dropdown",
+    "icon": "Ikon",
+    "dialogShape": "Bentuk dialog",
+    "dialogSpacing": "Jarak dialog",
+    "dialogShadow": "Bayangan dialog",
+    "itemShape": "Bentuk item",
+    "itemBorder": "Batas item",
+    "containerBorder": "Batas kontainer",
+    "containerShadow": "Bayangan kontainer"
+  },
+  "labels": {
+    "cornerRadius": "Radius sudut",
+    "quickPresets": "Preset cepat",
+    "radiusPreset": "Preset radius",
+    "sizePreset": "Preset ukuran",
+    "preset": "Preset",
+    "radius": "Radius",
+    "width": "Lebar",
+    "height": "Tinggi",
+    "size": "Ukuran",
+    "gap": "Jarak",
+    "padding": "Padding",
+    "paddingX": "Padding X",
+    "paddingY": "Padding Y",
+    "fontSize": "Ukuran font",
+    "fontWeight": "Ketebalan font",
+    "weight": "Ketebalan",
+    "letterSpacing": "Jarak huruf",
+    "textCase": "Kapitalisasi teks",
+    "textNormal": "Normal",
+    "uppercase": "HURUF BESAR",
+    "capitalize": "Huruf Kapital",
+    "hoverEffect": "Efek hover",
+    "direction": "Arah",
+    "duration": "Durasi",
+    "opacity": "Opasitas",
+    "blur": "Buram",
+    "borderWidth": "Lebar batas",
+    "itemGap": "Jarak item",
+    "labelGap": "Jarak label",
+    "overlap": "Tumpang tindih",
+    "trackShape": "Bentuk trek",
+    "dotSize": "Ukuran titik",
+    "iconSize": "Ukuran ikon",
+    "checkScale": "Skala centang",
+    "indicatorSize": "Ukuran indikator",
+    "separatorGap": "Jarak pemisah",
+    "intensity": "Intensitas",
+    "linkWeight": "Ketebalan tautan",
+    "activeWeight": "Ketebalan aktif",
+    "underline": "Garis bawah",
+    "icon": "Ikon",
+    "trackHeight": "Tinggi trek",
+    "trackRadius": "Radius trek",
+    "border": "Batas",
+    "shape": "Bentuk",
+    "small": "Kecil",
+    "medium": "Sedang",
+    "large": "Besar"
+  },
+  "modules": {
+    "colors": {
+      "label": "Warna",
+      "description": "Warna merek, indikator status, dan tint permukaan"
+    },
+    "typography": {
+      "label": "Tipografi",
+      "description": "Font, ukuran, tinggi baris, dan ketebalan isi"
+    },
+    "spacing": {
+      "label": "Jarak",
+      "description": "Kepadatan antarmuka — menskalakan semua padding dan jarak"
+    },
+    "buttons": {
+      "label": "Tombol",
+      "description": "Bentuk, ketebalan, bayangan, dan batas semua varian tombol",
+      "allControls": "Semua kontrol mempengaruhi setiap tombol di seluruh aplikasi secara bersamaan. Arahkan dan klik tombol pratinjau untuk melihat animasi secara langsung."
+    },
+    "inputs": {
+      "label": "Input",
+      "description": "Radius, batas, dan gaya label dari input teks dan kolom"
+    },
+    "cards": {
+      "label": "Kartu",
+      "description": "Bentuk, batas, dan bayangan kartu dan panel konten",
+      "allControls": "Mengontrol tampilan semua kartu dan panel — kontainer konten utama di seluruh antarmuka ERP."
+    },
+    "badges": {
+      "label": "Lencana",
+      "description": "Bentuk dan ketebalan lencana status, chip, dan tag",
+      "allControls": "Mengontrol tampilan lencana status, chip, dan tag di seluruh antarmuka."
+    },
+    "accordion": {
+      "label": "Akordeon",
+      "description": "Bentuk, jarak, dan tipografi bagian yang dapat dilipat",
+      "allControls": "Mengontrol tampilan semua akordeon dan bagian yang dapat dilipat di seluruh antarmuka — panel FAQ, laci detail, dan pengaturan yang dikelompokkan."
+    },
+    "alerts": {
+      "label": "Peringatan",
+      "description": "Banner peringatan inline dan dialog konfirmasi modal",
+      "allControls": "Mengontrol banner peringatan inline dan dialog konfirmasi modal yang digunakan untuk notifikasi, peringatan, dan konfirmasi tindakan destruktif.",
+      "inlineAlerts": "Peringatan inline",
+      "inlineAlertsDescription": "Banner status untuk pesan sukses, peringatan, error, dan info.",
+      "alertDialog": "Dialog peringatan",
+      "alertDialogDescription": "Panel konfirmasi modal untuk tindakan destruktif atau kritis."
+    },
+    "autocomplete": {
+      "label": "Pelengkapan otomatis",
+      "description": "Popover dropdown dan item daftar untuk kolom pencarian dan kombo",
+      "allControls": "Mengontrol popover dropdown dan item daftar untuk kolom pelengkapan otomatis dan kotak kombo. Pemicu mewarisi gaya token input."
+    },
+    "avatar": {
+      "label": "Avatar",
+      "description": "Ukuran, bentuk, batas, dan tumpang tindih grup untuk avatar pengguna",
+      "allControls": "Mengontrol tampilan avatar pengguna — foto profil, inisial cadangan, indikator status, dan tumpukan yang dikelompokkan."
+    },
+    "breadcrumbs": {
+      "label": "Breadcrumb",
+      "description": "Font, jarak, dan gaya pemisah jalur navigasi",
+      "allControls": "Mengontrol tampilan jalur navigasi breadcrumb — dari tautan teks biasa hingga item bergaya tag/pil dengan batas dan latar belakang."
+    },
+    "buttonGroup": {
+      "label": "Grup Tombol",
+      "description": "Bentuk, jarak, dan batas kontainer tombol yang terhubung",
+      "allControls": "Mengontrol tata letak kontainer grup — jarak, batas, dan bayangan. Tampilan tombol individual (radius, ketebalan, warna) dikontrol oleh modul Tombol."
+    },
+    "calendar": {
+      "label": "Kalender",
+      "description": "Bentuk, ukuran sel, dan tipografi panel kalender dan pemilih tanggal",
+      "allControls": "Mengontrol tampilan kontainer panel kalender dan pemilih tanggal."
+    },
+    "checkbox": {
+      "label": "Kotak centang",
+      "description": "Ukuran, bentuk, batas, indikator, dan label kontrol kotak centang",
+      "allControls": "Mengontrol tampilan semua kotak centang — kotak kontrol, indikator tanda centang, dan teks label di seluruh antarmuka."
+    },
+    "checkboxGroup": {
+      "label": "Grup Kotak Centang",
+      "description": "Jarak, bentuk kontainer, dan gaya label kotak centang yang dikelompokkan",
+      "allControls": "Mengontrol kontainer yang membungkus grup kotak centang terkait — jarak, batas, padding, dan gaya label grup."
+    },
+    "colorPicker": {
+      "label": "Pemilih Warna",
+      "description": "Popover, area warna, penggeser, penggeser, dan gaya sampel",
+      "allControls": "Mengontrol tampilan popover pemilih warna, area warna, penggeser, penggeser, dan sampel warna preset di seluruh antarmuka."
+    },
+    "comboBox": {
+      "label": "Kotak Kombo",
+      "description": "Bentuk popover, tombol pemicu, dan gaya item daftar",
+      "allControls": "Mengontrol tampilan dropdown kotak kombo — bentuk popover, tombol pemicu, dan gaya item daftar."
+    },
+    "datePicker": {
+      "label": "Pemilih Tanggal",
+      "description": "Pemicu, popover, dan indikator kolom pemilih tanggal",
+      "allControls": "Mengontrol pemicu, popover, dan indikator kolom pemilih tanggal."
+    },
+    "separator": {
+      "label": "Pemisah",
+      "description": "Ketebalan dan bentuk garis pemisah",
+      "allControls": "Mengontrol ketebalan dan bentuk garis pemisah."
+    },
+    "skeleton": {
+      "label": "Kerangka",
+      "description": "Bentuk dan kecepatan animasi kerangka pemuatan",
+      "allControls": "Mengontrol bentuk dan kecepatan animasi kerangka pemuatan."
+    },
+    "slider": {
+      "label": "Penggeser",
+      "description": "Trek, penggeser, dan animasi penggeser rentang",
+      "allControls": "Mengontrol trek, penggeser, dan animasi penggeser rentang."
+    },
+    "spinner": {
+      "label": "Spinner",
+      "description": "Ukuran dan lebar garis spinner pemuatan",
+      "allControls": "Mengontrol ukuran dan lebar garis spinner pemuatan."
+    },
+    "tabs": {
+      "label": "Tab",
+      "description": "Daftar tab, item, indikator aktif, dan padding panel",
+      "allControls": "Mengontrol daftar tab, item, indikator aktif, dan padding panel."
+    }
+  }
+}

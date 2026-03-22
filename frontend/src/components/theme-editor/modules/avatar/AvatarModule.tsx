@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -17,16 +19,22 @@ import {
 } from "../_shared";
 import { Preview } from "./Preview";
 
-const RADIUS_PRESETS = [
-  { label: "Square", value: "0px" },
-  { label: "Soft", value: "8px" },
-  { label: "Rounded", value: "16px" },
-  { label: "Circle", value: "9999px" },
+const RADIUS_PRESETS_RAW = [
+  { labelKey: "square", value: "0px" },
+  { labelKey: "soft", value: "8px" },
+  { labelKey: "rounded", value: "16px" },
+  { labelKey: "circle", value: "9999px" },
 ];
 
 export function AvatarModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
+
+  const RADIUS_PRESETS = RADIUS_PRESETS_RAW.map((p) => ({
+    label: t(`presets.${p.labelKey}`),
+    value: p.value,
+  }));
 
   const radiusPx = parseFloat(tokens.avatarRadius ?? "9999");
   const isCircle = radiusPx >= 100;
@@ -39,14 +47,13 @@ export function AvatarModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the appearance of user avatars — profile pictures, fallback
-        initials, status indicators, and grouped stacks.
+        {t("modules.avatar.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
-      <Section title="Shape">
+      <Section title={t("sections.shape")}>
         <Row label="Preset" onReset={() => resetColor(["avatarRadius"])}>
           {RADIUS_PRESETS.map((p) => {
             const active =
@@ -76,7 +83,7 @@ export function AvatarModule() {
       </Section>
 
       {/* ── Sizes ── */}
-      <Section title="Sizes">
+      <Section title={t("sections.sizes")}>
         <SliderRow
           label={`Small — ${smPx}px`}
           min={20}
@@ -110,7 +117,7 @@ export function AvatarModule() {
       </Section>
 
       {/* ── Border ── */}
-      <Section title="Border">
+      <Section title={t("sections.border")}>
         <BorderControls
           keys={{
             top: "avatarBorderTop",
@@ -126,7 +133,7 @@ export function AvatarModule() {
       </Section>
 
       {/* ── Typography ── */}
-      <Section title="Fallback text">
+      <Section title={t("sections.fallbackText")}>
         <FontWeightRow tokenKey="avatarFallbackFontWeight" label="Weight" />
         <SliderRow
           label={`Size — ${fallbackFontPx}px`}
@@ -141,7 +148,7 @@ export function AvatarModule() {
       </Section>
 
       {/* ── Group ── */}
-      <Section title="Group">
+      <Section title={t("sections.group")}>
         <SliderRow
           label={`Overlap — ${groupPx}px`}
           min={0}

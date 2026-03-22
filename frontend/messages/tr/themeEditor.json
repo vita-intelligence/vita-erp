@@ -1,0 +1,360 @@
+{
+  "chrome": {
+    "title": "Marka ve Tema",
+    "titleFull": "Marka ve Tema Duzenleyici",
+    "resetAll": "Tumunu sifirla",
+    "resetAllTooltip": "Tumunu varsayilana sifirla",
+    "resetSection": "Bolumu sifirla",
+    "reset": "Sifirla",
+    "close": "Kapat",
+    "livePreview": "Canli onizleme",
+    "hoverToTest": "test etmek icin gezdirin ve tiklayin",
+    "clickToPreview": "onizlemek icin tiklayin",
+    "moveCursor": "imleci kartin uzerine getirin"
+  },
+  "groups": {
+    "foundation": "Temel",
+    "components": "Bilesenler"
+  },
+  "modes": {
+    "light": "acik",
+    "dark": "koyu"
+  },
+  "controls": {
+    "fontWeight": "Yazi kalinligi",
+    "regular": "Normal",
+    "medium": "Orta",
+    "semibold": "Yari kalin",
+    "bold": "Kalin",
+    "transition": "Gecis",
+    "instant": "Aninda",
+    "fast": "Hizli",
+    "normal": "Normal",
+    "smooth": "Yumusak",
+    "slow": "Yavas",
+    "borderStyle": "Stil",
+    "solid": "— Duz",
+    "dashed": "- - Kesikli",
+    "dotted": "··· Noktali",
+    "shadow": "Golge",
+    "shadowNone": "Yok",
+    "shadowCustom": "Ozel",
+    "shadowOuter": "Dis",
+    "shadowInset": "Ic",
+    "shadowX": "X oteleme",
+    "shadowY": "Y oteleme",
+    "shadowBlur": "Bulaniklik",
+    "shadowSpread": "Yayilim",
+    "shadowOpacity": "Opaklик",
+    "borderAll": "Tum kenarlar",
+    "borderSync": "Senkronize",
+    "borderIndividual": "Bireysel",
+    "borderTop": "Ust",
+    "borderRight": "Sag",
+    "borderBottom": "Alt",
+    "borderLeft": "Sol"
+  },
+  "presets": {
+    "sharp": "Keskin",
+    "soft": "Yumusak",
+    "rounded": "Yuvarlak",
+    "large": "Buyuk",
+    "pill": "Hap",
+    "circle": "Daire",
+    "square": "Kare",
+    "none": "Yok",
+    "subtle": "Hafif",
+    "moderate": "Orta",
+    "strong": "Guclu",
+    "dramatic": "Dramatik",
+    "flat": "Duz",
+    "subtleTilt": "Hafif egim",
+    "forwardLean": "One egim",
+    "sideLean": "Yana egim",
+    "twist": "Burulma",
+    "small": "Kucuk",
+    "medium": "Orta",
+    "large2": "Buyuk",
+    "xl": "XL",
+    "default": "Varsayilan",
+    "snug": "Sikisik",
+    "wide": "Genis",
+    "widest": "En genis",
+    "tight": "Dar",
+    "relaxed": "Rahat",
+    "spacious": "Ferah",
+    "compact": "Kompakt",
+    "wider": "Daha genis",
+    "hover": "Uzerine gelme",
+    "always": "Her zaman",
+    "4px": "4px",
+    "8px": "8px"
+  },
+  "transform3d": {
+    "title": "3D Donusum",
+    "presets": "On ayarlar",
+    "rotateX": "X dondur",
+    "rotateY": "Y dondur",
+    "rotateZ": "Z dondur",
+    "hintXBack": "tam arkaya",
+    "hintXForward": "tam one",
+    "hintYLeft": "tam sola",
+    "hintYRight": "tam saga",
+    "hintZCcw": "saat yonunun tersine",
+    "hintZCw": "saat yonunde"
+  },
+  "hover3d": {
+    "title": "Uzerine gelme animasyonu",
+    "effect": "Efekt",
+    "none": "Yok",
+    "lift": "Kaldir",
+    "scale": "Olcekle",
+    "liftScale": "Kaldir + Olcekle",
+    "tiltForward": "One egim",
+    "tiltSide": "Yana egim",
+    "tilt3d": "3D egim",
+    "flipPeek": "Cevirme gozetleme",
+    "liftTilt": "Kaldir + Egim",
+    "hoverX": "Uzerine gelme X",
+    "hoverY": "Uzerine gelme Y",
+    "hoverZ": "Uzerine gelme Z"
+  },
+  "cursorTrack": {
+    "title": "Imlec takibi",
+    "description": "Oge, imlec konumuna gore dinamik olarak doner — kenara ne kadar yakinsa, size dogru o kadar egrilir.",
+    "intensity": "Yogunluk",
+    "restore": "Geri yukle",
+    "off": "Kapali",
+    "subtle": "Hafif",
+    "moderate": "Orta",
+    "strong": "Guclu",
+    "dramatic": "Dramatik"
+  },
+  "sections": {
+    "shape": "Sekil",
+    "typography": "Tipografi",
+    "border": "Kenarlik",
+    "shadow": "Golge",
+    "motion": "Hareket",
+    "spacing": "Bosluk",
+    "sizes": "Boyutlar",
+    "trigger": "Tetikleyici",
+    "popover": "Acilir pencere",
+    "popoverShadow": "Acilir pencere golgesi",
+    "triggerShadow": "Tetikleyici golgesi",
+    "indicator": "Gosterge",
+    "track": "Iz",
+    "thumb": "Kaydirici",
+    "fill": "Dolgu",
+    "label": "Etiket",
+    "stroke": "Cizgi",
+    "animation": "Animasyon",
+    "thickness": "Kalinlik",
+    "container": "Kapsayici",
+    "groupLabel": "Grup etiketi",
+    "listItems": "Liste ogeleri",
+    "menuItems": "Menu ogeleri",
+    "separator": "Ayirici",
+    "colorArea": "Renk alani",
+    "sliders": "Kaydiricilar",
+    "thumbs": "Kaydiricilar",
+    "swatches": "Renk ornekleri",
+    "controlBox": "Kontrol kutusu",
+    "fallbackText": "Yedek metin",
+    "group": "Grup",
+    "tabList": "Sekme listesi",
+    "tabItems": "Sekme ogeleri",
+    "panel": "Panel",
+    "header": "Ust bilgi",
+    "body": "Govde",
+    "footer": "Alt bilgi",
+    "heading": "Baslik",
+    "backdrop": "Arka plan",
+    "handle": "Tutamak",
+    "content": "Icerik",
+    "dropdownShape": "Acilir menu sekli",
+    "dropdownBorder": "Acilir menu kenarligi",
+    "dropdownSpacing": "Acilir menu boslugu",
+    "dropdownShadow": "Acilir menu golgesi",
+    "icon": "Simge",
+    "dialogShape": "Iletisim kutusu sekli",
+    "dialogSpacing": "Iletisim kutusu boslugu",
+    "dialogShadow": "Iletisim kutusu golgesi",
+    "itemShape": "Oge sekli",
+    "itemBorder": "Oge kenarligi",
+    "containerBorder": "Kapsayici kenarligi",
+    "containerShadow": "Kapsayici golgesi"
+  },
+  "labels": {
+    "cornerRadius": "Kose yaricapi",
+    "quickPresets": "Hizli on ayarlar",
+    "radiusPreset": "Yaricap on ayari",
+    "sizePreset": "Boyut on ayari",
+    "preset": "On ayar",
+    "radius": "Yaricap",
+    "width": "Genislik",
+    "height": "Yukseklik",
+    "size": "Boyut",
+    "gap": "Bosluk",
+    "padding": "Ic bosluk",
+    "paddingX": "Ic bosluk X",
+    "paddingY": "Ic bosluk Y",
+    "fontSize": "Yazi boyutu",
+    "fontWeight": "Yazi kalinligi",
+    "weight": "Kalinlik",
+    "letterSpacing": "Harf araligi",
+    "textCase": "Metin bicimi",
+    "textNormal": "Normal",
+    "uppercase": "BUYUK HARF",
+    "capitalize": "Bas Harf Buyuk",
+    "hoverEffect": "Uzerine gelme efekti",
+    "direction": "Yon",
+    "duration": "Sure",
+    "opacity": "Opaklik",
+    "blur": "Bulaniklik",
+    "borderWidth": "Kenarlik genisligi",
+    "itemGap": "Oge araligi",
+    "labelGap": "Etiket araligi",
+    "overlap": "Ustuste binme",
+    "trackShape": "Iz sekli",
+    "dotSize": "Nokta boyutu",
+    "iconSize": "Simge boyutu",
+    "checkScale": "Isaret olcegi",
+    "indicatorSize": "Gosterge boyutu",
+    "separatorGap": "Ayirici araligi",
+    "intensity": "Yogunluk",
+    "linkWeight": "Baglanti kalinligi",
+    "activeWeight": "Aktif kalinlik",
+    "underline": "Alt cizgi",
+    "icon": "Simge",
+    "trackHeight": "Iz yuksekligi",
+    "trackRadius": "Iz yaricapi",
+    "border": "Kenarlik",
+    "shape": "Sekil",
+    "small": "Kucuk",
+    "medium": "Orta",
+    "large": "Buyuk"
+  },
+  "modules": {
+    "colors": {
+      "label": "Renkler",
+      "description": "Marka renkleri, durum gostergeleri ve yuzey tonlari"
+    },
+    "typography": {
+      "label": "Tipografi",
+      "description": "Yazitipler, boyutlar, satir yuksekligi ve govde kalinligi"
+    },
+    "spacing": {
+      "label": "Bosluk",
+      "description": "Arayuz yogunlugu — tum ic bosluklari ve araliklari olcekler"
+    },
+    "buttons": {
+      "label": "Butonlar",
+      "description": "Tum buton varyantlarinin sekli, kalinligi, golgesi ve kenarligi",
+      "allControls": "Tum kontroller uygulamadaki her butonu ayni anda etkiler. Animasyonlari canli gormek icin onizleme butonlarinin uzerine gelin ve tiklayin."
+    },
+    "inputs": {
+      "label": "Girisler",
+      "description": "Metin girisleri ve alanlarin yaricapi, kenarligi ve etiket stili"
+    },
+    "cards": {
+      "label": "Kartlar",
+      "description": "Kartlarin ve icerik panellerinin sekli, kenarligi ve golgesi",
+      "allControls": "Tum kartlarin ve panellerin gorunumunu kontrol eder — ERP arayuzundeki birincil icerik kapsayicilari."
+    },
+    "badges": {
+      "label": "Rozetler",
+      "description": "Durum rozetleri, cipler ve etiketlerin sekli ve kalinligi",
+      "allControls": "Tum arayuzdeki durum rozetleri, cipler ve etiketlerin gorunumunu kontrol eder."
+    },
+    "accordion": {
+      "label": "Akordeon",
+      "description": "Katlanabilir bolumlerin sekli, boslugu ve tipografisi",
+      "allControls": "Arayuzdeki tum akordeon ve katlanabilir bolumlerin gorunumunu kontrol eder — SSS panelleri, detay cekmceleri ve gruplanmis ayarlar."
+    },
+    "alerts": {
+      "label": "Uyarilar",
+      "description": "Satirici uyari afisleri ve modal onay iletisim kutulari",
+      "allControls": "Bildirimler, uyarilar ve yikici eylem onaylari icin kullanilan satirici uyari afislerini ve modal onay iletisim kutularini kontrol eder.",
+      "inlineAlerts": "Satirici uyarilar",
+      "inlineAlertsDescription": "Basari, uyari, hata ve bilgi mesajlari icin durum afisleri.",
+      "alertDialog": "Uyari iletisim kutusu",
+      "alertDialogDescription": "Yikici veya kritik eylemler icin modal onay panelleri."
+    },
+    "autocomplete": {
+      "label": "Otomatik tamamlama",
+      "description": "Arama ve kombine alanlari icin acilir pencere ve liste ogeleri",
+      "allControls": "Otomatik tamamlama ve kombine kutu alanlari icin acilir pencere ve liste ogelerini kontrol eder. Tetikleyici, giris token stilini devralir."
+    },
+    "avatar": {
+      "label": "Avatar",
+      "description": "Kullanici avatarlarinin boyutu, sekli, kenarligi ve grup ustuste binmesi",
+      "allControls": "Kullanici avatarlarinin gorunumunu kontrol eder — profil resimleri, yedek bas harfler, durum gostergeleri ve gruplanmis yiginlar."
+    },
+    "breadcrumbs": {
+      "label": "Icerik yolu",
+      "description": "Gezinme izlerinin yazi tipi, boslugu ve ayirici stili",
+      "allControls": "Icerik yolu gezinme izlerinin gorunumunu kontrol eder — duz metin baglantilarindan kenarlik ve arka plana sahip etiket/hap stili ogelere kadar."
+    },
+    "buttonGroup": {
+      "label": "Buton Grubu",
+      "description": "Bagli buton kapsayicilarinin sekli, araligi ve kenarligi",
+      "allControls": "Grup kapsayici duzenlemeyi kontrol eder — aralik, kenarlik ve golge. Bireysel buton gorunumu (yaricap, kalinlik, renk) Butonlar modulu tarafindan kontrol edilir."
+    },
+    "calendar": {
+      "label": "Takvim",
+      "description": "Takvim panelleri ve tarih secicilerinin sekli, hucre boyutu ve tipografisi",
+      "allControls": "Takvim panelleri ve tarih secicilerinin kapsayici gorunumunu kontrol eder."
+    },
+    "checkbox": {
+      "label": "Onay kutusu",
+      "description": "Onay kutusu kontrollerinin boyutu, sekli, kenarligi, gostergesi ve etiketi",
+      "allControls": "Tum onay kutularinin gorunumunu kontrol eder — kontrol kutusu, onay isareti gostergesi ve tum arayuzdeki etiket metni."
+    },
+    "checkboxGroup": {
+      "label": "Onay kutusu Grubu",
+      "description": "Gruplanmis onay kutularinin boslugu, kapsayici sekli ve etiket stili",
+      "allControls": "Iliskili onay kutulari grubunu saran kapsayiciyi kontrol eder — bosluk, kenarlik, ic bosluk ve grup etiketi stili."
+    },
+    "colorPicker": {
+      "label": "Renk Secici",
+      "description": "Acilir pencere, renk alani, kaydiricilar, tutamaklar ve ornek stili",
+      "allControls": "Arayuzdeki renk secici acilir penceresi, renk alani, kaydiricilar, tutamaklar ve on ayarli renk orneklerinin gorunumunu kontrol eder."
+    },
+    "comboBox": {
+      "label": "Kombine Kutu",
+      "description": "Acilir pencere sekli, tetikleyici buton ve liste oge stili",
+      "allControls": "Kombine kutu acilir menulerin gorunumunu kontrol eder — acilir pencere sekli, tetikleyici buton ve liste oge stili."
+    },
+    "datePicker": {
+      "label": "Tarih Secici",
+      "description": "Tarih secici alanlarinin tetikleyicisi, acilir penceresi ve gostergesi",
+      "allControls": "Tarih secici alanlarinin tetikleyicisini, acilir penceresini ve gostergesini kontrol eder."
+    },
+    "separator": {
+      "label": "Ayirici",
+      "description": "Bolucu cizgilerin kalinligi ve sekli",
+      "allControls": "Bolucu cizgilerin kalinligini ve seklini kontrol eder."
+    },
+    "skeleton": {
+      "label": "Iskelet",
+      "description": "Yukleme iskeletlerinin sekli ve animasyon hizi",
+      "allControls": "Yukleme iskeletlerinin seklini ve animasyon hizini kontrol eder."
+    },
+    "slider": {
+      "label": "Kaydirici",
+      "description": "Aralik kaydiricilarin izi, tutamagi ve animasyonu",
+      "allControls": "Aralik kaydiricilarin izini, tutamagini ve animasyonunu kontrol eder."
+    },
+    "spinner": {
+      "label": "Donen gosterge",
+      "description": "Yukleme gostergelerinin boyutu ve cizgi genisligi",
+      "allControls": "Yukleme gostergelerinin boyutunu ve cizgi genisligini kontrol eder."
+    },
+    "tabs": {
+      "label": "Sekmeler",
+      "description": "Sekme listesi, ogeler, aktif gosterge ve panel ic boslugu",
+      "allControls": "Sekme listesini, ogeleri, aktif gostergeyi ve panel ic boslugunu kontrol eder."
+    }
+  }
+}

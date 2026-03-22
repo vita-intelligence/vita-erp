@@ -1,6 +1,7 @@
 "use client";
 
 import { GripHorizontal, RotateCcw, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -161,6 +162,25 @@ type Props = {
 
 export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
   const { resetAll, resetColor } = useThemeStore();
+  const t = useTranslations("themeEditor");
+
+  /** Resolve a translatable label for a module by its config id. */
+  function moduleLabel(id: string): string {
+    const key = id.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
+    try {
+      return t(`modules.${key}.label`);
+    } catch {
+      return id;
+    }
+  }
+
+  function groupLabel(group: string): string {
+    try {
+      return t(`groups.${group.toLowerCase()}`);
+    } catch {
+      return group;
+    }
+  }
   const active =
     THEME_EDITOR_MODULES.find((m) => m.id === activeTab) ??
     THEME_EDITOR_MODULES[0];
@@ -357,7 +377,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
               className="text-sm font-semibold font-vita-heading"
               style={{ color: "var(--vita-text-primary)" }}
             >
-              Brand &amp; Theme
+              {t("chrome.title")}
             </span>
           </div>
           {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
@@ -369,7 +389,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
             <Tooltip>
               <button
                 type="button"
-                aria-label="Reset all to defaults"
+                aria-label={t("chrome.resetAllTooltip")}
                 className="flex h-7 w-7 items-center justify-center transition-colors"
                 style={{ color: "var(--vita-text-muted)" }}
                 onMouseEnter={(e) => {
@@ -382,12 +402,12 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
               >
                 <RotateCcw size={13} />
               </button>
-              <Tooltip.Content>Reset all to defaults</Tooltip.Content>
+              <Tooltip.Content>{t("chrome.resetAllTooltip")}</Tooltip.Content>
             </Tooltip>
             <Tooltip>
               <button
                 type="button"
-                aria-label="Close"
+                aria-label={t("chrome.close")}
                 className="flex h-7 w-7 items-center justify-center transition-colors"
                 style={{ color: "var(--vita-text-muted)" }}
                 onMouseEnter={(e) => {
@@ -400,7 +420,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
               >
                 <X size={13} />
               </button>
-              <Tooltip.Content>Close</Tooltip.Content>
+              <Tooltip.Content>{t("chrome.close")}</Tooltip.Content>
             </Tooltip>
           </div>
         </div>
@@ -433,7 +453,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
               }
               onClick={() => switchGroup(group)}
             >
-              {group}
+              {groupLabel(group)}
             </button>
           ))}
         </div>
@@ -461,7 +481,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
               }
               onClick={() => setActiveTab(m.id)}
             >
-              {m.label}
+              {moduleLabel(m.id)}
               {activeTab === m.id && (
                 <span
                   className="absolute bottom-0 left-0 right-0 h-0.5"
@@ -484,7 +504,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
               className="text-xs font-semibold uppercase tracking-widest"
               style={{ color: "var(--vita-text-muted)" }}
             >
-              {active.label}
+              {moduleLabel(active.id)}
             </span>
             <Button
               variant="ghost"
@@ -492,7 +512,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
               onPress={() => resetColor(active.resetKeys)}
             >
               <RotateCcw size={10} />
-              Reset
+              {t("chrome.reset")}
             </Button>
           </div>
           <active.component />

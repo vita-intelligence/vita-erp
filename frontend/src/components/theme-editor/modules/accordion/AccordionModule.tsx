@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -16,8 +18,8 @@ import { Preview } from "./Preview";
 
 // ── Radius presets ───────────────────────────────────────────────────────────
 
-const RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
+const RADIUS_PRESETS_RAW = [
+  { labelKey: "sharp", value: "0px" },
   { label: "4px", value: "4px" },
   { label: "8px", value: "8px" },
   { label: "12px", value: "12px" },
@@ -27,8 +29,14 @@ const RADIUS_PRESETS = [
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function AccordionModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
+
+  const RADIUS_PRESETS = RADIUS_PRESETS_RAW.map((p) => ({
+    label: "labelKey" in p ? t(`presets.${p.labelKey}`) : p.label,
+    value: p.value,
+  }));
 
   const radiusPx = parseFloat(tokens.accordionRadius ?? "0");
   const borderWidthPx = parseFloat(tokens.accordionBorderWidth ?? "1");
@@ -42,14 +50,13 @@ export function AccordionModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the appearance of all accordion and collapsible sections across
-        the interface — FAQ panels, detail drawers, and grouped settings.
+        {t("modules.accordion.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
-      <Section title="Shape">
+      <Section title={t("sections.shape")}>
         <SliderRow
           label={`Radius — ${radiusPx}px`}
           min={0}
@@ -74,7 +81,7 @@ export function AccordionModule() {
       </Section>
 
       {/* ── Border ── */}
-      <Section title="Border">
+      <Section title={t("sections.border")}>
         <SliderRow
           label={`Width — ${borderWidthPx}px`}
           min={0}
@@ -89,7 +96,7 @@ export function AccordionModule() {
       </Section>
 
       {/* ── Separator ── */}
-      <Section title="Separator">
+      <Section title={t("sections.separator")}>
         <SliderRow
           label={`Height — ${separatorPx}px`}
           min={0}
@@ -103,7 +110,7 @@ export function AccordionModule() {
       </Section>
 
       {/* ── Spacing ── */}
-      <Section title="Spacing">
+      <Section title={t("sections.spacing")}>
         <SliderRow
           label={`Trigger X — ${triggerPxX}px`}
           min={4}
@@ -147,7 +154,7 @@ export function AccordionModule() {
       </Section>
 
       {/* ── Typography ── */}
-      <Section title="Typography">
+      <Section title={t("sections.typography")}>
         <FontWeightRow
           tokenKey="accordionTriggerFontWeight"
           label="Trigger weight"
@@ -165,7 +172,7 @@ export function AccordionModule() {
       </Section>
 
       {/* ── Shadow ── */}
-      <Section title="Shadow">
+      <Section title={t("sections.shadow")}>
         <ShadowBuilder
           value={tokens.accordionShadow ?? "none"}
           onChange={(v) => setTokens({ accordionShadow: v })}

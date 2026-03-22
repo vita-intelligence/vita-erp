@@ -7,6 +7,8 @@
  * control. Used by cards, buttons, badges, avatars, and calendar modules.
  */
 
+import { useTranslations } from "next-intl";
+
 import type { ThemeTokens } from "@/config/themes";
 import { useThemeStore } from "@/stores/theme";
 
@@ -26,29 +28,32 @@ export type CursorTrackControlsProps = {
 // ── Presets ──────────────────────────────────────────────────────────────────
 
 const PRESETS = [
-  { label: "Off", value: "0" },
-  { label: "Subtle", value: "6" },
-  { label: "Moderate", value: "12" },
-  { label: "Strong", value: "20" },
-  { label: "Dramatic", value: "30" },
+  { labelKey: "cursorTrack.off", value: "0" },
+  { labelKey: "cursorTrack.subtle", value: "6" },
+  { labelKey: "cursorTrack.moderate", value: "12" },
+  { labelKey: "cursorTrack.strong", value: "20" },
+  { labelKey: "cursorTrack.dramatic", value: "30" },
 ];
 
 // ── Component ────────────────────────────────────────────────────────────────
 
 export function CursorTrackControls({ keys }: CursorTrackControlsProps) {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
 
   const intensity = parseFloat(tokens[keys.intensity] ?? "0");
   const restoreMs = parseFloat(tokens[keys.restore] ?? "300");
 
   return (
-    <Section title="Cursor tracking">
+    <Section title={t("cursorTrack.title")}>
       <p className="text-xs text-vita-text-muted">
-        Element rotates dynamically based on cursor position — the closer to an
-        edge, the more it tilts toward you.
+        {t("cursorTrack.description")}
       </p>
 
-      <Row label="Intensity" onReset={() => resetColor([keys.intensity])}>
+      <Row
+        label={t("cursorTrack.intensity")}
+        onReset={() => resetColor([keys.intensity])}
+      >
         {PRESETS.map((p) => (
           <Chip
             key={p.value}
@@ -59,7 +64,7 @@ export function CursorTrackControls({ keys }: CursorTrackControlsProps) {
               } as Partial<ThemeTokens>)
             }
           >
-            {p.label}
+            {t(p.labelKey)}
           </Chip>
         ))}
       </Row>
@@ -67,7 +72,7 @@ export function CursorTrackControls({ keys }: CursorTrackControlsProps) {
       {intensity > 0 && (
         <>
           <SliderRow
-            label={`Intensity — ${intensity}°`}
+            label={`${t("cursorTrack.intensity")} — ${intensity}°`}
             min={1}
             max={40}
             step={1}
@@ -80,7 +85,7 @@ export function CursorTrackControls({ keys }: CursorTrackControlsProps) {
             hint={["1° subtle", "40° extreme"]}
           />
           <SliderRow
-            label={`Restore — ${restoreMs}ms`}
+            label={`${t("cursorTrack.restore")} — ${restoreMs}ms`}
             min={100}
             max={1000}
             step={50}

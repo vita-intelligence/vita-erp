@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import { Chip, Row, Section, SliderRow, usePreviewExternal } from "../_shared";
@@ -8,15 +10,16 @@ import { Preview } from "./Preview";
 // ── Presets ──────────────────────────────────────────────────────────────────
 
 const RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Soft", value: "4px" },
-  { label: "Rounded", value: "8px" },
-  { label: "Pill", value: "9999px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.soft", value: "4px" },
+  { label: "presets.rounded", value: "8px" },
+  { label: "presets.pill", value: "9999px" },
 ];
 
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function SkeletonModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -26,15 +29,15 @@ export function SkeletonModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the shape and animation speed of loading skeletons.
+        {t("modules.skeleton.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
-      <Section title="Shape">
+      <Section title={t("sections.shape")}>
         <Row
-          label="Radius preset"
+          label={t("labels.radiusPreset")}
           onReset={() => resetColor(["skeletonRadius"])}
         >
           {RADIUS_PRESETS.map((p) => (
@@ -47,7 +50,7 @@ export function SkeletonModule() {
               }
               onClick={() => setTokens({ skeletonRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -66,7 +69,7 @@ export function SkeletonModule() {
       </Section>
 
       {/* ── Animation ── */}
-      <Section title="Animation">
+      <Section title={t("sections.animation")}>
         <SliderRow
           label={`Duration — ${animDuration.toFixed(1)}s`}
           min={0.5}

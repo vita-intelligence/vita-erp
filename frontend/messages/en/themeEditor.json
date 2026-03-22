@@ -1,0 +1,361 @@
+{
+  "chrome": {
+    "title": "Brand & Theme",
+    "titleFull": "Brand & Theme Editor",
+    "resetAll": "Reset all",
+    "resetAllTooltip": "Reset all to defaults",
+    "resetSection": "Reset section",
+    "reset": "Reset",
+    "close": "Close",
+    "livePreview": "Live preview",
+    "hoverToTest": "hover & click to test",
+    "clickToPreview": "click to preview",
+    "moveCursor": "move cursor over card"
+  },
+  "groups": {
+    "foundation": "Foundation",
+    "components": "Components"
+  },
+  "modes": {
+    "light": "light",
+    "dark": "dark"
+  },
+  "controls": {
+    "fontWeight": "Font weight",
+    "regular": "Regular",
+    "medium": "Medium",
+    "semibold": "Semibold",
+    "bold": "Bold",
+    "transition": "Transition",
+    "instant": "Instant",
+    "fast": "Fast",
+    "normal": "Normal",
+    "smooth": "Smooth",
+    "slow": "Slow",
+    "borderStyle": "Style",
+    "solid": "— Solid",
+    "dashed": "- - Dashed",
+    "dotted": "··· Dotted",
+    "shadow": "Shadow",
+    "shadowNone": "None",
+    "shadowCustom": "Custom",
+    "shadowOuter": "Outer",
+    "shadowInset": "Inset",
+    "shadowX": "X offset",
+    "shadowY": "Y offset",
+    "shadowBlur": "Blur",
+    "shadowSpread": "Spread",
+    "shadowOpacity": "Opacity",
+    "borderAll": "All sides",
+    "borderSync": "Sync",
+    "borderIndividual": "Individual",
+    "borderTop": "Top",
+    "borderRight": "Right",
+    "borderBottom": "Bottom",
+    "borderLeft": "Left"
+  },
+  "presets": {
+    "sharp": "Sharp",
+    "soft": "Soft",
+    "rounded": "Rounded",
+    "large": "Large",
+    "pill": "Pill",
+    "circle": "Circle",
+    "square": "Square",
+    "none": "None",
+    "subtle": "Subtle",
+    "moderate": "Moderate",
+    "strong": "Strong",
+    "dramatic": "Dramatic",
+    "flat": "Flat",
+    "subtleTilt": "Subtle tilt",
+    "forwardLean": "Forward lean",
+    "sideLean": "Side lean",
+    "twist": "Twist",
+    "small": "Small",
+    "medium": "Medium",
+    "large2": "Large",
+    "xl": "XL",
+    "default": "Default",
+    "snug": "Snug",
+    "wide": "Wide",
+    "widest": "Widest",
+    "tight": "Tight",
+    "relaxed": "Relaxed",
+    "spacious": "Spacious",
+    "compact": "Compact",
+    "wider": "Wider",
+    "hover": "Hover",
+    "always": "Always",
+    "4px": "4px",
+    "8px": "8px"
+  },
+  "transform3d": {
+    "title": "3D Transform",
+    "presets": "Presets",
+    "rotateX": "Rotate X",
+    "rotateY": "Rotate Y",
+    "rotateZ": "Rotate Z",
+    "hintXBack": "full back",
+    "hintXForward": "full forward",
+    "hintYLeft": "full left",
+    "hintYRight": "full right",
+    "hintZCcw": "counter-cw",
+    "hintZCw": "clockwise"
+  },
+  "hover3d": {
+    "title": "Hover animation",
+    "effect": "Effect",
+    "none": "None",
+    "lift": "Lift",
+    "scale": "Scale",
+    "liftScale": "Lift + Scale",
+    "tiltForward": "Tilt forward",
+    "tiltSide": "Tilt side",
+    "tilt3d": "Tilt 3D",
+    "flipPeek": "Flip peek",
+    "liftTilt": "Lift + Tilt",
+    "hoverX": "Hover X",
+    "hoverY": "Hover Y",
+    "hoverZ": "Hover Z"
+  },
+  "cursorTrack": {
+    "title": "Cursor tracking",
+    "description": "Element rotates dynamically based on cursor position — the closer to an edge, the more it tilts toward you.",
+    "intensity": "Intensity",
+    "restore": "Restore",
+    "off": "Off",
+    "subtle": "Subtle",
+    "moderate": "Moderate",
+    "strong": "Strong",
+    "dramatic": "Dramatic"
+  },
+  "sections": {
+    "shape": "Shape",
+    "typography": "Typography",
+    "border": "Border",
+    "shadow": "Shadow",
+    "motion": "Motion",
+    "spacing": "Spacing",
+    "sizes": "Sizes",
+    "trigger": "Trigger",
+    "popover": "Popover",
+    "popoverShadow": "Popover shadow",
+    "triggerShadow": "Trigger shadow",
+    "indicator": "Indicator",
+    "track": "Track",
+    "thumb": "Thumb",
+    "fill": "Fill",
+    "label": "Label",
+    "stroke": "Stroke",
+    "animation": "Animation",
+    "thickness": "Thickness",
+    "container": "Container",
+    "groupLabel": "Group label",
+    "listItems": "List items",
+    "menuItems": "Menu items",
+    "separator": "Separator",
+    "colorArea": "Color area",
+    "sliders": "Sliders",
+    "thumbs": "Thumbs",
+    "swatches": "Swatches",
+    "controlBox": "Control box",
+    "fallbackText": "Fallback text",
+    "group": "Group",
+    "tabList": "Tab list",
+    "tabItems": "Tab items",
+    "panel": "Panel",
+    "header": "Header",
+    "body": "Body",
+    "footer": "Footer",
+    "heading": "Heading",
+    "backdrop": "Backdrop",
+    "handle": "Handle",
+    "content": "Content",
+    "dropdownShape": "Dropdown shape",
+    "dropdownBorder": "Dropdown border",
+    "dropdownSpacing": "Dropdown spacing",
+    "dropdownShadow": "Dropdown shadow",
+    "icon": "Icon",
+    "dialogShape": "Dialog shape",
+    "dialogSpacing": "Dialog spacing",
+    "dialogShadow": "Dialog shadow",
+    "itemShape": "Item shape",
+    "itemBorder": "Item border",
+    "containerBorder": "Container border",
+    "containerShadow": "Container shadow"
+  },
+  "labels": {
+    "cornerRadius": "Corner radius",
+    "quickPresets": "Quick presets",
+    "radiusPreset": "Radius preset",
+    "sizePreset": "Size preset",
+    "preset": "Preset",
+    "radius": "Radius",
+    "width": "Width",
+    "height": "Height",
+    "size": "Size",
+    "gap": "Gap",
+    "padding": "Padding",
+    "paddingX": "Padding X",
+    "paddingY": "Padding Y",
+    "fontSize": "Font size",
+    "fontWeight": "Font weight",
+    "weight": "Weight",
+    "letterSpacing": "Letter spacing",
+    "textCase": "Text case",
+    "textNormal": "Normal",
+    "uppercase": "UPPERCASE",
+    "capitalize": "Capitalize",
+    "hoverEffect": "Hover effect",
+    "direction": "Direction",
+    "duration": "Duration",
+    "opacity": "Opacity",
+    "blur": "Blur",
+    "borderWidth": "Border width",
+    "itemGap": "Item gap",
+    "labelGap": "Label gap",
+    "overlap": "Overlap",
+    "trackShape": "Track shape",
+    "dotSize": "Dot size",
+    "iconSize": "Icon size",
+    "checkScale": "Check scale",
+    "indicatorSize": "Indicator size",
+    "separatorGap": "Separator gap",
+    "intensity": "Intensity",
+    "linkWeight": "Link weight",
+    "activeWeight": "Active weight",
+    "underline": "Underline",
+    "icon": "Icon",
+    "trackHeight": "Track height",
+    "trackRadius": "Track radius",
+    "border": "Border",
+    "shape": "Shape",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large"
+  },
+  "modules": {
+    "colors": {
+      "label": "Colors",
+      "description": "Brand colors, status indicators, and surface tints"
+    },
+    "typography": {
+      "label": "Typography",
+      "description": "Fonts, sizes, line height, and body weight"
+    },
+    "spacing": {
+      "label": "Spacing",
+      "description": "Interface density — scales all padding and gaps"
+    },
+    "buttons": {
+      "label": "Buttons",
+      "description": "Shape, weight, shadow, and border of all button variants",
+      "allControls": "All controls affect every button across the application simultaneously. Hover and click the preview buttons to see animations live."
+    },
+    "inputs": {
+      "label": "Inputs",
+      "description": "Radius, border, and label style of text inputs and fields",
+      "allControls": "Controls the shape, border, focus ring, typography, and animation of text inputs, textareas, and search fields across the interface."
+    },
+    "cards": {
+      "label": "Cards",
+      "description": "Shape, border, and shadow of cards and content panels",
+      "allControls": "Controls the appearance of all cards and panels — the primary content containers across the ERP interface."
+    },
+    "badges": {
+      "label": "Badges",
+      "description": "Shape and weight of status badges, chips, and tags",
+      "allControls": "Controls the appearance of status badges, chips, and tags across the entire interface."
+    },
+    "accordion": {
+      "label": "Accordion",
+      "description": "Shape, spacing, and typography of collapsible sections",
+      "allControls": "Controls the appearance of all accordion and collapsible sections across the interface — FAQ panels, detail drawers, and grouped settings."
+    },
+    "alerts": {
+      "label": "Alerts",
+      "description": "Inline alert banners and modal confirmation dialogs",
+      "allControls": "Controls both inline alert banners and modal confirmation dialogs used for notifications, warnings, and destructive action confirmations.",
+      "inlineAlerts": "Inline alerts",
+      "inlineAlertsDescription": "Status banners for success, warning, error, and info messages.",
+      "alertDialog": "Alert dialog",
+      "alertDialogDescription": "Modal confirmation panels for destructive or critical actions."
+    },
+    "autocomplete": {
+      "label": "Autocomplete",
+      "description": "Dropdown popover and list items for search and combo fields",
+      "allControls": "Controls the dropdown popover and list items for autocomplete and combo-box fields. The trigger inherits input token styling."
+    },
+    "avatar": {
+      "label": "Avatar",
+      "description": "Size, shape, border, and group overlap for user avatars",
+      "allControls": "Controls the appearance of user avatars — profile pictures, fallback initials, status indicators, and grouped stacks."
+    },
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "description": "Font, spacing, and separator style of navigation trails",
+      "allControls": "Controls the appearance of breadcrumb navigation trails — from plain text links to tag/pill-style items with borders and backgrounds."
+    },
+    "buttonGroup": {
+      "label": "Button Group",
+      "description": "Shape, gap, and border of connected button containers",
+      "allControls": "Controls the group container layout — gap, border, and shadow. Individual button appearance (radius, weight, color) is controlled by the Buttons module."
+    },
+    "calendar": {
+      "label": "Calendar",
+      "description": "Shape, cell sizing, and typography of calendar panels and date pickers",
+      "allControls": "Controls the container appearance of calendar panels and date pickers."
+    },
+    "checkbox": {
+      "label": "Checkbox",
+      "description": "Size, shape, border, indicator, and label of checkbox controls",
+      "allControls": "Controls the appearance of all checkboxes — the control box, checkmark indicator, and label text across the entire interface."
+    },
+    "checkboxGroup": {
+      "label": "Checkbox Group",
+      "description": "Spacing, container shape, and label style of grouped checkboxes",
+      "allControls": "Controls the container that wraps a group of related checkboxes — spacing, border, padding, and group label styling."
+    },
+    "colorPicker": {
+      "label": "Color Picker",
+      "description": "Popover, color area, sliders, thumbs, and swatch styling",
+      "allControls": "Controls the appearance of color picker popover, color area, sliders, thumbs, and preset swatches across the interface."
+    },
+    "comboBox": {
+      "label": "Combo Box",
+      "description": "Popover shape, trigger button, and list item styling",
+      "allControls": "Controls the appearance of combo box dropdowns — popover shape, trigger button, and list item styling."
+    },
+    "datePicker": {
+      "label": "Date Picker",
+      "description": "Trigger, popover, and indicator of date picker fields",
+      "allControls": "Controls the trigger, popover, and indicator of date picker fields."
+    },
+    "separator": {
+      "label": "Separator",
+      "description": "Thickness and shape of divider lines",
+      "allControls": "Controls the thickness and shape of divider lines."
+    },
+    "skeleton": {
+      "label": "Skeleton",
+      "description": "Shape and animation speed of loading skeletons",
+      "allControls": "Controls the shape and animation speed of loading skeletons."
+    },
+    "slider": {
+      "label": "Slider",
+      "description": "Track, thumb, and animation of range sliders",
+      "allControls": "Controls the track, thumb, and animation of range sliders."
+    },
+    "spinner": {
+      "label": "Spinner",
+      "description": "Size and stroke width of loading spinners",
+      "allControls": "Controls the size and stroke width of loading spinners."
+    },
+    "tabs": {
+      "label": "Tabs",
+      "description": "Tab list, items, active indicator, and panel padding",
+      "allControls": "Controls the tab list, items, active indicator, and panel padding."
+    }
+  }
+}

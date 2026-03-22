@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -18,22 +20,23 @@ import { Preview } from "./Preview";
 // ── Presets ──────────────────────────────────────────────────────────────────
 
 const RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Soft", value: "4px" },
-  { label: "Rounded", value: "8px" },
-  { label: "Circle", value: "9999px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.soft", value: "4px" },
+  { label: "presets.rounded", value: "8px" },
+  { label: "presets.circle", value: "9999px" },
 ];
 
 const SIZE_PRESETS = [
-  { label: "Small", value: "16px" },
-  { label: "Medium", value: "20px" },
-  { label: "Large", value: "24px" },
-  { label: "XL", value: "28px" },
+  { label: "presets.small", value: "16px" },
+  { label: "presets.medium", value: "20px" },
+  { label: "presets.large", value: "24px" },
+  { label: "presets.xl", value: "28px" },
 ];
 
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function CheckboxModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -49,22 +52,24 @@ export function CheckboxModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the appearance of all checkboxes — the control box, checkmark
-        indicator, and label text across the entire interface.
+        {t("modules.checkbox.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Control box ── */}
-      <Section title="Control box">
-        <Row label="Size preset" onReset={() => resetColor(["checkboxSize"])}>
+      <Section title={t("sections.controlBox")}>
+        <Row
+          label={t("labels.sizePreset")}
+          onReset={() => resetColor(["checkboxSize"])}
+        >
           {SIZE_PRESETS.map((p) => (
             <Chip
               key={p.value}
               active={tokens.checkboxSize === p.value}
               onClick={() => setTokens({ checkboxSize: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -81,7 +86,7 @@ export function CheckboxModule() {
         />
 
         <Row
-          label="Radius preset"
+          label={t("labels.radiusPreset")}
           onReset={() => resetColor(["checkboxRadius"])}
         >
           {RADIUS_PRESETS.map((p) => (
@@ -94,7 +99,7 @@ export function CheckboxModule() {
               }
               onClick={() => setTokens({ checkboxRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -113,7 +118,7 @@ export function CheckboxModule() {
       </Section>
 
       {/* ── Border ── */}
-      <Section title="Border">
+      <Section title={t("sections.border")}>
         <SliderRow
           label={`Width — ${borderPx}px`}
           min={1}
@@ -128,7 +133,7 @@ export function CheckboxModule() {
       </Section>
 
       {/* ── Indicator (checkmark) ── */}
-      <Section title="Indicator">
+      <Section title={t("sections.indicator")}>
         <SliderRow
           label={`Icon size — ${indicatorPx}px`}
           min={8}
@@ -152,7 +157,7 @@ export function CheckboxModule() {
       </Section>
 
       {/* ── Label ── */}
-      <Section title="Label">
+      <Section title={t("sections.label")}>
         <SliderRow
           label={`Font size — ${labelFontPx}px`}
           min={10}
@@ -163,7 +168,10 @@ export function CheckboxModule() {
           hint={["10px small", "20px large"]}
           onReset={() => resetColor(["checkboxLabelFontSize"])}
         />
-        <FontWeightRow tokenKey="checkboxLabelFontWeight" label="Weight" />
+        <FontWeightRow
+          tokenKey="checkboxLabelFontWeight"
+          label={t("labels.weight")}
+        />
         <SliderRow
           label={`Gap — ${gapPx}px`}
           min={4}
@@ -177,7 +185,7 @@ export function CheckboxModule() {
       </Section>
 
       {/* ── Shadow ── */}
-      <Section title="Shadow">
+      <Section title={t("sections.shadow")}>
         <ShadowBuilder
           value={tokens.checkboxShadow}
           onChange={(v) => setTokens({ checkboxShadow: v })}
@@ -187,7 +195,7 @@ export function CheckboxModule() {
       </Section>
 
       {/* ── Motion ── */}
-      <Section title="Motion">
+      <Section title={t("sections.motion")}>
         <SliderRow
           label={`Check scale — ${checkedScale.toFixed(2)}×`}
           min={0.8}

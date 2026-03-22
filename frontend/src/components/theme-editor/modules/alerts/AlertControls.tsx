@@ -4,6 +4,8 @@
  * Controls for inline alert banners — shape, border, spacing, typography, icon, shadow.
  */
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -16,8 +18,8 @@ import {
   SliderRow,
 } from "../_shared";
 
-const RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
+const RADIUS_PRESETS_RAW = [
+  { labelKey: "sharp", value: "0px" },
   { label: "4px", value: "4px" },
   { label: "8px", value: "8px" },
   { label: "12px", value: "12px" },
@@ -25,7 +27,13 @@ const RADIUS_PRESETS = [
 ];
 
 export function AlertControls() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
+
+  const RADIUS_PRESETS = RADIUS_PRESETS_RAW.map((p) => ({
+    label: "labelKey" in p ? t(`presets.${p.labelKey}`) : p.label,
+    value: p.value,
+  }));
 
   const radiusPx = parseFloat(tokens.alertRadius ?? "0");
   const borderPx = parseFloat(tokens.alertBorderWidth ?? "1");
@@ -37,7 +45,7 @@ export function AlertControls() {
 
   return (
     <>
-      <Section title="Shape">
+      <Section title={t("sections.shape")}>
         <SliderRow
           label={`Radius — ${radiusPx}px`}
           min={0}
@@ -61,7 +69,7 @@ export function AlertControls() {
         </Row>
       </Section>
 
-      <Section title="Border">
+      <Section title={t("sections.border")}>
         <SliderRow
           label={`Width — ${borderPx}px`}
           min={0}
@@ -75,7 +83,7 @@ export function AlertControls() {
         <BorderStyleRow tokenKey="alertBorderStyle" />
       </Section>
 
-      <Section title="Spacing">
+      <Section title={t("sections.spacing")}>
         <SliderRow
           label={`Padding X — ${pxX}px`}
           min={8}
@@ -98,7 +106,7 @@ export function AlertControls() {
         />
       </Section>
 
-      <Section title="Typography">
+      <Section title={t("sections.typography")}>
         <FontWeightRow tokenKey="alertTitleFontWeight" label="Title weight" />
         <SliderRow
           label={`Title size — ${titlePx}px`}
@@ -122,7 +130,7 @@ export function AlertControls() {
         />
       </Section>
 
-      <Section title="Icon">
+      <Section title={t("sections.icon")}>
         <SliderRow
           label={`Size — ${iconPx}px`}
           min={12}
@@ -135,7 +143,7 @@ export function AlertControls() {
         />
       </Section>
 
-      <Section title="Shadow">
+      <Section title={t("sections.shadow")}>
         <ShadowBuilder
           value={tokens.alertShadow ?? "none"}
           onChange={(v) => setTokens({ alertShadow: v })}

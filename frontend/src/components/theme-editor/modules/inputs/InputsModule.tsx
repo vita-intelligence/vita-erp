@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -19,6 +21,7 @@ import { Preview } from "./Preview";
 // ── Module ────────────────────────────────────────────────────────────────────
 
 export function InputsModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -36,14 +39,13 @@ export function InputsModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
-        Click any field in the preview to see the focus ring live. Use the label
-        placement and error controls to explore layout options.
+        {t("modules.inputs.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
-      <Section title="Shape">
+      <Section title={t("sections.shape")}>
         <SliderRow
           label={`Radius — ${radiusPx}px`}
           min={0}
@@ -77,7 +79,7 @@ export function InputsModule() {
       </Section>
 
       {/* ── Border ── */}
-      <Section title="Border">
+      <Section title={t("sections.border")}>
         <BorderControls
           keys={{
             top: "inputBorderTop",
@@ -90,7 +92,7 @@ export function InputsModule() {
       </Section>
 
       {/* ── Shadow ── */}
-      <Section title="Shadow">
+      <Section title={t("sections.shadow")}>
         <ShadowBuilder
           value={tokens.inputShadow ?? "none"}
           onChange={(v) => setTokens({ inputShadow: v })}
@@ -124,7 +126,7 @@ export function InputsModule() {
       </Section>
 
       {/* ── Typography ── */}
-      <Section title="Typography">
+      <Section title={t("sections.typography")}>
         <SliderRow
           label={`Input text — ${fontSizePx}px`}
           min={10}
@@ -176,7 +178,7 @@ export function InputsModule() {
       </Section>
 
       {/* ── Motion ── */}
-      <Section title="Motion">
+      <Section title={t("sections.motion")}>
         <TransitionRow tokenKey="inputTransitionDuration" />
       </Section>
     </div>

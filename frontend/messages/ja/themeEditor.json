@@ -1,0 +1,360 @@
+{
+  "chrome": {
+    "title": "ブランド＆テーマ",
+    "titleFull": "ブランド＆テーマエディター",
+    "resetAll": "すべてリセット",
+    "resetAllTooltip": "すべてをデフォルトに戻す",
+    "resetSection": "セクションをリセット",
+    "reset": "リセット",
+    "close": "閉じる",
+    "livePreview": "ライブプレビュー",
+    "hoverToTest": "ホバー＆クリックでテスト",
+    "clickToPreview": "クリックでプレビュー",
+    "moveCursor": "カードの上にカーソルを移動"
+  },
+  "groups": {
+    "foundation": "基盤",
+    "components": "コンポーネント"
+  },
+  "modes": {
+    "light": "ライト",
+    "dark": "ダーク"
+  },
+  "controls": {
+    "fontWeight": "フォントの太さ",
+    "regular": "レギュラー",
+    "medium": "ミディアム",
+    "semibold": "セミボールド",
+    "bold": "ボールド",
+    "transition": "トランジション",
+    "instant": "即時",
+    "fast": "高速",
+    "normal": "標準",
+    "smooth": "スムーズ",
+    "slow": "低速",
+    "borderStyle": "スタイル",
+    "solid": "— 実線",
+    "dashed": "- - 破線",
+    "dotted": "··· 点線",
+    "shadow": "シャドウ",
+    "shadowNone": "なし",
+    "shadowCustom": "カスタム",
+    "shadowOuter": "外側",
+    "shadowInset": "内側",
+    "shadowX": "X オフセット",
+    "shadowY": "Y オフセット",
+    "shadowBlur": "ぼかし",
+    "shadowSpread": "拡散",
+    "shadowOpacity": "不透明度",
+    "borderAll": "全辺",
+    "borderSync": "同期",
+    "borderIndividual": "個別",
+    "borderTop": "上",
+    "borderRight": "右",
+    "borderBottom": "下",
+    "borderLeft": "左"
+  },
+  "presets": {
+    "sharp": "シャープ",
+    "soft": "ソフト",
+    "rounded": "ラウンド",
+    "large": "大",
+    "pill": "ピル型",
+    "circle": "円形",
+    "square": "四角形",
+    "none": "なし",
+    "subtle": "控えめ",
+    "moderate": "適度",
+    "strong": "強い",
+    "dramatic": "劇的",
+    "flat": "フラット",
+    "subtleTilt": "微傾斜",
+    "forwardLean": "前傾",
+    "sideLean": "横傾き",
+    "twist": "ツイスト",
+    "small": "小",
+    "medium": "中",
+    "large2": "大",
+    "xl": "XL",
+    "default": "デフォルト",
+    "snug": "タイト",
+    "wide": "広め",
+    "widest": "最も広い",
+    "tight": "詰まった",
+    "relaxed": "ゆったり",
+    "spacious": "広々",
+    "compact": "コンパクト",
+    "wider": "より広い",
+    "hover": "ホバー",
+    "always": "常時",
+    "4px": "4px",
+    "8px": "8px"
+  },
+  "transform3d": {
+    "title": "3D トランスフォーム",
+    "presets": "プリセット",
+    "rotateX": "X 回転",
+    "rotateY": "Y 回転",
+    "rotateZ": "Z 回転",
+    "hintXBack": "最大後方",
+    "hintXForward": "最大前方",
+    "hintYLeft": "最大左",
+    "hintYRight": "最大右",
+    "hintZCcw": "反時計回り",
+    "hintZCw": "時計回り"
+  },
+  "hover3d": {
+    "title": "ホバーアニメーション",
+    "effect": "エフェクト",
+    "none": "なし",
+    "lift": "リフト",
+    "scale": "スケール",
+    "liftScale": "リフト＋スケール",
+    "tiltForward": "前傾",
+    "tiltSide": "横傾き",
+    "tilt3d": "3D チルト",
+    "flipPeek": "フリップピーク",
+    "liftTilt": "リフト＋チルト",
+    "hoverX": "ホバー X",
+    "hoverY": "ホバー Y",
+    "hoverZ": "ホバー Z"
+  },
+  "cursorTrack": {
+    "title": "カーソルトラッキング",
+    "description": "カーソル位置に応じて要素が動的に回転します——端に近いほど大きく傾きます。",
+    "intensity": "強度",
+    "restore": "復元",
+    "off": "オフ",
+    "subtle": "控えめ",
+    "moderate": "適度",
+    "strong": "強い",
+    "dramatic": "劇的"
+  },
+  "sections": {
+    "shape": "形状",
+    "typography": "タイポグラフィ",
+    "border": "ボーダー",
+    "shadow": "シャドウ",
+    "motion": "モーション",
+    "spacing": "スペーシング",
+    "sizes": "サイズ",
+    "trigger": "トリガー",
+    "popover": "ポップオーバー",
+    "popoverShadow": "ポップオーバーシャドウ",
+    "triggerShadow": "トリガーシャドウ",
+    "indicator": "インジケーター",
+    "track": "トラック",
+    "thumb": "サム",
+    "fill": "塗りつぶし",
+    "label": "ラベル",
+    "stroke": "ストローク",
+    "animation": "アニメーション",
+    "thickness": "太さ",
+    "container": "コンテナ",
+    "groupLabel": "グループラベル",
+    "listItems": "リスト項目",
+    "menuItems": "メニュー項目",
+    "separator": "セパレーター",
+    "colorArea": "カラーエリア",
+    "sliders": "スライダー",
+    "thumbs": "サム",
+    "swatches": "スウォッチ",
+    "controlBox": "コントロールボックス",
+    "fallbackText": "フォールバックテキスト",
+    "group": "グループ",
+    "tabList": "タブリスト",
+    "tabItems": "タブ項目",
+    "panel": "パネル",
+    "header": "ヘッダー",
+    "body": "ボディ",
+    "footer": "フッター",
+    "heading": "見出し",
+    "backdrop": "バックドロップ",
+    "handle": "ハンドル",
+    "content": "コンテンツ",
+    "dropdownShape": "ドロップダウン形状",
+    "dropdownBorder": "ドロップダウンボーダー",
+    "dropdownSpacing": "ドロップダウン間隔",
+    "dropdownShadow": "ドロップダウンシャドウ",
+    "icon": "アイコン",
+    "dialogShape": "ダイアログ形状",
+    "dialogSpacing": "ダイアログ間隔",
+    "dialogShadow": "ダイアログシャドウ",
+    "itemShape": "アイテム形状",
+    "itemBorder": "アイテムボーダー",
+    "containerBorder": "コンテナボーダー",
+    "containerShadow": "コンテナシャドウ"
+  },
+  "labels": {
+    "cornerRadius": "角の丸み",
+    "quickPresets": "クイックプリセット",
+    "radiusPreset": "半径プリセット",
+    "sizePreset": "サイズプリセット",
+    "preset": "プリセット",
+    "radius": "半径",
+    "width": "幅",
+    "height": "高さ",
+    "size": "サイズ",
+    "gap": "ギャップ",
+    "padding": "パディング",
+    "paddingX": "水平パディング",
+    "paddingY": "垂直パディング",
+    "fontSize": "フォントサイズ",
+    "fontWeight": "フォントの太さ",
+    "weight": "太さ",
+    "letterSpacing": "字間",
+    "textCase": "テキストケース",
+    "textNormal": "標準",
+    "uppercase": "大文字",
+    "capitalize": "先頭大文字",
+    "hoverEffect": "ホバーエフェクト",
+    "direction": "方向",
+    "duration": "時間",
+    "opacity": "不透明度",
+    "blur": "ぼかし",
+    "borderWidth": "ボーダー幅",
+    "itemGap": "アイテム間隔",
+    "labelGap": "ラベル間隔",
+    "overlap": "重なり",
+    "trackShape": "トラック形状",
+    "dotSize": "ドットサイズ",
+    "iconSize": "アイコンサイズ",
+    "checkScale": "チェック倍率",
+    "indicatorSize": "インジケーターサイズ",
+    "separatorGap": "セパレーター間隔",
+    "intensity": "強度",
+    "linkWeight": "リンクの太さ",
+    "activeWeight": "アクティブの太さ",
+    "underline": "下線",
+    "icon": "アイコン",
+    "trackHeight": "トラック高さ",
+    "trackRadius": "トラック半径",
+    "border": "ボーダー",
+    "shape": "形状",
+    "small": "小",
+    "medium": "中",
+    "large": "大"
+  },
+  "modules": {
+    "colors": {
+      "label": "カラー",
+      "description": "ブランドカラー、ステータスインジケーター、サーフェスティント"
+    },
+    "typography": {
+      "label": "タイポグラフィ",
+      "description": "フォント、サイズ、行の高さ、本文の太さ"
+    },
+    "spacing": {
+      "label": "スペーシング",
+      "description": "インターフェース密度——すべてのパディングとギャップをスケーリング"
+    },
+    "buttons": {
+      "label": "ボタン",
+      "description": "すべてのボタンバリアントの形状、太さ、シャドウ、ボーダー",
+      "allControls": "すべてのコントロールがアプリケーション全体のすべてのボタンに同時に影響します。プレビューボタンにホバー＆クリックしてアニメーションをライブで確認できます。"
+    },
+    "inputs": {
+      "label": "入力フィールド",
+      "description": "テキスト入力とフィールドの半径、ボーダー、ラベルスタイル"
+    },
+    "cards": {
+      "label": "カード",
+      "description": "カードとコンテンツパネルの形状、ボーダー、シャドウ",
+      "allControls": "すべてのカードとパネルの外観を制御します——ERPインターフェース全体の主要なコンテンツコンテナです。"
+    },
+    "badges": {
+      "label": "バッジ",
+      "description": "ステータスバッジ、チップ、タグの形状と太さ",
+      "allControls": "インターフェース全体のステータスバッジ、チップ、タグの外観を制御します。"
+    },
+    "accordion": {
+      "label": "アコーディオン",
+      "description": "折りたたみセクションの形状、間隔、タイポグラフィ",
+      "allControls": "インターフェース全体のアコーディオンと折りたたみセクションの外観を制御します——FAQパネル、詳細ドロワー、グループ化された設定。"
+    },
+    "alerts": {
+      "label": "アラート",
+      "description": "インラインアラートバナーとモーダル確認ダイアログ",
+      "allControls": "通知、警告、破壊的操作の確認に使用されるインラインアラートバナーとモーダル確認ダイアログを制御します。",
+      "inlineAlerts": "インラインアラート",
+      "inlineAlertsDescription": "成功、警告、エラー、情報メッセージのステータスバナー。",
+      "alertDialog": "アラートダイアログ",
+      "alertDialogDescription": "破壊的または重要な操作のモーダル確認パネル。"
+    },
+    "autocomplete": {
+      "label": "オートコンプリート",
+      "description": "検索とコンボフィールドのドロップダウンポップオーバーとリスト項目",
+      "allControls": "オートコンプリートとコンボボックスフィールドのドロップダウンポップオーバーとリスト項目を制御します。トリガーは入力トークンスタイルを継承します。"
+    },
+    "avatar": {
+      "label": "アバター",
+      "description": "ユーザーアバターのサイズ、形状、ボーダー、グループの重なり",
+      "allControls": "ユーザーアバターの外観を制御します——プロフィール写真、フォールバックイニシャル、ステータスインジケーター、グループスタック。"
+    },
+    "breadcrumbs": {
+      "label": "パンくずリスト",
+      "description": "ナビゲーショントレイルのフォント、間隔、セパレータースタイル",
+      "allControls": "パンくずナビゲーショントレイルの外観を制御します——プレーンテキストリンクからボーダーと背景付きのタグ／ピルスタイル項目まで。"
+    },
+    "buttonGroup": {
+      "label": "ボタングループ",
+      "description": "接続されたボタンコンテナの形状、間隔、ボーダー",
+      "allControls": "グループコンテナレイアウトを制御します——間隔、ボーダー、シャドウ。個々のボタンの外観（半径、太さ、色）はボタンモジュールで制御されます。"
+    },
+    "calendar": {
+      "label": "カレンダー",
+      "description": "カレンダーパネルとデートピッカーの形状、セルサイズ、タイポグラフィ",
+      "allControls": "カレンダーパネルとデートピッカーのコンテナ外観を制御します。"
+    },
+    "checkbox": {
+      "label": "チェックボックス",
+      "description": "チェックボックスコントロールのサイズ、形状、ボーダー、インジケーター、ラベル",
+      "allControls": "すべてのチェックボックスの外観を制御します——インターフェース全体のコントロールボックス、チェックマークインジケーター、ラベルテキスト。"
+    },
+    "checkboxGroup": {
+      "label": "チェックボックスグループ",
+      "description": "グループ化されたチェックボックスの間隔、コンテナ形状、ラベルスタイル",
+      "allControls": "関連するチェックボックスのグループをラップするコンテナを制御します——間隔、ボーダー、パディング、グループラベルスタイル。"
+    },
+    "colorPicker": {
+      "label": "カラーピッカー",
+      "description": "ポップオーバー、カラーエリア、スライダー、サム、スウォッチのスタイル",
+      "allControls": "インターフェース全体のカラーピッカーポップオーバー、カラーエリア、スライダー、サム、プリセットスウォッチの外観を制御します。"
+    },
+    "comboBox": {
+      "label": "コンボボックス",
+      "description": "ポップオーバー形状、トリガーボタン、リスト項目スタイル",
+      "allControls": "コンボボックスドロップダウンの外観を制御します——ポップオーバー形状、トリガーボタン、リスト項目スタイル。"
+    },
+    "datePicker": {
+      "label": "デートピッカー",
+      "description": "デートピッカーフィールドのトリガー、ポップオーバー、インジケーター",
+      "allControls": "デートピッカーフィールドのトリガー、ポップオーバー、インジケーターを制御します。"
+    },
+    "separator": {
+      "label": "セパレーター",
+      "description": "区切り線の太さと形状",
+      "allControls": "区切り線の太さと形状を制御します。"
+    },
+    "skeleton": {
+      "label": "スケルトン",
+      "description": "ローディングスケルトンの形状とアニメーション速度",
+      "allControls": "ローディングスケルトンの形状とアニメーション速度を制御します。"
+    },
+    "slider": {
+      "label": "スライダー",
+      "description": "レンジスライダーのトラック、サム、アニメーション",
+      "allControls": "レンジスライダーのトラック、サム、アニメーションを制御します。"
+    },
+    "spinner": {
+      "label": "スピナー",
+      "description": "ローディングスピナーのサイズとストローク幅",
+      "allControls": "ローディングスピナーのサイズとストローク幅を制御します。"
+    },
+    "tabs": {
+      "label": "タブ",
+      "description": "タブリスト、タブ項目、アクティブインジケーター、パネルパディング",
+      "allControls": "タブリスト、タブ項目、アクティブインジケーター、パネルパディングを制御します。"
+    }
+  }
+}

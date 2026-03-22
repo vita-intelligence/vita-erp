@@ -8,6 +8,7 @@
  */
 
 import { RotateCcw, Unlink } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import type { ThemeTokens } from "@/config/themes";
@@ -36,12 +37,14 @@ export type BorderControlsProps = {
 
 // ── Component ────────────────────────────────────────────────────────────────
 
-const SIDES: { label: string; side: keyof SideKeys }[] = [
-  { label: "Top", side: "top" },
-  { label: "Right", side: "right" },
-  { label: "Bottom", side: "bottom" },
-  { label: "Left", side: "left" },
-];
+const SIDES: (keyof SideKeys)[] = ["top", "right", "bottom", "left"];
+
+const SIDE_TRANSLATION_KEYS = {
+  top: "controls.borderTop",
+  right: "controls.borderRight",
+  bottom: "controls.borderBottom",
+  left: "controls.borderLeft",
+} as const;
 
 export function BorderControls({
   keys,
@@ -49,6 +52,7 @@ export function BorderControls({
   step = 0.5,
   hintMax = "6px heavy",
 }: BorderControlsProps) {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const [individual, setIndividual] = useState(false);
 
@@ -76,7 +80,11 @@ export function BorderControls({
         <div className="flex items-center gap-1">
           <button
             type="button"
-            title={individual ? "Sync all sides" : "Set sides individually"}
+            title={
+              individual
+                ? t("controls.borderSync")
+                : t("controls.borderIndividual")
+            }
             className="p-0.5 transition-colors"
             style={{
               color: individual
@@ -103,7 +111,7 @@ export function BorderControls({
 
       {!individual ? (
         <SliderRow
-          label={`All — ${allVal}px`}
+          label={`${t("controls.borderAll")} — ${allVal}px`}
           min={0}
           max={max}
           step={step}
@@ -113,12 +121,12 @@ export function BorderControls({
         />
       ) : (
         <div className="space-y-2">
-          {SIDES.map(({ label, side }) => {
+          {SIDES.map((side) => {
             const key = keys[side];
             return (
               <SliderRow
                 key={key}
-                label={`${label} — ${parseFloat(tokens[key] ?? "1")}px`}
+                label={`${t(SIDE_TRANSLATION_KEYS[side])} — ${parseFloat(tokens[key] ?? "1")}px`}
                 min={0}
                 max={max}
                 step={step}

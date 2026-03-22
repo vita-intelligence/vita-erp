@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -17,34 +19,32 @@ import {
 } from "../_shared";
 import { Preview } from "./Preview";
 
-// ── Radius presets ───────────────────────────────────────────────────────────
-
-const RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "4px", value: "4px" },
-  { label: "8px", value: "8px" },
-  { label: "12px", value: "12px" },
-  { label: "16px", value: "16px" },
-];
-
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function CardsModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
   const radiusPx = parseFloat(tokens.cardRadius);
+
+  const RADIUS_PRESETS = [
+    { label: t("presets.sharp"), value: "0px" },
+    { label: "4px", value: "4px" },
+    { label: "8px", value: "8px" },
+    { label: "12px", value: "12px" },
+    { label: "16px", value: "16px" },
+  ];
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the appearance of all cards and panels — the primary content
-        containers across the ERP interface.
+        {t("modules.cards.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
-      <Section title="Shape">
+      <Section title={t("sections.shape")}>
         <SliderRow
           label={`Radius — ${radiusPx}px`}
           min={0}
@@ -55,7 +55,7 @@ export function CardsModule() {
           hint={["0 sharp", "24px rounded"]}
           onReset={() => resetColor(["cardRadius"])}
         />
-        <Row label="Quick presets">
+        <Row label={t("labels.quickPresets")}>
           {RADIUS_PRESETS.map((p) => (
             <Chip
               key={p.value}
@@ -69,7 +69,7 @@ export function CardsModule() {
       </Section>
 
       {/* ── Border ── */}
-      <Section title="Border">
+      <Section title={t("sections.border")}>
         <BorderControls
           keys={{
             top: "cardBorderTop",
@@ -85,7 +85,7 @@ export function CardsModule() {
       </Section>
 
       {/* ── Shadow ── */}
-      <Section title="Shadow">
+      <Section title={t("sections.shadow")}>
         <ShadowBuilder
           value={tokens.cardShadow}
           onChange={(v) => setTokens({ cardShadow: v })}

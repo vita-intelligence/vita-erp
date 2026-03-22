@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -17,14 +19,15 @@ import { Preview } from "./Preview";
 // ── Presets ──────────────────────────────────────────────────────────────────
 
 const LIST_RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Soft", value: "6px" },
-  { label: "Rounded", value: "12px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.soft", value: "6px" },
+  { label: "presets.rounded", value: "12px" },
 ];
 
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function TabsModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -40,15 +43,15 @@ export function TabsModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the tab list, items, active indicator, and panel padding.
+        {t("modules.tabs.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Tab list ── */}
-      <Section title="Tab list">
+      <Section title={t("sections.tabList")}>
         <Row
-          label="Radius preset"
+          label={t("labels.radiusPreset")}
           onReset={() => resetColor(["tabsListRadius"])}
         >
           {LIST_RADIUS_PRESETS.map((p) => (
@@ -57,7 +60,7 @@ export function TabsModule() {
               active={tokens.tabsListRadius === p.value}
               onClick={() => setTokens({ tabsListRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -96,7 +99,7 @@ export function TabsModule() {
       </Section>
 
       {/* ── Tab items ── */}
-      <Section title="Tab items">
+      <Section title={t("sections.tabItems")}>
         <SliderRow
           label={`Radius — ${tabRadiusPx}px`}
           min={0}
@@ -141,11 +144,14 @@ export function TabsModule() {
           onReset={() => resetColor(["tabsTabFontSize"])}
         />
 
-        <FontWeightRow tokenKey="tabsTabFontWeight" label="Weight" />
+        <FontWeightRow
+          tokenKey="tabsTabFontWeight"
+          label={t("labels.weight")}
+        />
       </Section>
 
       {/* ── Panel ── */}
-      <Section title="Panel">
+      <Section title={t("sections.panel")}>
         <SliderRow
           label={`Padding — ${panelPaddingPx}px`}
           min={0}

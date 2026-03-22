@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -15,18 +17,19 @@ import {
 import { Preview } from "./Preview";
 
 const POPOVER_RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Soft", value: "6px" },
-  { label: "Rounded", value: "12px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.soft", value: "6px" },
+  { label: "presets.rounded", value: "12px" },
 ];
 
 const TRIGGER_RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Soft", value: "6px" },
-  { label: "Rounded", value: "12px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.soft", value: "6px" },
+  { label: "presets.rounded", value: "12px" },
 ];
 
 export function ComboBoxModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -47,14 +50,13 @@ export function ComboBoxModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the appearance of combo box dropdowns — popover shape, trigger
-        button, and list item styling.
+        {t("modules.comboBox.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Popover ── */}
-      <Section title="Popover">
+      <Section title={t("sections.popover")}>
         <SliderRow
           label={`Radius — ${popoverRadiusPx}px`}
           min={0}
@@ -65,14 +67,14 @@ export function ComboBoxModule() {
           hint={["0 sharp", "20px rounded"]}
           onReset={() => resetColor(["comboBoxPopoverRadius"])}
         />
-        <Row label="Quick presets">
+        <Row label={t("labels.quickPresets")}>
           {POPOVER_RADIUS_PRESETS.map((p) => (
             <Chip
               key={p.value}
               active={tokens.comboBoxPopoverRadius === p.value}
               onClick={() => setTokens({ comboBoxPopoverRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -100,7 +102,7 @@ export function ComboBoxModule() {
       </Section>
 
       {/* ── Popover shadow ── */}
-      <Section title="Popover shadow">
+      <Section title={t("sections.popoverShadow")}>
         <ShadowBuilder
           value={tokens.comboBoxPopoverShadow ?? "none"}
           onChange={(v) => setTokens({ comboBoxPopoverShadow: v })}
@@ -110,7 +112,7 @@ export function ComboBoxModule() {
       </Section>
 
       {/* ── Trigger ── */}
-      <Section title="Trigger">
+      <Section title={t("sections.trigger")}>
         <SliderRow
           label={`Radius — ${triggerRadiusPx}px`}
           min={0}
@@ -121,14 +123,14 @@ export function ComboBoxModule() {
           hint={["0 sharp", "16px rounded"]}
           onReset={() => resetColor(["comboBoxTriggerRadius"])}
         />
-        <Row label="Quick presets">
+        <Row label={t("labels.quickPresets")}>
           {TRIGGER_RADIUS_PRESETS.map((p) => (
             <Chip
               key={p.value}
               active={tokens.comboBoxTriggerRadius === p.value}
               onClick={() => setTokens({ comboBoxTriggerRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -145,7 +147,7 @@ export function ComboBoxModule() {
       </Section>
 
       {/* ── List items ── */}
-      <Section title="List items">
+      <Section title={t("sections.listItems")}>
         <SliderRow
           label={`Padding X — ${itemPxX}px`}
           min={4}
@@ -189,7 +191,7 @@ export function ComboBoxModule() {
       </Section>
 
       {/* ── Motion ── */}
-      <Section title="Motion">
+      <Section title={t("sections.motion")}>
         <TransitionRow tokenKey="comboBoxTransitionDuration" />
       </Section>
     </div>

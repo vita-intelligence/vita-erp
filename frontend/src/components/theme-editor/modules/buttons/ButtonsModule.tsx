@@ -1,6 +1,7 @@
 "use client";
 
 import { RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { useThemeStore } from "@/stores/theme";
@@ -69,6 +70,7 @@ const SHOWS_3D = new Set<HoverType>([
 // ── Module ──────────────────────────────────────────────────────────────────
 
 export function ButtonsModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
   const radiusPx = parseFloat(tokens.btnRadius);
@@ -131,18 +133,17 @@ export function ButtonsModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        All controls affect every button across the application simultaneously.
-        Hover and click the preview buttons to see animations live.
+        {t("modules.buttons.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
-      <Section title="Shape">
+      <Section title={t("sections.shape")}>
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-xs text-vita-text-secondary">
-              Corner radius
+              {t("labels.cornerRadius")}
             </span>
             <div className="flex items-center gap-1">
               <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
@@ -173,13 +174,13 @@ export function ButtonsModule() {
           </div>
         </div>
 
-        <Row label="Quick presets">
+        <Row label={t("labels.quickPresets")}>
           {[
-            { label: "Sharp", value: "0px" },
+            { label: t("presets.sharp"), value: "0px" },
             { label: "4px", value: "4px" },
             { label: "8px", value: "8px" },
             { label: "12px", value: "12px" },
-            { label: "Pill", value: "9999px" },
+            { label: t("presets.pill"), value: "9999px" },
           ].map((p) => (
             <Chip
               key={p.value}
@@ -193,18 +194,18 @@ export function ButtonsModule() {
       </Section>
 
       {/* ── Typography ── */}
-      <Section title="Typography">
+      <Section title={t("sections.typography")}>
         <FontWeightRow tokenKey="btnFontWeight" />
 
         <Row
-          label="Letter spacing"
+          label={t("labels.letterSpacing")}
           onReset={() => resetColor(["btnLetterSpacing"])}
         >
           {[
-            { label: "Default", value: "0em" },
-            { label: "Snug", value: "0.02em" },
-            { label: "Wide", value: "0.06em" },
-            { label: "Widest", value: "0.12em" },
+            { label: t("presets.default"), value: "0em" },
+            { label: t("presets.snug"), value: "0.02em" },
+            { label: t("presets.wide"), value: "0.06em" },
+            { label: t("presets.widest"), value: "0.12em" },
           ].map((o) => (
             <Chip
               key={o.value}
@@ -216,11 +217,14 @@ export function ButtonsModule() {
           ))}
         </Row>
 
-        <Row label="Text case" onReset={() => resetColor(["btnTextTransform"])}>
+        <Row
+          label={t("labels.textCase")}
+          onReset={() => resetColor(["btnTextTransform"])}
+        >
           {[
-            { label: "Normal", value: "none" },
-            { label: "UPPERCASE", value: "uppercase" },
-            { label: "Capitalize", value: "capitalize" },
+            { label: t("labels.textNormal"), value: "none" },
+            { label: t("labels.uppercase"), value: "uppercase" },
+            { label: t("labels.capitalize"), value: "capitalize" },
           ].map((o) => (
             <Chip
               key={o.value}
@@ -234,7 +238,7 @@ export function ButtonsModule() {
       </Section>
 
       {/* ── Border ── */}
-      <Section title="Border">
+      <Section title={t("sections.border")}>
         <BorderControls
           keys={{
             top: "btnBorderTop",
@@ -250,7 +254,7 @@ export function ButtonsModule() {
       </Section>
 
       {/* ── Shadow ── */}
-      <Section title="Shadow">
+      <Section title={t("sections.shadow")}>
         <ShadowBuilder
           value={tokens.btnShadow}
           onChange={(v) => setTokens({ btnShadow: v })}
@@ -277,8 +281,8 @@ export function ButtonsModule() {
       />
 
       {/* ── Motion (unified hover + 3D hover) ── */}
-      <Section title="Motion">
-        <Row label="Hover effect" onReset={resetHover}>
+      <Section title={t("sections.motion")}>
+        <Row label={t("labels.hoverEffect")} onReset={resetHover}>
           {HOVER_OPTIONS.map((o) => (
             <Chip
               key={o.value}
@@ -350,7 +354,7 @@ export function ButtonsModule() {
               }}
               hint={["1° subtle", "12° dramatic"]}
             />
-            <Row label="Direction">
+            <Row label={t("labels.direction")}>
               {(["left", "right"] as TiltDir[]).map((d) => (
                 <Chip
                   key={d}

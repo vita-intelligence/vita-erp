@@ -1,0 +1,360 @@
+{
+  "chrome": {
+    "title": "Marke & Design",
+    "titleFull": "Marken- & Design-Editor",
+    "resetAll": "Alles zurücksetzen",
+    "resetAllTooltip": "Alles auf Standardwerte zurücksetzen",
+    "resetSection": "Abschnitt zurücksetzen",
+    "reset": "Zurücksetzen",
+    "close": "Schließen",
+    "livePreview": "Live-Vorschau",
+    "hoverToTest": "zum Testen darüberfahren und klicken",
+    "clickToPreview": "zum Vorschauen klicken",
+    "moveCursor": "Cursor über die Karte bewegen"
+  },
+  "groups": {
+    "foundation": "Grundlagen",
+    "components": "Komponenten"
+  },
+  "modes": {
+    "light": "hell",
+    "dark": "dunkel"
+  },
+  "controls": {
+    "fontWeight": "Schriftstärke",
+    "regular": "Regular",
+    "medium": "Medium",
+    "semibold": "Halbfett",
+    "bold": "Fett",
+    "transition": "Übergang",
+    "instant": "Sofort",
+    "fast": "Schnell",
+    "normal": "Normal",
+    "smooth": "Fließend",
+    "slow": "Langsam",
+    "borderStyle": "Stil",
+    "solid": "— Durchgezogen",
+    "dashed": "- - Gestrichelt",
+    "dotted": "··· Gepunktet",
+    "shadow": "Schatten",
+    "shadowNone": "Keiner",
+    "shadowCustom": "Benutzerdefiniert",
+    "shadowOuter": "Außen",
+    "shadowInset": "Innen",
+    "shadowX": "X-Versatz",
+    "shadowY": "Y-Versatz",
+    "shadowBlur": "Unschärfe",
+    "shadowSpread": "Ausbreitung",
+    "shadowOpacity": "Deckkraft",
+    "borderAll": "Alle Seiten",
+    "borderSync": "Synchronisieren",
+    "borderIndividual": "Einzeln",
+    "borderTop": "Oben",
+    "borderRight": "Rechts",
+    "borderBottom": "Unten",
+    "borderLeft": "Links"
+  },
+  "presets": {
+    "sharp": "Scharf",
+    "soft": "Weich",
+    "rounded": "Abgerundet",
+    "large": "Groß",
+    "pill": "Pille",
+    "circle": "Kreis",
+    "square": "Quadrat",
+    "none": "Keiner",
+    "subtle": "Dezent",
+    "moderate": "Moderat",
+    "strong": "Stark",
+    "dramatic": "Dramatisch",
+    "flat": "Flach",
+    "subtleTilt": "Dezente Neigung",
+    "forwardLean": "Vorwärtsneigung",
+    "sideLean": "Seitenneigung",
+    "twist": "Drehung",
+    "small": "Klein",
+    "medium": "Mittel",
+    "large2": "Groß",
+    "xl": "XL",
+    "default": "Standard",
+    "snug": "Eng",
+    "wide": "Breit",
+    "widest": "Am breitesten",
+    "tight": "Schmal",
+    "relaxed": "Entspannt",
+    "spacious": "Geräumig",
+    "compact": "Kompakt",
+    "wider": "Breiter",
+    "hover": "Beim Überfahren",
+    "always": "Immer",
+    "4px": "4px",
+    "8px": "8px"
+  },
+  "transform3d": {
+    "title": "3D-Transformation",
+    "presets": "Voreinstellungen",
+    "rotateX": "X-Rotation",
+    "rotateY": "Y-Rotation",
+    "rotateZ": "Z-Rotation",
+    "hintXBack": "ganz zurück",
+    "hintXForward": "ganz nach vorne",
+    "hintYLeft": "ganz links",
+    "hintYRight": "ganz rechts",
+    "hintZCcw": "gegen den Uhrzeigersinn",
+    "hintZCw": "im Uhrzeigersinn"
+  },
+  "hover3d": {
+    "title": "Hover-Animation",
+    "effect": "Effekt",
+    "none": "Keiner",
+    "lift": "Anheben",
+    "scale": "Skalieren",
+    "liftScale": "Anheben + Skalieren",
+    "tiltForward": "Nach vorne neigen",
+    "tiltSide": "Seitlich neigen",
+    "tilt3d": "3D-Neigung",
+    "flipPeek": "Umdrehen und spähen",
+    "liftTilt": "Anheben + Neigen",
+    "hoverX": "Hover X",
+    "hoverY": "Hover Y",
+    "hoverZ": "Hover Z"
+  },
+  "cursorTrack": {
+    "title": "Cursor-Verfolgung",
+    "description": "Das Element dreht sich dynamisch basierend auf der Cursorposition — je näher am Rand, desto mehr neigt es sich zu Ihnen.",
+    "intensity": "Intensität",
+    "restore": "Wiederherstellen",
+    "off": "Aus",
+    "subtle": "Dezent",
+    "moderate": "Moderat",
+    "strong": "Stark",
+    "dramatic": "Dramatisch"
+  },
+  "sections": {
+    "shape": "Form",
+    "typography": "Typografie",
+    "border": "Rahmen",
+    "shadow": "Schatten",
+    "motion": "Bewegung",
+    "spacing": "Abstände",
+    "sizes": "Größen",
+    "trigger": "Auslöser",
+    "popover": "Popover",
+    "popoverShadow": "Popover-Schatten",
+    "triggerShadow": "Auslöser-Schatten",
+    "indicator": "Indikator",
+    "track": "Spur",
+    "thumb": "Schieberegler",
+    "fill": "Füllung",
+    "label": "Bezeichnung",
+    "stroke": "Strich",
+    "animation": "Animation",
+    "thickness": "Stärke",
+    "container": "Container",
+    "groupLabel": "Gruppenbezeichnung",
+    "listItems": "Listenelemente",
+    "menuItems": "Menüelemente",
+    "separator": "Trennlinie",
+    "colorArea": "Farbbereich",
+    "sliders": "Schieberegler",
+    "thumbs": "Griffpunkte",
+    "swatches": "Farbfelder",
+    "controlBox": "Steuerfeld",
+    "fallbackText": "Ersatztext",
+    "group": "Gruppe",
+    "tabList": "Tab-Liste",
+    "tabItems": "Tab-Elemente",
+    "panel": "Panel",
+    "header": "Kopfzeile",
+    "body": "Inhalt",
+    "footer": "Fußzeile",
+    "heading": "Überschrift",
+    "backdrop": "Hintergrund",
+    "handle": "Griff",
+    "content": "Inhalt",
+    "dropdownShape": "Dropdown-Form",
+    "dropdownBorder": "Dropdown-Rahmen",
+    "dropdownSpacing": "Dropdown-Abstände",
+    "dropdownShadow": "Dropdown-Schatten",
+    "icon": "Symbol",
+    "dialogShape": "Dialog-Form",
+    "dialogSpacing": "Dialog-Abstände",
+    "dialogShadow": "Dialog-Schatten",
+    "itemShape": "Element-Form",
+    "itemBorder": "Element-Rahmen",
+    "containerBorder": "Container-Rahmen",
+    "containerShadow": "Container-Schatten"
+  },
+  "labels": {
+    "cornerRadius": "Eckenradius",
+    "quickPresets": "Schnellvoreinstellungen",
+    "radiusPreset": "Radius-Voreinstellung",
+    "sizePreset": "Größen-Voreinstellung",
+    "preset": "Voreinstellung",
+    "radius": "Radius",
+    "width": "Breite",
+    "height": "Höhe",
+    "size": "Größe",
+    "gap": "Abstand",
+    "padding": "Innenabstand",
+    "paddingX": "Innenabstand X",
+    "paddingY": "Innenabstand Y",
+    "fontSize": "Schriftgröße",
+    "fontWeight": "Schriftstärke",
+    "weight": "Stärke",
+    "letterSpacing": "Zeichenabstand",
+    "textCase": "Groß-/Kleinschreibung",
+    "textNormal": "Normal",
+    "uppercase": "GROSSBUCHSTABEN",
+    "capitalize": "Großschreiben",
+    "hoverEffect": "Hover-Effekt",
+    "direction": "Richtung",
+    "duration": "Dauer",
+    "opacity": "Deckkraft",
+    "blur": "Unschärfe",
+    "borderWidth": "Rahmenbreite",
+    "itemGap": "Elementabstand",
+    "labelGap": "Bezeichnungsabstand",
+    "overlap": "Überlappung",
+    "trackShape": "Spurform",
+    "dotSize": "Punktgröße",
+    "iconSize": "Symbolgröße",
+    "checkScale": "Häkchen-Skalierung",
+    "indicatorSize": "Indikatorgröße",
+    "separatorGap": "Trennlinienabstand",
+    "intensity": "Intensität",
+    "linkWeight": "Link-Stärke",
+    "activeWeight": "Aktive Stärke",
+    "underline": "Unterstrichen",
+    "icon": "Symbol",
+    "trackHeight": "Spurhöhe",
+    "trackRadius": "Spurradius",
+    "border": "Rahmen",
+    "shape": "Form",
+    "small": "Klein",
+    "medium": "Mittel",
+    "large": "Groß"
+  },
+  "modules": {
+    "colors": {
+      "label": "Farben",
+      "description": "Markenfarben, Statusindikatoren und Oberflächentönungen"
+    },
+    "typography": {
+      "label": "Typografie",
+      "description": "Schriften, Größen, Zeilenhöhe und Textstärke"
+    },
+    "spacing": {
+      "label": "Abstände",
+      "description": "Oberflächendichte — skaliert alle Innenabstände und Lücken"
+    },
+    "buttons": {
+      "label": "Schaltflächen",
+      "description": "Form, Stärke, Schatten und Rahmen aller Schaltflächenvarianten",
+      "allControls": "Alle Steuerungen wirken sich gleichzeitig auf jede Schaltfläche in der gesamten Anwendung aus. Fahren Sie mit der Maus über die Vorschau-Schaltflächen und klicken Sie, um Animationen live zu sehen."
+    },
+    "inputs": {
+      "label": "Eingabefelder",
+      "description": "Radius, Rahmen und Bezeichnungsstil von Textfeldern und Formularen"
+    },
+    "cards": {
+      "label": "Karten",
+      "description": "Form, Rahmen und Schatten von Karten und Inhaltspanels",
+      "allControls": "Steuert das Erscheinungsbild aller Karten und Panels — die primären Inhaltscontainer der ERP-Oberfläche."
+    },
+    "badges": {
+      "label": "Abzeichen",
+      "description": "Form und Stärke von Status-Abzeichen, Chips und Tags",
+      "allControls": "Steuert das Erscheinungsbild von Status-Abzeichen, Chips und Tags in der gesamten Oberfläche."
+    },
+    "accordion": {
+      "label": "Akkordeon",
+      "description": "Form, Abstände und Typografie von einklappbaren Abschnitten",
+      "allControls": "Steuert das Erscheinungsbild aller Akkordeons und einklappbaren Abschnitte der Oberfläche — FAQ-Panels, Detail-Schubladen und gruppierte Einstellungen."
+    },
+    "alerts": {
+      "label": "Warnungen",
+      "description": "Inline-Warnbanner und modale Bestätigungsdialoge",
+      "allControls": "Steuert sowohl Inline-Warnbanner als auch modale Bestätigungsdialoge für Benachrichtigungen, Warnungen und Bestätigungen destruktiver Aktionen.",
+      "inlineAlerts": "Inline-Warnungen",
+      "inlineAlertsDescription": "Statusbanner für Erfolgs-, Warn-, Fehler- und Informationsmeldungen.",
+      "alertDialog": "Warndialog",
+      "alertDialogDescription": "Modale Bestätigungspanels für destruktive oder kritische Aktionen."
+    },
+    "autocomplete": {
+      "label": "Autovervollständigung",
+      "description": "Dropdown-Popover und Listenelemente für Such- und Kombifelder",
+      "allControls": "Steuert das Dropdown-Popover und die Listenelemente für Autovervollständigungs- und Kombifelder. Der Auslöser erbt den Stil der Eingabe-Token."
+    },
+    "avatar": {
+      "label": "Avatar",
+      "description": "Größe, Form, Rahmen und Gruppenüberlappung für Benutzer-Avatare",
+      "allControls": "Steuert das Erscheinungsbild von Benutzer-Avataren — Profilbilder, Ersatz-Initialen, Statusindikatoren und gruppierte Stapel."
+    },
+    "breadcrumbs": {
+      "label": "Brotkrümel-Navigation",
+      "description": "Schrift, Abstände und Trennzeichenstil der Navigationspfade",
+      "allControls": "Steuert das Erscheinungsbild der Brotkrümel-Navigationspfade — von einfachen Textlinks bis hin zu Tag-/Pillen-Elementen mit Rahmen und Hintergründen."
+    },
+    "buttonGroup": {
+      "label": "Schaltflächengruppe",
+      "description": "Form, Abstand und Rahmen von verbundenen Schaltflächen-Containern",
+      "allControls": "Steuert das Layout des Gruppen-Containers — Abstand, Rahmen und Schatten. Das Erscheinungsbild einzelner Schaltflächen (Radius, Stärke, Farbe) wird über das Schaltflächen-Modul gesteuert."
+    },
+    "calendar": {
+      "label": "Kalender",
+      "description": "Form, Zellengröße und Typografie von Kalenderpanels und Datumsauswahlen",
+      "allControls": "Steuert das Erscheinungsbild des Containers von Kalenderpanels und Datumsauswahlen."
+    },
+    "checkbox": {
+      "label": "Kontrollkästchen",
+      "description": "Größe, Form, Rahmen, Indikator und Bezeichnung von Kontrollkästchen",
+      "allControls": "Steuert das Erscheinungsbild aller Kontrollkästchen — das Steuerfeld, den Häkchen-Indikator und den Bezeichnungstext in der gesamten Oberfläche."
+    },
+    "checkboxGroup": {
+      "label": "Kontrollkästchen-Gruppe",
+      "description": "Abstände, Container-Form und Bezeichnungsstil von gruppierten Kontrollkästchen",
+      "allControls": "Steuert den Container, der eine Gruppe verwandter Kontrollkästchen umschließt — Abstände, Rahmen, Innenabstand und Stil der Gruppenbezeichnung."
+    },
+    "colorPicker": {
+      "label": "Farbwähler",
+      "description": "Popover, Farbbereich, Schieberegler, Griffpunkte und Farbfeldstil",
+      "allControls": "Steuert das Erscheinungsbild des Farbwähler-Popovers, Farbbereichs, der Schieberegler, Griffpunkte und vordefinierten Farbfelder in der gesamten Oberfläche."
+    },
+    "comboBox": {
+      "label": "Kombinationsfeld",
+      "description": "Popover-Form, Auslöser-Schaltfläche und Listenelement-Stil",
+      "allControls": "Steuert das Erscheinungsbild der Kombinationsfeld-Dropdowns — Popover-Form, Auslöser-Schaltfläche und Listenelement-Stil."
+    },
+    "datePicker": {
+      "label": "Datumsauswahl",
+      "description": "Auslöser, Popover und Indikator der Datumsauswahlfelder",
+      "allControls": "Steuert den Auslöser, das Popover und den Indikator der Datumsauswahlfelder."
+    },
+    "separator": {
+      "label": "Trennlinie",
+      "description": "Stärke und Form der Trennlinien",
+      "allControls": "Steuert die Stärke und Form der Trennlinien."
+    },
+    "skeleton": {
+      "label": "Skelett",
+      "description": "Form und Animationsgeschwindigkeit der Ladeskelette",
+      "allControls": "Steuert die Form und Animationsgeschwindigkeit der Ladeskelette."
+    },
+    "slider": {
+      "label": "Schieberegler",
+      "description": "Spur, Griffpunkt und Animation der Bereichsschieberegler",
+      "allControls": "Steuert die Spur, den Griffpunkt und die Animation der Bereichsschieberegler."
+    },
+    "spinner": {
+      "label": "Ladeindikator",
+      "description": "Größe und Strichstärke der Ladeindikatoren",
+      "allControls": "Steuert die Größe und Strichstärke der Ladeindikatoren."
+    },
+    "tabs": {
+      "label": "Registerkarten",
+      "description": "Tab-Liste, Elemente, aktiver Indikator und Panel-Innenabstand",
+      "allControls": "Steuert die Tab-Liste, Elemente, den aktiven Indikator und den Panel-Innenabstand."
+    }
+  }
+}

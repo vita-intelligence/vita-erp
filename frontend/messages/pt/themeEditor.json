@@ -1,0 +1,360 @@
+{
+  "chrome": {
+    "title": "Marca e tema",
+    "titleFull": "Editor de marca e tema",
+    "resetAll": "Redefinir tudo",
+    "resetAllTooltip": "Redefinir tudo para os padrões",
+    "resetSection": "Redefinir seção",
+    "reset": "Redefinir",
+    "close": "Fechar",
+    "livePreview": "Pré-visualização ao vivo",
+    "hoverToTest": "passe o cursor e clique para testar",
+    "clickToPreview": "clique para pré-visualizar",
+    "moveCursor": "mova o cursor sobre o cartão"
+  },
+  "groups": {
+    "foundation": "Fundação",
+    "components": "Componentes"
+  },
+  "modes": {
+    "light": "claro",
+    "dark": "escuro"
+  },
+  "controls": {
+    "fontWeight": "Peso da fonte",
+    "regular": "Regular",
+    "medium": "Médio",
+    "semibold": "Seminegrito",
+    "bold": "Negrito",
+    "transition": "Transição",
+    "instant": "Instantânea",
+    "fast": "Rápida",
+    "normal": "Normal",
+    "smooth": "Suave",
+    "slow": "Lenta",
+    "borderStyle": "Estilo",
+    "solid": "— Sólido",
+    "dashed": "- - Tracejado",
+    "dotted": "··· Pontilhado",
+    "shadow": "Sombra",
+    "shadowNone": "Nenhuma",
+    "shadowCustom": "Personalizada",
+    "shadowOuter": "Externa",
+    "shadowInset": "Interna",
+    "shadowX": "Deslocamento X",
+    "shadowY": "Deslocamento Y",
+    "shadowBlur": "Desfoque",
+    "shadowSpread": "Expansão",
+    "shadowOpacity": "Opacidade",
+    "borderAll": "Todos os lados",
+    "borderSync": "Sincronizar",
+    "borderIndividual": "Individual",
+    "borderTop": "Superior",
+    "borderRight": "Direito",
+    "borderBottom": "Inferior",
+    "borderLeft": "Esquerdo"
+  },
+  "presets": {
+    "sharp": "Agudo",
+    "soft": "Suave",
+    "rounded": "Arredondado",
+    "large": "Grande",
+    "pill": "Pílula",
+    "circle": "Círculo",
+    "square": "Quadrado",
+    "none": "Nenhum",
+    "subtle": "Sutil",
+    "moderate": "Moderado",
+    "strong": "Forte",
+    "dramatic": "Dramático",
+    "flat": "Plano",
+    "subtleTilt": "Inclinação sutil",
+    "forwardLean": "Inclinação frontal",
+    "sideLean": "Inclinação lateral",
+    "twist": "Torção",
+    "small": "Pequeno",
+    "medium": "Médio",
+    "large2": "Grande",
+    "xl": "XL",
+    "default": "Padrão",
+    "snug": "Justo",
+    "wide": "Amplo",
+    "widest": "Máximo",
+    "tight": "Estreito",
+    "relaxed": "Relaxado",
+    "spacious": "Espaçoso",
+    "compact": "Compacto",
+    "wider": "Mais amplo",
+    "hover": "Ao passar o cursor",
+    "always": "Sempre",
+    "4px": "4px",
+    "8px": "8px"
+  },
+  "transform3d": {
+    "title": "Transformação 3D",
+    "presets": "Predefinições",
+    "rotateX": "Rotação X",
+    "rotateY": "Rotação Y",
+    "rotateZ": "Rotação Z",
+    "hintXBack": "trás completo",
+    "hintXForward": "frente completa",
+    "hintYLeft": "esquerda completa",
+    "hintYRight": "direita completa",
+    "hintZCcw": "anti-horário",
+    "hintZCw": "horário"
+  },
+  "hover3d": {
+    "title": "Animação ao passar o cursor",
+    "effect": "Efeito",
+    "none": "Nenhum",
+    "lift": "Elevar",
+    "scale": "Escalar",
+    "liftScale": "Elevar + Escalar",
+    "tiltForward": "Inclinar para frente",
+    "tiltSide": "Inclinar lateral",
+    "tilt3d": "Inclinar 3D",
+    "flipPeek": "Virar e espiar",
+    "liftTilt": "Elevar + Inclinar",
+    "hoverX": "Cursor X",
+    "hoverY": "Cursor Y",
+    "hoverZ": "Cursor Z"
+  },
+  "cursorTrack": {
+    "title": "Rastreamento do cursor",
+    "description": "O elemento rotaciona dinamicamente com base na posição do cursor — quanto mais perto da borda, mais ele se inclina em sua direção.",
+    "intensity": "Intensidade",
+    "restore": "Restaurar",
+    "off": "Desativado",
+    "subtle": "Sutil",
+    "moderate": "Moderado",
+    "strong": "Forte",
+    "dramatic": "Dramático"
+  },
+  "sections": {
+    "shape": "Forma",
+    "typography": "Tipografia",
+    "border": "Borda",
+    "shadow": "Sombra",
+    "motion": "Movimento",
+    "spacing": "Espaçamento",
+    "sizes": "Tamanhos",
+    "trigger": "Gatilho",
+    "popover": "Popover",
+    "popoverShadow": "Sombra do popover",
+    "triggerShadow": "Sombra do gatilho",
+    "indicator": "Indicador",
+    "track": "Trilha",
+    "thumb": "Controle deslizante",
+    "fill": "Preenchimento",
+    "label": "Rótulo",
+    "stroke": "Traço",
+    "animation": "Animação",
+    "thickness": "Espessura",
+    "container": "Contêiner",
+    "groupLabel": "Rótulo do grupo",
+    "listItems": "Itens da lista",
+    "menuItems": "Itens do menu",
+    "separator": "Separador",
+    "colorArea": "Área de cor",
+    "sliders": "Deslizadores",
+    "thumbs": "Controles deslizantes",
+    "swatches": "Amostras",
+    "controlBox": "Caixa de controle",
+    "fallbackText": "Texto alternativo",
+    "group": "Grupo",
+    "tabList": "Lista de abas",
+    "tabItems": "Itens de aba",
+    "panel": "Painel",
+    "header": "Cabeçalho",
+    "body": "Corpo",
+    "footer": "Rodapé",
+    "heading": "Título",
+    "backdrop": "Pano de fundo",
+    "handle": "Alça",
+    "content": "Conteúdo",
+    "dropdownShape": "Forma do menu suspenso",
+    "dropdownBorder": "Borda do menu suspenso",
+    "dropdownSpacing": "Espaçamento do menu suspenso",
+    "dropdownShadow": "Sombra do menu suspenso",
+    "icon": "Ícone",
+    "dialogShape": "Forma do diálogo",
+    "dialogSpacing": "Espaçamento do diálogo",
+    "dialogShadow": "Sombra do diálogo",
+    "itemShape": "Forma do item",
+    "itemBorder": "Borda do item",
+    "containerBorder": "Borda do contêiner",
+    "containerShadow": "Sombra do contêiner"
+  },
+  "labels": {
+    "cornerRadius": "Raio do canto",
+    "quickPresets": "Predefinições rápidas",
+    "radiusPreset": "Predefinição de raio",
+    "sizePreset": "Predefinição de tamanho",
+    "preset": "Predefinição",
+    "radius": "Raio",
+    "width": "Largura",
+    "height": "Altura",
+    "size": "Tamanho",
+    "gap": "Espaço",
+    "padding": "Preenchimento",
+    "paddingX": "Preenchimento X",
+    "paddingY": "Preenchimento Y",
+    "fontSize": "Tamanho da fonte",
+    "fontWeight": "Peso da fonte",
+    "weight": "Peso",
+    "letterSpacing": "Espaçamento entre letras",
+    "textCase": "Caixa do texto",
+    "textNormal": "Normal",
+    "uppercase": "MAIÚSCULAS",
+    "capitalize": "Capitalizar",
+    "hoverEffect": "Efeito ao passar o cursor",
+    "direction": "Direção",
+    "duration": "Duração",
+    "opacity": "Opacidade",
+    "blur": "Desfoque",
+    "borderWidth": "Largura da borda",
+    "itemGap": "Espaço entre itens",
+    "labelGap": "Espaço do rótulo",
+    "overlap": "Sobreposição",
+    "trackShape": "Forma da trilha",
+    "dotSize": "Tamanho do ponto",
+    "iconSize": "Tamanho do ícone",
+    "checkScale": "Escala da marca",
+    "indicatorSize": "Tamanho do indicador",
+    "separatorGap": "Espaço do separador",
+    "intensity": "Intensidade",
+    "linkWeight": "Peso do link",
+    "activeWeight": "Peso ativo",
+    "underline": "Sublinhado",
+    "icon": "Ícone",
+    "trackHeight": "Altura da trilha",
+    "trackRadius": "Raio da trilha",
+    "border": "Borda",
+    "shape": "Forma",
+    "small": "Pequeno",
+    "medium": "Médio",
+    "large": "Grande"
+  },
+  "modules": {
+    "colors": {
+      "label": "Cores",
+      "description": "Cores da marca, indicadores de status e tonalidades de superfície"
+    },
+    "typography": {
+      "label": "Tipografia",
+      "description": "Fontes, tamanhos, altura de linha e peso do corpo"
+    },
+    "spacing": {
+      "label": "Espaçamento",
+      "description": "Densidade da interface — escala todo o preenchimento e espaços"
+    },
+    "buttons": {
+      "label": "Botões",
+      "description": "Forma, peso, sombra e borda de todas as variantes de botão",
+      "allControls": "Todos os controles afetam cada botão em toda a aplicação simultaneamente. Passe o cursor e clique nos botões de pré-visualização para ver as animações ao vivo."
+    },
+    "inputs": {
+      "label": "Campos de entrada",
+      "description": "Raio, borda e estilo de rótulo dos campos de texto e formulários"
+    },
+    "cards": {
+      "label": "Cartões",
+      "description": "Forma, borda e sombra de cartões e painéis de conteúdo",
+      "allControls": "Controla a aparência de todos os cartões e painéis — os principais contêineres de conteúdo na interface do ERP."
+    },
+    "badges": {
+      "label": "Emblemas",
+      "description": "Forma e peso de emblemas de status, chips e etiquetas",
+      "allControls": "Controla a aparência dos emblemas de status, chips e etiquetas em toda a interface."
+    },
+    "accordion": {
+      "label": "Acordeão",
+      "description": "Forma, espaçamento e tipografia de seções recolhíveis",
+      "allControls": "Controla a aparência de todos os acordeões e seções recolhíveis na interface — painéis de perguntas frequentes, gavetas de detalhes e configurações agrupadas."
+    },
+    "alerts": {
+      "label": "Alertas",
+      "description": "Banners de alerta em linha e diálogos de confirmação modais",
+      "allControls": "Controla tanto os banners de alerta em linha quanto os diálogos de confirmação modais usados para notificações, avisos e confirmações de ações destrutivas.",
+      "inlineAlerts": "Alertas em linha",
+      "inlineAlertsDescription": "Banners de status para mensagens de sucesso, aviso, erro e informação.",
+      "alertDialog": "Diálogo de alerta",
+      "alertDialogDescription": "Painéis de confirmação modais para ações destrutivas ou críticas."
+    },
+    "autocomplete": {
+      "label": "Autocompletar",
+      "description": "Popover suspenso e itens de lista para campos de pesquisa e combinados",
+      "allControls": "Controla o popover suspenso e os itens de lista para campos de autocompletar e caixas combinadas. O gatilho herda o estilo dos tokens de entrada."
+    },
+    "avatar": {
+      "label": "Avatar",
+      "description": "Tamanho, forma, borda e sobreposição de grupo para avatares de usuário",
+      "allControls": "Controla a aparência dos avatares de usuário — fotos de perfil, iniciais alternativas, indicadores de status e pilhas agrupadas."
+    },
+    "breadcrumbs": {
+      "label": "Trilha de navegação",
+      "description": "Fonte, espaçamento e estilo de separador das trilhas de navegação",
+      "allControls": "Controla a aparência das trilhas de navegação — de links de texto simples a itens estilo etiqueta/pílula com bordas e fundos."
+    },
+    "buttonGroup": {
+      "label": "Grupo de botões",
+      "description": "Forma, espaço e borda de contêineres de botões conectados",
+      "allControls": "Controla o layout do contêiner do grupo — espaço, borda e sombra. A aparência individual dos botões (raio, peso, cor) é controlada pelo módulo de Botões."
+    },
+    "calendar": {
+      "label": "Calendário",
+      "description": "Forma, tamanho de células e tipografia de painéis de calendário e seletores de data",
+      "allControls": "Controla a aparência do contêiner de painéis de calendário e seletores de data."
+    },
+    "checkbox": {
+      "label": "Caixa de seleção",
+      "description": "Tamanho, forma, borda, indicador e rótulo dos controles de caixa de seleção",
+      "allControls": "Controla a aparência de todas as caixas de seleção — a caixa de controle, o indicador de marca e o texto do rótulo em toda a interface."
+    },
+    "checkboxGroup": {
+      "label": "Grupo de caixas de seleção",
+      "description": "Espaçamento, forma do contêiner e estilo de rótulo de caixas de seleção agrupadas",
+      "allControls": "Controla o contêiner que agrupa um conjunto de caixas de seleção relacionadas — espaçamento, borda, preenchimento e estilo do rótulo do grupo."
+    },
+    "colorPicker": {
+      "label": "Seletor de cor",
+      "description": "Popover, área de cor, deslizadores, controles deslizantes e estilo de amostras",
+      "allControls": "Controla a aparência do popover do seletor de cor, área de cor, deslizadores, controles deslizantes e amostras predefinidas em toda a interface."
+    },
+    "comboBox": {
+      "label": "Caixa combinada",
+      "description": "Forma do popover, botão gatilho e estilo dos itens de lista",
+      "allControls": "Controla a aparência dos menus suspensos das caixas combinadas — forma do popover, botão gatilho e estilo dos itens de lista."
+    },
+    "datePicker": {
+      "label": "Seletor de data",
+      "description": "Gatilho, popover e indicador dos campos de seleção de data",
+      "allControls": "Controla o gatilho, o popover e o indicador dos campos de seleção de data."
+    },
+    "separator": {
+      "label": "Separador",
+      "description": "Espessura e forma das linhas divisórias",
+      "allControls": "Controla a espessura e a forma das linhas divisórias."
+    },
+    "skeleton": {
+      "label": "Esqueleto",
+      "description": "Forma e velocidade de animação dos esqueletos de carregamento",
+      "allControls": "Controla a forma e a velocidade de animação dos esqueletos de carregamento."
+    },
+    "slider": {
+      "label": "Deslizador",
+      "description": "Trilha, controle deslizante e animação de deslizadores de faixa",
+      "allControls": "Controla a trilha, o controle deslizante e a animação dos deslizadores de faixa."
+    },
+    "spinner": {
+      "label": "Indicador de carregamento",
+      "description": "Tamanho e espessura do traço dos indicadores de carregamento",
+      "allControls": "Controla o tamanho e a espessura do traço dos indicadores de carregamento."
+    },
+    "tabs": {
+      "label": "Abas",
+      "description": "Lista de abas, itens, indicador ativo e preenchimento do painel",
+      "allControls": "Controla a lista de abas, itens, indicador ativo e preenchimento do painel."
+    }
+  }
+}

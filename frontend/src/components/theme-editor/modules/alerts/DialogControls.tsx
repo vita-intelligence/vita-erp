@@ -4,12 +4,15 @@
  * Controls for alert dialog — shape, spacing, backdrop (color + blur), shadow.
  */
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import { Section, ShadowBuilder, SliderRow } from "../_shared";
 import { GradientPicker } from "../colors/gradient-picker";
 
 export function DialogControls() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
 
   const radiusPx = parseFloat(tokens.alertDialogRadius ?? "0");
@@ -22,7 +25,7 @@ export function DialogControls() {
 
   return (
     <>
-      <Section title="Dialog shape">
+      <Section title={t("sections.dialogShape")}>
         <SliderRow
           label={`Radius — ${radiusPx}px`}
           min={0}
@@ -35,7 +38,7 @@ export function DialogControls() {
         />
       </Section>
 
-      <Section title="Dialog spacing">
+      <Section title={t("sections.dialogSpacing")}>
         <SliderRow
           label={`Padding X — ${pxX}px`}
           min={12}
@@ -58,7 +61,7 @@ export function DialogControls() {
         />
       </Section>
 
-      <Section title="Backdrop">
+      <Section title={t("sections.backdrop")}>
         <GradientPicker
           tokenKey="alertDialogBackdropColor"
           label="Backdrop color"
@@ -88,7 +91,7 @@ export function DialogControls() {
         />
       </Section>
 
-      <Section title="Dialog shadow">
+      <Section title={t("sections.dialogShadow")}>
         <ShadowBuilder
           value={tokens.alertDialogShadow ?? "none"}
           onChange={(v) => setTokens({ alertDialogShadow: v })}

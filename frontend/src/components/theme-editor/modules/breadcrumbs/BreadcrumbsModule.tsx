@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -14,13 +16,14 @@ import {
 import { Preview } from "./Preview";
 
 const RADIUS_PRESETS = [
-  { label: "None", value: "0px" },
-  { label: "4px", value: "4px" },
-  { label: "8px", value: "8px" },
-  { label: "Pill", value: "9999px" },
+  { label: "presets.none", value: "0px" },
+  { label: "presets.4px", value: "4px" },
+  { label: "presets.8px", value: "8px" },
+  { label: "presets.pill", value: "9999px" },
 ];
 
 export function BreadcrumbsModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -38,14 +41,13 @@ export function BreadcrumbsModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the appearance of breadcrumb navigation trails — from plain
-        text links to tag/pill-style items with borders and backgrounds.
+        {t("modules.breadcrumbs.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Typography ── */}
-      <Section title="Typography">
+      <Section title={t("sections.typography")}>
         <SliderRow
           label={`Font size — ${fontSizePx}px`}
           min={11}
@@ -56,70 +58,73 @@ export function BreadcrumbsModule() {
           hint={["11px compact", "18px large"]}
           onReset={() => resetColor(["breadcrumbsFontSize"])}
         />
-        <FontWeightRow tokenKey="breadcrumbsFontWeight" label="Link weight" />
+        <FontWeightRow
+          tokenKey="breadcrumbsFontWeight"
+          label={t("labels.linkWeight")}
+        />
         <FontWeightRow
           tokenKey="breadcrumbsActiveFontWeight"
-          label="Active weight"
+          label={t("labels.activeWeight")}
         />
         <Row
-          label="Letter spacing"
+          label={t("labels.letterSpacing")}
           onReset={() => resetColor(["breadcrumbsLetterSpacing"])}
         >
           {[
-            { label: "Default", value: "0em" },
-            { label: "Wide", value: "0.04em" },
-            { label: "Wider", value: "0.08em" },
-            { label: "Widest", value: "0.14em" },
+            { label: "presets.default", value: "0em" },
+            { label: "presets.wide", value: "0.04em" },
+            { label: "presets.wider", value: "0.08em" },
+            { label: "presets.widest", value: "0.14em" },
           ].map((o) => (
             <Chip
               key={o.value}
               active={tokens.breadcrumbsLetterSpacing === o.value}
               onClick={() => setTokens({ breadcrumbsLetterSpacing: o.value })}
             >
-              {o.label}
+              {t(o.label)}
             </Chip>
           ))}
         </Row>
         <Row
-          label="Text case"
+          label={t("labels.textCase")}
           onReset={() => resetColor(["breadcrumbsTextTransform"])}
         >
           {[
-            { label: "Normal", value: "none" },
-            { label: "UPPERCASE", value: "uppercase" },
-            { label: "Capitalize", value: "capitalize" },
+            { label: "labels.textNormal", value: "none" },
+            { label: "labels.uppercase", value: "uppercase" },
+            { label: "labels.capitalize", value: "capitalize" },
           ].map((o) => (
             <Chip
               key={o.value}
               active={tokens.breadcrumbsTextTransform === o.value}
               onClick={() => setTokens({ breadcrumbsTextTransform: o.value })}
             >
-              {o.label}
+              {t(o.label)}
             </Chip>
           ))}
         </Row>
         <Row
-          label="Underline"
+          label={t("labels.underline")}
           onReset={() => resetColor(["breadcrumbsUnderline"])}
         >
           {[
-            { label: "None", value: "none" },
-            { label: "Hover", value: "hover" },
-            { label: "Always", value: "underline" },
+            { label: "presets.none", value: "none" },
+            { label: "presets.hover", value: "hover" },
+            { label: "presets.always", value: "underline" },
           ].map((o) => (
             <Chip
               key={o.value}
               active={tokens.breadcrumbsUnderline === o.value}
               onClick={() => setTokens({ breadcrumbsUnderline: o.value })}
             >
-              {o.label}
+              {t(o.label)}
             </Chip>
           ))}
         </Row>
       </Section>
 
       {/* ── Item shape ── */}
-      <Section title="Item shape">
+      <Section title={t("sections.itemShape")}>
         <SliderRow
           label={`Padding X — ${itemPxX}px`}
           min={0}
@@ -150,21 +155,21 @@ export function BreadcrumbsModule() {
           hint={["0 sharp", "20px rounded"]}
           onReset={() => resetColor(["breadcrumbsItemRadius"])}
         />
-        <Row label="Quick presets">
+        <Row label={t("labels.quickPresets")}>
           {RADIUS_PRESETS.map((p) => (
             <Chip
               key={p.value}
               active={tokens.breadcrumbsItemRadius === p.value}
               onClick={() => setTokens({ breadcrumbsItemRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
       </Section>
 
       {/* ── Item border ── */}
-      <Section title="Item border">
+      <Section title={t("sections.itemBorder")}>
         <SliderRow
           label={`Width — ${itemBorderPx}px`}
           min={0}
@@ -179,7 +184,7 @@ export function BreadcrumbsModule() {
       </Section>
 
       {/* ── Spacing ── */}
-      <Section title="Spacing">
+      <Section title={t("sections.spacing")}>
         <SliderRow
           label={`Gap — ${gapPx}px`}
           min={2}
@@ -193,9 +198,9 @@ export function BreadcrumbsModule() {
       </Section>
 
       {/* ── Separator ── */}
-      <Section title="Separator">
+      <Section title={t("sections.separator")}>
         <Row
-          label="Icon"
+          label={t("labels.icon")}
           onReset={() => resetColor(["breadcrumbsSeparatorIcon"])}
         >
           {[

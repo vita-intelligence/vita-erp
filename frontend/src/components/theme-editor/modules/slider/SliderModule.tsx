@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -17,20 +19,21 @@ import { Preview } from "./Preview";
 // ── Presets ──────────────────────────────────────────────────────────────────
 
 const TRACK_RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Rounded", value: "8px" },
-  { label: "Pill", value: "9999px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.rounded", value: "8px" },
+  { label: "presets.pill", value: "9999px" },
 ];
 
 const THUMB_RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Rounded", value: "8px" },
-  { label: "Pill", value: "9999px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.rounded", value: "8px" },
+  { label: "presets.pill", value: "9999px" },
 ];
 
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function SliderModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -43,13 +46,13 @@ export function SliderModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the track, thumb, and animation of range sliders.
+        {t("modules.slider.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Track ── */}
-      <Section title="Track">
+      <Section title={t("sections.track")}>
         <SliderRow
           label={`Height — ${trackHeightPx}px`}
           min={2}
@@ -62,7 +65,7 @@ export function SliderModule() {
         />
 
         <Row
-          label="Radius preset"
+          label={t("labels.radiusPreset")}
           onReset={() => resetColor(["sliderTrackRadius"])}
         >
           {TRACK_RADIUS_PRESETS.map((p) => (
@@ -75,14 +78,14 @@ export function SliderModule() {
               }
               onClick={() => setTokens({ sliderTrackRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
       </Section>
 
       {/* ── Thumb ── */}
-      <Section title="Thumb">
+      <Section title={t("sections.thumb")}>
         <SliderRow
           label={`Size — ${thumbSizePx}px`}
           min={12}
@@ -106,7 +109,7 @@ export function SliderModule() {
         />
 
         <Row
-          label="Radius preset"
+          label={t("labels.radiusPreset")}
           onReset={() => resetColor(["sliderThumbRadius"])}
         >
           {THUMB_RADIUS_PRESETS.map((p) => (
@@ -119,7 +122,7 @@ export function SliderModule() {
               }
               onClick={() => setTokens({ sliderThumbRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>

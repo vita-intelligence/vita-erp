@@ -1,0 +1,360 @@
+{
+  "chrome": {
+    "title": "브랜드 및 테마",
+    "titleFull": "브랜드 및 테마 편집기",
+    "resetAll": "모두 초기화",
+    "resetAllTooltip": "모두 기본값으로 초기화",
+    "resetSection": "섹션 초기화",
+    "reset": "초기화",
+    "close": "닫기",
+    "livePreview": "실시간 미리보기",
+    "hoverToTest": "호버 및 클릭하여 테스트",
+    "clickToPreview": "클릭하여 미리보기",
+    "moveCursor": "카드 위로 커서 이동"
+  },
+  "groups": {
+    "foundation": "기초",
+    "components": "컴포넌트"
+  },
+  "modes": {
+    "light": "라이트",
+    "dark": "다크"
+  },
+  "controls": {
+    "fontWeight": "글꼴 굵기",
+    "regular": "레귤러",
+    "medium": "미디엄",
+    "semibold": "세미볼드",
+    "bold": "볼드",
+    "transition": "트랜지션",
+    "instant": "즉시",
+    "fast": "빠르게",
+    "normal": "보통",
+    "smooth": "부드럽게",
+    "slow": "느리게",
+    "borderStyle": "스타일",
+    "solid": "— 실선",
+    "dashed": "- - 파선",
+    "dotted": "··· 점선",
+    "shadow": "그림자",
+    "shadowNone": "없음",
+    "shadowCustom": "사용자 정의",
+    "shadowOuter": "외부",
+    "shadowInset": "내부",
+    "shadowX": "X 오프셋",
+    "shadowY": "Y 오프셋",
+    "shadowBlur": "흐림",
+    "shadowSpread": "확산",
+    "shadowOpacity": "불투명도",
+    "borderAll": "모든 변",
+    "borderSync": "동기화",
+    "borderIndividual": "개별",
+    "borderTop": "위",
+    "borderRight": "오른쪽",
+    "borderBottom": "아래",
+    "borderLeft": "왼쪽"
+  },
+  "presets": {
+    "sharp": "샤프",
+    "soft": "소프트",
+    "rounded": "둥글게",
+    "large": "크게",
+    "pill": "알약형",
+    "circle": "원형",
+    "square": "사각형",
+    "none": "없음",
+    "subtle": "은은하게",
+    "moderate": "보통",
+    "strong": "강하게",
+    "dramatic": "극적",
+    "flat": "평면",
+    "subtleTilt": "미세 기울기",
+    "forwardLean": "앞으로 기울기",
+    "sideLean": "옆으로 기울기",
+    "twist": "비틀기",
+    "small": "작게",
+    "medium": "중간",
+    "large2": "크게",
+    "xl": "XL",
+    "default": "기본",
+    "snug": "촘촘하게",
+    "wide": "넓게",
+    "widest": "가장 넓게",
+    "tight": "빽빽하게",
+    "relaxed": "여유롭게",
+    "spacious": "넉넉하게",
+    "compact": "컴팩트",
+    "wider": "더 넓게",
+    "hover": "호버",
+    "always": "항상",
+    "4px": "4px",
+    "8px": "8px"
+  },
+  "transform3d": {
+    "title": "3D 변환",
+    "presets": "프리셋",
+    "rotateX": "X 회전",
+    "rotateY": "Y 회전",
+    "rotateZ": "Z 회전",
+    "hintXBack": "최대 뒤로",
+    "hintXForward": "최대 앞으로",
+    "hintYLeft": "최대 왼쪽",
+    "hintYRight": "최대 오른쪽",
+    "hintZCcw": "반시계 방향",
+    "hintZCw": "시계 방향"
+  },
+  "hover3d": {
+    "title": "호버 애니메이션",
+    "effect": "효과",
+    "none": "없음",
+    "lift": "들어올리기",
+    "scale": "확대",
+    "liftScale": "들어올리기 + 확대",
+    "tiltForward": "앞으로 기울기",
+    "tiltSide": "옆으로 기울기",
+    "tilt3d": "3D 기울기",
+    "flipPeek": "뒤집어 엿보기",
+    "liftTilt": "들어올리기 + 기울기",
+    "hoverX": "호버 X",
+    "hoverY": "호버 Y",
+    "hoverZ": "호버 Z"
+  },
+  "cursorTrack": {
+    "title": "커서 추적",
+    "description": "커서 위치에 따라 요소가 동적으로 회전합니다 — 가장자리에 가까울수록 더 많이 기울어집니다.",
+    "intensity": "강도",
+    "restore": "복원",
+    "off": "끄기",
+    "subtle": "은은하게",
+    "moderate": "보통",
+    "strong": "강하게",
+    "dramatic": "극적"
+  },
+  "sections": {
+    "shape": "모양",
+    "typography": "타이포그래피",
+    "border": "테두리",
+    "shadow": "그림자",
+    "motion": "모션",
+    "spacing": "간격",
+    "sizes": "크기",
+    "trigger": "트리거",
+    "popover": "팝오버",
+    "popoverShadow": "팝오버 그림자",
+    "triggerShadow": "트리거 그림자",
+    "indicator": "인디케이터",
+    "track": "트랙",
+    "thumb": "썸",
+    "fill": "채우기",
+    "label": "레이블",
+    "stroke": "스트로크",
+    "animation": "애니메이션",
+    "thickness": "두께",
+    "container": "컨테이너",
+    "groupLabel": "그룹 레이블",
+    "listItems": "목록 항목",
+    "menuItems": "메뉴 항목",
+    "separator": "구분선",
+    "colorArea": "색상 영역",
+    "sliders": "슬라이더",
+    "thumbs": "썸",
+    "swatches": "색상 견본",
+    "controlBox": "컨트롤 박스",
+    "fallbackText": "대체 텍스트",
+    "group": "그룹",
+    "tabList": "탭 목록",
+    "tabItems": "탭 항목",
+    "panel": "패널",
+    "header": "헤더",
+    "body": "본문",
+    "footer": "푸터",
+    "heading": "제목",
+    "backdrop": "배경막",
+    "handle": "핸들",
+    "content": "콘텐츠",
+    "dropdownShape": "드롭다운 모양",
+    "dropdownBorder": "드롭다운 테두리",
+    "dropdownSpacing": "드롭다운 간격",
+    "dropdownShadow": "드롭다운 그림자",
+    "icon": "아이콘",
+    "dialogShape": "다이얼로그 모양",
+    "dialogSpacing": "다이얼로그 간격",
+    "dialogShadow": "다이얼로그 그림자",
+    "itemShape": "항목 모양",
+    "itemBorder": "항목 테두리",
+    "containerBorder": "컨테이너 테두리",
+    "containerShadow": "컨테이너 그림자"
+  },
+  "labels": {
+    "cornerRadius": "모서리 반경",
+    "quickPresets": "빠른 프리셋",
+    "radiusPreset": "반경 프리셋",
+    "sizePreset": "크기 프리셋",
+    "preset": "프리셋",
+    "radius": "반경",
+    "width": "너비",
+    "height": "높이",
+    "size": "크기",
+    "gap": "간격",
+    "padding": "패딩",
+    "paddingX": "수평 패딩",
+    "paddingY": "수직 패딩",
+    "fontSize": "글꼴 크기",
+    "fontWeight": "글꼴 굵기",
+    "weight": "굵기",
+    "letterSpacing": "자간",
+    "textCase": "텍스트 대소문자",
+    "textNormal": "보통",
+    "uppercase": "대문자",
+    "capitalize": "첫 글자 대문자",
+    "hoverEffect": "호버 효과",
+    "direction": "방향",
+    "duration": "지속 시간",
+    "opacity": "불투명도",
+    "blur": "흐림",
+    "borderWidth": "테두리 너비",
+    "itemGap": "항목 간격",
+    "labelGap": "레이블 간격",
+    "overlap": "겹침",
+    "trackShape": "트랙 모양",
+    "dotSize": "점 크기",
+    "iconSize": "아이콘 크기",
+    "checkScale": "체크 크기",
+    "indicatorSize": "인디케이터 크기",
+    "separatorGap": "구분선 간격",
+    "intensity": "강도",
+    "linkWeight": "링크 굵기",
+    "activeWeight": "활성 굵기",
+    "underline": "밑줄",
+    "icon": "아이콘",
+    "trackHeight": "트랙 높이",
+    "trackRadius": "트랙 반경",
+    "border": "테두리",
+    "shape": "모양",
+    "small": "작게",
+    "medium": "중간",
+    "large": "크게"
+  },
+  "modules": {
+    "colors": {
+      "label": "색상",
+      "description": "브랜드 색상, 상태 표시기 및 표면 색조"
+    },
+    "typography": {
+      "label": "타이포그래피",
+      "description": "글꼴, 크기, 줄 높이 및 본문 굵기"
+    },
+    "spacing": {
+      "label": "간격",
+      "description": "인터페이스 밀도 — 모든 패딩과 간격을 조정"
+    },
+    "buttons": {
+      "label": "버튼",
+      "description": "모든 버튼 변형의 모양, 굵기, 그림자 및 테두리",
+      "allControls": "모든 컨트롤이 애플리케이션 전체의 모든 버튼에 동시에 영향을 줍니다. 미리보기 버튼에 호버하고 클릭하여 애니메이션을 실시간으로 확인하세요."
+    },
+    "inputs": {
+      "label": "입력 필드",
+      "description": "텍스트 입력 필드의 반경, 테두리 및 레이블 스타일"
+    },
+    "cards": {
+      "label": "카드",
+      "description": "카드 및 콘텐츠 패널의 모양, 테두리 및 그림자",
+      "allControls": "모든 카드와 패널의 외관을 제어합니다 — ERP 인터페이스 전체의 주요 콘텐츠 컨테이너입니다."
+    },
+    "badges": {
+      "label": "배지",
+      "description": "상태 배지, 칩 및 태그의 모양과 굵기",
+      "allControls": "전체 인터페이스에서 상태 배지, 칩 및 태그의 외관을 제어합니다."
+    },
+    "accordion": {
+      "label": "아코디언",
+      "description": "접이식 섹션의 모양, 간격 및 타이포그래피",
+      "allControls": "인터페이스 전체의 모든 아코디언 및 접이식 섹션의 외관을 제어합니다 — FAQ 패널, 상세 드로어 및 그룹화된 설정."
+    },
+    "alerts": {
+      "label": "알림",
+      "description": "인라인 알림 배너 및 모달 확인 다이얼로그",
+      "allControls": "알림, 경고 및 파괴적 작업 확인에 사용되는 인라인 알림 배너와 모달 확인 다이얼로그를 제어합니다.",
+      "inlineAlerts": "인라인 알림",
+      "inlineAlertsDescription": "성공, 경고, 오류 및 정보 메시지용 상태 배너.",
+      "alertDialog": "알림 다이얼로그",
+      "alertDialogDescription": "파괴적 또는 중요한 작업을 위한 모달 확인 패널."
+    },
+    "autocomplete": {
+      "label": "자동완성",
+      "description": "검색 및 콤보 필드의 드롭다운 팝오버 및 목록 항목",
+      "allControls": "자동완성 및 콤보 박스 필드의 드롭다운 팝오버와 목록 항목을 제어합니다. 트리거는 입력 토큰 스타일을 상속합니다."
+    },
+    "avatar": {
+      "label": "아바타",
+      "description": "사용자 아바타의 크기, 모양, 테두리 및 그룹 겹침",
+      "allControls": "사용자 아바타의 외관을 제어합니다 — 프로필 사진, 대체 이니셜, 상태 표시기 및 그룹 스택."
+    },
+    "breadcrumbs": {
+      "label": "브레드크럼",
+      "description": "탐색 경로의 글꼴, 간격 및 구분자 스타일",
+      "allControls": "브레드크럼 탐색 경로의 외관을 제어합니다 — 일반 텍스트 링크부터 테두리와 배경이 있는 태그/알약 스타일 항목까지."
+    },
+    "buttonGroup": {
+      "label": "버튼 그룹",
+      "description": "연결된 버튼 컨테이너의 모양, 간격 및 테두리",
+      "allControls": "그룹 컨테이너 레이아웃을 제어합니다 — 간격, 테두리 및 그림자. 개별 버튼의 외관(반경, 굵기, 색상)은 버튼 모듈에서 제어됩니다."
+    },
+    "calendar": {
+      "label": "캘린더",
+      "description": "캘린더 패널 및 날짜 선택기의 모양, 셀 크기 및 타이포그래피",
+      "allControls": "캘린더 패널 및 날짜 선택기의 컨테이너 외관을 제어합니다."
+    },
+    "checkbox": {
+      "label": "체크박스",
+      "description": "체크박스 컨트롤의 크기, 모양, 테두리, 인디케이터 및 레이블",
+      "allControls": "모든 체크박스의 외관을 제어합니다 — 전체 인터페이스의 컨트롤 박스, 체크 표시 인디케이터 및 레이블 텍스트."
+    },
+    "checkboxGroup": {
+      "label": "체크박스 그룹",
+      "description": "그룹화된 체크박스의 간격, 컨테이너 모양 및 레이블 스타일",
+      "allControls": "관련 체크박스 그룹을 감싸는 컨테이너를 제어합니다 — 간격, 테두리, 패딩 및 그룹 레이블 스타일."
+    },
+    "colorPicker": {
+      "label": "색상 선택기",
+      "description": "팝오버, 색상 영역, 슬라이더, 썸 및 견본 스타일",
+      "allControls": "인터페이스 전체의 색상 선택기 팝오버, 색상 영역, 슬라이더, 썸 및 프리셋 견본의 외관을 제어합니다."
+    },
+    "comboBox": {
+      "label": "콤보 박스",
+      "description": "팝오버 모양, 트리거 버튼 및 목록 항목 스타일",
+      "allControls": "콤보 박스 드롭다운의 외관을 제어합니다 — 팝오버 모양, 트리거 버튼 및 목록 항목 스타일."
+    },
+    "datePicker": {
+      "label": "날짜 선택기",
+      "description": "날짜 선택기 필드의 트리거, 팝오버 및 인디케이터",
+      "allControls": "날짜 선택기 필드의 트리거, 팝오버 및 인디케이터를 제어합니다."
+    },
+    "separator": {
+      "label": "구분선",
+      "description": "구분선의 두께와 모양",
+      "allControls": "구분선의 두께와 모양을 제어합니다."
+    },
+    "skeleton": {
+      "label": "스켈레톤",
+      "description": "로딩 스켈레톤의 모양과 애니메이션 속도",
+      "allControls": "로딩 스켈레톤의 모양과 애니메이션 속도를 제어합니다."
+    },
+    "slider": {
+      "label": "슬라이더",
+      "description": "범위 슬라이더의 트랙, 썸 및 애니메이션",
+      "allControls": "범위 슬라이더의 트랙, 썸 및 애니메이션을 제어합니다."
+    },
+    "spinner": {
+      "label": "스피너",
+      "description": "로딩 스피너의 크기와 스트로크 너비",
+      "allControls": "로딩 스피너의 크기와 스트로크 너비를 제어합니다."
+    },
+    "tabs": {
+      "label": "탭",
+      "description": "탭 목록, 탭 항목, 활성 인디케이터 및 패널 패딩",
+      "allControls": "탭 목록, 탭 항목, 활성 인디케이터 및 패널 패딩을 제어합니다."
+    }
+  }
+}

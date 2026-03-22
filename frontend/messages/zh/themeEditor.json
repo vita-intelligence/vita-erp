@@ -1,0 +1,360 @@
+{
+  "chrome": {
+    "title": "品牌与主题",
+    "titleFull": "品牌与主题编辑器",
+    "resetAll": "全部重置",
+    "resetAllTooltip": "全部恢复默认值",
+    "resetSection": "重置区块",
+    "reset": "重置",
+    "close": "关闭",
+    "livePreview": "实时预览",
+    "hoverToTest": "悬停并点击以测试",
+    "clickToPreview": "点击预览",
+    "moveCursor": "将光标移至卡片上"
+  },
+  "groups": {
+    "foundation": "基础",
+    "components": "组件"
+  },
+  "modes": {
+    "light": "浅色",
+    "dark": "深色"
+  },
+  "controls": {
+    "fontWeight": "字重",
+    "regular": "常规",
+    "medium": "中等",
+    "semibold": "半粗",
+    "bold": "粗体",
+    "transition": "过渡",
+    "instant": "即时",
+    "fast": "快速",
+    "normal": "正常",
+    "smooth": "平滑",
+    "slow": "缓慢",
+    "borderStyle": "样式",
+    "solid": "— 实线",
+    "dashed": "- - 虚线",
+    "dotted": "··· 点线",
+    "shadow": "阴影",
+    "shadowNone": "无",
+    "shadowCustom": "自定义",
+    "shadowOuter": "外阴影",
+    "shadowInset": "内阴影",
+    "shadowX": "X 偏移",
+    "shadowY": "Y 偏移",
+    "shadowBlur": "模糊",
+    "shadowSpread": "扩展",
+    "shadowOpacity": "透明度",
+    "borderAll": "所有边",
+    "borderSync": "同步",
+    "borderIndividual": "单独",
+    "borderTop": "上",
+    "borderRight": "右",
+    "borderBottom": "下",
+    "borderLeft": "左"
+  },
+  "presets": {
+    "sharp": "锐利",
+    "soft": "柔和",
+    "rounded": "圆角",
+    "large": "大",
+    "pill": "药丸形",
+    "circle": "圆形",
+    "square": "方形",
+    "none": "无",
+    "subtle": "微弱",
+    "moderate": "适中",
+    "strong": "强烈",
+    "dramatic": "夸张",
+    "flat": "平面",
+    "subtleTilt": "微倾斜",
+    "forwardLean": "前倾",
+    "sideLean": "侧倾",
+    "twist": "扭转",
+    "small": "小",
+    "medium": "中",
+    "large2": "大",
+    "xl": "XL",
+    "default": "默认",
+    "snug": "紧凑",
+    "wide": "宽",
+    "widest": "最宽",
+    "tight": "紧密",
+    "relaxed": "宽松",
+    "spacious": "开阔",
+    "compact": "紧凑",
+    "wider": "较宽",
+    "hover": "悬停",
+    "always": "始终",
+    "4px": "4px",
+    "8px": "8px"
+  },
+  "transform3d": {
+    "title": "3D 变换",
+    "presets": "预设",
+    "rotateX": "旋转 X",
+    "rotateY": "旋转 Y",
+    "rotateZ": "旋转 Z",
+    "hintXBack": "完全后仰",
+    "hintXForward": "完全前倾",
+    "hintYLeft": "完全左转",
+    "hintYRight": "完全右转",
+    "hintZCcw": "逆时针",
+    "hintZCw": "顺时针"
+  },
+  "hover3d": {
+    "title": "悬停动画",
+    "effect": "效果",
+    "none": "无",
+    "lift": "抬起",
+    "scale": "缩放",
+    "liftScale": "抬起 + 缩放",
+    "tiltForward": "前倾",
+    "tiltSide": "侧倾",
+    "tilt3d": "3D 倾斜",
+    "flipPeek": "翻转窥视",
+    "liftTilt": "抬起 + 倾斜",
+    "hoverX": "悬停 X",
+    "hoverY": "悬停 Y",
+    "hoverZ": "悬停 Z"
+  },
+  "cursorTrack": {
+    "title": "光标跟踪",
+    "description": "元素根据光标位置动态旋转——离边缘越近，向你倾斜越多。",
+    "intensity": "强度",
+    "restore": "恢复",
+    "off": "关闭",
+    "subtle": "微弱",
+    "moderate": "适中",
+    "strong": "强烈",
+    "dramatic": "夸张"
+  },
+  "sections": {
+    "shape": "形状",
+    "typography": "排版",
+    "border": "边框",
+    "shadow": "阴影",
+    "motion": "动效",
+    "spacing": "间距",
+    "sizes": "尺寸",
+    "trigger": "触发器",
+    "popover": "弹出层",
+    "popoverShadow": "弹出层阴影",
+    "triggerShadow": "触发器阴影",
+    "indicator": "指示器",
+    "track": "轨道",
+    "thumb": "滑块",
+    "fill": "填充",
+    "label": "标签",
+    "stroke": "描边",
+    "animation": "动画",
+    "thickness": "厚度",
+    "container": "容器",
+    "groupLabel": "分组标签",
+    "listItems": "列表项",
+    "menuItems": "菜单项",
+    "separator": "分隔符",
+    "colorArea": "色域",
+    "sliders": "滑块",
+    "thumbs": "滑块把手",
+    "swatches": "色板",
+    "controlBox": "控制框",
+    "fallbackText": "备用文本",
+    "group": "分组",
+    "tabList": "标签列表",
+    "tabItems": "标签项",
+    "panel": "面板",
+    "header": "头部",
+    "body": "主体",
+    "footer": "底部",
+    "heading": "标题",
+    "backdrop": "遮罩",
+    "handle": "手柄",
+    "content": "内容",
+    "dropdownShape": "下拉框形状",
+    "dropdownBorder": "下拉框边框",
+    "dropdownSpacing": "下拉框间距",
+    "dropdownShadow": "下拉框阴影",
+    "icon": "图标",
+    "dialogShape": "对话框形状",
+    "dialogSpacing": "对话框间距",
+    "dialogShadow": "对话框阴影",
+    "itemShape": "项目形状",
+    "itemBorder": "项目边框",
+    "containerBorder": "容器边框",
+    "containerShadow": "容器阴影"
+  },
+  "labels": {
+    "cornerRadius": "圆角半径",
+    "quickPresets": "快速预设",
+    "radiusPreset": "半径预设",
+    "sizePreset": "尺寸预设",
+    "preset": "预设",
+    "radius": "半径",
+    "width": "宽度",
+    "height": "高度",
+    "size": "尺寸",
+    "gap": "间隙",
+    "padding": "内边距",
+    "paddingX": "水平内边距",
+    "paddingY": "垂直内边距",
+    "fontSize": "字号",
+    "fontWeight": "字重",
+    "weight": "字重",
+    "letterSpacing": "字间距",
+    "textCase": "大小写",
+    "textNormal": "正常",
+    "uppercase": "大写",
+    "capitalize": "首字母大写",
+    "hoverEffect": "悬停效果",
+    "direction": "方向",
+    "duration": "时长",
+    "opacity": "透明度",
+    "blur": "模糊",
+    "borderWidth": "边框宽度",
+    "itemGap": "项目间距",
+    "labelGap": "标签间距",
+    "overlap": "重叠",
+    "trackShape": "轨道形状",
+    "dotSize": "圆点大小",
+    "iconSize": "图标大小",
+    "checkScale": "勾选缩放",
+    "indicatorSize": "指示器大小",
+    "separatorGap": "分隔符间距",
+    "intensity": "强度",
+    "linkWeight": "链接字重",
+    "activeWeight": "激活字重",
+    "underline": "下划线",
+    "icon": "图标",
+    "trackHeight": "轨道高度",
+    "trackRadius": "轨道半径",
+    "border": "边框",
+    "shape": "形状",
+    "small": "小",
+    "medium": "中",
+    "large": "大"
+  },
+  "modules": {
+    "colors": {
+      "label": "颜色",
+      "description": "品牌颜色、状态指示和表面色调"
+    },
+    "typography": {
+      "label": "排版",
+      "description": "字体、大小、行高和正文字重"
+    },
+    "spacing": {
+      "label": "间距",
+      "description": "界面密度——缩放所有内边距和间隙"
+    },
+    "buttons": {
+      "label": "按钮",
+      "description": "所有按钮变体的形状、字重、阴影和边框",
+      "allControls": "所有控件同时影响应用程序中的每个按钮。悬停并点击预览按钮以实时查看动画。"
+    },
+    "inputs": {
+      "label": "输入框",
+      "description": "文本输入框和字段的半径、边框和标签样式"
+    },
+    "cards": {
+      "label": "卡片",
+      "description": "卡片和内容面板的形状、边框和阴影",
+      "allControls": "控制所有卡片和面板的外观——ERP界面中的主要内容容器。"
+    },
+    "badges": {
+      "label": "徽章",
+      "description": "状态徽章、标签片和标签的形状与字重",
+      "allControls": "控制整个界面中状态徽章、标签片和标签的外观。"
+    },
+    "accordion": {
+      "label": "手风琴",
+      "description": "可折叠区块的形状、间距和排版",
+      "allControls": "控制界面中所有手风琴和可折叠区块的外观——常见问题面板、详情抽屉和分组设置。"
+    },
+    "alerts": {
+      "label": "警告",
+      "description": "内联警告横幅和模态确认对话框",
+      "allControls": "控制用于通知、警告和破坏性操作确认的内联警告横幅和模态确认对话框。",
+      "inlineAlerts": "内联警告",
+      "inlineAlertsDescription": "用于成功、警告、错误和信息消息的状态横幅。",
+      "alertDialog": "警告对话框",
+      "alertDialogDescription": "用于破坏性或关键操作的模态确认面板。"
+    },
+    "autocomplete": {
+      "label": "自动完成",
+      "description": "搜索和组合字段的下拉弹出层和列表项",
+      "allControls": "控制自动完成和组合框字段的下拉弹出层和列表项。触发器继承输入框令牌样式。"
+    },
+    "avatar": {
+      "label": "头像",
+      "description": "用户头像的大小、形状、边框和分组重叠",
+      "allControls": "控制用户头像的外观——个人照片、备用首字母、状态指示器和分组堆叠。"
+    },
+    "breadcrumbs": {
+      "label": "面包屑",
+      "description": "导航路径的字体、间距和分隔符样式",
+      "allControls": "控制面包屑导航路径的外观——从纯文本链接到带边框和背景的标签/药丸样式项。"
+    },
+    "buttonGroup": {
+      "label": "按钮组",
+      "description": "连接按钮容器的形状、间距和边框",
+      "allControls": "控制分组容器布局——间距、边框和阴影。单个按钮的外观（半径、字重、颜色）由按钮模块控制。"
+    },
+    "calendar": {
+      "label": "日历",
+      "description": "日历面板和日期选择器的形状、单元格大小和排版",
+      "allControls": "控制日历面板和日期选择器的容器外观。"
+    },
+    "checkbox": {
+      "label": "复选框",
+      "description": "复选框控件的大小、形状、边框、指示器和标签",
+      "allControls": "控制所有复选框的外观——整个界面中的控制框、勾选指示器和标签文本。"
+    },
+    "checkboxGroup": {
+      "label": "复选框组",
+      "description": "分组复选框的间距、容器形状和标签样式",
+      "allControls": "控制包裹一组相关复选框的容器——间距、边框、内边距和分组标签样式。"
+    },
+    "colorPicker": {
+      "label": "颜色选择器",
+      "description": "弹出层、色域、滑块、滑块把手和色板样式",
+      "allControls": "控制界面中颜色选择器弹出层、色域、滑块、滑块把手和预设色板的外观。"
+    },
+    "comboBox": {
+      "label": "组合框",
+      "description": "弹出层形状、触发按钮和列表项样式",
+      "allControls": "控制组合框下拉菜单的外观——弹出层形状、触发按钮和列表项样式。"
+    },
+    "datePicker": {
+      "label": "日期选择器",
+      "description": "日期选择器字段的触发器、弹出层和指示器",
+      "allControls": "控制日期选择器字段的触发器、弹出层和指示器。"
+    },
+    "separator": {
+      "label": "分隔线",
+      "description": "分隔线的粗细和形状",
+      "allControls": "控制分隔线的粗细和形状。"
+    },
+    "skeleton": {
+      "label": "骨架屏",
+      "description": "加载骨架屏的形状和动画速度",
+      "allControls": "控制加载骨架屏的形状和动画速度。"
+    },
+    "slider": {
+      "label": "滑块",
+      "description": "范围滑块的轨道、滑块和动画",
+      "allControls": "控制范围滑块的轨道、滑块和动画。"
+    },
+    "spinner": {
+      "label": "加载指示器",
+      "description": "加载指示器的大小和描边宽度",
+      "allControls": "控制加载指示器的大小和描边宽度。"
+    },
+    "tabs": {
+      "label": "标签页",
+      "description": "标签列表、标签项、激活指示器和面板内边距",
+      "allControls": "控制标签列表、标签项、激活指示器和面板内边距。"
+    }
+  }
+}

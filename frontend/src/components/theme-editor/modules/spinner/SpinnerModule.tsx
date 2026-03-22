@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -13,6 +15,7 @@ import { Preview } from "./Preview";
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function SpinnerModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -22,13 +25,13 @@ export function SpinnerModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the size and stroke width of loading spinners.
+        {t("modules.spinner.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Sizes ── */}
-      <Section title="Sizes">
+      <Section title={t("sections.sizes")}>
         <SliderRow
           label={`Small — ${sizeSmPx}px`}
           min={12}

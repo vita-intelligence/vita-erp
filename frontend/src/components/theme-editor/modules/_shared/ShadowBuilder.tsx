@@ -4,7 +4,9 @@
  * Interactive shadow builder — used by Buttons, Inputs, and Cards modules.
  */
 
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
+
 import { Chip, Row, SliderRow } from "./primitives";
 
 // ── Types & helpers ──────────────────────────────────────────────────────────
@@ -71,6 +73,7 @@ export function ShadowBuilder({
   onReset,
   defaults,
 }: ShadowBuilderProps) {
+  const t = useTranslations("themeEditor");
   const initDefaults = { ...BASE_DEFAULTS, ...defaults };
   const parsed = parseShadow(value);
 
@@ -95,7 +98,7 @@ export function ShadowBuilder({
 
   return (
     <div className="space-y-3">
-      <Row label="Shadow" onReset={onReset}>
+      <Row label={t("controls.shadow")} onReset={onReset}>
         <Chip
           active={!enabled}
           onClick={() => {
@@ -103,7 +106,7 @@ export function ShadowBuilder({
             onChange("none");
           }}
         >
-          None
+          {t("controls.shadowNone")}
         </Chip>
         <Chip
           active={enabled}
@@ -112,14 +115,14 @@ export function ShadowBuilder({
             update(state);
           }}
         >
-          Custom
+          {t("controls.shadowCustom")}
         </Chip>
       </Row>
 
       {enabled && (
         <>
           <SliderRow
-            label={`X — ${state.x}px`}
+            label={`${t("controls.shadowX")} — ${state.x}px`}
             min={-20}
             max={20}
             value={state.x}
@@ -127,7 +130,7 @@ export function ShadowBuilder({
             hint={["−20px left", "+20px right"]}
           />
           <SliderRow
-            label={`Y — ${state.y}px`}
+            label={`${t("controls.shadowY")} — ${state.y}px`}
             min={-20}
             max={20}
             value={state.y}
@@ -135,7 +138,7 @@ export function ShadowBuilder({
             hint={["−20px up", "+20px down"]}
           />
           <SliderRow
-            label={`Blur — ${state.blur}px`}
+            label={`${t("controls.shadowBlur")} — ${state.blur}px`}
             min={0}
             max={50}
             value={state.blur}
@@ -143,7 +146,7 @@ export function ShadowBuilder({
             hint={["0 sharp", "50px soft"]}
           />
           <SliderRow
-            label={`Spread — ${state.spread}px`}
+            label={`${t("controls.shadowSpread")} — ${state.spread}px`}
             min={-10}
             max={20}
             value={state.spread}
@@ -151,7 +154,7 @@ export function ShadowBuilder({
             hint={["−10 shrink", "+20 grow"]}
           />
           <SliderRow
-            label={`Opacity — ${state.opacity}%`}
+            label={`${t("controls.shadowOpacity")} — ${state.opacity}%`}
             min={1}
             max={50}
             value={state.opacity}
@@ -160,10 +163,10 @@ export function ShadowBuilder({
           />
           <Row label="Type">
             <Chip active={!state.inset} onClick={() => patch({ inset: false })}>
-              Outer
+              {t("controls.shadowOuter")}
             </Chip>
             <Chip active={state.inset} onClick={() => patch({ inset: true })}>
-              Inset
+              {t("controls.shadowInset")}
             </Chip>
           </Row>
         </>

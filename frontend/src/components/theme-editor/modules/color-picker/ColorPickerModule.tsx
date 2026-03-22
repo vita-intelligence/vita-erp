@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -17,29 +19,30 @@ import { Preview } from "./Preview";
 // ── Presets ──────────────────────────────────────────────────────────────────
 
 const POPOVER_RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Soft", value: "8px" },
-  { label: "Rounded", value: "14px" },
-  { label: "Large", value: "20px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.soft", value: "8px" },
+  { label: "presets.rounded", value: "14px" },
+  { label: "presets.large", value: "20px" },
 ];
 
 const SWATCH_RADIUS_PRESETS = [
-  { label: "Square", value: "0px" },
-  { label: "Soft", value: "4px" },
-  { label: "Rounded", value: "8px" },
-  { label: "Circle", value: "9999px" },
+  { label: "presets.square", value: "0px" },
+  { label: "presets.soft", value: "4px" },
+  { label: "presets.rounded", value: "8px" },
+  { label: "presets.circle", value: "9999px" },
 ];
 
 const SWATCH_SIZE_PRESETS = [
-  { label: "Small", value: "20px" },
-  { label: "Medium", value: "28px" },
-  { label: "Large", value: "36px" },
-  { label: "XL", value: "44px" },
+  { label: "presets.small", value: "20px" },
+  { label: "presets.medium", value: "28px" },
+  { label: "presets.large", value: "36px" },
+  { label: "presets.xl", value: "44px" },
 ];
 
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function ColorPickerModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -59,16 +62,15 @@ export function ColorPickerModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the appearance of color picker popover, color area, sliders,
-        thumbs, and preset swatches across the interface.
+        {t("modules.colorPicker.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Popover ── */}
-      <Section title="Popover">
+      <Section title={t("sections.popover")}>
         <Row
-          label="Radius"
+          label={t("labels.radius")}
           onReset={() => resetColor(["colorPickerPopoverRadius"])}
         >
           {POPOVER_RADIUS_PRESETS.map((p) => (
@@ -77,7 +79,7 @@ export function ColorPickerModule() {
               active={tokens.colorPickerPopoverRadius === p.value}
               onClick={() => setTokens({ colorPickerPopoverRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -122,7 +124,7 @@ export function ColorPickerModule() {
       </Section>
 
       {/* ── Popover shadow ── */}
-      <Section title="Popover shadow">
+      <Section title={t("sections.popoverShadow")}>
         <ShadowBuilder
           value={tokens.colorPickerPopoverShadow}
           onChange={(v) => setTokens({ colorPickerPopoverShadow: v })}
@@ -132,7 +134,7 @@ export function ColorPickerModule() {
       </Section>
 
       {/* ── Color area ── */}
-      <Section title="Color area">
+      <Section title={t("sections.colorArea")}>
         <SliderRow
           label={`Radius — ${areaRadius}px`}
           min={0}
@@ -146,7 +148,7 @@ export function ColorPickerModule() {
       </Section>
 
       {/* ── Sliders ── */}
-      <Section title="Sliders">
+      <Section title={t("sections.sliders")}>
         <SliderRow
           label={`Track height — ${sliderHeight}px`}
           min={6}
@@ -169,25 +171,25 @@ export function ColorPickerModule() {
           onReset={() => resetColor(["colorPickerSliderRadius"])}
         />
 
-        <Row label="Track shape">
+        <Row label={t("labels.trackShape")}>
           {[
-            { label: "Sharp", value: "0px" },
-            { label: "Rounded", value: "6px" },
-            { label: "Pill", value: "9999px" },
+            { label: "presets.sharp", value: "0px" },
+            { label: "presets.rounded", value: "6px" },
+            { label: "presets.pill", value: "9999px" },
           ].map((p) => (
             <Chip
               key={p.value}
               active={tokens.colorPickerSliderRadius === p.value}
               onClick={() => setTokens({ colorPickerSliderRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
       </Section>
 
       {/* ── Thumbs ── */}
-      <Section title="Thumbs">
+      <Section title={t("sections.thumbs")}>
         <SliderRow
           label={`Size — ${thumbSize}px`}
           min={12}
@@ -212,15 +214,18 @@ export function ColorPickerModule() {
       </Section>
 
       {/* ── Swatches ── */}
-      <Section title="Swatches">
-        <Row label="Size" onReset={() => resetColor(["colorPickerSwatchSize"])}>
+      <Section title={t("sections.swatches")}>
+        <Row
+          label={t("labels.size")}
+          onReset={() => resetColor(["colorPickerSwatchSize"])}
+        >
           {SWATCH_SIZE_PRESETS.map((p) => (
             <Chip
               key={p.value}
               active={tokens.colorPickerSwatchSize === p.value}
               onClick={() => setTokens({ colorPickerSwatchSize: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -236,7 +241,7 @@ export function ColorPickerModule() {
         />
 
         <Row
-          label="Shape"
+          label={t("labels.shape")}
           onReset={() => resetColor(["colorPickerSwatchRadius"])}
         >
           {SWATCH_RADIUS_PRESETS.map((p) => (
@@ -249,7 +254,7 @@ export function ColorPickerModule() {
               }
               onClick={() => setTokens({ colorPickerSwatchRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -280,7 +285,7 @@ export function ColorPickerModule() {
       </Section>
 
       {/* ── Motion ── */}
-      <Section title="Motion">
+      <Section title={t("sections.motion")}>
         <TransitionRow tokenKey="colorPickerTransitionDuration" />
       </Section>
     </div>

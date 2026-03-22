@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -13,6 +15,7 @@ import {
 import { Preview } from "./Preview";
 
 export function ButtonGroupModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -21,15 +24,13 @@ export function ButtonGroupModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the group container layout — gap, border, and shadow.
-        Individual button appearance (radius, weight, color) is controlled by
-        the Buttons module.
+        {t("modules.buttonGroup.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Spacing ── */}
-      <Section title="Spacing">
+      <Section title={t("sections.spacing")}>
         <SliderRow
           label={`Gap — ${gapPx}px`}
           min={0}
@@ -43,7 +44,7 @@ export function ButtonGroupModule() {
       </Section>
 
       {/* ── Border ── */}
-      <Section title="Container border">
+      <Section title={t("sections.containerBorder")}>
         <BorderControls
           keys={{
             top: "buttonGroupBorderTop",
@@ -59,7 +60,7 @@ export function ButtonGroupModule() {
       </Section>
 
       {/* ── Shadow ── */}
-      <Section title="Container shadow">
+      <Section title={t("sections.containerShadow")}>
         <ShadowBuilder
           value={tokens.buttonGroupShadow ?? "none"}
           onChange={(v) => setTokens({ buttonGroupShadow: v })}

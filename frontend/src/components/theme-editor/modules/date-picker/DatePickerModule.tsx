@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -17,15 +19,16 @@ import { Preview } from "./Preview";
 // ── Presets ──────────────────────────────────────────────────────────────────
 
 const TRIGGER_RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Soft", value: "6px" },
-  { label: "Rounded", value: "12px" },
-  { label: "Pill", value: "9999px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.soft", value: "6px" },
+  { label: "presets.rounded", value: "12px" },
+  { label: "presets.pill", value: "9999px" },
 ];
 
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function DatePickerModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -42,15 +45,15 @@ export function DatePickerModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the trigger, popover, and indicator of date picker fields.
+        {t("modules.datePicker.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Trigger ── */}
-      <Section title="Trigger">
+      <Section title={t("sections.trigger")}>
         <Row
-          label="Radius"
+          label={t("labels.radius")}
           onReset={() => resetColor(["datePickerTriggerRadius"])}
         >
           {TRIGGER_RADIUS_PRESETS.map((p) => (
@@ -59,7 +62,7 @@ export function DatePickerModule() {
               active={tokens.datePickerTriggerRadius === p.value}
               onClick={() => setTokens({ datePickerTriggerRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -115,7 +118,7 @@ export function DatePickerModule() {
       </Section>
 
       {/* ── Trigger shadow ── */}
-      <Section title="Trigger shadow">
+      <Section title={t("sections.triggerShadow")}>
         <ShadowBuilder
           value={tokens.datePickerTriggerShadow ?? "none"}
           onChange={(v) => setTokens({ datePickerTriggerShadow: v })}
@@ -125,7 +128,7 @@ export function DatePickerModule() {
       </Section>
 
       {/* ── Popover ── */}
-      <Section title="Popover">
+      <Section title={t("sections.popover")}>
         <SliderRow
           label={`Radius — ${popoverRadius}px`}
           min={0}
@@ -150,7 +153,7 @@ export function DatePickerModule() {
       </Section>
 
       {/* ── Popover shadow ── */}
-      <Section title="Popover shadow">
+      <Section title={t("sections.popoverShadow")}>
         <ShadowBuilder
           value={tokens.datePickerPopoverShadow ?? "none"}
           onChange={(v) => setTokens({ datePickerPopoverShadow: v })}
@@ -160,7 +163,7 @@ export function DatePickerModule() {
       </Section>
 
       {/* ── Indicator ── */}
-      <Section title="Indicator">
+      <Section title={t("sections.indicator")}>
         <SliderRow
           label={`Size — ${indicatorSize}px`}
           min={12}
@@ -174,7 +177,7 @@ export function DatePickerModule() {
       </Section>
 
       {/* ── Motion ── */}
-      <Section title="Motion">
+      <Section title={t("sections.motion")}>
         <TransitionRow tokenKey="datePickerTransitionDuration" />
       </Section>
     </div>

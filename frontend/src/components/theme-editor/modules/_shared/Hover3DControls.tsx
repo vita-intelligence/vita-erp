@@ -12,6 +12,7 @@
  * the static rotation values, preserving any 3D transform on hover.
  */
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import type { ThemeTokens } from "@/config/themes";
@@ -124,16 +125,16 @@ const HOVER_DEFAULTS: Record<HoverEffectType, HoverPreset> = {
   },
 };
 
-const EFFECT_OPTIONS: { label: string; value: HoverEffectType }[] = [
-  { label: "None", value: "none" },
-  { label: "Lift", value: "lift" },
-  { label: "Scale", value: "scale" },
-  { label: "Lift + Scale", value: "lift-scale" },
-  { label: "Tilt forward", value: "tilt-forward" },
-  { label: "Tilt side", value: "tilt-side" },
-  { label: "Tilt 3D", value: "tilt-3d" },
-  { label: "Flip peek", value: "flip-peek" },
-  { label: "Lift + Tilt", value: "lift-tilt" },
+const EFFECT_OPTIONS: { labelKey: string; value: HoverEffectType }[] = [
+  { labelKey: "hover3d.none", value: "none" },
+  { labelKey: "hover3d.lift", value: "lift" },
+  { labelKey: "hover3d.scale", value: "scale" },
+  { labelKey: "hover3d.liftScale", value: "lift-scale" },
+  { labelKey: "hover3d.tiltForward", value: "tilt-forward" },
+  { labelKey: "hover3d.tiltSide", value: "tilt-side" },
+  { labelKey: "hover3d.tilt3d", value: "tilt-3d" },
+  { labelKey: "hover3d.flipPeek", value: "flip-peek" },
+  { labelKey: "hover3d.liftTilt", value: "lift-tilt" },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -165,6 +166,7 @@ function detectActiveEffect(
 // ── Component ────────────────────────────────────────────────────────────────
 
 export function Hover3DControls({ keys }: Hover3DControlsProps) {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
 
   const [effectType, setEffectType] = useState<HoverEffectType>(() =>
@@ -215,16 +217,16 @@ export function Hover3DControls({ keys }: Hover3DControlsProps) {
   const showsScale = effectType === "scale" || effectType === "lift-scale";
 
   return (
-    <Section title="Hover animation">
+    <Section title={t("hover3d.title")}>
       {/* Effect type selector */}
-      <Row label="Effect" onReset={resetAll}>
+      <Row label={t("hover3d.effect")} onReset={resetAll}>
         {EFFECT_OPTIONS.map((o) => (
           <Chip
             key={o.value}
             active={effectType === o.value}
             onClick={() => applyEffect(o.value)}
           >
-            {o.label}
+            {t(o.labelKey)}
           </Chip>
         ))}
       </Row>
@@ -267,7 +269,7 @@ export function Hover3DControls({ keys }: Hover3DControlsProps) {
       {shows3D && (
         <>
           <SliderRow
-            label={`Hover X — ${hoverRx}°`}
+            label={`${t("hover3d.hoverX")} — ${hoverRx}°`}
             min={-30}
             max={30}
             step={1}
@@ -280,7 +282,7 @@ export function Hover3DControls({ keys }: Hover3DControlsProps) {
             hint={["-30° backward", "30° forward"]}
           />
           <SliderRow
-            label={`Hover Y — ${hoverRy}°`}
+            label={`${t("hover3d.hoverY")} — ${hoverRy}°`}
             min={-30}
             max={30}
             step={1}
@@ -293,7 +295,7 @@ export function Hover3DControls({ keys }: Hover3DControlsProps) {
             hint={["-30° left", "30° right"]}
           />
           <SliderRow
-            label={`Hover Z — ${hoverRz}°`}
+            label={`${t("hover3d.hoverZ")} — ${hoverRz}°`}
             min={-20}
             max={20}
             step={1}

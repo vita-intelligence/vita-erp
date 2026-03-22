@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -17,23 +19,22 @@ import {
 } from "../_shared";
 import { Preview } from "./Preview";
 
-// ── Presets ──────────────────────────────────────────────────────────────────
-
-const RADIUS_PRESETS = [
-  { label: "Square", value: "0px" },
-  { label: "Soft", value: "4px" },
-  { label: "Rounded", value: "8px" },
-  { label: "Large", value: "16px" },
-  { label: "Pill", value: "9999px" },
-];
-
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function BadgesModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
   const isPill = parseFloat(tokens.badgeRadius) >= 100;
+
+  const RADIUS_PRESETS = [
+    { label: "Square", value: "0px" },
+    { label: t("presets.soft"), value: "4px" },
+    { label: t("presets.rounded"), value: "8px" },
+    { label: "Large", value: "16px" },
+    { label: t("presets.pill"), value: "9999px" },
+  ];
   const fontSizeRem = parseFloat(tokens.badgeFontSize ?? "0.6875");
   const paddingXRem = parseFloat(tokens.badgePaddingX ?? "0.55");
   const paddingYRem = parseFloat(tokens.badgePaddingY ?? "0.2");
@@ -41,14 +42,13 @@ export function BadgesModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the appearance of status badges, chips, and tags across the
-        entire interface.
+        {t("modules.badges.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
-      <Section title="Shape">
+      <Section title={t("sections.shape")}>
         <Row label="Preset" onReset={() => resetColor(["badgeRadius"])}>
           {RADIUS_PRESETS.map((p) => {
             const isActive =
@@ -79,7 +79,7 @@ export function BadgesModule() {
       </Section>
 
       {/* ── Spacing ── */}
-      <Section title="Spacing">
+      <Section title={t("sections.spacing")}>
         <SliderRow
           label={`Padding X — ${paddingXRem}rem`}
           min={0.2}
@@ -103,7 +103,7 @@ export function BadgesModule() {
       </Section>
 
       {/* ── Border ── */}
-      <Section title="Border">
+      <Section title={t("sections.border")}>
         <BorderControls
           keys={{
             top: "badgeBorderTop",
@@ -119,7 +119,7 @@ export function BadgesModule() {
       </Section>
 
       {/* ── Typography ── */}
-      <Section title="Typography">
+      <Section title={t("sections.typography")}>
         <FontWeightRow tokenKey="badgeFontWeight" />
 
         <SliderRow
@@ -134,14 +134,14 @@ export function BadgesModule() {
         />
 
         <Row
-          label="Letter spacing"
+          label={t("labels.letterSpacing")}
           onReset={() => resetColor(["badgeLetterSpacing"])}
         >
           {[
-            { label: "Default", value: "0em" },
-            { label: "Snug", value: "0.02em" },
-            { label: "Wide", value: "0.06em" },
-            { label: "Widest", value: "0.12em" },
+            { label: t("presets.default"), value: "0em" },
+            { label: t("presets.snug"), value: "0.02em" },
+            { label: t("presets.wide"), value: "0.06em" },
+            { label: t("presets.widest"), value: "0.12em" },
           ].map((o) => (
             <Chip
               key={o.value}
@@ -154,13 +154,13 @@ export function BadgesModule() {
         </Row>
 
         <Row
-          label="Text case"
+          label={t("labels.textCase")}
           onReset={() => resetColor(["badgeTextTransform"])}
         >
           {[
-            { label: "Normal", value: "none" },
-            { label: "UPPERCASE", value: "uppercase" },
-            { label: "Capitalize", value: "capitalize" },
+            { label: t("labels.textNormal"), value: "none" },
+            { label: t("labels.uppercase"), value: "uppercase" },
+            { label: t("labels.capitalize"), value: "capitalize" },
           ].map((o) => (
             <Chip
               key={o.value}

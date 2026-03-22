@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import { Chip, Row, Section, SliderRow, usePreviewExternal } from "../_shared";
@@ -8,14 +10,15 @@ import { Preview } from "./Preview";
 // ── Presets ──────────────────────────────────────────────────────────────────
 
 const RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Rounded", value: "3px" },
-  { label: "Pill", value: "9999px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.rounded", value: "3px" },
+  { label: "presets.pill", value: "9999px" },
 ];
 
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function SeparatorModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -25,13 +28,13 @@ export function SeparatorModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the thickness and shape of divider lines.
+        {t("modules.separator.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Thickness ── */}
-      <Section title="Thickness">
+      <Section title={t("sections.thickness")}>
         <SliderRow
           label={`Thickness — ${thicknessPx}px`}
           min={1}
@@ -45,9 +48,9 @@ export function SeparatorModule() {
       </Section>
 
       {/* ── Shape ── */}
-      <Section title="Shape">
+      <Section title={t("sections.shape")}>
         <Row
-          label="Radius preset"
+          label={t("labels.radiusPreset")}
           onReset={() => resetColor(["separatorRadius"])}
         >
           {RADIUS_PRESETS.map((p) => (
@@ -60,7 +63,7 @@ export function SeparatorModule() {
               }
               onClick={() => setTokens({ separatorRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>

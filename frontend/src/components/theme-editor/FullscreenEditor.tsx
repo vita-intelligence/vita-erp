@@ -1,6 +1,7 @@
 "use client";
 
 import { RotateCcw, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useEffect, useSyncExternalStore } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -34,6 +35,7 @@ type Props = {
 
 export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
   const { resetAll, resetColor } = useThemeStore();
+  const t = useTranslations("themeEditor");
   const active =
     THEME_EDITOR_MODULES.find((m) => m.id === activeTab) ??
     THEME_EDITOR_MODULES[0];
@@ -62,12 +64,40 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
     };
   }, []);
 
+  /** Resolve a translatable label for a module by its config id. */
+  function moduleLabel(id: string): string {
+    // Convert kebab-case id to camelCase key for messages
+    const key = id.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+    try {
+      return t(`modules.${key}.label`);
+    } catch {
+      return id;
+    }
+  }
+
+  function moduleDescription(id: string): string {
+    const key = id.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+    try {
+      return t(`modules.${key}.description`);
+    } catch {
+      return "";
+    }
+  }
+
+  function groupLabel(group: string): string {
+    try {
+      return t(`groups.${group.toLowerCase()}`);
+    } catch {
+      return group;
+    }
+  }
+
   return (
     <div className="fixed inset-0 z-vita-modal flex flex-col bg-vita-background font-vita-sans">
       {/* Header */}
       <div className="flex h-14 shrink-0 items-center justify-between border-b border-vita-neutral-200 bg-vita-surface px-4 md:px-6">
         <h1 className="text-sm font-semibold font-vita-heading text-vita-text-primary md:text-base">
-          Brand &amp; Theme Editor
+          {t("chrome.titleFull")}
         </h1>
         <div className="flex items-center gap-2">
           <ModeSwitcher />
@@ -76,11 +106,11 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
             className="hidden h-8 items-center rounded-vita-md border border-vita-neutral-200 px-3 text-xs text-vita-text-secondary transition-colors hover:bg-vita-neutral-100 sm:flex"
             onClick={resetAll}
           >
-            Reset all
+            {t("chrome.resetAll")}
           </button>
           <button
             type="button"
-            aria-label="Close"
+            aria-label={t("chrome.close")}
             className="flex h-8 w-8 items-center justify-center rounded-vita-md text-vita-text-muted transition-colors hover:bg-vita-neutral-100 hover:text-vita-text-primary"
             onClick={onClose}
           >
@@ -102,7 +132,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
                 size="sm"
                 onPress={() => switchGroup(group)}
               >
-                {group}
+                {groupLabel(group)}
               </Button>
             ))}
           </div>
@@ -120,7 +150,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
                 }
                 onClick={() => setActiveTab(m.id)}
               >
-                {m.label}
+                {moduleLabel(m.id)}
                 {activeTab === m.id && (
                   <span
                     className="absolute bottom-0 left-0 right-0 h-0.5"
@@ -138,7 +168,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
             {GROUPS.map(({ group, items }) => (
               <div key={group} className="mb-1">
                 <p className="px-4 pb-1 pt-3 text-[10px] font-semibold uppercase tracking-widest text-vita-text-muted">
-                  {group}
+                  {groupLabel(group)}
                 </p>
                 {items.map((m) => (
                   <button
@@ -156,7 +186,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
                     onClick={() => setActiveTab(m.id)}
                   >
                     <p className="text-sm font-medium font-vita-heading">
-                      {m.label}
+                      {moduleLabel(m.id)}
                     </p>
                     <p
                       className="text-xs leading-tight"
@@ -166,7 +196,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
                           : { color: "var(--vita-text-muted)" }
                       }
                     >
-                      {m.description}
+                      {moduleDescription(m.id)}
                     </p>
                   </button>
                 ))}
@@ -179,7 +209,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
               className="w-full rounded-vita-md border border-vita-neutral-200 py-2 text-xs text-vita-text-secondary transition-colors hover:bg-vita-neutral-100"
               onClick={resetAll}
             >
-              Reset all to defaults
+              {t("chrome.resetAllTooltip")}
             </button>
           </div>
         </nav>
@@ -198,10 +228,10 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
               <div className="mb-6 flex items-center justify-between">
                 <div>
                   <h2 className="text-sm font-semibold font-vita-heading text-vita-text-primary">
-                    {active.label}
+                    {moduleLabel(active.id)}
                   </h2>
                   <p className="text-xs text-vita-text-muted">
-                    {active.description}
+                    {moduleDescription(active.id)}
                   </p>
                 </div>
                 <Button
@@ -210,7 +240,7 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
                   onPress={() => resetColor(active.resetKeys)}
                 >
                   <RotateCcw size={11} />
-                  Reset section
+                  {t("chrome.resetSection")}
                 </Button>
               </div>
               {showSplitPreview ? (

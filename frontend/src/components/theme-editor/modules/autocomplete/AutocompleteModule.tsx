@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -14,16 +16,22 @@ import {
 } from "../_shared";
 import { Preview } from "./Preview";
 
-const RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
+const RADIUS_PRESETS_RAW = [
+  { labelKey: "sharp", value: "0px" },
   { label: "4px", value: "4px" },
   { label: "8px", value: "8px" },
   { label: "12px", value: "12px" },
 ];
 
 export function AutocompleteModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
+
+  const RADIUS_PRESETS = RADIUS_PRESETS_RAW.map((p) => ({
+    label: "labelKey" in p ? t(`presets.${p.labelKey}`) : p.label,
+    value: p.value,
+  }));
 
   const popoverRadiusPx = parseFloat(tokens.autocompletePopoverRadius ?? "0");
   const popoverPaddingPx = parseFloat(tokens.autocompletePopoverPadding ?? "4");
@@ -37,14 +45,13 @@ export function AutocompleteModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the dropdown popover and list items for autocomplete and
-        combo-box fields. The trigger inherits input token styling.
+        {t("modules.autocomplete.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Popover shape ── */}
-      <Section title="Dropdown shape">
+      <Section title={t("sections.dropdownShape")}>
         <SliderRow
           label={`Radius — ${popoverRadiusPx}px`}
           min={0}
@@ -69,7 +76,7 @@ export function AutocompleteModule() {
       </Section>
 
       {/* ── Popover border ── */}
-      <Section title="Dropdown border">
+      <Section title={t("sections.dropdownBorder")}>
         <BorderControls
           keys={{
             top: "autocompletePopoverBorderTop",
@@ -85,7 +92,7 @@ export function AutocompleteModule() {
       </Section>
 
       {/* ── Popover spacing ── */}
-      <Section title="Dropdown spacing">
+      <Section title={t("sections.dropdownSpacing")}>
         <SliderRow
           label={`Padding — ${popoverPaddingPx}px`}
           min={0}
@@ -109,7 +116,7 @@ export function AutocompleteModule() {
       </Section>
 
       {/* ── Items ── */}
-      <Section title="List items">
+      <Section title={t("sections.listItems")}>
         <SliderRow
           label={`Padding X — ${itemPxX}px`}
           min={4}
@@ -163,7 +170,7 @@ export function AutocompleteModule() {
       </Section>
 
       {/* ── Shadow ── */}
-      <Section title="Dropdown shadow">
+      <Section title={t("sections.dropdownShadow")}>
         <ShadowBuilder
           value={tokens.autocompletePopoverShadow ?? "none"}
           onChange={(v) => setTokens({ autocompletePopoverShadow: v })}

@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -18,13 +20,14 @@ import {
 import { Preview } from "./Preview";
 
 const RADIUS_PRESETS = [
-  { label: "Square", value: "0px" },
-  { label: "Soft", value: "6px" },
-  { label: "Rounded", value: "12px" },
-  { label: "Large", value: "20px" },
+  { label: "presets.square", value: "0px" },
+  { label: "presets.soft", value: "6px" },
+  { label: "presets.rounded", value: "12px" },
+  { label: "presets.large", value: "20px" },
 ];
 
 export function CalendarModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -33,13 +36,13 @@ export function CalendarModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the container appearance of calendar panels and date pickers.
+        {t("modules.calendar.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Shape ── */}
-      <Section title="Shape">
+      <Section title={t("sections.shape")}>
         <SliderRow
           label={`Radius — ${radiusPx}px`}
           min={0}
@@ -50,21 +53,21 @@ export function CalendarModule() {
           hint={["0 square", "24px rounded"]}
           onReset={() => resetColor(["calendarRadius"])}
         />
-        <Row label="Quick presets">
+        <Row label={t("labels.quickPresets")}>
           {RADIUS_PRESETS.map((p) => (
             <Chip
               key={p.value}
               active={tokens.calendarRadius === p.value}
               onClick={() => setTokens({ calendarRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
       </Section>
 
       {/* ── Border ── */}
-      <Section title="Border">
+      <Section title={t("sections.border")}>
         <BorderControls
           keys={{
             top: "calendarBorderTop",
@@ -80,7 +83,7 @@ export function CalendarModule() {
       </Section>
 
       {/* ── Shadow ── */}
-      <Section title="Shadow">
+      <Section title={t("sections.shadow")}>
         <ShadowBuilder
           value={tokens.calendarShadow ?? "none"}
           onChange={(v) => setTokens({ calendarShadow: v })}

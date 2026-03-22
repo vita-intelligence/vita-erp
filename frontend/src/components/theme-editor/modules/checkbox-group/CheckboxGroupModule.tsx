@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -17,21 +19,22 @@ import { Preview } from "./Preview";
 // ── Presets ──────────────────────────────────────────────────────────────────
 
 const RADIUS_PRESETS = [
-  { label: "Sharp", value: "0px" },
-  { label: "Soft", value: "6px" },
-  { label: "Rounded", value: "12px" },
+  { label: "presets.sharp", value: "0px" },
+  { label: "presets.soft", value: "6px" },
+  { label: "presets.rounded", value: "12px" },
 ];
 
 const GAP_PRESETS = [
-  { label: "Tight", value: "6px" },
-  { label: "Default", value: "10px" },
-  { label: "Relaxed", value: "14px" },
-  { label: "Spacious", value: "20px" },
+  { label: "presets.tight", value: "6px" },
+  { label: "presets.default", value: "10px" },
+  { label: "presets.relaxed", value: "14px" },
+  { label: "presets.spacious", value: "20px" },
 ];
 
 // ── Module ───────────────────────────────────────────────────────────────────
 
 export function CheckboxGroupModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
@@ -46,22 +49,24 @@ export function CheckboxGroupModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the container that wraps a group of related checkboxes —
-        spacing, border, padding, and group label styling.
+        {t("modules.checkboxGroup.allControls")}
       </p>
 
       {!previewExternal && <Preview />}
 
       {/* ── Spacing ── */}
-      <Section title="Spacing">
-        <Row label="Item gap" onReset={() => resetColor(["checkboxGroupGap"])}>
+      <Section title={t("sections.spacing")}>
+        <Row
+          label={t("labels.itemGap")}
+          onReset={() => resetColor(["checkboxGroupGap"])}
+        >
           {GAP_PRESETS.map((p) => (
             <Chip
               key={p.value}
               active={tokens.checkboxGroupGap === p.value}
               onClick={() => setTokens({ checkboxGroupGap: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -100,15 +105,18 @@ export function CheckboxGroupModule() {
       </Section>
 
       {/* ── Container shape ── */}
-      <Section title="Container">
-        <Row label="Radius" onReset={() => resetColor(["checkboxGroupRadius"])}>
+      <Section title={t("sections.container")}>
+        <Row
+          label={t("labels.radius")}
+          onReset={() => resetColor(["checkboxGroupRadius"])}
+        >
           {RADIUS_PRESETS.map((p) => (
             <Chip
               key={p.value}
               active={tokens.checkboxGroupRadius === p.value}
               onClick={() => setTokens({ checkboxGroupRadius: p.value })}
             >
-              {p.label}
+              {t(p.label)}
             </Chip>
           ))}
         </Row>
@@ -140,7 +148,7 @@ export function CheckboxGroupModule() {
       </Section>
 
       {/* ── Shadow ── */}
-      <Section title="Shadow">
+      <Section title={t("sections.shadow")}>
         <ShadowBuilder
           value={tokens.checkboxGroupShadow}
           onChange={(v) => setTokens({ checkboxGroupShadow: v })}
@@ -150,7 +158,7 @@ export function CheckboxGroupModule() {
       </Section>
 
       {/* ── Group label ── */}
-      <Section title="Group label">
+      <Section title={t("sections.groupLabel")}>
         <SliderRow
           label={`Font size — ${labelFontPx}px`}
           min={10}
@@ -161,7 +169,10 @@ export function CheckboxGroupModule() {
           hint={["10px small", "20px large"]}
           onReset={() => resetColor(["checkboxGroupLabelFontSize"])}
         />
-        <FontWeightRow tokenKey="checkboxGroupLabelFontWeight" label="Weight" />
+        <FontWeightRow
+          tokenKey="checkboxGroupLabelFontWeight"
+          label={t("labels.weight")}
+        />
         <SliderRow
           label={`Label gap — ${labelGapPx}px`}
           min={2}

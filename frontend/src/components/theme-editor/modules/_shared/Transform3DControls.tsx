@@ -7,6 +7,8 @@
  * Used by any module that supports 3D transforms.
  */
 
+import { useTranslations } from "next-intl";
+
 import type { ThemeTokens } from "@/config/themes";
 import { useThemeStore } from "@/stores/theme";
 
@@ -27,24 +29,25 @@ export type Transform3DControlsProps = {
 // ── Presets ──────────────────────────────────────────────────────────────────
 
 type Preset3D = {
-  label: string;
+  labelKey: string;
   x: string;
   y: string;
   z: string;
 };
 
 const PRESETS: Preset3D[] = [
-  { label: "Flat", x: "0deg", y: "0deg", z: "0deg" },
-  { label: "Subtle tilt", x: "2deg", y: "3deg", z: "0deg" },
-  { label: "Forward lean", x: "5deg", y: "0deg", z: "0deg" },
-  { label: "Side lean", x: "0deg", y: "5deg", z: "0deg" },
-  { label: "Twist", x: "0deg", y: "0deg", z: "3deg" },
-  { label: "Dramatic", x: "8deg", y: "-6deg", z: "2deg" },
+  { labelKey: "presets.flat", x: "0deg", y: "0deg", z: "0deg" },
+  { labelKey: "presets.subtleTilt", x: "2deg", y: "3deg", z: "0deg" },
+  { labelKey: "presets.forwardLean", x: "5deg", y: "0deg", z: "0deg" },
+  { labelKey: "presets.sideLean", x: "0deg", y: "5deg", z: "0deg" },
+  { labelKey: "presets.twist", x: "0deg", y: "0deg", z: "3deg" },
+  { labelKey: "presets.dramatic", x: "8deg", y: "-6deg", z: "2deg" },
 ];
 
 // ── Component ────────────────────────────────────────────────────────────────
 
 export function Transform3DControls({ keys }: Transform3DControlsProps) {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
 
   const xDeg = parseFloat(tokens[keys.rotateX] ?? "0");
@@ -68,24 +71,24 @@ export function Transform3DControls({ keys }: Transform3DControlsProps) {
   }
 
   return (
-    <Section title="3D Transform">
+    <Section title={t("transform3d.title")}>
       <Row
-        label="Presets"
+        label={t("transform3d.presets")}
         onReset={() => resetColor([keys.rotateX, keys.rotateY, keys.rotateZ])}
       >
         {PRESETS.map((p) => (
           <Chip
-            key={p.label}
+            key={p.labelKey}
             active={isPresetActive(p)}
             onClick={() => applyPreset(p)}
           >
-            {p.label}
+            {t(p.labelKey)}
           </Chip>
         ))}
       </Row>
 
       <SliderRow
-        label={`Rotate X — ${xDeg}°`}
+        label={`${t("transform3d.rotateX")} — ${xDeg}°`}
         min={-180}
         max={180}
         step={1}
@@ -95,12 +98,15 @@ export function Transform3DControls({ keys }: Transform3DControlsProps) {
             [keys.rotateX]: `${v}deg`,
           } as Partial<ThemeTokens>)
         }
-        hint={["-180° full back", "180° full forward"]}
+        hint={[
+          `-180° ${t("transform3d.hintXBack")}`,
+          `180° ${t("transform3d.hintXForward")}`,
+        ]}
         onReset={() => resetColor([keys.rotateX])}
       />
 
       <SliderRow
-        label={`Rotate Y — ${yDeg}°`}
+        label={`${t("transform3d.rotateY")} — ${yDeg}°`}
         min={-180}
         max={180}
         step={1}
@@ -110,12 +116,15 @@ export function Transform3DControls({ keys }: Transform3DControlsProps) {
             [keys.rotateY]: `${v}deg`,
           } as Partial<ThemeTokens>)
         }
-        hint={["-180° full left", "180° full right"]}
+        hint={[
+          `-180° ${t("transform3d.hintYLeft")}`,
+          `180° ${t("transform3d.hintYRight")}`,
+        ]}
         onReset={() => resetColor([keys.rotateY])}
       />
 
       <SliderRow
-        label={`Rotate Z — ${zDeg}°`}
+        label={`${t("transform3d.rotateZ")} — ${zDeg}°`}
         min={-180}
         max={180}
         step={1}
@@ -125,7 +134,10 @@ export function Transform3DControls({ keys }: Transform3DControlsProps) {
             [keys.rotateZ]: `${v}deg`,
           } as Partial<ThemeTokens>)
         }
-        hint={["-180° counter-cw", "180° clockwise"]}
+        hint={[
+          `-180° ${t("transform3d.hintZCcw")}`,
+          `180° ${t("transform3d.hintZCw")}`,
+        ]}
         onReset={() => resetColor([keys.rotateZ])}
       />
     </Section>
