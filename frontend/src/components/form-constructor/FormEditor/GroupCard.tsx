@@ -21,6 +21,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import type { FieldElement, FormElement, GroupElement } from "../types";
+import { DropZone } from "./DropZone";
 import { FieldCard } from "./FieldCard";
 
 type GroupCardProps = {
@@ -35,6 +36,7 @@ type GroupCardProps = {
   onRemoveChild: (childId: string) => void;
   onDuplicateChild: (childId: string) => void;
   onMoveChild: (childId: string, direction: "up" | "down") => void;
+  isDragActive?: boolean;
 };
 
 export function GroupCard({
@@ -48,6 +50,7 @@ export function GroupCard({
   onRemoveChild,
   onDuplicateChild,
   onMoveChild,
+  isDragActive = false,
 }: GroupCardProps) {
   const t = useTranslations("formConstructor");
   const [collapsed, setCollapsed] = useState(false);
@@ -179,7 +182,10 @@ export function GroupCard({
           className="space-y-1.5 p-3"
           style={{ background: "var(--vita-background)" }}
         >
-          {group.elements.length === 0 ? (
+          {/* Drop zone at top of group (when empty or before first child) */}
+          <DropZone id={`drop:${group.id}:0`} isDragActive={isDragActive} />
+
+          {group.elements.length === 0 && !isDragActive ? (
             <p
               className="py-4 text-center text-xs"
               style={{ color: "var(--vita-text-muted)" }}
@@ -190,16 +196,22 @@ export function GroupCard({
             group.elements.map((child, childIndex) => {
               if (child.kind !== "field") return null;
               return (
-                <FieldCard
-                  key={child.id}
-                  field={child}
-                  index={childIndex}
-                  total={group.elements.length}
-                  onEdit={() => onEdit(child)}
-                  onDuplicate={() => onDuplicateChild(child.id)}
-                  onDelete={() => onRemoveChild(child.id)}
-                  onMove={(dir) => onMoveChild(child.id, dir)}
-                />
+                <div key={child.id}>
+                  <FieldCard
+                    field={child}
+                    index={childIndex}
+                    total={group.elements.length}
+                    onEdit={() => onEdit(child)}
+                    onDuplicate={() => onDuplicateChild(child.id)}
+                    onDelete={() => onRemoveChild(child.id)}
+                    onMove={(dir) => onMoveChild(child.id, dir)}
+                  />
+                  {/* Drop zone after each child */}
+                  <DropZone
+                    id={`drop:${group.id}:${childIndex + 1}`}
+                    isDragActive={isDragActive}
+                  />
+                </div>
               );
             })
           )}
