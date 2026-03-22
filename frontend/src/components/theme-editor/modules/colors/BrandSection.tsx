@@ -5,6 +5,7 @@
  */
 
 import { RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { BRAND_COLOR_META, deriveVariants } from "@/config";
 import { cssColorToHex } from "@/lib/color";
@@ -13,21 +14,26 @@ import { useThemeStore } from "@/stores/theme";
 import { ColorInput } from "./ColorInput";
 
 export function BrandSection() {
+  const t = useTranslations("themeEditor.modules.colors");
   const { tokens, setTokens, resetColor } = useThemeStore();
 
   return (
     <section className="space-y-3">
       <div>
         <h3 className="text-sm font-semibold font-vita-heading text-vita-text-primary">
-          Brand colors
+          {t("brandColors")}
         </h3>
         <p className="text-xs text-vita-text-muted">
-          Each color auto-generates light and dark variants from your base pick.
+          {t("brandColorsDescription")}
         </p>
       </div>
       <div className="grid grid-cols-1 gap-3">
-        {BRAND_COLOR_META.map(
-          ({ key, lightKey, darkKey, label, description }) => (
+        {BRAND_COLOR_META.map(({ key, lightKey, darkKey }) => {
+          const tKey = key === "info" ? "information" : key;
+          const label = t(tKey);
+          const description = t(`${tKey}Description`);
+
+          return (
             <div
               key={key}
               className="flex flex-col gap-2 rounded-vita-lg border border-vita-neutral-200 bg-vita-surface p-3"
@@ -58,7 +64,7 @@ export function BrandSection() {
                 <div className="flex shrink-0 items-center gap-1">
                   <button
                     type="button"
-                    title={`Reset ${label}`}
+                    title={t("resetColor", { label })}
                     className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
                     onClick={() => resetColor([key, lightKey, darkKey])}
                   >
@@ -66,7 +72,7 @@ export function BrandSection() {
                   </button>
                   <ColorInput
                     value={cssColorToHex(tokens[key])}
-                    title={`Change ${label}`}
+                    title={t("changeColor", { label })}
                     onChange={(hex) => {
                       const { light, dark } = deriveVariants(hex);
                       setTokens({
@@ -79,8 +85,8 @@ export function BrandSection() {
                 </div>
               </div>
             </div>
-          ),
-        )}
+          );
+        })}
       </div>
     </section>
   );

@@ -1,9 +1,11 @@
 "use client";
 
 import { RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useThemeStore } from "@/stores/theme";
 
 export function SpacingModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
 
   const pct = Math.round((parseFloat(tokens.spacing) / 0.25) * 100);
@@ -11,15 +13,13 @@ export function SpacingModule() {
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Scales all padding, gaps, and margins across the entire interface.
-        Changes are visible in real time — try dragging this window over your
-        page to compare.
+        {t("modules.spacing.allControls")}
       </p>
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
-            Density
+            {t("modules.spacing.density")}
           </p>
           <div className="flex items-center gap-1">
             <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
@@ -54,7 +54,7 @@ export function SpacingModule() {
       {/* Live preview */}
       <div className="space-y-2">
         <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
-          Preview
+          {t("modules.spacing.preview")}
         </p>
         <div className="rounded-vita-lg border border-vita-neutral-200 bg-vita-surface overflow-hidden">
           <div className="border-b border-vita-neutral-200 px-4 py-3">

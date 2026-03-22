@@ -1,6 +1,7 @@
 "use client";
 
 import { RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
   HEADING_FONT_OPTIONS,
   MONO_FONT_OPTIONS,
@@ -10,28 +11,28 @@ import { useThemeStore } from "@/stores/theme";
 
 import { FontSelector } from "./FontSelector";
 
-const WEIGHT_OPTIONS = [
-  { label: "Light", value: "300" },
-  { label: "Regular", value: "400" },
-  { label: "Medium", value: "500" },
-  { label: "Semibold", value: "600" },
-] as const;
-
 export function TypographyModule() {
+  const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
+
+  const WEIGHT_OPTIONS = [
+    { label: t("modules.typography.light"), value: "300" },
+    { label: t("controls.regular"), value: "400" },
+    { label: t("controls.medium"), value: "500" },
+    { label: t("controls.semibold"), value: "600" },
+  ] as const;
 
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Non-Latin scripts (Arabic, Hindi, Chinese, Japanese, Korean) fall back
-        to your device system font automatically.
+        {t("modules.typography.nonLatinNote")}
       </p>
 
       {/* Interface size */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
-            Interface size
+            {t("modules.typography.interfaceSize")}
           </p>
           <div className="flex items-center gap-1">
             <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
@@ -57,8 +58,8 @@ export function TypographyModule() {
           onChange={(e) => setTokens({ fontSizeBase: `${e.target.value}px` })}
         />
         <div className="flex justify-between text-xs text-vita-text-muted">
-          <span>12px — compact</span>
-          <span>20px — large</span>
+          <span>12px — {t("modules.typography.compact")}</span>
+          <span>20px — {t("modules.typography.large")}</span>
         </div>
       </div>
 
@@ -66,7 +67,7 @@ export function TypographyModule() {
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
-            Line height
+            {t("modules.typography.lineHeight")}
           </p>
           <div className="flex items-center gap-1">
             <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
@@ -92,8 +93,8 @@ export function TypographyModule() {
           onChange={(e) => setTokens({ lineHeight: e.target.value })}
         />
         <div className="flex justify-between text-xs text-vita-text-muted">
-          <span>1.00 — tight</span>
-          <span>3.00 — spacious</span>
+          <span>1.00 — {t("modules.typography.tight")}</span>
+          <span>3.00 — {t("modules.typography.spacious")}</span>
         </div>
       </div>
 
@@ -101,7 +102,7 @@ export function TypographyModule() {
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
-            Body weight
+            {t("modules.typography.bodyWeight")}
           </p>
           <button
             type="button"
@@ -144,23 +145,23 @@ export function TypographyModule() {
       {/* Font selectors */}
       <div className="space-y-4">
         <FontSelector
-          label="Body font"
+          label={t("modules.typography.bodyFont")}
           tokenKey="fontBody"
           options={SANS_FONT_OPTIONS}
-          preview="The quick brown fox jumps over the lazy dog."
+          preview={t("modules.typography.sampleBody")}
         />
         <FontSelector
-          label="Heading font"
+          label={t("modules.typography.headingFont")}
           tokenKey="fontHeading"
           options={HEADING_FONT_OPTIONS}
-          preview="Manufacturing Dashboard"
+          preview={t("modules.typography.sampleHeading")}
           previewClassName="text-sm font-semibold text-vita-text-secondary"
         />
         <FontSelector
-          label="Numbers & codes"
+          label={t("modules.typography.numbersCodes")}
           tokenKey="fontMono"
           options={MONO_FONT_OPTIONS}
-          preview="ORD-00842 · $12,400.00 · 3,891 units"
+          preview={t("modules.typography.sampleMono")}
         />
       </div>
     </div>

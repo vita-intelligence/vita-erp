@@ -4,6 +4,8 @@
  * Neutral scale preview — 11-stop color strip and readability demo.
  */
 
+import { useTranslations } from "next-intl";
+
 import { useThemeStore } from "@/stores/theme";
 
 const NEUTRAL_KEYS = [
@@ -23,6 +25,7 @@ const NEUTRAL_KEYS = [
 export { NEUTRAL_KEYS };
 
 export function NeutralPreview() {
+  const t = useTranslations("themeEditor.modules.colors");
   const { tokens } = useThemeStore();
 
   return (
@@ -48,13 +51,13 @@ export function NeutralPreview() {
           className="text-sm font-semibold"
           style={{ color: tokens.textPrimary }}
         >
-          Primary text — headings and labels
+          {t("primaryText")}
         </p>
         <p className="text-xs" style={{ color: tokens.textSecondary }}>
-          Secondary text — body content, descriptions, navigation items
+          {t("secondaryText")}
         </p>
         <p className="text-xs" style={{ color: tokens.textMuted }}>
-          Muted text — timestamps, hints, placeholder content
+          {t("mutedText")}
         </p>
         <div className="mt-2 flex gap-2">
           <div
@@ -65,7 +68,7 @@ export function NeutralPreview() {
               border: `1px solid ${tokens.neutral200}`,
             }}
           >
-            Surface card
+            {t("surfaceCard")}
           </div>
           <div
             className="rounded-vita-sm px-2 py-1 text-xs"
@@ -75,7 +78,7 @@ export function NeutralPreview() {
               border: `1px solid ${tokens.neutral200}`,
             }}
           >
-            Subtle element
+            {t("subtleElement")}
           </div>
         </div>
       </div>

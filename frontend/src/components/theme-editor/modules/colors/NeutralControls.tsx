@@ -8,6 +8,7 @@
  */
 
 import { RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 
 import { deriveNeutralScale, parseOklchTint } from "@/config";
@@ -27,6 +28,7 @@ const NEUTRAL_DERIVED_KEYS = [
 // ── Component ────────────────────────────────────────────────────────────────
 
 export function NeutralControls() {
+  const t = useTranslations("themeEditor.modules.colors");
   const { mode, tokens, setTokens, resetColor } = useThemeStore();
   const isDark = mode === "dark";
 
@@ -44,11 +46,10 @@ export function NeutralControls() {
     <section className="space-y-3">
       <div>
         <h3 className="text-sm font-semibold font-vita-heading text-vita-text-primary">
-          Neutrals
+          {t("neutrals")}
         </h3>
         <p className="text-xs text-vita-text-muted">
-          Controls all grays, surfaces, borders, and body text. Adjust the tint
-          to warm or cool the entire interface.
+          {t("neutralsDescription")}
         </p>
       </div>
 
@@ -57,14 +58,16 @@ export function NeutralControls() {
       {/* Hue slider */}
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
-          <span className="text-xs text-vita-text-secondary">Tint hue</span>
+          <span className="text-xs text-vita-text-secondary">
+            {t("tintHue")}
+          </span>
           <div className="flex items-center gap-1">
             <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
               {Math.round(currentTint.hue)}°
             </span>
             <button
               type="button"
-              title="Reset neutrals"
+              title={t("resetNeutrals")}
               className="p-0.5 text-vita-text-muted hover:text-vita-text-secondary"
               onClick={() => resetColor([...NEUTRAL_DERIVED_KEYS])}
             >
@@ -100,10 +103,10 @@ export function NeutralControls() {
           }
         />
         <div className="flex justify-between text-xs text-vita-text-muted">
-          <span>Red</span>
-          <span>Green</span>
-          <span>Blue</span>
-          <span>Red</span>
+          <span>{t("red")}</span>
+          <span>{t("green")}</span>
+          <span>{t("blue")}</span>
+          <span>{t("red")}</span>
         </div>
       </div>
 
@@ -111,11 +114,11 @@ export function NeutralControls() {
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
           <span className="text-xs text-vita-text-secondary">
-            Tint strength
+            {t("tintStrength")}
           </span>
           <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
             {currentTint.chroma === 0
-              ? "None"
+              ? t("none")
               : (currentTint.chroma * 100).toFixed(1)}
           </span>
         </div>
@@ -131,8 +134,8 @@ export function NeutralControls() {
           }
         />
         <div className="flex justify-between text-xs text-vita-text-muted">
-          <span>Pure gray</span>
-          <span>Strong tint</span>
+          <span>{t("pureGray")}</span>
+          <span>{t("strongTint")}</span>
         </div>
       </div>
     </section>

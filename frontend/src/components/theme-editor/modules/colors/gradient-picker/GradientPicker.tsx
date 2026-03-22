@@ -6,6 +6,7 @@
  */
 
 import { Plus, RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 
 import { cssColorToHex } from "@/lib/color";
@@ -46,6 +47,7 @@ export function GradientPicker({
   label,
   description,
 }: GradientPickerProps) {
+  const t = useTranslations("themeEditor.modules.colors");
   const { mode: themeMode, tokens, setTokens, resetColor } = useThemeStore();
   const value = tokens[tokenKey] ?? "";
   const isDark = themeMode === "dark";
@@ -142,7 +144,7 @@ export function GradientPicker({
         <div className="flex shrink-0 items-center gap-1">
           <button
             type="button"
-            title={`Reset ${label}`}
+            title={t("resetColor", { label })}
             className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
             onClick={reset}
           >
@@ -153,7 +155,7 @@ export function GradientPicker({
               value={
                 isGradient(value) || !value ? "#ffffff" : cssColorToHex(value)
               }
-              title={`Change ${label}`}
+              title={t("changeColor", { label })}
               onChange={(hex) =>
                 setTokens({
                   [tokenKey]: hex,
@@ -167,10 +169,10 @@ export function GradientPicker({
       {/* Mode */}
       <div className="flex items-center gap-1">
         <Chip active={mode === "solid"} onClick={switchToSolid}>
-          Solid
+          {t("solid")}
         </Chip>
         <Chip active={mode === "gradient"} onClick={switchToGradient}>
-          Gradient
+          {t("gradient")}
         </Chip>
       </div>
 
@@ -183,13 +185,13 @@ export function GradientPicker({
               active={gradientType === "linear"}
               onClick={() => switchGradientType("linear")}
             >
-              Linear
+              {t("linear")}
             </Chip>
             <Chip
               active={gradientType === "radial"}
               onClick={() => switchGradientType("radial")}
             >
-              Radial
+              {t("radial")}
             </Chip>
           </div>
 
@@ -197,7 +199,7 @@ export function GradientPicker({
           {gradientType === "linear" && (
             <div className="flex items-center gap-3">
               <span className="w-16 text-xs text-vita-text-secondary">
-                Angle
+                {t("angle")}
               </span>
               <input
                 type="range"
@@ -218,17 +220,17 @@ export function GradientPicker({
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs text-vita-text-secondary">
-                Color stops
+                {t("colorStops")}
               </span>
               {stops.length < MAX_STOPS && (
                 <button
                   type="button"
-                  title="Add color stop"
+                  title={t("addColorStop")}
                   className="flex items-center gap-0.5 rounded-vita-sm border border-vita-neutral-200 px-1.5 py-0.5 text-xs text-vita-text-muted hover:text-vita-text-secondary"
                   onClick={addStop}
                 >
                   <Plus size={10} />
-                  Add
+                  {t("add")}
                 </button>
               )}
             </div>
@@ -246,7 +248,9 @@ export function GradientPicker({
 
           {/* Presets */}
           <div className="space-y-1.5">
-            <span className="text-xs text-vita-text-muted">Quick presets</span>
+            <span className="text-xs text-vita-text-muted">
+              {t("quickPresets")}
+            </span>
             <div className="grid grid-cols-7 gap-1">
               {presets.map((preset) => (
                 <button

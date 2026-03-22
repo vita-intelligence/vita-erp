@@ -5,6 +5,7 @@
  */
 
 import { Minus } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { ColorInput } from "../ColorInput";
 import type { ColorStop } from "./helpers";
@@ -24,11 +25,13 @@ export function StopEditor({
   onChange,
   onRemove,
 }: StopEditorProps) {
+  const t = useTranslations("themeEditor.modules.colors");
+
   return (
     <div className="flex items-center gap-2">
       <ColorInput
         value={stop.color}
-        title={`Stop ${index + 1} color`}
+        title={t("stopColor", { index: index + 1 })}
         onChange={(hex) => onChange(index, { ...stop, color: hex })}
       />
       <input
@@ -41,7 +44,7 @@ export function StopEditor({
         onChange={(e) =>
           onChange(index, { ...stop, position: Number(e.target.value) })
         }
-        title={`Stop ${index + 1} position`}
+        title={t("stopPosition", { index: index + 1 })}
       />
       <span className="w-8 text-right text-xs font-vita-mono text-vita-text-muted">
         {stop.position}%
@@ -49,7 +52,7 @@ export function StopEditor({
       {canRemove && (
         <button
           type="button"
-          title="Remove stop"
+          title={t("removeStop")}
           className="p-0.5 text-vita-text-muted hover:text-vita-text-secondary"
           onClick={() => onRemove(index)}
         >
