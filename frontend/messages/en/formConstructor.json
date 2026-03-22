@@ -62,15 +62,22 @@
       "description": "Description",
       "descriptionPlaceholder": "Help text shown below the field",
       "required": "Required",
-      "hidden": "Hidden field"
+      "requiredHint": "This field must be filled before submission",
+      "hidden": "Hidden field",
+      "hiddenHint": "Hidden fields are part of the schema but not visible to users",
+      "duplicateIdWarning": "This ID is already used by another field"
     },
     "options": {
       "title": "Options",
+      "heading": "Options",
+      "add": "Add option",
+      "remove": "Remove",
       "addOption": "Add option",
       "removeOption": "Remove",
       "valuePlaceholder": "Value",
       "labelPlaceholder": "Label",
       "noOptions": "No options defined",
+      "empty": "No options defined",
       "moveUp": "Move up",
       "moveDown": "Move down"
     },
@@ -81,6 +88,11 @@
       "mode": "Mode",
       "hard": "Hard — blocks submission",
       "soft": "Soft — shows warning only",
+      "modeHard": "Hard",
+      "modeHardDesc": "Blocks form submission and shows an error",
+      "modeSoft": "Soft",
+      "modeSoftDesc": "Allows submission but shows a warning",
+      "noRule": "No regex validation configured",
       "message": "Custom message",
       "messagePlaceholder": "Error or warning text shown to the user",
       "addRegex": "Add regex validation",
@@ -96,6 +108,8 @@
       "valuePlaceholder": "Expected value",
       "addCondition": "Add condition",
       "removeCondition": "Remove condition",
+      "noRule": "No visibility condition configured",
+      "noFieldsAvailable": "No other fields available for conditions",
       "operators": {
         "equals": "equals",
         "not_equals": "does not equal",
@@ -107,8 +121,12 @@
     "calculate": {
       "title": "Calculation expression",
       "description": "Reference other fields using {field_id} syntax",
+      "expression": "Expression",
       "expressionPlaceholder": "{quantity} * {unit_price}",
-      "preview": "Result preview"
+      "preview": "Result preview",
+      "syntaxHint": "Use {field_id} to reference other fields. Supports +, -, *, /, and parentheses.",
+      "availableFields": "Available fields",
+      "noFieldsAvailable": "No other fields available"
     },
     "save": "Save",
     "cancel": "Cancel"
