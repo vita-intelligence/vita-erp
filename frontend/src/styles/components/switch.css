@@ -1,0 +1,42 @@
+/* ── Switch ───────────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <Switch> component.
+ * Sets sensible defaults so the toggle is visible and properly sized.
+ *
+ * HeroUI compiled CSS sets:
+ *   .switch__control { background-color, width, height, border-radius, transition }
+ *   .switch__thumb { background-color, width, height, border-radius, margin-inline-start }
+ */
+
+:root {
+  --vita-switch-track-width: 40px;
+  --vita-switch-track-height: 22px;
+  --vita-switch-track-radius: 9999px;
+  --vita-switch-thumb-size: 18px;
+  --vita-switch-thumb-radius: 9999px;
+  --vita-switch-gap: 8px;
+  --vita-switch-transition-duration: 200ms;
+}
+
+/* Root — gap between track and label */
+.switch,
+[data-slot="switch"] {
+  gap: var(--vita-switch-gap) !important;
+}
+
+/* Track (control) */
+.switch__control,
+[data-slot="switch-control"] {
+  width: var(--vita-switch-track-width) !important;
+  height: var(--vita-switch-track-height) !important;
+  border-radius: var(--vita-switch-track-radius) !important;
+  transition-duration: var(--vita-switch-transition-duration) !important;
+}
+
+/* Thumb */
+.switch__thumb,
+[data-slot="switch-thumb"] {
+  width: var(--vita-switch-thumb-size) !important;
+  height: var(--vita-switch-thumb-size) !important;
+  border-radius: var(--vita-switch-thumb-radius) !important;
+  transition-duration: var(--vita-switch-transition-duration) !important;
+}
