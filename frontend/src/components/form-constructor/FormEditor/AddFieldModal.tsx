@@ -9,6 +9,9 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { FIELD_REGISTRY } from "../shared/field-registry";
 import type { FieldType } from "../types";
 
@@ -76,14 +79,7 @@ export function AddFieldModal({ open, onClose, onAdd }: AddFieldModalProps) {
             >
               {t("addField.labelPrompt")}
             </p>
-            <input
-              type="text"
-              className="w-full rounded-vita-md border px-3 py-2.5 text-sm"
-              style={{
-                borderColor: "var(--vita-neutral-200)",
-                background: "var(--vita-background)",
-                color: "var(--vita-text-primary)",
-              }}
+            <Input
               placeholder={t("addField.labelPlaceholder")}
               value={label}
               onChange={(e) => setLabel(e.target.value)}
@@ -137,35 +133,17 @@ export function AddFieldModal({ open, onClose, onAdd }: AddFieldModalProps) {
           className="flex justify-end gap-2 border-t px-6 py-4"
           style={{ borderColor: "var(--vita-neutral-200)" }}
         >
-          <button
-            type="button"
-            className="rounded-vita-md px-4 py-2 text-xs font-medium"
-            style={{
-              color: "var(--vita-text-secondary)",
-              border: "1px solid var(--vita-neutral-200)",
-            }}
-            onClick={handleClose}
-          >
+          <Button size="sm" variant="outline" onPress={handleClose}>
             {t("addField.cancel")}
-          </button>
-          <button
-            type="button"
-            className="rounded-vita-md px-4 py-2 text-xs font-medium"
-            style={{
-              background:
-                selectedType && label.trim()
-                  ? "var(--vita-primary)"
-                  : "var(--vita-neutral-300)",
-              color:
-                selectedType && label.trim()
-                  ? "var(--vita-text-on-primary)"
-                  : "var(--vita-text-muted)",
-            }}
-            disabled={!selectedType || !label.trim()}
-            onClick={handleAdd}
+          </Button>
+          <Button
+            size="sm"
+            variant="primary"
+            isDisabled={!selectedType || !label.trim()}
+            onPress={handleAdd}
           >
             {t("addField.configure")}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

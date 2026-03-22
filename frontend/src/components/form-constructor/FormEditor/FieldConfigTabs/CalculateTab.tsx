@@ -9,6 +9,9 @@
  */
 
 import { useTranslations } from "next-intl";
+
+import { Label, TextArea, TextField } from "@/components/ui/textarea";
+
 import { collectFields } from "../../shared/schema-utils";
 import type { ConfigTabProps } from "../../types";
 
@@ -23,26 +26,16 @@ export function CalculateTab({ field, onUpdate, allElements }: ConfigTabProps) {
   return (
     <div className="flex flex-col gap-5">
       {/* Expression textarea */}
-      <label className="flex flex-col gap-1.5">
-        <span
-          className="text-xs font-medium"
-          style={{ color: "var(--vita-text-secondary)" }}
-        >
-          {t("config.calculate.expression")}
-        </span>
-        <textarea
+      <TextField>
+        <Label>{t("config.calculate.expression")}</Label>
+        <TextArea
           value={field.calculate ?? ""}
           onChange={(e) => onUpdate({ calculate: e.target.value || undefined })}
           placeholder={t("config.calculate.expressionPlaceholder")}
           rows={4}
-          className="resize-y rounded-vita-md px-3 py-2 font-mono text-sm outline-none transition-colors"
-          style={{
-            background: "var(--vita-background)",
-            border: "1px solid var(--vita-neutral-200)",
-            color: "var(--vita-text-primary)",
-          }}
+          className="font-mono"
         />
-      </label>
+      </TextField>
 
       {/* Syntax description */}
       <div

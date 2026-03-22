@@ -28,6 +28,9 @@ import {
 } from "@dnd-kit/sortable";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   createEmptySchema,
   createField,
@@ -344,38 +347,41 @@ export function FormEditor({
               background: "var(--vita-background)",
             }}
           >
-            <button
-              type="button"
-              className="text-xs font-medium transition-colors"
+            <Button
+              size="sm"
+              variant="ghost"
+              className="text-xs font-medium"
               style={{ color: "var(--vita-primary)" }}
-              onClick={() => {
+              onPress={() => {
                 setAddModalTarget({});
                 setAddModalOpen(true);
               }}
             >
               + {t("editor.addVisibleField")}
-            </button>
+            </Button>
             <span style={{ color: "var(--vita-neutral-300)" }}>|</span>
-            <button
-              type="button"
-              className="text-xs font-medium transition-colors"
+            <Button
+              size="sm"
+              variant="ghost"
+              className="text-xs font-medium"
               style={{ color: "var(--vita-primary)" }}
-              onClick={() => setAddGroupModalOpen(true)}
+              onPress={() => setAddGroupModalOpen(true)}
             >
               {t("editor.addGroup")}
-            </button>
+            </Button>
             <span style={{ color: "var(--vita-neutral-300)" }}>|</span>
-            <button
-              type="button"
-              className="text-xs font-medium transition-colors"
+            <Button
+              size="sm"
+              variant="ghost"
+              className="text-xs font-medium"
               style={{ color: "var(--vita-primary)" }}
-              onClick={() => {
+              onPress={() => {
                 setAddModalTarget({ hidden: true });
                 setAddModalOpen(true);
               }}
             >
               + {t("editor.addHiddenField")}
-            </button>
+            </Button>
           </div>
         </div>
       ) : (
@@ -467,14 +473,8 @@ function AddGroupInlineModal({
         >
           {t("addGroupModal.labelPrompt")}
         </p>
-        <input
-          type="text"
-          className="mb-4 w-full rounded-vita-md border px-3 py-2 text-sm"
-          style={{
-            borderColor: "var(--vita-neutral-200)",
-            background: "var(--vita-background)",
-            color: "var(--vita-text-primary)",
-          }}
+        <Input
+          className="mb-4"
           placeholder={t("addGroupModal.labelPlaceholder")}
           value={label}
           onChange={(e) => setLabel(e.target.value)}
@@ -483,29 +483,17 @@ function AddGroupInlineModal({
           }}
         />
         <div className="flex justify-end gap-2">
-          <button
-            type="button"
-            className="rounded-vita-md px-4 py-2 text-xs font-medium"
-            style={{
-              color: "var(--vita-text-secondary)",
-              border: "1px solid var(--vita-neutral-200)",
-            }}
-            onClick={onClose}
-          >
+          <Button size="sm" variant="outline" onPress={onClose}>
             {t("addGroupModal.cancel")}
-          </button>
-          <button
-            type="button"
-            className="rounded-vita-md px-4 py-2 text-xs font-medium"
-            style={{
-              background: "var(--vita-primary)",
-              color: "var(--vita-text-on-primary)",
-            }}
-            onClick={() => label.trim() && onAdd(label.trim())}
-            disabled={!label.trim()}
+          </Button>
+          <Button
+            size="sm"
+            variant="primary"
+            onPress={() => label.trim() && onAdd(label.trim())}
+            isDisabled={!label.trim()}
           >
             {t("addGroupModal.create")}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

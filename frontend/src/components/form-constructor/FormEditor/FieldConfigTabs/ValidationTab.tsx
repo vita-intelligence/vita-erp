@@ -12,6 +12,9 @@
 
 import { useTranslations } from "next-intl";
 
+import { Button } from "@/components/ui/button";
+import { Input, Label, TextField } from "@/components/ui/input";
+
 import type { ConfigTabProps, RegexRule } from "../../types";
 
 export function ValidationTab({ field, onUpdate }: ConfigTabProps) {
@@ -39,17 +42,9 @@ export function ValidationTab({ field, onUpdate }: ConfigTabProps) {
         <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
           {t("config.validation.noRule")}
         </p>
-        <button
-          type="button"
-          className="rounded-vita-md px-4 py-2 text-xs font-medium transition-colors"
-          style={{
-            color: "var(--vita-primary)",
-            border: "1px solid var(--vita-neutral-200)",
-          }}
-          onClick={addRegex}
-        >
+        <Button variant="outline" size="sm" onPress={addRegex}>
           {t("config.validation.addRegex")}
-        </button>
+        </Button>
       </div>
     );
   }
@@ -59,26 +54,15 @@ export function ValidationTab({ field, onUpdate }: ConfigTabProps) {
   return (
     <div className="flex flex-col gap-5">
       {/* Pattern */}
-      <label className="flex flex-col gap-1.5">
-        <span
-          className="text-xs font-medium"
-          style={{ color: "var(--vita-text-secondary)" }}
-        >
-          {t("config.validation.pattern")}
-        </span>
-        <input
-          type="text"
+      <TextField>
+        <Label>{t("config.validation.pattern")}</Label>
+        <Input
           value={regex.pattern}
           onChange={(e) => updateRegex({ pattern: e.target.value })}
           placeholder={t("config.validation.patternPlaceholder")}
-          className="rounded-vita-md px-3 py-2 font-mono text-sm outline-none transition-colors"
-          style={{
-            background: "var(--vita-background)",
-            border: "1px solid var(--vita-neutral-200)",
-            color: "var(--vita-text-primary)",
-          }}
+          className="font-mono"
         />
-      </label>
+      </TextField>
 
       {/* Mode toggle */}
       <div className="flex flex-col gap-2">
@@ -153,36 +137,24 @@ export function ValidationTab({ field, onUpdate }: ConfigTabProps) {
       </div>
 
       {/* Custom message */}
-      <label className="flex flex-col gap-1.5">
-        <span
-          className="text-xs font-medium"
-          style={{ color: "var(--vita-text-secondary)" }}
-        >
-          {t("config.validation.message")}
-        </span>
-        <input
-          type="text"
+      <TextField>
+        <Label>{t("config.validation.message")}</Label>
+        <Input
           value={regex.message}
           onChange={(e) => updateRegex({ message: e.target.value })}
           placeholder={t("config.validation.messagePlaceholder")}
-          className="rounded-vita-md px-3 py-2 text-sm outline-none transition-colors"
-          style={{
-            background: "var(--vita-background)",
-            border: "1px solid var(--vita-neutral-200)",
-            color: "var(--vita-text-primary)",
-          }}
         />
-      </label>
+      </TextField>
 
       {/* Remove link */}
-      <button
-        type="button"
-        className="self-start text-xs font-medium transition-colors"
-        style={{ color: "var(--vita-error)" }}
-        onClick={removeRegex}
+      <Button
+        variant="ghost"
+        size="sm"
+        onPress={removeRegex}
+        className="self-start text-[var(--vita-error)]"
       >
         {t("config.validation.removeRegex")}
-      </button>
+      </Button>
     </div>
   );
 }

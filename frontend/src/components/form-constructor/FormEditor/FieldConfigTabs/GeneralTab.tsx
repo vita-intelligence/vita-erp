@@ -8,6 +8,10 @@
  */
 
 import { useTranslations } from "next-intl";
+
+import { FieldError, Input, Label, TextField } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+
 import { isIdUnique } from "../../shared/schema-utils";
 import type { ConfigTabProps } from "../../types";
 
@@ -21,77 +25,37 @@ export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
   return (
     <div className="flex flex-col gap-5">
       {/* Field ID */}
-      <label className="flex flex-col gap-1.5">
-        <span
-          className="text-xs font-medium"
-          style={{ color: "var(--vita-text-secondary)" }}
-        >
-          {t("config.general.fieldId")}
-        </span>
-        <input
-          type="text"
+      <TextField isInvalid={idDuplicate}>
+        <Label>{t("config.general.fieldId")}</Label>
+        <Input
           value={field.id}
           onChange={(e) => onUpdate({ id: e.target.value })}
-          className="rounded-vita-md px-3 py-2 text-sm outline-none transition-colors"
-          style={{
-            background: "var(--vita-background)",
-            border: idDuplicate
-              ? "1px solid var(--vita-warning)"
-              : "1px solid var(--vita-neutral-200)",
-            color: "var(--vita-text-primary)",
-          }}
         />
         {idDuplicate && (
-          <span className="text-xs" style={{ color: "var(--vita-warning)" }}>
-            {t("config.general.duplicateIdWarning")}
-          </span>
+          <FieldError>{t("config.general.duplicateIdWarning")}</FieldError>
         )}
-      </label>
+      </TextField>
 
       {/* Label */}
-      <label className="flex flex-col gap-1.5">
-        <span
-          className="text-xs font-medium"
-          style={{ color: "var(--vita-text-secondary)" }}
-        >
-          {t("config.general.label")}
-        </span>
-        <input
-          type="text"
+      <TextField>
+        <Label>{t("config.general.label")}</Label>
+        <Input
           value={field.label}
           onChange={(e) => onUpdate({ label: e.target.value })}
-          className="rounded-vita-md px-3 py-2 text-sm outline-none transition-colors"
-          style={{
-            background: "var(--vita-background)",
-            border: "1px solid var(--vita-neutral-200)",
-            color: "var(--vita-text-primary)",
-          }}
         />
-      </label>
+      </TextField>
 
       {/* Description */}
-      <label className="flex flex-col gap-1.5">
-        <span
-          className="text-xs font-medium"
-          style={{ color: "var(--vita-text-secondary)" }}
-        >
-          {t("config.general.description")}
-        </span>
-        <input
-          type="text"
+      <TextField>
+        <Label>{t("config.general.description")}</Label>
+        <Input
           value={field.description ?? ""}
           onChange={(e) =>
             onUpdate({ description: e.target.value || undefined })
           }
           placeholder={t("config.general.descriptionPlaceholder")}
-          className="rounded-vita-md px-3 py-2 text-sm outline-none transition-colors"
-          style={{
-            background: "var(--vita-background)",
-            border: "1px solid var(--vita-neutral-200)",
-            color: "var(--vita-text-primary)",
-          }}
         />
-      </label>
+      </TextField>
 
       {/* Required toggle */}
       <div className="flex items-center justify-between">
@@ -106,34 +70,11 @@ export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
             {t("config.general.requiredHint")}
           </span>
         </div>
-        <div
-          role="switch"
-          aria-checked={field.required}
-          tabIndex={0}
-          className="relative h-5 w-9 shrink-0 cursor-pointer rounded-full transition-colors"
-          style={{
-            background: field.required
-              ? "var(--vita-primary)"
-              : "var(--vita-neutral-300)",
-          }}
-          onClick={() => onUpdate({ required: !field.required })}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              onUpdate({ required: !field.required });
-            }
-          }}
-        >
-          <span
-            className="absolute top-0.5 block h-4 w-4 rounded-full transition-transform"
-            style={{
-              background: "var(--vita-surface)",
-              transform: field.required
-                ? "translateX(18px)"
-                : "translateX(2px)",
-            }}
-          />
-        </div>
+        <Switch
+          isSelected={field.required}
+          onChange={() => onUpdate({ required: !field.required })}
+          size="sm"
+        />
       </div>
 
       {/* Hidden toggle */}
@@ -149,32 +90,11 @@ export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
             {t("config.general.hiddenHint")}
           </span>
         </div>
-        <div
-          role="switch"
-          aria-checked={field.hidden}
-          tabIndex={0}
-          className="relative h-5 w-9 shrink-0 cursor-pointer rounded-full transition-colors"
-          style={{
-            background: field.hidden
-              ? "var(--vita-primary)"
-              : "var(--vita-neutral-300)",
-          }}
-          onClick={() => onUpdate({ hidden: !field.hidden })}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              onUpdate({ hidden: !field.hidden });
-            }
-          }}
-        >
-          <span
-            className="absolute top-0.5 block h-4 w-4 rounded-full transition-transform"
-            style={{
-              background: "var(--vita-surface)",
-              transform: field.hidden ? "translateX(18px)" : "translateX(2px)",
-            }}
-          />
-        </div>
+        <Switch
+          isSelected={field.hidden}
+          onChange={() => onUpdate({ hidden: !field.hidden })}
+          size="sm"
+        />
       </div>
     </div>
   );

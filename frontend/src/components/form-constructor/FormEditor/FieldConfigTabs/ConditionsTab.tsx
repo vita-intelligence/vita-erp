@@ -12,6 +12,12 @@
  */
 
 import { useTranslations } from "next-intl";
+import type { Key } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Input, Label, TextField } from "@/components/ui/input";
+import { ListBox, Select } from "@/components/ui/select";
+
 import { collectFields } from "../../shared/schema-utils";
 import type {
   ConfigTabProps,
@@ -78,17 +84,9 @@ export function ConditionsTab({
         <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
           {t("config.conditions.noRule")}
         </p>
-        <button
-          type="button"
-          className="rounded-vita-md px-4 py-2 text-xs font-medium transition-colors"
-          style={{
-            color: "var(--vita-primary)",
-            border: "1px solid var(--vita-neutral-200)",
-          }}
-          onClick={addCondition}
-        >
+        <Button variant="outline" size="sm" onPress={addCondition}>
           {t("config.conditions.addCondition")}
-        </button>
+        </Button>
       </div>
     );
   }
@@ -104,97 +102,84 @@ export function ConditionsTab({
       </p>
 
       {/* Field picker */}
-      <label className="flex flex-col gap-1.5">
-        <span
-          className="text-xs font-medium"
-          style={{ color: "var(--vita-text-secondary)" }}
-        >
-          {t("config.conditions.field")}
-        </span>
-        <select
-          value={rule.fieldId}
-          onChange={(e) => updateRule({ fieldId: e.target.value })}
-          className="rounded-vita-md px-3 py-2 text-sm outline-none transition-colors"
-          style={{
-            background: "var(--vita-background)",
-            border: "1px solid var(--vita-neutral-200)",
-            color: "var(--vita-text-primary)",
-          }}
-        >
-          {availableFields.length === 0 && (
-            <option value="" disabled>
-              {t("config.conditions.noFieldsAvailable")}
-            </option>
-          )}
-          {availableFields.map((f) => (
-            <option key={f.id} value={f.id}>
-              {f.label || f.id}
-            </option>
-          ))}
-        </select>
-      </label>
+      <Select
+        selectedKey={rule.fieldId || null}
+        onSelectionChange={(key: Key | null) => {
+          if (key) updateRule({ fieldId: String(key) });
+        }}
+        placeholder={
+          availableFields.length === 0
+            ? t("config.conditions.noFieldsAvailable")
+            : undefined
+        }
+        isDisabled={availableFields.length === 0}
+      >
+        <Label>{t("config.conditions.field")}</Label>
+        <Select.Trigger>
+          <Select.Value />
+          <Select.Indicator />
+        </Select.Trigger>
+        <Select.Popover>
+          <ListBox>
+            {availableFields.map((f) => (
+              <ListBox.Item key={f.id} id={f.id} textValue={f.label || f.id}>
+                {f.label || f.id}
+                <ListBox.ItemIndicator />
+              </ListBox.Item>
+            ))}
+          </ListBox>
+        </Select.Popover>
+      </Select>
 
       {/* Operator picker */}
-      <label className="flex flex-col gap-1.5">
-        <span
-          className="text-xs font-medium"
-          style={{ color: "var(--vita-text-secondary)" }}
-        >
-          {t("config.conditions.operator")}
-        </span>
-        <select
-          value={rule.operator}
-          onChange={(e) =>
-            updateRule({ operator: e.target.value as VisibilityOperator })
-          }
-          className="rounded-vita-md px-3 py-2 text-sm outline-none transition-colors"
-          style={{
-            background: "var(--vita-background)",
-            border: "1px solid var(--vita-neutral-200)",
-            color: "var(--vita-text-primary)",
-          }}
-        >
-          {OPERATORS.map((op) => (
-            <option key={op} value={op}>
-              {t(`config.conditions.operators.${op}`)}
-            </option>
-          ))}
-        </select>
-      </label>
+      <Select
+        selectedKey={rule.operator}
+        onSelectionChange={(key: Key | null) => {
+          if (key) updateRule({ operator: key as VisibilityOperator });
+        }}
+      >
+        <Label>{t("config.conditions.operator")}</Label>
+        <Select.Trigger>
+          <Select.Value />
+          <Select.Indicator />
+        </Select.Trigger>
+        <Select.Popover>
+          <ListBox>
+            {OPERATORS.map((op) => (
+              <ListBox.Item
+                key={op}
+                id={op}
+                textValue={t(`config.conditions.operators.${op}`)}
+              >
+                {t(`config.conditions.operators.${op}`)}
+                <ListBox.ItemIndicator />
+              </ListBox.Item>
+            ))}
+          </ListBox>
+        </Select.Popover>
+      </Select>
 
       {/* Value input — hidden for is_empty / is_not_empty */}
       {showValueInput && (
-        <label className="flex flex-col gap-1.5">
-          <span
-            className="text-xs font-medium"
-            style={{ color: "var(--vita-text-secondary)" }}
-          >
-            {t("config.conditions.value")}
-          </span>
-          <input
-            type="text"
+        <TextField>
+          <Label>{t("config.conditions.value")}</Label>
+          <Input
             value={rule.value ?? ""}
             onChange={(e) => updateRule({ value: e.target.value })}
             placeholder={t("config.conditions.valuePlaceholder")}
-            className="rounded-vita-md px-3 py-2 text-sm outline-none transition-colors"
-            style={{
-              background: "var(--vita-background)",
-              border: "1px solid var(--vita-neutral-200)",
-              color: "var(--vita-text-primary)",
-            }}
           />
-        </label>
+        </TextField>
       )}
 
       {/* Remove link */}
-      <button
-        type="button"
-        className="self-start text-xs font-medium transition-colors"
-        style={{ color: "var(--vita-error)" }}
-        onClick={removeCondition}
+      <Button
+        variant="ghost"
+        size="sm"
+        onPress={removeCondition}
+        className="self-start text-[var(--vita-error)]"
       >
         {t("config.conditions.removeCondition")}
-      </button>
+      </Button>
     </div>
   );
 }

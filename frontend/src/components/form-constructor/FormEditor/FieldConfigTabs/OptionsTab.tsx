@@ -10,6 +10,9 @@
 import { ChevronDown, ChevronUp, Plus, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
 import type { ConfigTabProps, SelectOption } from "../../types";
 
 export function OptionsTab({ field, onUpdate }: ConfigTabProps) {
@@ -101,31 +104,19 @@ export function OptionsTab({ field, onUpdate }: ConfigTabProps) {
           </div>
 
           {/* Value input */}
-          <input
-            type="text"
+          <Input
             value={opt.value}
             onChange={(e) => updateOption(index, { value: e.target.value })}
             placeholder={t("config.options.valuePlaceholder")}
-            className="w-0 min-w-0 flex-1 rounded-vita-sm px-2 py-1.5 text-xs outline-none"
-            style={{
-              background: "var(--vita-background)",
-              border: "1px solid var(--vita-neutral-200)",
-              color: "var(--vita-text-primary)",
-            }}
+            className="w-0 min-w-0 flex-1"
           />
 
           {/* Label input */}
-          <input
-            type="text"
+          <Input
             value={opt.label}
             onChange={(e) => updateOption(index, { label: e.target.value })}
             placeholder={t("config.options.labelPlaceholder")}
-            className="w-0 min-w-0 flex-1 rounded-vita-sm px-2 py-1.5 text-xs outline-none"
-            style={{
-              background: "var(--vita-background)",
-              border: "1px solid var(--vita-neutral-200)",
-              color: "var(--vita-text-primary)",
-            }}
+            className="w-0 min-w-0 flex-1"
           />
 
           {/* Remove button */}
@@ -142,18 +133,15 @@ export function OptionsTab({ field, onUpdate }: ConfigTabProps) {
       ))}
 
       {/* Add option button */}
-      <button
-        type="button"
-        className="flex items-center gap-1.5 self-start rounded-vita-md px-3 py-1.5 text-xs font-medium transition-colors"
-        style={{
-          color: "var(--vita-primary)",
-          border: "1px dashed var(--vita-neutral-300)",
-        }}
-        onClick={addOption}
+      <Button
+        variant="outline"
+        size="sm"
+        onPress={addOption}
+        className="self-start"
       >
         <Plus size={12} />
         {t("config.options.add")}
-      </button>
+      </Button>
     </div>
   );
 }

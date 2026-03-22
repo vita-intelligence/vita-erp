@@ -8,6 +8,7 @@ import { Download, Eye, EyeOff, Redo2, Undo2, Upload } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
+import { Input } from "@/components/ui/input";
 import type { FormSchema } from "../types";
 
 type EditorToolbarProps = {
@@ -72,14 +73,8 @@ export function EditorToolbar({
   return (
     <div className="flex items-center gap-3">
       {/* Form name */}
-      <input
-        type="text"
-        className="flex-1 rounded-vita-md border px-3 py-2 text-sm font-medium"
-        style={{
-          borderColor: "var(--vita-neutral-200)",
-          background: "var(--vita-background)",
-          color: "var(--vita-text-primary)",
-        }}
+      <Input
+        className="flex-1"
         placeholder={t("editor.formNamePlaceholder")}
         value={schema.name}
         onChange={(e) => onNameChange(e.target.value)}
