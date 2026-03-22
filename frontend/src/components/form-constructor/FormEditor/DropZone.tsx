@@ -1,11 +1,12 @@
 "use client";
 
 /**
- * DropZone — a thin droppable area between elements in the form editor.
+ * DropZone — a droppable area between elements in the form editor.
  *
- * When a drag is active, drop zones expand and highlight to show where
- * the dragged element can be placed. When no drag is active, they
- * collapse to zero height (invisible).
+ * When a drag is active, ALL drop zones are visible (thin dashed line).
+ * When the pointer hovers over a specific zone, it expands and highlights
+ * to show this is where the element will land.
+ * When no drag is active, drop zones collapse to invisible.
  *
  * ID format: "drop:{containerId}:{index}"
  *   - containerId = "root" for top-level, or a group ID for inside a group
@@ -25,7 +26,6 @@ export function DropZone({ id, isDragActive }: DropZoneProps) {
   const { isOver, setNodeRef } = useDroppable({ id });
 
   if (!isDragActive) {
-    // Invisible spacer when no drag is active
     return <div style={{ height: 2 }} />;
   }
 
@@ -33,31 +33,30 @@ export function DropZone({ id, isDragActive }: DropZoneProps) {
     <div
       ref={setNodeRef}
       style={{
-        height: isOver ? 40 : 8,
+        height: isOver ? 44 : 24,
         borderRadius: 6,
         border: isOver
           ? "2px dashed var(--vita-primary)"
-          : "2px dashed transparent",
+          : "1px dashed var(--vita-neutral-300)",
         background: isOver
           ? "var(--vita-primary-light, oklch(0.95 0.02 250))"
-          : "transparent",
-        transition: "all 150ms ease",
+          : "var(--vita-neutral-50, #f9fafb)",
+        transition: "all 120ms ease",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      {isOver && (
-        <span
-          style={{
-            fontSize: 11,
-            color: "var(--vita-primary)",
-            fontWeight: 500,
-          }}
-        >
-          ↓
-        </span>
-      )}
+      <span
+        style={{
+          fontSize: 11,
+          color: isOver ? "var(--vita-primary)" : "var(--vita-neutral-400)",
+          fontWeight: 500,
+          opacity: isOver ? 1 : 0.6,
+        }}
+      >
+        {isOver ? "↓ Drop here" : "—"}
+      </span>
     </div>
   );
 }
