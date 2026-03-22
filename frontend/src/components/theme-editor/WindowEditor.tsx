@@ -192,16 +192,25 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
 
   const windowRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
 
-  // Block scroll-through on non-scrollable areas (header, tabs).
-  // When the event originates inside the scrollable content pane, allow it
-  // through — overscroll-contain on the content div handles boundary chaining.
+  // Block scroll-through on non-scrollable areas (header, group bar).
+  // Allow wheel events inside the scrollable content pane and the
+  // horizontally-scrollable module tabs strip. The tabs strip also
+  // converts vertical scroll into horizontal scroll for convenience.
   // Must be non-passive so preventDefault() is honoured by the browser.
   useEffect(() => {
     const el = windowRef.current;
     if (!el) return;
     const stop = (e: WheelEvent) => {
+      // Allow vertical scroll inside the content pane
       if (contentRef.current?.contains(e.target as Node)) return;
+      // Convert vertical scroll → horizontal scroll inside the tabs strip
+      if (tabsRef.current?.contains(e.target as Node)) {
+        tabsRef.current.scrollLeft += e.deltaY;
+        e.preventDefault();
+        return;
+      }
       e.preventDefault();
     };
     el.addEventListener("wheel", stop, { passive: false });
@@ -429,11 +438,15 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
           ))}
         </div>
 
-        {/* Module tabs — only active group's items */}
+        {/* Module tabs — only active group's items (horizontally scrollable) */}
         {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
         <div
-          className="flex shrink-0 items-center border-b px-1"
-          style={{ borderBottomColor: "var(--vita-neutral-200)" }}
+          ref={tabsRef}
+          className="flex shrink-0 items-center overflow-x-auto border-b px-1"
+          style={{
+            borderBottomColor: "var(--vita-neutral-200)",
+            scrollbarWidth: "none",
+          }}
           onMouseDown={(e) => e.stopPropagation()}
         >
           {activeGroupItems.map((m) => (
