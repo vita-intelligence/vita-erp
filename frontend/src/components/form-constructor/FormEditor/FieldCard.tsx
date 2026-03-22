@@ -57,8 +57,9 @@ export function FieldCard({
     isDragging,
   } = useSortable({ id: field.id });
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
+  const style: React.CSSProperties = {
+    // Only apply transform when THIS field is being dragged
+    transform: isDragging ? CSS.Transform.toString(transform) : undefined,
     transition,
     opacity: isDragging ? 0.5 : 1,
   };

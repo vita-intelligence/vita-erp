@@ -62,10 +62,12 @@ export function GroupCard({
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: group.id });
+  } = useSortable({ id: group.id, disabled: isDragActive && !isDragging });
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
+  const style: React.CSSProperties = {
+    // Only apply transform when THIS group is being dragged, not when
+    // something else is dragged over it (which causes the "escape" bug)
+    transform: isDragging ? CSS.Transform.toString(transform) : undefined,
     transition,
     opacity: isDragging ? 0.5 : 1,
   };
