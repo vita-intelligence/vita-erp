@@ -785,6 +785,11 @@
       "description": "Size and stroke width of loading spinners",
       "allControls": "Controls the size and stroke width of loading spinners."
     },
+    "switch": {
+      "label": "Switch",
+      "description": "Track, thumb, and label gap of toggle switches",
+      "allControls": "Controls the track size, thumb size, border-radius, label gap, and animation of toggle switches."
+    },
     "tabs": {
       "label": "Tabs",
       "description": "Tab list, items, active indicator, and panel padding",

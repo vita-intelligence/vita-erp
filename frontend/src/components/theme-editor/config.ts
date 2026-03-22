@@ -56,6 +56,8 @@ import { Preview as SliderPreview } from "./modules/slider/Preview";
 import { SpacingModule } from "./modules/spacing";
 import { SpinnerModule } from "./modules/spinner";
 import { Preview as SpinnerPreview } from "./modules/spinner/Preview";
+import { SwitchModule } from "./modules/switch";
+import { Preview as SwitchPreview } from "./modules/switch/Preview";
 import { TabsModule } from "./modules/tabs";
 import { Preview as TabsPreview } from "./modules/tabs/Preview";
 import { TypographyModule } from "./modules/typography";
@@ -624,6 +626,23 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "spinnerRotateX",
       "spinnerRotateY",
       "spinnerRotateZ",
+    ],
+  },
+  {
+    id: "switch",
+    label: "Switch",
+    description: "Track, thumb, and label gap of toggle switches",
+    component: SwitchModule,
+    preview: SwitchPreview,
+    group: "Components",
+    resetKeys: [
+      "switchTrackWidth",
+      "switchTrackHeight",
+      "switchTrackRadius",
+      "switchThumbSize",
+      "switchThumbRadius",
+      "switchGap",
+      "switchTransitionDuration",
     ],
   },
   {

@@ -254,6 +254,13 @@ export const componentDefaults: Pick<
   | "datePickerPopoverPadding"
   | "datePickerIndicatorSize"
   | "datePickerTransitionDuration"
+  | "switchTrackWidth"
+  | "switchTrackHeight"
+  | "switchTrackRadius"
+  | "switchThumbSize"
+  | "switchThumbRadius"
+  | "switchGap"
+  | "switchTransitionDuration"
   | "tabsListRadius"
   | "tabsListPadding"
   | "tabsListGap"
@@ -579,6 +586,15 @@ export const componentDefaults: Pick<
   datePickerPopoverPadding: "12px",
   datePickerIndicatorSize: "18px",
   datePickerTransitionDuration: "150ms",
+
+  // Switch
+  switchTrackWidth: "40px",
+  switchTrackHeight: "22px",
+  switchTrackRadius: "9999px",
+  switchThumbSize: "18px",
+  switchThumbRadius: "9999px",
+  switchGap: "8px",
+  switchTransitionDuration: "200ms",
 
   // Tabs
   tabsListRadius: "12px",
