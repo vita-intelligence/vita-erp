@@ -1,15 +1,8 @@
 /* ── Switch ───────────────────────────────────────────────────────────────────
  * Applies Vita ERP design tokens to the HeroUI <Switch> component.
  *
- * HeroUI sets:
- *   .switch { display: inline-flex; gap; cursor }
- *   .switch__control { width: 2.5rem; height: 1.25rem; border-radius: pill; bg }
- *   .switch__thumb { width: 1.375rem; height: 1rem; border-radius: pill; margin }
- *   .switch--sm .switch__control { width: 2rem; height: 1rem }
- *   .switch--lg .switch__control { width: 3rem; height: 1.5rem }
- *
- * Checked state uses --switch-control-bg-checked: var(--color-accent).
- * We override to use --vita-secondary for a subtler look.
+ * HeroUI uses complex selectors for size variants and selected state.
+ * We use high-specificity selectors to ensure our tokens win.
  */
 
 :root {
@@ -22,36 +15,62 @@
   --vita-switch-transition-duration: 200ms;
 }
 
-/* Root — gap between track and label */
-.switch,
-[data-slot="switch"] {
+/* Root — gap between track and label, force flex column alignment */
+.switch[data-slot="switch"],
+.switch {
   gap: var(--vita-switch-gap) !important;
 }
 
-/* Track (control) — override all size variants */
-.switch__control,
-[data-slot="switch-control"] {
+/* Track — override all size variants with double-class specificity */
+.switch .switch__control,
+.switch--sm .switch__control,
+.switch--lg .switch__control,
+[data-slot="switch"] [data-slot="switch-control"] {
   width: var(--vita-switch-track-width) !important;
   height: var(--vita-switch-track-height) !important;
   min-width: var(--vita-switch-track-width) !important;
   border-radius: var(--vita-switch-track-radius) !important;
   transition-duration: var(--vita-switch-transition-duration) !important;
-  --switch-control-bg: var(--vita-neutral-300) !important;
-  --switch-control-bg-checked: var(--vita-secondary, var(--vita-primary)) !important;
-  --switch-control-bg-checked-hover: var(--vita-secondary-dark, var(--vita-primary-dark)) !important;
+  background-color: var(--vita-neutral-300) !important;
 }
 
-/* Thumb — make it square (equal width/height) */
-.switch__thumb,
-[data-slot="switch-thumb"] {
+/* Track — checked state */
+.switch[data-selected="true"] .switch__control,
+.switch[aria-checked="true"] .switch__control {
+  background-color: var(--vita-secondary, var(--vita-primary)) !important;
+}
+
+/* Track — checked hover */
+.switch[data-selected="true"]:hover .switch__control,
+.switch[data-selected="true"][data-hovered="true"] .switch__control {
+  background-color: var(--vita-secondary-dark, var(--vita-primary-dark)) !important;
+}
+
+/* Thumb — override all size variants */
+.switch .switch__thumb,
+.switch--sm .switch__thumb,
+.switch--lg .switch__thumb,
+[data-slot="switch"] [data-slot="switch-thumb"] {
   width: var(--vita-switch-thumb-size) !important;
   height: var(--vita-switch-thumb-size) !important;
   border-radius: var(--vita-switch-thumb-radius) !important;
   transition-duration: var(--vita-switch-transition-duration) !important;
+  background-color: white !important;
+  box-shadow: 0 1px 3px oklch(0 0 0 / 0.15) !important;
+  margin-inline-start: 2px !important;
+}
+
+/* Thumb — checked state: slide to the right */
+.switch[data-selected="true"] .switch__thumb,
+.switch[aria-checked="true"] .switch__thumb {
+  margin-inline-start: calc(
+    var(--vita-switch-track-width) - var(--vita-switch-thumb-size) - 2px
+  ) !important;
+  background-color: white !important;
 }
 
 /* Content/label */
 .switch__content,
 [data-slot="switch-content"] {
-  font-size: 14px;
+  font-size: 14px !important;
 }
