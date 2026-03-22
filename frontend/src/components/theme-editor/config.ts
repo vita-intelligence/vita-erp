@@ -14,6 +14,8 @@
 import type { ComponentType } from "react";
 
 import type { ThemeTokens } from "@/config/themes";
+import { AccordionModule } from "./modules/accordion";
+import { Preview as AccordionPreview } from "./modules/accordion/Preview";
 import { BadgesModule } from "./modules/badges";
 import { Preview as BadgesPreview } from "./modules/badges/Preview";
 import { ButtonsModule } from "./modules/buttons";
@@ -209,6 +211,27 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "badgeTextTransform",
       "badgePaddingX",
       "badgePaddingY",
+    ],
+  },
+  {
+    id: "accordion",
+    label: "Accordion",
+    description: "Shape, spacing, and typography of collapsible sections",
+    component: AccordionModule,
+    preview: AccordionPreview,
+    group: "Components",
+    resetKeys: [
+      "accordionRadius",
+      "accordionBorderWidth",
+      "accordionBorderStyle",
+      "accordionSeparatorHeight",
+      "accordionTriggerPaddingX",
+      "accordionTriggerPaddingY",
+      "accordionTriggerFontWeight",
+      "accordionTriggerFontSize",
+      "accordionContentPaddingX",
+      "accordionContentPaddingY",
+      "accordionShadow",
     ],
   },
 ];

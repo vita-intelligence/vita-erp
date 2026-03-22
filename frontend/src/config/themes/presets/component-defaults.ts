@@ -59,6 +59,17 @@ export const componentDefaults: Pick<
   | "badgeTextTransform"
   | "badgePaddingX"
   | "badgePaddingY"
+  | "accordionRadius"
+  | "accordionBorderWidth"
+  | "accordionBorderStyle"
+  | "accordionSeparatorHeight"
+  | "accordionTriggerPaddingX"
+  | "accordionTriggerPaddingY"
+  | "accordionTriggerFontWeight"
+  | "accordionTriggerFontSize"
+  | "accordionContentPaddingX"
+  | "accordionContentPaddingY"
+  | "accordionShadow"
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
@@ -120,6 +131,19 @@ export const componentDefaults: Pick<
   badgeTextTransform: "none",
   badgePaddingX: "0.55rem",
   badgePaddingY: "0.2rem",
+
+  // Accordion
+  accordionRadius: "0px",
+  accordionBorderWidth: "1px",
+  accordionBorderStyle: "solid",
+  accordionSeparatorHeight: "1px",
+  accordionTriggerPaddingX: "16px",
+  accordionTriggerPaddingY: "12px",
+  accordionTriggerFontWeight: "500",
+  accordionTriggerFontSize: "14px",
+  accordionContentPaddingX: "16px",
+  accordionContentPaddingY: "8px",
+  accordionShadow: "none",
 
   // Select
   selectRadius: "0px",

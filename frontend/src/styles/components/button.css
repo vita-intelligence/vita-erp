@@ -4,6 +4,23 @@
  * Values are injected at runtime by the theme store via applyTokens().
  */
 
+:root {
+  --vita-btn-radius: 0px;
+  --vita-btn-border-top: 1px;
+  --vita-btn-border-right: 1px;
+  --vita-btn-border-bottom: 1px;
+  --vita-btn-border-left: 1px;
+  --vita-btn-border-style: solid;
+  --vita-btn-font-weight: 500;
+  --vita-btn-letter-spacing: 0.02em;
+  --vita-btn-text-transform: none;
+  --vita-btn-shadow: none;
+  --vita-btn-hover-transform: none;
+  --vita-btn-hover-filter: none;
+  --vita-btn-press-scale: 0.97;
+  --vita-btn-transition-duration: 150ms;
+}
+
 .button {
   border-radius: var(--vita-btn-radius) !important;
   font-weight: var(--vita-btn-font-weight) !important;

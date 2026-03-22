@@ -2,6 +2,11 @@
  * Applies Vita ERP design tokens to the HeroUI <Select> trigger (.select__trigger).
  */
 
+:root {
+  --vita-select-radius: 0px;
+  --vita-select-border-width: 1px;
+}
+
 .select__trigger {
   border-radius: var(--vita-select-radius) !important;
   border-width: var(--vita-select-border-width) !important;

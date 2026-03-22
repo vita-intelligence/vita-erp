@@ -123,6 +123,19 @@ export type ThemeTokens = {
   badgePaddingX: string; // horizontal padding
   badgePaddingY: string; // vertical padding
 
+  // ── Component tokens: Accordion ───────────────────────────────────────────
+  accordionRadius: string; // border-radius of accordion container
+  accordionBorderWidth: string; // border-width of container
+  accordionBorderStyle: string; // border-style: solid | dashed | dotted
+  accordionSeparatorHeight: string; // separator thickness between items (0 = hidden)
+  accordionTriggerPaddingX: string; // horizontal padding of trigger
+  accordionTriggerPaddingY: string; // vertical padding of trigger
+  accordionTriggerFontWeight: string; // font-weight of trigger text
+  accordionTriggerFontSize: string; // font-size of trigger text
+  accordionContentPaddingX: string; // horizontal padding of content body
+  accordionContentPaddingY: string; // vertical padding of content body
+  accordionShadow: string; // box-shadow on the container
+
   // ── Component tokens: Select / Dropdown ───────────────────────────────────
   selectRadius: string; // border-radius of select trigger
   selectBorderWidth: string; // border-width of select trigger

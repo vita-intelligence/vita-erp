@@ -4,6 +4,26 @@
  * label, and motion — all values injected at runtime via applyTokens().
  */
 
+:root {
+  --vita-input-radius: 0px;
+  --vita-input-border-top: 1px;
+  --vita-input-border-right: 1px;
+  --vita-input-border-bottom: 1px;
+  --vita-input-border-left: 1px;
+  --vita-input-border-style: solid;
+  --vita-input-label-weight: 500;
+  --vita-input-label-size: 12px;
+  --vita-input-shadow: none;
+  --vita-input-padding-x: 12px;
+  --vita-input-padding-y: 8px;
+  --vita-input-font-size: 14px;
+  --vita-input-placeholder-opacity: 0.45;
+  --vita-input-focus-ring-width: 2px;
+  --vita-input-focus-ring-offset: 0px;
+  --vita-input-transition-duration: 150ms;
+  --vita-input-text-align: left;
+}
+
 /* Wrapper — shape, border, shadow, transition */
 .input {
   border-radius: var(--vita-input-radius) !important;

@@ -1,0 +1,44 @@
+/* ── Accordion ────────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <Accordion> component.
+ */
+
+:root {
+  --vita-accordion-radius: 0px;
+  --vita-accordion-border-width: 1px;
+  --vita-accordion-border-style: solid;
+  --vita-accordion-separator-height: 1px;
+  --vita-accordion-trigger-padding-x: 16px;
+  --vita-accordion-trigger-padding-y: 12px;
+  --vita-accordion-trigger-font-weight: 500;
+  --vita-accordion-trigger-font-size: 14px;
+  --vita-accordion-content-padding-x: 16px;
+  --vita-accordion-content-padding-y: 8px;
+  --vita-accordion-shadow: none;
+}
+
+.accordion {
+  border-radius: var(--vita-accordion-radius) !important;
+  border-width: var(--vita-accordion-border-width) !important;
+  border-style: var(--vita-accordion-border-style) !important;
+  box-shadow: var(--vita-accordion-shadow) !important;
+}
+
+.accordion__separator {
+  height: var(--vita-accordion-separator-height) !important;
+}
+
+.accordion__trigger {
+  padding-left: var(--vita-accordion-trigger-padding-x) !important;
+  padding-right: var(--vita-accordion-trigger-padding-x) !important;
+  padding-top: var(--vita-accordion-trigger-padding-y) !important;
+  padding-bottom: var(--vita-accordion-trigger-padding-y) !important;
+  font-weight: var(--vita-accordion-trigger-font-weight) !important;
+  font-size: var(--vita-accordion-trigger-font-size) !important;
+}
+
+.accordion__body {
+  padding-left: var(--vita-accordion-content-padding-x) !important;
+  padding-right: var(--vita-accordion-content-padding-x) !important;
+  padding-top: var(--vita-accordion-content-padding-y) !important;
+  padding-bottom: var(--vita-accordion-content-padding-y) !important;
+}

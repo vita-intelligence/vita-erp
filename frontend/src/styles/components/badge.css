@@ -3,6 +3,21 @@
  * which is used as the badge primitive across the ERP interface.
  */
 
+:root {
+  --vita-badge-radius: 0px;
+  --vita-badge-border-top: 1px;
+  --vita-badge-border-right: 1px;
+  --vita-badge-border-bottom: 1px;
+  --vita-badge-border-left: 1px;
+  --vita-badge-border-style: solid;
+  --vita-badge-font-weight: 600;
+  --vita-badge-font-size: 0.6875rem;
+  --vita-badge-letter-spacing: 0em;
+  --vita-badge-text-transform: none;
+  --vita-badge-padding-x: 0.55rem;
+  --vita-badge-padding-y: 0.2rem;
+}
+
 .chip {
   border-radius: var(--vita-badge-radius) !important;
   border-top-width: var(--vita-badge-border-top) !important;

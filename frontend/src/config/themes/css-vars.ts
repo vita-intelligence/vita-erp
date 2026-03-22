@@ -122,6 +122,19 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   badgePaddingX: "--vita-badge-padding-x",
   badgePaddingY: "--vita-badge-padding-y",
 
+  // Accordion
+  accordionRadius: "--vita-accordion-radius",
+  accordionBorderWidth: "--vita-accordion-border-width",
+  accordionBorderStyle: "--vita-accordion-border-style",
+  accordionSeparatorHeight: "--vita-accordion-separator-height",
+  accordionTriggerPaddingX: "--vita-accordion-trigger-padding-x",
+  accordionTriggerPaddingY: "--vita-accordion-trigger-padding-y",
+  accordionTriggerFontWeight: "--vita-accordion-trigger-font-weight",
+  accordionTriggerFontSize: "--vita-accordion-trigger-font-size",
+  accordionContentPaddingX: "--vita-accordion-content-padding-x",
+  accordionContentPaddingY: "--vita-accordion-content-padding-y",
+  accordionShadow: "--vita-accordion-shadow",
+
   // Select
   selectRadius: "--vita-select-radius",
   selectBorderWidth: "--vita-select-border-width",

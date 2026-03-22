@@ -2,6 +2,10 @@
  * Applies Vita ERP design tokens to the HeroUI <Modal> dialog (.modal__dialog).
  */
 
+:root {
+  --vita-modal-radius: 0px;
+}
+
 .modal__dialog {
   border-radius: var(--vita-modal-radius) !important;
 }
