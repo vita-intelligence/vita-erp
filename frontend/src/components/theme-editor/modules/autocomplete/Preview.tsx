@@ -18,9 +18,12 @@ export function Preview() {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
 
+  const getLabel = (key: string) => t(`preview.autocomplete.${key}`);
+  const getCategory = (key: string) => t(`preview.autocomplete.${key}`);
+
   const filtered = query
     ? PRODUCT_OPTIONS.filter((o) =>
-        o.label.toLowerCase().includes(query.toLowerCase()),
+        getLabel(o.labelKey).toLowerCase().includes(query.toLowerCase()),
       )
     : PRODUCT_OPTIONS;
 
@@ -99,7 +102,7 @@ export function Preview() {
           display: "block",
         }}
       >
-        Product
+        {t("preview.autocomplete.productLabel")}
       </span>
 
       {/* Trigger */}
@@ -112,7 +115,7 @@ export function Preview() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search products…"
+          placeholder={t("preview.autocomplete.searchProducts")}
           style={{
             flex: 1,
             border: "none",
@@ -166,7 +169,7 @@ export function Preview() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     setSelected(option.id);
-                    setQuery(option.label);
+                    setQuery(getLabel(option.labelKey));
                   }
                 }}
                 style={{
@@ -198,10 +201,10 @@ export function Preview() {
                 }}
                 onClick={() => {
                   setSelected(option.id);
-                  setQuery(option.label);
+                  setQuery(getLabel(option.labelKey));
                 }}
               >
-                <span>{option.label}</span>
+                <span>{getLabel(option.labelKey)}</span>
                 <span
                   style={{
                     fontSize: "0.6875rem",
@@ -210,7 +213,7 @@ export function Preview() {
                       : "var(--vita-text-muted)",
                   }}
                 >
-                  {option.category}
+                  {getCategory(option.categoryKey)}
                 </span>
               </div>
             );

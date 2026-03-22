@@ -659,6 +659,136 @@
       "navDashboard": "仪表板",
       "navOrders": "订单",
       "navInventory": "库存"
+    },
+    "badges": {
+      "completed": "已完成",
+      "inProgress": "进行中",
+      "failed": "失败",
+      "draft": "草稿",
+      "active": "活跃",
+      "info": "信息",
+      "warning": "警告",
+      "error": "错误",
+      "neutral": "中性",
+      "orderSteelFrame": "ORD-00842 · Steel Frame A-14",
+      "orderBoltAssembly": "ORD-00841 · Bolt Assembly B2",
+      "orderWeldJoint": "ORD-00840 · Weld Joint C6",
+      "orderCoverPlate": "ORD-00839 · Cover Plate D1"
+    },
+    "cards": {
+      "productionOrder": "生产订单",
+      "orderMeta": "#00842 · 创建于 2026年3月21日",
+      "product": "产品",
+      "productValue": "Steel Frame A-14",
+      "quantity": "数量",
+      "quantityValue": "3,891 件",
+      "status": "状态",
+      "statusValue": "进行中",
+      "dueDate": "交期",
+      "dueDateValue": "2026年3月28日",
+      "assignedTo": "分配给",
+      "assignedToValue": "产线 4 — B班",
+      "reject": "拒绝",
+      "approve": "批准"
+    },
+    "autocomplete": {
+      "productLabel": "产品",
+      "searchProducts": "搜索产品…",
+      "steelFrameA14": "Steel Frame A-14",
+      "boltAssemblyB2": "Bolt Assembly B2",
+      "weldJointC6": "Weld Joint C6",
+      "coverPlateD1": "Cover Plate D1",
+      "hexBoltE3": "Hex Bolt E3",
+      "gearRingF7": "Gear Ring F7",
+      "springPinG2": "Spring Pin G2",
+      "categoryFrames": "框架",
+      "categoryFasteners": "紧固件",
+      "categoryJoints": "接头",
+      "categoryPlates": "板材",
+      "categoryDrivetrain": "传动系统"
+    },
+    "avatar": {
+      "personName": "Jessica Jay",
+      "personTitle": "生产经理 · 产线 4"
+    },
+    "breadcrumbs": {
+      "dashboard": "仪表板",
+      "production": "生产",
+      "orders": "订单",
+      "home": "首页",
+      "settings": "设置",
+      "orderLabel": "订单",
+      "orderDescription": "Steel Frame A-14 — 生产线 3"
+    },
+    "buttonGroup": {
+      "list": "列表",
+      "grid": "网格",
+      "table": "表格",
+      "export": "导出",
+      "print": "打印",
+      "share": "分享",
+      "orders": "订单"
+    },
+    "checkbox": {
+      "rawMaterials": "原材料有库存",
+      "qualityCheck": "质检通过",
+      "shippingLabel": "运单已打印",
+      "docsAttached": "文件已附上",
+      "supervisorSignOff": "主管签字确认"
+    },
+    "checkboxGroup": {
+      "production": "生产",
+      "qualityControl": "质量控制",
+      "warehouse": "仓库",
+      "shipping": "发货",
+      "maintenance": "维护",
+      "viewRecords": "查看记录",
+      "editRecords": "编辑记录",
+      "deleteRecords": "删除记录",
+      "exportData": "导出数据"
+    },
+    "comboBox": {
+      "materialLabel": "材料",
+      "searchMaterials": "搜索材料…",
+      "steelRod": "Steel Rod — 12mm",
+      "aluminumSheet": "Aluminum Sheet — 2mm",
+      "copperWire": "Copper Wire — 0.5mm",
+      "brassFitting": "Brass Fitting — M8",
+      "stainlessBolt": "Stainless Bolt — M10"
+    },
+    "datePicker": {
+      "dueDate": "交期"
+    },
+    "separator": {
+      "order0847": "订单 #WO-2024-0847",
+      "order0847Desc": "创建于 2024年3月15日 — 生产线 B",
+      "order0848": "订单 #WO-2024-0848",
+      "order0848Desc": "创建于 2024年3月16日 — 生产线 A",
+      "order0849": "订单 #WO-2024-0849",
+      "order0849Desc": "创建于 2024年3月16日 — 生产线 C",
+      "qty": "数量: 500",
+      "sku": "SKU: VE-1042",
+      "lot": "批次: B-7291"
+    },
+    "slider": {
+      "productionCapacity": "生产能力",
+      "qualityThreshold": "质量阈值",
+      "reorderPoint": "补货点"
+    },
+    "spinner": {
+      "small": "小",
+      "medium": "中",
+      "large": "大"
+    },
+    "tabs": {
+      "overview": "概览",
+      "production": "生产",
+      "quality": "质量",
+      "shipping": "发货",
+      "overviewContent": "显示关键指标、活跃订单和当前生产周期警报的综合仪表板。",
+      "productionContent": "所有设施的实时生产线状态、产量率和设备利用率。",
+      "qualityContent": "质量保证指标，包括合格率、缺陷跟踪和检验计划。",
+      "shippingContent": "出库物流概览，包含货运跟踪、承运商绩效和交付预估。"
     }
   }
 }

@@ -659,6 +659,136 @@
       "navDashboard": "डैशबोर्ड",
       "navOrders": "ऑर्डर",
       "navInventory": "इन्वेंट्री"
+    },
+    "badges": {
+      "completed": "पूर्ण",
+      "inProgress": "प्रगति में",
+      "failed": "विफल",
+      "draft": "ड्राफ़्ट",
+      "active": "सक्रिय",
+      "info": "सूचना",
+      "warning": "चेतावनी",
+      "error": "त्रुटि",
+      "neutral": "तटस्थ",
+      "orderSteelFrame": "ORD-00842 · Steel Frame A-14",
+      "orderBoltAssembly": "ORD-00841 · Bolt Assembly B2",
+      "orderWeldJoint": "ORD-00840 · Weld Joint C6",
+      "orderCoverPlate": "ORD-00839 · Cover Plate D1"
+    },
+    "cards": {
+      "productionOrder": "उत्पादन ऑर्डर",
+      "orderMeta": "#00842 · 21 मार्च 2026 को बनाया गया",
+      "product": "उत्पाद",
+      "productValue": "Steel Frame A-14",
+      "quantity": "मात्रा",
+      "quantityValue": "3,891 इकाइयाँ",
+      "status": "स्थिति",
+      "statusValue": "प्रगति में",
+      "dueDate": "नियत तिथि",
+      "dueDateValue": "28 मार्च 2026",
+      "assignedTo": "को सौंपा गया",
+      "assignedToValue": "लाइन 4 — शिफ़्ट B",
+      "reject": "अस्वीकार",
+      "approve": "स्वीकृत"
+    },
+    "autocomplete": {
+      "productLabel": "उत्पाद",
+      "searchProducts": "उत्पाद खोजें…",
+      "steelFrameA14": "Steel Frame A-14",
+      "boltAssemblyB2": "Bolt Assembly B2",
+      "weldJointC6": "Weld Joint C6",
+      "coverPlateD1": "Cover Plate D1",
+      "hexBoltE3": "Hex Bolt E3",
+      "gearRingF7": "Gear Ring F7",
+      "springPinG2": "Spring Pin G2",
+      "categoryFrames": "फ़्रेम",
+      "categoryFasteners": "फ़ास्टनर",
+      "categoryJoints": "जोड़",
+      "categoryPlates": "प्लेट",
+      "categoryDrivetrain": "ड्राइवट्रेन"
+    },
+    "avatar": {
+      "personName": "Jessica Jay",
+      "personTitle": "उत्पादन प्रबंधक · लाइन 4"
+    },
+    "breadcrumbs": {
+      "dashboard": "डैशबोर्ड",
+      "production": "उत्पादन",
+      "orders": "ऑर्डर",
+      "home": "होम",
+      "settings": "सेटिंग्स",
+      "orderLabel": "ऑर्डर",
+      "orderDescription": "Steel Frame A-14 — उत्पादन लाइन 3"
+    },
+    "buttonGroup": {
+      "list": "सूची",
+      "grid": "ग्रिड",
+      "table": "तालिका",
+      "export": "निर्यात",
+      "print": "प्रिंट",
+      "share": "साझा करें",
+      "orders": "ऑर्डर"
+    },
+    "checkbox": {
+      "rawMaterials": "कच्चा माल स्टॉक में",
+      "qualityCheck": "गुणवत्ता जाँच पास",
+      "shippingLabel": "शिपिंग लेबल प्रिंट किया गया",
+      "docsAttached": "दस्तावेज़ संलग्न",
+      "supervisorSignOff": "पर्यवेक्षक की स्वीकृति"
+    },
+    "checkboxGroup": {
+      "production": "उत्पादन",
+      "qualityControl": "गुणवत्ता नियंत्रण",
+      "warehouse": "गोदाम",
+      "shipping": "शिपिंग",
+      "maintenance": "रखरखाव",
+      "viewRecords": "रिकॉर्ड देखें",
+      "editRecords": "रिकॉर्ड संपादित करें",
+      "deleteRecords": "रिकॉर्ड हटाएँ",
+      "exportData": "डेटा निर्यात करें"
+    },
+    "comboBox": {
+      "materialLabel": "सामग्री",
+      "searchMaterials": "सामग्री खोजें…",
+      "steelRod": "Steel Rod — 12mm",
+      "aluminumSheet": "Aluminum Sheet — 2mm",
+      "copperWire": "Copper Wire — 0.5mm",
+      "brassFitting": "Brass Fitting — M8",
+      "stainlessBolt": "Stainless Bolt — M10"
+    },
+    "datePicker": {
+      "dueDate": "नियत तिथि"
+    },
+    "separator": {
+      "order0847": "ऑर्डर #WO-2024-0847",
+      "order0847Desc": "15 मार्च 2024 को बनाया गया — उत्पादन लाइन B",
+      "order0848": "ऑर्डर #WO-2024-0848",
+      "order0848Desc": "16 मार्च 2024 को बनाया गया — उत्पादन लाइन A",
+      "order0849": "ऑर्डर #WO-2024-0849",
+      "order0849Desc": "16 मार्च 2024 को बनाया गया — उत्पादन लाइन C",
+      "qty": "मात्रा: 500",
+      "sku": "SKU: VE-1042",
+      "lot": "लॉट: B-7291"
+    },
+    "slider": {
+      "productionCapacity": "उत्पादन क्षमता",
+      "qualityThreshold": "गुणवत्ता सीमा",
+      "reorderPoint": "पुनः ऑर्डर बिंदु"
+    },
+    "spinner": {
+      "small": "छोटा",
+      "medium": "मध्यम",
+      "large": "बड़ा"
+    },
+    "tabs": {
+      "overview": "अवलोकन",
+      "production": "उत्पादन",
+      "quality": "गुणवत्ता",
+      "shipping": "शिपिंग",
+      "overviewContent": "मुख्य मेट्रिक्स, सक्रिय ऑर्डर और वर्तमान उत्पादन चक्र की चेतावनियाँ दिखाने वाला सामान्य डैशबोर्ड।",
+      "productionContent": "सभी सुविधाओं में वास्तविक समय उत्पादन लाइन स्थिति, थ्रूपुट दरें और मशीन उपयोग।",
+      "qualityContent": "पास दर, दोष ट्रैकिंग और निरीक्षण शेड्यूल सहित गुणवत्ता आश्वासन मेट्रिक्स।",
+      "shippingContent": "शिपमेंट ट्रैकिंग, वाहक प्रदर्शन और डिलीवरी अनुमान के साथ आउटबाउंड लॉजिस्टिक्स अवलोकन।"
     }
   }
 }

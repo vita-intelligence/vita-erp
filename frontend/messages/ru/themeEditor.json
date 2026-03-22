@@ -659,6 +659,136 @@
       "navDashboard": "Панель управления",
       "navOrders": "Заказы",
       "navInventory": "Инвентарь"
+    },
+    "badges": {
+      "completed": "Завершено",
+      "inProgress": "В процессе",
+      "failed": "Ошибка",
+      "draft": "Черновик",
+      "active": "Активно",
+      "info": "Информация",
+      "warning": "Предупреждение",
+      "error": "Ошибка",
+      "neutral": "Нейтрально",
+      "orderSteelFrame": "ORD-00842 · Steel Frame A-14",
+      "orderBoltAssembly": "ORD-00841 · Bolt Assembly B2",
+      "orderWeldJoint": "ORD-00840 · Weld Joint C6",
+      "orderCoverPlate": "ORD-00839 · Cover Plate D1"
+    },
+    "cards": {
+      "productionOrder": "Производственный заказ",
+      "orderMeta": "#00842 · Создан 21 мар. 2026",
+      "product": "Продукт",
+      "productValue": "Steel Frame A-14",
+      "quantity": "Количество",
+      "quantityValue": "3 891 ед.",
+      "status": "Статус",
+      "statusValue": "В процессе",
+      "dueDate": "Срок",
+      "dueDateValue": "28 мар. 2026",
+      "assignedTo": "Назначен",
+      "assignedToValue": "Линия 4 — Смена B",
+      "reject": "Отклонить",
+      "approve": "Утвердить"
+    },
+    "autocomplete": {
+      "productLabel": "Продукт",
+      "searchProducts": "Поиск продуктов…",
+      "steelFrameA14": "Steel Frame A-14",
+      "boltAssemblyB2": "Bolt Assembly B2",
+      "weldJointC6": "Weld Joint C6",
+      "coverPlateD1": "Cover Plate D1",
+      "hexBoltE3": "Hex Bolt E3",
+      "gearRingF7": "Gear Ring F7",
+      "springPinG2": "Spring Pin G2",
+      "categoryFrames": "Рамы",
+      "categoryFasteners": "Крепёж",
+      "categoryJoints": "Соединения",
+      "categoryPlates": "Пластины",
+      "categoryDrivetrain": "Привод"
+    },
+    "avatar": {
+      "personName": "Jessica Jay",
+      "personTitle": "Менеджер производства · Линия 4"
+    },
+    "breadcrumbs": {
+      "dashboard": "Панель управления",
+      "production": "Производство",
+      "orders": "Заказы",
+      "home": "Главная",
+      "settings": "Настройки",
+      "orderLabel": "Заказ",
+      "orderDescription": "Steel Frame A-14 — Производственная линия 3"
+    },
+    "buttonGroup": {
+      "list": "Список",
+      "grid": "Сетка",
+      "table": "Таблица",
+      "export": "Экспорт",
+      "print": "Печать",
+      "share": "Поделиться",
+      "orders": "Заказы"
+    },
+    "checkbox": {
+      "rawMaterials": "Сырьё на складе",
+      "qualityCheck": "Проверка качества пройдена",
+      "shippingLabel": "Этикетка доставки напечатана",
+      "docsAttached": "Документы приложены",
+      "supervisorSignOff": "Подпись руководителя"
+    },
+    "checkboxGroup": {
+      "production": "Производство",
+      "qualityControl": "Контроль качества",
+      "warehouse": "Склад",
+      "shipping": "Доставка",
+      "maintenance": "Обслуживание",
+      "viewRecords": "Просмотр записей",
+      "editRecords": "Редактирование записей",
+      "deleteRecords": "Удаление записей",
+      "exportData": "Экспорт данных"
+    },
+    "comboBox": {
+      "materialLabel": "Материал",
+      "searchMaterials": "Поиск материалов…",
+      "steelRod": "Steel Rod — 12mm",
+      "aluminumSheet": "Aluminum Sheet — 2mm",
+      "copperWire": "Copper Wire — 0.5mm",
+      "brassFitting": "Brass Fitting — M8",
+      "stainlessBolt": "Stainless Bolt — M10"
+    },
+    "datePicker": {
+      "dueDate": "Срок"
+    },
+    "separator": {
+      "order0847": "Заказ #WO-2024-0847",
+      "order0847Desc": "Создан 15 мар. 2024 — Производственная линия B",
+      "order0848": "Заказ #WO-2024-0848",
+      "order0848Desc": "Создан 16 мар. 2024 — Производственная линия A",
+      "order0849": "Заказ #WO-2024-0849",
+      "order0849Desc": "Создан 16 мар. 2024 — Производственная линия C",
+      "qty": "Кол-во: 500",
+      "sku": "SKU: VE-1042",
+      "lot": "Партия: B-7291"
+    },
+    "slider": {
+      "productionCapacity": "Производственная мощность",
+      "qualityThreshold": "Порог качества",
+      "reorderPoint": "Точка повторного заказа"
+    },
+    "spinner": {
+      "small": "Малый",
+      "medium": "Средний",
+      "large": "Большой"
+    },
+    "tabs": {
+      "overview": "Обзор",
+      "production": "Производство",
+      "quality": "Качество",
+      "shipping": "Доставка",
+      "overviewContent": "Общая панель с ключевыми показателями, активными заказами и оповещениями текущего производственного цикла.",
+      "productionContent": "Статус производственных линий в реальном времени, показатели пропускной способности и загрузка оборудования по всем объектам.",
+      "qualityContent": "Показатели обеспечения качества, включая процент прохождения, отслеживание дефектов и графики инспекций.",
+      "shippingContent": "Обзор исходящей логистики с отслеживанием отправок, эффективностью перевозчиков и оценками доставки."
     }
   }
 }

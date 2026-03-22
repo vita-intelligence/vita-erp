@@ -659,6 +659,136 @@
       "navDashboard": "대시보드",
       "navOrders": "주문",
       "navInventory": "재고"
+    },
+    "badges": {
+      "completed": "완료",
+      "inProgress": "진행 중",
+      "failed": "실패",
+      "draft": "초안",
+      "active": "활성",
+      "info": "정보",
+      "warning": "경고",
+      "error": "오류",
+      "neutral": "중립",
+      "orderSteelFrame": "ORD-00842 · Steel Frame A-14",
+      "orderBoltAssembly": "ORD-00841 · Bolt Assembly B2",
+      "orderWeldJoint": "ORD-00840 · Weld Joint C6",
+      "orderCoverPlate": "ORD-00839 · Cover Plate D1"
+    },
+    "cards": {
+      "productionOrder": "생산 주문",
+      "orderMeta": "#00842 · 2026년 3월 21일 생성",
+      "product": "제품",
+      "productValue": "Steel Frame A-14",
+      "quantity": "수량",
+      "quantityValue": "3,891 개",
+      "status": "상태",
+      "statusValue": "진행 중",
+      "dueDate": "납기일",
+      "dueDateValue": "2026년 3월 28일",
+      "assignedTo": "담당",
+      "assignedToValue": "라인 4 — B교대",
+      "reject": "반려",
+      "approve": "승인"
+    },
+    "autocomplete": {
+      "productLabel": "제품",
+      "searchProducts": "제품 검색…",
+      "steelFrameA14": "Steel Frame A-14",
+      "boltAssemblyB2": "Bolt Assembly B2",
+      "weldJointC6": "Weld Joint C6",
+      "coverPlateD1": "Cover Plate D1",
+      "hexBoltE3": "Hex Bolt E3",
+      "gearRingF7": "Gear Ring F7",
+      "springPinG2": "Spring Pin G2",
+      "categoryFrames": "프레임",
+      "categoryFasteners": "체결부품",
+      "categoryJoints": "접합부",
+      "categoryPlates": "판재",
+      "categoryDrivetrain": "구동계"
+    },
+    "avatar": {
+      "personName": "Jessica Jay",
+      "personTitle": "생산 관리자 · 라인 4"
+    },
+    "breadcrumbs": {
+      "dashboard": "대시보드",
+      "production": "생산",
+      "orders": "주문",
+      "home": "홈",
+      "settings": "설정",
+      "orderLabel": "주문",
+      "orderDescription": "Steel Frame A-14 — 생산 라인 3"
+    },
+    "buttonGroup": {
+      "list": "목록",
+      "grid": "그리드",
+      "table": "테이블",
+      "export": "내보내기",
+      "print": "인쇄",
+      "share": "공유",
+      "orders": "주문"
+    },
+    "checkbox": {
+      "rawMaterials": "원자재 재고 있음",
+      "qualityCheck": "품질 검사 통과",
+      "shippingLabel": "배송 라벨 인쇄됨",
+      "docsAttached": "문서 첨부됨",
+      "supervisorSignOff": "관리자 승인"
+    },
+    "checkboxGroup": {
+      "production": "생산",
+      "qualityControl": "품질 관리",
+      "warehouse": "창고",
+      "shipping": "배송",
+      "maintenance": "유지보수",
+      "viewRecords": "기록 보기",
+      "editRecords": "기록 수정",
+      "deleteRecords": "기록 삭제",
+      "exportData": "데이터 내보내기"
+    },
+    "comboBox": {
+      "materialLabel": "자재",
+      "searchMaterials": "자재 검색…",
+      "steelRod": "Steel Rod — 12mm",
+      "aluminumSheet": "Aluminum Sheet — 2mm",
+      "copperWire": "Copper Wire — 0.5mm",
+      "brassFitting": "Brass Fitting — M8",
+      "stainlessBolt": "Stainless Bolt — M10"
+    },
+    "datePicker": {
+      "dueDate": "납기일"
+    },
+    "separator": {
+      "order0847": "주문 #WO-2024-0847",
+      "order0847Desc": "2024년 3월 15일 생성 — 생산 라인 B",
+      "order0848": "주문 #WO-2024-0848",
+      "order0848Desc": "2024년 3월 16일 생성 — 생산 라인 A",
+      "order0849": "주문 #WO-2024-0849",
+      "order0849Desc": "2024년 3월 16일 생성 — 생산 라인 C",
+      "qty": "수량: 500",
+      "sku": "SKU: VE-1042",
+      "lot": "로트: B-7291"
+    },
+    "slider": {
+      "productionCapacity": "생산 능력",
+      "qualityThreshold": "품질 임계값",
+      "reorderPoint": "재주문 시점"
+    },
+    "spinner": {
+      "small": "작게",
+      "medium": "중간",
+      "large": "크게"
+    },
+    "tabs": {
+      "overview": "개요",
+      "production": "생산",
+      "quality": "품질",
+      "shipping": "배송",
+      "overviewContent": "핵심 지표, 활성 주문, 현재 생산 주기 알림을 보여주는 종합 대시보드.",
+      "productionContent": "모든 시설의 실시간 생산 라인 상태, 처리량 및 설비 가동률.",
+      "qualityContent": "합격률, 결함 추적, 검사 일정을 포함한 품질 보증 지표.",
+      "shippingContent": "배송 추적, 운송사 성과, 배송 예상을 포함한 출고 물류 개요."
     }
   }
 }

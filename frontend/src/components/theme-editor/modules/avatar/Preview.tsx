@@ -214,10 +214,10 @@ export function Preview() {
               className="text-sm font-vita-heading"
               style={{ fontWeight: 600, color: "var(--vita-text-primary)" }}
             >
-              Jessica Jay
+              {t("preview.avatar.personName")}
             </p>
             <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
-              Production Manager · Line 4
+              {t("preview.avatar.personTitle")}
             </p>
           </div>
         </div>

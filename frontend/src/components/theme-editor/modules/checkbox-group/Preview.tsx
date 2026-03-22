@@ -15,18 +15,18 @@ import { CheckboxGroup } from "@/components/ui/checkbox-group";
 // ── Sample data ──────────────────────────────────────────────────────────────
 
 const DEPARTMENTS = [
-  { value: "production", label: "Production" },
-  { value: "quality", label: "Quality Control" },
-  { value: "warehouse", label: "Warehouse" },
-  { value: "shipping", label: "Shipping" },
-  { value: "maintenance", label: "Maintenance" },
+  { value: "production", labelKey: "production" },
+  { value: "quality", labelKey: "qualityControl" },
+  { value: "warehouse", labelKey: "warehouse" },
+  { value: "shipping", labelKey: "shipping" },
+  { value: "maintenance", labelKey: "maintenance" },
 ];
 
 const PERMISSIONS = [
-  { value: "read", label: "View records" },
-  { value: "write", label: "Edit records" },
-  { value: "delete", label: "Delete records" },
-  { value: "export", label: "Export data" },
+  { value: "read", labelKey: "viewRecords" },
+  { value: "write", labelKey: "editRecords" },
+  { value: "delete", labelKey: "deleteRecords" },
+  { value: "export", labelKey: "exportData" },
 ];
 
 export function Preview() {
@@ -54,7 +54,7 @@ export function Preview() {
                 <Checkbox.Indicator />
               </Checkbox.Control>
               <Checkbox.Content>
-                <Label>{d.label}</Label>
+                <Label>{t(`preview.checkboxGroup.${d.labelKey}`)}</Label>
               </Checkbox.Content>
             </Checkbox>
           ))}
@@ -74,7 +74,7 @@ export function Preview() {
                 <Checkbox.Indicator />
               </Checkbox.Control>
               <Checkbox.Content>
-                <Label>{p.label}</Label>
+                <Label>{t(`preview.checkboxGroup.${p.labelKey}`)}</Label>
               </Checkbox.Content>
             </Checkbox>
           ))}

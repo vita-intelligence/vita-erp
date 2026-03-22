@@ -10,30 +10,10 @@ import { useTranslations } from "next-intl";
 import { Tabs } from "@/components/ui/tabs";
 
 const TAB_ITEMS = [
-  {
-    id: "overview",
-    label: "Overview",
-    content:
-      "General dashboard showing key metrics, active orders, and alerts for the current production cycle.",
-  },
-  {
-    id: "production",
-    label: "Production",
-    content:
-      "Real-time production line status, throughput rates, and machine utilization across all facilities.",
-  },
-  {
-    id: "quality",
-    label: "Quality",
-    content:
-      "Quality assurance metrics including pass rates, defect tracking, and inspection schedules.",
-  },
-  {
-    id: "shipping",
-    label: "Shipping",
-    content:
-      "Outbound logistics overview with shipment tracking, carrier performance, and delivery estimates.",
-  },
+  { id: "overview", labelKey: "overview", contentKey: "overviewContent" },
+  { id: "production", labelKey: "production", contentKey: "productionContent" },
+  { id: "quality", labelKey: "quality", contentKey: "qualityContent" },
+  { id: "shipping", labelKey: "shipping", contentKey: "shippingContent" },
 ];
 
 export function Preview() {
@@ -49,14 +29,14 @@ export function Preview() {
         <Tabs.List>
           {TAB_ITEMS.map((item) => (
             <Tabs.Tab key={item.id} id={item.id}>
-              {item.label}
+              {t(`preview.tabs.${item.labelKey}`)}
             </Tabs.Tab>
           ))}
         </Tabs.List>
         {TAB_ITEMS.map((item) => (
           <Tabs.Panel key={item.id} id={item.id}>
             <p className="text-sm leading-relaxed text-vita-text-secondary">
-              {item.content}
+              {t(`preview.tabs.${item.contentKey}`)}
             </p>
           </Tabs.Panel>
         ))}

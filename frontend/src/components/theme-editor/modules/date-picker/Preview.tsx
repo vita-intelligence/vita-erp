@@ -101,7 +101,7 @@ export function Preview() {
           display: "block",
         }}
       >
-        Due date
+        {t("preview.datePicker.dueDate")}
       </span>
 
       {/* Trigger */}

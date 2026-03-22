@@ -29,15 +29,15 @@ export const SEPARATOR_ICONS: Record<string, LucideIcon> = {
 // ── Sample trails ───────────────────────────────────────────────────────────
 
 const TRAIL = [
-  { label: "Dashboard", isCurrent: false },
-  { label: "Production", isCurrent: false },
-  { label: "Orders", isCurrent: false },
-  { label: "ORD-00842", isCurrent: true },
+  { labelKey: "dashboard", isCurrent: false },
+  { labelKey: "production", isCurrent: false },
+  { labelKey: "orders", isCurrent: false },
+  { labelKey: "ORD-00842", isCurrent: true, isRaw: true },
 ];
 
 const SHORT_TRAIL = [
-  { label: "Home", isCurrent: false },
-  { label: "Settings", isCurrent: true },
+  { labelKey: "home", isCurrent: false },
+  { labelKey: "settings", isCurrent: true },
 ];
 
 // ── Component ───────────────────────────────────────────────────────────────
@@ -56,18 +56,31 @@ export function Preview() {
     <SepIcon size={separatorSize} className="text-vita-text-muted" />
   );
 
-  function renderTrail(items: typeof TRAIL) {
+  function renderTrail(
+    items: ReadonlyArray<{
+      labelKey: string;
+      isCurrent: boolean;
+      isRaw?: boolean;
+    }>,
+  ) {
     return (
       <Breadcrumbs separator={separator}>
-        {items.map((item) => (
-          <BreadcrumbsItem
-            key={item.label}
-            href={item.isCurrent ? undefined : "#"}
-            className={item.label.startsWith("ORD-") ? "font-vita-mono" : ""}
-          >
-            {item.label}
-          </BreadcrumbsItem>
-        ))}
+        {items.map((item) => {
+          const label = item.isRaw
+            ? item.labelKey
+            : t(`preview.breadcrumbs.${item.labelKey}`);
+          return (
+            <BreadcrumbsItem
+              key={item.labelKey}
+              href={item.isCurrent ? undefined : "#"}
+              className={
+                item.labelKey.startsWith("ORD-") ? "font-vita-mono" : ""
+              }
+            >
+              {label}
+            </BreadcrumbsItem>
+          );
+        })}
       </Breadcrumbs>
     );
   }
@@ -113,10 +126,11 @@ export function Preview() {
               marginTop: "8px",
             }}
           >
-            Order <span className="font-vita-mono">ORD-00842</span>
+            {t("preview.breadcrumbs.orderLabel")}{" "}
+            <span className="font-vita-mono">ORD-00842</span>
           </h1>
           <p style={{ fontSize: "13px", color: "var(--vita-text-muted)" }}>
-            Steel Frame A-14 — Production Line 3
+            {t("preview.breadcrumbs.orderDescription")}
           </p>
         </div>
       </div>

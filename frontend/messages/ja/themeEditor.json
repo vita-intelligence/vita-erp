@@ -659,6 +659,136 @@
       "navDashboard": "ダッシュボード",
       "navOrders": "オーダー",
       "navInventory": "在庫"
+    },
+    "badges": {
+      "completed": "完了",
+      "inProgress": "進行中",
+      "failed": "失敗",
+      "draft": "下書き",
+      "active": "アクティブ",
+      "info": "情報",
+      "warning": "警告",
+      "error": "エラー",
+      "neutral": "ニュートラル",
+      "orderSteelFrame": "ORD-00842 · Steel Frame A-14",
+      "orderBoltAssembly": "ORD-00841 · Bolt Assembly B2",
+      "orderWeldJoint": "ORD-00840 · Weld Joint C6",
+      "orderCoverPlate": "ORD-00839 · Cover Plate D1"
+    },
+    "cards": {
+      "productionOrder": "製造オーダー",
+      "orderMeta": "#00842 · 2026年3月21日作成",
+      "product": "製品",
+      "productValue": "Steel Frame A-14",
+      "quantity": "数量",
+      "quantityValue": "3,891 個",
+      "status": "ステータス",
+      "statusValue": "進行中",
+      "dueDate": "納期",
+      "dueDateValue": "2026年3月28日",
+      "assignedTo": "担当",
+      "assignedToValue": "ライン 4 — シフト B",
+      "reject": "却下",
+      "approve": "承認"
+    },
+    "autocomplete": {
+      "productLabel": "製品",
+      "searchProducts": "製品を検索…",
+      "steelFrameA14": "Steel Frame A-14",
+      "boltAssemblyB2": "Bolt Assembly B2",
+      "weldJointC6": "Weld Joint C6",
+      "coverPlateD1": "Cover Plate D1",
+      "hexBoltE3": "Hex Bolt E3",
+      "gearRingF7": "Gear Ring F7",
+      "springPinG2": "Spring Pin G2",
+      "categoryFrames": "フレーム",
+      "categoryFasteners": "ファスナー",
+      "categoryJoints": "ジョイント",
+      "categoryPlates": "プレート",
+      "categoryDrivetrain": "駆動系"
+    },
+    "avatar": {
+      "personName": "Jessica Jay",
+      "personTitle": "製造マネージャー · ライン 4"
+    },
+    "breadcrumbs": {
+      "dashboard": "ダッシュボード",
+      "production": "製造",
+      "orders": "オーダー",
+      "home": "ホーム",
+      "settings": "設定",
+      "orderLabel": "オーダー",
+      "orderDescription": "Steel Frame A-14 — 製造ライン 3"
+    },
+    "buttonGroup": {
+      "list": "リスト",
+      "grid": "グリッド",
+      "table": "テーブル",
+      "export": "エクスポート",
+      "print": "印刷",
+      "share": "共有",
+      "orders": "オーダー"
+    },
+    "checkbox": {
+      "rawMaterials": "原材料在庫あり",
+      "qualityCheck": "品質検査合格",
+      "shippingLabel": "配送ラベル印刷済み",
+      "docsAttached": "書類添付済み",
+      "supervisorSignOff": "上司の承認"
+    },
+    "checkboxGroup": {
+      "production": "製造",
+      "qualityControl": "品質管理",
+      "warehouse": "倉庫",
+      "shipping": "出荷",
+      "maintenance": "保全",
+      "viewRecords": "記録を表示",
+      "editRecords": "記録を編集",
+      "deleteRecords": "記録を削除",
+      "exportData": "データをエクスポート"
+    },
+    "comboBox": {
+      "materialLabel": "材料",
+      "searchMaterials": "材料を検索…",
+      "steelRod": "Steel Rod — 12mm",
+      "aluminumSheet": "Aluminum Sheet — 2mm",
+      "copperWire": "Copper Wire — 0.5mm",
+      "brassFitting": "Brass Fitting — M8",
+      "stainlessBolt": "Stainless Bolt — M10"
+    },
+    "datePicker": {
+      "dueDate": "納期"
+    },
+    "separator": {
+      "order0847": "オーダー #WO-2024-0847",
+      "order0847Desc": "2024年3月15日作成 — 製造ライン B",
+      "order0848": "オーダー #WO-2024-0848",
+      "order0848Desc": "2024年3月16日作成 — 製造ライン A",
+      "order0849": "オーダー #WO-2024-0849",
+      "order0849Desc": "2024年3月16日作成 — 製造ライン C",
+      "qty": "数量: 500",
+      "sku": "SKU: VE-1042",
+      "lot": "ロット: B-7291"
+    },
+    "slider": {
+      "productionCapacity": "生産能力",
+      "qualityThreshold": "品質閾値",
+      "reorderPoint": "再注文ポイント"
+    },
+    "spinner": {
+      "small": "小",
+      "medium": "中",
+      "large": "大"
+    },
+    "tabs": {
+      "overview": "概要",
+      "production": "製造",
+      "quality": "品質",
+      "shipping": "出荷",
+      "overviewContent": "主要指標、アクティブなオーダー、現在の製造サイクルのアラートを表示する総合ダッシュボード。",
+      "productionContent": "全施設のリアルタイム製造ラインステータス、スループット率、設備稼働率。",
+      "qualityContent": "合格率、欠陥追跡、検査スケジュールを含む品質保証指標。",
+      "shippingContent": "出荷追跡、運送業者パフォーマンス、配送予測を含む出荷ロジスティクス概要。"
     }
   }
 }

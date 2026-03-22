@@ -11,73 +11,7 @@ import { Chip } from "@/components/ui/chip";
 import { useThemeStore } from "@/stores/theme";
 
 import { useCursorTrack } from "../_shared/useCursorTrack";
-import { CONTEXT_ORDERS } from "./badge-data";
-
-// ── Solid badge mappings ────────────────────────────────────────────────────
-
-const SOLID_CHIPS = [
-  {
-    label: "Completed",
-    bg: "var(--vita-success)",
-    fg: "var(--vita-text-on-primary)",
-  },
-  {
-    label: "In Progress",
-    bg: "var(--vita-warning)",
-    fg: "var(--vita-text-on-warning)",
-  },
-  {
-    label: "Failed",
-    bg: "var(--vita-error)",
-    fg: "var(--vita-text-on-danger)",
-  },
-  {
-    label: "Draft",
-    bg: "var(--vita-neutral-200)",
-    fg: "var(--vita-text-secondary)",
-  },
-  {
-    label: "Active",
-    bg: "var(--vita-primary)",
-    fg: "var(--vita-text-on-primary)",
-  },
-  { label: "Info", bg: "var(--vita-info)", fg: "var(--vita-text-on-primary)" },
-] as const;
-
-// ── Soft / outlined badge mappings ──────────────────────────────────────────
-
-const SOFT_CHIPS = [
-  {
-    label: "Completed",
-    bg: "var(--vita-success-light)",
-    fg: "var(--vita-success-dark)",
-    border: "var(--vita-success)",
-  },
-  {
-    label: "Warning",
-    bg: "var(--vita-warning-light)",
-    fg: "var(--vita-text-on-warning)",
-    border: "var(--vita-warning)",
-  },
-  {
-    label: "Error",
-    bg: "var(--vita-error-light)",
-    fg: "var(--vita-error-dark)",
-    border: "var(--vita-error)",
-  },
-  {
-    label: "Neutral",
-    bg: "var(--vita-neutral-50)",
-    fg: "var(--vita-text-secondary)",
-    border: "var(--vita-neutral-300)",
-  },
-  {
-    label: "Info",
-    bg: "var(--vita-info-light)",
-    fg: "var(--vita-info-dark)",
-    border: "var(--vita-info)",
-  },
-] as const;
+import { CONTEXT_ORDERS, SOFT_BADGES, SOLID_BADGES } from "./badge-data";
 
 // ── Component ───────────────────────────────────────────────────────────────
 
@@ -103,13 +37,13 @@ export function Preview() {
       <div className="space-y-1.5">
         <p className="text-xs text-vita-text-muted">{t("preview.solid")}</p>
         <div className="flex flex-wrap gap-2">
-          {SOLID_CHIPS.map(({ label, bg, fg }) => (
+          {SOLID_BADGES.map(({ labelKey, bg, color: fg }) => (
             <Chip
-              key={label}
+              key={labelKey}
               style={{ background: bg, color: fg }}
               {...trackProps}
             >
-              {label}
+              {t(`preview.badges.${labelKey}`)}
             </Chip>
           ))}
         </div>
@@ -121,13 +55,13 @@ export function Preview() {
           {t("preview.softOutlined")}
         </p>
         <div className="flex flex-wrap gap-2">
-          {SOFT_CHIPS.map(({ label, bg, fg, border }) => (
+          {SOFT_BADGES.map(({ labelKey, bg, color: fg, border }) => (
             <Chip
-              key={label}
+              key={labelKey}
               style={{ background: bg, color: fg, borderColor: border }}
               {...trackProps}
             >
-              {label}
+              {t(`preview.badges.${labelKey}`)}
             </Chip>
           ))}
         </div>
@@ -144,28 +78,26 @@ export function Preview() {
             overflow: "hidden",
           }}
         >
-          {CONTEXT_ORDERS.map(({ name, status, bg, color }) => {
-            const [orderId, ...rest] = name.split(" · ");
-            return (
-              <div
-                key={name}
-                className="flex items-center justify-between"
-                style={{
-                  padding: "0.5rem 0.875rem",
-                  borderBottom: "1px solid var(--vita-neutral-100)",
-                }}
+          {CONTEXT_ORDERS.map(({ nameKey, statusKey, bg, color }) => (
+            <div
+              key={nameKey}
+              className="flex items-center justify-between"
+              style={{
+                padding: "0.5rem 0.875rem",
+                borderBottom: "1px solid var(--vita-neutral-100)",
+              }}
+            >
+              <span
+                className="text-xs"
+                style={{ color: "var(--vita-text-primary)" }}
               >
-                <span
-                  className="text-xs"
-                  style={{ color: "var(--vita-text-primary)" }}
-                >
-                  <span className="font-vita-mono">{orderId}</span>
-                  {rest.length > 0 && ` · ${rest.join(" · ")}`}
-                </span>
-                <Chip style={{ background: bg, color }}>{status}</Chip>
-              </div>
-            );
-          })}
+                {t(`preview.badges.${nameKey}`)}
+              </span>
+              <Chip style={{ background: bg, color }}>
+                {t(`preview.badges.${statusKey}`)}
+              </Chip>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -659,6 +659,136 @@
       "navDashboard": "Pano",
       "navOrders": "Siparisler",
       "navInventory": "Envanter"
+    },
+    "badges": {
+      "completed": "Tamamlandı",
+      "inProgress": "Devam Ediyor",
+      "failed": "Başarısız",
+      "draft": "Taslak",
+      "active": "Aktif",
+      "info": "Bilgi",
+      "warning": "Uyarı",
+      "error": "Hata",
+      "neutral": "Nötr",
+      "orderSteelFrame": "ORD-00842 · Steel Frame A-14",
+      "orderBoltAssembly": "ORD-00841 · Bolt Assembly B2",
+      "orderWeldJoint": "ORD-00840 · Weld Joint C6",
+      "orderCoverPlate": "ORD-00839 · Cover Plate D1"
+    },
+    "cards": {
+      "productionOrder": "Üretim Siparişi",
+      "orderMeta": "#00842 · 21 Mart 2026 tarihinde oluşturuldu",
+      "product": "Ürün",
+      "productValue": "Steel Frame A-14",
+      "quantity": "Miktar",
+      "quantityValue": "3.891 adet",
+      "status": "Durum",
+      "statusValue": "Devam Ediyor",
+      "dueDate": "Son tarih",
+      "dueDateValue": "28 Mart 2026",
+      "assignedTo": "Atanan",
+      "assignedToValue": "Hat 4 — Vardiya B",
+      "reject": "Reddet",
+      "approve": "Onayla"
+    },
+    "autocomplete": {
+      "productLabel": "Ürün",
+      "searchProducts": "Ürün ara…",
+      "steelFrameA14": "Steel Frame A-14",
+      "boltAssemblyB2": "Bolt Assembly B2",
+      "weldJointC6": "Weld Joint C6",
+      "coverPlateD1": "Cover Plate D1",
+      "hexBoltE3": "Hex Bolt E3",
+      "gearRingF7": "Gear Ring F7",
+      "springPinG2": "Spring Pin G2",
+      "categoryFrames": "Çerçeveler",
+      "categoryFasteners": "Bağlantı elemanları",
+      "categoryJoints": "Bağlantılar",
+      "categoryPlates": "Plakalar",
+      "categoryDrivetrain": "Aktarma organları"
+    },
+    "avatar": {
+      "personName": "Jessica Jay",
+      "personTitle": "Üretim Müdürü · Hat 4"
+    },
+    "breadcrumbs": {
+      "dashboard": "Pano",
+      "production": "Üretim",
+      "orders": "Siparişler",
+      "home": "Ana Sayfa",
+      "settings": "Ayarlar",
+      "orderLabel": "Sipariş",
+      "orderDescription": "Steel Frame A-14 — Üretim Hattı 3"
+    },
+    "buttonGroup": {
+      "list": "Liste",
+      "grid": "Izgara",
+      "table": "Tablo",
+      "export": "Dışa aktar",
+      "print": "Yazdır",
+      "share": "Paylaş",
+      "orders": "Siparişler"
+    },
+    "checkbox": {
+      "rawMaterials": "Hammaddeler stokta",
+      "qualityCheck": "Kalite kontrolü geçti",
+      "shippingLabel": "Kargo etiketi basıldı",
+      "docsAttached": "Belgeler eklendi",
+      "supervisorSignOff": "Yönetici onayı"
+    },
+    "checkboxGroup": {
+      "production": "Üretim",
+      "qualityControl": "Kalite Kontrol",
+      "warehouse": "Depo",
+      "shipping": "Sevkiyat",
+      "maintenance": "Bakım",
+      "viewRecords": "Kayıtları görüntüle",
+      "editRecords": "Kayıtları düzenle",
+      "deleteRecords": "Kayıtları sil",
+      "exportData": "Verileri dışa aktar"
+    },
+    "comboBox": {
+      "materialLabel": "Malzeme",
+      "searchMaterials": "Malzeme ara…",
+      "steelRod": "Steel Rod — 12mm",
+      "aluminumSheet": "Aluminum Sheet — 2mm",
+      "copperWire": "Copper Wire — 0.5mm",
+      "brassFitting": "Brass Fitting — M8",
+      "stainlessBolt": "Stainless Bolt — M10"
+    },
+    "datePicker": {
+      "dueDate": "Son tarih"
+    },
+    "separator": {
+      "order0847": "Sipariş #WO-2024-0847",
+      "order0847Desc": "15 Mart 2024 tarihinde oluşturuldu — Üretim hattı B",
+      "order0848": "Sipariş #WO-2024-0848",
+      "order0848Desc": "16 Mart 2024 tarihinde oluşturuldu — Üretim hattı A",
+      "order0849": "Sipariş #WO-2024-0849",
+      "order0849Desc": "16 Mart 2024 tarihinde oluşturuldu — Üretim hattı C",
+      "qty": "Adet: 500",
+      "sku": "SKU: VE-1042",
+      "lot": "Parti: B-7291"
+    },
+    "slider": {
+      "productionCapacity": "Üretim kapasitesi",
+      "qualityThreshold": "Kalite eşiği",
+      "reorderPoint": "Yeniden sipariş noktası"
+    },
+    "spinner": {
+      "small": "Küçük",
+      "medium": "Orta",
+      "large": "Büyük"
+    },
+    "tabs": {
+      "overview": "Genel Bakış",
+      "production": "Üretim",
+      "quality": "Kalite",
+      "shipping": "Sevkiyat",
+      "overviewContent": "Temel metrikleri, aktif siparişleri ve mevcut üretim döngüsüne ait uyarıları gösteren genel pano.",
+      "productionContent": "Tüm tesislerdeki gerçek zamanlı üretim hattı durumu, verimlilik oranları ve makine kullanımı.",
+      "qualityContent": "Geçme oranları, hata takibi ve denetim takvimlerini içeren kalite güvence metrikleri.",
+      "shippingContent": "Gönderi takibi, taşıyıcı performansı ve teslimat tahminleriyle giden lojistik genel bakışı."
     }
   }
 }

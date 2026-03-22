@@ -12,11 +12,16 @@ import { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 
 const SLIDERS = [
-  { id: "capacity", label: "Production capacity", defaultValue: 75, max: 100 },
-  { id: "quality", label: "Quality threshold", defaultValue: 90, max: 100 },
+  {
+    id: "capacity",
+    labelKey: "productionCapacity",
+    defaultValue: 75,
+    max: 100,
+  },
+  { id: "quality", labelKey: "qualityThreshold", defaultValue: 90, max: 100 },
   {
     id: "reorder",
-    label: "Reorder point",
+    labelKey: "reorderPoint",
     defaultValue: 150,
     max: 500,
     step: 5,
@@ -46,10 +51,10 @@ export function Preview() {
             minValue={0}
             maxValue={s.max}
             step={s.step ?? 1}
-            aria-label={s.label}
+            aria-label={t(`preview.slider.${s.labelKey}`)}
           >
             <div className="flex justify-between text-xs text-vita-text-secondary mb-1">
-              <Label>{s.label}</Label>
+              <Label>{t(`preview.slider.${s.labelKey}`)}</Label>
               <Slider.Output />
             </div>
             <Slider.Track>

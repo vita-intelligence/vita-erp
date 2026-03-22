@@ -11,11 +11,11 @@ import { useState } from "react";
 import { useThemeStore } from "@/stores/theme";
 
 const ITEMS = [
-  { id: "1", name: "Steel Rod — 12mm" },
-  { id: "2", name: "Aluminum Sheet — 2mm" },
-  { id: "3", name: "Copper Wire — 0.5mm" },
-  { id: "4", name: "Brass Fitting — M8" },
-  { id: "5", name: "Stainless Bolt — M10" },
+  { id: "1", nameKey: "steelRod" },
+  { id: "2", nameKey: "aluminumSheet" },
+  { id: "3", nameKey: "copperWire" },
+  { id: "4", nameKey: "brassFitting" },
+  { id: "5", nameKey: "stainlessBolt" },
 ];
 
 export function Preview() {
@@ -24,9 +24,11 @@ export function Preview() {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
 
+  const getName = (key: string) => t(`preview.comboBox.${key}`);
+
   const filtered = query
     ? ITEMS.filter((item) =>
-        item.name.toLowerCase().includes(query.toLowerCase()),
+        getName(item.nameKey).toLowerCase().includes(query.toLowerCase()),
       )
     : ITEMS;
 
@@ -102,7 +104,7 @@ export function Preview() {
           display: "block",
         }}
       >
-        Material
+        {t("preview.comboBox.materialLabel")}
       </span>
 
       {/* Trigger */}
@@ -115,7 +117,7 @@ export function Preview() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search materials…"
+          placeholder={t("preview.comboBox.searchMaterials")}
           style={{
             flex: 1,
             border: "none",
@@ -168,7 +170,7 @@ export function Preview() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     setSelected(item.id);
-                    setQuery(item.name);
+                    setQuery(getName(item.nameKey));
                   }
                 }}
                 style={{
@@ -193,10 +195,10 @@ export function Preview() {
                 }}
                 onClick={() => {
                   setSelected(item.id);
-                  setQuery(item.name);
+                  setQuery(getName(item.nameKey));
                 }}
               >
-                <span>{item.name}</span>
+                <span>{getName(item.nameKey)}</span>
               </div>
             );
           })

@@ -22,10 +22,10 @@ export function Preview() {
       <div className="space-y-3">
         <div>
           <p className="text-sm font-medium text-vita-text">
-            Order #WO-2024-0847
+            {t("preview.separator.order0847")}
           </p>
           <p className="text-xs text-vita-text-muted">
-            Created 15 Mar 2024 — Production line B
+            {t("preview.separator.order0847Desc")}
           </p>
         </div>
 
@@ -33,10 +33,10 @@ export function Preview() {
 
         <div>
           <p className="text-sm font-medium text-vita-text">
-            Order #WO-2024-0848
+            {t("preview.separator.order0848")}
           </p>
           <p className="text-xs text-vita-text-muted">
-            Created 16 Mar 2024 — Production line A
+            {t("preview.separator.order0848Desc")}
           </p>
         </div>
 
@@ -44,10 +44,10 @@ export function Preview() {
 
         <div>
           <p className="text-sm font-medium text-vita-text">
-            Order #WO-2024-0849
+            {t("preview.separator.order0849")}
           </p>
           <p className="text-xs text-vita-text-muted">
-            Created 16 Mar 2024 — Production line C
+            {t("preview.separator.order0849Desc")}
           </p>
         </div>
       </div>
@@ -63,11 +63,17 @@ export function Preview() {
           {t("preview.vertical")}
         </p>
         <div className="flex items-center gap-3">
-          <span className="text-sm text-vita-text">Qty: 500</span>
+          <span className="text-sm text-vita-text">
+            {t("preview.separator.qty")}
+          </span>
           <Separator orientation="vertical" className="h-4" />
-          <span className="text-sm text-vita-text">SKU: VE-1042</span>
+          <span className="text-sm text-vita-text">
+            {t("preview.separator.sku")}
+          </span>
           <Separator orientation="vertical" className="h-4" />
-          <span className="text-sm text-vita-text">Lot: B-7291</span>
+          <span className="text-sm text-vita-text">
+            {t("preview.separator.lot")}
+          </span>
         </div>
       </div>
     </div>

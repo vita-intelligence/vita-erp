@@ -21,17 +21,23 @@ export function Preview() {
       <div className="flex items-end gap-6">
         <div className="flex flex-col items-center gap-2">
           <Spinner size="sm" />
-          <span className="text-xs text-vita-text-muted">Small</span>
+          <span className="text-xs text-vita-text-muted">
+            {t("preview.spinner.small")}
+          </span>
         </div>
 
         <div className="flex flex-col items-center gap-2">
           <Spinner size="md" />
-          <span className="text-xs text-vita-text-muted">Medium</span>
+          <span className="text-xs text-vita-text-muted">
+            {t("preview.spinner.medium")}
+          </span>
         </div>
 
         <div className="flex flex-col items-center gap-2">
           <Spinner size="lg" />
-          <span className="text-xs text-vita-text-muted">Large</span>
+          <span className="text-xs text-vita-text-muted">
+            {t("preview.spinner.large")}
+          </span>
         </div>
       </div>
 

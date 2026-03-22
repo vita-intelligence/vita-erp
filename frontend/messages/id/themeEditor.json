@@ -659,6 +659,136 @@
       "navDashboard": "Dasbor",
       "navOrders": "Pesanan",
       "navInventory": "Inventaris"
+    },
+    "badges": {
+      "completed": "Selesai",
+      "inProgress": "Sedang Berjalan",
+      "failed": "Gagal",
+      "draft": "Draf",
+      "active": "Aktif",
+      "info": "Informasi",
+      "warning": "Peringatan",
+      "error": "Error",
+      "neutral": "Netral",
+      "orderSteelFrame": "ORD-00842 · Steel Frame A-14",
+      "orderBoltAssembly": "ORD-00841 · Bolt Assembly B2",
+      "orderWeldJoint": "ORD-00840 · Weld Joint C6",
+      "orderCoverPlate": "ORD-00839 · Cover Plate D1"
+    },
+    "cards": {
+      "productionOrder": "Pesanan Produksi",
+      "orderMeta": "#00842 · Dibuat 21 Mar 2026",
+      "product": "Produk",
+      "productValue": "Steel Frame A-14",
+      "quantity": "Kuantitas",
+      "quantityValue": "3.891 unit",
+      "status": "Status",
+      "statusValue": "Sedang Berjalan",
+      "dueDate": "Tanggal jatuh tempo",
+      "dueDateValue": "28 Mar 2026",
+      "assignedTo": "Ditugaskan ke",
+      "assignedToValue": "Lini 4 — Shift B",
+      "reject": "Tolak",
+      "approve": "Setujui"
+    },
+    "autocomplete": {
+      "productLabel": "Produk",
+      "searchProducts": "Cari produk…",
+      "steelFrameA14": "Steel Frame A-14",
+      "boltAssemblyB2": "Bolt Assembly B2",
+      "weldJointC6": "Weld Joint C6",
+      "coverPlateD1": "Cover Plate D1",
+      "hexBoltE3": "Hex Bolt E3",
+      "gearRingF7": "Gear Ring F7",
+      "springPinG2": "Spring Pin G2",
+      "categoryFrames": "Rangka",
+      "categoryFasteners": "Pengencang",
+      "categoryJoints": "Sambungan",
+      "categoryPlates": "Pelat",
+      "categoryDrivetrain": "Drivetrain"
+    },
+    "avatar": {
+      "personName": "Jessica Jay",
+      "personTitle": "Manajer Produksi · Lini 4"
+    },
+    "breadcrumbs": {
+      "dashboard": "Dasbor",
+      "production": "Produksi",
+      "orders": "Pesanan",
+      "home": "Beranda",
+      "settings": "Pengaturan",
+      "orderLabel": "Pesanan",
+      "orderDescription": "Steel Frame A-14 — Lini Produksi 3"
+    },
+    "buttonGroup": {
+      "list": "Daftar",
+      "grid": "Kisi",
+      "table": "Tabel",
+      "export": "Ekspor",
+      "print": "Cetak",
+      "share": "Bagikan",
+      "orders": "Pesanan"
+    },
+    "checkbox": {
+      "rawMaterials": "Bahan baku tersedia",
+      "qualityCheck": "Pemeriksaan kualitas lulus",
+      "shippingLabel": "Label pengiriman dicetak",
+      "docsAttached": "Dokumen terlampir",
+      "supervisorSignOff": "Persetujuan supervisor"
+    },
+    "checkboxGroup": {
+      "production": "Produksi",
+      "qualityControl": "Kontrol Kualitas",
+      "warehouse": "Gudang",
+      "shipping": "Pengiriman",
+      "maintenance": "Pemeliharaan",
+      "viewRecords": "Lihat catatan",
+      "editRecords": "Edit catatan",
+      "deleteRecords": "Hapus catatan",
+      "exportData": "Ekspor data"
+    },
+    "comboBox": {
+      "materialLabel": "Material",
+      "searchMaterials": "Cari material…",
+      "steelRod": "Steel Rod — 12mm",
+      "aluminumSheet": "Aluminum Sheet — 2mm",
+      "copperWire": "Copper Wire — 0.5mm",
+      "brassFitting": "Brass Fitting — M8",
+      "stainlessBolt": "Stainless Bolt — M10"
+    },
+    "datePicker": {
+      "dueDate": "Tanggal jatuh tempo"
+    },
+    "separator": {
+      "order0847": "Pesanan #WO-2024-0847",
+      "order0847Desc": "Dibuat 15 Mar 2024 — Lini produksi B",
+      "order0848": "Pesanan #WO-2024-0848",
+      "order0848Desc": "Dibuat 16 Mar 2024 — Lini produksi A",
+      "order0849": "Pesanan #WO-2024-0849",
+      "order0849Desc": "Dibuat 16 Mar 2024 — Lini produksi C",
+      "qty": "Jml: 500",
+      "sku": "SKU: VE-1042",
+      "lot": "Lot: B-7291"
+    },
+    "slider": {
+      "productionCapacity": "Kapasitas produksi",
+      "qualityThreshold": "Ambang kualitas",
+      "reorderPoint": "Titik pemesanan ulang"
+    },
+    "spinner": {
+      "small": "Kecil",
+      "medium": "Sedang",
+      "large": "Besar"
+    },
+    "tabs": {
+      "overview": "Ringkasan",
+      "production": "Produksi",
+      "quality": "Kualitas",
+      "shipping": "Pengiriman",
+      "overviewContent": "Dasbor umum yang menampilkan metrik utama, pesanan aktif, dan peringatan untuk siklus produksi saat ini.",
+      "productionContent": "Status lini produksi real-time, tingkat throughput, dan pemanfaatan mesin di seluruh fasilitas.",
+      "qualityContent": "Metrik jaminan kualitas termasuk tingkat kelulusan, pelacakan cacat, dan jadwal inspeksi.",
+      "shippingContent": "Ringkasan logistik keluar dengan pelacakan pengiriman, kinerja operator, dan estimasi pengiriman."
     }
   }
 }

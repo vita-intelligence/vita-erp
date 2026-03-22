@@ -659,6 +659,136 @@
       "navDashboard": "Tableau de bord",
       "navOrders": "Commandes",
       "navInventory": "Inventaire"
+    },
+    "badges": {
+      "completed": "Terminé",
+      "inProgress": "En cours",
+      "failed": "Échoué",
+      "draft": "Brouillon",
+      "active": "Actif",
+      "info": "Info",
+      "warning": "Avertissement",
+      "error": "Erreur",
+      "neutral": "Neutre",
+      "orderSteelFrame": "ORD-00842 · Steel Frame A-14",
+      "orderBoltAssembly": "ORD-00841 · Bolt Assembly B2",
+      "orderWeldJoint": "ORD-00840 · Weld Joint C6",
+      "orderCoverPlate": "ORD-00839 · Cover Plate D1"
+    },
+    "cards": {
+      "productionOrder": "Ordre de production",
+      "orderMeta": "#00842 · Créé le 21 mars 2026",
+      "product": "Produit",
+      "productValue": "Steel Frame A-14",
+      "quantity": "Quantité",
+      "quantityValue": "3 891 unités",
+      "status": "Statut",
+      "statusValue": "En cours",
+      "dueDate": "Date d'échéance",
+      "dueDateValue": "28 mars 2026",
+      "assignedTo": "Assigné à",
+      "assignedToValue": "Ligne 4 — Équipe B",
+      "reject": "Rejeter",
+      "approve": "Approuver"
+    },
+    "autocomplete": {
+      "productLabel": "Produit",
+      "searchProducts": "Rechercher des produits…",
+      "steelFrameA14": "Steel Frame A-14",
+      "boltAssemblyB2": "Bolt Assembly B2",
+      "weldJointC6": "Weld Joint C6",
+      "coverPlateD1": "Cover Plate D1",
+      "hexBoltE3": "Hex Bolt E3",
+      "gearRingF7": "Gear Ring F7",
+      "springPinG2": "Spring Pin G2",
+      "categoryFrames": "Châssis",
+      "categoryFasteners": "Fixations",
+      "categoryJoints": "Joints",
+      "categoryPlates": "Plaques",
+      "categoryDrivetrain": "Transmission"
+    },
+    "avatar": {
+      "personName": "Jessica Jay",
+      "personTitle": "Responsable de production · Ligne 4"
+    },
+    "breadcrumbs": {
+      "dashboard": "Tableau de bord",
+      "production": "Production",
+      "orders": "Commandes",
+      "home": "Accueil",
+      "settings": "Paramètres",
+      "orderLabel": "Commande",
+      "orderDescription": "Steel Frame A-14 — Ligne de production 3"
+    },
+    "buttonGroup": {
+      "list": "Liste",
+      "grid": "Grille",
+      "table": "Tableau",
+      "export": "Exporter",
+      "print": "Imprimer",
+      "share": "Partager",
+      "orders": "Commandes"
+    },
+    "checkbox": {
+      "rawMaterials": "Matières premières en stock",
+      "qualityCheck": "Contrôle qualité réussi",
+      "shippingLabel": "Étiquette d'expédition imprimée",
+      "docsAttached": "Documents joints",
+      "supervisorSignOff": "Validation du superviseur"
+    },
+    "checkboxGroup": {
+      "production": "Production",
+      "qualityControl": "Contrôle qualité",
+      "warehouse": "Entrepôt",
+      "shipping": "Expédition",
+      "maintenance": "Maintenance",
+      "viewRecords": "Voir les enregistrements",
+      "editRecords": "Modifier les enregistrements",
+      "deleteRecords": "Supprimer les enregistrements",
+      "exportData": "Exporter les données"
+    },
+    "comboBox": {
+      "materialLabel": "Matériau",
+      "searchMaterials": "Rechercher des matériaux…",
+      "steelRod": "Steel Rod — 12mm",
+      "aluminumSheet": "Aluminum Sheet — 2mm",
+      "copperWire": "Copper Wire — 0.5mm",
+      "brassFitting": "Brass Fitting — M8",
+      "stainlessBolt": "Stainless Bolt — M10"
+    },
+    "datePicker": {
+      "dueDate": "Date d'échéance"
+    },
+    "separator": {
+      "order0847": "Commande #WO-2024-0847",
+      "order0847Desc": "Créée le 15 mars 2024 — Ligne de production B",
+      "order0848": "Commande #WO-2024-0848",
+      "order0848Desc": "Créée le 16 mars 2024 — Ligne de production A",
+      "order0849": "Commande #WO-2024-0849",
+      "order0849Desc": "Créée le 16 mars 2024 — Ligne de production C",
+      "qty": "Qté : 500",
+      "sku": "SKU : VE-1042",
+      "lot": "Lot : B-7291"
+    },
+    "slider": {
+      "productionCapacity": "Capacité de production",
+      "qualityThreshold": "Seuil de qualité",
+      "reorderPoint": "Point de réapprovisionnement"
+    },
+    "spinner": {
+      "small": "Petit",
+      "medium": "Moyen",
+      "large": "Grand"
+    },
+    "tabs": {
+      "overview": "Vue d'ensemble",
+      "production": "Production",
+      "quality": "Qualité",
+      "shipping": "Expédition",
+      "overviewContent": "Tableau de bord général affichant les indicateurs clés, les commandes actives et les alertes du cycle de production en cours.",
+      "productionContent": "État en temps réel des lignes de production, taux de rendement et utilisation des machines dans toutes les installations.",
+      "qualityContent": "Indicateurs d'assurance qualité comprenant les taux de réussite, le suivi des défauts et les calendriers d'inspection.",
+      "shippingContent": "Aperçu de la logistique sortante avec suivi des expéditions, performance des transporteurs et estimations de livraison."
     }
   }
 }

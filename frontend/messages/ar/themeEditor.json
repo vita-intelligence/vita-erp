@@ -659,6 +659,136 @@
       "navDashboard": "لوحة المعلومات",
       "navOrders": "الأوامر",
       "navInventory": "المخزون"
+    },
+    "badges": {
+      "completed": "مكتمل",
+      "inProgress": "قيد التنفيذ",
+      "failed": "فشل",
+      "draft": "مسودة",
+      "active": "نشط",
+      "info": "معلومات",
+      "warning": "تحذير",
+      "error": "خطأ",
+      "neutral": "محايد",
+      "orderSteelFrame": "ORD-00842 · Steel Frame A-14",
+      "orderBoltAssembly": "ORD-00841 · Bolt Assembly B2",
+      "orderWeldJoint": "ORD-00840 · Weld Joint C6",
+      "orderCoverPlate": "ORD-00839 · Cover Plate D1"
+    },
+    "cards": {
+      "productionOrder": "أمر الإنتاج",
+      "orderMeta": "#00842 · أُنشئ في 21 مارس 2026",
+      "product": "المنتج",
+      "productValue": "Steel Frame A-14",
+      "quantity": "الكمية",
+      "quantityValue": "3,891 وحدة",
+      "status": "الحالة",
+      "statusValue": "قيد التنفيذ",
+      "dueDate": "تاريخ الاستحقاق",
+      "dueDateValue": "28 مارس 2026",
+      "assignedTo": "مسند إلى",
+      "assignedToValue": "الخط 4 — الوردية B",
+      "reject": "رفض",
+      "approve": "موافقة"
+    },
+    "autocomplete": {
+      "productLabel": "المنتج",
+      "searchProducts": "البحث عن منتجات…",
+      "steelFrameA14": "Steel Frame A-14",
+      "boltAssemblyB2": "Bolt Assembly B2",
+      "weldJointC6": "Weld Joint C6",
+      "coverPlateD1": "Cover Plate D1",
+      "hexBoltE3": "Hex Bolt E3",
+      "gearRingF7": "Gear Ring F7",
+      "springPinG2": "Spring Pin G2",
+      "categoryFrames": "الإطارات",
+      "categoryFasteners": "أدوات التثبيت",
+      "categoryJoints": "الوصلات",
+      "categoryPlates": "الألواح",
+      "categoryDrivetrain": "مجموعة الدفع"
+    },
+    "avatar": {
+      "personName": "Jessica Jay",
+      "personTitle": "مديرة الإنتاج · الخط 4"
+    },
+    "breadcrumbs": {
+      "dashboard": "لوحة المعلومات",
+      "production": "الإنتاج",
+      "orders": "الأوامر",
+      "home": "الرئيسية",
+      "settings": "الإعدادات",
+      "orderLabel": "الأمر",
+      "orderDescription": "Steel Frame A-14 — خط الإنتاج 3"
+    },
+    "buttonGroup": {
+      "list": "قائمة",
+      "grid": "شبكة",
+      "table": "جدول",
+      "export": "تصدير",
+      "print": "طباعة",
+      "share": "مشاركة",
+      "orders": "الأوامر"
+    },
+    "checkbox": {
+      "rawMaterials": "المواد الخام متوفرة",
+      "qualityCheck": "فحص الجودة ناجح",
+      "shippingLabel": "ملصق الشحن مطبوع",
+      "docsAttached": "المستندات مرفقة",
+      "supervisorSignOff": "موافقة المشرف"
+    },
+    "checkboxGroup": {
+      "production": "الإنتاج",
+      "qualityControl": "مراقبة الجودة",
+      "warehouse": "المستودع",
+      "shipping": "الشحن",
+      "maintenance": "الصيانة",
+      "viewRecords": "عرض السجلات",
+      "editRecords": "تعديل السجلات",
+      "deleteRecords": "حذف السجلات",
+      "exportData": "تصدير البيانات"
+    },
+    "comboBox": {
+      "materialLabel": "المادة",
+      "searchMaterials": "البحث عن مواد…",
+      "steelRod": "Steel Rod — 12mm",
+      "aluminumSheet": "Aluminum Sheet — 2mm",
+      "copperWire": "Copper Wire — 0.5mm",
+      "brassFitting": "Brass Fitting — M8",
+      "stainlessBolt": "Stainless Bolt — M10"
+    },
+    "datePicker": {
+      "dueDate": "تاريخ الاستحقاق"
+    },
+    "separator": {
+      "order0847": "الأمر #WO-2024-0847",
+      "order0847Desc": "أُنشئ في 15 مارس 2024 — خط الإنتاج B",
+      "order0848": "الأمر #WO-2024-0848",
+      "order0848Desc": "أُنشئ في 16 مارس 2024 — خط الإنتاج A",
+      "order0849": "الأمر #WO-2024-0849",
+      "order0849Desc": "أُنشئ في 16 مارس 2024 — خط الإنتاج C",
+      "qty": "الكمية: 500",
+      "sku": "SKU: VE-1042",
+      "lot": "الدفعة: B-7291"
+    },
+    "slider": {
+      "productionCapacity": "الطاقة الإنتاجية",
+      "qualityThreshold": "حد الجودة",
+      "reorderPoint": "نقطة إعادة الطلب"
+    },
+    "spinner": {
+      "small": "صغير",
+      "medium": "متوسط",
+      "large": "كبير"
+    },
+    "tabs": {
+      "overview": "نظرة عامة",
+      "production": "الإنتاج",
+      "quality": "الجودة",
+      "shipping": "الشحن",
+      "overviewContent": "لوحة معلومات عامة تعرض المؤشرات الرئيسية والأوامر النشطة والتنبيهات لدورة الإنتاج الحالية.",
+      "productionContent": "حالة خطوط الإنتاج في الوقت الفعلي ومعدلات الإنتاجية واستخدام الآلات في جميع المنشآت.",
+      "qualityContent": "مؤشرات ضمان الجودة بما في ذلك معدلات النجاح وتتبع العيوب وجداول الفحص.",
+      "shippingContent": "نظرة عامة على الخدمات اللوجستية الصادرة مع تتبع الشحنات وأداء الناقلين وتقديرات التسليم."
     }
   }
 }

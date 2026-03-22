@@ -27,13 +27,13 @@ export function Preview() {
         <div className="flex flex-wrap gap-2">
           <ButtonGroup>
             <Button variant="primary" size="sm">
-              List
+              {t("preview.buttonGroup.list")}
             </Button>
             <Button variant="outline" size="sm">
-              Grid
+              {t("preview.buttonGroup.grid")}
             </Button>
             <Button variant="outline" size="sm">
-              Table
+              {t("preview.buttonGroup.table")}
             </Button>
           </ButtonGroup>
         </div>
@@ -45,13 +45,13 @@ export function Preview() {
         <div className="flex flex-wrap gap-2">
           <ButtonGroup>
             <Button variant="outline" size="sm">
-              Export
+              {t("preview.buttonGroup.export")}
             </Button>
             <Button variant="outline" size="sm">
-              Print
+              {t("preview.buttonGroup.print")}
             </Button>
             <Button variant="outline" size="sm">
-              Share
+              {t("preview.buttonGroup.share")}
             </Button>
           </ButtonGroup>
         </div>
@@ -71,17 +71,17 @@ export function Preview() {
             className="font-vita-heading text-sm"
             style={{ fontWeight: 600, color: "var(--vita-text-primary)" }}
           >
-            Orders
+            {t("preview.buttonGroup.orders")}
           </span>
           <ButtonGroup>
             <Button variant="outline" size="sm">
-              List
+              {t("preview.buttonGroup.list")}
             </Button>
             <Button variant="primary" size="sm">
-              Grid
+              {t("preview.buttonGroup.grid")}
             </Button>
             <Button variant="outline" size="sm">
-              Table
+              {t("preview.buttonGroup.table")}
             </Button>
           </ButtonGroup>
         </div>

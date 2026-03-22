@@ -1,9 +1,13 @@
 /**
  * Badge preview data — variant samples and in-context order list.
+ *
+ * Labels use translation keys from `preview.badges.*` in themeEditor.json.
+ * The `labelKey` field stores the i18n key suffix; components resolve it
+ * via `t(`preview.badges.${entry.labelKey}`)`.
  */
 
 export type BadgeEntry = {
-  label: string;
+  labelKey: string;
   bg: string;
   color: string;
   border?: string;
@@ -11,32 +15,32 @@ export type BadgeEntry = {
 
 export const SOLID_BADGES: BadgeEntry[] = [
   {
-    label: "Completed",
+    labelKey: "completed",
     bg: "var(--vita-success)",
     color: "var(--vita-text-on-primary)",
   },
   {
-    label: "In Progress",
+    labelKey: "inProgress",
     bg: "var(--vita-warning)",
     color: "var(--vita-text-on-warning)",
   },
   {
-    label: "Failed",
+    labelKey: "failed",
     bg: "var(--vita-error)",
     color: "var(--vita-text-on-danger)",
   },
   {
-    label: "Draft",
+    labelKey: "draft",
     bg: "var(--vita-neutral-200)",
     color: "var(--vita-text-secondary)",
   },
   {
-    label: "Active",
+    labelKey: "active",
     bg: "var(--vita-primary)",
     color: "var(--vita-text-on-primary)",
   },
   {
-    label: "Info",
+    labelKey: "info",
     bg: "var(--vita-info)",
     color: "var(--vita-text-on-primary)",
   },
@@ -44,59 +48,66 @@ export const SOLID_BADGES: BadgeEntry[] = [
 
 export const SOFT_BADGES: BadgeEntry[] = [
   {
-    label: "Completed",
+    labelKey: "completed",
     bg: "var(--vita-success-light)",
     color: "var(--vita-success-dark)",
     border: "var(--vita-success)",
   },
   {
-    label: "Warning",
+    labelKey: "warning",
     bg: "var(--vita-warning-light)",
     color: "var(--vita-text-on-warning)",
     border: "var(--vita-warning)",
   },
   {
-    label: "Error",
+    labelKey: "error",
     bg: "var(--vita-error-light)",
     color: "var(--vita-error-dark)",
     border: "var(--vita-error)",
   },
   {
-    label: "Neutral",
+    labelKey: "neutral",
     bg: "var(--vita-neutral-50)",
     color: "var(--vita-text-secondary)",
     border: "var(--vita-neutral-300)",
   },
   {
-    label: "Info",
+    labelKey: "info",
     bg: "var(--vita-info-light)",
     color: "var(--vita-info-dark)",
     border: "var(--vita-info)",
   },
 ];
 
-export const CONTEXT_ORDERS = [
+export type ContextOrder = {
+  nameKey: string;
+  statusKey: string;
+  bg: string;
+  color: string;
+};
+
+export const CONTEXT_ORDERS: ContextOrder[] = [
   {
-    name: "ORD-00842 · Steel Frame A-14",
-    status: "In Progress",
+    nameKey: "orderSteelFrame",
+    statusKey: "inProgress",
     bg: "var(--vita-warning)",
     color: "var(--vita-text-on-warning)",
   },
   {
-    name: "ORD-00841 · Bolt Assembly B2",
-    status: "Completed",
+    nameKey: "orderBoltAssembly",
+    statusKey: "completed",
     bg: "var(--vita-success)",
     color: "var(--vita-text-on-primary)",
   },
   {
-    name: "ORD-00840 · Weld Joint C6",
-    status: "Failed",
+    nameKey: "orderWeldJoint",
+    statusKey: "failed",
     bg: "var(--vita-error)",
     color: "var(--vita-text-on-danger)",
   },
   {
-    name: "ORD-00839 · Cover Plate D1",
-    status: "Draft",
+    nameKey: "orderCoverPlate",
+    statusKey: "draft",
     bg: "var(--vita-neutral-200)",
     color: "var(--vita-text-secondary)",
   },

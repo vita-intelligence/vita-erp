@@ -17,12 +17,16 @@ import { useThemeStore } from "@/stores/theme";
 
 import { useCursorTrack } from "../_shared/useCursorTrack";
 
-const PREVIEW_ROWS = [
-  { label: "Product", value: "Steel Frame A-14" },
-  { label: "Quantity", value: "3,891 units", mono: true },
-  { label: "Status", value: "In Progress" },
-  { label: "Due date", value: "Mar 28, 2026", mono: true },
-  { label: "Assigned to", value: "Line 4 — Shift B" },
+const PREVIEW_ROW_KEYS: ReadonlyArray<{
+  labelKey: string;
+  valueKey: string;
+  mono?: boolean;
+}> = [
+  { labelKey: "product", valueKey: "productValue" },
+  { labelKey: "quantity", valueKey: "quantityValue", mono: true },
+  { labelKey: "status", valueKey: "statusValue" },
+  { labelKey: "dueDate", valueKey: "dueDateValue", mono: true },
+  { labelKey: "assignedTo", valueKey: "assignedToValue" },
 ];
 
 export function Preview() {
@@ -56,10 +60,10 @@ export function Preview() {
         <Card.Header className="flex-row items-center justify-between">
           <div>
             <Card.Title className="font-vita-heading text-sm">
-              Production Order
+              {t("preview.cards.productionOrder")}
             </Card.Title>
             <Card.Description className="font-vita-mono text-xs">
-              #00842 · Created Mar 21, 2026
+              {t("preview.cards.orderMeta")}
             </Card.Description>
           </div>
           <Chip
@@ -69,27 +73,29 @@ export function Preview() {
               borderColor: "var(--vita-warning)",
             }}
           >
-            In Progress
+            {t("preview.cards.statusValue")}
           </Chip>
         </Card.Header>
 
         {/* Data rows */}
         <Card.Content className="px-4 py-0">
-          {PREVIEW_ROWS.map(({ label, value, mono }) => (
+          {PREVIEW_ROW_KEYS.map(({ labelKey, valueKey, mono }) => (
             <div
-              key={label}
+              key={labelKey}
               className="flex items-center justify-between"
               style={{
                 padding: "0.6rem 0",
                 borderBottom: "1px solid var(--vita-neutral-100)",
               }}
             >
-              <span className="text-xs text-vita-text-muted">{label}</span>
+              <span className="text-xs text-vita-text-muted">
+                {t(`preview.cards.${labelKey}`)}
+              </span>
               <span
                 className={`text-xs font-medium ${mono ? "font-vita-mono" : ""}`}
                 style={{ color: "var(--vita-text-primary)" }}
               >
-                {value}
+                {t(`preview.cards.${valueKey}`)}
               </span>
             </div>
           ))}
@@ -98,10 +104,10 @@ export function Preview() {
         {/* Footer actions */}
         <Card.Footer className="justify-end gap-2">
           <Button variant="outline" size="sm">
-            Reject
+            {t("preview.cards.reject")}
           </Button>
           <Button variant="primary" size="sm">
-            Approve
+            {t("preview.cards.approve")}
           </Button>
         </Card.Footer>
       </Card>

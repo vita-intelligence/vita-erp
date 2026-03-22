@@ -14,11 +14,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 // ── Sample items ─────────────────────────────────────────────────────────────
 
 const ITEMS = [
-  { id: "raw-materials", label: "Raw materials in stock" },
-  { id: "quality-check", label: "Quality check passed" },
-  { id: "shipping-label", label: "Shipping label printed" },
-  { id: "docs-attached", label: "Documents attached" },
-  { id: "supervisor-sign", label: "Supervisor sign-off", disabled: true },
+  { id: "raw-materials", labelKey: "rawMaterials" },
+  { id: "quality-check", labelKey: "qualityCheck" },
+  { id: "shipping-label", labelKey: "shippingLabel" },
+  { id: "docs-attached", labelKey: "docsAttached" },
+  { id: "supervisor-sign", labelKey: "supervisorSignOff", disabled: true },
 ];
 
 export function Preview() {
@@ -54,7 +54,7 @@ export function Preview() {
               <Checkbox.Indicator />
             </Checkbox.Control>
             <Checkbox.Content>
-              <Label>{item.label}</Label>
+              <Label>{t(`preview.checkbox.${item.labelKey}`)}</Label>
             </Checkbox.Content>
           </Checkbox>
         ))}
