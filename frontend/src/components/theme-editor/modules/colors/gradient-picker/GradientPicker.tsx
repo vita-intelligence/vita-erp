@@ -11,6 +11,7 @@ import { useCallback, useState } from "react";
 import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 import { Chip } from "../../_shared";
+import { ColorInput } from "../ColorInput";
 
 import {
   buildGradient,
@@ -148,16 +149,14 @@ export function GradientPicker({
             <RotateCcw size={12} />
           </button>
           {mode === "solid" && (
-            <input
-              type="color"
-              title={`Change ${label}`}
-              className="h-7 w-7 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
+            <ColorInput
               value={
                 isGradient(value) || !value ? "#ffffff" : cssColorToHex(value)
               }
-              onChange={(e) =>
+              title={`Change ${label}`}
+              onChange={(hex) =>
                 setTokens({
-                  [tokenKey]: e.target.value,
+                  [tokenKey]: hex,
                 } as Parameters<typeof setTokens>[0])
               }
             />

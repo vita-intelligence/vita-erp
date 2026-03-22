@@ -10,6 +10,8 @@ import { RotateCcw } from "lucide-react";
 import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
+import { ColorInput } from "./ColorInput";
+
 // ── Data ─────────────────────────────────────────────────────────────────────
 
 const TEXT_COLOR_META = [
@@ -114,15 +116,11 @@ export function TextSection() {
               >
                 <RotateCcw size={12} />
               </button>
-              <input
-                type="color"
-                title={`Change ${label} text color`}
-                className="h-7 w-7 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
+              <ColorInput
                 value={cssColorToHex(tokens[key])}
-                onChange={(e) =>
-                  setTokens({ [key]: e.target.value } as Parameters<
-                    typeof setTokens
-                  >[0])
+                title={`Change ${label} text color`}
+                onChange={(hex) =>
+                  setTokens({ [key]: hex } as Parameters<typeof setTokens>[0])
                 }
               />
             </div>

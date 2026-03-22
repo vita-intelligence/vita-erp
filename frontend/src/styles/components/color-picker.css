@@ -1,0 +1,78 @@
+/* ── Color Picker ─────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <ColorPicker> compound
+ * component and its sub-elements: popover, color area, sliders, swatches.
+ */
+
+:root {
+  --vita-color-picker-popover-radius: 8px;
+  --vita-color-picker-popover-shadow: 0 4px 14px oklch(0 0 0 / 0.1);
+  --vita-color-picker-popover-padding: 16px;
+  --vita-color-picker-popover-border-width: 1px;
+  --vita-color-picker-popover-border-style: solid;
+  --vita-color-picker-swatch-radius: 6px;
+  --vita-color-picker-swatch-size: 28px;
+  --vita-color-picker-swatch-gap: 6px;
+  --vita-color-picker-swatch-border-width: 2px;
+  --vita-color-picker-slider-radius: 9999px;
+  --vita-color-picker-slider-height: 12px;
+  --vita-color-picker-thumb-size: 18px;
+  --vita-color-picker-thumb-border-width: 2px;
+  --vita-color-picker-area-radius: 8px;
+  --vita-color-picker-transition-duration: 150ms;
+}
+
+/* ── Popover panel ── */
+.color-picker__popover,
+.color-picker-popover,
+[data-slot="color-picker-popover"] {
+  border-radius: var(--vita-color-picker-popover-radius) !important;
+  box-shadow: var(--vita-color-picker-popover-shadow) !important;
+  padding: var(--vita-color-picker-popover-padding) !important;
+  border-width: var(--vita-color-picker-popover-border-width) !important;
+  border-style: var(--vita-color-picker-popover-border-style) !important;
+}
+
+/* ── Color area (2D picker) ── */
+.color-area,
+[data-slot="color-area"] {
+  border-radius: var(--vita-color-picker-area-radius) !important;
+}
+
+/* ── Slider tracks ── */
+.color-slider__track,
+.color-slider-track,
+[data-slot="color-slider-track"] {
+  border-radius: var(--vita-color-picker-slider-radius) !important;
+  height: var(--vita-color-picker-slider-height) !important;
+}
+
+/* ── Thumbs (color area + sliders) ── */
+.color-area__thumb,
+.color-area-thumb,
+[data-slot="color-area-thumb"],
+.color-slider__thumb,
+.color-slider-thumb,
+[data-slot="color-slider-thumb"] {
+  width: var(--vita-color-picker-thumb-size) !important;
+  height: var(--vita-color-picker-thumb-size) !important;
+  border-width: var(--vita-color-picker-thumb-border-width) !important;
+  transition-property: transform, box-shadow !important;
+  transition-duration: var(--vita-color-picker-transition-duration) !important;
+}
+
+/* ── Swatches ── */
+.color-swatch,
+[data-slot="color-swatch"] {
+  border-radius: var(--vita-color-picker-swatch-radius) !important;
+  width: var(--vita-color-picker-swatch-size) !important;
+  height: var(--vita-color-picker-swatch-size) !important;
+  border-width: var(--vita-color-picker-swatch-border-width) !important;
+  transition-property: transform, box-shadow !important;
+  transition-duration: var(--vita-color-picker-transition-duration) !important;
+}
+
+/* ── Swatch picker grid ── */
+.color-swatch-picker,
+[data-slot="color-swatch-picker"] {
+  gap: var(--vita-color-picker-swatch-gap) !important;
+}

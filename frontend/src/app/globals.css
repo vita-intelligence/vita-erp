@@ -30,3 +30,6 @@
 @import "../styles/components/breadcrumbs.css";
 @import "../styles/components/button-group.css";
 @import "../styles/components/calendar.css";
+@import "../styles/components/checkbox.css";
+@import "../styles/components/checkbox-group.css";
+@import "../styles/components/color-picker.css";

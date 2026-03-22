@@ -1,0 +1,61 @@
+/* ── Checkbox Group ───────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <CheckboxGroup> component.
+ * HeroUI v3 renders checkboxes as direct children of the group element
+ * (no intermediate items container), so gap is applied directly.
+ */
+
+:root {
+  --vita-checkbox-group-gap: 10px;
+  --vita-checkbox-group-radius: 0px;
+  --vita-checkbox-group-padding-x: 0px;
+  --vita-checkbox-group-padding-y: 0px;
+  --vita-checkbox-group-border-width: 0px;
+  --vita-checkbox-group-border-style: solid;
+  --vita-checkbox-group-shadow: none;
+  --vita-checkbox-group-label-font-size: 14px;
+  --vita-checkbox-group-label-font-weight: 500;
+  --vita-checkbox-group-label-gap: 8px;
+}
+
+/* Group container — includes flex layout with gap for both label and items */
+.checkbox-group,
+[data-slot="checkbox-group"] {
+  display: flex !important;
+  flex-direction: column !important;
+  border-radius: var(--vita-checkbox-group-radius) !important;
+  padding-left: var(--vita-checkbox-group-padding-x) !important;
+  padding-right: var(--vita-checkbox-group-padding-x) !important;
+  padding-top: var(--vita-checkbox-group-padding-y) !important;
+  padding-bottom: var(--vita-checkbox-group-padding-y) !important;
+  border-width: var(--vita-checkbox-group-border-width) !important;
+  border-style: var(--vita-checkbox-group-border-style) !important;
+  box-shadow: var(--vita-checkbox-group-shadow) !important;
+  gap: var(--vita-checkbox-group-label-gap) !important;
+}
+
+/* Item gap — each checkbox inside the group gets spacing via margin.
+ * We use margin-top on all checkboxes except the first, since gap on
+ * the group itself controls label-to-items spacing. */
+.checkbox-group > .checkbox,
+.checkbox-group > [data-slot="checkbox"],
+[data-slot="checkbox-group"] > .checkbox,
+[data-slot="checkbox-group"] > [data-slot="checkbox"] {
+  margin-top: var(--vita-checkbox-group-gap) !important;
+}
+
+/* Remove margin from the first checkbox to avoid double spacing after label */
+.checkbox-group > .checkbox:first-of-type,
+.checkbox-group > [data-slot="checkbox"]:first-of-type,
+[data-slot="checkbox-group"] > .checkbox:first-of-type,
+[data-slot="checkbox-group"] > [data-slot="checkbox"]:first-of-type {
+  margin-top: 0 !important;
+}
+
+/* Group label */
+.checkbox-group > [data-slot="label"],
+.checkbox-group > label:first-child,
+[data-slot="checkbox-group"] > [data-slot="label"],
+[data-slot="checkbox-group"] > label:first-child {
+  font-size: var(--vita-checkbox-group-label-font-size) !important;
+  font-weight: var(--vita-checkbox-group-label-font-weight) !important;
+}

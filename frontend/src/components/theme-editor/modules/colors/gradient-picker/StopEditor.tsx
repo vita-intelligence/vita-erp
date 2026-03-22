@@ -6,6 +6,7 @@
 
 import { Minus } from "lucide-react";
 
+import { ColorInput } from "../ColorInput";
 import type { ColorStop } from "./helpers";
 
 type StopEditorProps = {
@@ -25,12 +26,10 @@ export function StopEditor({
 }: StopEditorProps) {
   return (
     <div className="flex items-center gap-2">
-      <input
-        type="color"
-        className="h-6 w-6 shrink-0 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
+      <ColorInput
         value={stop.color}
-        onChange={(e) => onChange(index, { ...stop, color: e.target.value })}
         title={`Stop ${index + 1} color`}
+        onChange={(hex) => onChange(index, { ...stop, color: hex })}
       />
       <input
         type="range"

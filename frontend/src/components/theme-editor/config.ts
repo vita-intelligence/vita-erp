@@ -34,6 +34,12 @@ import { CalendarModule } from "./modules/calendar";
 import { Preview as CalendarPreview } from "./modules/calendar/Preview";
 import { CardsModule } from "./modules/cards";
 import { Preview as CardsPreview } from "./modules/cards/Preview";
+import { CheckboxModule } from "./modules/checkbox";
+import { Preview as CheckboxPreview } from "./modules/checkbox/Preview";
+import { CheckboxGroupModule } from "./modules/checkbox-group";
+import { Preview as CheckboxGroupPreview } from "./modules/checkbox-group/Preview";
+import { ColorPickerModule } from "./modules/color-picker";
+import { Preview as ColorPickerPreview } from "./modules/color-picker/Preview";
 import { ColorsModule } from "./modules/colors";
 import { InputsModule } from "./modules/inputs";
 import { Preview as InputsPreview } from "./modules/inputs/Preview";
@@ -429,6 +435,75 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "calendarTransitionDuration",
       "calendarCursorTrack",
       "calendarCursorTrackRestore",
+    ],
+  },
+  {
+    id: "checkbox",
+    label: "Checkbox",
+    description:
+      "Size, shape, border, indicator, and label of checkbox controls",
+    component: CheckboxModule,
+    preview: CheckboxPreview,
+    group: "Components",
+    resetKeys: [
+      "checkboxSize",
+      "checkboxRadius",
+      "checkboxBorderWidth",
+      "checkboxBorderStyle",
+      "checkboxGap",
+      "checkboxLabelFontSize",
+      "checkboxLabelFontWeight",
+      "checkboxShadow",
+      "checkboxCheckedScale",
+      "checkboxTransitionDuration",
+      "checkboxIndicatorSize",
+      "checkboxIndicatorStroke",
+    ],
+  },
+  {
+    id: "checkbox-group",
+    label: "Checkbox Group",
+    description:
+      "Spacing, container shape, and label style of grouped checkboxes",
+    component: CheckboxGroupModule,
+    preview: CheckboxGroupPreview,
+    group: "Components",
+    resetKeys: [
+      "checkboxGroupGap",
+      "checkboxGroupRadius",
+      "checkboxGroupPaddingX",
+      "checkboxGroupPaddingY",
+      "checkboxGroupBorderWidth",
+      "checkboxGroupBorderStyle",
+      "checkboxGroupShadow",
+      "checkboxGroupLabelFontSize",
+      "checkboxGroupLabelFontWeight",
+      "checkboxGroupLabelGap",
+    ],
+  },
+  {
+    id: "color-picker",
+    label: "Color Picker",
+    description: "Popover, color area, sliders, thumbs, and swatch styling",
+    component: ColorPickerModule,
+    preview: ColorPickerPreview,
+    group: "Components",
+    resetKeys: [
+      "colorPickerPopoverRadius",
+      "colorPickerPopoverShadow",
+      "colorPickerPopoverPadding",
+      "colorPickerPopoverBorderWidth",
+      "colorPickerPopoverBorderStyle",
+      "colorPickerSwatchRadius",
+      "colorPickerSwatchSize",
+      "colorPickerSwatchGap",
+      "colorPickerSwatchBorderWidth",
+      "colorPickerSliderRadius",
+      "colorPickerSliderHeight",
+      "colorPickerThumbSize",
+      "colorPickerThumbBorderWidth",
+      "colorPickerAreaRadius",
+      "colorPickerTransitionDuration",
     ],
   },
 ];

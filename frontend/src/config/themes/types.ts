@@ -274,6 +274,49 @@ export type ThemeTokens = {
   calendarCursorTrack: string; // cursor-tracking intensity
   calendarCursorTrackRestore: string; // restore speed when cursor leaves
 
+  // ── Component tokens: Checkbox ────────────────────────────────────────────
+  checkboxSize: string; // control box width & height (e.g. "20px")
+  checkboxRadius: string; // control box border-radius
+  checkboxBorderWidth: string; // control box border width
+  checkboxBorderStyle: string; // control box border style
+  checkboxGap: string; // gap between control and label
+  checkboxLabelFontSize: string; // label font-size
+  checkboxLabelFontWeight: string; // label font-weight
+  checkboxShadow: string; // box-shadow on control
+  checkboxCheckedScale: string; // scale on check animation (e.g. "0.95")
+  checkboxTransitionDuration: string; // transition duration
+  checkboxIndicatorSize: string; // checkmark icon size
+  checkboxIndicatorStroke: string; // checkmark stroke-width
+
+  // ── Component tokens: Checkbox Group ────────────────────────────────────
+  checkboxGroupGap: string; // gap between checkbox items
+  checkboxGroupRadius: string; // container border-radius
+  checkboxGroupPaddingX: string; // container horizontal padding
+  checkboxGroupPaddingY: string; // container vertical padding
+  checkboxGroupBorderWidth: string; // container border width
+  checkboxGroupBorderStyle: string; // container border style
+  checkboxGroupShadow: string; // container shadow
+  checkboxGroupLabelFontSize: string; // group label font-size
+  checkboxGroupLabelFontWeight: string; // group label font-weight
+  checkboxGroupLabelGap: string; // gap between label and items
+
+  // ── Component tokens: Color Picker ──────────────────────────────────────
+  colorPickerPopoverRadius: string; // popover border-radius
+  colorPickerPopoverShadow: string; // popover box-shadow
+  colorPickerPopoverPadding: string; // popover internal padding
+  colorPickerPopoverBorderWidth: string; // popover border width
+  colorPickerPopoverBorderStyle: string; // popover border style
+  colorPickerSwatchRadius: string; // individual swatch border-radius
+  colorPickerSwatchSize: string; // swatch width & height
+  colorPickerSwatchGap: string; // gap between swatches
+  colorPickerSwatchBorderWidth: string; // swatch border width
+  colorPickerSliderRadius: string; // slider track border-radius
+  colorPickerSliderHeight: string; // slider track height
+  colorPickerThumbSize: string; // draggable thumb size
+  colorPickerThumbBorderWidth: string; // thumb border width
+  colorPickerAreaRadius: string; // color area border-radius
+  colorPickerTransitionDuration: string; // transition speed
+
   // ── Component tokens: Select / Dropdown ───────────────────────────────────
   selectRadius: string; // border-radius of select trigger
   selectBorderWidth: string; // border-width of select trigger

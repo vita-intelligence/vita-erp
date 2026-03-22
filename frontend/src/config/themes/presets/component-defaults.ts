@@ -194,6 +194,43 @@ export const componentDefaults: Pick<
   | "calendarTransitionDuration"
   | "calendarCursorTrack"
   | "calendarCursorTrackRestore"
+  | "checkboxSize"
+  | "checkboxRadius"
+  | "checkboxBorderWidth"
+  | "checkboxBorderStyle"
+  | "checkboxGap"
+  | "checkboxLabelFontSize"
+  | "checkboxLabelFontWeight"
+  | "checkboxShadow"
+  | "checkboxCheckedScale"
+  | "checkboxTransitionDuration"
+  | "checkboxIndicatorSize"
+  | "checkboxIndicatorStroke"
+  | "checkboxGroupGap"
+  | "checkboxGroupRadius"
+  | "checkboxGroupPaddingX"
+  | "checkboxGroupPaddingY"
+  | "checkboxGroupBorderWidth"
+  | "checkboxGroupBorderStyle"
+  | "checkboxGroupShadow"
+  | "checkboxGroupLabelFontSize"
+  | "checkboxGroupLabelFontWeight"
+  | "checkboxGroupLabelGap"
+  | "colorPickerPopoverRadius"
+  | "colorPickerPopoverShadow"
+  | "colorPickerPopoverPadding"
+  | "colorPickerPopoverBorderWidth"
+  | "colorPickerPopoverBorderStyle"
+  | "colorPickerSwatchRadius"
+  | "colorPickerSwatchSize"
+  | "colorPickerSwatchGap"
+  | "colorPickerSwatchBorderWidth"
+  | "colorPickerSliderRadius"
+  | "colorPickerSliderHeight"
+  | "colorPickerThumbSize"
+  | "colorPickerThumbBorderWidth"
+  | "colorPickerAreaRadius"
+  | "colorPickerTransitionDuration"
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
@@ -406,6 +443,49 @@ export const componentDefaults: Pick<
   calendarTransitionDuration: "150ms",
   calendarCursorTrack: "0",
   calendarCursorTrackRestore: "300ms",
+  // Checkbox
+  checkboxSize: "20px",
+  checkboxRadius: "4px",
+  checkboxBorderWidth: "2px",
+  checkboxBorderStyle: "solid",
+  checkboxGap: "8px",
+  checkboxLabelFontSize: "14px",
+  checkboxLabelFontWeight: "400",
+  checkboxShadow: "none",
+  checkboxCheckedScale: "0.95",
+  checkboxTransitionDuration: "150ms",
+  checkboxIndicatorSize: "12px",
+  checkboxIndicatorStroke: "2.5",
+
+  // Checkbox Group
+  checkboxGroupGap: "10px",
+  checkboxGroupRadius: "0px",
+  checkboxGroupPaddingX: "0px",
+  checkboxGroupPaddingY: "0px",
+  checkboxGroupBorderWidth: "0px",
+  checkboxGroupBorderStyle: "solid",
+  checkboxGroupShadow: "none",
+  checkboxGroupLabelFontSize: "14px",
+  checkboxGroupLabelFontWeight: "500",
+  checkboxGroupLabelGap: "8px",
+
+  // Color Picker
+  colorPickerPopoverRadius: "8px",
+  colorPickerPopoverShadow: "0 4px 14px oklch(0 0 0 / 0.1)",
+  colorPickerPopoverPadding: "16px",
+  colorPickerPopoverBorderWidth: "1px",
+  colorPickerPopoverBorderStyle: "solid",
+  colorPickerSwatchRadius: "6px",
+  colorPickerSwatchSize: "28px",
+  colorPickerSwatchGap: "6px",
+  colorPickerSwatchBorderWidth: "2px",
+  colorPickerSliderRadius: "9999px",
+  colorPickerSliderHeight: "12px",
+  colorPickerThumbSize: "18px",
+  colorPickerThumbBorderWidth: "2px",
+  colorPickerAreaRadius: "8px",
+  colorPickerTransitionDuration: "150ms",
+
   // Select
   selectRadius: "0px",
   selectBorderWidth: "1px",

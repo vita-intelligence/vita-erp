@@ -10,6 +10,8 @@ import { BRAND_COLOR_META, deriveVariants } from "@/config";
 import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
+import { ColorInput } from "./ColorInput";
+
 export function BrandSection() {
   const { tokens, setTokens, resetColor } = useThemeStore();
 
@@ -62,15 +64,13 @@ export function BrandSection() {
                   >
                     <RotateCcw size={12} />
                   </button>
-                  <input
-                    type="color"
-                    title={`Change ${label}`}
-                    className="h-7 w-7 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
+                  <ColorInput
                     value={cssColorToHex(tokens[key])}
-                    onChange={(e) => {
-                      const { light, dark } = deriveVariants(e.target.value);
+                    title={`Change ${label}`}
+                    onChange={(hex) => {
+                      const { light, dark } = deriveVariants(hex);
                       setTokens({
-                        [key]: e.target.value,
+                        [key]: hex,
                         [lightKey]: light,
                         [darkKey]: dark,
                       } as Parameters<typeof setTokens>[0]);
