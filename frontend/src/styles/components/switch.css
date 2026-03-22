@@ -1,13 +1,8 @@
 /* ── Switch ───────────────────────────────────────────────────────────────────
  * Applies Vita ERP design tokens to the HeroUI <Switch> component.
  *
- * Structure: Switch > Switch.Control (track) > Switch.Thumb (sliding circle)
- *                    > Switch.Content (label text)
- *
- * HeroUI handles the sliding via margin-inline-start on the thumb.
- * The checked state uses: margin-inline-start: calc(100% - thumbWidth)
- * so we can safely override the track size and thumb size as long as
- * we also update the checked margin calculation.
+ * Uses [data-slot] attribute selectors for guaranteed DOM matching.
+ * HeroUI renders: data-slot="switch" > data-slot="switch-control" > data-slot="switch-thumb"
  */
 
 :root {
@@ -20,17 +15,7 @@
   --vita-switch-transition-duration: 200ms;
 }
 
-/* Root — gap between track and label */
-.switch,
-[data-slot="switch"] {
-  gap: var(--vita-switch-gap) !important;
-}
-
-/* Track — override ALL size variant selectors */
-.switch__control,
-.switch--sm .switch__control,
-.switch--md .switch__control,
-.switch--lg .switch__control,
+/* Track */
 [data-slot="switch-control"] {
   width: var(--vita-switch-track-width) !important;
   height: var(--vita-switch-track-height) !important;
@@ -38,11 +23,7 @@
   transition-duration: var(--vita-switch-transition-duration) !important;
 }
 
-/* Thumb — unchecked position */
-.switch__thumb,
-.switch--sm .switch__thumb,
-.switch--md .switch__thumb,
-.switch--lg .switch__thumb,
+/* Thumb — unchecked */
 [data-slot="switch-thumb"] {
   width: var(--vita-switch-thumb-size) !important;
   height: var(--vita-switch-thumb-size) !important;
@@ -53,15 +34,16 @@
   ) !important;
 }
 
-/* Thumb — checked position: slide to the right */
-.switch[data-selected="true"] .switch__thumb,
-.switch[aria-checked="true"] .switch__thumb,
-.switch--sm[data-selected="true"] .switch__thumb,
-.switch--md[data-selected="true"] .switch__thumb,
-.switch--lg[data-selected="true"] .switch__thumb,
-[data-slot="switch"][data-selected="true"] [data-slot="switch-thumb"] {
+/* Thumb — checked: slide right */
+[data-slot="switch"][data-selected="true"] [data-slot="switch-thumb"],
+[data-slot="switch"][aria-checked="true"] [data-slot="switch-thumb"] {
   margin-inline-start: calc(
     var(--vita-switch-track-width) - var(--vita-switch-thumb-size) -
       (var(--vita-switch-track-height) - var(--vita-switch-thumb-size)) / 2
   ) !important;
+}
+
+/* Gap */
+[data-slot="switch"] {
+  gap: var(--vita-switch-gap) !important;
 }
