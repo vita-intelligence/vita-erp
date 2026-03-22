@@ -4,13 +4,17 @@
  * Structure: Switch > Switch.Control (track) > Switch.Thumb (sliding circle)
  *                    > Switch.Content (label text)
  *
- * HeroUI handles the sliding animation via margin-inline-start on the thumb.
- * We only override visual properties (radius, gap, transition) — NOT sizes
- * or sliding mechanics, so the built-in animation keeps working correctly.
+ * HeroUI handles the sliding via margin-inline-start on the thumb.
+ * The checked state uses: margin-inline-start: calc(100% - thumbWidth)
+ * so we can safely override the track size and thumb size as long as
+ * we also update the checked margin calculation.
  */
 
 :root {
+  --vita-switch-track-width: 44px;
+  --vita-switch-track-height: 24px;
   --vita-switch-track-radius: 9999px;
+  --vita-switch-thumb-size: 20px;
   --vita-switch-thumb-radius: 9999px;
   --vita-switch-gap: 8px;
   --vita-switch-transition-duration: 200ms;
@@ -22,16 +26,42 @@
   gap: var(--vita-switch-gap) !important;
 }
 
-/* Track — radius and transition only (let HeroUI handle size) */
+/* Track — override ALL size variant selectors */
 .switch__control,
+.switch--sm .switch__control,
+.switch--md .switch__control,
+.switch--lg .switch__control,
 [data-slot="switch-control"] {
+  width: var(--vita-switch-track-width) !important;
+  height: var(--vita-switch-track-height) !important;
   border-radius: var(--vita-switch-track-radius) !important;
   transition-duration: var(--vita-switch-transition-duration) !important;
 }
 
-/* Thumb — radius and transition only (let HeroUI handle size + sliding) */
+/* Thumb — unchecked position */
 .switch__thumb,
+.switch--sm .switch__thumb,
+.switch--md .switch__thumb,
+.switch--lg .switch__thumb,
 [data-slot="switch-thumb"] {
+  width: var(--vita-switch-thumb-size) !important;
+  height: var(--vita-switch-thumb-size) !important;
   border-radius: var(--vita-switch-thumb-radius) !important;
   transition-duration: var(--vita-switch-transition-duration) !important;
+  margin-inline-start: calc(
+    (var(--vita-switch-track-height) - var(--vita-switch-thumb-size)) / 2
+  ) !important;
+}
+
+/* Thumb — checked position: slide to the right */
+.switch[data-selected="true"] .switch__thumb,
+.switch[aria-checked="true"] .switch__thumb,
+.switch--sm[data-selected="true"] .switch__thumb,
+.switch--md[data-selected="true"] .switch__thumb,
+.switch--lg[data-selected="true"] .switch__thumb,
+[data-slot="switch"][data-selected="true"] [data-slot="switch-thumb"] {
+  margin-inline-start: calc(
+    var(--vita-switch-track-width) - var(--vita-switch-thumb-size) -
+      (var(--vita-switch-track-height) - var(--vita-switch-thumb-size)) / 2
+  ) !important;
 }

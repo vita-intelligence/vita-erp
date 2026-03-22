@@ -25,7 +25,10 @@ export function SwitchModule() {
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
+  const trackW = parseFloat(tokens.switchTrackWidth ?? "44");
+  const trackH = parseFloat(tokens.switchTrackHeight ?? "24");
   const trackR = parseFloat(tokens.switchTrackRadius ?? "9999");
+  const thumbS = parseFloat(tokens.switchThumbSize ?? "20");
   const thumbR = parseFloat(tokens.switchThumbRadius ?? "9999");
   const gapPx = parseFloat(tokens.switchGap ?? "8");
 
@@ -37,8 +40,28 @@ export function SwitchModule() {
 
       {!previewExternal && <Preview />}
 
-      {/* Shape */}
-      <Section title={t("sections.shape")}>
+      {/* Track */}
+      <Section title={t("sections.track")}>
+        <SliderRow
+          label={`${t("labels.width")} — ${trackW}px`}
+          min={32}
+          max={64}
+          step={2}
+          value={trackW}
+          onChange={(v) => setTokens({ switchTrackWidth: `${v}px` })}
+          hint={[`32px ${t("hints.compact")}`, `64px ${t("hints.large")}`]}
+          onReset={() => resetColor(["switchTrackWidth"])}
+        />
+        <SliderRow
+          label={`${t("labels.height")} — ${trackH}px`}
+          min={16}
+          max={36}
+          step={2}
+          value={trackH}
+          onChange={(v) => setTokens({ switchTrackHeight: `${v}px` })}
+          hint={[`16px ${t("hints.compact")}`, `36px ${t("hints.large")}`]}
+          onReset={() => resetColor(["switchTrackHeight"])}
+        />
         <Row
           label={`${t("sections.track")} ${t("labels.radius").toLowerCase()}`}
           onReset={() => resetColor(["switchTrackRadius"])}
@@ -57,7 +80,20 @@ export function SwitchModule() {
             </Chip>
           ))}
         </Row>
+      </Section>
 
+      {/* Thumb */}
+      <Section title={t("sections.thumb")}>
+        <SliderRow
+          label={`${t("labels.size")} — ${thumbS}px`}
+          min={12}
+          max={32}
+          step={2}
+          value={thumbS}
+          onChange={(v) => setTokens({ switchThumbSize: `${v}px` })}
+          hint={[`12px ${t("hints.small")}`, `32px ${t("hints.large")}`]}
+          onReset={() => resetColor(["switchThumbSize"])}
+        />
         <Row
           label={`${t("sections.thumb")} ${t("labels.radius").toLowerCase()}`}
           onReset={() => resetColor(["switchThumbRadius"])}
