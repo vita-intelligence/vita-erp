@@ -1,7 +1,8 @@
 /* ── Combo Box ────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <ComboBox> component.
- * The popover is portalled to document.body — items must be targeted
- * as descendants of the popover class, not the root.
+ * :root defaults for Vita ERP design tokens.
+ * Inline styles are applied by the themed wrapper; this file only defines
+ * token defaults and rules for portalled list-box items that cannot be
+ * styled via inline styles on the wrapper.
  */
 
 :root {
@@ -19,29 +20,8 @@
   --vita-combo-box-transition-duration: 150ms;
 }
 
-/* Popover container (portalled to body) */
-.combo-box__popover {
-  border-radius: var(--vita-combo-box-popover-radius) !important;
-  box-shadow: var(--vita-combo-box-popover-shadow) !important;
-  padding: var(--vita-combo-box-popover-padding) !important;
-  border-width: var(--vita-combo-box-popover-border-width) !important;
-  border-style: var(--vita-combo-box-popover-border-style) !important;
-}
-
-/* Trigger button (inside root, not portalled) */
-.combo-box__trigger,
-[data-slot="combo-box-trigger"] {
-  border-radius: var(--vita-combo-box-trigger-radius) !important;
-  border-width: var(--vita-combo-box-trigger-border-width) !important;
-}
-
-/* Input group (inside root) */
-.combo-box__input-group,
-[data-slot="combo-box-input-group"] {
-  border-radius: var(--vita-combo-box-trigger-radius) !important;
-}
-
-/* List items (inside portalled popover) */
+/* List items — portalled into the popover (body-level), scoped via the
+ * .combo-box__popover class that HeroUI's comboBoxVariants applies. */
 .combo-box__popover [data-slot="list-box-item"] {
   padding-left: var(--vita-combo-box-item-padding-x) !important;
   padding-right: var(--vita-combo-box-item-padding-x) !important;

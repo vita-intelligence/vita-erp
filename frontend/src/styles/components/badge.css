@@ -1,7 +1,8 @@
 /* ── Badge / Chip ─────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Chip> component (.chip),
- * which is used as the badge primitive across the ERP interface.
- * Includes 3D rotation (static + hover) and hover motion tokens.
+ * :root defaults for Vita ERP badge design tokens.
+ * Inline styles are applied by the Chip wrapper component; this file only
+ * declares the custom-property defaults and the hover transform that
+ * cannot be expressed via inline styles.
  */
 
 :root {
@@ -27,32 +28,9 @@
   --vita-badge-transition-duration: 150ms;
 }
 
-.chip,
-[data-slot="chip"] {
-  border-radius: var(--vita-badge-radius) !important;
-  border-top-width: var(--vita-badge-border-top) !important;
-  border-right-width: var(--vita-badge-border-right) !important;
-  border-bottom-width: var(--vita-badge-border-bottom) !important;
-  border-left-width: var(--vita-badge-border-left) !important;
-  border-style: var(--vita-badge-border-style) !important;
-  padding-left: var(--vita-badge-padding-x) !important;
-  padding-right: var(--vita-badge-padding-x) !important;
-  padding-top: var(--vita-badge-padding-y) !important;
-  padding-bottom: var(--vita-badge-padding-y) !important;
-  transition-property: transform, opacity !important;
-  transition-timing-function: ease !important;
-  transition-duration: var(--vita-badge-transition-duration) !important;
-
-  /* 3D — idle rotation */
-  transform: perspective(800px)
-    rotateX(var(--vita-badge-rotate-x, 0deg))
-    rotateY(var(--vita-badge-rotate-y, 0deg))
-    rotateZ(var(--vita-badge-rotate-z, 0deg)) !important;
-}
-
-/* Hover — composes 3D rotation with lift/scale */
+/* Hover — composes 3D rotation with lift/scale.
+ * This must remain in CSS because :hover pseudo-class cannot be applied inline. */
 @media (hover: hover) {
-  .chip:hover,
   [data-slot="chip"]:hover {
     transform: perspective(800px)
       rotateX(var(--vita-badge-hover-rotate-x, var(--vita-badge-rotate-x, 0deg)))
@@ -61,13 +39,4 @@
       translateY(var(--vita-badge-hover-translate-y, 0px))
       scale(var(--vita-badge-hover-scale, 1)) !important;
   }
-}
-
-.chip__label,
-.chip-label,
-[data-slot="chip-label"] {
-  font-weight: var(--vita-badge-font-weight) !important;
-  font-size: var(--vita-badge-font-size) !important;
-  letter-spacing: var(--vita-badge-letter-spacing) !important;
-  text-transform: var(--vita-badge-text-transform) !important;
 }

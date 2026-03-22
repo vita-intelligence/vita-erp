@@ -1,7 +1,7 @@
 /* ── ButtonGroup ──────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to button group containers.
- * Individual button styling (radius, weight, shadow, etc.) is handled
- * by button.css — this file only controls group-level layout concerns.
+ * Vita ERP design-token defaults for the <ButtonGroup> component.
+ * Inline styles are applied via the themed wrapper in @/components/ui/button-group.
+ * Only :root defaults live here — no class-based overrides needed.
  */
 
 :root {
@@ -12,14 +12,4 @@
   --vita-button-group-border-left: 0px;
   --vita-button-group-border-style: solid;
   --vita-button-group-shadow: none;
-}
-
-.button-group {
-  border-top-width: var(--vita-button-group-border-top) !important;
-  border-right-width: var(--vita-button-group-border-right) !important;
-  border-bottom-width: var(--vita-button-group-border-bottom) !important;
-  border-left-width: var(--vita-button-group-border-left) !important;
-  border-style: var(--vita-button-group-border-style) !important;
-  box-shadow: var(--vita-button-group-shadow) !important;
-  gap: var(--vita-button-group-gap) !important;
 }

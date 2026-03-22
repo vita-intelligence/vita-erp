@@ -1,6 +1,8 @@
 /* ── Avatar ───────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Avatar> component.
- * Includes 3D rotation (static + hover) and hover motion tokens.
+ * :root defaults for Vita ERP avatar design tokens.
+ * Inline styles are applied by the Avatar wrapper component; this file only
+ * declares the custom-property defaults and the hover/size rules that
+ * cannot be expressed via inline styles.
  */
 
 :root {
@@ -26,28 +28,8 @@
   --vita-avatar-transition-duration: 150ms;
 }
 
-.avatar {
-  border-radius: var(--vita-avatar-radius) !important;
-  border-top-width: var(--vita-avatar-border-top) !important;
-  border-right-width: var(--vita-avatar-border-right) !important;
-  border-bottom-width: var(--vita-avatar-border-bottom) !important;
-  border-left-width: var(--vita-avatar-border-left) !important;
-  border-style: var(--vita-avatar-border-style) !important;
-  transition-property: transform, opacity !important;
-  transition-timing-function: ease !important;
-  transition-duration: var(--vita-avatar-transition-duration) !important;
-
-  /* 3D — idle rotation.
-   * overflow: visible is needed because HeroUI sets overflow:hidden on avatars
-   * which clips the 3D transform perspective. */
-  transform: perspective(800px)
-    rotateX(var(--vita-avatar-rotate-x, 0deg))
-    rotateY(var(--vita-avatar-rotate-y, 0deg))
-    rotateZ(var(--vita-avatar-rotate-z, 0deg)) !important;
-  overflow: visible !important;
-}
-
-/* Hover — composes 3D rotation with lift/scale */
+/* Hover — composes 3D rotation with lift/scale.
+ * This must remain in CSS because :hover pseudo-class cannot be applied inline. */
 @media (hover: hover) {
   .avatar:hover {
     transform: perspective(800px)
@@ -59,6 +41,7 @@
   }
 }
 
+/* Size variants — these use BEM modifier classes set by HeroUI's avatarVariants */
 .avatar--sm {
   width: var(--vita-avatar-size-sm) !important;
   height: var(--vita-avatar-size-sm) !important;
@@ -72,18 +55,4 @@
 .avatar--lg {
   width: var(--vita-avatar-size-lg) !important;
   height: var(--vita-avatar-size-lg) !important;
-}
-
-.avatar__fallback,
-.avatar-fallback,
-[data-slot="avatar-fallback"] {
-  font-weight: var(--vita-avatar-fallback-font-weight) !important;
-  font-size: var(--vita-avatar-fallback-font-size) !important;
-  border-radius: var(--vita-avatar-radius) !important;
-}
-
-.avatar__image,
-.avatar-image,
-[data-slot="avatar-image"] {
-  border-radius: var(--vita-avatar-radius) !important;
 }

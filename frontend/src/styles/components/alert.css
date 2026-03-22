@@ -1,5 +1,7 @@
 /* ── Alert ────────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Alert> component.
+ * Vita ERP design-token defaults for the <Alert> component.
+ * Inline styles are applied via the themed wrapper in @/components/ui/alert.
+ * Only :root defaults live here — no class-based overrides needed.
  */
 
 :root {
@@ -13,42 +15,4 @@
   --vita-alert-description-font-size: 13px;
   --vita-alert-icon-size: 20px;
   --vita-alert-shadow: none;
-}
-
-.alert {
-  border-radius: var(--vita-alert-radius) !important;
-  border-width: var(--vita-alert-border-width) !important;
-  border-style: var(--vita-alert-border-style) !important;
-  padding-left: var(--vita-alert-padding-x) !important;
-  padding-right: var(--vita-alert-padding-x) !important;
-  padding-top: var(--vita-alert-padding-y) !important;
-  padding-bottom: var(--vita-alert-padding-y) !important;
-  box-shadow: var(--vita-alert-shadow) !important;
-}
-
-.alert__title,
-.alert-title,
-[data-slot="alert-title"] {
-  font-weight: var(--vita-alert-title-font-weight) !important;
-  font-size: var(--vita-alert-title-font-size) !important;
-}
-
-.alert__description,
-.alert-description,
-[data-slot="alert-description"] {
-  font-size: var(--vita-alert-description-font-size) !important;
-}
-
-.alert__indicator,
-.alert-indicator,
-[data-slot="alert-indicator"] {
-  width: var(--vita-alert-icon-size) !important;
-  height: var(--vita-alert-icon-size) !important;
-}
-
-.alert__indicator svg,
-.alert-indicator svg,
-[data-slot="alert-indicator"] svg {
-  width: var(--vita-alert-icon-size) !important;
-  height: var(--vita-alert-icon-size) !important;
 }

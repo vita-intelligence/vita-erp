@@ -1,6 +1,7 @@
 /* ── Slider ───────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Slider> component.
- * Includes 3D rotation (static + hover) on the slider container.
+ * :root defaults for Vita ERP design tokens.
+ * Inline styles are applied via the themed wrapper (src/components/ui/slider).
+ * Hover transforms and thumb ::after pseudo-element rules remain here.
  */
 
 :root {
@@ -18,17 +19,7 @@
   --vita-slider-hover-scale: 1;
 }
 
-/* Container — 3D transform */
-.slider,
-[data-slot="slider"] {
-  transform: perspective(800px)
-    rotateX(var(--vita-slider-rotate-x, 0deg))
-    rotateY(var(--vita-slider-rotate-y, 0deg))
-    rotateZ(var(--vita-slider-rotate-z, 0deg)) !important;
-  transition-property: transform !important;
-  transition-duration: var(--vita-slider-transition-duration) !important;
-}
-
+/* Hover transform — requires :hover pseudo-class */
 @media (hover: hover) {
   .slider:hover,
   [data-slot="slider"]:hover {
@@ -41,29 +32,7 @@
   }
 }
 
-/* Track */
-.slider__track,
-[data-slot="slider-track"] {
-  border-radius: var(--vita-slider-track-radius) !important;
-  height: var(--vita-slider-track-height) !important;
-}
-
-/* Fill */
-.slider__fill,
-[data-slot="slider-fill"] {
-  border-radius: var(--vita-slider-track-radius) !important;
-}
-
-/* Thumb */
-.slider__thumb,
-[data-slot="slider-thumb"] {
-  width: var(--vita-slider-thumb-size) !important;
-  height: var(--vita-slider-thumb-size) !important;
-  border-radius: var(--vita-slider-thumb-radius) !important;
-  transition-duration: var(--vita-slider-transition-duration) !important;
-}
-
-/* Thumb visible dot (::after pseudo-element) */
+/* Thumb visible dot — requires ::after pseudo-element */
 .slider__thumb::after,
 [data-slot="slider-thumb"]::after {
   width: var(--vita-slider-thumb-dot-size) !important;

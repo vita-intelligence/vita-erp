@@ -1,7 +1,8 @@
 /* ── Checkbox ─────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Checkbox> component.
- * HeroUI v3 uses BEM classes: .checkbox, .checkbox__control, .checkbox__indicator,
- * .checkbox__content and data-slot attributes as fallback selectors.
+ * :root defaults for Vita ERP checkbox design tokens.
+ * Inline styles are applied by the Checkbox wrapper component; this file only
+ * declares the custom-property defaults and pseudo-state rules that
+ * cannot be expressed via inline styles.
  */
 
 :root {
@@ -19,62 +20,16 @@
   --vita-checkbox-indicator-stroke: 2.5;
 }
 
-/* Root wrapper — gap between control and label */
-.checkbox,
-[data-slot="checkbox"] {
-  gap: var(--vita-checkbox-gap) !important;
-}
-
-/* Control box (the clickable square) */
-.checkbox__control,
-[data-slot="checkbox-control"] {
-  width: var(--vita-checkbox-size) !important;
-  height: var(--vita-checkbox-size) !important;
-  min-width: var(--vita-checkbox-size) !important;
-  min-height: var(--vita-checkbox-size) !important;
-  border-radius: var(--vita-checkbox-radius) !important;
-  border-width: var(--vita-checkbox-border-width) !important;
-  border-style: var(--vita-checkbox-border-style) !important;
-  box-shadow: var(--vita-checkbox-shadow) !important;
-  transition-property: background-color, border-color, box-shadow, transform !important;
-  transition-timing-function: ease !important;
-  transition-duration: var(--vita-checkbox-transition-duration) !important;
-}
-
-/* Scale animation on check */
-.checkbox__control[data-selected="true"],
+/* Scale animation on check — requires [data-selected] pseudo which cannot be inline */
 [data-slot="checkbox-control"][data-selected="true"] {
   transform: scale(var(--vita-checkbox-checked-scale, 0.95)) !important;
 }
 
-/* Checkmark indicator */
-.checkbox__indicator,
-[data-slot="checkbox-indicator"] {
-  transition-duration: var(--vita-checkbox-transition-duration) !important;
-}
-
-/* Checkmark SVG icon */
-.checkbox__indicator svg,
+/* Checkmark SVG icon sizing — targets nested SVGs inside the indicator */
 [data-slot="checkbox-indicator"] svg,
 [data-slot="checkbox-default-indicator--checkmark"],
 [data-slot="checkbox-default-indicator--indeterminate"] {
   width: var(--vita-checkbox-indicator-size) !important;
   height: var(--vita-checkbox-indicator-size) !important;
   stroke-width: var(--vita-checkbox-indicator-stroke) !important;
-}
-
-/* Label / content area */
-.checkbox__content,
-[data-slot="checkbox-content"] {
-  font-size: var(--vita-checkbox-label-font-size) !important;
-  font-weight: var(--vita-checkbox-label-font-weight) !important;
-}
-
-/* Also target the label inside content for specificity */
-.checkbox__content [data-slot="label"],
-[data-slot="checkbox-content"] [data-slot="label"],
-.checkbox__content label,
-[data-slot="checkbox-content"] label {
-  font-size: var(--vita-checkbox-label-font-size) !important;
-  font-weight: var(--vita-checkbox-label-font-weight) !important;
 }

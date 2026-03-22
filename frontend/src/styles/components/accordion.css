@@ -1,5 +1,6 @@
 /* ── Accordion ────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Accordion> component.
+ * :root defaults for Vita ERP design tokens.
+ * Actual styling is applied via inline styles in the wrapper component.
  */
 
 :root {
@@ -14,46 +15,4 @@
   --vita-accordion-content-padding-x: 16px;
   --vita-accordion-content-padding-y: 8px;
   --vita-accordion-shadow: none;
-}
-
-.accordion {
-  border-radius: var(--vita-accordion-radius) !important;
-  border-width: var(--vita-accordion-border-width) !important;
-  border-style: var(--vita-accordion-border-style) !important;
-  box-shadow: var(--vita-accordion-shadow) !important;
-}
-
-/* Separator — target both the dedicated separator element and item borders */
-.accordion__item + .accordion__item,
-.accordion-item + .accordion-item,
-[data-slot="accordion-item"] + [data-slot="accordion-item"] {
-  border-top-width: var(--vita-accordion-separator-height) !important;
-  border-top-style: solid !important;
-}
-
-/* Also target the HeroUI hideSeparator pattern */
-.accordion hr,
-.accordion [role="separator"] {
-  height: var(--vita-accordion-separator-height) !important;
-  border: none !important;
-}
-
-.accordion__trigger,
-.accordion-trigger,
-[data-slot="accordion-trigger"] {
-  padding-left: var(--vita-accordion-trigger-padding-x) !important;
-  padding-right: var(--vita-accordion-trigger-padding-x) !important;
-  padding-top: var(--vita-accordion-trigger-padding-y) !important;
-  padding-bottom: var(--vita-accordion-trigger-padding-y) !important;
-  font-weight: var(--vita-accordion-trigger-font-weight) !important;
-  font-size: var(--vita-accordion-trigger-font-size) !important;
-}
-
-.accordion__body,
-.accordion-body,
-[data-slot="accordion-body"] {
-  padding-left: var(--vita-accordion-content-padding-x) !important;
-  padding-right: var(--vita-accordion-content-padding-x) !important;
-  padding-top: var(--vita-accordion-content-padding-y) !important;
-  padding-bottom: var(--vita-accordion-content-padding-y) !important;
 }

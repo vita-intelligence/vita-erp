@@ -1,6 +1,7 @@
 /* ── Autocomplete ─────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Autocomplete> popover
- * and list items. Trigger styling inherits from input tokens.
+ * Vita ERP design-token defaults for the <Autocomplete> component.
+ * Inline styles are applied via the themed wrapper in @/components/ui/autocomplete.
+ * Only :root defaults and rules that can't be inline (sibling combinator) live here.
  */
 
 :root {
@@ -20,20 +21,8 @@
   --vita-autocomplete-max-height: 256px;
 }
 
-.autocomplete-popover {
-  border-radius: var(--vita-autocomplete-popover-radius) !important;
-  border-top-width: var(--vita-autocomplete-popover-border-top) !important;
-  border-right-width: var(--vita-autocomplete-popover-border-right) !important;
-  border-bottom-width: var(--vita-autocomplete-popover-border-bottom) !important;
-  border-left-width: var(--vita-autocomplete-popover-border-left) !important;
-  border-style: var(--vita-autocomplete-popover-border-style) !important;
-  box-shadow: var(--vita-autocomplete-popover-shadow) !important;
-  padding: var(--vita-autocomplete-popover-padding) !important;
-  max-height: var(--vita-autocomplete-max-height) !important;
-}
-
-.autocomplete-popover [data-slot="listbox-item"],
-.autocomplete-popover .listbox-item {
+/* Item styles — applied via CSS because items are rendered by HeroUI internals */
+[data-slot="autocomplete-popover"] [data-slot="listbox-item"] {
   padding-left: var(--vita-autocomplete-item-padding-x) !important;
   padding-right: var(--vita-autocomplete-item-padding-x) !important;
   padding-top: var(--vita-autocomplete-item-padding-y) !important;
@@ -42,8 +31,8 @@
   border-radius: var(--vita-autocomplete-item-radius) !important;
 }
 
-.autocomplete-popover [data-slot="listbox-item"] + [data-slot="listbox-item"],
-.autocomplete-popover .listbox-item + .listbox-item {
+/* Divider between consecutive items — sibling combinator can't be inline */
+[data-slot="autocomplete-popover"] [data-slot="listbox-item"] + [data-slot="listbox-item"] {
   border-top-width: var(--vita-autocomplete-item-divider) !important;
   border-top-style: solid !important;
 }

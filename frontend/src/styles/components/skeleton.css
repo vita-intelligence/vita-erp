@@ -1,16 +1,13 @@
 /* ── Skeleton ─────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Skeleton> component.
+ * :root defaults for Vita ERP design tokens.
+ * Inline styles are applied via the themed wrapper (src/components/ui/skeleton).
+ * Animation-duration rules remain here because they target pseudo-classes/elements.
  */
 
 :root {
   --vita-skeleton-radius: 8px;
   --vita-skeleton-base-color: var(--vita-neutral-200);
   --vita-skeleton-animation-duration: 1.5s;
-}
-
-.skeleton {
-  border-radius: var(--vita-skeleton-radius) !important;
-  background-color: var(--vita-skeleton-base-color) !important;
 }
 
 .skeleton--pulse {

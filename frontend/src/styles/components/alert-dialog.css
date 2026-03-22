@@ -1,5 +1,7 @@
 /* ── Alert Dialog ─────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <AlertDialog> component.
+ * Vita ERP design-token defaults for the <AlertDialog> component.
+ * Inline styles are applied via the themed wrapper in @/components/ui/alert-dialog.
+ * Only :root defaults live here — no class-based overrides needed.
  */
 
 :root {
@@ -10,32 +12,4 @@
   --vita-alert-dialog-backdrop-blur: 0px;
   --vita-alert-dialog-backdrop-color: oklch(0 0 0 / 0.4);
   --vita-alert-dialog-backdrop-opacity: 1;
-}
-
-.alert-dialog-dialog {
-  border-radius: var(--vita-alert-dialog-radius) !important;
-  box-shadow: var(--vita-alert-dialog-shadow) !important;
-}
-
-.alert-dialog-header {
-  padding-left: var(--vita-alert-dialog-padding-x) !important;
-  padding-right: var(--vita-alert-dialog-padding-x) !important;
-  padding-top: var(--vita-alert-dialog-padding-y) !important;
-}
-
-.alert-dialog-body {
-  padding-left: var(--vita-alert-dialog-padding-x) !important;
-  padding-right: var(--vita-alert-dialog-padding-x) !important;
-}
-
-.alert-dialog-footer {
-  padding-left: var(--vita-alert-dialog-padding-x) !important;
-  padding-right: var(--vita-alert-dialog-padding-x) !important;
-  padding-bottom: var(--vita-alert-dialog-padding-y) !important;
-}
-
-.alert-dialog-backdrop {
-  background: var(--vita-alert-dialog-backdrop-color) !important;
-  opacity: var(--vita-alert-dialog-backdrop-opacity) !important;
-  backdrop-filter: blur(var(--vita-alert-dialog-backdrop-blur)) !important;
 }

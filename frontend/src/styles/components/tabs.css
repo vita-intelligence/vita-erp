@@ -1,6 +1,7 @@
 /* ── Tabs ─────────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Tabs> component.
- * Includes 3D rotation (static + hover) and cursor tracking on the tab list.
+ * :root defaults for Vita ERP design tokens.
+ * Static styling is applied via inline styles in the wrapper component.
+ * Hover transforms remain in CSS because inline styles cannot target :hover.
  */
 
 :root {
@@ -21,23 +22,8 @@
   --vita-tabs-hover-scale: 1;
 }
 
-/* Tab list container — 3D transform */
-.tabs__list,
-[data-slot="tabs-list"] {
-  border-radius: var(--vita-tabs-list-radius) !important;
-  padding: var(--vita-tabs-list-padding) !important;
-  gap: var(--vita-tabs-list-gap) !important;
-  transform: perspective(800px)
-    rotateX(var(--vita-tabs-rotate-x, 0deg))
-    rotateY(var(--vita-tabs-rotate-y, 0deg))
-    rotateZ(var(--vita-tabs-rotate-z, 0deg)) !important;
-  transition-property: transform !important;
-  transition-duration: var(--vita-tabs-transition-duration) !important;
-}
-
-/* Hover — composes 3D rotation with lift/scale */
+/* Hover — composes 3D rotation with lift/scale (cannot be done via inline styles) */
 @media (hover: hover) {
-  .tabs__list:hover,
   [data-slot="tabs-list"]:hover {
     transform: perspective(800px)
       rotateX(var(--vita-tabs-hover-rotate-x, var(--vita-tabs-rotate-x, 0deg)))
@@ -46,21 +32,4 @@
       translateY(var(--vita-tabs-hover-translate-y, 0px))
       scale(var(--vita-tabs-hover-scale, 1)) !important;
   }
-}
-
-/* Individual tab items */
-.tabs__tab,
-[data-slot="tabs-tab"] {
-  border-radius: var(--vita-tabs-tab-radius) !important;
-  padding-inline: var(--vita-tabs-tab-padding-x) !important;
-  padding-top: var(--vita-tabs-tab-padding-y) !important;
-  padding-bottom: var(--vita-tabs-tab-padding-y) !important;
-  font-size: var(--vita-tabs-tab-font-size) !important;
-  font-weight: var(--vita-tabs-tab-font-weight) !important;
-}
-
-/* Panel content area */
-.tabs__panel,
-[data-slot="tabs-panel"] {
-  padding: var(--vita-tabs-panel-padding) !important;
 }

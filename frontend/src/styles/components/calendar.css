@@ -1,6 +1,7 @@
 /* ── Calendar ─────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Calendar> container.
- * Includes 3D rotation (static + hover) and hover motion tokens.
+ * :root defaults for Vita ERP design tokens.
+ * Static styling is applied via inline styles in the wrapper component.
+ * Hover transforms remain in CSS because inline styles cannot target :hover.
  */
 
 :root {
@@ -21,28 +22,9 @@
   --vita-calendar-transition-duration: 150ms;
 }
 
-.calendar {
-  border-radius: var(--vita-calendar-radius) !important;
-  border-top-width: var(--vita-calendar-border-top) !important;
-  border-right-width: var(--vita-calendar-border-right) !important;
-  border-bottom-width: var(--vita-calendar-border-bottom) !important;
-  border-left-width: var(--vita-calendar-border-left) !important;
-  border-style: var(--vita-calendar-border-style) !important;
-  box-shadow: var(--vita-calendar-shadow) !important;
-  transition-property: transform, box-shadow, opacity !important;
-  transition-timing-function: ease !important;
-  transition-duration: var(--vita-calendar-transition-duration) !important;
-
-  /* 3D — idle rotation */
-  transform: perspective(800px)
-    rotateX(var(--vita-calendar-rotate-x, 0deg))
-    rotateY(var(--vita-calendar-rotate-y, 0deg))
-    rotateZ(var(--vita-calendar-rotate-z, 0deg)) !important;
-}
-
-/* Hover — composes 3D rotation with lift/scale */
+/* Hover — composes 3D rotation with lift/scale (cannot be done via inline styles) */
 @media (hover: hover) {
-  .calendar:hover {
+  [data-slot="calendar"]:hover {
     transform: perspective(800px)
       rotateX(var(--vita-calendar-hover-rotate-x, var(--vita-calendar-rotate-x, 0deg)))
       rotateY(var(--vita-calendar-hover-rotate-y, var(--vita-calendar-rotate-y, 0deg)))
