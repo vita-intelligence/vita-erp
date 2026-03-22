@@ -17,14 +17,13 @@ export function ButtonGroupModule() {
   const previewExternal = usePreviewExternal();
 
   const gapPx = parseFloat(tokens.buttonGroupGap ?? "0");
-  const separatorPx = parseFloat(tokens.buttonGroupSeparatorWidth ?? "1");
 
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
-        Controls the group container layout — gap, border, shadow, and
-        separator. Individual button appearance (radius, weight, color) is
-        controlled by the Buttons module.
+        Controls the group container layout — gap, border, and shadow.
+        Individual button appearance (radius, weight, color) is controlled by
+        the Buttons module.
       </p>
 
       {!previewExternal && <Preview />}
@@ -40,16 +39,6 @@ export function ButtonGroupModule() {
           onChange={(v) => setTokens({ buttonGroupGap: `${v}px` })}
           hint={["0 connected", "8px separated"]}
           onReset={() => resetColor(["buttonGroupGap"])}
-        />
-        <SliderRow
-          label={`Separator — ${separatorPx}px`}
-          min={0}
-          max={3}
-          step={0.5}
-          value={separatorPx}
-          onChange={(v) => setTokens({ buttonGroupSeparatorWidth: `${v}px` })}
-          hint={["0 hidden", "3px heavy"]}
-          onReset={() => resetColor(["buttonGroupSeparatorWidth"])}
         />
       </Section>
 

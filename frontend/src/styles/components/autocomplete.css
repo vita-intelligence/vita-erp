@@ -20,7 +20,7 @@
   --vita-autocomplete-max-height: 256px;
 }
 
-.autocomplete__popover {
+.autocomplete-popover {
   border-radius: var(--vita-autocomplete-popover-radius) !important;
   border-top-width: var(--vita-autocomplete-popover-border-top) !important;
   border-right-width: var(--vita-autocomplete-popover-border-right) !important;
@@ -32,8 +32,8 @@
   max-height: var(--vita-autocomplete-max-height) !important;
 }
 
-.autocomplete__popover [data-slot="listbox-item"],
-.autocomplete__popover .listbox__item {
+.autocomplete-popover [data-slot="listbox-item"],
+.autocomplete-popover .listbox-item {
   padding-left: var(--vita-autocomplete-item-padding-x) !important;
   padding-right: var(--vita-autocomplete-item-padding-x) !important;
   padding-top: var(--vita-autocomplete-item-padding-y) !important;
@@ -42,8 +42,8 @@
   border-radius: var(--vita-autocomplete-item-radius) !important;
 }
 
-.autocomplete__popover [data-slot="listbox-item"] + [data-slot="listbox-item"],
-.autocomplete__popover .listbox__item + .listbox__item {
+.autocomplete-popover [data-slot="listbox-item"] + [data-slot="listbox-item"],
+.autocomplete-popover .listbox-item + .listbox-item {
   border-top-width: var(--vita-autocomplete-item-divider) !important;
   border-top-style: solid !important;
 }

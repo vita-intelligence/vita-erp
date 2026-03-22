@@ -300,8 +300,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
   {
     id: "avatar",
     label: "Avatar",
-    description:
-      "Size, shape, border, ring, and group overlap for user avatars",
+    description: "Size, shape, border, and group overlap for user avatars",
     component: AvatarModule,
     preview: AvatarPreview,
     group: "Components",
@@ -317,9 +316,6 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "avatarSizeLg",
       "avatarFallbackFontWeight",
       "avatarFallbackFontSize",
-      "avatarRingWidth",
-      "avatarRingOffset",
-      "avatarShadow",
       "avatarGroupSpacing",
     ],
   },
@@ -363,7 +359,6 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "buttonGroupBorderLeft",
       "buttonGroupBorderStyle",
       "buttonGroupShadow",
-      "buttonGroupSeparatorWidth",
     ],
   },
   {
@@ -382,13 +377,6 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "calendarBorderLeft",
       "calendarBorderStyle",
       "calendarShadow",
-      "calendarCellSize",
-      "calendarCellRadius",
-      "calendarCellFontSize",
-      "calendarHeaderFontSize",
-      "calendarHeaderFontWeight",
-      "calendarWeekdayFontSize",
-      "calendarPadding",
     ],
   },
 ];

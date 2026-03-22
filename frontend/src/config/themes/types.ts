@@ -185,9 +185,6 @@ export type ThemeTokens = {
   avatarSizeLg: string; // large avatar size
   avatarFallbackFontWeight: string; // fallback initials font-weight
   avatarFallbackFontSize: string; // fallback initials font-size
-  avatarRingWidth: string; // ring/outline width (0 = none)
-  avatarRingOffset: string; // ring offset (gap between avatar and ring)
-  avatarShadow: string; // box-shadow
   avatarGroupSpacing: string; // negative margin overlap for avatar groups
 
   // ── Component tokens: Breadcrumbs ─────────────────────────────────────────
@@ -215,7 +212,6 @@ export type ThemeTokens = {
   buttonGroupBorderLeft: string; // border-left-width
   buttonGroupBorderStyle: string; // border-style: solid | dashed | dotted
   buttonGroupShadow: string; // container shadow
-  buttonGroupSeparatorWidth: string; // separator between buttons (0 = hidden)
 
   // ── Component tokens: Calendar ──────────────────────────────────────────
   calendarRadius: string; // container border-radius
@@ -225,13 +221,6 @@ export type ThemeTokens = {
   calendarBorderLeft: string; // border-left-width
   calendarBorderStyle: string; // border-style: solid | dashed | dotted
   calendarShadow: string; // container box-shadow
-  calendarCellSize: string; // day cell size (width & height)
-  calendarCellRadius: string; // day cell border-radius for selected/hover
-  calendarCellFontSize: string; // day number font size
-  calendarHeaderFontSize: string; // month/year header font size
-  calendarHeaderFontWeight: string; // header font weight
-  calendarWeekdayFontSize: string; // weekday labels font size
-  calendarPadding: string; // container internal padding
 
   // ── Component tokens: Select / Dropdown ───────────────────────────────────
   selectRadius: string; // border-radius of select trigger

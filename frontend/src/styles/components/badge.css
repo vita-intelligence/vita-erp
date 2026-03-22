@@ -18,19 +18,25 @@
   --vita-badge-padding-y: 0.2rem;
 }
 
-.chip {
+.chip,
+[data-slot="chip"] {
   border-radius: var(--vita-badge-radius) !important;
   border-top-width: var(--vita-badge-border-top) !important;
   border-right-width: var(--vita-badge-border-right) !important;
   border-bottom-width: var(--vita-badge-border-bottom) !important;
   border-left-width: var(--vita-badge-border-left) !important;
   border-style: var(--vita-badge-border-style) !important;
-  font-weight: var(--vita-badge-font-weight) !important;
-  font-size: var(--vita-badge-font-size) !important;
-  letter-spacing: var(--vita-badge-letter-spacing) !important;
-  text-transform: var(--vita-badge-text-transform) !important;
   padding-left: var(--vita-badge-padding-x) !important;
   padding-right: var(--vita-badge-padding-x) !important;
   padding-top: var(--vita-badge-padding-y) !important;
   padding-bottom: var(--vita-badge-padding-y) !important;
+}
+
+.chip__label,
+.chip-label,
+[data-slot="chip-label"] {
+  font-weight: var(--vita-badge-font-weight) !important;
+  font-size: var(--vita-badge-font-size) !important;
+  letter-spacing: var(--vita-badge-letter-spacing) !important;
+  text-transform: var(--vita-badge-text-transform) !important;
 }

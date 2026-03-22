@@ -37,11 +37,22 @@
   flex-wrap: wrap !important;
 }
 
-.breadcrumbs__link {
+.breadcrumbs__item,
+.breadcrumbs-item,
+[data-slot="breadcrumbs-item"],
+.breadcrumbs__link,
+.breadcrumbs-link,
+[data-slot="breadcrumbs-link"] {
   font-size: var(--vita-breadcrumbs-font-size) !important;
   font-weight: var(--vita-breadcrumbs-font-weight) !important;
   letter-spacing: var(--vita-breadcrumbs-letter-spacing) !important;
   text-transform: var(--vita-breadcrumbs-text-transform) !important;
+  text-decoration: none !important;
+}
+
+.breadcrumbs__item,
+.breadcrumbs-item,
+[data-slot="breadcrumbs-item"] {
   padding-left: var(--vita-breadcrumbs-item-padding-x) !important;
   padding-right: var(--vita-breadcrumbs-item-padding-x) !important;
   padding-top: var(--vita-breadcrumbs-item-padding-y) !important;
@@ -49,26 +60,52 @@
   border-radius: var(--vita-breadcrumbs-item-radius) !important;
   border-width: var(--vita-breadcrumbs-item-border-width) !important;
   border-style: var(--vita-breadcrumbs-item-border-style) !important;
-  text-decoration: none !important;
 }
 
 /* "underline" mode — always show underline on non-current links */
+:root[style*="--vita-breadcrumbs-underline: underline"] .breadcrumbs__item:not([data-current="true"]),
+:root[style*="--vita-breadcrumbs-underline:underline"] .breadcrumbs__item:not([data-current="true"]),
+:root[style*="--vita-breadcrumbs-underline: underline"] .breadcrumbs-item:not([data-current="true"]),
+:root[style*="--vita-breadcrumbs-underline:underline"] .breadcrumbs-item:not([data-current="true"]),
+:root[style*="--vita-breadcrumbs-underline: underline"] [data-slot="breadcrumbs-item"]:not([data-current="true"]),
+:root[style*="--vita-breadcrumbs-underline:underline"] [data-slot="breadcrumbs-item"]:not([data-current="true"]),
 :root[style*="--vita-breadcrumbs-underline: underline"] .breadcrumbs__link:not([data-current="true"]),
-:root[style*="--vita-breadcrumbs-underline:underline"] .breadcrumbs__link:not([data-current="true"]) {
+:root[style*="--vita-breadcrumbs-underline:underline"] .breadcrumbs__link:not([data-current="true"]),
+:root[style*="--vita-breadcrumbs-underline: underline"] .breadcrumbs-link:not([data-current="true"]),
+:root[style*="--vita-breadcrumbs-underline:underline"] .breadcrumbs-link:not([data-current="true"]),
+:root[style*="--vita-breadcrumbs-underline: underline"] [data-slot="breadcrumbs-link"]:not([data-current="true"]),
+:root[style*="--vita-breadcrumbs-underline:underline"] [data-slot="breadcrumbs-link"]:not([data-current="true"]) {
   text-decoration: underline !important;
 }
 
 /* "hover" mode — show underline only on hover */
+:root[style*="--vita-breadcrumbs-underline: hover"] .breadcrumbs__item:not([data-current="true"]):hover,
+:root[style*="--vita-breadcrumbs-underline:hover"] .breadcrumbs__item:not([data-current="true"]):hover,
+:root[style*="--vita-breadcrumbs-underline: hover"] .breadcrumbs-item:not([data-current="true"]):hover,
+:root[style*="--vita-breadcrumbs-underline:hover"] .breadcrumbs-item:not([data-current="true"]):hover,
+:root[style*="--vita-breadcrumbs-underline: hover"] [data-slot="breadcrumbs-item"]:not([data-current="true"]):hover,
+:root[style*="--vita-breadcrumbs-underline:hover"] [data-slot="breadcrumbs-item"]:not([data-current="true"]):hover,
 :root[style*="--vita-breadcrumbs-underline: hover"] .breadcrumbs__link:not([data-current="true"]):hover,
-:root[style*="--vita-breadcrumbs-underline:hover"] .breadcrumbs__link:not([data-current="true"]):hover {
+:root[style*="--vita-breadcrumbs-underline:hover"] .breadcrumbs__link:not([data-current="true"]):hover,
+:root[style*="--vita-breadcrumbs-underline: hover"] .breadcrumbs-link:not([data-current="true"]):hover,
+:root[style*="--vita-breadcrumbs-underline:hover"] .breadcrumbs-link:not([data-current="true"]):hover,
+:root[style*="--vita-breadcrumbs-underline: hover"] [data-slot="breadcrumbs-link"]:not([data-current="true"]):hover,
+:root[style*="--vita-breadcrumbs-underline:hover"] [data-slot="breadcrumbs-link"]:not([data-current="true"]):hover {
   text-decoration: underline !important;
 }
 
-.breadcrumbs__link[data-current="true"] {
+.breadcrumbs__item[data-current="true"],
+.breadcrumbs-item[data-current="true"],
+[data-slot="breadcrumbs-item"][data-current="true"],
+.breadcrumbs__link[data-current="true"],
+.breadcrumbs-link[data-current="true"],
+[data-slot="breadcrumbs-link"][data-current="true"] {
   font-weight: var(--vita-breadcrumbs-active-font-weight) !important;
 }
 
-.breadcrumbs__separator {
+.breadcrumbs__separator,
+.breadcrumbs-separator,
+[data-slot="breadcrumbs-separator"] {
   width: var(--vita-breadcrumbs-separator-size) !important;
   height: var(--vita-breadcrumbs-separator-size) !important;
   opacity: var(--vita-breadcrumbs-separator-opacity) !important;

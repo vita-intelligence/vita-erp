@@ -184,9 +184,6 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   avatarSizeLg: "--vita-avatar-size-lg",
   avatarFallbackFontWeight: "--vita-avatar-fallback-font-weight",
   avatarFallbackFontSize: "--vita-avatar-fallback-font-size",
-  avatarRingWidth: "--vita-avatar-ring-width",
-  avatarRingOffset: "--vita-avatar-ring-offset",
-  avatarShadow: "--vita-avatar-shadow",
   avatarGroupSpacing: "--vita-avatar-group-spacing",
 
   // Breadcrumbs
@@ -214,7 +211,6 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   buttonGroupBorderLeft: "--vita-button-group-border-left",
   buttonGroupBorderStyle: "--vita-button-group-border-style",
   buttonGroupShadow: "--vita-button-group-shadow",
-  buttonGroupSeparatorWidth: "--vita-button-group-separator-width",
 
   // Calendar
   calendarRadius: "--vita-calendar-radius",
@@ -224,13 +220,6 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   calendarBorderLeft: "--vita-calendar-border-left",
   calendarBorderStyle: "--vita-calendar-border-style",
   calendarShadow: "--vita-calendar-shadow",
-  calendarCellSize: "--vita-calendar-cell-size",
-  calendarCellRadius: "--vita-calendar-cell-radius",
-  calendarCellFontSize: "--vita-calendar-cell-font-size",
-  calendarHeaderFontSize: "--vita-calendar-header-font-size",
-  calendarHeaderFontWeight: "--vita-calendar-header-font-weight",
-  calendarWeekdayFontSize: "--vita-calendar-weekday-font-size",
-  calendarPadding: "--vita-calendar-padding",
 
   // Select
   selectRadius: "--vita-select-radius",

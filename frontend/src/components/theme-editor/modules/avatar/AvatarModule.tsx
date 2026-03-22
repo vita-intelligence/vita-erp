@@ -9,7 +9,6 @@ import {
   FontWeightRow,
   Row,
   Section,
-  ShadowBuilder,
   SliderRow,
   usePreviewExternal,
 } from "../_shared";
@@ -32,8 +31,6 @@ export function AvatarModule() {
   const mdPx = parseFloat(tokens.avatarSizeMd ?? "40");
   const lgPx = parseFloat(tokens.avatarSizeLg ?? "48");
   const fallbackFontPx = parseFloat(tokens.avatarFallbackFontSize ?? "14");
-  const ringPx = parseFloat(tokens.avatarRingWidth ?? "0");
-  const ringOffsetPx = parseFloat(tokens.avatarRingOffset ?? "2");
   const groupPx = Math.abs(parseFloat(tokens.avatarGroupSpacing ?? "-8"));
 
   return (
@@ -125,30 +122,6 @@ export function AvatarModule() {
         <BorderStyleRow tokenKey="avatarBorderStyle" />
       </Section>
 
-      {/* ── Ring ── */}
-      <Section title="Ring">
-        <SliderRow
-          label={`Width — ${ringPx}px`}
-          min={0}
-          max={6}
-          step={0.5}
-          value={ringPx}
-          onChange={(v) => setTokens({ avatarRingWidth: `${v}px` })}
-          hint={["0 none", "6px bold"]}
-          onReset={() => resetColor(["avatarRingWidth"])}
-        />
-        <SliderRow
-          label={`Offset — ${ringOffsetPx}px`}
-          min={0}
-          max={6}
-          step={0.5}
-          value={ringOffsetPx}
-          onChange={(v) => setTokens({ avatarRingOffset: `${v}px` })}
-          hint={["0 flush", "6px gap"]}
-          onReset={() => resetColor(["avatarRingOffset"])}
-        />
-      </Section>
-
       {/* ── Typography ── */}
       <Section title="Fallback text">
         <FontWeightRow tokenKey="avatarFallbackFontWeight" label="Weight" />
@@ -175,16 +148,6 @@ export function AvatarModule() {
           onChange={(v) => setTokens({ avatarGroupSpacing: `-${v}px` })}
           hint={["0 no overlap", "20px tight stack"]}
           onReset={() => resetColor(["avatarGroupSpacing"])}
-        />
-      </Section>
-
-      {/* ── Shadow ── */}
-      <Section title="Shadow">
-        <ShadowBuilder
-          value={tokens.avatarShadow ?? "none"}
-          onChange={(v) => setTokens({ avatarShadow: v })}
-          onReset={() => resetColor(["avatarShadow"])}
-          defaults={{ y: 2, blur: 4, opacity: 10 }}
         />
       </Section>
     </div>

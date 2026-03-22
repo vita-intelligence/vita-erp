@@ -112,9 +112,6 @@ export const componentDefaults: Pick<
   | "avatarSizeLg"
   | "avatarFallbackFontWeight"
   | "avatarFallbackFontSize"
-  | "avatarRingWidth"
-  | "avatarRingOffset"
-  | "avatarShadow"
   | "avatarGroupSpacing"
   | "breadcrumbsFontSize"
   | "breadcrumbsFontWeight"
@@ -138,7 +135,6 @@ export const componentDefaults: Pick<
   | "buttonGroupBorderLeft"
   | "buttonGroupBorderStyle"
   | "buttonGroupShadow"
-  | "buttonGroupSeparatorWidth"
   | "calendarRadius"
   | "calendarBorderTop"
   | "calendarBorderRight"
@@ -146,13 +142,6 @@ export const componentDefaults: Pick<
   | "calendarBorderLeft"
   | "calendarBorderStyle"
   | "calendarShadow"
-  | "calendarCellSize"
-  | "calendarCellRadius"
-  | "calendarCellFontSize"
-  | "calendarHeaderFontSize"
-  | "calendarHeaderFontWeight"
-  | "calendarWeekdayFontSize"
-  | "calendarPadding"
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
@@ -277,9 +266,6 @@ export const componentDefaults: Pick<
   avatarSizeLg: "48px",
   avatarFallbackFontWeight: "600",
   avatarFallbackFontSize: "14px",
-  avatarRingWidth: "0px",
-  avatarRingOffset: "2px",
-  avatarShadow: "none",
   avatarGroupSpacing: "-8px",
 
   // Breadcrumbs
@@ -307,7 +293,6 @@ export const componentDefaults: Pick<
   buttonGroupBorderLeft: "1px",
   buttonGroupBorderStyle: "solid",
   buttonGroupShadow: "none",
-  buttonGroupSeparatorWidth: "1px",
 
   // Calendar
   calendarRadius: "0px",
@@ -317,14 +302,6 @@ export const componentDefaults: Pick<
   calendarBorderLeft: "1px",
   calendarBorderStyle: "solid",
   calendarShadow: "none",
-  calendarCellSize: "36px",
-  calendarCellRadius: "0px",
-  calendarCellFontSize: "13px",
-  calendarHeaderFontSize: "15px",
-  calendarHeaderFontWeight: "600",
-  calendarWeekdayFontSize: "11px",
-  calendarPadding: "12px",
-
   // Select
   selectRadius: "0px",
   selectBorderWidth: "1px",

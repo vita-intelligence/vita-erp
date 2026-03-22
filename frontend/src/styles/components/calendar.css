@@ -1,5 +1,7 @@
 /* ── Calendar ─────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to calendar / date-picker components.
+ * Applies Vita ERP design tokens to the HeroUI <Calendar> container.
+ * Internal elements (cells, header, weekdays) are managed by HeroUI
+ * and not overridable via CSS custom properties.
  */
 
 :root {
@@ -10,13 +12,6 @@
   --vita-calendar-border-left: 1px;
   --vita-calendar-border-style: solid;
   --vita-calendar-shadow: none;
-  --vita-calendar-cell-size: 36px;
-  --vita-calendar-cell-radius: 0px;
-  --vita-calendar-cell-font-size: 13px;
-  --vita-calendar-header-font-size: 15px;
-  --vita-calendar-header-font-weight: 600;
-  --vita-calendar-weekday-font-size: 11px;
-  --vita-calendar-padding: 12px;
 }
 
 .calendar {
@@ -27,21 +22,4 @@
   border-left-width: var(--vita-calendar-border-left) !important;
   border-style: var(--vita-calendar-border-style) !important;
   box-shadow: var(--vita-calendar-shadow) !important;
-  padding: var(--vita-calendar-padding) !important;
-}
-
-.calendar__cell {
-  width: var(--vita-calendar-cell-size) !important;
-  height: var(--vita-calendar-cell-size) !important;
-  border-radius: var(--vita-calendar-cell-radius) !important;
-  font-size: var(--vita-calendar-cell-font-size) !important;
-}
-
-.calendar__header {
-  font-size: var(--vita-calendar-header-font-size) !important;
-  font-weight: var(--vita-calendar-header-font-weight) !important;
-}
-
-.calendar__weekday {
-  font-size: var(--vita-calendar-weekday-font-size) !important;
 }

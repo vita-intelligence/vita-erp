@@ -26,21 +26,29 @@
   box-shadow: var(--vita-alert-shadow) !important;
 }
 
-.alert__title {
+.alert__title,
+.alert-title,
+[data-slot="alert-title"] {
   font-weight: var(--vita-alert-title-font-weight) !important;
   font-size: var(--vita-alert-title-font-size) !important;
 }
 
-.alert__description {
+.alert__description,
+.alert-description,
+[data-slot="alert-description"] {
   font-size: var(--vita-alert-description-font-size) !important;
 }
 
-.alert__indicator {
+.alert__indicator,
+.alert-indicator,
+[data-slot="alert-indicator"] {
   width: var(--vita-alert-icon-size) !important;
   height: var(--vita-alert-icon-size) !important;
 }
 
-.alert__indicator svg {
+.alert__indicator svg,
+.alert-indicator svg,
+[data-slot="alert-indicator"] svg {
   width: var(--vita-alert-icon-size) !important;
   height: var(--vita-alert-icon-size) !important;
 }
