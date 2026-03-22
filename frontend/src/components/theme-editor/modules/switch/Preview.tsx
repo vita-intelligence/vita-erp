@@ -33,13 +33,14 @@ export function Preview() {
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
         {t("preview.livePreview")}
       </p>
-      <div className="space-y-3">
+      <div className="flex flex-col gap-3">
         {items.map((item) => (
           <Switch
             key={item.id}
             isSelected={checked.has(item.id)}
             onChange={() => toggle(item.id)}
             isDisabled={item.disabled}
+            className="flex"
           >
             <Switch.Thumb />
             <Switch.Content>{item.label}</Switch.Content>

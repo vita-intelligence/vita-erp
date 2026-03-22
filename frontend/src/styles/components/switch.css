@@ -1,10 +1,15 @@
 /* ── Switch ───────────────────────────────────────────────────────────────────
  * Applies Vita ERP design tokens to the HeroUI <Switch> component.
- * Sets sensible defaults so the toggle is visible and properly sized.
  *
- * HeroUI compiled CSS sets:
- *   .switch__control { background-color, width, height, border-radius, transition }
- *   .switch__thumb { background-color, width, height, border-radius, margin-inline-start }
+ * HeroUI sets:
+ *   .switch { display: inline-flex; gap; cursor }
+ *   .switch__control { width: 2.5rem; height: 1.25rem; border-radius: pill; bg }
+ *   .switch__thumb { width: 1.375rem; height: 1rem; border-radius: pill; margin }
+ *   .switch--sm .switch__control { width: 2rem; height: 1rem }
+ *   .switch--lg .switch__control { width: 3rem; height: 1.5rem }
+ *
+ * Checked state uses --switch-control-bg-checked: var(--color-accent).
+ * We override to use --vita-secondary for a subtler look.
  */
 
 :root {
@@ -23,20 +28,30 @@
   gap: var(--vita-switch-gap) !important;
 }
 
-/* Track (control) */
+/* Track (control) — override all size variants */
 .switch__control,
 [data-slot="switch-control"] {
   width: var(--vita-switch-track-width) !important;
   height: var(--vita-switch-track-height) !important;
+  min-width: var(--vita-switch-track-width) !important;
   border-radius: var(--vita-switch-track-radius) !important;
   transition-duration: var(--vita-switch-transition-duration) !important;
+  --switch-control-bg: var(--vita-neutral-300) !important;
+  --switch-control-bg-checked: var(--vita-secondary, var(--vita-primary)) !important;
+  --switch-control-bg-checked-hover: var(--vita-secondary-dark, var(--vita-primary-dark)) !important;
 }
 
-/* Thumb */
+/* Thumb — make it square (equal width/height) */
 .switch__thumb,
 [data-slot="switch-thumb"] {
   width: var(--vita-switch-thumb-size) !important;
   height: var(--vita-switch-thumb-size) !important;
   border-radius: var(--vita-switch-thumb-radius) !important;
   transition-duration: var(--vita-switch-transition-duration) !important;
+}
+
+/* Content/label */
+.switch__content,
+[data-slot="switch-content"] {
+  font-size: 14px;
 }
