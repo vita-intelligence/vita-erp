@@ -84,7 +84,7 @@
     "validation": {
       "title": "Regex validation",
       "pattern": "Pattern",
-      "patternPlaceholder": "Regular expression (e.g., ^[A-Z]{3}$)",
+      "patternPlaceholder": "Regular expression (e.g., ^[A-Z]'{'3'}'$)",
       "mode": "Mode",
       "hard": "Hard — blocks submission",
       "soft": "Soft — shows warning only",
