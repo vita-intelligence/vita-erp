@@ -59,7 +59,7 @@ export function AutocompleteModule() {
           step={1}
           value={popoverRadiusPx}
           onChange={(v) => setTokens({ autocompletePopoverRadius: `${v}px` })}
-          hint={["0 sharp", "20px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `20px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["autocompletePopoverRadius"])}
         />
         <Row label="Quick presets">
@@ -86,7 +86,7 @@ export function AutocompleteModule() {
           }}
           max={3}
           step={0.5}
-          hintMax="3px heavy"
+          hintMax={`3px ${t("hints.heavy")}`}
         />
         <BorderStyleRow tokenKey="autocompletePopoverBorderStyle" />
       </Section>
@@ -100,7 +100,7 @@ export function AutocompleteModule() {
           step={1}
           value={popoverPaddingPx}
           onChange={(v) => setTokens({ autocompletePopoverPadding: `${v}px` })}
-          hint={["0 flush", "12px spacious"]}
+          hint={[`0 ${t("hints.flush")}`, `12px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["autocompletePopoverPadding"])}
         />
         <SliderRow
@@ -110,7 +110,7 @@ export function AutocompleteModule() {
           step={8}
           value={maxHeightPx}
           onChange={(v) => setTokens({ autocompleteMaxHeight: `${v}px` })}
-          hint={["120px compact", "480px tall"]}
+          hint={[`120px ${t("hints.compact")}`, `480px ${t("hints.tall")}`]}
           onReset={() => resetColor(["autocompleteMaxHeight"])}
         />
       </Section>
@@ -124,7 +124,7 @@ export function AutocompleteModule() {
           step={1}
           value={itemPxX}
           onChange={(v) => setTokens({ autocompleteItemPaddingX: `${v}px` })}
-          hint={["4px tight", "24px spacious"]}
+          hint={[`4px ${t("hints.tight")}`, `24px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["autocompleteItemPaddingX"])}
         />
         <SliderRow
@@ -134,7 +134,7 @@ export function AutocompleteModule() {
           step={1}
           value={itemPxY}
           onChange={(v) => setTokens({ autocompleteItemPaddingY: `${v}px` })}
-          hint={["2px compact", "16px tall"]}
+          hint={[`2px ${t("hints.compact")}`, `16px ${t("hints.tall")}`]}
           onReset={() => resetColor(["autocompleteItemPaddingY"])}
         />
         <SliderRow
@@ -144,7 +144,7 @@ export function AutocompleteModule() {
           step={0.5}
           value={itemFontPx}
           onChange={(v) => setTokens({ autocompleteItemFontSize: `${v}px` })}
-          hint={["11px small", "18px large"]}
+          hint={[`11px ${t("hints.small")}`, `18px ${t("hints.large")}`]}
           onReset={() => resetColor(["autocompleteItemFontSize"])}
         />
         <SliderRow
@@ -154,7 +154,7 @@ export function AutocompleteModule() {
           step={1}
           value={itemRadiusPx}
           onChange={(v) => setTokens({ autocompleteItemRadius: `${v}px` })}
-          hint={["0 sharp", "12px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `12px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["autocompleteItemRadius"])}
         />
         <SliderRow
@@ -164,7 +164,7 @@ export function AutocompleteModule() {
           step={0.5}
           value={dividerPx}
           onChange={(v) => setTokens({ autocompleteItemDivider: `${v}px` })}
-          hint={["0 none", "2px visible"]}
+          hint={[`0 ${t("hints.none")}`, `2px ${t("hints.visible")}`]}
           onReset={() => resetColor(["autocompleteItemDivider"])}
         />
       </Section>

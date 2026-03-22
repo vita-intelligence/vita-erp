@@ -39,7 +39,7 @@ export function SpinnerModule() {
           step={1}
           value={sizeSmPx}
           onChange={(v) => setTokens({ spinnerSizeSm: `${v}px` })}
-          hint={["12px compact", "32px large"]}
+          hint={[`12px ${t("hints.compact")}`, `32px ${t("hints.large")}`]}
           onReset={() => resetColor(["spinnerSizeSm"])}
         />
 
@@ -50,7 +50,7 @@ export function SpinnerModule() {
           step={1}
           value={sizeMdPx}
           onChange={(v) => setTokens({ spinnerSizeMd: `${v}px` })}
-          hint={["20px compact", "48px large"]}
+          hint={[`20px ${t("hints.compact")}`, `48px ${t("hints.large")}`]}
           onReset={() => resetColor(["spinnerSizeMd"])}
         />
 
@@ -61,7 +61,7 @@ export function SpinnerModule() {
           step={1}
           value={sizeLgPx}
           onChange={(v) => setTokens({ spinnerSizeLg: `${v}px` })}
-          hint={["32px compact", "72px large"]}
+          hint={[`32px ${t("hints.compact")}`, `72px ${t("hints.large")}`]}
           onReset={() => resetColor(["spinnerSizeLg"])}
         />
       </Section>

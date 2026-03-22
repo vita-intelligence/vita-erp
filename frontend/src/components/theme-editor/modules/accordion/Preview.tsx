@@ -17,7 +17,20 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { FAQ_ITEMS } from "./accordion-data";
+const FAQ_KEYS = [
+  {
+    id: "production",
+    titleKey: "productionTitle",
+    contentKey: "productionContent",
+  },
+  {
+    id: "inventory",
+    titleKey: "inventoryTitle",
+    contentKey: "inventoryContent",
+  },
+  { id: "export", titleKey: "exportTitle", contentKey: "exportContent" },
+  { id: "roles", titleKey: "rolesTitle", contentKey: "rolesContent" },
+] as const;
 
 export function Preview() {
   const t = useTranslations("themeEditor");
@@ -28,19 +41,19 @@ export function Preview() {
         {t("preview.livePreview")}
       </p>
 
-      <Accordion defaultExpandedKeys={[FAQ_ITEMS[0].id]}>
-        {FAQ_ITEMS.map((item) => (
+      <Accordion defaultExpandedKeys={[FAQ_KEYS[0].id]}>
+        {FAQ_KEYS.map((item) => (
           <AccordionItem key={item.id} id={item.id}>
             <AccordionHeading>
               <AccordionTrigger>
-                {item.title}
+                {t(`preview.accordion.${item.titleKey}`)}
                 <AccordionIndicator />
               </AccordionTrigger>
             </AccordionHeading>
             <AccordionPanel>
               <AccordionBody>
                 <p className="text-sm leading-relaxed text-vita-text-secondary">
-                  {item.content}
+                  {t(`preview.accordion.${item.contentKey}`)}
                 </p>
               </AccordionBody>
             </AccordionPanel>

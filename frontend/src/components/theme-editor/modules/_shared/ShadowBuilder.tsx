@@ -127,7 +127,7 @@ export function ShadowBuilder({
             max={20}
             value={state.x}
             onChange={(x) => patch({ x })}
-            hint={["−20px left", "+20px right"]}
+            hint={[`−20px ${t("hints.left")}`, `+20px ${t("hints.right")}`]}
           />
           <SliderRow
             label={`${t("controls.shadowY")} — ${state.y}px`}
@@ -135,7 +135,7 @@ export function ShadowBuilder({
             max={20}
             value={state.y}
             onChange={(y) => patch({ y })}
-            hint={["−20px up", "+20px down"]}
+            hint={[`−20px ${t("hints.up")}`, `+20px ${t("hints.down")}`]}
           />
           <SliderRow
             label={`${t("controls.shadowBlur")} — ${state.blur}px`}
@@ -143,7 +143,7 @@ export function ShadowBuilder({
             max={50}
             value={state.blur}
             onChange={(blur) => patch({ blur })}
-            hint={["0 sharp", "50px soft"]}
+            hint={[`0 ${t("hints.sharp")}`, `50px ${t("hints.soft")}`]}
           />
           <SliderRow
             label={`${t("controls.shadowSpread")} — ${state.spread}px`}
@@ -151,7 +151,7 @@ export function ShadowBuilder({
             max={20}
             value={state.spread}
             onChange={(spread) => patch({ spread })}
-            hint={["−10 shrink", "+20 grow"]}
+            hint={[`−10 ${t("hints.shrink")}`, `+20 ${t("hints.grow")}`]}
           />
           <SliderRow
             label={`${t("controls.shadowOpacity")} — ${state.opacity}%`}
@@ -159,7 +159,7 @@ export function ShadowBuilder({
             max={50}
             value={state.opacity}
             onChange={(opacity) => patch({ opacity })}
-            hint={["1% subtle", "50% strong"]}
+            hint={[`1% ${t("hints.subtle")}`, `50% ${t("hints.strong")}`]}
           />
           <Row label="Type">
             <Chip active={!state.inset} onClick={() => patch({ inset: false })}>

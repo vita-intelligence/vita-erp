@@ -76,7 +76,7 @@ export function BadgesModule() {
             step={1}
             value={Math.min(parseFloat(tokens.badgeRadius), 32)}
             onChange={(v) => setTokens({ badgeRadius: `${v}px` })}
-            hint={["0 square", "32px rounded"]}
+            hint={[`0 ${t("hints.square")}`, `32px ${t("hints.rounded")}`]}
           />
         )}
       </Section>
@@ -90,7 +90,7 @@ export function BadgesModule() {
           step={0.05}
           value={paddingXRem}
           onChange={(v) => setTokens({ badgePaddingX: `${v}rem` })}
-          hint={["0.2 tight", "1.2 spacious"]}
+          hint={[`0.2 ${t("hints.tight")}`, `1.2 ${t("hints.spacious")}`]}
           onReset={() => resetColor(["badgePaddingX"])}
         />
         <SliderRow
@@ -100,7 +100,7 @@ export function BadgesModule() {
           step={0.05}
           value={paddingYRem}
           onChange={(v) => setTokens({ badgePaddingY: `${v}rem` })}
-          hint={["0.05 compact", "0.6 tall"]}
+          hint={[`0.05 ${t("hints.compact")}`, `0.6 ${t("hints.tall")}`]}
           onReset={() => resetColor(["badgePaddingY"])}
         />
       </Section>
@@ -116,7 +116,7 @@ export function BadgesModule() {
           }}
           max={3}
           step={0.5}
-          hintMax="3px heavy"
+          hintMax={`3px ${t("hints.heavy")}`}
         />
         <BorderStyleRow tokenKey="badgeBorderStyle" />
       </Section>
@@ -132,7 +132,7 @@ export function BadgesModule() {
           step={0.0625}
           value={fontSizeRem}
           onChange={(v) => setTokens({ badgeFontSize: `${v}rem` })}
-          hint={["0.5 tiny", "1.0 large"]}
+          hint={[`0.5 ${t("hints.tiny")}`, `1.0 ${t("hints.large")}`]}
           onReset={() => resetColor(["badgeFontSize"])}
         />
 

@@ -81,7 +81,7 @@ export function CheckboxModule() {
           step={1}
           value={sizePx}
           onChange={(v) => setTokens({ checkboxSize: `${v}px` })}
-          hint={["14px compact", "32px large"]}
+          hint={[`14px ${t("hints.compact")}`, `32px ${t("hints.large")}`]}
           onReset={() => resetColor(["checkboxSize"])}
         />
 
@@ -112,7 +112,7 @@ export function CheckboxModule() {
             step={1}
             value={radiusPx}
             onChange={(v) => setTokens({ checkboxRadius: `${v}px` })}
-            hint={["0 sharp", "16px rounded"]}
+            hint={[`0 ${t("hints.sharp")}`, `16px ${t("hints.rounded")}`]}
           />
         )}
       </Section>
@@ -126,7 +126,7 @@ export function CheckboxModule() {
           step={0.5}
           value={borderPx}
           onChange={(v) => setTokens({ checkboxBorderWidth: `${v}px` })}
-          hint={["1px thin", "4px heavy"]}
+          hint={[`1px ${t("hints.thin")}`, `4px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["checkboxBorderWidth"])}
         />
         <BorderStyleRow tokenKey="checkboxBorderStyle" />
@@ -141,7 +141,7 @@ export function CheckboxModule() {
           step={1}
           value={indicatorPx}
           onChange={(v) => setTokens({ checkboxIndicatorSize: `${v}px` })}
-          hint={["8px small", "24px large"]}
+          hint={[`8px ${t("hints.small")}`, `24px ${t("hints.large")}`]}
           onReset={() => resetColor(["checkboxIndicatorSize"])}
         />
         <SliderRow
@@ -151,7 +151,7 @@ export function CheckboxModule() {
           step={0.5}
           value={strokeW}
           onChange={(v) => setTokens({ checkboxIndicatorStroke: `${v}` })}
-          hint={["1 thin", "5 heavy"]}
+          hint={[`1 ${t("hints.thin")}`, `5 ${t("hints.heavy")}`]}
           onReset={() => resetColor(["checkboxIndicatorStroke"])}
         />
       </Section>
@@ -165,7 +165,7 @@ export function CheckboxModule() {
           step={1}
           value={labelFontPx}
           onChange={(v) => setTokens({ checkboxLabelFontSize: `${v}px` })}
-          hint={["10px small", "20px large"]}
+          hint={[`10px ${t("hints.small")}`, `20px ${t("hints.large")}`]}
           onReset={() => resetColor(["checkboxLabelFontSize"])}
         />
         <FontWeightRow
@@ -179,7 +179,7 @@ export function CheckboxModule() {
           step={1}
           value={gapPx}
           onChange={(v) => setTokens({ checkboxGap: `${v}px` })}
-          hint={["4px tight", "16px spacious"]}
+          hint={[`4px ${t("hints.tight")}`, `16px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["checkboxGap"])}
         />
       </Section>
@@ -203,7 +203,7 @@ export function CheckboxModule() {
           step={0.01}
           value={checkedScale}
           onChange={(v) => setTokens({ checkboxCheckedScale: v.toFixed(2) })}
-          hint={["0.80 strong pop", "1.00 none"]}
+          hint={[`0.80 ${t("hints.strongPop")}`, `1.00 ${t("hints.none")}`]}
           onReset={() => resetColor(["checkboxCheckedScale"])}
         />
         <TransitionRow tokenKey="checkboxTransitionDuration" />

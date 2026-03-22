@@ -63,7 +63,7 @@ export function SkeletonModule() {
             step={1}
             value={radiusPx}
             onChange={(v) => setTokens({ skeletonRadius: `${v}px` })}
-            hint={["0 sharp", "20px round"]}
+            hint={[`0 ${t("hints.sharp")}`, `20px ${t("hints.round")}`]}
           />
         )}
       </Section>
@@ -79,7 +79,7 @@ export function SkeletonModule() {
           onChange={(v) =>
             setTokens({ skeletonAnimationDuration: `${v.toFixed(1)}s` })
           }
-          hint={["0.5s fast", "4.0s slow"]}
+          hint={[`0.5s ${t("hints.fast")}`, `4.0s ${t("hints.slow")}`]}
           onReset={() => resetColor(["skeletonAnimationDuration"])}
         />
       </Section>

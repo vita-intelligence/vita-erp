@@ -53,7 +53,7 @@ export function InputsModule() {
           step={0.5}
           value={radiusPx}
           onChange={(v) => setTokens({ inputRadius: `${v}px` })}
-          hint={["0 sharp", "20px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `20px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["inputRadius"])}
         />
         <SliderRow
@@ -63,7 +63,7 @@ export function InputsModule() {
           step={1}
           value={paddingXPx}
           onChange={(v) => setTokens({ inputPaddingX: `${v}px` })}
-          hint={["4px tight", "32px spacious"]}
+          hint={[`4px ${t("hints.tight")}`, `32px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["inputPaddingX"])}
         />
         <SliderRow
@@ -73,7 +73,7 @@ export function InputsModule() {
           step={1}
           value={paddingYPx}
           onChange={(v) => setTokens({ inputPaddingY: `${v}px` })}
-          hint={["2px compact", "20px tall"]}
+          hint={[`2px ${t("hints.compact")}`, `20px ${t("hints.tall")}`]}
           onReset={() => resetColor(["inputPaddingY"])}
         />
       </Section>
@@ -110,7 +110,7 @@ export function InputsModule() {
           step={0.5}
           value={focusRingPx}
           onChange={(v) => setTokens({ inputFocusRingWidth: `${v}px` })}
-          hint={["0 none", "6px bold"]}
+          hint={[`0 ${t("hints.none")}`, `6px ${t("hints.bold")}`]}
           onReset={() => resetColor(["inputFocusRingWidth"])}
         />
         <SliderRow
@@ -120,7 +120,7 @@ export function InputsModule() {
           step={0.5}
           value={focusOffsetPx}
           onChange={(v) => setTokens({ inputFocusRingOffset: `${v}px` })}
-          hint={["0 flush", "6px gap"]}
+          hint={[`0 ${t("hints.flush")}`, `6px ${t("hints.gap")}`]}
           onReset={() => resetColor(["inputFocusRingOffset"])}
         />
       </Section>
@@ -134,7 +134,7 @@ export function InputsModule() {
           step={0.5}
           value={fontSizePx}
           onChange={(v) => setTokens({ inputFontSize: `${v}px` })}
-          hint={["10px small", "20px large"]}
+          hint={[`10px ${t("hints.small")}`, `20px ${t("hints.large")}`]}
           onReset={() => resetColor(["inputFontSize"])}
         />
         <SliderRow
@@ -144,7 +144,7 @@ export function InputsModule() {
           step={0.5}
           value={labelSizePx}
           onChange={(v) => setTokens({ inputLabelSize: `${v}px` })}
-          hint={["9px tiny", "16px prominent"]}
+          hint={[`9px ${t("hints.tiny")}`, `16px ${t("hints.prominent")}`]}
           onReset={() => resetColor(["inputLabelSize"])}
         />
         <FontWeightRow
@@ -178,7 +178,7 @@ export function InputsModule() {
           onChange={(v) =>
             setTokens({ inputPlaceholderOpacity: (v / 100).toFixed(2) })
           }
-          hint={["10% faded", "90% visible"]}
+          hint={[`10% ${t("hints.faded")}`, `90% ${t("hints.visible")}`]}
           onReset={() => resetColor(["inputPlaceholderOpacity"])}
         />
       </Section>

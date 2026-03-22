@@ -52,7 +52,7 @@ export function CardsModule() {
           step={1}
           value={radiusPx}
           onChange={(v) => setTokens({ cardRadius: `${v}px` })}
-          hint={["0 sharp", "24px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `24px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["cardRadius"])}
         />
         <Row label={t("labels.quickPresets")}>
@@ -79,7 +79,7 @@ export function CardsModule() {
           }}
           max={5}
           step={0.5}
-          hintMax="5px heavy"
+          hintMax={`5px ${t("hints.heavy")}`}
         />
         <BorderStyleRow tokenKey="cardBorderStyle" />
       </Section>

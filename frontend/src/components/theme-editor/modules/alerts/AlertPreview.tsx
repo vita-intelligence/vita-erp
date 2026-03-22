@@ -20,28 +20,19 @@ const STATUS_MAP: Record<string, "success" | "warning" | "danger" | "accent"> =
     info: "accent",
   };
 
-const ALERTS = [
+const ALERT_KEYS = [
   {
     status: "success",
-    title: "Order completed",
-    description: "Production order #00842 has been fulfilled and shipped.",
+    titleKey: "successTitle",
+    descKey: "successDescription",
   },
   {
     status: "warning",
-    title: "Low stock alert",
-    description: "Steel Frame A-14 inventory is below reorder threshold.",
+    titleKey: "warningTitle",
+    descKey: "warningDescription",
   },
-  {
-    status: "danger",
-    title: "Machine offline",
-    description:
-      "CNC Mill #3 reported a fault — maintenance has been notified.",
-  },
-  {
-    status: "info",
-    title: "Scheduled maintenance",
-    description: "System will be unavailable Saturday 02:00–04:00 UTC.",
-  },
+  { status: "danger", titleKey: "dangerTitle", descKey: "dangerDescription" },
+  { status: "info", titleKey: "infoTitle", descKey: "infoDescription" },
 ] as const;
 
 export function AlertPreview() {
@@ -53,12 +44,16 @@ export function AlertPreview() {
         {t("preview.alertPreview")}
       </p>
       <div className="space-y-2">
-        {ALERTS.map((a) => (
+        {ALERT_KEYS.map((a) => (
           <Alert key={a.status} status={STATUS_MAP[a.status]}>
             <Alert.Indicator />
             <Alert.Content>
-              <Alert.Title className="font-vita-heading">{a.title}</Alert.Title>
-              <Alert.Description>{a.description}</Alert.Description>
+              <Alert.Title className="font-vita-heading">
+                {t(`preview.alerts.${a.titleKey}`)}
+              </Alert.Title>
+              <Alert.Description>
+                {t(`preview.alerts.${a.descKey}`)}
+              </Alert.Description>
             </Alert.Content>
           </Alert>
         ))}

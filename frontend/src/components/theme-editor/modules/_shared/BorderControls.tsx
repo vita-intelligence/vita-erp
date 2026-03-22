@@ -31,7 +31,7 @@ export type BorderControlsProps = {
   max?: number;
   /** Slider step (default 0.5). */
   step?: number;
-  /** Right-side hint text for the "all" slider (default "6px heavy"). */
+  /** Right-side hint text for the "all" slider. When omitted the component builds a default from `max` and the "heavy" hint key. */
   hintMax?: string;
 };
 
@@ -50,12 +50,13 @@ export function BorderControls({
   keys,
   max = 6,
   step = 0.5,
-  hintMax = "6px heavy",
+  hintMax: hintMaxProp,
 }: BorderControlsProps) {
   const t = useTranslations("themeEditor");
   const { tokens, setTokens, resetColor } = useThemeStore();
   const [individual, setIndividual] = useState(false);
 
+  const hintMax = hintMaxProp ?? `${max}px ${t("hints.heavy")}`;
   const allVal = parseFloat(tokens[keys.top] ?? "1");
 
   function setAll(v: number) {
@@ -117,7 +118,7 @@ export function BorderControls({
           step={step}
           value={allVal}
           onChange={setAll}
-          hint={["0 none", hintMax]}
+          hint={[`0 ${t("hints.none")}`, hintMax]}
         />
       ) : (
         <div className="space-y-2">

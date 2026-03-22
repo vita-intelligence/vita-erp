@@ -53,21 +53,23 @@ export function DialogPreview() {
                 fontFamily: "var(--vita-font-heading)",
               }}
             >
-              Production Orders
+              {t("preview.alerts.navTitle")}
             </span>
             <div style={{ display: "flex", gap: "0.25rem" }}>
-              {["Dashboard", "Orders", "Inventory"].map((t) => (
-                <span
-                  key={t}
-                  style={{
-                    fontSize: "0.625rem",
-                    color: "var(--vita-text-muted)",
-                    padding: "0.15rem 0.4rem",
-                  }}
-                >
-                  {t}
-                </span>
-              ))}
+              {(["navDashboard", "navOrders", "navInventory"] as const).map(
+                (key) => (
+                  <span
+                    key={key}
+                    style={{
+                      fontSize: "0.625rem",
+                      color: "var(--vita-text-muted)",
+                      padding: "0.15rem 0.4rem",
+                    }}
+                  >
+                    {t(`preview.alerts.${key}`)}
+                  </span>
+                ),
+              )}
             </div>
           </div>
           {/* Mini table rows */}
@@ -187,7 +189,7 @@ export function DialogPreview() {
                 fontFamily: "var(--vita-font-heading)",
               }}
             >
-              Delete production order?
+              {t("preview.alerts.dialogTitle")}
             </p>
           </div>
 
@@ -207,11 +209,7 @@ export function DialogPreview() {
                 lineHeight: 1.5,
               }}
             >
-              This will permanently remove order{" "}
-              <span style={{ fontFamily: "var(--vita-font-mono)" }}>
-                #00842
-              </span>{" "}
-              and all associated records. This action cannot be undone.
+              {t("preview.alerts.dialogBody", { orderNumber: "#00842" })}
             </p>
           </div>
 
@@ -227,9 +225,12 @@ export function DialogPreview() {
               gap: "0.5rem",
             }}
           >
-            {["Cancel", "Delete"].map((label, i) => (
+            {[
+              { key: "dialogCancel", danger: false },
+              { key: "dialogDelete", danger: true },
+            ].map(({ key, danger }) => (
               <button
-                key={label}
+                key={key}
                 type="button"
                 style={{
                   borderRadius: "var(--vita-btn-radius)",
@@ -240,17 +241,18 @@ export function DialogPreview() {
                   borderStyle: "solid",
                   borderWidth: "1px",
                   cursor: "default",
-                  background:
-                    i === 1 ? "var(--vita-error)" : "var(--vita-surface)",
-                  color:
-                    i === 1
-                      ? "var(--vita-text-on-danger)"
-                      : "var(--vita-text-secondary)",
-                  borderColor:
-                    i === 1 ? "var(--vita-error)" : "var(--vita-neutral-200)",
+                  background: danger
+                    ? "var(--vita-error)"
+                    : "var(--vita-surface)",
+                  color: danger
+                    ? "var(--vita-text-on-danger)"
+                    : "var(--vita-text-secondary)",
+                  borderColor: danger
+                    ? "var(--vita-error)"
+                    : "var(--vita-neutral-200)",
                 }}
               >
-                {label}
+                {t(`preview.alerts.${key}`)}
               </button>
             ))}
           </div>

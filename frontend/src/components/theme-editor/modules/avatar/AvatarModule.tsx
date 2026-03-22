@@ -77,7 +77,7 @@ export function AvatarModule() {
             step={1}
             value={Math.min(radiusPx, 32)}
             onChange={(v) => setTokens({ avatarRadius: `${v}px` })}
-            hint={["0 square", "32px rounded"]}
+            hint={[`0 ${t("hints.square")}`, `32px ${t("hints.rounded")}`]}
           />
         )}
       </Section>
@@ -91,7 +91,7 @@ export function AvatarModule() {
           step={2}
           value={smPx}
           onChange={(v) => setTokens({ avatarSizeSm: `${v}px` })}
-          hint={["20px tiny", "48px large"]}
+          hint={[`20px ${t("hints.tiny")}`, `48px ${t("hints.large")}`]}
           onReset={() => resetColor(["avatarSizeSm"])}
         />
         <SliderRow
@@ -101,7 +101,7 @@ export function AvatarModule() {
           step={2}
           value={mdPx}
           onChange={(v) => setTokens({ avatarSizeMd: `${v}px` })}
-          hint={["28px compact", "64px large"]}
+          hint={[`28px ${t("hints.compact")}`, `64px ${t("hints.large")}`]}
           onReset={() => resetColor(["avatarSizeMd"])}
         />
         <SliderRow
@@ -111,7 +111,7 @@ export function AvatarModule() {
           step={2}
           value={lgPx}
           onChange={(v) => setTokens({ avatarSizeLg: `${v}px` })}
-          hint={["36px compact", "80px large"]}
+          hint={[`36px ${t("hints.compact")}`, `80px ${t("hints.large")}`]}
           onReset={() => resetColor(["avatarSizeLg"])}
         />
       </Section>
@@ -127,7 +127,7 @@ export function AvatarModule() {
           }}
           max={4}
           step={0.5}
-          hintMax="4px heavy"
+          hintMax={`4px ${t("hints.heavy")}`}
         />
         <BorderStyleRow tokenKey="avatarBorderStyle" />
       </Section>
@@ -142,7 +142,7 @@ export function AvatarModule() {
           step={1}
           value={fallbackFontPx}
           onChange={(v) => setTokens({ avatarFallbackFontSize: `${v}px` })}
-          hint={["9px small", "24px large"]}
+          hint={[`9px ${t("hints.small")}`, `24px ${t("hints.large")}`]}
           onReset={() => resetColor(["avatarFallbackFontSize"])}
         />
       </Section>
@@ -156,7 +156,7 @@ export function AvatarModule() {
           step={1}
           value={groupPx}
           onChange={(v) => setTokens({ avatarGroupSpacing: `-${v}px` })}
-          hint={["0 no overlap", "20px tight stack"]}
+          hint={[`0 ${t("hints.noOverlap")}`, `20px ${t("hints.tightStack")}`]}
           onReset={() => resetColor(["avatarGroupSpacing"])}
         />
       </Section>

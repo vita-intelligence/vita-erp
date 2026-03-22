@@ -33,7 +33,7 @@ export function DialogControls() {
           step={1}
           value={radiusPx}
           onChange={(v) => setTokens({ alertDialogRadius: `${v}px` })}
-          hint={["0 sharp", "24px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `24px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["alertDialogRadius"])}
         />
       </Section>
@@ -46,7 +46,7 @@ export function DialogControls() {
           step={1}
           value={pxX}
           onChange={(v) => setTokens({ alertDialogPaddingX: `${v}px` })}
-          hint={["12px tight", "40px spacious"]}
+          hint={[`12px ${t("hints.tight")}`, `40px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["alertDialogPaddingX"])}
         />
         <SliderRow
@@ -56,7 +56,7 @@ export function DialogControls() {
           step={1}
           value={pxY}
           onChange={(v) => setTokens({ alertDialogPaddingY: `${v}px` })}
-          hint={["12px compact", "32px spacious"]}
+          hint={[`12px ${t("hints.compact")}`, `32px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["alertDialogPaddingY"])}
         />
       </Section>
@@ -76,7 +76,7 @@ export function DialogControls() {
           onChange={(v) =>
             setTokens({ alertDialogBackdropOpacity: (v / 100).toFixed(2) })
           }
-          hint={["0% transparent", "100% full"]}
+          hint={[`0% ${t("hints.transparent")}`, `100% ${t("hints.full")}`]}
           onReset={() => resetColor(["alertDialogBackdropOpacity"])}
         />
         <SliderRow
@@ -86,7 +86,7 @@ export function DialogControls() {
           step={1}
           value={blurPx}
           onChange={(v) => setTokens({ alertDialogBackdropBlur: `${v}px` })}
-          hint={["0 none", "20px glass"]}
+          hint={[`0 ${t("hints.none")}`, `20px ${t("hints.glass")}`]}
           onReset={() => resetColor(["alertDialogBackdropBlur"])}
         />
       </Section>

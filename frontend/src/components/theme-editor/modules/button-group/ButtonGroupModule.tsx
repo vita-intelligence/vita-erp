@@ -38,7 +38,7 @@ export function ButtonGroupModule() {
           step={1}
           value={gapPx}
           onChange={(v) => setTokens({ buttonGroupGap: `${v}px` })}
-          hint={["0 connected", "8px separated"]}
+          hint={[`0 ${t("hints.connected")}`, `8px ${t("hints.separated")}`]}
           onReset={() => resetColor(["buttonGroupGap"])}
         />
       </Section>
@@ -54,7 +54,7 @@ export function ButtonGroupModule() {
           }}
           max={3}
           step={0.5}
-          hintMax="3px heavy"
+          hintMax={`3px ${t("hints.heavy")}`}
         />
         <BorderStyleRow tokenKey="buttonGroupBorderStyle" />
       </Section>

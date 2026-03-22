@@ -30,25 +30,20 @@ import { Preview } from "./Preview";
 
 // ── Hover option labels ─────────────────────────────────────────────────────
 
-const HOVER_OPTIONS: { label: string; value: HoverType }[] = [
-  { label: "None", value: "none" },
-  // 2D
-  { label: "↑ Lift", value: "lift" },
-  { label: "↓ Sink", value: "sink" },
-  { label: "⊕ Scale", value: "scale" },
-  { label: "↑⊕ Lift+Scale", value: "lift-scale" },
-  // Rotation
-  { label: "↻ Tilt Z", value: "tilt-z" },
-  // Filter
-  { label: "✦ Glow", value: "glow" },
-  { label: "☀ Brightness", value: "brightness" },
-  // 3D
-  { label: "⟳ Tilt fwd", value: "tilt-forward" },
-  { label: "⟳ Tilt side", value: "tilt-side" },
-  { label: "⟳ Tilt 3D", value: "tilt-3d" },
-  { label: "⟳ Flip peek", value: "flip-peek" },
-  // Combined
-  { label: "↑⟳ Lift+Tilt", value: "lift-tilt" },
+const HOVER_OPTIONS: { labelKey: string; icon: string; value: HoverType }[] = [
+  { labelKey: "hover3d.none", icon: "", value: "none" },
+  { labelKey: "hover3d.lift", icon: "↑", value: "lift" },
+  { labelKey: "labels.sink", icon: "↓", value: "sink" },
+  { labelKey: "hover3d.scale", icon: "⊕", value: "scale" },
+  { labelKey: "hover3d.liftScale", icon: "↑⊕", value: "lift-scale" },
+  { labelKey: "labels.tilt", icon: "↻", value: "tilt-z" },
+  { labelKey: "labels.glow", icon: "✦", value: "glow" },
+  { labelKey: "labels.brightness", icon: "☀", value: "brightness" },
+  { labelKey: "hover3d.tiltForward", icon: "⟳", value: "tilt-forward" },
+  { labelKey: "hover3d.tiltSide", icon: "⟳", value: "tilt-side" },
+  { labelKey: "hover3d.tilt3d", icon: "⟳", value: "tilt-3d" },
+  { labelKey: "hover3d.flipPeek", icon: "⟳", value: "flip-peek" },
+  { labelKey: "hover3d.liftTilt", icon: "↑⟳", value: "lift-tilt" },
 ];
 
 // ── Helpers: which controls to show per hover type ──────────────────────────
@@ -248,7 +243,7 @@ export function ButtonsModule() {
           }}
           max={8}
           step={1}
-          hintMax="8px thick"
+          hintMax={`8px ${t("hints.thick")}`}
         />
         <BorderStyleRow tokenKey="btnBorderStyle" />
       </Section>
@@ -289,7 +284,7 @@ export function ButtonsModule() {
               active={hoverType === o.value}
               onClick={() => switchHoverType(o.value)}
             >
-              {o.label}
+              {o.icon ? `${o.icon} ${t(o.labelKey)}` : t(o.labelKey)}
             </Chip>
           ))}
         </Row>
@@ -305,7 +300,7 @@ export function ButtonsModule() {
               setLiftPx(v);
               applyHover(hoverType, { liftPx: v });
             }}
-            hint={["1px subtle", "8px floating"]}
+            hint={[`1px ${t("hints.subtle")}`, `8px ${t("hints.floating")}`]}
           />
         )}
 
@@ -320,7 +315,7 @@ export function ButtonsModule() {
               setSinkPx(v);
               applyHover(hoverType, { sinkPx: v });
             }}
-            hint={["1px subtle", "6px deep"]}
+            hint={[`1px ${t("hints.subtle")}`, `6px ${t("hints.deep")}`]}
           />
         )}
 
@@ -336,7 +331,7 @@ export function ButtonsModule() {
               setScaleFactor(v);
               applyHover(hoverType, { scaleFactor: v });
             }}
-            hint={["1.01 subtle", "1.10 strong"]}
+            hint={[`1.01 ${t("hints.subtle")}`, `1.10 ${t("hints.strong")}`]}
           />
         )}
 
@@ -352,7 +347,7 @@ export function ButtonsModule() {
                 setTiltDeg(v);
                 applyHover(hoverType, { tiltDeg: v });
               }}
-              hint={["1° subtle", "12° dramatic"]}
+              hint={[`1° ${t("hints.subtle")}`, `12° ${t("hints.dramatic")}`]}
             />
             <Row label={t("labels.direction")}>
               {(["left", "right"] as TiltDir[]).map((d) => (
@@ -385,7 +380,7 @@ export function ButtonsModule() {
                 setGlowBlur(v);
                 applyHover(hoverType, { glowBlur: v });
               }}
-              hint={["2px tight", "30px diffuse"]}
+              hint={[`2px ${t("hints.tight")}`, `30px ${t("hints.diffuse")}`]}
             />
             <SliderRow
               label={`${t("labels.opacity")} — ${glowOpacity}%`}
@@ -396,7 +391,7 @@ export function ButtonsModule() {
                 setGlowOpacity(v);
                 applyHover(hoverType, { glowOpacity: v });
               }}
-              hint={["10% soft", "100% vivid"]}
+              hint={[`10% ${t("hints.soft")}`, `100% ${t("hints.vivid")}`]}
             />
           </>
         )}
@@ -413,7 +408,7 @@ export function ButtonsModule() {
               setBrightnessVal(v);
               applyHover(hoverType, { brightnessVal: v });
             }}
-            hint={["0.70 darken", "1.30 lighten"]}
+            hint={[`0.70 ${t("hints.darken")}`, `1.30 ${t("hints.lighten")}`]}
           />
         )}
 
@@ -430,7 +425,10 @@ export function ButtonsModule() {
                 setHover3DRx(v);
                 applyHover(hoverType, { hover3DRx: v });
               }}
-              hint={["-30° backward", "30° forward"]}
+              hint={[
+                `-30° ${t("hints.backward")}`,
+                `30° ${t("hints.forward")}`,
+              ]}
             />
             <SliderRow
               label={`${t("hover3d.hoverY")} — ${hover3DRy}°`}
@@ -442,7 +440,7 @@ export function ButtonsModule() {
                 setHover3DRy(v);
                 applyHover(hoverType, { hover3DRy: v });
               }}
-              hint={["-30° left", "30° right"]}
+              hint={[`-30° ${t("hints.left")}`, `30° ${t("hints.right")}`]}
             />
             <SliderRow
               label={`${t("hover3d.hoverZ")} — ${hover3DRz}°`}
@@ -454,7 +452,10 @@ export function ButtonsModule() {
                 setHover3DRz(v);
                 applyHover(hoverType, { hover3DRz: v });
               }}
-              hint={["-20° counter-cw", "20° clockwise"]}
+              hint={[
+                `-20° ${t("hints.counterCw")}`,
+                `20° ${t("hints.clockwise")}`,
+              ]}
             />
           </>
         )}
@@ -467,7 +468,7 @@ export function ButtonsModule() {
           step={0.01}
           value={pressScale}
           onChange={(v) => setTokens({ btnPressScale: v.toFixed(2) })}
-          hint={["0.85 strong", "1.00 none"]}
+          hint={[`0.85 ${t("hints.strong")}`, `1.00 ${t("hints.none")}`]}
         />
 
         {/* Transition speed */}

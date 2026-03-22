@@ -50,7 +50,7 @@ export function CalendarModule() {
           step={1}
           value={Math.min(radiusPx, 24)}
           onChange={(v) => setTokens({ calendarRadius: `${v}px` })}
-          hint={["0 square", "24px rounded"]}
+          hint={[`0 ${t("hints.square")}`, `24px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["calendarRadius"])}
         />
         <Row label={t("labels.quickPresets")}>
@@ -77,7 +77,7 @@ export function CalendarModule() {
           }}
           max={3}
           step={0.5}
-          hintMax="3px heavy"
+          hintMax={`3px ${t("hints.heavy")}`}
         />
         <BorderStyleRow tokenKey="calendarBorderStyle" />
       </Section>

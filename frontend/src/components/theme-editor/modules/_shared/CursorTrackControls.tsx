@@ -82,7 +82,7 @@ export function CursorTrackControls({ keys }: CursorTrackControlsProps) {
                 [keys.intensity]: `${v}`,
               } as Partial<ThemeTokens>)
             }
-            hint={["1° subtle", "40° extreme"]}
+            hint={[`1° ${t("hints.subtle")}`, `40° ${t("hints.extreme")}`]}
           />
           <SliderRow
             label={`${t("cursorTrack.restore")} — ${restoreMs}ms`}
@@ -95,7 +95,7 @@ export function CursorTrackControls({ keys }: CursorTrackControlsProps) {
                 [keys.restore]: `${v}ms`,
               } as Partial<ThemeTokens>)
             }
-            hint={["100ms snappy", "1000ms slow"]}
+            hint={[`100ms ${t("hints.snappy")}`, `1000ms ${t("hints.slow")}`]}
           />
         </>
       )}

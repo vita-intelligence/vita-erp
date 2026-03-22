@@ -74,7 +74,7 @@ export function DatePickerModule() {
           step={1}
           value={Math.min(triggerRadius, 20)}
           onChange={(v) => setTokens({ datePickerTriggerRadius: `${v}px` })}
-          hint={["0 sharp", "20px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `20px ${t("hints.rounded")}`]}
         />
 
         <SliderRow
@@ -86,7 +86,7 @@ export function DatePickerModule() {
           onChange={(v) =>
             setTokens({ datePickerTriggerBorderWidth: `${v}px` })
           }
-          hint={["0 none", "3px heavy"]}
+          hint={[`0 ${t("hints.none")}`, `3px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["datePickerTriggerBorderWidth"])}
         />
 
@@ -101,7 +101,7 @@ export function DatePickerModule() {
           step={1}
           value={triggerPaddingX}
           onChange={(v) => setTokens({ datePickerTriggerPaddingX: `${v}px` })}
-          hint={["4px tight", "20px spacious"]}
+          hint={[`4px ${t("hints.tight")}`, `20px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["datePickerTriggerPaddingX"])}
         />
 
@@ -112,7 +112,7 @@ export function DatePickerModule() {
           step={1}
           value={triggerPaddingY}
           onChange={(v) => setTokens({ datePickerTriggerPaddingY: `${v}px` })}
-          hint={["4px compact", "14px tall"]}
+          hint={[`4px ${t("hints.compact")}`, `14px ${t("hints.tall")}`]}
           onReset={() => resetColor(["datePickerTriggerPaddingY"])}
         />
       </Section>
@@ -136,7 +136,7 @@ export function DatePickerModule() {
           step={1}
           value={popoverRadius}
           onChange={(v) => setTokens({ datePickerPopoverRadius: `${v}px` })}
-          hint={["0 sharp", "20px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `20px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["datePickerPopoverRadius"])}
         />
 
@@ -147,7 +147,7 @@ export function DatePickerModule() {
           step={2}
           value={popoverPadding}
           onChange={(v) => setTokens({ datePickerPopoverPadding: `${v}px` })}
-          hint={["4px tight", "24px spacious"]}
+          hint={[`4px ${t("hints.tight")}`, `24px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["datePickerPopoverPadding"])}
         />
       </Section>
@@ -171,7 +171,7 @@ export function DatePickerModule() {
           step={1}
           value={indicatorSize}
           onChange={(v) => setTokens({ datePickerIndicatorSize: `${v}px` })}
-          hint={["12px small", "28px large"]}
+          hint={[`12px ${t("hints.small")}`, `28px ${t("hints.large")}`]}
           onReset={() => resetColor(["datePickerIndicatorSize"])}
         />
       </Section>

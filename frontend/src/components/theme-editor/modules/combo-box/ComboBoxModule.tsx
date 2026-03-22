@@ -64,7 +64,7 @@ export function ComboBoxModule() {
           step={1}
           value={popoverRadiusPx}
           onChange={(v) => setTokens({ comboBoxPopoverRadius: `${v}px` })}
-          hint={["0 sharp", "20px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `20px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["comboBoxPopoverRadius"])}
         />
         <Row label={t("labels.quickPresets")}>
@@ -85,7 +85,7 @@ export function ComboBoxModule() {
           step={1}
           value={popoverPaddingPx}
           onChange={(v) => setTokens({ comboBoxPopoverPadding: `${v}px` })}
-          hint={["2px tight", "20px spacious"]}
+          hint={[`2px ${t("hints.tight")}`, `20px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["comboBoxPopoverPadding"])}
         />
         <SliderRow
@@ -95,7 +95,7 @@ export function ComboBoxModule() {
           step={0.5}
           value={popoverBorderWidthPx}
           onChange={(v) => setTokens({ comboBoxPopoverBorderWidth: `${v}px` })}
-          hint={["0 none", "3px heavy"]}
+          hint={[`0 ${t("hints.none")}`, `3px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["comboBoxPopoverBorderWidth"])}
         />
         <BorderStyleRow tokenKey="comboBoxPopoverBorderStyle" />
@@ -120,7 +120,7 @@ export function ComboBoxModule() {
           step={1}
           value={triggerRadiusPx}
           onChange={(v) => setTokens({ comboBoxTriggerRadius: `${v}px` })}
-          hint={["0 sharp", "16px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `16px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["comboBoxTriggerRadius"])}
         />
         <Row label={t("labels.quickPresets")}>
@@ -141,7 +141,7 @@ export function ComboBoxModule() {
           step={0.5}
           value={triggerBorderWidthPx}
           onChange={(v) => setTokens({ comboBoxTriggerBorderWidth: `${v}px` })}
-          hint={["0 none", "3px heavy"]}
+          hint={[`0 ${t("hints.none")}`, `3px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["comboBoxTriggerBorderWidth"])}
         />
       </Section>
@@ -155,7 +155,7 @@ export function ComboBoxModule() {
           step={1}
           value={itemPxX}
           onChange={(v) => setTokens({ comboBoxItemPaddingX: `${v}px` })}
-          hint={["4px tight", "20px spacious"]}
+          hint={[`4px ${t("hints.tight")}`, `20px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["comboBoxItemPaddingX"])}
         />
         <SliderRow
@@ -165,7 +165,7 @@ export function ComboBoxModule() {
           step={1}
           value={itemPxY}
           onChange={(v) => setTokens({ comboBoxItemPaddingY: `${v}px` })}
-          hint={["4px compact", "14px tall"]}
+          hint={[`4px ${t("hints.compact")}`, `14px ${t("hints.tall")}`]}
           onReset={() => resetColor(["comboBoxItemPaddingY"])}
         />
         <SliderRow
@@ -175,7 +175,7 @@ export function ComboBoxModule() {
           step={0.5}
           value={itemFontPx}
           onChange={(v) => setTokens({ comboBoxItemFontSize: `${v}px` })}
-          hint={["10px small", "18px large"]}
+          hint={[`10px ${t("hints.small")}`, `18px ${t("hints.large")}`]}
           onReset={() => resetColor(["comboBoxItemFontSize"])}
         />
         <SliderRow
@@ -185,7 +185,7 @@ export function ComboBoxModule() {
           step={1}
           value={itemRadiusPx}
           onChange={(v) => setTokens({ comboBoxItemRadius: `${v}px` })}
-          hint={["0 sharp", "12px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `12px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["comboBoxItemRadius"])}
         />
       </Section>

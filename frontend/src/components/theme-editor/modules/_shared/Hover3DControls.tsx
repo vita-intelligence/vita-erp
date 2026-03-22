@@ -244,7 +244,7 @@ export function Hover3DControls({ keys }: Hover3DControlsProps) {
               [keys.hoverTranslateY]: `-${v}px`,
             } as Partial<ThemeTokens>)
           }
-          hint={["1px subtle", "12px floating"]}
+          hint={[`1px ${t("hints.subtle")}`, `12px ${t("hints.floating")}`]}
         />
       )}
 
@@ -261,7 +261,7 @@ export function Hover3DControls({ keys }: Hover3DControlsProps) {
               [keys.hoverScale]: v.toFixed(2),
             } as Partial<ThemeTokens>)
           }
-          hint={["1.01 subtle", "1.15 strong"]}
+          hint={[`1.01 ${t("hints.subtle")}`, `1.15 ${t("hints.strong")}`]}
         />
       )}
 
@@ -279,7 +279,7 @@ export function Hover3DControls({ keys }: Hover3DControlsProps) {
                 [keys.hoverRotateX]: `${v}deg`,
               } as Partial<ThemeTokens>)
             }
-            hint={["-30° backward", "30° forward"]}
+            hint={[`-30° ${t("hints.backward")}`, `30° ${t("hints.forward")}`]}
           />
           <SliderRow
             label={`${t("hover3d.hoverY")} — ${hoverRy}°`}
@@ -292,7 +292,7 @@ export function Hover3DControls({ keys }: Hover3DControlsProps) {
                 [keys.hoverRotateY]: `${v}deg`,
               } as Partial<ThemeTokens>)
             }
-            hint={["-30° left", "30° right"]}
+            hint={[`-30° ${t("hints.left")}`, `30° ${t("hints.right")}`]}
           />
           <SliderRow
             label={`${t("hover3d.hoverZ")} — ${hoverRz}°`}
@@ -305,7 +305,10 @@ export function Hover3DControls({ keys }: Hover3DControlsProps) {
                 [keys.hoverRotateZ]: `${v}deg`,
               } as Partial<ThemeTokens>)
             }
-            hint={["-20° counter-cw", "20° clockwise"]}
+            hint={[
+              `-20° ${t("hints.counterCw")}`,
+              `20° ${t("hints.clockwise")}`,
+            ]}
           />
         </>
       )}

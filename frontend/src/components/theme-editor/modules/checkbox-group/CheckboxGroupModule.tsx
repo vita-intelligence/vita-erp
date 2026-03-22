@@ -78,7 +78,7 @@ export function CheckboxGroupModule() {
           step={1}
           value={gapPx}
           onChange={(v) => setTokens({ checkboxGroupGap: `${v}px` })}
-          hint={["2px dense", "28px airy"]}
+          hint={[`2px ${t("hints.dense")}`, `28px ${t("hints.airy")}`]}
         />
 
         <SliderRow
@@ -88,7 +88,7 @@ export function CheckboxGroupModule() {
           step={2}
           value={paddingX}
           onChange={(v) => setTokens({ checkboxGroupPaddingX: `${v}px` })}
-          hint={["0 flush", "24px padded"]}
+          hint={[`0 ${t("hints.flush")}`, `24px ${t("hints.padded")}`]}
           onReset={() => resetColor(["checkboxGroupPaddingX"])}
         />
 
@@ -99,7 +99,7 @@ export function CheckboxGroupModule() {
           step={2}
           value={paddingY}
           onChange={(v) => setTokens({ checkboxGroupPaddingY: `${v}px` })}
-          hint={["0 flush", "24px padded"]}
+          hint={[`0 ${t("hints.flush")}`, `24px ${t("hints.padded")}`]}
           onReset={() => resetColor(["checkboxGroupPaddingY"])}
         />
       </Section>
@@ -129,7 +129,7 @@ export function CheckboxGroupModule() {
             step={1}
             value={radiusPx}
             onChange={(v) => setTokens({ checkboxGroupRadius: `${v}px` })}
-            hint={["0 sharp", "20px rounded"]}
+            hint={[`0 ${t("hints.sharp")}`, `20px ${t("hints.rounded")}`]}
           />
         )}
 
@@ -140,7 +140,7 @@ export function CheckboxGroupModule() {
           step={0.5}
           value={borderW}
           onChange={(v) => setTokens({ checkboxGroupBorderWidth: `${v}px` })}
-          hint={["0 none", "3px heavy"]}
+          hint={[`0 ${t("hints.none")}`, `3px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["checkboxGroupBorderWidth"])}
         />
 
@@ -166,7 +166,7 @@ export function CheckboxGroupModule() {
           step={1}
           value={labelFontPx}
           onChange={(v) => setTokens({ checkboxGroupLabelFontSize: `${v}px` })}
-          hint={["10px small", "20px large"]}
+          hint={[`10px ${t("hints.small")}`, `20px ${t("hints.large")}`]}
           onReset={() => resetColor(["checkboxGroupLabelFontSize"])}
         />
         <FontWeightRow
@@ -180,7 +180,7 @@ export function CheckboxGroupModule() {
           step={1}
           value={labelGapPx}
           onChange={(v) => setTokens({ checkboxGroupLabelGap: `${v}px` })}
-          hint={["2px tight", "16px spaced"]}
+          hint={[`2px ${t("hints.tight")}`, `16px ${t("hints.spaced")}`]}
           onReset={() => resetColor(["checkboxGroupLabelGap"])}
         />
       </Section>

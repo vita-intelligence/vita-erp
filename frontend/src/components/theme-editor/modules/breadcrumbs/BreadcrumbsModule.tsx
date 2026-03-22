@@ -55,7 +55,7 @@ export function BreadcrumbsModule() {
           step={1}
           value={fontSizePx}
           onChange={(v) => setTokens({ breadcrumbsFontSize: `${v}px` })}
-          hint={["11px compact", "18px large"]}
+          hint={[`11px ${t("hints.compact")}`, `18px ${t("hints.large")}`]}
           onReset={() => resetColor(["breadcrumbsFontSize"])}
         />
         <FontWeightRow
@@ -132,7 +132,7 @@ export function BreadcrumbsModule() {
           step={1}
           value={itemPxX}
           onChange={(v) => setTokens({ breadcrumbsItemPaddingX: `${v}px` })}
-          hint={["0 plain text", "16px tag-style"]}
+          hint={[`0 ${t("hints.plainText")}`, `16px ${t("hints.tagStyle")}`]}
           onReset={() => resetColor(["breadcrumbsItemPaddingX"])}
         />
         <SliderRow
@@ -142,7 +142,7 @@ export function BreadcrumbsModule() {
           step={1}
           value={itemPxY}
           onChange={(v) => setTokens({ breadcrumbsItemPaddingY: `${v}px` })}
-          hint={["0 inline", "8px padded"]}
+          hint={[`0 ${t("hints.inline")}`, `8px ${t("hints.padded")}`]}
           onReset={() => resetColor(["breadcrumbsItemPaddingY"])}
         />
         <SliderRow
@@ -152,7 +152,7 @@ export function BreadcrumbsModule() {
           step={1}
           value={Math.min(itemRadiusPx, 20)}
           onChange={(v) => setTokens({ breadcrumbsItemRadius: `${v}px` })}
-          hint={["0 sharp", "20px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `20px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["breadcrumbsItemRadius"])}
         />
         <Row label={t("labels.quickPresets")}>
@@ -177,7 +177,7 @@ export function BreadcrumbsModule() {
           step={0.5}
           value={itemBorderPx}
           onChange={(v) => setTokens({ breadcrumbsItemBorderWidth: `${v}px` })}
-          hint={["0 none", "3px heavy"]}
+          hint={[`0 ${t("hints.none")}`, `3px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["breadcrumbsItemBorderWidth"])}
         />
         <BorderStyleRow tokenKey="breadcrumbsItemBorderStyle" />
@@ -192,7 +192,7 @@ export function BreadcrumbsModule() {
           step={1}
           value={gapPx}
           onChange={(v) => setTokens({ breadcrumbsGap: `${v}px` })}
-          hint={["2px tight", "20px spacious"]}
+          hint={[`2px ${t("hints.tight")}`, `20px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["breadcrumbsGap"])}
         />
       </Section>
@@ -228,7 +228,7 @@ export function BreadcrumbsModule() {
           step={1}
           value={separatorPx}
           onChange={(v) => setTokens({ breadcrumbsSeparatorSize: `${v}px` })}
-          hint={["10px small", "24px large"]}
+          hint={[`10px ${t("hints.small")}`, `24px ${t("hints.large")}`]}
           onReset={() => resetColor(["breadcrumbsSeparatorSize"])}
         />
         <SliderRow
@@ -238,7 +238,7 @@ export function BreadcrumbsModule() {
           step={0.05}
           value={separatorOpacity}
           onChange={(v) => setTokens({ breadcrumbsSeparatorOpacity: `${v}` })}
-          hint={["10% faint", "100% full"]}
+          hint={[`10% ${t("hints.faint")}`, `100% ${t("hints.full")}`]}
           onReset={() => resetColor(["breadcrumbsSeparatorOpacity"])}
         />
       </Section>

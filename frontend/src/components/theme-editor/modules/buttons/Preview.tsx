@@ -15,9 +15,9 @@ import { useThemeStore } from "@/stores/theme";
 
 import { useCursorTrack } from "../_shared/useCursorTrack";
 
-const SEMANTIC_BUTTONS: { label: string; vars: React.CSSProperties }[] = [
+const SEMANTIC_BUTTONS: { key: string; vars: React.CSSProperties }[] = [
   {
-    label: "Danger",
+    key: "danger",
     vars: {
       "--button-bg": "var(--vita-error)",
       "--button-fg": "var(--vita-text-on-danger)",
@@ -25,7 +25,7 @@ const SEMANTIC_BUTTONS: { label: string; vars: React.CSSProperties }[] = [
     } as React.CSSProperties,
   },
   {
-    label: "Success",
+    key: "success",
     vars: {
       "--button-bg": "var(--vita-success)",
       "--button-fg": "var(--vita-text-on-primary)",
@@ -33,7 +33,7 @@ const SEMANTIC_BUTTONS: { label: string; vars: React.CSSProperties }[] = [
     } as React.CSSProperties,
   },
   {
-    label: "Warning",
+    key: "warning",
     vars: {
       "--button-bg": "var(--vita-warning)",
       "--button-fg": "var(--vita-text-on-warning)",
@@ -41,7 +41,7 @@ const SEMANTIC_BUTTONS: { label: string; vars: React.CSSProperties }[] = [
     } as React.CSSProperties,
   },
   {
-    label: "Info",
+    key: "info",
     vars: {
       "--button-bg": "var(--vita-info)",
       "--button-fg": "var(--vita-text-on-primary)",
@@ -78,22 +78,22 @@ export function Preview() {
         <p className="text-xs text-vita-text-muted">{t("preview.variants")}</p>
         <div className="flex flex-wrap gap-2">
           <Button variant="primary" {...trackProps}>
-            Primary
+            {t("preview.buttons.primary")}
           </Button>
           <Button variant="secondary" {...trackProps}>
-            Secondary
+            {t("preview.buttons.secondary")}
           </Button>
           <Button variant="outline" {...trackProps}>
-            Outline
+            {t("preview.buttons.outline")}
           </Button>
           <Button variant="ghost" {...trackProps}>
-            Ghost
+            {t("preview.buttons.ghost")}
           </Button>
           <Button variant="tertiary" {...trackProps}>
-            Tertiary
+            {t("preview.buttons.tertiary")}
           </Button>
           <Button variant="danger-soft" {...trackProps}>
-            Danger soft
+            {t("preview.buttons.dangerSoft")}
           </Button>
         </div>
       </div>
@@ -103,13 +103,13 @@ export function Preview() {
           {t("preview.semanticColors")}
         </p>
         <div className="flex flex-wrap gap-2">
-          {SEMANTIC_BUTTONS.map(({ label, vars }) => (
-            <Button key={label} variant="primary" style={vars} {...trackProps}>
-              {label}
+          {SEMANTIC_BUTTONS.map(({ key, vars }) => (
+            <Button key={key} variant="primary" style={vars} {...trackProps}>
+              {t(`preview.buttons.${key}`)}
             </Button>
           ))}
           <Button variant="danger" {...trackProps}>
-            Danger solid
+            {t("preview.buttons.dangerSolid")}
           </Button>
         </div>
       </div>
@@ -120,20 +120,20 @@ export function Preview() {
         </p>
         <div className="flex flex-wrap items-center gap-2">
           <Button variant="primary" size="sm" {...trackProps}>
-            Small
+            {t("preview.buttons.small")}
           </Button>
           <Button variant="primary" size="md" {...trackProps}>
-            Medium
+            {t("preview.buttons.medium")}
           </Button>
           <Button variant="primary" size="lg" {...trackProps}>
-            Large
+            {t("preview.buttons.large")}
           </Button>
           <Button variant="primary" isDisabled>
-            Disabled
+            {t("preview.buttons.disabled")}
           </Button>
           <Button variant="outline" {...trackProps}>
             <Plus size={14} />
-            With icon
+            {t("preview.buttons.withIcon")}
           </Button>
         </div>
       </div>

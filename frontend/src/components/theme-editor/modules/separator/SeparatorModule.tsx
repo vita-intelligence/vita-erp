@@ -42,7 +42,7 @@ export function SeparatorModule() {
           step={1}
           value={thicknessPx}
           onChange={(v) => setTokens({ separatorThickness: `${v}px` })}
-          hint={["1px thin", "6px heavy"]}
+          hint={[`1px ${t("hints.thin")}`, `6px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["separatorThickness"])}
         />
       </Section>
@@ -76,7 +76,7 @@ export function SeparatorModule() {
             step={1}
             value={radiusPx}
             onChange={(v) => setTokens({ separatorRadius: `${v}px` })}
-            hint={["0 sharp", "6px round"]}
+            hint={[`0 ${t("hints.sharp")}`, `6px ${t("hints.round")}`]}
           />
         )}
       </Section>

@@ -53,7 +53,7 @@ export function AlertControls() {
           step={1}
           value={radiusPx}
           onChange={(v) => setTokens({ alertRadius: `${v}px` })}
-          hint={["0 sharp", "24px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `24px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["alertRadius"])}
         />
         <Row label="Quick presets">
@@ -77,7 +77,7 @@ export function AlertControls() {
           step={0.5}
           value={borderPx}
           onChange={(v) => setTokens({ alertBorderWidth: `${v}px` })}
-          hint={["0 none", "4px heavy"]}
+          hint={[`0 ${t("hints.none")}`, `4px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["alertBorderWidth"])}
         />
         <BorderStyleRow tokenKey="alertBorderStyle" />
@@ -91,7 +91,7 @@ export function AlertControls() {
           step={1}
           value={pxX}
           onChange={(v) => setTokens({ alertPaddingX: `${v}px` })}
-          hint={["8px tight", "32px spacious"]}
+          hint={[`8px ${t("hints.tight")}`, `32px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["alertPaddingX"])}
         />
         <SliderRow
@@ -101,7 +101,7 @@ export function AlertControls() {
           step={1}
           value={pxY}
           onChange={(v) => setTokens({ alertPaddingY: `${v}px` })}
-          hint={["6px compact", "24px tall"]}
+          hint={[`6px ${t("hints.compact")}`, `24px ${t("hints.tall")}`]}
           onReset={() => resetColor(["alertPaddingY"])}
         />
       </Section>
@@ -118,7 +118,7 @@ export function AlertControls() {
           step={0.5}
           value={titlePx}
           onChange={(v) => setTokens({ alertTitleFontSize: `${v}px` })}
-          hint={["11px small", "20px large"]}
+          hint={[`11px ${t("hints.small")}`, `20px ${t("hints.large")}`]}
           onReset={() => resetColor(["alertTitleFontSize"])}
         />
         <SliderRow
@@ -128,7 +128,7 @@ export function AlertControls() {
           step={0.5}
           value={descPx}
           onChange={(v) => setTokens({ alertDescriptionFontSize: `${v}px` })}
-          hint={["10px small", "16px large"]}
+          hint={[`10px ${t("hints.small")}`, `16px ${t("hints.large")}`]}
           onReset={() => resetColor(["alertDescriptionFontSize"])}
         />
       </Section>
@@ -141,7 +141,7 @@ export function AlertControls() {
           step={1}
           value={iconPx}
           onChange={(v) => setTokens({ alertIconSize: `${v}px` })}
-          hint={["12px small", "32px large"]}
+          hint={[`12px ${t("hints.small")}`, `32px ${t("hints.large")}`]}
           onReset={() => resetColor(["alertIconSize"])}
         />
       </Section>

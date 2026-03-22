@@ -91,7 +91,7 @@ export function ColorPickerModule() {
           step={1}
           value={popoverRadius}
           onChange={(v) => setTokens({ colorPickerPopoverRadius: `${v}px` })}
-          hint={["0 sharp", "24px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `24px ${t("hints.rounded")}`]}
         />
 
         <SliderRow
@@ -101,7 +101,7 @@ export function ColorPickerModule() {
           step={2}
           value={popoverPadding}
           onChange={(v) => setTokens({ colorPickerPopoverPadding: `${v}px` })}
-          hint={["4px tight", "32px spacious"]}
+          hint={[`4px ${t("hints.tight")}`, `32px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["colorPickerPopoverPadding"])}
         />
 
@@ -114,7 +114,7 @@ export function ColorPickerModule() {
           onChange={(v) =>
             setTokens({ colorPickerPopoverBorderWidth: `${v}px` })
           }
-          hint={["0 none", "3px heavy"]}
+          hint={[`0 ${t("hints.none")}`, `3px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["colorPickerPopoverBorderWidth"])}
         />
 
@@ -142,7 +142,7 @@ export function ColorPickerModule() {
           step={1}
           value={areaRadius}
           onChange={(v) => setTokens({ colorPickerAreaRadius: `${v}px` })}
-          hint={["0 sharp", "20px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `20px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["colorPickerAreaRadius"])}
         />
       </Section>
@@ -156,7 +156,7 @@ export function ColorPickerModule() {
           step={1}
           value={sliderHeight}
           onChange={(v) => setTokens({ colorPickerSliderHeight: `${v}px` })}
-          hint={["6px thin", "24px thick"]}
+          hint={[`6px ${t("hints.thin")}`, `24px ${t("hints.thick")}`]}
           onReset={() => resetColor(["colorPickerSliderHeight"])}
         />
 
@@ -167,7 +167,7 @@ export function ColorPickerModule() {
           step={1}
           value={Math.min(sliderRadius, 12)}
           onChange={(v) => setTokens({ colorPickerSliderRadius: `${v}px` })}
-          hint={["0 sharp", "12px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `12px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["colorPickerSliderRadius"])}
         />
 
@@ -197,7 +197,7 @@ export function ColorPickerModule() {
           step={1}
           value={thumbSize}
           onChange={(v) => setTokens({ colorPickerThumbSize: `${v}px` })}
-          hint={["12px small", "28px large"]}
+          hint={[`12px ${t("hints.small")}`, `28px ${t("hints.large")}`]}
           onReset={() => resetColor(["colorPickerThumbSize"])}
         />
 
@@ -208,7 +208,7 @@ export function ColorPickerModule() {
           step={0.5}
           value={thumbBorder}
           onChange={(v) => setTokens({ colorPickerThumbBorderWidth: `${v}px` })}
-          hint={["1px thin", "4px heavy"]}
+          hint={[`1px ${t("hints.thin")}`, `4px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["colorPickerThumbBorderWidth"])}
         />
       </Section>
@@ -237,7 +237,7 @@ export function ColorPickerModule() {
           step={2}
           value={swatchSize}
           onChange={(v) => setTokens({ colorPickerSwatchSize: `${v}px` })}
-          hint={["16px tiny", "48px large"]}
+          hint={[`16px ${t("hints.tiny")}`, `48px ${t("hints.large")}`]}
         />
 
         <Row
@@ -266,7 +266,7 @@ export function ColorPickerModule() {
           step={1}
           value={swatchGap}
           onChange={(v) => setTokens({ colorPickerSwatchGap: `${v}px` })}
-          hint={["2px tight", "14px spaced"]}
+          hint={[`2px ${t("hints.tight")}`, `14px ${t("hints.spaced")}`]}
           onReset={() => resetColor(["colorPickerSwatchGap"])}
         />
 
@@ -279,7 +279,7 @@ export function ColorPickerModule() {
           onChange={(v) =>
             setTokens({ colorPickerSwatchBorderWidth: `${v}px` })
           }
-          hint={["0 none", "4px heavy"]}
+          hint={[`0 ${t("hints.none")}`, `4px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["colorPickerSwatchBorderWidth"])}
         />
       </Section>

@@ -22,20 +22,41 @@ import {
 
 type LabelPlacement = "above" | "left" | "inside";
 
-const FIELDS: FieldData[] = [
-  { id: "order-id", label: "Order ID", value: "ORD-00842", mono: true },
-  { id: "product", label: "Product", value: "Steel Frame A-14" },
-  { id: "quantity", label: "Quantity", value: "3,891", mono: true },
-  { id: "notes", label: "Notes", value: "", placeholder: "Add a note…" },
-  {
-    id: "date",
-    label: "Due date",
-    value: "2026-13-45",
-    error: true,
-    errorMsg: "Invalid date format",
-    mono: true,
-  },
-];
+function buildFields(t: ReturnType<typeof useTranslations>): FieldData[] {
+  return [
+    {
+      id: "order-id",
+      label: t("preview.inputs.orderId"),
+      value: "ORD-00842",
+      mono: true,
+    },
+    {
+      id: "product",
+      label: t("preview.inputs.product"),
+      value: "Steel Frame A-14",
+    },
+    {
+      id: "quantity",
+      label: t("preview.inputs.quantity"),
+      value: "3,891",
+      mono: true,
+    },
+    {
+      id: "notes",
+      label: t("preview.inputs.notes"),
+      value: "",
+      placeholder: t("preview.inputs.notesPlaceholder"),
+    },
+    {
+      id: "date",
+      label: t("preview.inputs.dueDate"),
+      value: "2026-13-45",
+      error: true,
+      errorMsg: t("preview.inputs.invalidDate"),
+      mono: true,
+    },
+  ];
+}
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
@@ -44,6 +65,7 @@ export function Preview() {
   const { tokens } = useThemeStore();
   const [placement, setPlacement] = useState<LabelPlacement>("above");
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const fields = buildFields(t);
 
   const wrapperBase = buildWrapperBase(tokens);
   const inputStyle = buildInputStyle(tokens);
@@ -69,7 +91,7 @@ export function Preview() {
               active={placement === p}
               onClick={() => setPlacement(p)}
             >
-              {p}
+              {t(`preview.inputs.${p}`)}
             </Chip>
           ))}
         </div>
@@ -112,7 +134,7 @@ export function Preview() {
               fontFamily: "var(--vita-font-heading)",
             }}
           >
-            New Production Order
+            {t("preview.inputs.formTitle")}
           </span>
           <span
             style={{ fontSize: "0.6875rem", color: "var(--vita-text-muted)" }}
@@ -123,7 +145,7 @@ export function Preview() {
 
         {/* Fields */}
         <div style={{ padding: "0.75rem 0.875rem" }} className="space-y-2.5">
-          {FIELDS.map((f) => (
+          {fields.map((f) => (
             <FieldRenderer
               key={f.id}
               field={f}
@@ -149,9 +171,12 @@ export function Preview() {
             gap: "0.375rem",
           }}
         >
-          {["Cancel", "Create Order"].map((label, i) => (
+          {[
+            { key: "cancel", primary: false },
+            { key: "createOrder", primary: true },
+          ].map(({ key, primary }) => (
             <button
-              key={label}
+              key={key}
               type="button"
               style={{
                 borderRadius: "var(--vita-btn-radius)",
@@ -162,17 +187,18 @@ export function Preview() {
                 borderStyle: "solid",
                 borderWidth: "1px",
                 cursor: "default",
-                background:
-                  i === 1 ? "var(--vita-primary)" : "var(--vita-surface)",
-                color:
-                  i === 1
-                    ? "var(--vita-text-on-primary)"
-                    : "var(--vita-text-secondary)",
-                borderColor:
-                  i === 1 ? "var(--vita-primary)" : "var(--vita-neutral-200)",
+                background: primary
+                  ? "var(--vita-primary)"
+                  : "var(--vita-surface)",
+                color: primary
+                  ? "var(--vita-text-on-primary)"
+                  : "var(--vita-text-secondary)",
+                borderColor: primary
+                  ? "var(--vita-primary)"
+                  : "var(--vita-neutral-200)",
               }}
             >
-              {label}
+              {t(`preview.inputs.${key}`)}
             </button>
           ))}
         </div>

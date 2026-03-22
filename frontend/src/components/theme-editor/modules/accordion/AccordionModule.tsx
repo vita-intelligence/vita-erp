@@ -64,7 +64,7 @@ export function AccordionModule() {
           step={1}
           value={radiusPx}
           onChange={(v) => setTokens({ accordionRadius: `${v}px` })}
-          hint={["0 sharp", "24px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `24px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["accordionRadius"])}
         />
         <Row label="Quick presets">
@@ -89,7 +89,7 @@ export function AccordionModule() {
           step={0.5}
           value={borderWidthPx}
           onChange={(v) => setTokens({ accordionBorderWidth: `${v}px` })}
-          hint={["0 none", "4px heavy"]}
+          hint={[`0 ${t("hints.none")}`, `4px ${t("hints.heavy")}`]}
           onReset={() => resetColor(["accordionBorderWidth"])}
         />
         <BorderStyleRow tokenKey="accordionBorderStyle" />
@@ -104,7 +104,7 @@ export function AccordionModule() {
           step={0.5}
           value={separatorPx}
           onChange={(v) => setTokens({ accordionSeparatorHeight: `${v}px` })}
-          hint={["0 hidden", "4px thick"]}
+          hint={[`0 ${t("hints.hidden")}`, `4px ${t("hints.thick")}`]}
           onReset={() => resetColor(["accordionSeparatorHeight"])}
         />
       </Section>
@@ -118,7 +118,7 @@ export function AccordionModule() {
           step={1}
           value={triggerPxX}
           onChange={(v) => setTokens({ accordionTriggerPaddingX: `${v}px` })}
-          hint={["4px tight", "32px spacious"]}
+          hint={[`4px ${t("hints.tight")}`, `32px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["accordionTriggerPaddingX"])}
         />
         <SliderRow
@@ -128,7 +128,7 @@ export function AccordionModule() {
           step={1}
           value={triggerPxY}
           onChange={(v) => setTokens({ accordionTriggerPaddingY: `${v}px` })}
-          hint={["4px compact", "24px tall"]}
+          hint={[`4px ${t("hints.compact")}`, `24px ${t("hints.tall")}`]}
           onReset={() => resetColor(["accordionTriggerPaddingY"])}
         />
         <SliderRow
@@ -138,7 +138,7 @@ export function AccordionModule() {
           step={1}
           value={contentPxX}
           onChange={(v) => setTokens({ accordionContentPaddingX: `${v}px` })}
-          hint={["4px tight", "32px spacious"]}
+          hint={[`4px ${t("hints.tight")}`, `32px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["accordionContentPaddingX"])}
         />
         <SliderRow
@@ -148,7 +148,7 @@ export function AccordionModule() {
           step={1}
           value={contentPxY}
           onChange={(v) => setTokens({ accordionContentPaddingY: `${v}px` })}
-          hint={["0 flush", "24px spacious"]}
+          hint={[`0 ${t("hints.flush")}`, `24px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["accordionContentPaddingY"])}
         />
       </Section>
@@ -166,7 +166,7 @@ export function AccordionModule() {
           step={0.5}
           value={triggerFontPx}
           onChange={(v) => setTokens({ accordionTriggerFontSize: `${v}px` })}
-          hint={["11px small", "20px large"]}
+          hint={[`11px ${t("hints.small")}`, `20px ${t("hints.large")}`]}
           onReset={() => resetColor(["accordionTriggerFontSize"])}
         />
       </Section>

@@ -72,7 +72,7 @@ export function TabsModule() {
           step={1}
           value={listRadiusPx}
           onChange={(v) => setTokens({ tabsListRadius: `${v}px` })}
-          hint={["0 sharp", "24px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `24px ${t("hints.rounded")}`]}
         />
 
         <SliderRow
@@ -82,7 +82,7 @@ export function TabsModule() {
           step={1}
           value={listPaddingPx}
           onChange={(v) => setTokens({ tabsListPadding: `${v}px` })}
-          hint={["0 flush", "12px spacious"]}
+          hint={[`0 ${t("hints.flush")}`, `12px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["tabsListPadding"])}
         />
 
@@ -93,7 +93,7 @@ export function TabsModule() {
           step={1}
           value={listGapPx}
           onChange={(v) => setTokens({ tabsListGap: `${v}px` })}
-          hint={["0 touching", "8px spaced"]}
+          hint={[`0 ${t("hints.touching")}`, `8px ${t("hints.spaced")}`]}
           onReset={() => resetColor(["tabsListGap"])}
         />
       </Section>
@@ -107,7 +107,7 @@ export function TabsModule() {
           step={1}
           value={tabRadiusPx}
           onChange={(v) => setTokens({ tabsTabRadius: `${v}px` })}
-          hint={["0 sharp", "16px rounded"]}
+          hint={[`0 ${t("hints.sharp")}`, `16px ${t("hints.rounded")}`]}
           onReset={() => resetColor(["tabsTabRadius"])}
         />
 
@@ -118,7 +118,7 @@ export function TabsModule() {
           step={1}
           value={tabPaddingXPx}
           onChange={(v) => setTokens({ tabsTabPaddingX: `${v}px` })}
-          hint={["4px tight", "24px wide"]}
+          hint={[`4px ${t("hints.tight")}`, `24px ${t("hints.wide")}`]}
           onReset={() => resetColor(["tabsTabPaddingX"])}
         />
 
@@ -129,7 +129,7 @@ export function TabsModule() {
           step={1}
           value={tabPaddingYPx}
           onChange={(v) => setTokens({ tabsTabPaddingY: `${v}px` })}
-          hint={["2px tight", "14px tall"]}
+          hint={[`2px ${t("hints.tight")}`, `14px ${t("hints.tall")}`]}
           onReset={() => resetColor(["tabsTabPaddingY"])}
         />
 
@@ -140,7 +140,7 @@ export function TabsModule() {
           step={1}
           value={tabFontPx}
           onChange={(v) => setTokens({ tabsTabFontSize: `${v}px` })}
-          hint={["10px small", "18px large"]}
+          hint={[`10px ${t("hints.small")}`, `18px ${t("hints.large")}`]}
           onReset={() => resetColor(["tabsTabFontSize"])}
         />
 
@@ -159,7 +159,7 @@ export function TabsModule() {
           step={1}
           value={panelPaddingPx}
           onChange={(v) => setTokens({ tabsPanelPadding: `${v}px` })}
-          hint={["0 flush", "24px spacious"]}
+          hint={[`0 ${t("hints.flush")}`, `24px ${t("hints.spacious")}`]}
           onReset={() => resetColor(["tabsPanelPadding"])}
         />
       </Section>

@@ -60,7 +60,7 @@ export function SliderModule() {
           step={1}
           value={trackHeightPx}
           onChange={(v) => setTokens({ sliderTrackHeight: `${v}px` })}
-          hint={["2px thin", "16px thick"]}
+          hint={[`2px ${t("hints.thin")}`, `16px ${t("hints.thick")}`]}
           onReset={() => resetColor(["sliderTrackHeight"])}
         />
 
@@ -93,7 +93,7 @@ export function SliderModule() {
           step={1}
           value={thumbSizePx}
           onChange={(v) => setTokens({ sliderThumbSize: `${v}px` })}
-          hint={["12px small", "32px large"]}
+          hint={[`12px ${t("hints.small")}`, `32px ${t("hints.large")}`]}
           onReset={() => resetColor(["sliderThumbSize"])}
         />
 
@@ -104,7 +104,7 @@ export function SliderModule() {
           step={1}
           value={thumbDotSizePx}
           onChange={(v) => setTokens({ sliderThumbDotSize: `${v}px` })}
-          hint={["8px small", "24px large"]}
+          hint={[`8px ${t("hints.small")}`, `24px ${t("hints.large")}`]}
           onReset={() => resetColor(["sliderThumbDotSize"])}
         />
 

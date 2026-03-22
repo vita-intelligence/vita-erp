@@ -27,7 +27,7 @@ export function SpacingModule() {
             </span>
             <button
               type="button"
-              title="Reset"
+              title={t("chrome.reset")}
               className="p-1 text-vita-text-muted hover:text-vita-text-secondary"
               onClick={() => resetColor(["spacing"])}
             >
@@ -45,9 +45,9 @@ export function SpacingModule() {
           onChange={(e) => setTokens({ spacing: `${e.target.value}rem` })}
         />
         <div className="flex justify-between text-xs text-vita-text-muted">
-          <span>Compact — 80%</span>
-          <span>Default — 100%</span>
-          <span>Comfortable — 140%</span>
+          <span>{t("preview.spacing.compact")}</span>
+          <span>{t("preview.spacing.default")}</span>
+          <span>{t("preview.spacing.comfortable")}</span>
         </div>
       </div>
 
@@ -59,15 +59,32 @@ export function SpacingModule() {
         <div className="rounded-vita-lg border border-vita-neutral-200 bg-vita-surface overflow-hidden">
           <div className="border-b border-vita-neutral-200 px-4 py-3">
             <p className="text-sm font-semibold font-vita-heading text-vita-text-primary">
-              Production Order <span className="font-vita-mono">#00842</span>
+              {t("preview.spacing.orderTitle")}{" "}
+              <span className="font-vita-mono">
+                {t("preview.spacing.orderNumber")}
+              </span>
             </p>
           </div>
           <div className="divide-y divide-vita-neutral-100">
             {[
-              { label: "Product", value: "Steel Frame A-14" },
-              { label: "Quantity", value: "3,891 units", mono: true },
-              { label: "Status", value: "In Progress" },
-              { label: "Due date", value: "Mar 28, 2026", mono: true },
+              {
+                label: t("preview.spacing.product"),
+                value: t("preview.spacing.productValue"),
+              },
+              {
+                label: t("preview.spacing.quantity"),
+                value: t("preview.spacing.quantityValue"),
+                mono: true,
+              },
+              {
+                label: t("preview.spacing.status"),
+                value: t("preview.spacing.statusValue"),
+              },
+              {
+                label: t("preview.spacing.dueDate"),
+                value: t("preview.spacing.dueDateValue"),
+                mono: true,
+              },
             ].map(({ label, value, mono }) => (
               <div
                 key={label}
@@ -84,8 +101,7 @@ export function SpacingModule() {
           </div>
         </div>
         <p className="text-xs text-vita-text-muted">
-          This card uses Tailwind spacing utilities — drag the slider to see all
-          padding and gaps scale in real time.
+          {t("preview.spacing.description")}
         </p>
       </div>
     </div>
