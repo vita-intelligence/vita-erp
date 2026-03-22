@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { FormEditor } from "@/components/form-constructor/FormEditor/FormEditor";
+import type { FormSchema } from "@/components/form-constructor/types";
 import { ThemeEditor } from "@/components/theme-editor";
 import { ButtonRoot } from "@/components/ui/button";
 import { CardContent, CardHeader, CardRoot } from "@/components/ui/card";
@@ -13,6 +15,7 @@ export default function DesignSystemPage() {
   const [editorMode, setEditorMode] = useState<"fullscreen" | "window">(
     "window",
   );
+  const [formSchema, setFormSchema] = useState<FormSchema | undefined>();
 
   const openEditor = (mode: "fullscreen" | "window") => {
     setEditorMode(mode);
@@ -127,6 +130,16 @@ export default function DesignSystemPage() {
                 </CardRoot>
               ))}
             </div>
+          </section>
+
+          <Separator />
+
+          {/* Form Constructor */}
+          <section className="space-y-3">
+            <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
+              Form Constructor
+            </p>
+            <FormEditor schema={formSchema} onChange={setFormSchema} />
           </section>
 
           <Separator />
