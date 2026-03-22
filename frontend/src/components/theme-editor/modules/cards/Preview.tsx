@@ -8,6 +8,8 @@
  * dynamically adjusts its 3D rotation.
  */
 
+import { useTranslations } from "next-intl";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Chip } from "@/components/ui/chip";
@@ -24,6 +26,7 @@ const PREVIEW_ROWS = [
 ];
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const { tokens } = useThemeStore();
 
   const trackIntensity = parseFloat(tokens.cardCursorTrack ?? "0");
@@ -37,10 +40,10 @@ export function Preview() {
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
         {trackIntensity > 0 && (
           <span className="ml-2 normal-case opacity-60">
-            — move cursor over card
+            — {t("preview.moveCursor")}
           </span>
         )}
       </p>

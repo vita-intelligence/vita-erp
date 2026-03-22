@@ -5,6 +5,7 @@
  */
 
 import { ChevronDown, Search, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { useThemeStore } from "@/stores/theme";
@@ -18,6 +19,7 @@ const ITEMS = [
 ];
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const { tokens } = useThemeStore();
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
@@ -88,7 +90,7 @@ export function Preview() {
   return (
     <div className="space-y-3 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       {/* Label */}
@@ -152,7 +154,7 @@ export function Preview() {
               justifyContent: "center",
             }}
           >
-            No results found
+            {t("preview.noResults")}
           </div>
         ) : (
           filtered.map((item) => {

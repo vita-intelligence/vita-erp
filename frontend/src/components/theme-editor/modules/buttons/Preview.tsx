@@ -8,6 +8,7 @@
  */
 
 import { Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { useThemeStore } from "@/stores/theme";
@@ -50,6 +51,7 @@ const SEMANTIC_BUTTONS: { label: string; vars: React.CSSProperties }[] = [
 ];
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const { tokens } = useThemeStore();
   const trackIntensity = parseFloat(tokens.btnCursorTrack ?? "0");
   const trackRestore = parseFloat(tokens.btnCursorTrackRestore ?? "300");
@@ -65,15 +67,15 @@ export function Preview() {
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <div className="flex items-center justify-between">
         <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-          Live preview
+          {t("preview.livePreview")}
         </p>
         <p className="text-xs text-vita-text-muted">
-          hover &amp; click to test
+          {t("preview.hoverToTest")}
         </p>
       </div>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Variants</p>
+        <p className="text-xs text-vita-text-muted">{t("preview.variants")}</p>
         <div className="flex flex-wrap gap-2">
           <Button variant="primary" {...trackProps}>
             Primary
@@ -97,7 +99,9 @@ export function Preview() {
       </div>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Semantic colors</p>
+        <p className="text-xs text-vita-text-muted">
+          {t("preview.semanticColors")}
+        </p>
         <div className="flex flex-wrap gap-2">
           {SEMANTIC_BUTTONS.map(({ label, vars }) => (
             <Button key={label} variant="primary" style={vars} {...trackProps}>
@@ -111,7 +115,9 @@ export function Preview() {
       </div>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Sizes &amp; states</p>
+        <p className="text-xs text-vita-text-muted">
+          {t("preview.sizesStates")}
+        </p>
         <div className="flex flex-wrap items-center gap-2">
           <Button variant="primary" size="sm" {...trackProps}>
             Small

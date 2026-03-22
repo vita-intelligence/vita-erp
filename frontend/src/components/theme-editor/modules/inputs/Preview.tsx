@@ -5,6 +5,7 @@
  * Demonstrates normal, focused, placeholder, and error states.
  */
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { useThemeStore } from "@/stores/theme";
@@ -39,6 +40,7 @@ const FIELDS: FieldData[] = [
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const { tokens } = useThemeStore();
   const [placement, setPlacement] = useState<LabelPlacement>("above");
   const [focusedField, setFocusedField] = useState<string | null>(null);
@@ -58,7 +60,7 @@ export function Preview() {
           className="text-xs font-medium uppercase tracking-wide"
           style={{ color: "var(--vita-text-muted)" }}
         >
-          Live preview
+          {t("preview.livePreview")}
         </p>
         <div className="flex items-center gap-1">
           {(["above", "left", "inside"] as LabelPlacement[]).map((p) => (
@@ -115,7 +117,7 @@ export function Preview() {
           <span
             style={{ fontSize: "0.6875rem", color: "var(--vita-text-muted)" }}
           >
-            Click fields to focus
+            {t("preview.clickFieldsToFocus")}
           </span>
         </div>
 

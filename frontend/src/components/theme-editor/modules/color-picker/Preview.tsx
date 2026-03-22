@@ -8,6 +8,7 @@
  * so users can see how both modes are styled.
  */
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import {
@@ -34,18 +35,19 @@ const PRESET_COLORS = [
 ];
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const [color, setColor] = useState(parseColor("hsl(210, 98%, 48%)"));
 
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       {/* ── Popover trigger — click to open ── */}
       <div className="space-y-1.5">
         <p className="text-xs text-vita-text-muted">
-          Popover — click swatch to open
+          {t("preview.popoverClick")}
         </p>
         <ColorPicker
           value={color}
@@ -84,7 +86,9 @@ export function Preview() {
 
       {/* ── Preset swatches ── */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Preset swatches</p>
+        <p className="text-xs text-vita-text-muted">
+          {t("preview.presetSwatches")}
+        </p>
         <div className="flex flex-wrap gap-[var(--vita-color-picker-swatch-gap,6px)]">
           {PRESET_COLORS.map((hex) => (
             <ColorSwatch
@@ -105,7 +109,9 @@ export function Preview() {
           paddingTop: "0.75rem",
         }}
       >
-        <p className="mb-2 text-xs text-vita-text-muted">Inline elements</p>
+        <p className="mb-2 text-xs text-vita-text-muted">
+          {t("preview.inlineElements")}
+        </p>
         <div className="space-y-2">
           <ColorSlider
             channel="hue"

@@ -8,6 +8,8 @@
  * for the informational variant. We map accordingly.
  */
 
+import { useTranslations } from "next-intl";
+
 import { Alert } from "@/components/ui/alert";
 
 const STATUS_MAP: Record<string, "success" | "warning" | "danger" | "accent"> =
@@ -43,10 +45,12 @@ const ALERTS = [
 ] as const;
 
 export function AlertPreview() {
+  const t = useTranslations("themeEditor");
+
   return (
     <div className="space-y-3 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
-        Alert preview
+        {t("preview.alertPreview")}
       </p>
       <div className="space-y-2">
         {ALERTS.map((a) => (

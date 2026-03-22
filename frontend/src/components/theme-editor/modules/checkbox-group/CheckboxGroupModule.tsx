@@ -72,7 +72,7 @@ export function CheckboxGroupModule() {
         </Row>
 
         <SliderRow
-          label={`Gap — ${gapPx}px`}
+          label={`${t("labels.gap")} — ${gapPx}px`}
           min={2}
           max={28}
           step={1}
@@ -82,7 +82,7 @@ export function CheckboxGroupModule() {
         />
 
         <SliderRow
-          label={`Padding X — ${paddingX}px`}
+          label={`${t("labels.paddingX")} — ${paddingX}px`}
           min={0}
           max={24}
           step={2}
@@ -93,7 +93,7 @@ export function CheckboxGroupModule() {
         />
 
         <SliderRow
-          label={`Padding Y — ${paddingY}px`}
+          label={`${t("labels.paddingY")} — ${paddingY}px`}
           min={0}
           max={24}
           step={2}
@@ -123,7 +123,7 @@ export function CheckboxGroupModule() {
 
         {radiusPx > 0 && (
           <SliderRow
-            label={`Radius — ${radiusPx}px`}
+            label={`${t("labels.radius")} — ${radiusPx}px`}
             min={0}
             max={20}
             step={1}
@@ -134,7 +134,7 @@ export function CheckboxGroupModule() {
         )}
 
         <SliderRow
-          label={`Border — ${borderW}px`}
+          label={`${t("labels.border")} — ${borderW}px`}
           min={0}
           max={3}
           step={0.5}
@@ -160,7 +160,7 @@ export function CheckboxGroupModule() {
       {/* ── Group label ── */}
       <Section title={t("sections.groupLabel")}>
         <SliderRow
-          label={`Font size — ${labelFontPx}px`}
+          label={`${t("labels.fontSize")} — ${labelFontPx}px`}
           min={10}
           max={20}
           step={1}
@@ -174,7 +174,7 @@ export function CheckboxGroupModule() {
           label={t("labels.weight")}
         />
         <SliderRow
-          label={`Label gap — ${labelGapPx}px`}
+          label={`${t("labels.gap")} — ${labelGapPx}px`}
           min={2}
           max={16}
           step={1}

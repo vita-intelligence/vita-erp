@@ -5,13 +5,17 @@
  * from spinner.css apply automatically.
  */
 
+import { useTranslations } from "next-intl";
+
 import { Spinner } from "@/components/ui/spinner";
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
+
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       <div className="flex items-end gap-6">
@@ -40,7 +44,7 @@ export function Preview() {
         <div className="flex items-center gap-3">
           <Spinner size="sm" />
           <span className="text-sm text-vita-text-muted">
-            Loading production data...
+            {t("preview.loading")}
           </span>
         </div>
       </div>

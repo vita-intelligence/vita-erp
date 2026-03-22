@@ -6,7 +6,9 @@
  */
 
 import { Label } from "@heroui/react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+
 import { Checkbox } from "@/components/ui/checkbox";
 
 // ── Sample items ─────────────────────────────────────────────────────────────
@@ -20,6 +22,7 @@ const ITEMS = [
 ];
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const [checked, setChecked] = useState<Set<string>>(
     new Set(["raw-materials", "quality-check"]),
   );
@@ -36,7 +39,7 @@ export function Preview() {
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       <div className="space-y-2.5">
@@ -64,7 +67,9 @@ export function Preview() {
           paddingTop: "0.75rem",
         }}
       >
-        <p className="mb-2 text-xs text-vita-text-muted">Indeterminate</p>
+        <p className="mb-2 text-xs text-vita-text-muted">
+          {t("preview.indeterminate")}
+        </p>
         <Checkbox
           isSelected={checked.size === ITEMS.length}
           isIndeterminate={checked.size > 0 && checked.size < ITEMS.length}
@@ -80,7 +85,7 @@ export function Preview() {
             <Checkbox.Indicator />
           </Checkbox.Control>
           <Checkbox.Content>
-            <Label>Select all</Label>
+            <Label>{t("preview.selectAll")}</Label>
           </Checkbox.Content>
         </Checkbox>
       </div>

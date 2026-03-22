@@ -10,6 +10,8 @@
 
 import type { LucideIcon } from "lucide-react";
 import { ArrowRight, ChevronRight, Circle, Minus, Slash } from "lucide-react";
+import { useTranslations } from "next-intl";
+
 import { Breadcrumbs, BreadcrumbsItem } from "@/components/ui/breadcrumbs";
 
 import { useThemeStore } from "@/stores/theme";
@@ -41,6 +43,7 @@ const SHORT_TRAIL = [
 // ── Component ───────────────────────────────────────────────────────────────
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const { tokens } = useThemeStore();
 
   const separatorIcon = tokens.breadcrumbsSeparatorIcon ?? "chevron-right";
@@ -72,22 +75,26 @@ export function Preview() {
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Navigation trail</p>
+        <p className="text-xs text-vita-text-muted">
+          {t("preview.navigationTrail")}
+        </p>
         {renderTrail(TRAIL)}
       </div>
 
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Short trail</p>
+        <p className="text-xs text-vita-text-muted">
+          {t("preview.shortTrail")}
+        </p>
         {renderTrail(SHORT_TRAIL)}
       </div>
 
       {/* In context */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">In context</p>
+        <p className="text-xs text-vita-text-muted">{t("preview.inContext")}</p>
         <div
           style={{
             background: "var(--vita-surface)",

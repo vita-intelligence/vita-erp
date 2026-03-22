@@ -29,10 +29,10 @@ export function BadgesModule() {
   const isPill = parseFloat(tokens.badgeRadius) >= 100;
 
   const RADIUS_PRESETS = [
-    { label: "Square", value: "0px" },
+    { label: t("presets.square"), value: "0px" },
     { label: t("presets.soft"), value: "4px" },
     { label: t("presets.rounded"), value: "8px" },
-    { label: "Large", value: "16px" },
+    { label: t("presets.large"), value: "16px" },
     { label: t("presets.pill"), value: "9999px" },
   ];
   const fontSizeRem = parseFloat(tokens.badgeFontSize ?? "0.6875");
@@ -49,7 +49,10 @@ export function BadgesModule() {
 
       {/* ── Shape ── */}
       <Section title={t("sections.shape")}>
-        <Row label="Preset" onReset={() => resetColor(["badgeRadius"])}>
+        <Row
+          label={t("labels.preset")}
+          onReset={() => resetColor(["badgeRadius"])}
+        >
           {RADIUS_PRESETS.map((p) => {
             const isActive =
               p.value === "9999px" ? isPill : tokens.badgeRadius === p.value;
@@ -67,7 +70,7 @@ export function BadgesModule() {
 
         {!isPill && (
           <SliderRow
-            label={`Radius — ${parseFloat(tokens.badgeRadius)}px`}
+            label={`${t("labels.radius")} — ${parseFloat(tokens.badgeRadius)}px`}
             min={0}
             max={32}
             step={1}
@@ -81,7 +84,7 @@ export function BadgesModule() {
       {/* ── Spacing ── */}
       <Section title={t("sections.spacing")}>
         <SliderRow
-          label={`Padding X — ${paddingXRem}rem`}
+          label={`${t("labels.paddingX")} — ${paddingXRem}rem`}
           min={0.2}
           max={1.2}
           step={0.05}
@@ -91,7 +94,7 @@ export function BadgesModule() {
           onReset={() => resetColor(["badgePaddingX"])}
         />
         <SliderRow
-          label={`Padding Y — ${paddingYRem}rem`}
+          label={`${t("labels.paddingY")} — ${paddingYRem}rem`}
           min={0.05}
           max={0.6}
           step={0.05}
@@ -123,7 +126,7 @@ export function BadgesModule() {
         <FontWeightRow tokenKey="badgeFontWeight" />
 
         <SliderRow
-          label={`Font size — ${fontSizeRem}rem`}
+          label={`${t("labels.fontSize")} — ${fontSizeRem}rem`}
           min={0.5}
           max={1}
           step={0.0625}

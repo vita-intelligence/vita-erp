@@ -9,6 +9,7 @@
  */
 
 import { CalendarDays } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { useThemeStore } from "@/stores/theme";
@@ -36,6 +37,7 @@ function getFirstDayOfWeek(year: number, month: number): number {
 // ── Preview ──────────────────────────────────────────────────────────────────
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const { tokens } = useThemeStore();
   const [selectedDate] = useState(() => new Date());
   const [isOpen, setIsOpen] = useState(true);
@@ -87,7 +89,7 @@ export function Preview() {
   return (
     <div className="space-y-3 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       {/* Label */}

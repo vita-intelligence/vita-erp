@@ -6,7 +6,9 @@
  */
 
 import { Label } from "@heroui/react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import { CheckboxGroup } from "@/components/ui/checkbox-group";
 
@@ -28,13 +30,14 @@ const PERMISSIONS = [
 ];
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const [depts, setDepts] = useState(["production", "quality"]);
   const [perms, setPerms] = useState(["read", "write"]);
 
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       <div className="space-y-5">
@@ -44,7 +47,7 @@ export function Preview() {
           onChange={setDepts}
           aria-label="Departments"
         >
-          <Label>Departments</Label>
+          <Label>{t("preview.departments")}</Label>
           {DEPARTMENTS.map((d) => (
             <Checkbox key={d.value} value={d.value}>
               <Checkbox.Control>
@@ -64,7 +67,7 @@ export function Preview() {
           aria-label="Permissions"
           className="flex-row flex-wrap"
         >
-          <Label>Permissions</Label>
+          <Label>{t("preview.permissions")}</Label>
           {PERMISSIONS.map((p) => (
             <Checkbox key={p.value} value={p.value}>
               <Checkbox.Control>

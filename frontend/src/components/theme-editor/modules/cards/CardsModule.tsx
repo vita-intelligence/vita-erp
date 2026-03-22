@@ -46,7 +46,7 @@ export function CardsModule() {
       {/* ── Shape ── */}
       <Section title={t("sections.shape")}>
         <SliderRow
-          label={`Radius — ${radiusPx}px`}
+          label={`${t("labels.radius")} — ${radiusPx}px`}
           min={0}
           max={24}
           step={1}

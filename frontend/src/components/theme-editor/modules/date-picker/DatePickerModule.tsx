@@ -68,7 +68,7 @@ export function DatePickerModule() {
         </Row>
 
         <SliderRow
-          label={`Radius — ${triggerRadius > 100 ? "pill" : `${triggerRadius}px`}`}
+          label={`${t("labels.radius")} — ${triggerRadius > 100 ? "pill" : `${triggerRadius}px`}`}
           min={0}
           max={20}
           step={1}
@@ -78,7 +78,7 @@ export function DatePickerModule() {
         />
 
         <SliderRow
-          label={`Border — ${triggerBorderWidth}px`}
+          label={`${t("labels.border")} — ${triggerBorderWidth}px`}
           min={0}
           max={3}
           step={0.5}
@@ -95,7 +95,7 @@ export function DatePickerModule() {
         )}
 
         <SliderRow
-          label={`Padding X — ${triggerPaddingX}px`}
+          label={`${t("labels.paddingX")} — ${triggerPaddingX}px`}
           min={4}
           max={20}
           step={1}
@@ -106,7 +106,7 @@ export function DatePickerModule() {
         />
 
         <SliderRow
-          label={`Padding Y — ${triggerPaddingY}px`}
+          label={`${t("labels.paddingY")} — ${triggerPaddingY}px`}
           min={4}
           max={14}
           step={1}
@@ -130,7 +130,7 @@ export function DatePickerModule() {
       {/* ── Popover ── */}
       <Section title={t("sections.popover")}>
         <SliderRow
-          label={`Radius — ${popoverRadius}px`}
+          label={`${t("labels.radius")} — ${popoverRadius}px`}
           min={0}
           max={20}
           step={1}
@@ -141,7 +141,7 @@ export function DatePickerModule() {
         />
 
         <SliderRow
-          label={`Padding — ${popoverPadding}px`}
+          label={`${t("labels.padding")} — ${popoverPadding}px`}
           min={4}
           max={24}
           step={2}
@@ -165,7 +165,7 @@ export function DatePickerModule() {
       {/* ── Indicator ── */}
       <Section title={t("sections.indicator")}>
         <SliderRow
-          label={`Size — ${indicatorSize}px`}
+          label={`${t("labels.size")} — ${indicatorSize}px`}
           min={12}
           max={28}
           step={1}

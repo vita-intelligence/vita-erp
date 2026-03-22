@@ -49,7 +49,7 @@ export function BreadcrumbsModule() {
       {/* ── Typography ── */}
       <Section title={t("sections.typography")}>
         <SliderRow
-          label={`Font size — ${fontSizePx}px`}
+          label={`${t("labels.fontSize")} — ${fontSizePx}px`}
           min={11}
           max={18}
           step={1}
@@ -126,7 +126,7 @@ export function BreadcrumbsModule() {
       {/* ── Item shape ── */}
       <Section title={t("sections.itemShape")}>
         <SliderRow
-          label={`Padding X — ${itemPxX}px`}
+          label={`${t("labels.paddingX")} — ${itemPxX}px`}
           min={0}
           max={16}
           step={1}
@@ -136,7 +136,7 @@ export function BreadcrumbsModule() {
           onReset={() => resetColor(["breadcrumbsItemPaddingX"])}
         />
         <SliderRow
-          label={`Padding Y — ${itemPxY}px`}
+          label={`${t("labels.paddingY")} — ${itemPxY}px`}
           min={0}
           max={8}
           step={1}
@@ -146,7 +146,7 @@ export function BreadcrumbsModule() {
           onReset={() => resetColor(["breadcrumbsItemPaddingY"])}
         />
         <SliderRow
-          label={`Radius — ${itemRadiusPx}px`}
+          label={`${t("labels.radius")} — ${itemRadiusPx}px`}
           min={0}
           max={20}
           step={1}
@@ -171,7 +171,7 @@ export function BreadcrumbsModule() {
       {/* ── Item border ── */}
       <Section title={t("sections.itemBorder")}>
         <SliderRow
-          label={`Width — ${itemBorderPx}px`}
+          label={`${t("labels.width")} — ${itemBorderPx}px`}
           min={0}
           max={3}
           step={0.5}
@@ -186,7 +186,7 @@ export function BreadcrumbsModule() {
       {/* ── Spacing ── */}
       <Section title={t("sections.spacing")}>
         <SliderRow
-          label={`Gap — ${gapPx}px`}
+          label={`${t("labels.gap")} — ${gapPx}px`}
           min={2}
           max={20}
           step={1}
@@ -222,7 +222,7 @@ export function BreadcrumbsModule() {
           ))}
         </Row>
         <SliderRow
-          label={`Icon size — ${separatorPx}px`}
+          label={`${t("labels.iconSize")} — ${separatorPx}px`}
           min={10}
           max={24}
           step={1}
@@ -232,7 +232,7 @@ export function BreadcrumbsModule() {
           onReset={() => resetColor(["breadcrumbsSeparatorSize"])}
         />
         <SliderRow
-          label={`Opacity — ${Math.round(separatorOpacity * 100)}%`}
+          label={`${t("labels.opacity")} — ${Math.round(separatorOpacity * 100)}%`}
           min={0.1}
           max={1}
           step={0.05}

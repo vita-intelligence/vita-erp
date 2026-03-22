@@ -5,19 +5,25 @@
  * so CSS tokens from button-group.css and button.css apply automatically.
  */
 
+import { useTranslations } from "next-intl";
+
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
+
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       {/* View toggle */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">View toggle</p>
+        <p className="text-xs text-vita-text-muted">
+          {t("preview.viewToggle")}
+        </p>
         <div className="flex flex-wrap gap-2">
           <ButtonGroup>
             <Button variant="primary" size="sm">
@@ -35,7 +41,7 @@ export function Preview() {
 
       {/* Actions */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Actions</p>
+        <p className="text-xs text-vita-text-muted">{t("preview.actions")}</p>
         <div className="flex flex-wrap gap-2">
           <ButtonGroup>
             <Button variant="outline" size="sm">
@@ -53,7 +59,7 @@ export function Preview() {
 
       {/* In context */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">In context</p>
+        <p className="text-xs text-vita-text-muted">{t("preview.inContext")}</p>
         <div
           className="flex flex-wrap items-center justify-between gap-2 rounded-vita-md p-3"
           style={{

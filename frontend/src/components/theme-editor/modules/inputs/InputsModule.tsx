@@ -47,7 +47,7 @@ export function InputsModule() {
       {/* ── Shape ── */}
       <Section title={t("sections.shape")}>
         <SliderRow
-          label={`Radius — ${radiusPx}px`}
+          label={`${t("labels.radius")} — ${radiusPx}px`}
           min={0}
           max={20}
           step={0.5}
@@ -57,7 +57,7 @@ export function InputsModule() {
           onReset={() => resetColor(["inputRadius"])}
         />
         <SliderRow
-          label={`Padding X — ${paddingXPx}px`}
+          label={`${t("labels.paddingX")} — ${paddingXPx}px`}
           min={4}
           max={32}
           step={1}
@@ -67,7 +67,7 @@ export function InputsModule() {
           onReset={() => resetColor(["inputPaddingX"])}
         />
         <SliderRow
-          label={`Padding Y — ${paddingYPx}px`}
+          label={`${t("labels.paddingY")} — ${paddingYPx}px`}
           min={2}
           max={20}
           step={1}
@@ -102,9 +102,9 @@ export function InputsModule() {
       </Section>
 
       {/* ── Focus ring ── */}
-      <Section title="Focus ring">
+      <Section title={t("labels.focusRing")}>
         <SliderRow
-          label={`Ring width — ${focusRingPx}px`}
+          label={`${t("labels.ringWidth")} — ${focusRingPx}px`}
           min={0}
           max={6}
           step={0.5}
@@ -114,7 +114,7 @@ export function InputsModule() {
           onReset={() => resetColor(["inputFocusRingWidth"])}
         />
         <SliderRow
-          label={`Ring offset — ${focusOffsetPx}px`}
+          label={`${t("labels.ringOffset")} — ${focusOffsetPx}px`}
           min={0}
           max={6}
           step={0.5}
@@ -128,7 +128,7 @@ export function InputsModule() {
       {/* ── Typography ── */}
       <Section title={t("sections.typography")}>
         <SliderRow
-          label={`Input text — ${fontSizePx}px`}
+          label={`${t("labels.inputText")} — ${fontSizePx}px`}
           min={10}
           max={20}
           step={0.5}
@@ -138,7 +138,7 @@ export function InputsModule() {
           onReset={() => resetColor(["inputFontSize"])}
         />
         <SliderRow
-          label={`Label size — ${labelSizePx}px`}
+          label={`${t("labels.labelSize")} — ${labelSizePx}px`}
           min={9}
           max={16}
           step={0.5}
@@ -147,12 +147,18 @@ export function InputsModule() {
           hint={["9px tiny", "16px prominent"]}
           onReset={() => resetColor(["inputLabelSize"])}
         />
-        <FontWeightRow tokenKey="inputLabelWeight" label="Label weight" />
-        <Row label="Text align" onReset={() => resetColor(["inputTextAlign"])}>
+        <FontWeightRow
+          tokenKey="inputLabelWeight"
+          label={t("labels.labelWeight")}
+        />
+        <Row
+          label={t("labels.textAlign")}
+          onReset={() => resetColor(["inputTextAlign"])}
+        >
           {[
-            { label: "Left", value: "left" },
-            { label: "Center", value: "center" },
-            { label: "Right", value: "right" },
+            { label: t("labels.left"), value: "left" },
+            { label: t("labels.center"), value: "center" },
+            { label: t("labels.right"), value: "right" },
           ].map((o) => (
             <Chip
               key={o.value}
@@ -164,7 +170,7 @@ export function InputsModule() {
           ))}
         </Row>
         <SliderRow
-          label={`Placeholder — ${placeholderPct}%`}
+          label={`${t("labels.placeholder")} — ${placeholderPct}%`}
           min={10}
           max={90}
           step={5}

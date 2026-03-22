@@ -75,7 +75,7 @@ export function CheckboxModule() {
         </Row>
 
         <SliderRow
-          label={`Size — ${sizePx}px`}
+          label={`${t("labels.size")} — ${sizePx}px`}
           min={14}
           max={32}
           step={1}
@@ -106,7 +106,7 @@ export function CheckboxModule() {
 
         {radiusPx < 100 && (
           <SliderRow
-            label={`Radius — ${radiusPx}px`}
+            label={`${t("labels.radius")} — ${radiusPx}px`}
             min={0}
             max={16}
             step={1}
@@ -120,7 +120,7 @@ export function CheckboxModule() {
       {/* ── Border ── */}
       <Section title={t("sections.border")}>
         <SliderRow
-          label={`Width — ${borderPx}px`}
+          label={`${t("labels.width")} — ${borderPx}px`}
           min={1}
           max={4}
           step={0.5}
@@ -135,7 +135,7 @@ export function CheckboxModule() {
       {/* ── Indicator (checkmark) ── */}
       <Section title={t("sections.indicator")}>
         <SliderRow
-          label={`Icon size — ${indicatorPx}px`}
+          label={`${t("labels.iconSize")} — ${indicatorPx}px`}
           min={8}
           max={24}
           step={1}
@@ -145,7 +145,7 @@ export function CheckboxModule() {
           onReset={() => resetColor(["checkboxIndicatorSize"])}
         />
         <SliderRow
-          label={`Stroke — ${strokeW}`}
+          label={`${t("labels.stroke")} — ${strokeW}`}
           min={1}
           max={5}
           step={0.5}
@@ -159,7 +159,7 @@ export function CheckboxModule() {
       {/* ── Label ── */}
       <Section title={t("sections.label")}>
         <SliderRow
-          label={`Font size — ${labelFontPx}px`}
+          label={`${t("labels.fontSize")} — ${labelFontPx}px`}
           min={10}
           max={20}
           step={1}
@@ -173,7 +173,7 @@ export function CheckboxModule() {
           label={t("labels.weight")}
         />
         <SliderRow
-          label={`Gap — ${gapPx}px`}
+          label={`${t("labels.gap")} — ${gapPx}px`}
           min={4}
           max={16}
           step={1}
@@ -197,7 +197,7 @@ export function CheckboxModule() {
       {/* ── Motion ── */}
       <Section title={t("sections.motion")}>
         <SliderRow
-          label={`Check scale — ${checkedScale.toFixed(2)}×`}
+          label={`${t("labels.checkScale")} — ${checkedScale.toFixed(2)}×`}
           min={0.8}
           max={1}
           step={0.01}

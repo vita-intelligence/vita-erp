@@ -54,7 +54,7 @@ export function SliderModule() {
       {/* ── Track ── */}
       <Section title={t("sections.track")}>
         <SliderRow
-          label={`Height — ${trackHeightPx}px`}
+          label={`${t("labels.height")} — ${trackHeightPx}px`}
           min={2}
           max={16}
           step={1}
@@ -87,7 +87,7 @@ export function SliderModule() {
       {/* ── Thumb ── */}
       <Section title={t("sections.thumb")}>
         <SliderRow
-          label={`Size — ${thumbSizePx}px`}
+          label={`${t("labels.size")} — ${thumbSizePx}px`}
           min={12}
           max={32}
           step={1}
@@ -98,7 +98,7 @@ export function SliderModule() {
         />
 
         <SliderRow
-          label={`Dot size — ${thumbDotSizePx}px`}
+          label={`${t("labels.dotSize")} — ${thumbDotSizePx}px`}
           min={8}
           max={24}
           step={1}

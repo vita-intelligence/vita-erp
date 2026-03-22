@@ -85,7 +85,7 @@ export function ColorPickerModule() {
         </Row>
 
         <SliderRow
-          label={`Radius — ${popoverRadius}px`}
+          label={`${t("labels.radius")} — ${popoverRadius}px`}
           min={0}
           max={24}
           step={1}
@@ -95,7 +95,7 @@ export function ColorPickerModule() {
         />
 
         <SliderRow
-          label={`Padding — ${popoverPadding}px`}
+          label={`${t("labels.padding")} — ${popoverPadding}px`}
           min={4}
           max={32}
           step={2}
@@ -106,7 +106,7 @@ export function ColorPickerModule() {
         />
 
         <SliderRow
-          label={`Border — ${popoverBorder}px`}
+          label={`${t("labels.border")} — ${popoverBorder}px`}
           min={0}
           max={3}
           step={0.5}
@@ -136,7 +136,7 @@ export function ColorPickerModule() {
       {/* ── Color area ── */}
       <Section title={t("sections.colorArea")}>
         <SliderRow
-          label={`Radius — ${areaRadius}px`}
+          label={`${t("labels.radius")} — ${areaRadius}px`}
           min={0}
           max={20}
           step={1}
@@ -150,7 +150,7 @@ export function ColorPickerModule() {
       {/* ── Sliders ── */}
       <Section title={t("sections.sliders")}>
         <SliderRow
-          label={`Track height — ${sliderHeight}px`}
+          label={`${t("labels.trackHeight")} — ${sliderHeight}px`}
           min={6}
           max={24}
           step={1}
@@ -161,7 +161,7 @@ export function ColorPickerModule() {
         />
 
         <SliderRow
-          label={`Track radius — ${sliderRadius > 100 ? "pill" : `${sliderRadius}px`}`}
+          label={`${t("labels.radius")} — ${sliderRadius > 100 ? "pill" : `${sliderRadius}px`}`}
           min={0}
           max={12}
           step={1}
@@ -191,7 +191,7 @@ export function ColorPickerModule() {
       {/* ── Thumbs ── */}
       <Section title={t("sections.thumbs")}>
         <SliderRow
-          label={`Size — ${thumbSize}px`}
+          label={`${t("labels.size")} — ${thumbSize}px`}
           min={12}
           max={28}
           step={1}
@@ -202,7 +202,7 @@ export function ColorPickerModule() {
         />
 
         <SliderRow
-          label={`Border — ${thumbBorder}px`}
+          label={`${t("labels.border")} — ${thumbBorder}px`}
           min={1}
           max={4}
           step={0.5}
@@ -231,7 +231,7 @@ export function ColorPickerModule() {
         </Row>
 
         <SliderRow
-          label={`Size — ${swatchSize}px`}
+          label={`${t("labels.size")} — ${swatchSize}px`}
           min={16}
           max={48}
           step={2}
@@ -260,7 +260,7 @@ export function ColorPickerModule() {
         </Row>
 
         <SliderRow
-          label={`Gap — ${swatchGap}px`}
+          label={`${t("labels.gap")} — ${swatchGap}px`}
           min={2}
           max={14}
           step={1}
@@ -271,7 +271,7 @@ export function ColorPickerModule() {
         />
 
         <SliderRow
-          label={`Border — ${swatchBorder}px`}
+          label={`${t("labels.border")} — ${swatchBorder}px`}
           min={0}
           max={4}
           step={0.5}

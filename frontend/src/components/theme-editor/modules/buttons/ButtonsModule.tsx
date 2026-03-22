@@ -151,7 +151,7 @@ export function ButtonsModule() {
               </span>
               <button
                 type="button"
-                title="Reset"
+                title={t("chrome.reset")}
                 className="p-0.5 text-vita-text-muted hover:text-vita-text-secondary"
                 onClick={() => resetColor(["btnRadius"])}
               >
@@ -169,8 +169,8 @@ export function ButtonsModule() {
             onChange={(e) => setTokens({ btnRadius: `${e.target.value}px` })}
           />
           <div className="flex justify-between text-xs text-vita-text-muted">
-            <span>0 — sharp</span>
-            <span>24px — rounded</span>
+            <span>0 — {t("presets.sharp").toLowerCase()}</span>
+            <span>24px — {t("presets.rounded").toLowerCase()}</span>
           </div>
         </div>
 
@@ -297,7 +297,7 @@ export function ButtonsModule() {
         {/* Lift controls */}
         {SHOWS_LIFT.has(hoverType) && (
           <SliderRow
-            label={`Lift — ${liftPx}px`}
+            label={`${t("labels.lift")} — ${liftPx}px`}
             min={1}
             max={8}
             value={liftPx}
@@ -312,7 +312,7 @@ export function ButtonsModule() {
         {/* Sink controls */}
         {SHOWS_SINK.has(hoverType) && (
           <SliderRow
-            label={`Sink — ${sinkPx}px`}
+            label={`${t("labels.sink")} — ${sinkPx}px`}
             min={1}
             max={6}
             value={sinkPx}
@@ -327,7 +327,7 @@ export function ButtonsModule() {
         {/* Scale controls */}
         {SHOWS_SCALE.has(hoverType) && (
           <SliderRow
-            label={`Scale — ${scaleFactor.toFixed(2)}×`}
+            label={`${t("labels.scale")} — ${scaleFactor.toFixed(2)}×`}
             min={1.01}
             max={1.1}
             step={0.01}
@@ -344,7 +344,7 @@ export function ButtonsModule() {
         {SHOWS_TILT_Z.has(hoverType) && (
           <>
             <SliderRow
-              label={`Tilt — ${tiltDeg}°`}
+              label={`${t("labels.tilt")} — ${tiltDeg}°`}
               min={1}
               max={12}
               value={tiltDeg}
@@ -364,7 +364,9 @@ export function ButtonsModule() {
                     applyHover(hoverType, { tiltDir: d });
                   }}
                 >
-                  {d === "left" ? "↺ Left" : "↻ Right"}
+                  {d === "left"
+                    ? `↺ ${t("labels.left")}`
+                    : `↻ ${t("labels.right")}`}
                 </Chip>
               ))}
             </Row>
@@ -375,7 +377,7 @@ export function ButtonsModule() {
         {SHOWS_GLOW.has(hoverType) && (
           <>
             <SliderRow
-              label={`Blur — ${glowBlur}px`}
+              label={`${t("labels.blur")} — ${glowBlur}px`}
               min={2}
               max={30}
               value={glowBlur}
@@ -386,7 +388,7 @@ export function ButtonsModule() {
               hint={["2px tight", "30px diffuse"]}
             />
             <SliderRow
-              label={`Opacity — ${glowOpacity}%`}
+              label={`${t("labels.opacity")} — ${glowOpacity}%`}
               min={10}
               max={100}
               value={glowOpacity}
@@ -402,7 +404,7 @@ export function ButtonsModule() {
         {/* Brightness controls */}
         {SHOWS_BRIGHTNESS.has(hoverType) && (
           <SliderRow
-            label={`Brightness — ${brightnessVal.toFixed(2)}×`}
+            label={`${t("labels.brightness")} — ${brightnessVal.toFixed(2)}×`}
             min={0.7}
             max={1.3}
             step={0.01}
@@ -419,7 +421,7 @@ export function ButtonsModule() {
         {SHOWS_3D.has(hoverType) && (
           <>
             <SliderRow
-              label={`Hover X — ${hover3DRx}°`}
+              label={`${t("hover3d.hoverX")} — ${hover3DRx}°`}
               min={-30}
               max={30}
               step={1}
@@ -431,7 +433,7 @@ export function ButtonsModule() {
               hint={["-30° backward", "30° forward"]}
             />
             <SliderRow
-              label={`Hover Y — ${hover3DRy}°`}
+              label={`${t("hover3d.hoverY")} — ${hover3DRy}°`}
               min={-30}
               max={30}
               step={1}
@@ -443,7 +445,7 @@ export function ButtonsModule() {
               hint={["-30° left", "30° right"]}
             />
             <SliderRow
-              label={`Hover Z — ${hover3DRz}°`}
+              label={`${t("hover3d.hoverZ")} — ${hover3DRz}°`}
               min={-20}
               max={20}
               step={1}
@@ -459,7 +461,7 @@ export function ButtonsModule() {
 
         {/* Press scale */}
         <SliderRow
-          label={`Press — ${pressScale.toFixed(2)}×`}
+          label={`${t("labels.press")} — ${pressScale.toFixed(2)}×`}
           min={0.85}
           max={1}
           step={0.01}

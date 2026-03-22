@@ -5,13 +5,17 @@
  * from skeleton.css apply automatically.
  */
 
+import { useTranslations } from "next-intl";
+
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
+
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       <div className="flex gap-4">

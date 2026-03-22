@@ -5,6 +5,8 @@
  * from badge.css apply automatically via the `.chip` class.
  */
 
+import { useTranslations } from "next-intl";
+
 import { Chip } from "@/components/ui/chip";
 import { useThemeStore } from "@/stores/theme";
 
@@ -80,6 +82,7 @@ const SOFT_CHIPS = [
 // ── Component ───────────────────────────────────────────────────────────────
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const { tokens } = useThemeStore();
   const trackIntensity = parseFloat(tokens.badgeCursorTrack ?? "0");
   const trackRestore = parseFloat(tokens.badgeCursorTrackRestore ?? "300");
@@ -93,12 +96,12 @@ export function Preview() {
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       {/* Solid badges */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Solid</p>
+        <p className="text-xs text-vita-text-muted">{t("preview.solid")}</p>
         <div className="flex flex-wrap gap-2">
           {SOLID_CHIPS.map(({ label, bg, fg }) => (
             <Chip
@@ -114,7 +117,9 @@ export function Preview() {
 
       {/* Soft / outlined badges */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Soft / outlined</p>
+        <p className="text-xs text-vita-text-muted">
+          {t("preview.softOutlined")}
+        </p>
         <div className="flex flex-wrap gap-2">
           {SOFT_CHIPS.map(({ label, bg, fg, border }) => (
             <Chip
@@ -130,7 +135,7 @@ export function Preview() {
 
       {/* In context — order list */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">In context</p>
+        <p className="text-xs text-vita-text-muted">{t("preview.inContext")}</p>
         <div
           style={{
             background: "var(--vita-surface)",

@@ -36,7 +36,7 @@ export function SeparatorModule() {
       {/* ── Thickness ── */}
       <Section title={t("sections.thickness")}>
         <SliderRow
-          label={`Thickness — ${thicknessPx}px`}
+          label={`${t("sections.thickness")} — ${thicknessPx}px`}
           min={1}
           max={6}
           step={1}
@@ -70,7 +70,7 @@ export function SeparatorModule() {
 
         {radiusPx < 100 && (
           <SliderRow
-            label={`Radius — ${radiusPx}px`}
+            label={`${t("labels.radius")} — ${radiusPx}px`}
             min={0}
             max={6}
             step={1}

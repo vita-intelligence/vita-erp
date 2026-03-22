@@ -58,7 +58,7 @@ export function AccordionModule() {
       {/* ── Shape ── */}
       <Section title={t("sections.shape")}>
         <SliderRow
-          label={`Radius — ${radiusPx}px`}
+          label={`${t("labels.radius")} — ${radiusPx}px`}
           min={0}
           max={24}
           step={1}
@@ -83,7 +83,7 @@ export function AccordionModule() {
       {/* ── Border ── */}
       <Section title={t("sections.border")}>
         <SliderRow
-          label={`Width — ${borderWidthPx}px`}
+          label={`${t("labels.width")} — ${borderWidthPx}px`}
           min={0}
           max={4}
           step={0.5}
@@ -98,7 +98,7 @@ export function AccordionModule() {
       {/* ── Separator ── */}
       <Section title={t("sections.separator")}>
         <SliderRow
-          label={`Height — ${separatorPx}px`}
+          label={`${t("labels.height")} — ${separatorPx}px`}
           min={0}
           max={4}
           step={0.5}
@@ -112,7 +112,7 @@ export function AccordionModule() {
       {/* ── Spacing ── */}
       <Section title={t("sections.spacing")}>
         <SliderRow
-          label={`Trigger X — ${triggerPxX}px`}
+          label={`${t("labels.triggerX")} — ${triggerPxX}px`}
           min={4}
           max={32}
           step={1}
@@ -122,7 +122,7 @@ export function AccordionModule() {
           onReset={() => resetColor(["accordionTriggerPaddingX"])}
         />
         <SliderRow
-          label={`Trigger Y — ${triggerPxY}px`}
+          label={`${t("labels.triggerY")} — ${triggerPxY}px`}
           min={4}
           max={24}
           step={1}
@@ -132,7 +132,7 @@ export function AccordionModule() {
           onReset={() => resetColor(["accordionTriggerPaddingY"])}
         />
         <SliderRow
-          label={`Content X — ${contentPxX}px`}
+          label={`${t("labels.contentX")} — ${contentPxX}px`}
           min={4}
           max={32}
           step={1}
@@ -142,7 +142,7 @@ export function AccordionModule() {
           onReset={() => resetColor(["accordionContentPaddingX"])}
         />
         <SliderRow
-          label={`Content Y — ${contentPxY}px`}
+          label={`${t("labels.contentY")} — ${contentPxY}px`}
           min={0}
           max={24}
           step={1}
@@ -157,10 +157,10 @@ export function AccordionModule() {
       <Section title={t("sections.typography")}>
         <FontWeightRow
           tokenKey="accordionTriggerFontWeight"
-          label="Trigger weight"
+          label={t("labels.triggerWeight")}
         />
         <SliderRow
-          label={`Trigger size — ${triggerFontPx}px`}
+          label={`${t("labels.triggerSize")} — ${triggerFontPx}px`}
           min={11}
           max={20}
           step={0.5}

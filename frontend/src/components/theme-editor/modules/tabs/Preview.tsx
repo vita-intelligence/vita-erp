@@ -5,6 +5,8 @@
  * so CSS tokens from tabs.css apply automatically.
  */
 
+import { useTranslations } from "next-intl";
+
 import { Tabs } from "@/components/ui/tabs";
 
 const TAB_ITEMS = [
@@ -35,10 +37,12 @@ const TAB_ITEMS = [
 ];
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
+
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       <Tabs aria-label="ERP sections" defaultSelectedKey="overview">

@@ -33,7 +33,7 @@ export function SpinnerModule() {
       {/* ── Sizes ── */}
       <Section title={t("sections.sizes")}>
         <SliderRow
-          label={`Small — ${sizeSmPx}px`}
+          label={`${t("labels.small")} — ${sizeSmPx}px`}
           min={12}
           max={32}
           step={1}
@@ -44,7 +44,7 @@ export function SpinnerModule() {
         />
 
         <SliderRow
-          label={`Medium — ${sizeMdPx}px`}
+          label={`${t("labels.medium")} — ${sizeMdPx}px`}
           min={20}
           max={48}
           step={1}
@@ -55,7 +55,7 @@ export function SpinnerModule() {
         />
 
         <SliderRow
-          label={`Large — ${sizeLgPx}px`}
+          label={`${t("labels.large")} — ${sizeLgPx}px`}
           min={32}
           max={72}
           step={1}

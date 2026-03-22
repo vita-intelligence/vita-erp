@@ -27,7 +27,7 @@ export function DialogControls() {
     <>
       <Section title={t("sections.dialogShape")}>
         <SliderRow
-          label={`Radius — ${radiusPx}px`}
+          label={`${t("labels.radius")} — ${radiusPx}px`}
           min={0}
           max={24}
           step={1}
@@ -40,7 +40,7 @@ export function DialogControls() {
 
       <Section title={t("sections.dialogSpacing")}>
         <SliderRow
-          label={`Padding X — ${pxX}px`}
+          label={`${t("labels.paddingX")} — ${pxX}px`}
           min={12}
           max={40}
           step={1}
@@ -50,7 +50,7 @@ export function DialogControls() {
           onReset={() => resetColor(["alertDialogPaddingX"])}
         />
         <SliderRow
-          label={`Padding Y — ${pxY}px`}
+          label={`${t("labels.paddingY")} — ${pxY}px`}
           min={12}
           max={32}
           step={1}
@@ -68,7 +68,7 @@ export function DialogControls() {
           description="Overlay behind the dialog — use semi-transparent colors or gradients"
         />
         <SliderRow
-          label={`Opacity — ${opacityPct}%`}
+          label={`${t("labels.opacity")} — ${opacityPct}%`}
           min={0}
           max={100}
           step={5}
@@ -80,7 +80,7 @@ export function DialogControls() {
           onReset={() => resetColor(["alertDialogBackdropOpacity"])}
         />
         <SliderRow
-          label={`Blur — ${blurPx}px`}
+          label={`${t("labels.blur")} — ${blurPx}px`}
           min={0}
           max={20}
           step={1}

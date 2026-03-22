@@ -66,7 +66,7 @@ export function TabsModule() {
         </Row>
 
         <SliderRow
-          label={`Radius — ${listRadiusPx}px`}
+          label={`${t("labels.radius")} — ${listRadiusPx}px`}
           min={0}
           max={24}
           step={1}
@@ -76,7 +76,7 @@ export function TabsModule() {
         />
 
         <SliderRow
-          label={`Padding — ${listPaddingPx}px`}
+          label={`${t("labels.padding")} — ${listPaddingPx}px`}
           min={0}
           max={12}
           step={1}
@@ -87,7 +87,7 @@ export function TabsModule() {
         />
 
         <SliderRow
-          label={`Gap — ${listGapPx}px`}
+          label={`${t("labels.gap")} — ${listGapPx}px`}
           min={0}
           max={8}
           step={1}
@@ -101,7 +101,7 @@ export function TabsModule() {
       {/* ── Tab items ── */}
       <Section title={t("sections.tabItems")}>
         <SliderRow
-          label={`Radius — ${tabRadiusPx}px`}
+          label={`${t("labels.radius")} — ${tabRadiusPx}px`}
           min={0}
           max={16}
           step={1}
@@ -112,7 +112,7 @@ export function TabsModule() {
         />
 
         <SliderRow
-          label={`Padding X — ${tabPaddingXPx}px`}
+          label={`${t("labels.paddingX")} — ${tabPaddingXPx}px`}
           min={4}
           max={24}
           step={1}
@@ -123,7 +123,7 @@ export function TabsModule() {
         />
 
         <SliderRow
-          label={`Padding Y — ${tabPaddingYPx}px`}
+          label={`${t("labels.paddingY")} — ${tabPaddingYPx}px`}
           min={2}
           max={14}
           step={1}
@@ -134,7 +134,7 @@ export function TabsModule() {
         />
 
         <SliderRow
-          label={`Font size — ${tabFontPx}px`}
+          label={`${t("labels.fontSize")} — ${tabFontPx}px`}
           min={10}
           max={18}
           step={1}
@@ -153,7 +153,7 @@ export function TabsModule() {
       {/* ── Panel ── */}
       <Section title={t("sections.panel")}>
         <SliderRow
-          label={`Padding — ${panelPaddingPx}px`}
+          label={`${t("labels.padding")} — ${panelPaddingPx}px`}
           min={0}
           max={24}
           step={1}

@@ -53,7 +53,7 @@ export function AutocompleteModule() {
       {/* ── Popover shape ── */}
       <Section title={t("sections.dropdownShape")}>
         <SliderRow
-          label={`Radius — ${popoverRadiusPx}px`}
+          label={`${t("labels.radius")} — ${popoverRadiusPx}px`}
           min={0}
           max={20}
           step={1}
@@ -94,7 +94,7 @@ export function AutocompleteModule() {
       {/* ── Popover spacing ── */}
       <Section title={t("sections.dropdownSpacing")}>
         <SliderRow
-          label={`Padding — ${popoverPaddingPx}px`}
+          label={`${t("labels.padding")} — ${popoverPaddingPx}px`}
           min={0}
           max={12}
           step={1}
@@ -104,7 +104,7 @@ export function AutocompleteModule() {
           onReset={() => resetColor(["autocompletePopoverPadding"])}
         />
         <SliderRow
-          label={`Max height — ${maxHeightPx}px`}
+          label={`${t("labels.maxHeight")} — ${maxHeightPx}px`}
           min={120}
           max={480}
           step={8}
@@ -118,7 +118,7 @@ export function AutocompleteModule() {
       {/* ── Items ── */}
       <Section title={t("sections.listItems")}>
         <SliderRow
-          label={`Padding X — ${itemPxX}px`}
+          label={`${t("labels.paddingX")} — ${itemPxX}px`}
           min={4}
           max={24}
           step={1}
@@ -128,7 +128,7 @@ export function AutocompleteModule() {
           onReset={() => resetColor(["autocompleteItemPaddingX"])}
         />
         <SliderRow
-          label={`Padding Y — ${itemPxY}px`}
+          label={`${t("labels.paddingY")} — ${itemPxY}px`}
           min={2}
           max={16}
           step={1}
@@ -138,7 +138,7 @@ export function AutocompleteModule() {
           onReset={() => resetColor(["autocompleteItemPaddingY"])}
         />
         <SliderRow
-          label={`Font size — ${itemFontPx}px`}
+          label={`${t("labels.fontSize")} — ${itemFontPx}px`}
           min={11}
           max={18}
           step={0.5}
@@ -148,7 +148,7 @@ export function AutocompleteModule() {
           onReset={() => resetColor(["autocompleteItemFontSize"])}
         />
         <SliderRow
-          label={`Item radius — ${itemRadiusPx}px`}
+          label={`${t("labels.itemRadius")} — ${itemRadiusPx}px`}
           min={0}
           max={12}
           step={1}
@@ -158,7 +158,7 @@ export function AutocompleteModule() {
           onReset={() => resetColor(["autocompleteItemRadius"])}
         />
         <SliderRow
-          label={`Divider — ${dividerPx}px`}
+          label={`${t("labels.divider")} — ${dividerPx}px`}
           min={0}
           max={2}
           step={0.5}

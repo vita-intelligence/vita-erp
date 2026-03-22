@@ -8,6 +8,8 @@
  * inline styles with !important for custom brand colors on fallbacks.
  */
 
+import { useTranslations } from "next-intl";
+
 import { Avatar } from "@/components/ui/avatar";
 
 import { useThemeStore } from "@/stores/theme";
@@ -81,6 +83,7 @@ function ColoredAvatar({
 // ── Component ───────────────────────────────────────────────────────────────
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const { tokens } = useThemeStore();
   const groupSpacing = tokens.avatarGroupSpacing ?? "-8px";
   const trackIntensity = parseFloat(tokens.avatarCursorTrack ?? "0");
@@ -95,12 +98,12 @@ export function Preview() {
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       {/* Sizes */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Sizes</p>
+        <p className="text-xs text-vita-text-muted">{t("preview.sizes")}</p>
         <div className="flex flex-wrap items-end gap-3">
           {(["sm", "md", "lg"] as const).map((size) => {
             const tokenKey =
@@ -125,7 +128,9 @@ export function Preview() {
 
       {/* Fallback colors */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Fallback colors</p>
+        <p className="text-xs text-vita-text-muted">
+          {t("preview.fallbackColors")}
+        </p>
         <div className="flex flex-wrap items-center gap-2">
           {USERS.map((u) => (
             <ColoredAvatar
@@ -141,7 +146,9 @@ export function Preview() {
 
       {/* Group overlap */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">Group overlap</p>
+        <p className="text-xs text-vita-text-muted">
+          {t("preview.groupOverlap")}
+        </p>
         <div className="flex items-center">
           {USERS.slice(0, 4).map((u, i) => (
             <ColoredAvatar
@@ -188,7 +195,7 @@ export function Preview() {
 
       {/* In context */}
       <div className="space-y-1.5">
-        <p className="text-xs text-vita-text-muted">In context</p>
+        <p className="text-xs text-vita-text-muted">{t("preview.inContext")}</p>
         <div
           className="flex items-center gap-3 rounded-vita-md p-3"
           style={{

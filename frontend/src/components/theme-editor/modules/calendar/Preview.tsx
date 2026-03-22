@@ -8,6 +8,7 @@
  */
 
 import { getLocalTimeZone, today } from "@internationalized/date";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import {
@@ -26,6 +27,7 @@ import { useThemeStore } from "@/stores/theme";
 import { useCursorTrack } from "../_shared/useCursorTrack";
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const todayDate = today(getLocalTimeZone());
   const [value, setValue] = useState(todayDate);
   const { tokens } = useThemeStore();
@@ -41,10 +43,10 @@ export function Preview() {
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
         {trackIntensity > 0 && (
           <span className="ml-2 normal-case opacity-60">
-            — move cursor over calendar
+            — {t("preview.moveCursorCalendar")}
           </span>
         )}
       </p>

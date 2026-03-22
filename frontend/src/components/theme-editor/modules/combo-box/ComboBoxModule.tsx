@@ -58,7 +58,7 @@ export function ComboBoxModule() {
       {/* ── Popover ── */}
       <Section title={t("sections.popover")}>
         <SliderRow
-          label={`Radius — ${popoverRadiusPx}px`}
+          label={`${t("labels.radius")} — ${popoverRadiusPx}px`}
           min={0}
           max={20}
           step={1}
@@ -79,7 +79,7 @@ export function ComboBoxModule() {
           ))}
         </Row>
         <SliderRow
-          label={`Padding — ${popoverPaddingPx}px`}
+          label={`${t("labels.padding")} — ${popoverPaddingPx}px`}
           min={2}
           max={20}
           step={1}
@@ -89,7 +89,7 @@ export function ComboBoxModule() {
           onReset={() => resetColor(["comboBoxPopoverPadding"])}
         />
         <SliderRow
-          label={`Border width — ${popoverBorderWidthPx}px`}
+          label={`${t("labels.width")} — ${popoverBorderWidthPx}px`}
           min={0}
           max={3}
           step={0.5}
@@ -114,7 +114,7 @@ export function ComboBoxModule() {
       {/* ── Trigger ── */}
       <Section title={t("sections.trigger")}>
         <SliderRow
-          label={`Radius — ${triggerRadiusPx}px`}
+          label={`${t("labels.radius")} — ${triggerRadiusPx}px`}
           min={0}
           max={16}
           step={1}
@@ -135,7 +135,7 @@ export function ComboBoxModule() {
           ))}
         </Row>
         <SliderRow
-          label={`Border width — ${triggerBorderWidthPx}px`}
+          label={`${t("labels.width")} — ${triggerBorderWidthPx}px`}
           min={0}
           max={3}
           step={0.5}
@@ -149,7 +149,7 @@ export function ComboBoxModule() {
       {/* ── List items ── */}
       <Section title={t("sections.listItems")}>
         <SliderRow
-          label={`Padding X — ${itemPxX}px`}
+          label={`${t("labels.paddingX")} — ${itemPxX}px`}
           min={4}
           max={20}
           step={1}
@@ -159,7 +159,7 @@ export function ComboBoxModule() {
           onReset={() => resetColor(["comboBoxItemPaddingX"])}
         />
         <SliderRow
-          label={`Padding Y — ${itemPxY}px`}
+          label={`${t("labels.paddingY")} — ${itemPxY}px`}
           min={4}
           max={14}
           step={1}
@@ -169,7 +169,7 @@ export function ComboBoxModule() {
           onReset={() => resetColor(["comboBoxItemPaddingY"])}
         />
         <SliderRow
-          label={`Font size — ${itemFontPx}px`}
+          label={`${t("labels.fontSize")} — ${itemFontPx}px`}
           min={10}
           max={18}
           step={0.5}
@@ -179,7 +179,7 @@ export function ComboBoxModule() {
           onReset={() => resetColor(["comboBoxItemFontSize"])}
         />
         <SliderRow
-          label={`Item radius — ${itemRadiusPx}px`}
+          label={`${t("labels.itemRadius")} — ${itemRadiusPx}px`}
           min={0}
           max={12}
           step={1}

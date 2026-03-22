@@ -57,7 +57,7 @@ export function SkeletonModule() {
 
         {radiusPx < 100 && (
           <SliderRow
-            label={`Radius — ${radiusPx}px`}
+            label={`${t("labels.radius")} — ${radiusPx}px`}
             min={0}
             max={20}
             step={1}
@@ -71,7 +71,7 @@ export function SkeletonModule() {
       {/* ── Animation ── */}
       <Section title={t("sections.animation")}>
         <SliderRow
-          label={`Duration — ${animDuration.toFixed(1)}s`}
+          label={`${t("labels.duration")} — ${animDuration.toFixed(1)}s`}
           min={0.5}
           max={4}
           step={0.1}

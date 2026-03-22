@@ -6,6 +6,7 @@
  */
 
 import { Label } from "@heroui/react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { Slider } from "@/components/ui/slider";
@@ -23,6 +24,7 @@ const SLIDERS = [
 ];
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
   const [values, setValues] = useState<Record<string, number>>(
     Object.fromEntries(SLIDERS.map((s) => [s.id, s.defaultValue])),
   );
@@ -30,7 +32,7 @@ export function Preview() {
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       <div className="space-y-5">

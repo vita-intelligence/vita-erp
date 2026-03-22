@@ -47,7 +47,7 @@ export function AlertControls() {
     <>
       <Section title={t("sections.shape")}>
         <SliderRow
-          label={`Radius — ${radiusPx}px`}
+          label={`${t("labels.radius")} — ${radiusPx}px`}
           min={0}
           max={24}
           step={1}
@@ -71,7 +71,7 @@ export function AlertControls() {
 
       <Section title={t("sections.border")}>
         <SliderRow
-          label={`Width — ${borderPx}px`}
+          label={`${t("labels.width")} — ${borderPx}px`}
           min={0}
           max={4}
           step={0.5}
@@ -85,7 +85,7 @@ export function AlertControls() {
 
       <Section title={t("sections.spacing")}>
         <SliderRow
-          label={`Padding X — ${pxX}px`}
+          label={`${t("labels.paddingX")} — ${pxX}px`}
           min={8}
           max={32}
           step={1}
@@ -95,7 +95,7 @@ export function AlertControls() {
           onReset={() => resetColor(["alertPaddingX"])}
         />
         <SliderRow
-          label={`Padding Y — ${pxY}px`}
+          label={`${t("labels.paddingY")} — ${pxY}px`}
           min={6}
           max={24}
           step={1}
@@ -107,9 +107,12 @@ export function AlertControls() {
       </Section>
 
       <Section title={t("sections.typography")}>
-        <FontWeightRow tokenKey="alertTitleFontWeight" label="Title weight" />
+        <FontWeightRow
+          tokenKey="alertTitleFontWeight"
+          label={t("labels.titleWeight")}
+        />
         <SliderRow
-          label={`Title size — ${titlePx}px`}
+          label={`${t("labels.titleSize")} — ${titlePx}px`}
           min={11}
           max={20}
           step={0.5}
@@ -119,7 +122,7 @@ export function AlertControls() {
           onReset={() => resetColor(["alertTitleFontSize"])}
         />
         <SliderRow
-          label={`Description — ${descPx}px`}
+          label={`${t("labels.descriptionSize")} — ${descPx}px`}
           min={10}
           max={16}
           step={0.5}
@@ -132,7 +135,7 @@ export function AlertControls() {
 
       <Section title={t("sections.icon")}>
         <SliderRow
-          label={`Size — ${iconPx}px`}
+          label={`${t("labels.size")} — ${iconPx}px`}
           min={12}
           max={32}
           step={1}

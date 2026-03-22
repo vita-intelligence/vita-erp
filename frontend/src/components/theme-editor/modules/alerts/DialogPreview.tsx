@@ -5,10 +5,12 @@
  */
 
 import { TriangleAlert } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { useThemeStore } from "@/stores/theme";
 
 export function DialogPreview() {
+  const t = useTranslations("themeEditor");
   const { tokens } = useThemeStore();
 
   const px = tokens.alertDialogPaddingX ?? "24px";
@@ -17,7 +19,7 @@ export function DialogPreview() {
   return (
     <div className="space-y-3 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
-        Dialog preview
+        {t("preview.dialogPreview")}
       </p>
 
       {/* Simulated page + backdrop + dialog */}

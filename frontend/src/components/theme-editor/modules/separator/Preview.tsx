@@ -5,13 +5,17 @@
  * from separator.css apply automatically.
  */
 
+import { useTranslations } from "next-intl";
+
 import { Separator } from "@/components/ui/separator";
 
 export function Preview() {
+  const t = useTranslations("themeEditor");
+
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
-        Live preview
+        {t("preview.livePreview")}
       </p>
 
       {/* Horizontal separators between content blocks */}
@@ -55,7 +59,9 @@ export function Preview() {
           paddingTop: "0.75rem",
         }}
       >
-        <p className="mb-2 text-xs text-vita-text-muted">Vertical separator</p>
+        <p className="mb-2 text-xs text-vita-text-muted">
+          {t("preview.vertical")}
+        </p>
         <div className="flex items-center gap-3">
           <span className="text-sm text-vita-text">Qty: 500</span>
           <Separator orientation="vertical" className="h-4" />

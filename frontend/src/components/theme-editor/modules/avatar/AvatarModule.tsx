@@ -71,7 +71,7 @@ export function AvatarModule() {
         </Row>
         {!isCircle && (
           <SliderRow
-            label={`Radius — ${radiusPx}px`}
+            label={`${t("labels.radius")} — ${radiusPx}px`}
             min={0}
             max={32}
             step={1}
@@ -85,7 +85,7 @@ export function AvatarModule() {
       {/* ── Sizes ── */}
       <Section title={t("sections.sizes")}>
         <SliderRow
-          label={`Small — ${smPx}px`}
+          label={`${t("labels.small")} — ${smPx}px`}
           min={20}
           max={48}
           step={2}
@@ -95,7 +95,7 @@ export function AvatarModule() {
           onReset={() => resetColor(["avatarSizeSm"])}
         />
         <SliderRow
-          label={`Medium — ${mdPx}px`}
+          label={`${t("labels.medium")} — ${mdPx}px`}
           min={28}
           max={64}
           step={2}
@@ -105,7 +105,7 @@ export function AvatarModule() {
           onReset={() => resetColor(["avatarSizeMd"])}
         />
         <SliderRow
-          label={`Large — ${lgPx}px`}
+          label={`${t("labels.large")} — ${lgPx}px`}
           min={36}
           max={80}
           step={2}
@@ -136,7 +136,7 @@ export function AvatarModule() {
       <Section title={t("sections.fallbackText")}>
         <FontWeightRow tokenKey="avatarFallbackFontWeight" label="Weight" />
         <SliderRow
-          label={`Size — ${fallbackFontPx}px`}
+          label={`${t("labels.size")} — ${fallbackFontPx}px`}
           min={9}
           max={24}
           step={1}
@@ -150,7 +150,7 @@ export function AvatarModule() {
       {/* ── Group ── */}
       <Section title={t("sections.group")}>
         <SliderRow
-          label={`Overlap — ${groupPx}px`}
+          label={`${t("labels.overlap")} — ${groupPx}px`}
           min={0}
           max={20}
           step={1}
