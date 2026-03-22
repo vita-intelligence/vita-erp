@@ -13,12 +13,13 @@
  */
 
 import {
-  closestCenter,
   DndContext,
   type DragEndEvent,
+  DragOverlay,
   type DragStartEvent,
   KeyboardSensor,
   PointerSensor,
+  pointerWithin,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
@@ -95,6 +96,7 @@ export function FormEditor({
   const [configField, setConfigField] = useState<FieldElement | null>(null);
   const [addGroupModalOpen, setAddGroupModalOpen] = useState(false);
   const [isDragActive, setIsDragActive] = useState(false);
+  const [activeDragId, setActiveDragId] = useState<string | null>(null);
 
   // ── Schema update with history ─────────────────────────────────────────────
 
@@ -202,12 +204,14 @@ export function FormEditor({
     }),
   );
 
-  function handleDragStart(_event: DragStartEvent) {
+  function handleDragStart(event: DragStartEvent) {
     setIsDragActive(true);
+    setActiveDragId(event.active.id as string);
   }
 
   function handleDragEnd(event: DragEndEvent) {
     setIsDragActive(false);
+    setActiveDragId(null);
     const { active, over } = event;
     if (!over) return;
 
@@ -311,7 +315,7 @@ export function FormEditor({
           ) : (
             <DndContext
               sensors={sensors}
-              collisionDetection={closestCenter}
+              collisionDetection={pointerWithin}
               onDragStart={handleDragStart}
               onDragEnd={handleDragEnd}
             >
@@ -403,6 +407,16 @@ export function FormEditor({
                   </div>
                 ))}
               </SortableContext>
+
+              {/* Drag overlay — floating preview that stays on top */}
+              <DragOverlay dropAnimation={null}>
+                {activeDragId ? (
+                  <DragOverlayContent
+                    elementId={activeDragId}
+                    elements={schema.elements}
+                  />
+                ) : null}
+              </DragOverlay>
             </DndContext>
           )}
 
@@ -563,6 +577,58 @@ function AddGroupInlineModal({
           </Button>
         </div>
       </div>
+    </div>
+  );
+}
+
+// ── Drag Overlay Content ──────────────────────────────────────────────────────
+
+function DragOverlayContent({
+  elementId,
+  elements,
+}: {
+  elementId: string;
+  elements: FormElement[];
+}) {
+  // Find the element being dragged (root or inside a group)
+  let el: FormElement | undefined;
+  for (const e of elements) {
+    if (e.id === elementId) {
+      el = e;
+      break;
+    }
+    if (e.kind === "group") {
+      const child = e.elements.find((c) => c.id === elementId);
+      if (child) {
+        el = child;
+        break;
+      }
+    }
+  }
+  if (!el) return null;
+
+  const label = el.kind === "field" ? el.label : el.label;
+  const typeLabel = el.kind === "group" ? "Group" : el.type;
+
+  return (
+    <div
+      style={{
+        padding: "8px 12px",
+        borderRadius: 8,
+        background: "var(--vita-surface)",
+        border: "2px solid var(--vita-primary)",
+        boxShadow: "0 8px 24px oklch(0 0 0 / 0.15)",
+        fontSize: 13,
+        fontWeight: 500,
+        color: "var(--vita-text-primary)",
+        maxWidth: 300,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        cursor: "grabbing",
+      }}
+    >
+      {label || typeLabel}
     </div>
   );
 }
