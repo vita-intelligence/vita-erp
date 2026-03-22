@@ -36,6 +36,7 @@ import {
   createField,
   createGroup,
   duplicateElement,
+  findElementById,
 } from "../shared/schema-utils";
 import type {
   FieldElement,
@@ -202,20 +203,68 @@ export function FormEditor({
     const { active, over } = event;
     if (!over || active.id === over.id) return;
 
+    const activeId = active.id as string;
+    const overId = over.id as string;
+
     updateElements((els) => {
-      const oldIndex = els.findIndex((e) => e.id === active.id);
-      const newIndex = els.findIndex((e) => e.id === over.id);
-      if (oldIndex === -1 || newIndex === -1) return els;
-      const next = [...els];
-      const [moved] = next.splice(oldIndex, 1);
-      next.splice(newIndex, 0, moved);
+      // Find dragged element and its source container
+      const dragResult = findWithParent(els, activeId);
+      if (!dragResult.element) return els;
+      const draggedEl = dragResult.element;
+
+      // Is the drop target a group? → drop INTO it
+      const overEl = findElementById(els, overId);
+      const isDropOnGroup = overEl?.kind === "group" && overId !== activeId;
+
+      // Find which container the drop target lives in
+      const overResult = findWithParent(els, overId);
+
+      // Step 1: Remove from current location
+      let next = removeFromAllLists(els, activeId);
+
+      if (isDropOnGroup) {
+        // Drop INTO a group — append as last child
+        next = next.map((el) =>
+          el.kind === "group" && el.id === overId
+            ? { ...el, elements: [...el.elements, draggedEl] }
+            : el,
+        );
+      } else if (overResult.parentId) {
+        // Drop next to a sibling inside a group
+        next = next.map((el) => {
+          if (el.kind !== "group" || el.id !== overResult.parentId) return el;
+          const idx = el.elements.findIndex((c) => c.id === overId);
+          if (idx === -1) return el;
+          const children = [...el.elements];
+          children.splice(idx, 0, draggedEl);
+          return { ...el, elements: children };
+        });
+      } else {
+        // Drop at root level
+        const idx = next.findIndex((e) => e.id === overId);
+        if (idx !== -1) {
+          next.splice(idx, 0, draggedEl);
+        } else {
+          next.push(draggedEl);
+        }
+      }
+
       return next;
     });
   }
 
   // ── Render ─────────────────────────────────────────────────────────────────
 
-  const elementIds = schema.elements.map((e) => e.id);
+  // Collect ALL IDs (root + children inside groups) for cross-container DnD
+  const elementIds: string[] = [];
+  for (const el of schema.elements) {
+    elementIds.push(el.id);
+    if (el.kind === "group") {
+      for (const child of el.elements) {
+        elementIds.push(child.id);
+      }
+    }
+  }
 
   return (
     <div
@@ -563,4 +612,34 @@ function updateInList(
     }
     return el;
   });
+}
+
+/** Find an element and which group (if any) it belongs to. */
+function findWithParent(
+  elements: FormElement[],
+  id: string,
+): { element: FormElement | null; parentId: string | null } {
+  for (const el of elements) {
+    if (el.id === id) return { element: el, parentId: null };
+    if (el.kind === "group") {
+      for (const child of el.elements) {
+        if (child.id === id) return { element: child, parentId: el.id };
+      }
+    }
+  }
+  return { element: null, parentId: null };
+}
+
+/** Remove an element from all levels (root + inside groups). */
+function removeFromAllLists(
+  elements: FormElement[],
+  id: string,
+): FormElement[] {
+  return elements
+    .filter((el) => el.id !== id)
+    .map((el) =>
+      el.kind === "group"
+        ? { ...el, elements: el.elements.filter((c) => c.id !== id) }
+        : el,
+    );
 }
