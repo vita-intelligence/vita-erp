@@ -156,6 +156,22 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   alertDialogBackdropColor: "--vita-alert-dialog-backdrop-color",
   alertDialogBackdropOpacity: "--vita-alert-dialog-backdrop-opacity",
 
+  // Autocomplete
+  autocompletePopoverRadius: "--vita-autocomplete-popover-radius",
+  autocompletePopoverBorderTop: "--vita-autocomplete-popover-border-top",
+  autocompletePopoverBorderRight: "--vita-autocomplete-popover-border-right",
+  autocompletePopoverBorderBottom: "--vita-autocomplete-popover-border-bottom",
+  autocompletePopoverBorderLeft: "--vita-autocomplete-popover-border-left",
+  autocompletePopoverBorderStyle: "--vita-autocomplete-popover-border-style",
+  autocompletePopoverShadow: "--vita-autocomplete-popover-shadow",
+  autocompletePopoverPadding: "--vita-autocomplete-popover-padding",
+  autocompleteItemPaddingX: "--vita-autocomplete-item-padding-x",
+  autocompleteItemPaddingY: "--vita-autocomplete-item-padding-y",
+  autocompleteItemFontSize: "--vita-autocomplete-item-font-size",
+  autocompleteItemRadius: "--vita-autocomplete-item-radius",
+  autocompleteItemDivider: "--vita-autocomplete-item-divider",
+  autocompleteMaxHeight: "--vita-autocomplete-max-height",
+
   // Select
   selectRadius: "--vita-select-radius",
   selectBorderWidth: "--vita-select-border-width",

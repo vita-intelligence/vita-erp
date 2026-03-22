@@ -87,6 +87,20 @@ export const componentDefaults: Pick<
   | "alertDialogBackdropBlur"
   | "alertDialogBackdropColor"
   | "alertDialogBackdropOpacity"
+  | "autocompletePopoverRadius"
+  | "autocompletePopoverBorderTop"
+  | "autocompletePopoverBorderRight"
+  | "autocompletePopoverBorderBottom"
+  | "autocompletePopoverBorderLeft"
+  | "autocompletePopoverBorderStyle"
+  | "autocompletePopoverShadow"
+  | "autocompletePopoverPadding"
+  | "autocompleteItemPaddingX"
+  | "autocompleteItemPaddingY"
+  | "autocompleteItemFontSize"
+  | "autocompleteItemRadius"
+  | "autocompleteItemDivider"
+  | "autocompleteMaxHeight"
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
@@ -182,6 +196,22 @@ export const componentDefaults: Pick<
   alertDialogBackdropBlur: "0px",
   alertDialogBackdropColor: "oklch(0 0 0 / 0.4)",
   alertDialogBackdropOpacity: "1",
+
+  // Autocomplete
+  autocompletePopoverRadius: "0px",
+  autocompletePopoverBorderTop: "1px",
+  autocompletePopoverBorderRight: "1px",
+  autocompletePopoverBorderBottom: "1px",
+  autocompletePopoverBorderLeft: "1px",
+  autocompletePopoverBorderStyle: "solid",
+  autocompletePopoverShadow: "none",
+  autocompletePopoverPadding: "4px",
+  autocompleteItemPaddingX: "12px",
+  autocompleteItemPaddingY: "8px",
+  autocompleteItemFontSize: "14px",
+  autocompleteItemRadius: "0px",
+  autocompleteItemDivider: "0px",
+  autocompleteMaxHeight: "256px",
 
   // Select
   selectRadius: "0px",

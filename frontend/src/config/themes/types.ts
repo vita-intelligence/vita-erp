@@ -157,6 +157,22 @@ export type ThemeTokens = {
   alertDialogBackdropColor: string; // backdrop overlay color (supports solid or rgba/oklch with alpha)
   alertDialogBackdropOpacity: string; // backdrop opacity (0–1)
 
+  // ── Component tokens: Autocomplete / Dropdown ────────────────────────────
+  autocompletePopoverRadius: string; // dropdown border-radius
+  autocompletePopoverShadow: string; // dropdown box-shadow
+  autocompletePopoverPadding: string; // dropdown internal padding
+  autocompleteItemPaddingX: string; // list item horizontal padding
+  autocompleteItemPaddingY: string; // list item vertical padding
+  autocompleteItemFontSize: string; // list item font-size
+  autocompleteItemRadius: string; // list item hover/selected border-radius
+  autocompleteItemDivider: string; // divider height between items (0 = hidden)
+  autocompletePopoverBorderTop: string; // popover border-top-width
+  autocompletePopoverBorderRight: string; // popover border-right-width
+  autocompletePopoverBorderBottom: string; // popover border-bottom-width
+  autocompletePopoverBorderLeft: string; // popover border-left-width
+  autocompletePopoverBorderStyle: string; // popover border-style
+  autocompleteMaxHeight: string; // max dropdown height
+
   // ── Component tokens: Select / Dropdown ───────────────────────────────────
   selectRadius: string; // border-radius of select trigger
   selectBorderWidth: string; // border-width of select trigger

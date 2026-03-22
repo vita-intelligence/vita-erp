@@ -18,6 +18,8 @@ import { AccordionModule } from "./modules/accordion";
 import { Preview as AccordionPreview } from "./modules/accordion/Preview";
 import { AlertsModule } from "./modules/alerts";
 import { Preview as AlertsPreview } from "./modules/alerts/Preview";
+import { AutocompleteModule } from "./modules/autocomplete";
+import { Preview as AutocompletePreview } from "./modules/autocomplete/Preview";
 import { BadgesModule } from "./modules/badges";
 import { Preview as BadgesPreview } from "./modules/badges/Preview";
 import { ButtonsModule } from "./modules/buttons";
@@ -261,6 +263,30 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "alertDialogBackdropBlur",
       "alertDialogBackdropColor",
       "alertDialogBackdropOpacity",
+    ],
+  },
+  {
+    id: "autocomplete",
+    label: "Autocomplete",
+    description: "Dropdown popover and list items for search and combo fields",
+    component: AutocompleteModule,
+    preview: AutocompletePreview,
+    group: "Components",
+    resetKeys: [
+      "autocompletePopoverRadius",
+      "autocompletePopoverBorderTop",
+      "autocompletePopoverBorderRight",
+      "autocompletePopoverBorderBottom",
+      "autocompletePopoverBorderLeft",
+      "autocompletePopoverBorderStyle",
+      "autocompletePopoverShadow",
+      "autocompletePopoverPadding",
+      "autocompleteItemPaddingX",
+      "autocompleteItemPaddingY",
+      "autocompleteItemFontSize",
+      "autocompleteItemRadius",
+      "autocompleteItemDivider",
+      "autocompleteMaxHeight",
     ],
   },
 ];
