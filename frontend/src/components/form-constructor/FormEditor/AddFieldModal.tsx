@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * AddFieldModal — SurveyCTO-style modal for adding a new field.
+ * AddFieldModal — modal for adding a new field.
  *
  * Shows a label input and a grid of field types grouped by category.
  * User enters a label, picks a type, then clicks "Configure..." to add.

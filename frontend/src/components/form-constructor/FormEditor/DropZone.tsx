@@ -3,11 +3,9 @@
 /**
  * DropZone — a droppable area between elements in the form editor.
  *
- * When a drag is active, drop zones appear as clear targets with an icon.
- * When hovered, they expand and highlight with the info color.
- * When no drag is active, they're invisible.
- *
- * ID format: "drop:{containerId}:{index}"
+ * - `hidden` — zones adjacent to the dragged element are hidden
+ * - `isLast` — the final zone gets extra bottom padding so it's reachable
+ * - Info color highlight on hover with plus icon
  */
 
 import { useDroppable } from "@dnd-kit/core";
@@ -16,13 +14,27 @@ import { Plus } from "lucide-react";
 type DropZoneProps = {
   id: string;
   isDragActive: boolean;
+  /** Hide this zone (adjacent to dragged element's current position) */
+  hidden?: boolean;
+  /** Last zone in a container — gets extra padding so pointer can reach it */
+  isLast?: boolean;
 };
 
-export function DropZone({ id, isDragActive }: DropZoneProps) {
+export function DropZone({
+  id,
+  isDragActive,
+  hidden = false,
+  isLast = false,
+}: DropZoneProps) {
   const { isOver, setNodeRef } = useDroppable({ id });
 
   if (!isDragActive) {
     return <div style={{ height: 2 }} />;
+  }
+
+  if (hidden) {
+    // Still register as droppable but visually invisible
+    return <div ref={setNodeRef} style={{ height: 4 }} />;
   }
 
   return (
@@ -43,6 +55,8 @@ export function DropZone({ id, isDragActive }: DropZoneProps) {
         justifyContent: "center",
         gap: 6,
         cursor: "default",
+        // Last zone gets extra bottom margin so there's space to hover into it
+        marginBottom: isLast ? 40 : 0,
       }}
     >
       <Plus

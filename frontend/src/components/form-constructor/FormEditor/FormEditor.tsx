@@ -5,7 +5,7 @@
  *
  * Manages the form schema as local state (no Zustand — schema is passed
  * out via onChange). Provides DnD context for reordering fields,
- * SurveyCTO-style modals for adding/editing fields, and a live preview.
+ * modals for adding/editing fields, and a live preview.
  *
  * Props:
  *   schema   — initial FormSchema (or undefined for blank)
@@ -34,7 +34,6 @@ import {
   createField,
   createGroup,
   duplicateElement,
-  findElementById,
 } from "../shared/schema-utils";
 import type {
   FieldElement,
@@ -240,6 +239,32 @@ export function FormEditor({
     // No fallback reorder — all drops go through DropZones
   }
 
+  // ── Drag source position (hide adjacent drop zones) ────────────────────
+  const dragSourceRootIndex = activeDragId
+    ? schema.elements.findIndex((e) => e.id === activeDragId)
+    : -1;
+  let _dragSourceGroupId: string | null = null;
+  let _dragSourceChildIndex = -1;
+  if (activeDragId && dragSourceRootIndex === -1) {
+    for (const el of schema.elements) {
+      if (el.kind === "group") {
+        const ci = el.elements.findIndex((c) => c.id === activeDragId);
+        if (ci !== -1) {
+          _dragSourceGroupId = el.id;
+          _dragSourceChildIndex = ci;
+          break;
+        }
+      }
+    }
+  }
+
+  function isRootZoneHidden(zoneIndex: number): boolean {
+    if (dragSourceRootIndex === -1) return false;
+    return (
+      zoneIndex === dragSourceRootIndex || zoneIndex === dragSourceRootIndex + 1
+    );
+  }
+
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
@@ -284,7 +309,11 @@ export function FormEditor({
               onDragEnd={handleDragEnd}
             >
               {/* Drop zone before first element */}
-              <DropZone id="drop:root:0" isDragActive={isDragActive} />
+              <DropZone
+                id="drop:root:0"
+                isDragActive={isDragActive}
+                hidden={isRootZoneHidden(0)}
+              />
 
               {schema.elements.map((element, index) => (
                 <div key={element.id}>
@@ -306,6 +335,7 @@ export function FormEditor({
                       total={schema.elements.length}
                       allElements={schema.elements}
                       isDragActive={isDragActive}
+                      activeDragId={activeDragId}
                       onEdit={(field) => setConfigField(field)}
                       onDelete={() => removeElement(element.id)}
                       onMove={(dir) => moveElement(element.id, dir)}
@@ -364,6 +394,8 @@ export function FormEditor({
                   <DropZone
                     id={`drop:root:${index + 1}`}
                     isDragActive={isDragActive}
+                    hidden={isRootZoneHidden(index + 1)}
+                    isLast={index === schema.elements.length - 1}
                   />
                 </div>
               ))}
@@ -379,7 +411,7 @@ export function FormEditor({
             </DndContext>
           )}
 
-          {/* Bottom action bar — SurveyCTO-style */}
+          {/* Bottom action bar — */}
           <div
             className="flex items-center gap-2 rounded-vita-lg border px-4 py-2.5"
             style={{

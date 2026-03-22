@@ -37,6 +37,8 @@ type GroupCardProps = {
   onDuplicateChild: (childId: string) => void;
   onMoveChild: (childId: string, direction: "up" | "down") => void;
   isDragActive?: boolean;
+  /** ID of the element currently being dragged (to hide adjacent zones) */
+  activeDragId?: string | null;
 };
 
 export function GroupCard({
@@ -51,9 +53,20 @@ export function GroupCard({
   onDuplicateChild,
   onMoveChild,
   isDragActive = false,
+  activeDragId = null,
 }: GroupCardProps) {
   const t = useTranslations("formConstructor");
   const [collapsed, setCollapsed] = useState(false);
+
+  // Find dragged element's index inside this group (for hiding adjacent zones)
+  const dragChildIndex = activeDragId
+    ? group.elements.findIndex((c) => c.id === activeDragId)
+    : -1;
+
+  function isGroupZoneHidden(zoneIndex: number): boolean {
+    if (dragChildIndex === -1) return false;
+    return zoneIndex === dragChildIndex || zoneIndex === dragChildIndex + 1;
+  }
 
   const {
     attributes,
@@ -184,8 +197,12 @@ export function GroupCard({
           className="space-y-1.5 p-3"
           style={{ background: "var(--vita-background)" }}
         >
-          {/* Drop zone at top of group (when empty or before first child) */}
-          <DropZone id={`drop:${group.id}:0`} isDragActive={isDragActive} />
+          {/* Drop zone at top of group */}
+          <DropZone
+            id={`drop:${group.id}:0`}
+            isDragActive={isDragActive}
+            hidden={isGroupZoneHidden(0)}
+          />
 
           {group.elements.length === 0 && !isDragActive ? (
             <p
@@ -213,6 +230,8 @@ export function GroupCard({
                   <DropZone
                     id={`drop:${group.id}:${childIndex + 1}`}
                     isDragActive={isDragActive}
+                    hidden={isGroupZoneHidden(childIndex + 1)}
+                    isLast={childIndex === group.elements.length - 1}
                   />
                 </div>
               );
