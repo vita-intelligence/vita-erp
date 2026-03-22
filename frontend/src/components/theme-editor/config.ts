@@ -16,6 +16,8 @@ import type { ComponentType } from "react";
 import type { ThemeTokens } from "@/config/themes";
 import { AccordionModule } from "./modules/accordion";
 import { Preview as AccordionPreview } from "./modules/accordion/Preview";
+import { AlertsModule } from "./modules/alerts";
+import { Preview as AlertsPreview } from "./modules/alerts/Preview";
 import { BadgesModule } from "./modules/badges";
 import { Preview as BadgesPreview } from "./modules/badges/Preview";
 import { ButtonsModule } from "./modules/buttons";
@@ -232,6 +234,33 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "accordionContentPaddingX",
       "accordionContentPaddingY",
       "accordionShadow",
+    ],
+  },
+  {
+    id: "alerts",
+    label: "Alerts",
+    description: "Inline alert banners and modal confirmation dialogs",
+    component: AlertsModule,
+    preview: AlertsPreview,
+    group: "Components",
+    resetKeys: [
+      "alertRadius",
+      "alertBorderWidth",
+      "alertBorderStyle",
+      "alertPaddingX",
+      "alertPaddingY",
+      "alertTitleFontWeight",
+      "alertTitleFontSize",
+      "alertDescriptionFontSize",
+      "alertIconSize",
+      "alertShadow",
+      "alertDialogRadius",
+      "alertDialogPaddingX",
+      "alertDialogPaddingY",
+      "alertDialogShadow",
+      "alertDialogBackdropBlur",
+      "alertDialogBackdropColor",
+      "alertDialogBackdropOpacity",
     ],
   },
 ];

@@ -136,6 +136,27 @@ export type ThemeTokens = {
   accordionContentPaddingY: string; // vertical padding of content body
   accordionShadow: string; // box-shadow on the container
 
+  // ── Component tokens: Alert (inline banners) ─────────────────────────────
+  alertRadius: string; // border-radius
+  alertBorderWidth: string; // border-width
+  alertBorderStyle: string; // border-style: solid | dashed | dotted
+  alertPaddingX: string; // horizontal padding
+  alertPaddingY: string; // vertical padding
+  alertTitleFontWeight: string; // title font-weight
+  alertTitleFontSize: string; // title font-size
+  alertDescriptionFontSize: string; // description font-size
+  alertIconSize: string; // indicator icon size
+  alertShadow: string; // box-shadow
+
+  // ── Component tokens: Alert Dialog (modal confirmation) ─────────────────
+  alertDialogRadius: string; // dialog panel border-radius
+  alertDialogPaddingX: string; // dialog horizontal padding
+  alertDialogPaddingY: string; // dialog vertical padding
+  alertDialogShadow: string; // dialog box-shadow
+  alertDialogBackdropBlur: string; // backdrop blur amount (0 = opaque, >0 = glass)
+  alertDialogBackdropColor: string; // backdrop overlay color (supports solid or rgba/oklch with alpha)
+  alertDialogBackdropOpacity: string; // backdrop opacity (0–1)
+
   // ── Component tokens: Select / Dropdown ───────────────────────────────────
   selectRadius: string; // border-radius of select trigger
   selectBorderWidth: string; // border-width of select trigger

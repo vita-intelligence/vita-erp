@@ -33,7 +33,7 @@ const MIN_STOPS = 2;
 type Mode = "solid" | "gradient";
 
 type GradientPickerProps = {
-  tokenKey: "background" | "surface";
+  tokenKey: keyof import("@/config/themes").ThemeTokens;
   label: string;
   description: string;
 };
@@ -46,7 +46,7 @@ export function GradientPicker({
   description,
 }: GradientPickerProps) {
   const { mode: themeMode, tokens, setTokens, resetColor } = useThemeStore();
-  const value = tokens[tokenKey];
+  const value = tokens[tokenKey] ?? "";
   const isDark = themeMode === "dark";
 
   const [mode, setMode] = useState<Mode>(
@@ -152,7 +152,9 @@ export function GradientPicker({
               type="color"
               title={`Change ${label}`}
               className="h-7 w-7 cursor-pointer rounded-vita-sm border border-vita-neutral-200"
-              value={isGradient(value) ? "#ffffff" : cssColorToHex(value)}
+              value={
+                isGradient(value) || !value ? "#ffffff" : cssColorToHex(value)
+              }
               onChange={(e) =>
                 setTokens({
                   [tokenKey]: e.target.value,

@@ -60,7 +60,7 @@ export function Preview() {
   const separatorH = tokens.accordionSeparatorHeight ?? "1px";
 
   return (
-    <div className="space-y-3 rounded-vita-md border border-vita-neutral-200 bg-vita-neutral-50 p-4">
+    <div className="space-y-3 rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
         Live preview
       </p>

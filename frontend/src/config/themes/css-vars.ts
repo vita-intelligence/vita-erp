@@ -135,6 +135,27 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   accordionContentPaddingY: "--vita-accordion-content-padding-y",
   accordionShadow: "--vita-accordion-shadow",
 
+  // Alert
+  alertRadius: "--vita-alert-radius",
+  alertBorderWidth: "--vita-alert-border-width",
+  alertBorderStyle: "--vita-alert-border-style",
+  alertPaddingX: "--vita-alert-padding-x",
+  alertPaddingY: "--vita-alert-padding-y",
+  alertTitleFontWeight: "--vita-alert-title-font-weight",
+  alertTitleFontSize: "--vita-alert-title-font-size",
+  alertDescriptionFontSize: "--vita-alert-description-font-size",
+  alertIconSize: "--vita-alert-icon-size",
+  alertShadow: "--vita-alert-shadow",
+
+  // Alert Dialog
+  alertDialogRadius: "--vita-alert-dialog-radius",
+  alertDialogPaddingX: "--vita-alert-dialog-padding-x",
+  alertDialogPaddingY: "--vita-alert-dialog-padding-y",
+  alertDialogShadow: "--vita-alert-dialog-shadow",
+  alertDialogBackdropBlur: "--vita-alert-dialog-backdrop-blur",
+  alertDialogBackdropColor: "--vita-alert-dialog-backdrop-color",
+  alertDialogBackdropOpacity: "--vita-alert-dialog-backdrop-opacity",
+
   // Select
   selectRadius: "--vita-select-radius",
   selectBorderWidth: "--vita-select-border-width",

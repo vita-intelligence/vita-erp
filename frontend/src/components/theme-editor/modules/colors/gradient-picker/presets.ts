@@ -113,52 +113,105 @@ export const GRADIENT_PRESETS: GradientPreset[] = [
   },
 ];
 
-/** Dark mode variants — deeper, more saturated */
+/** Dark mode variants — visible contrast on dark surfaces, higher chroma */
 export const DARK_GRADIENT_PRESETS: GradientPreset[] = [
+  // ── Warm ──
   {
-    label: "Deep Ember",
+    label: "Ember",
     value:
-      "linear-gradient(135deg, oklch(0.12 0.02 30) 0%, oklch(0.09 0.01 50) 100%)",
-    swatch: "linear-gradient(135deg, oklch(0.12 0.02 30), oklch(0.09 0.01 50))",
+      "linear-gradient(135deg, oklch(0.22 0.06 30) 0%, oklch(0.14 0.04 50) 100%)",
+    swatch: "linear-gradient(135deg, oklch(0.22 0.06 30), oklch(0.14 0.04 50))",
   },
   {
-    label: "Midnight Blue",
+    label: "Burgundy",
     value:
-      "linear-gradient(135deg, oklch(0.12 0.03 250) 0%, oklch(0.08 0.02 230) 100%)",
+      "linear-gradient(160deg, oklch(0.20 0.08 10) 0%, oklch(0.12 0.05 25) 100%)",
+    swatch: "linear-gradient(160deg, oklch(0.20 0.08 10), oklch(0.12 0.05 25))",
+  },
+  {
+    label: "Amber Night",
+    value:
+      "linear-gradient(135deg, oklch(0.18 0.06 70) 0%, oklch(0.12 0.04 50) 100%)",
+    swatch: "linear-gradient(135deg, oklch(0.18 0.06 70), oklch(0.12 0.04 50))",
+  },
+  // ── Cool ──
+  {
+    label: "Midnight",
+    value:
+      "linear-gradient(135deg, oklch(0.22 0.07 260) 0%, oklch(0.12 0.05 240) 100%)",
     swatch:
-      "linear-gradient(135deg, oklch(0.12 0.03 250), oklch(0.08 0.02 230))",
+      "linear-gradient(135deg, oklch(0.22 0.07 260), oklch(0.12 0.05 240))",
   },
   {
-    label: "Dark Aurora",
+    label: "Deep Ocean",
     value:
-      "linear-gradient(135deg, oklch(0.11 0.03 180) 0%, oklch(0.09 0.04 260) 50%, oklch(0.11 0.03 310) 100%)",
+      "linear-gradient(180deg, oklch(0.20 0.06 220) 0%, oklch(0.10 0.04 240) 100%)",
     swatch:
-      "linear-gradient(135deg, oklch(0.11 0.03 180), oklch(0.09 0.04 260), oklch(0.11 0.03 310))",
+      "linear-gradient(180deg, oklch(0.20 0.06 220), oklch(0.10 0.04 240))",
   },
   {
-    label: "Deep Forest",
+    label: "Violet Night",
     value:
-      "linear-gradient(160deg, oklch(0.11 0.02 150) 0%, oklch(0.08 0.03 170) 100%)",
+      "linear-gradient(135deg, oklch(0.22 0.08 290) 0%, oklch(0.13 0.06 270) 100%)",
     swatch:
-      "linear-gradient(160deg, oklch(0.11 0.02 150), oklch(0.08 0.03 170))",
+      "linear-gradient(135deg, oklch(0.22 0.08 290), oklch(0.13 0.06 270))",
+  },
+  // ── Nature ──
+  {
+    label: "Dark Forest",
+    value:
+      "linear-gradient(160deg, oklch(0.20 0.06 150) 0%, oklch(0.12 0.04 170) 100%)",
+    swatch:
+      "linear-gradient(160deg, oklch(0.20 0.06 150), oklch(0.12 0.04 170))",
   },
   {
-    label: "Obsidian",
+    label: "Deep Teal",
     value:
-      "radial-gradient(ellipse at 50% 0%, oklch(0.15 0.01 260) 0%, oklch(0.07 0 0) 70%)",
-    swatch: "radial-gradient(circle, oklch(0.15 0.01 260), oklch(0.07 0 0))",
+      "linear-gradient(135deg, oklch(0.22 0.06 190) 0%, oklch(0.12 0.04 200) 100%)",
+    swatch:
+      "linear-gradient(135deg, oklch(0.22 0.06 190), oklch(0.12 0.04 200))",
+  },
+  // ── Radial ──
+  {
+    label: "Spotlight",
+    value:
+      "radial-gradient(ellipse at 50% 0%, oklch(0.25 0.05 260) 0%, oklch(0.10 0.02 250) 70%)",
+    swatch:
+      "radial-gradient(circle, oklch(0.25 0.05 260), oklch(0.10 0.02 250))",
   },
   {
-    label: "Charcoal Glow",
+    label: "Warm Glow",
     value:
-      "radial-gradient(circle at 50% 50%, oklch(0.16 0.02 45) 0%, oklch(0.08 0.01 40) 70%)",
-    swatch: "radial-gradient(circle, oklch(0.16 0.02 45), oklch(0.08 0.01 40))",
+      "radial-gradient(circle at 50% 50%, oklch(0.25 0.06 45) 0%, oklch(0.10 0.03 40) 70%)",
+    swatch: "radial-gradient(circle, oklch(0.25 0.06 45), oklch(0.10 0.03 40))",
+  },
+  // ── Multi-stop ──
+  {
+    label: "Aurora",
+    value:
+      "linear-gradient(135deg, oklch(0.20 0.07 180) 0%, oklch(0.16 0.08 260) 50%, oklch(0.20 0.07 310) 100%)",
+    swatch:
+      "linear-gradient(135deg, oklch(0.20 0.07 180), oklch(0.16 0.08 260), oklch(0.20 0.07 310))",
   },
   {
     label: "Night Prism",
     value:
-      "linear-gradient(135deg, oklch(0.11 0.03 0) 0%, oklch(0.10 0.03 120) 50%, oklch(0.11 0.03 240) 100%)",
+      "linear-gradient(135deg, oklch(0.20 0.07 0) 0%, oklch(0.18 0.07 120) 50%, oklch(0.20 0.07 240) 100%)",
     swatch:
-      "linear-gradient(135deg, oklch(0.11 0.03 0), oklch(0.10 0.03 120), oklch(0.11 0.03 240))",
+      "linear-gradient(135deg, oklch(0.20 0.07 0), oklch(0.18 0.07 120), oklch(0.20 0.07 240))",
+  },
+  {
+    label: "Horizon",
+    value:
+      "linear-gradient(180deg, oklch(0.22 0.06 240) 0%, oklch(0.15 0.04 220) 40%, oklch(0.20 0.05 50) 100%)",
+    swatch:
+      "linear-gradient(180deg, oklch(0.22 0.06 240), oklch(0.15 0.04 220), oklch(0.20 0.05 50))",
+  },
+  // ── Neutral ──
+  {
+    label: "Charcoal",
+    value:
+      "linear-gradient(135deg, oklch(0.25 0.01 0) 0%, oklch(0.12 0.01 0) 100%)",
+    swatch: "linear-gradient(135deg, oklch(0.25 0.01 0), oklch(0.12 0.01 0))",
   },
 ];

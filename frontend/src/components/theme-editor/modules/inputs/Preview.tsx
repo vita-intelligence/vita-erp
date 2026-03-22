@@ -51,7 +51,7 @@ export function Preview() {
   );
 
   return (
-    <div className="space-y-3 rounded-vita-md border border-vita-neutral-200 bg-vita-neutral-50 p-4">
+    <div className="space-y-3 rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       {/* Toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p

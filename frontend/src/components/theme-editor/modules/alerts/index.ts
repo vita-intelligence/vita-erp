@@ -1,0 +1,1 @@
+export { AlertsModule } from "./AlertsModule";

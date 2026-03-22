@@ -53,6 +53,6 @@ export function defaultStops(isDark: boolean): ColorStop[] {
 
 // ── Detection ────────────────────────────────────────────────────────────────
 
-export function isGradient(value: string): boolean {
-  return value.includes("gradient(");
+export function isGradient(value: string | undefined): boolean {
+  return !!value && value.includes("gradient(");
 }

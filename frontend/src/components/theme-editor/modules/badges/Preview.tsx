@@ -9,7 +9,7 @@ import { badgeStyle } from "./badge-style";
 
 export function Preview() {
   return (
-    <div className="space-y-4 rounded-vita-md border border-vita-neutral-200 bg-vita-neutral-50 p-4">
+    <div className="space-y-4 rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
         Live preview
       </p>

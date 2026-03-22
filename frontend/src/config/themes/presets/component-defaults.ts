@@ -70,6 +70,23 @@ export const componentDefaults: Pick<
   | "accordionContentPaddingX"
   | "accordionContentPaddingY"
   | "accordionShadow"
+  | "alertRadius"
+  | "alertBorderWidth"
+  | "alertBorderStyle"
+  | "alertPaddingX"
+  | "alertPaddingY"
+  | "alertTitleFontWeight"
+  | "alertTitleFontSize"
+  | "alertDescriptionFontSize"
+  | "alertIconSize"
+  | "alertShadow"
+  | "alertDialogRadius"
+  | "alertDialogPaddingX"
+  | "alertDialogPaddingY"
+  | "alertDialogShadow"
+  | "alertDialogBackdropBlur"
+  | "alertDialogBackdropColor"
+  | "alertDialogBackdropOpacity"
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
@@ -144,6 +161,27 @@ export const componentDefaults: Pick<
   accordionContentPaddingX: "16px",
   accordionContentPaddingY: "8px",
   accordionShadow: "none",
+
+  // Alert
+  alertRadius: "0px",
+  alertBorderWidth: "1px",
+  alertBorderStyle: "solid",
+  alertPaddingX: "16px",
+  alertPaddingY: "12px",
+  alertTitleFontWeight: "600",
+  alertTitleFontSize: "14px",
+  alertDescriptionFontSize: "13px",
+  alertIconSize: "20px",
+  alertShadow: "none",
+
+  // Alert Dialog
+  alertDialogRadius: "0px",
+  alertDialogPaddingX: "24px",
+  alertDialogPaddingY: "20px",
+  alertDialogShadow: "none",
+  alertDialogBackdropBlur: "0px",
+  alertDialogBackdropColor: "oklch(0 0 0 / 0.4)",
+  alertDialogBackdropOpacity: "1",
 
   // Select
   selectRadius: "0px",
