@@ -3,22 +3,18 @@
 /**
  * DropZone — a droppable area between elements in the form editor.
  *
- * When a drag is active, ALL drop zones are visible (thin dashed line).
- * When the pointer hovers over a specific zone, it expands and highlights
- * to show this is where the element will land.
- * When no drag is active, drop zones collapse to invisible.
+ * When a drag is active, drop zones appear as clear targets with an icon.
+ * When hovered, they expand and highlight with the info color.
+ * When no drag is active, they're invisible.
  *
  * ID format: "drop:{containerId}:{index}"
- *   - containerId = "root" for top-level, or a group ID for inside a group
- *   - index = insertion position (0 = before first, N = after last)
  */
 
 import { useDroppable } from "@dnd-kit/core";
+import { Plus } from "lucide-react";
 
 type DropZoneProps = {
-  /** Unique droppable ID in the format "drop:{container}:{index}" */
   id: string;
-  /** Whether a drag is currently happening */
   isDragActive: boolean;
 };
 
@@ -33,37 +29,48 @@ export function DropZone({ id, isDragActive }: DropZoneProps) {
     <div
       ref={setNodeRef}
       style={{
-        height: isOver ? 44 : 24,
-        borderRadius: 6,
+        height: isOver ? 56 : 36,
+        borderRadius: 8,
         border: isOver
-          ? "2px dashed var(--vita-primary)"
-          : "1px dashed var(--vita-neutral-300)",
+          ? "2px solid var(--vita-info)"
+          : "2px dashed var(--vita-neutral-300)",
         background: isOver
-          ? "var(--vita-primary-light, oklch(0.95 0.02 250))"
-          : "var(--vita-neutral-50, #f9fafb)",
-        transition: "all 120ms ease",
+          ? "var(--vita-info-light, oklch(0.93 0.03 240))"
+          : "transparent",
+        transition: "all 100ms ease",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        gap: 6,
+        cursor: "default",
       }}
     >
-      <span
+      <Plus
+        size={isOver ? 16 : 14}
         style={{
-          fontSize: 11,
-          color: isOver ? "var(--vita-primary)" : "var(--vita-neutral-400)",
-          fontWeight: 500,
-          opacity: isOver ? 1 : 0.6,
+          color: isOver
+            ? "var(--vita-info-dark, #1d4ed8)"
+            : "var(--vita-neutral-400)",
+          transition: "all 100ms ease",
         }}
-      >
-        {isOver ? "↓ Drop here" : "—"}
-      </span>
+      />
+      {isOver && (
+        <span
+          style={{
+            fontSize: 12,
+            fontWeight: 600,
+            color: "var(--vita-info-dark, #1d4ed8)",
+          }}
+        >
+          Drop here
+        </span>
+      )}
     </div>
   );
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
-/** Parse a drop zone ID into container and index. */
 export function parseDropZoneId(id: string): {
   container: string;
   index: number;
