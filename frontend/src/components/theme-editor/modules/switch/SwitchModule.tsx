@@ -25,10 +25,7 @@ export function SwitchModule() {
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
 
-  const trackW = parseFloat(tokens.switchTrackWidth ?? "40");
-  const trackH = parseFloat(tokens.switchTrackHeight ?? "22");
   const trackR = parseFloat(tokens.switchTrackRadius ?? "9999");
-  const thumbS = parseFloat(tokens.switchThumbSize ?? "18");
   const thumbR = parseFloat(tokens.switchThumbRadius ?? "9999");
   const gapPx = parseFloat(tokens.switchGap ?? "8");
 
@@ -40,35 +37,15 @@ export function SwitchModule() {
 
       {!previewExternal && <Preview />}
 
-      {/* Track */}
-      <Section title={t("sections.track")}>
-        <SliderRow
-          label={`${t("labels.width")} — ${trackW}px`}
-          min={28}
-          max={60}
-          step={2}
-          value={trackW}
-          onChange={(v) => setTokens({ switchTrackWidth: `${v}px` })}
-          hint={[`28px ${t("hints.compact")}`, `60px ${t("hints.large")}`]}
-          onReset={() => resetColor(["switchTrackWidth"])}
-        />
-        <SliderRow
-          label={`${t("labels.height")} — ${trackH}px`}
-          min={16}
-          max={32}
-          step={2}
-          value={trackH}
-          onChange={(v) => setTokens({ switchTrackHeight: `${v}px` })}
-          hint={[`16px ${t("hints.compact")}`, `32px ${t("hints.large")}`]}
-          onReset={() => resetColor(["switchTrackHeight"])}
-        />
+      {/* Shape */}
+      <Section title={t("sections.shape")}>
         <Row
-          label={t("labels.radiusPreset")}
+          label={`${t("sections.track")} ${t("labels.radius").toLowerCase()}`}
           onReset={() => resetColor(["switchTrackRadius"])}
         >
           {RADIUS_PRESETS.map((p) => (
             <Chip
-              key={p.value}
+              key={`track-${p.value}`}
               active={
                 p.value === "9999px"
                   ? trackR >= 100
@@ -80,27 +57,14 @@ export function SwitchModule() {
             </Chip>
           ))}
         </Row>
-      </Section>
 
-      {/* Thumb */}
-      <Section title={t("sections.thumb")}>
-        <SliderRow
-          label={`${t("labels.size")} — ${thumbS}px`}
-          min={12}
-          max={28}
-          step={2}
-          value={thumbS}
-          onChange={(v) => setTokens({ switchThumbSize: `${v}px` })}
-          hint={[`12px ${t("hints.small")}`, `28px ${t("hints.large")}`]}
-          onReset={() => resetColor(["switchThumbSize"])}
-        />
         <Row
-          label={t("labels.radiusPreset")}
+          label={`${t("sections.thumb")} ${t("labels.radius").toLowerCase()}`}
           onReset={() => resetColor(["switchThumbRadius"])}
         >
           {RADIUS_PRESETS.map((p) => (
             <Chip
-              key={p.value}
+              key={`thumb-${p.value}`}
               active={
                 p.value === "9999px"
                   ? thumbR >= 100
@@ -114,7 +78,7 @@ export function SwitchModule() {
         </Row>
       </Section>
 
-      {/* Label gap */}
+      {/* Label */}
       <Section title={t("sections.label")}>
         <SliderRow
           label={`${t("labels.gap")} — ${gapPx}px`}

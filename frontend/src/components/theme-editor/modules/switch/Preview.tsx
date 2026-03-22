@@ -42,7 +42,9 @@ export function Preview() {
             isDisabled={item.disabled}
             className="flex"
           >
-            <Switch.Thumb />
+            <Switch.Control>
+              <Switch.Thumb />
+            </Switch.Control>
             <Switch.Content>{item.label}</Switch.Content>
           </Switch>
         ))}

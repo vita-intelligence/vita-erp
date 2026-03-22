@@ -636,10 +636,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     preview: SwitchPreview,
     group: "Components",
     resetKeys: [
-      "switchTrackWidth",
-      "switchTrackHeight",
       "switchTrackRadius",
-      "switchThumbSize",
       "switchThumbRadius",
       "switchGap",
       "switchTransitionDuration",

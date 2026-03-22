@@ -75,7 +75,9 @@ export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
           onChange={() => onUpdate({ required: !field.required })}
           size="sm"
         >
-          <Switch.Thumb />
+          <Switch.Control>
+            <Switch.Thumb />
+          </Switch.Control>
         </Switch>
       </div>
 
@@ -97,7 +99,9 @@ export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
           onChange={() => onUpdate({ hidden: !field.hidden })}
           size="sm"
         >
-          <Switch.Thumb />
+          <Switch.Control>
+            <Switch.Thumb />
+          </Switch.Control>
         </Switch>
       </div>
     </div>

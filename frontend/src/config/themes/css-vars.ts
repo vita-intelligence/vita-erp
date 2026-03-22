@@ -344,10 +344,7 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   datePickerTransitionDuration: "--vita-date-picker-transition-duration",
 
   // Switch
-  switchTrackWidth: "--vita-switch-track-width",
-  switchTrackHeight: "--vita-switch-track-height",
   switchTrackRadius: "--vita-switch-track-radius",
-  switchThumbSize: "--vita-switch-thumb-size",
   switchThumbRadius: "--vita-switch-thumb-radius",
   switchGap: "--vita-switch-gap",
   switchTransitionDuration: "--vita-switch-transition-duration",

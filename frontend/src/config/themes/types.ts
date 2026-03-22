@@ -345,10 +345,7 @@ export type ThemeTokens = {
   datePickerTransitionDuration: string; // transition speed
 
   // ── Component tokens: Switch ──────────────────────────────────────────────
-  switchTrackWidth: string;
-  switchTrackHeight: string;
   switchTrackRadius: string;
-  switchThumbSize: string;
   switchThumbRadius: string;
   switchGap: string;
   switchTransitionDuration: string;
