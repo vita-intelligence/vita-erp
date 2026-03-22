@@ -1,8 +1,6 @@
 /* ── Switch ───────────────────────────────────────────────────────────────────
- * Applies Vita ERP design tokens to the HeroUI <Switch> component.
- *
- * Uses [data-slot] attribute selectors for guaranteed DOM matching.
- * HeroUI renders: data-slot="switch" > data-slot="switch-control" > data-slot="switch-thumb"
+ * Default token values for the Switch component.
+ * Overrides are applied via inline styles in @/components/ui/switch wrapper.
  */
 
 :root {
@@ -13,37 +11,4 @@
   --vita-switch-thumb-radius: 9999px;
   --vita-switch-gap: 8px;
   --vita-switch-transition-duration: 200ms;
-}
-
-/* Track */
-[data-slot="switch-control"] {
-  width: var(--vita-switch-track-width) !important;
-  height: var(--vita-switch-track-height) !important;
-  border-radius: var(--vita-switch-track-radius) !important;
-  transition-duration: var(--vita-switch-transition-duration) !important;
-}
-
-/* Thumb — unchecked */
-[data-slot="switch-thumb"] {
-  width: var(--vita-switch-thumb-size) !important;
-  height: var(--vita-switch-thumb-size) !important;
-  border-radius: var(--vita-switch-thumb-radius) !important;
-  transition-duration: var(--vita-switch-transition-duration) !important;
-  margin-inline-start: calc(
-    (var(--vita-switch-track-height) - var(--vita-switch-thumb-size)) / 2
-  ) !important;
-}
-
-/* Thumb — checked: slide right */
-[data-slot="switch"][data-selected="true"] [data-slot="switch-thumb"],
-[data-slot="switch"][aria-checked="true"] [data-slot="switch-thumb"] {
-  margin-inline-start: calc(
-    var(--vita-switch-track-width) - var(--vita-switch-thumb-size) -
-      (var(--vita-switch-track-height) - var(--vita-switch-thumb-size)) / 2
-  ) !important;
-}
-
-/* Gap */
-[data-slot="switch"] {
-  gap: var(--vita-switch-gap) !important;
 }
