@@ -1,6 +1,7 @@
 /* ── Badge / Chip ─────────────────────────────────────────────────────────────
  * Applies Vita ERP design tokens to the HeroUI <Chip> component (.chip),
  * which is used as the badge primitive across the ERP interface.
+ * Includes 3D rotation (static + hover) and hover motion tokens.
  */
 
 :root {
@@ -16,6 +17,14 @@
   --vita-badge-text-transform: none;
   --vita-badge-padding-x: 0.55rem;
   --vita-badge-padding-y: 0.2rem;
+  --vita-badge-rotate-x: 0deg;
+  --vita-badge-rotate-y: 0deg;
+  --vita-badge-rotate-z: 0deg;
+  /* hover rotate vars intentionally NOT declared here —
+     when unset, CSS var() falls back to the static rotate values */
+  --vita-badge-hover-translate-y: 0px;
+  --vita-badge-hover-scale: 1;
+  --vita-badge-transition-duration: 150ms;
 }
 
 .chip,
@@ -30,6 +39,28 @@
   padding-right: var(--vita-badge-padding-x) !important;
   padding-top: var(--vita-badge-padding-y) !important;
   padding-bottom: var(--vita-badge-padding-y) !important;
+  transition-property: transform, opacity !important;
+  transition-timing-function: ease !important;
+  transition-duration: var(--vita-badge-transition-duration) !important;
+
+  /* 3D — idle rotation */
+  transform: perspective(800px)
+    rotateX(var(--vita-badge-rotate-x, 0deg))
+    rotateY(var(--vita-badge-rotate-y, 0deg))
+    rotateZ(var(--vita-badge-rotate-z, 0deg)) !important;
+}
+
+/* Hover — composes 3D rotation with lift/scale */
+@media (hover: hover) {
+  .chip:hover,
+  [data-slot="chip"]:hover {
+    transform: perspective(800px)
+      rotateX(var(--vita-badge-hover-rotate-x, var(--vita-badge-rotate-x, 0deg)))
+      rotateY(var(--vita-badge-hover-rotate-y, var(--vita-badge-rotate-y, 0deg)))
+      rotateZ(var(--vita-badge-hover-rotate-z, var(--vita-badge-rotate-z, 0deg)))
+      translateY(var(--vita-badge-hover-translate-y, 0px))
+      scale(var(--vita-badge-hover-scale, 1)) !important;
+  }
 }
 
 .chip__label,

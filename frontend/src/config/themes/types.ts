@@ -76,10 +76,18 @@ export type ThemeTokens = {
   btnLetterSpacing: string; // letter-spacing of button label
   btnTextTransform: string; // text-transform: none | uppercase | capitalize
   btnShadow: string; // box-shadow — full CSS value, built by shadow builder
-  btnHoverTransform: string; // CSS transform on hover: none | translateY(-2px) | scale(1.03)
+  btnHoverTransform: string; // CSS transform on hover: translateY(-2px) | scale(1.03) | "" (none)
   btnHoverFilter: string; // CSS filter on hover: none | drop-shadow(...) | brightness(1.1)
   btnPressScale: string; // scale factor on press: 0.97 (default) | 0.95 (strong) | 1 (none)
   btnTransitionDuration: string; // transition-duration for hover / active states
+  btnRotateX: string; // static 3D rotation around X axis (e.g. "0deg", "5deg")
+  btnRotateY: string; // static 3D rotation around Y axis
+  btnRotateZ: string; // static 3D rotation around Z axis
+  btnHoverRotateX: string; // 3D X rotation on hover (fallback: static value)
+  btnHoverRotateY: string; // 3D Y rotation on hover
+  btnHoverRotateZ: string; // 3D Z rotation on hover
+  btnCursorTrack: string; // cursor-tracking intensity: "0" (off) | degrees (e.g. "10")
+  btnCursorTrackRestore: string; // restore speed when cursor leaves
 
   // ── Component tokens: Input / Textarea / Search ────────────────────────────
   inputRadius: string; // border-radius of the input wrapper
@@ -108,6 +116,17 @@ export type ThemeTokens = {
   cardBorderLeft: string; // border-left-width
   cardBorderStyle: string; // border-style: solid | dashed | dotted
   cardShadow: string; // box-shadow of card panels
+  cardRotateX: string; // static 3D rotation around X axis
+  cardRotateY: string; // static 3D rotation around Y axis
+  cardRotateZ: string; // static 3D rotation around Z axis
+  cardHoverRotateX: string; // 3D X rotation on hover
+  cardHoverRotateY: string; // 3D Y rotation on hover
+  cardHoverRotateZ: string; // 3D Z rotation on hover
+  cardHoverTranslateY: string; // vertical shift on hover (e.g. "-4px" for lift)
+  cardHoverScale: string; // scale factor on hover (e.g. "1.03")
+  cardTransitionDuration: string; // transition-duration for hover animations
+  cardCursorTrack: string; // cursor-tracking intensity: "0" (off) | degrees per half-width (e.g. "10")
+  cardCursorTrackRestore: string; // restore speed when cursor leaves: "300ms" | "500ms" | etc.
 
   // ── Component tokens: Badge / Chip / Tag ──────────────────────────────────
   badgeRadius: string; // border-radius: 0 = square tag, 9999px = pill
@@ -122,6 +141,17 @@ export type ThemeTokens = {
   badgeTextTransform: string; // text-transform: none | uppercase | capitalize
   badgePaddingX: string; // horizontal padding
   badgePaddingY: string; // vertical padding
+  badgeRotateX: string; // static 3D rotation around X axis
+  badgeRotateY: string; // static 3D rotation around Y axis
+  badgeRotateZ: string; // static 3D rotation around Z axis
+  badgeHoverRotateX: string; // 3D X rotation on hover
+  badgeHoverRotateY: string; // 3D Y rotation on hover
+  badgeHoverRotateZ: string; // 3D Z rotation on hover
+  badgeHoverTranslateY: string; // vertical shift on hover
+  badgeHoverScale: string; // scale factor on hover
+  badgeTransitionDuration: string; // transition-duration for hover animations
+  badgeCursorTrack: string; // cursor-tracking intensity
+  badgeCursorTrackRestore: string; // restore speed when cursor leaves
 
   // ── Component tokens: Accordion ───────────────────────────────────────────
   accordionRadius: string; // border-radius of accordion container
@@ -186,6 +216,17 @@ export type ThemeTokens = {
   avatarFallbackFontWeight: string; // fallback initials font-weight
   avatarFallbackFontSize: string; // fallback initials font-size
   avatarGroupSpacing: string; // negative margin overlap for avatar groups
+  avatarRotateX: string; // static 3D rotation around X axis
+  avatarRotateY: string; // static 3D rotation around Y axis
+  avatarRotateZ: string; // static 3D rotation around Z axis
+  avatarHoverRotateX: string; // 3D X rotation on hover
+  avatarHoverRotateY: string; // 3D Y rotation on hover
+  avatarHoverRotateZ: string; // 3D Z rotation on hover
+  avatarHoverTranslateY: string; // vertical shift on hover
+  avatarHoverScale: string; // scale factor on hover
+  avatarTransitionDuration: string; // transition-duration for hover animations
+  avatarCursorTrack: string; // cursor-tracking intensity
+  avatarCursorTrackRestore: string; // restore speed when cursor leaves
 
   // ── Component tokens: Breadcrumbs ─────────────────────────────────────────
   breadcrumbsFontSize: string; // link font size
@@ -221,6 +262,17 @@ export type ThemeTokens = {
   calendarBorderLeft: string; // border-left-width
   calendarBorderStyle: string; // border-style: solid | dashed | dotted
   calendarShadow: string; // container box-shadow
+  calendarRotateX: string; // static 3D rotation around X axis
+  calendarRotateY: string; // static 3D rotation around Y axis
+  calendarRotateZ: string; // static 3D rotation around Z axis
+  calendarHoverRotateX: string; // 3D X rotation on hover
+  calendarHoverRotateY: string; // 3D Y rotation on hover
+  calendarHoverRotateZ: string; // 3D Z rotation on hover
+  calendarHoverTranslateY: string; // vertical shift on hover
+  calendarHoverScale: string; // scale factor on hover
+  calendarTransitionDuration: string; // transition-duration for hover animations
+  calendarCursorTrack: string; // cursor-tracking intensity
+  calendarCursorTrackRestore: string; // restore speed when cursor leaves
 
   // ── Component tokens: Select / Dropdown ───────────────────────────────────
   selectRadius: string; // border-radius of select trigger

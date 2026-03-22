@@ -6,10 +6,13 @@ import {
   BorderControls,
   BorderStyleRow,
   Chip,
+  CursorTrackControls,
+  Hover3DControls,
   Row,
   Section,
   ShadowBuilder,
   SliderRow,
+  Transform3DControls,
   usePreviewExternal,
 } from "../_shared";
 import { Preview } from "./Preview";
@@ -85,6 +88,35 @@ export function CalendarModule() {
           defaults={{ y: 2, blur: 6, opacity: 8 }}
         />
       </Section>
+
+      {/* ── 3D Transform ── */}
+      <Transform3DControls
+        keys={{
+          rotateX: "calendarRotateX",
+          rotateY: "calendarRotateY",
+          rotateZ: "calendarRotateZ",
+        }}
+      />
+
+      {/* ── Hover animation ── */}
+      <Hover3DControls
+        keys={{
+          hoverRotateX: "calendarHoverRotateX",
+          hoverRotateY: "calendarHoverRotateY",
+          hoverRotateZ: "calendarHoverRotateZ",
+          hoverTranslateY: "calendarHoverTranslateY",
+          hoverScale: "calendarHoverScale",
+          transitionDuration: "calendarTransitionDuration",
+        }}
+      />
+
+      {/* ── Cursor tracking ── */}
+      <CursorTrackControls
+        keys={{
+          intensity: "calendarCursorTrack",
+          restore: "calendarCursorTrackRestore",
+        }}
+      />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 /* ── Avatar ───────────────────────────────────────────────────────────────────
  * Applies Vita ERP design tokens to the HeroUI <Avatar> component.
+ * Includes 3D rotation (static + hover) and hover motion tokens.
  */
 
 :root {
@@ -15,6 +16,14 @@
   --vita-avatar-fallback-font-weight: 600;
   --vita-avatar-fallback-font-size: 14px;
   --vita-avatar-group-spacing: -8px;
+  --vita-avatar-rotate-x: 0deg;
+  --vita-avatar-rotate-y: 0deg;
+  --vita-avatar-rotate-z: 0deg;
+  /* hover rotate vars intentionally NOT declared here —
+     when unset, CSS var() falls back to the static rotate values */
+  --vita-avatar-hover-translate-y: 0px;
+  --vita-avatar-hover-scale: 1;
+  --vita-avatar-transition-duration: 150ms;
 }
 
 .avatar {
@@ -24,6 +33,30 @@
   border-bottom-width: var(--vita-avatar-border-bottom) !important;
   border-left-width: var(--vita-avatar-border-left) !important;
   border-style: var(--vita-avatar-border-style) !important;
+  transition-property: transform, opacity !important;
+  transition-timing-function: ease !important;
+  transition-duration: var(--vita-avatar-transition-duration) !important;
+
+  /* 3D — idle rotation.
+   * overflow: visible is needed because HeroUI sets overflow:hidden on avatars
+   * which clips the 3D transform perspective. */
+  transform: perspective(800px)
+    rotateX(var(--vita-avatar-rotate-x, 0deg))
+    rotateY(var(--vita-avatar-rotate-y, 0deg))
+    rotateZ(var(--vita-avatar-rotate-z, 0deg)) !important;
+  overflow: visible !important;
+}
+
+/* Hover — composes 3D rotation with lift/scale */
+@media (hover: hover) {
+  .avatar:hover {
+    transform: perspective(800px)
+      rotateX(var(--vita-avatar-hover-rotate-x, var(--vita-avatar-rotate-x, 0deg)))
+      rotateY(var(--vita-avatar-hover-rotate-y, var(--vita-avatar-rotate-y, 0deg)))
+      rotateZ(var(--vita-avatar-hover-rotate-z, var(--vita-avatar-rotate-z, 0deg)))
+      translateY(var(--vita-avatar-hover-translate-y, 0px))
+      scale(var(--vita-avatar-hover-scale, 1)) !important;
+  }
 }
 
 .avatar--sm {

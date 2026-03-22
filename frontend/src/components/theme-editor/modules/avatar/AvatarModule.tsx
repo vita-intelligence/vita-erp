@@ -6,10 +6,13 @@ import {
   BorderControls,
   BorderStyleRow,
   Chip,
+  CursorTrackControls,
   FontWeightRow,
+  Hover3DControls,
   Row,
   Section,
   SliderRow,
+  Transform3DControls,
   usePreviewExternal,
 } from "../_shared";
 import { Preview } from "./Preview";
@@ -150,6 +153,35 @@ export function AvatarModule() {
           onReset={() => resetColor(["avatarGroupSpacing"])}
         />
       </Section>
+
+      {/* ── 3D Transform ── */}
+      <Transform3DControls
+        keys={{
+          rotateX: "avatarRotateX",
+          rotateY: "avatarRotateY",
+          rotateZ: "avatarRotateZ",
+        }}
+      />
+
+      {/* ── Hover animation ── */}
+      <Hover3DControls
+        keys={{
+          hoverRotateX: "avatarHoverRotateX",
+          hoverRotateY: "avatarHoverRotateY",
+          hoverRotateZ: "avatarHoverRotateZ",
+          hoverTranslateY: "avatarHoverTranslateY",
+          hoverScale: "avatarHoverScale",
+          transitionDuration: "avatarTransitionDuration",
+        }}
+      />
+
+      {/* ── Cursor tracking ── */}
+      <CursorTrackControls
+        keys={{
+          intensity: "avatarCursorTrack",
+          restore: "avatarCursorTrackRestore",
+        }}
+      />
     </div>
   );
 }

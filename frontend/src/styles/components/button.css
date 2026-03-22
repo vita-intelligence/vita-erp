@@ -1,6 +1,6 @@
 /* ── Button ───────────────────────────────────────────────────────────────────
  * Applies Vita ERP design tokens to the HeroUI <Button> component (.button).
- * All shape, typography, border, shadow, and motion tokens are forwarded here.
+ * All shape, typography, border, shadow, motion, and 3D tokens are forwarded here.
  * Values are injected at runtime by the theme store via applyTokens().
  */
 
@@ -15,10 +15,15 @@
   --vita-btn-letter-spacing: 0.02em;
   --vita-btn-text-transform: none;
   --vita-btn-shadow: none;
-  --vita-btn-hover-transform: none;
+  /* no default for hover-transform — when unset, var(, ) fallback is empty */
   --vita-btn-hover-filter: none;
   --vita-btn-press-scale: 0.97;
   --vita-btn-transition-duration: 150ms;
+  --vita-btn-rotate-x: 0deg;
+  --vita-btn-rotate-y: 0deg;
+  --vita-btn-rotate-z: 0deg;
+  /* hover rotate vars intentionally NOT declared here —
+     when unset, CSS var() falls back to the static rotate values */
 }
 
 .button {
@@ -35,18 +40,35 @@
   transition-property: color, background-color, border-color, box-shadow, transform, filter, opacity !important;
   transition-timing-function: ease !important;
   transition-duration: var(--vita-btn-transition-duration) !important;
+
+  /* 3D — idle rotation (perspective required for rotateX/Y to have depth) */
+  transform: perspective(800px)
+    rotateX(var(--vita-btn-rotate-x, 0deg))
+    rotateY(var(--vita-btn-rotate-y, 0deg))
+    rotateZ(var(--vita-btn-rotate-z, 0deg)) !important;
 }
 
-/* Hover — only on true pointer devices to avoid sticky hover on touch */
+/* Hover — only on true pointer devices to avoid sticky hover on touch.
+ * Composes 3D hover rotation with the existing 2D hover transform.
+ * When --vita-btn-hover-transform is "none" (default), only the 3D rotation applies.
+ * When it holds a 2D value like "translateY(-2px) scale(1.03)", it appends after 3D. */
 @media (hover: hover) {
   .button:not([data-disabled="true"]):not([aria-disabled="true"]):hover {
-    transform: var(--vita-btn-hover-transform, none) !important;
+    transform: perspective(800px)
+      rotateX(var(--vita-btn-hover-rotate-x, var(--vita-btn-rotate-x, 0deg)))
+      rotateY(var(--vita-btn-hover-rotate-y, var(--vita-btn-rotate-y, 0deg)))
+      rotateZ(var(--vita-btn-hover-rotate-z, var(--vita-btn-rotate-z, 0deg)))
+      var(--vita-btn-hover-transform, ) !important;
     filter: var(--vita-btn-hover-filter, none) !important;
   }
 }
 
-/* Press / active feedback */
+/* Press / active feedback — preserves 3D rotation while scaling */
 .button:active,
 .button[data-pressed="true"] {
-  transform: scale(var(--vita-btn-press-scale, 0.97)) !important;
+  transform: perspective(800px)
+    rotateX(var(--vita-btn-rotate-x, 0deg))
+    rotateY(var(--vita-btn-rotate-y, 0deg))
+    rotateZ(var(--vita-btn-rotate-z, 0deg))
+    scale(var(--vita-btn-press-scale, 0.97)) !important;
 }

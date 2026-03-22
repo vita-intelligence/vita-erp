@@ -6,10 +6,13 @@ import {
   BorderControls,
   BorderStyleRow,
   Chip,
+  CursorTrackControls,
+  Hover3DControls,
   Row,
   Section,
   ShadowBuilder,
   SliderRow,
+  Transform3DControls,
   usePreviewExternal,
 } from "../_shared";
 import { Preview } from "./Preview";
@@ -31,7 +34,6 @@ export function CardsModule() {
   const previewExternal = usePreviewExternal();
 
   const radiusPx = parseFloat(tokens.cardRadius);
-
   return (
     <div className="space-y-6">
       <p className="text-xs text-vita-text-muted">
@@ -91,6 +93,35 @@ export function CardsModule() {
           defaults={{ y: 6, blur: 10, opacity: 8 }}
         />
       </Section>
+
+      {/* ── 3D Transform ── */}
+      <Transform3DControls
+        keys={{
+          rotateX: "cardRotateX",
+          rotateY: "cardRotateY",
+          rotateZ: "cardRotateZ",
+        }}
+      />
+
+      {/* ── Hover animation ── */}
+      <Hover3DControls
+        keys={{
+          hoverRotateX: "cardHoverRotateX",
+          hoverRotateY: "cardHoverRotateY",
+          hoverRotateZ: "cardHoverRotateZ",
+          hoverTranslateY: "cardHoverTranslateY",
+          hoverScale: "cardHoverScale",
+          transitionDuration: "cardTransitionDuration",
+        }}
+      />
+
+      {/* ── Cursor tracking ── */}
+      <CursorTrackControls
+        keys={{
+          intensity: "cardCursorTrack",
+          restore: "cardCursorTrackRestore",
+        }}
+      />
     </div>
   );
 }

@@ -6,10 +6,13 @@ import {
   BorderControls,
   BorderStyleRow,
   Chip,
+  CursorTrackControls,
   FontWeightRow,
+  Hover3DControls,
   Row,
   Section,
   SliderRow,
+  Transform3DControls,
   usePreviewExternal,
 } from "../_shared";
 import { Preview } from "./Preview";
@@ -169,6 +172,35 @@ export function BadgesModule() {
           ))}
         </Row>
       </Section>
+
+      {/* ── 3D Transform ── */}
+      <Transform3DControls
+        keys={{
+          rotateX: "badgeRotateX",
+          rotateY: "badgeRotateY",
+          rotateZ: "badgeRotateZ",
+        }}
+      />
+
+      {/* ── Hover animation ── */}
+      <Hover3DControls
+        keys={{
+          hoverRotateX: "badgeHoverRotateX",
+          hoverRotateY: "badgeHoverRotateY",
+          hoverRotateZ: "badgeHoverRotateZ",
+          hoverTranslateY: "badgeHoverTranslateY",
+          hoverScale: "badgeHoverScale",
+          transitionDuration: "badgeTransitionDuration",
+        }}
+      />
+
+      {/* ── Cursor tracking ── */}
+      <CursorTrackControls
+        keys={{
+          intensity: "badgeCursorTrack",
+          restore: "badgeCursorTrackRestore",
+        }}
+      />
     </div>
   );
 }

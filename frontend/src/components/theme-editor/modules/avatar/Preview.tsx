@@ -12,6 +12,8 @@ import { Avatar } from "@/components/ui/avatar";
 
 import { useThemeStore } from "@/stores/theme";
 
+import { useCursorTrack } from "../_shared/useCursorTrack";
+
 // ── Sample data ─────────────────────────────────────────────────────────────
 
 const USERS = [
@@ -42,15 +44,21 @@ function ColoredAvatar({
   fg,
   size = "md" as "sm" | "md" | "lg",
   style,
+  onMouseMove: onMove,
+  onMouseLeave: onLeave,
 }: {
   initials: string;
   bg: string;
   fg: string;
   size?: "sm" | "md" | "lg";
   style?: React.CSSProperties;
+  onMouseMove?: React.MouseEventHandler<HTMLElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLElement>;
 }) {
   return (
     <div
+      role="img"
+      aria-label={initials}
       style={{
         ...style,
         background: bg,
@@ -58,6 +66,8 @@ function ColoredAvatar({
         display: "inline-flex",
         overflow: "hidden",
       }}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
     >
       <Avatar size={size} className="!bg-transparent">
         <Avatar.Fallback style={{ color: fg }} className="!bg-transparent">
@@ -73,6 +83,14 @@ function ColoredAvatar({
 export function Preview() {
   const { tokens } = useThemeStore();
   const groupSpacing = tokens.avatarGroupSpacing ?? "-8px";
+  const trackIntensity = parseFloat(tokens.avatarCursorTrack ?? "0");
+  const trackRestore = parseFloat(tokens.avatarCursorTrackRestore ?? "300");
+  const { onMouseMove, onMouseLeave } = useCursorTrack(
+    "avatar",
+    trackIntensity,
+    trackRestore,
+  );
+  const trackProps = trackIntensity > 0 ? { onMouseMove, onMouseLeave } : {};
 
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
@@ -94,6 +112,7 @@ export function Preview() {
                   bg="var(--vita-primary)"
                   fg="var(--vita-text-on-primary)"
                   size={size}
+                  {...trackProps}
                 />
                 <span className="text-xs font-vita-mono text-vita-text-muted">
                   {tokens[tokenKey] ?? size}
@@ -114,6 +133,7 @@ export function Preview() {
               initials={u.initials}
               bg={u.bg}
               fg={u.fg}
+              {...trackProps}
             />
           ))}
         </div>

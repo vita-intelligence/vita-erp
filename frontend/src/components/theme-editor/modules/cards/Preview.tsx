@@ -3,11 +3,17 @@
 /**
  * Live card preview — uses real HeroUI Card and Button so CSS tokens
  * from card.css and button.css apply automatically.
+ *
+ * When cursor-tracking is enabled, mouse movement over the card
+ * dynamically adjusts its 3D rotation.
  */
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Chip } from "@/components/ui/chip";
+import { useThemeStore } from "@/stores/theme";
+
+import { useCursorTrack } from "../_shared/useCursorTrack";
 
 const PREVIEW_ROWS = [
   { label: "Product", value: "Steel Frame A-14" },
@@ -18,13 +24,31 @@ const PREVIEW_ROWS = [
 ];
 
 export function Preview() {
+  const { tokens } = useThemeStore();
+
+  const trackIntensity = parseFloat(tokens.cardCursorTrack ?? "0");
+  const trackRestore = parseFloat(tokens.cardCursorTrackRestore ?? "300");
+  const { onMouseMove, onMouseLeave } = useCursorTrack(
+    "card",
+    trackIntensity,
+    trackRestore,
+  );
+
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-medium uppercase tracking-wide text-vita-text-muted">
         Live preview
+        {trackIntensity > 0 && (
+          <span className="ml-2 normal-case opacity-60">
+            — move cursor over card
+          </span>
+        )}
       </p>
 
-      <Card>
+      <Card
+        onMouseMove={trackIntensity > 0 ? onMouseMove : undefined}
+        onMouseLeave={trackIntensity > 0 ? onMouseLeave : undefined}
+      >
         {/* Header */}
         <Card.Header className="flex-row items-center justify-between">
           <div>

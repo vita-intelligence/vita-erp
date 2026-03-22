@@ -1,5 +1,6 @@
 /* ── Card ─────────────────────────────────────────────────────────────────────
  * Applies Vita ERP design tokens to the HeroUI <Card> component (.card).
+ * Includes 3D rotation (static + hover) and hover motion tokens.
  */
 
 :root {
@@ -10,6 +11,14 @@
   --vita-card-border-left: 1px;
   --vita-card-border-style: solid;
   --vita-card-shadow: none;
+  --vita-card-rotate-x: 0deg;
+  --vita-card-rotate-y: 0deg;
+  --vita-card-rotate-z: 0deg;
+  /* hover rotate vars intentionally NOT declared here —
+     when unset, CSS var() falls back to the static rotate values */
+  --vita-card-hover-translate-y: 0px;
+  --vita-card-hover-scale: 1;
+  --vita-card-transition-duration: 150ms;
 }
 
 .card {
@@ -20,4 +29,25 @@
   border-left-width: var(--vita-card-border-left) !important;
   border-style: var(--vita-card-border-style) !important;
   box-shadow: var(--vita-card-shadow) !important;
+  transition-property: transform, box-shadow, opacity !important;
+  transition-timing-function: ease !important;
+  transition-duration: var(--vita-card-transition-duration) !important;
+
+  /* 3D — idle rotation */
+  transform: perspective(800px)
+    rotateX(var(--vita-card-rotate-x, 0deg))
+    rotateY(var(--vita-card-rotate-y, 0deg))
+    rotateZ(var(--vita-card-rotate-z, 0deg)) !important;
+}
+
+/* Hover — composes 3D rotation with lift/scale */
+@media (hover: hover) {
+  .card:hover {
+    transform: perspective(800px)
+      rotateX(var(--vita-card-hover-rotate-x, var(--vita-card-rotate-x, 0deg)))
+      rotateY(var(--vita-card-hover-rotate-y, var(--vita-card-rotate-y, 0deg)))
+      rotateZ(var(--vita-card-hover-rotate-z, var(--vita-card-rotate-z, 0deg)))
+      translateY(var(--vita-card-hover-translate-y, 0px))
+      scale(var(--vita-card-hover-scale, 1)) !important;
+  }
 }

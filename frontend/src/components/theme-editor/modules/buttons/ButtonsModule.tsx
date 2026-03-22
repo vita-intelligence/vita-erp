@@ -9,11 +9,13 @@ import {
   BorderControls,
   BorderStyleRow,
   Chip,
+  CursorTrackControls,
   FontWeightRow,
   Row,
   Section,
   ShadowBuilder,
   SliderRow,
+  Transform3DControls,
   TransitionRow,
   usePreviewExternal,
 } from "../_shared";
@@ -25,7 +27,46 @@ import {
 } from "./hover";
 import { Preview } from "./Preview";
 
-// ── Module ────────────────────────────────────────────────────────────────────
+// ── Hover option labels ─────────────────────────────────────────────────────
+
+const HOVER_OPTIONS: { label: string; value: HoverType }[] = [
+  { label: "None", value: "none" },
+  // 2D
+  { label: "↑ Lift", value: "lift" },
+  { label: "↓ Sink", value: "sink" },
+  { label: "⊕ Scale", value: "scale" },
+  { label: "↑⊕ Lift+Scale", value: "lift-scale" },
+  // Rotation
+  { label: "↻ Tilt Z", value: "tilt-z" },
+  // Filter
+  { label: "✦ Glow", value: "glow" },
+  { label: "☀ Brightness", value: "brightness" },
+  // 3D
+  { label: "⟳ Tilt fwd", value: "tilt-forward" },
+  { label: "⟳ Tilt side", value: "tilt-side" },
+  { label: "⟳ Tilt 3D", value: "tilt-3d" },
+  { label: "⟳ Flip peek", value: "flip-peek" },
+  // Combined
+  { label: "↑⟳ Lift+Tilt", value: "lift-tilt" },
+];
+
+// ── Helpers: which controls to show per hover type ──────────────────────────
+
+const SHOWS_LIFT = new Set<HoverType>(["lift", "lift-scale", "lift-tilt"]);
+const SHOWS_SINK = new Set<HoverType>(["sink"]);
+const SHOWS_SCALE = new Set<HoverType>(["scale", "lift-scale"]);
+const SHOWS_TILT_Z = new Set<HoverType>(["tilt-z"]);
+const SHOWS_GLOW = new Set<HoverType>(["glow"]);
+const SHOWS_BRIGHTNESS = new Set<HoverType>(["brightness"]);
+const SHOWS_3D = new Set<HoverType>([
+  "tilt-forward",
+  "tilt-side",
+  "tilt-3d",
+  "flip-peek",
+  "lift-tilt",
+]);
+
+// ── Module ──────────────────────────────────────────────────────────────────
 
 export function ButtonsModule() {
   const { tokens, setTokens, resetColor } = useThemeStore();
@@ -33,7 +74,7 @@ export function ButtonsModule() {
   const radiusPx = parseFloat(tokens.btnRadius);
   const pressScale = parseFloat(tokens.btnPressScale ?? "0.97");
 
-  // ── Hover state ──────────────────────────────────────────────────────────
+  // ── Hover state ───────────────────────────────────────────────────────────
   const [hoverType, setHoverType] = useState<HoverType>("none");
   const [liftPx, setLiftPx] = useState(2);
   const [sinkPx, setSinkPx] = useState(2);
@@ -43,6 +84,9 @@ export function ButtonsModule() {
   const [glowBlur, setGlowBlur] = useState(8);
   const [glowOpacity, setGlowOpacity] = useState(60);
   const [brightnessVal, setBrightnessVal] = useState(1.1);
+  const [hover3DRx, setHover3DRx] = useState(-5);
+  const [hover3DRy, setHover3DRy] = useState(8);
+  const [hover3DRz, setHover3DRz] = useState(0);
 
   function applyHover(type: HoverType, overrides?: Partial<HoverParams>) {
     const vars = computeHoverVars(type, {
@@ -54,17 +98,34 @@ export function ButtonsModule() {
       glowBlur,
       glowOpacity,
       brightnessVal,
+      hover3DRx,
+      hover3DRy,
+      hover3DRz,
       ...overrides,
     });
     setTokens({
       btnHoverTransform: vars.transform,
       btnHoverFilter: vars.filter,
+      btnHoverRotateX: vars.hoverRotateX,
+      btnHoverRotateY: vars.hoverRotateY,
+      btnHoverRotateZ: vars.hoverRotateZ,
     });
   }
 
   function switchHoverType(next: HoverType) {
     setHoverType(next);
     applyHover(next);
+  }
+
+  function resetHover() {
+    setHoverType("none");
+    resetColor([
+      "btnHoverTransform",
+      "btnHoverFilter",
+      "btnHoverRotateX",
+      "btnHoverRotateY",
+      "btnHoverRotateZ",
+    ]);
   }
 
   return (
@@ -198,28 +259,27 @@ export function ButtonsModule() {
         />
       </Section>
 
-      {/* ── Motion ── */}
+      {/* ── 3D Transform (static) ── */}
+      <Transform3DControls
+        keys={{
+          rotateX: "btnRotateX",
+          rotateY: "btnRotateY",
+          rotateZ: "btnRotateZ",
+        }}
+      />
+
+      {/* ── Cursor tracking ── */}
+      <CursorTrackControls
+        keys={{
+          intensity: "btnCursorTrack",
+          restore: "btnCursorTrackRestore",
+        }}
+      />
+
+      {/* ── Motion (unified hover + 3D hover) ── */}
       <Section title="Motion">
-        {/* Hover effect type */}
-        <Row
-          label="Hover effect"
-          onReset={() => {
-            setHoverType("none");
-            resetColor(["btnHoverTransform", "btnHoverFilter"]);
-          }}
-        >
-          {(
-            [
-              { label: "None", value: "none" },
-              { label: "↑ Lift", value: "lift" },
-              { label: "↓ Sink", value: "sink" },
-              { label: "⊕ Scale", value: "scale" },
-              { label: "↑⊕ Lift+Scale", value: "lift-scale" },
-              { label: "↻ Tilt", value: "tilt" },
-              { label: "✦ Glow", value: "glow" },
-              { label: "☀ Brightness", value: "brightness" },
-            ] as { label: string; value: HoverType }[]
-          ).map((o) => (
+        <Row label="Hover effect" onReset={resetHover}>
+          {HOVER_OPTIONS.map((o) => (
             <Chip
               key={o.value}
               active={hoverType === o.value}
@@ -231,7 +291,7 @@ export function ButtonsModule() {
         </Row>
 
         {/* Lift controls */}
-        {(hoverType === "lift" || hoverType === "lift-scale") && (
+        {SHOWS_LIFT.has(hoverType) && (
           <SliderRow
             label={`Lift — ${liftPx}px`}
             min={1}
@@ -246,7 +306,7 @@ export function ButtonsModule() {
         )}
 
         {/* Sink controls */}
-        {hoverType === "sink" && (
+        {SHOWS_SINK.has(hoverType) && (
           <SliderRow
             label={`Sink — ${sinkPx}px`}
             min={1}
@@ -261,7 +321,7 @@ export function ButtonsModule() {
         )}
 
         {/* Scale controls */}
-        {(hoverType === "scale" || hoverType === "lift-scale") && (
+        {SHOWS_SCALE.has(hoverType) && (
           <SliderRow
             label={`Scale — ${scaleFactor.toFixed(2)}×`}
             min={1.01}
@@ -276,8 +336,8 @@ export function ButtonsModule() {
           />
         )}
 
-        {/* Tilt controls */}
-        {hoverType === "tilt" && (
+        {/* Tilt Z controls */}
+        {SHOWS_TILT_Z.has(hoverType) && (
           <>
             <SliderRow
               label={`Tilt — ${tiltDeg}°`}
@@ -308,7 +368,7 @@ export function ButtonsModule() {
         )}
 
         {/* Glow controls */}
-        {hoverType === "glow" && (
+        {SHOWS_GLOW.has(hoverType) && (
           <>
             <SliderRow
               label={`Blur — ${glowBlur}px`}
@@ -336,7 +396,7 @@ export function ButtonsModule() {
         )}
 
         {/* Brightness controls */}
-        {hoverType === "brightness" && (
+        {SHOWS_BRIGHTNESS.has(hoverType) && (
           <SliderRow
             label={`Brightness — ${brightnessVal.toFixed(2)}×`}
             min={0.7}
@@ -349,6 +409,48 @@ export function ButtonsModule() {
             }}
             hint={["0.70 darken", "1.30 lighten"]}
           />
+        )}
+
+        {/* 3D hover fine-grained controls */}
+        {SHOWS_3D.has(hoverType) && (
+          <>
+            <SliderRow
+              label={`Hover X — ${hover3DRx}°`}
+              min={-30}
+              max={30}
+              step={1}
+              value={hover3DRx}
+              onChange={(v) => {
+                setHover3DRx(v);
+                applyHover(hoverType, { hover3DRx: v });
+              }}
+              hint={["-30° backward", "30° forward"]}
+            />
+            <SliderRow
+              label={`Hover Y — ${hover3DRy}°`}
+              min={-30}
+              max={30}
+              step={1}
+              value={hover3DRy}
+              onChange={(v) => {
+                setHover3DRy(v);
+                applyHover(hoverType, { hover3DRy: v });
+              }}
+              hint={["-30° left", "30° right"]}
+            />
+            <SliderRow
+              label={`Hover Z — ${hover3DRz}°`}
+              min={-20}
+              max={20}
+              step={1}
+              value={hover3DRz}
+              onChange={(v) => {
+                setHover3DRz(v);
+                applyHover(hoverType, { hover3DRz: v });
+              }}
+              hint={["-20° counter-cw", "20° clockwise"]}
+            />
+          </>
         )}
 
         {/* Press scale */}

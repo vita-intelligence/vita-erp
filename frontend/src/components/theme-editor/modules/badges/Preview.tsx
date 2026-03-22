@@ -6,7 +6,9 @@
  */
 
 import { Chip } from "@/components/ui/chip";
+import { useThemeStore } from "@/stores/theme";
 
+import { useCursorTrack } from "../_shared/useCursorTrack";
 import { CONTEXT_ORDERS } from "./badge-data";
 
 // ── Solid badge mappings ────────────────────────────────────────────────────
@@ -78,6 +80,16 @@ const SOFT_CHIPS = [
 // ── Component ───────────────────────────────────────────────────────────────
 
 export function Preview() {
+  const { tokens } = useThemeStore();
+  const trackIntensity = parseFloat(tokens.badgeCursorTrack ?? "0");
+  const trackRestore = parseFloat(tokens.badgeCursorTrackRestore ?? "300");
+  const { onMouseMove, onMouseLeave } = useCursorTrack(
+    "badge",
+    trackIntensity,
+    trackRestore,
+  );
+  const trackProps = trackIntensity > 0 ? { onMouseMove, onMouseLeave } : {};
+
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <p className="text-xs font-semibold uppercase tracking-widest text-vita-text-muted">
@@ -89,7 +101,11 @@ export function Preview() {
         <p className="text-xs text-vita-text-muted">Solid</p>
         <div className="flex flex-wrap gap-2">
           {SOLID_CHIPS.map(({ label, bg, fg }) => (
-            <Chip key={label} style={{ background: bg, color: fg }}>
+            <Chip
+              key={label}
+              style={{ background: bg, color: fg }}
+              {...trackProps}
+            >
               {label}
             </Chip>
           ))}
@@ -104,6 +120,7 @@ export function Preview() {
             <Chip
               key={label}
               style={{ background: bg, color: fg, borderColor: border }}
+              {...trackProps}
             >
               {label}
             </Chip>

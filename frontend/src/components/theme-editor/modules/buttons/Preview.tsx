@@ -3,11 +3,16 @@
 /**
  * Live button preview — uses real HeroUI Button so hover/press animations
  * reflect the current theme tokens in real time.
+ *
+ * When cursor tracking is enabled, each button responds to mouse position.
  */
 
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { useThemeStore } from "@/stores/theme";
+
+import { useCursorTrack } from "../_shared/useCursorTrack";
 
 const SEMANTIC_BUTTONS: { label: string; vars: React.CSSProperties }[] = [
   {
@@ -45,6 +50,17 @@ const SEMANTIC_BUTTONS: { label: string; vars: React.CSSProperties }[] = [
 ];
 
 export function Preview() {
+  const { tokens } = useThemeStore();
+  const trackIntensity = parseFloat(tokens.btnCursorTrack ?? "0");
+  const trackRestore = parseFloat(tokens.btnCursorTrackRestore ?? "300");
+  const { onMouseMove, onMouseLeave } = useCursorTrack(
+    "btn",
+    trackIntensity,
+    trackRestore,
+  );
+
+  const trackProps = trackIntensity > 0 ? { onMouseMove, onMouseLeave } : {};
+
   return (
     <div className="space-y-4 overflow-hidden rounded-vita-md border border-vita-neutral-200 bg-vita-background p-4">
       <div className="flex items-center justify-between">
@@ -59,12 +75,24 @@ export function Preview() {
       <div className="space-y-1.5">
         <p className="text-xs text-vita-text-muted">Variants</p>
         <div className="flex flex-wrap gap-2">
-          <Button variant="primary">Primary</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="tertiary">Tertiary</Button>
-          <Button variant="danger-soft">Danger soft</Button>
+          <Button variant="primary" {...trackProps}>
+            Primary
+          </Button>
+          <Button variant="secondary" {...trackProps}>
+            Secondary
+          </Button>
+          <Button variant="outline" {...trackProps}>
+            Outline
+          </Button>
+          <Button variant="ghost" {...trackProps}>
+            Ghost
+          </Button>
+          <Button variant="tertiary" {...trackProps}>
+            Tertiary
+          </Button>
+          <Button variant="danger-soft" {...trackProps}>
+            Danger soft
+          </Button>
         </div>
       </div>
 
@@ -72,30 +100,32 @@ export function Preview() {
         <p className="text-xs text-vita-text-muted">Semantic colors</p>
         <div className="flex flex-wrap gap-2">
           {SEMANTIC_BUTTONS.map(({ label, vars }) => (
-            <Button key={label} variant="primary" style={vars}>
+            <Button key={label} variant="primary" style={vars} {...trackProps}>
               {label}
             </Button>
           ))}
-          <Button variant="danger">Danger solid</Button>
+          <Button variant="danger" {...trackProps}>
+            Danger solid
+          </Button>
         </div>
       </div>
 
       <div className="space-y-1.5">
         <p className="text-xs text-vita-text-muted">Sizes &amp; states</p>
         <div className="flex flex-wrap items-center gap-2">
-          <Button variant="primary" size="sm">
+          <Button variant="primary" size="sm" {...trackProps}>
             Small
           </Button>
-          <Button variant="primary" size="md">
+          <Button variant="primary" size="md" {...trackProps}>
             Medium
           </Button>
-          <Button variant="primary" size="lg">
+          <Button variant="primary" size="lg" {...trackProps}>
             Large
           </Button>
           <Button variant="primary" isDisabled>
             Disabled
           </Button>
-          <Button variant="outline">
+          <Button variant="outline" {...trackProps}>
             <Plus size={14} />
             With icon
           </Button>

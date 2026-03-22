@@ -79,6 +79,14 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   btnHoverFilter: "--vita-btn-hover-filter",
   btnPressScale: "--vita-btn-press-scale",
   btnTransitionDuration: "--vita-btn-transition-duration",
+  btnRotateX: "--vita-btn-rotate-x",
+  btnRotateY: "--vita-btn-rotate-y",
+  btnRotateZ: "--vita-btn-rotate-z",
+  btnHoverRotateX: "--vita-btn-hover-rotate-x",
+  btnHoverRotateY: "--vita-btn-hover-rotate-y",
+  btnHoverRotateZ: "--vita-btn-hover-rotate-z",
+  btnCursorTrack: "--vita-btn-cursor-track",
+  btnCursorTrackRestore: "--vita-btn-cursor-track-restore",
 
   // Input
   inputRadius: "--vita-input-radius",
@@ -107,6 +115,17 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   cardBorderLeft: "--vita-card-border-left",
   cardBorderStyle: "--vita-card-border-style",
   cardShadow: "--vita-card-shadow",
+  cardRotateX: "--vita-card-rotate-x",
+  cardRotateY: "--vita-card-rotate-y",
+  cardRotateZ: "--vita-card-rotate-z",
+  cardHoverRotateX: "--vita-card-hover-rotate-x",
+  cardHoverRotateY: "--vita-card-hover-rotate-y",
+  cardHoverRotateZ: "--vita-card-hover-rotate-z",
+  cardHoverTranslateY: "--vita-card-hover-translate-y",
+  cardHoverScale: "--vita-card-hover-scale",
+  cardTransitionDuration: "--vita-card-transition-duration",
+  cardCursorTrack: "--vita-card-cursor-track",
+  cardCursorTrackRestore: "--vita-card-cursor-track-restore",
 
   // Badge
   badgeRadius: "--vita-badge-radius",
@@ -121,6 +140,17 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   badgeTextTransform: "--vita-badge-text-transform",
   badgePaddingX: "--vita-badge-padding-x",
   badgePaddingY: "--vita-badge-padding-y",
+  badgeRotateX: "--vita-badge-rotate-x",
+  badgeRotateY: "--vita-badge-rotate-y",
+  badgeRotateZ: "--vita-badge-rotate-z",
+  badgeHoverRotateX: "--vita-badge-hover-rotate-x",
+  badgeHoverRotateY: "--vita-badge-hover-rotate-y",
+  badgeHoverRotateZ: "--vita-badge-hover-rotate-z",
+  badgeHoverTranslateY: "--vita-badge-hover-translate-y",
+  badgeHoverScale: "--vita-badge-hover-scale",
+  badgeTransitionDuration: "--vita-badge-transition-duration",
+  badgeCursorTrack: "--vita-badge-cursor-track",
+  badgeCursorTrackRestore: "--vita-badge-cursor-track-restore",
 
   // Accordion
   accordionRadius: "--vita-accordion-radius",
@@ -185,6 +215,17 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   avatarFallbackFontWeight: "--vita-avatar-fallback-font-weight",
   avatarFallbackFontSize: "--vita-avatar-fallback-font-size",
   avatarGroupSpacing: "--vita-avatar-group-spacing",
+  avatarRotateX: "--vita-avatar-rotate-x",
+  avatarRotateY: "--vita-avatar-rotate-y",
+  avatarRotateZ: "--vita-avatar-rotate-z",
+  avatarHoverRotateX: "--vita-avatar-hover-rotate-x",
+  avatarHoverRotateY: "--vita-avatar-hover-rotate-y",
+  avatarHoverRotateZ: "--vita-avatar-hover-rotate-z",
+  avatarHoverTranslateY: "--vita-avatar-hover-translate-y",
+  avatarHoverScale: "--vita-avatar-hover-scale",
+  avatarTransitionDuration: "--vita-avatar-transition-duration",
+  avatarCursorTrack: "--vita-avatar-cursor-track",
+  avatarCursorTrackRestore: "--vita-avatar-cursor-track-restore",
 
   // Breadcrumbs
   breadcrumbsFontSize: "--vita-breadcrumbs-font-size",
@@ -220,6 +261,17 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   calendarBorderLeft: "--vita-calendar-border-left",
   calendarBorderStyle: "--vita-calendar-border-style",
   calendarShadow: "--vita-calendar-shadow",
+  calendarRotateX: "--vita-calendar-rotate-x",
+  calendarRotateY: "--vita-calendar-rotate-y",
+  calendarRotateZ: "--vita-calendar-rotate-z",
+  calendarHoverRotateX: "--vita-calendar-hover-rotate-x",
+  calendarHoverRotateY: "--vita-calendar-hover-rotate-y",
+  calendarHoverRotateZ: "--vita-calendar-hover-rotate-z",
+  calendarHoverTranslateY: "--vita-calendar-hover-translate-y",
+  calendarHoverScale: "--vita-calendar-hover-scale",
+  calendarTransitionDuration: "--vita-calendar-transition-duration",
+  calendarCursorTrack: "--vita-calendar-cursor-track",
+  calendarCursorTrackRestore: "--vita-calendar-cursor-track-restore",
 
   // Select
   selectRadius: "--vita-select-radius",
@@ -229,7 +281,14 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   modalRadius: "--vita-modal-radius",
 };
 
-/** Write a full or partial token set onto document.documentElement. */
+/**
+ * Write a full or partial token set onto document.documentElement.
+ *
+ * When a value is empty string (`""`), the CSS property is **removed** so
+ * that `var()` fallback chains activate. This is used by hover rotation
+ * tokens: when "none" is selected, the hover var is removed and CSS falls
+ * back to the static rotation value.
+ */
 export function applyTokens(tokens: Partial<ThemeTokens>): void {
   if (typeof window === "undefined") return;
   const root = document.documentElement;
@@ -237,6 +296,10 @@ export function applyTokens(tokens: Partial<ThemeTokens>): void {
     keyof ThemeTokens,
     string,
   ][]) {
-    root.style.setProperty(CSS_VAR_MAP[key], value);
+    if (value === "") {
+      root.style.removeProperty(CSS_VAR_MAP[key]);
+    } else {
+      root.style.setProperty(CSS_VAR_MAP[key], value);
+    }
   }
 }

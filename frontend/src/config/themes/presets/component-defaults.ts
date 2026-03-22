@@ -23,6 +23,14 @@ export const componentDefaults: Pick<
   | "btnHoverFilter"
   | "btnPressScale"
   | "btnTransitionDuration"
+  | "btnRotateX"
+  | "btnRotateY"
+  | "btnRotateZ"
+  | "btnHoverRotateX"
+  | "btnHoverRotateY"
+  | "btnHoverRotateZ"
+  | "btnCursorTrack"
+  | "btnCursorTrackRestore"
   | "inputRadius"
   | "inputBorderTop"
   | "inputBorderRight"
@@ -47,6 +55,17 @@ export const componentDefaults: Pick<
   | "cardBorderLeft"
   | "cardBorderStyle"
   | "cardShadow"
+  | "cardRotateX"
+  | "cardRotateY"
+  | "cardRotateZ"
+  | "cardHoverRotateX"
+  | "cardHoverRotateY"
+  | "cardHoverRotateZ"
+  | "cardHoverTranslateY"
+  | "cardHoverScale"
+  | "cardTransitionDuration"
+  | "cardCursorTrack"
+  | "cardCursorTrackRestore"
   | "badgeRadius"
   | "badgeBorderTop"
   | "badgeBorderRight"
@@ -59,6 +78,17 @@ export const componentDefaults: Pick<
   | "badgeTextTransform"
   | "badgePaddingX"
   | "badgePaddingY"
+  | "badgeRotateX"
+  | "badgeRotateY"
+  | "badgeRotateZ"
+  | "badgeHoverRotateX"
+  | "badgeHoverRotateY"
+  | "badgeHoverRotateZ"
+  | "badgeHoverTranslateY"
+  | "badgeHoverScale"
+  | "badgeTransitionDuration"
+  | "badgeCursorTrack"
+  | "badgeCursorTrackRestore"
   | "accordionRadius"
   | "accordionBorderWidth"
   | "accordionBorderStyle"
@@ -113,6 +143,17 @@ export const componentDefaults: Pick<
   | "avatarFallbackFontWeight"
   | "avatarFallbackFontSize"
   | "avatarGroupSpacing"
+  | "avatarRotateX"
+  | "avatarRotateY"
+  | "avatarRotateZ"
+  | "avatarHoverRotateX"
+  | "avatarHoverRotateY"
+  | "avatarHoverRotateZ"
+  | "avatarHoverTranslateY"
+  | "avatarHoverScale"
+  | "avatarTransitionDuration"
+  | "avatarCursorTrack"
+  | "avatarCursorTrackRestore"
   | "breadcrumbsFontSize"
   | "breadcrumbsFontWeight"
   | "breadcrumbsActiveFontWeight"
@@ -142,6 +183,17 @@ export const componentDefaults: Pick<
   | "calendarBorderLeft"
   | "calendarBorderStyle"
   | "calendarShadow"
+  | "calendarRotateX"
+  | "calendarRotateY"
+  | "calendarRotateZ"
+  | "calendarHoverRotateX"
+  | "calendarHoverRotateY"
+  | "calendarHoverRotateZ"
+  | "calendarHoverTranslateY"
+  | "calendarHoverScale"
+  | "calendarTransitionDuration"
+  | "calendarCursorTrack"
+  | "calendarCursorTrackRestore"
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
@@ -157,10 +209,18 @@ export const componentDefaults: Pick<
   btnLetterSpacing: "0.02em",
   btnTextTransform: "none",
   btnShadow: "none",
-  btnHoverTransform: "none",
+  btnHoverTransform: "",
   btnHoverFilter: "none",
   btnPressScale: "0.97",
   btnTransitionDuration: "150ms",
+  btnRotateX: "0deg",
+  btnRotateY: "0deg",
+  btnRotateZ: "0deg",
+  btnHoverRotateX: "",
+  btnHoverRotateY: "",
+  btnHoverRotateZ: "",
+  btnCursorTrack: "0",
+  btnCursorTrackRestore: "300ms",
 
   // Input
   inputRadius: "0px",
@@ -189,6 +249,17 @@ export const componentDefaults: Pick<
   cardBorderLeft: "1px",
   cardBorderStyle: "solid",
   cardShadow: "none",
+  cardRotateX: "0deg",
+  cardRotateY: "0deg",
+  cardRotateZ: "0deg",
+  cardHoverRotateX: "",
+  cardHoverRotateY: "",
+  cardHoverRotateZ: "",
+  cardHoverTranslateY: "0px",
+  cardHoverScale: "1",
+  cardTransitionDuration: "150ms",
+  cardCursorTrack: "0",
+  cardCursorTrackRestore: "300ms",
 
   // Badge
   badgeRadius: "0px",
@@ -203,6 +274,17 @@ export const componentDefaults: Pick<
   badgeTextTransform: "none",
   badgePaddingX: "0.55rem",
   badgePaddingY: "0.2rem",
+  badgeRotateX: "0deg",
+  badgeRotateY: "0deg",
+  badgeRotateZ: "0deg",
+  badgeHoverRotateX: "",
+  badgeHoverRotateY: "",
+  badgeHoverRotateZ: "",
+  badgeHoverTranslateY: "0px",
+  badgeHoverScale: "1",
+  badgeTransitionDuration: "150ms",
+  badgeCursorTrack: "0",
+  badgeCursorTrackRestore: "300ms",
 
   // Accordion
   accordionRadius: "0px",
@@ -267,6 +349,17 @@ export const componentDefaults: Pick<
   avatarFallbackFontWeight: "600",
   avatarFallbackFontSize: "14px",
   avatarGroupSpacing: "-8px",
+  avatarRotateX: "0deg",
+  avatarRotateY: "0deg",
+  avatarRotateZ: "0deg",
+  avatarHoverRotateX: "",
+  avatarHoverRotateY: "",
+  avatarHoverRotateZ: "",
+  avatarHoverTranslateY: "0px",
+  avatarHoverScale: "1",
+  avatarTransitionDuration: "150ms",
+  avatarCursorTrack: "0",
+  avatarCursorTrackRestore: "300ms",
 
   // Breadcrumbs
   breadcrumbsFontSize: "14px",
@@ -302,6 +395,17 @@ export const componentDefaults: Pick<
   calendarBorderLeft: "1px",
   calendarBorderStyle: "solid",
   calendarShadow: "none",
+  calendarRotateX: "0deg",
+  calendarRotateY: "0deg",
+  calendarRotateZ: "0deg",
+  calendarHoverRotateX: "",
+  calendarHoverRotateY: "",
+  calendarHoverRotateZ: "",
+  calendarHoverTranslateY: "0px",
+  calendarHoverScale: "1",
+  calendarTransitionDuration: "150ms",
+  calendarCursorTrack: "0",
+  calendarCursorTrackRestore: "300ms",
   // Select
   selectRadius: "0px",
   selectBorderWidth: "1px",
