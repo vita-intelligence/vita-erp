@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { FloatingTrigger } from "@/components/theme-editor";
 import { routing } from "@/i18n/routing";
 import { Providers } from "../providers";
 
@@ -22,7 +23,10 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Providers>{children}</Providers>
+          <Providers>
+            {children}
+            <FloatingTrigger />
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>
