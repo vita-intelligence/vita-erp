@@ -74,7 +74,9 @@ export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
           isSelected={field.required}
           onChange={() => onUpdate({ required: !field.required })}
           size="sm"
-        />
+        >
+          <Switch.Thumb />
+        </Switch>
       </div>
 
       {/* Hidden toggle */}
@@ -94,7 +96,9 @@ export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
           isSelected={field.hidden}
           onChange={() => onUpdate({ hidden: !field.hidden })}
           size="sm"
-        />
+        >
+          <Switch.Thumb />
+        </Switch>
       </div>
     </div>
   );
