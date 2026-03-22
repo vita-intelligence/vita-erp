@@ -21,6 +21,7 @@ import {
   defaultStops,
   type GradientType,
   isGradient,
+  parseGradient,
 } from "./helpers";
 import { DARK_GRADIENT_PRESETS, GRADIENT_PRESETS } from "./presets";
 import { StopEditor } from "./StopEditor";
@@ -267,6 +268,13 @@ export function GradientPicker({
                   }}
                   onClick={() => {
                     setMode("gradient");
+                    // Parse preset to sync local state (stops, angle, type)
+                    const parsed = parseGradient(preset.value);
+                    if (parsed) {
+                      setGradientType(parsed.type);
+                      setAngle(parsed.angle);
+                      setStops(parsed.stops);
+                    }
                     setTokens({
                       [tokenKey]: preset.value,
                     } as Parameters<typeof setTokens>[0]);
