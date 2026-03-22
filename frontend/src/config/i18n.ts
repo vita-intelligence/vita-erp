@@ -16,7 +16,7 @@ export const I18N = {
     "tr",
     "id",
   ],
-  namespaces: ["common", "auth", "themeEditor"],
+  namespaces: ["common", "auth", "themeEditor", "formConstructor"],
 } as const;
 
 export type Locale = (typeof I18N.locales)[number];

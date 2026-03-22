@@ -11,17 +11,24 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@gsap/react": "^2.1.2",
     "@heroui/react": "^3.0.1",
     "@heroui/styles": "^3.0.1",
+    "@hookform/resolvers": "^5.2.2",
     "@tanstack/react-query": "^5.91.3",
     "axios": "^1.13.6",
     "gsap": "^3.14.2",
     "lucide-react": "^0.577.0",
+    "nanoid": "^5.1.7",
     "next": "16.2.1",
     "next-intl": "^4.8.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-hook-form": "^7.72.0",
+    "zod": "^4.3.6",
     "zustand": "^5.0.12"
   },
   "devDependencies": {

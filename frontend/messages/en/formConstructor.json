@@ -1,0 +1,160 @@
+{
+  "editor": {
+    "title": "Form Editor",
+    "formName": "Form name",
+    "formNamePlaceholder": "Untitled form",
+    "formDescription": "Description",
+    "formDescriptionPlaceholder": "Optional form description",
+    "addFirstField": "Add your first field or group...",
+    "addVisibleField": "Add visible field",
+    "addGroup": "Add a group",
+    "addHiddenField": "Add hidden field",
+    "preview": "Preview",
+    "exportJson": "Export JSON",
+    "importJson": "Import JSON",
+    "undo": "Undo",
+    "redo": "Redo",
+    "noFields": "No fields yet",
+    "hidden": "Hidden"
+  },
+  "addField": {
+    "title": "Add a new field",
+    "labelPrompt": "What label should appear for this field?",
+    "labelPlaceholder": "Your question text here",
+    "typePrompt": "What type of field should this be?",
+    "cancel": "Cancel",
+    "configure": "Configure...",
+    "addToGroup": "Add field to group"
+  },
+  "addGroupModal": {
+    "title": "Add a group",
+    "labelPrompt": "What name should this group have?",
+    "labelPlaceholder": "Group name",
+    "cancel": "Cancel",
+    "create": "Create group"
+  },
+  "fieldCard": {
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "dragToReorder": "Drag to reorder",
+    "requiredBadge": "Required",
+    "hiddenBadge": "Hidden",
+    "hasCondition": "Has visibility condition"
+  },
+  "config": {
+    "title": "Configure field",
+    "tabs": {
+      "general": "General",
+      "options": "Options",
+      "validation": "Validation",
+      "conditions": "Conditions",
+      "calculate": "Calculate"
+    },
+    "general": {
+      "fieldId": "Field ID",
+      "fieldIdHelp": "Unique identifier — used in calculations and conditions",
+      "fieldIdDuplicate": "This ID is already used by another field",
+      "label": "Label",
+      "labelPlaceholder": "Question text",
+      "description": "Description",
+      "descriptionPlaceholder": "Help text shown below the field",
+      "required": "Required",
+      "hidden": "Hidden field"
+    },
+    "options": {
+      "title": "Options",
+      "addOption": "Add option",
+      "removeOption": "Remove",
+      "valuePlaceholder": "Value",
+      "labelPlaceholder": "Label",
+      "noOptions": "No options defined",
+      "moveUp": "Move up",
+      "moveDown": "Move down"
+    },
+    "validation": {
+      "title": "Regex validation",
+      "pattern": "Pattern",
+      "patternPlaceholder": "Regular expression (e.g., ^[A-Z]{3}$)",
+      "mode": "Mode",
+      "hard": "Hard — blocks submission",
+      "soft": "Soft — shows warning only",
+      "message": "Custom message",
+      "messagePlaceholder": "Error or warning text shown to the user",
+      "addRegex": "Add regex validation",
+      "removeRegex": "Remove validation"
+    },
+    "conditions": {
+      "title": "Visibility condition",
+      "description": "Show this field only when:",
+      "field": "Field",
+      "fieldPlaceholder": "Select a field",
+      "operator": "Condition",
+      "value": "Value",
+      "valuePlaceholder": "Expected value",
+      "addCondition": "Add condition",
+      "removeCondition": "Remove condition",
+      "operators": {
+        "equals": "equals",
+        "not_equals": "does not equal",
+        "contains": "contains",
+        "is_empty": "is empty",
+        "is_not_empty": "is not empty"
+      }
+    },
+    "calculate": {
+      "title": "Calculation expression",
+      "description": "Reference other fields using {field_id} syntax",
+      "expressionPlaceholder": "{quantity} * {unit_price}",
+      "preview": "Result preview"
+    },
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "fields": {
+    "text": "Text",
+    "integer": "Integer",
+    "decimal": "Decimal",
+    "selectOne": "Select one",
+    "selectMultiple": "Select multiple",
+    "date": "Date",
+    "datetime": "Date & time",
+    "time": "Time",
+    "note": "Note",
+    "calculate": "Calculate",
+    "file": "File",
+    "image": "Image",
+    "signature": "Signature"
+  },
+  "categories": {
+    "input": "Input",
+    "choice": "Choice",
+    "datetime": "Date & time",
+    "media": "Media",
+    "advanced": "Advanced"
+  },
+  "viewer": {
+    "submit": "Submit",
+    "required": "This field is required",
+    "formTitle": "Form",
+    "readOnly": "Read only",
+    "signature": {
+      "draw": "Draw your signature",
+      "clear": "Clear",
+      "placeholder": "Sign here"
+    },
+    "file": {
+      "dropzone": "Drop files here or click to browse",
+      "maxSize": "Max file size: {size}",
+      "remove": "Remove"
+    },
+    "noFieldsMessage": "This form has no fields."
+  },
+  "group": {
+    "collapse": "Collapse",
+    "expand": "Expand",
+    "emptyGroup": "No fields in this group"
+  }
+}
