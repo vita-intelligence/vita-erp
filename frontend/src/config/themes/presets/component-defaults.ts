@@ -152,8 +152,6 @@ export const componentDefaults: Pick<
   | "avatarHoverTranslateY"
   | "avatarHoverScale"
   | "avatarTransitionDuration"
-  | "avatarCursorTrack"
-  | "avatarCursorTrackRestore"
   | "breadcrumbsFontSize"
   | "breadcrumbsFontWeight"
   | "breadcrumbsActiveFontWeight"
@@ -469,8 +467,6 @@ export const componentDefaults: Pick<
   avatarHoverTranslateY: "0px",
   avatarHoverScale: "1",
   avatarTransitionDuration: "150ms",
-  avatarCursorTrack: "0",
-  avatarCursorTrackRestore: "300ms",
 
   // Breadcrumbs
   breadcrumbsFontSize: "14px",

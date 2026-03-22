@@ -225,8 +225,6 @@ export type ThemeTokens = {
   avatarHoverTranslateY: string; // vertical shift on hover
   avatarHoverScale: string; // scale factor on hover
   avatarTransitionDuration: string; // transition-duration for hover animations
-  avatarCursorTrack: string; // cursor-tracking intensity
-  avatarCursorTrackRestore: string; // restore speed when cursor leaves
 
   // ── Component tokens: Breadcrumbs ─────────────────────────────────────────
   breadcrumbsFontSize: string; // link font size

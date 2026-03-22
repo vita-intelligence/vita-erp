@@ -378,8 +378,6 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "avatarHoverTranslateY",
       "avatarHoverScale",
       "avatarTransitionDuration",
-      "avatarCursorTrack",
-      "avatarCursorTrackRestore",
     ],
   },
   {

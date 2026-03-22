@@ -15,6 +15,7 @@ import {
   type ColorPickerPopoverProps,
   type ColorPickerRootProps,
   type ColorPickerTriggerProps,
+  type ColorSliderRootProps,
   type ColorSliderThumbProps,
   type ColorSliderTrackProps,
   type ColorSwatchRootProps,
@@ -23,6 +24,7 @@ import {
   ColorPickerPopover as HeroColorPickerPopover,
   ColorPickerRoot as HeroColorPickerRoot,
   ColorPickerTrigger as HeroColorPickerTrigger,
+  ColorSliderRoot as HeroColorSliderRoot,
   ColorSliderThumb as HeroColorSliderThumb,
   ColorSliderTrack as HeroColorSliderTrack,
   ColorSwatchRoot as HeroColorSwatchRoot,
@@ -207,8 +209,18 @@ export const ColorArea = Object.assign(ThemedColorAreaRoot, {
   Thumb: ThemedColorAreaThumb,
 });
 
+export const ColorSliderRoot = HeroColorSliderRoot;
 export const ColorSliderTrack = ThemedColorSliderTrack;
 export const ColorSliderThumb = ThemedColorSliderThumb;
+
+export const ColorSlider = Object.assign(
+  (props: ColorSliderRootProps) => <HeroColorSliderRoot {...props} />,
+  {
+    Root: HeroColorSliderRoot,
+    Track: ThemedColorSliderTrack,
+    Thumb: ThemedColorSliderThumb,
+  },
+);
 
 export const ColorSwatchRoot = ThemedColorSwatchRoot;
 

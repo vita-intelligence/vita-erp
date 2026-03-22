@@ -42,11 +42,6 @@ function ThemedRoot({
       style={{
         width: sizeToken,
         height: sizeToken,
-        transform:
-          "perspective(800px)" +
-          " rotateX(var(--vita-spinner-rotate-x, 0deg))" +
-          " rotateY(var(--vita-spinner-rotate-y, 0deg))" +
-          " rotateZ(var(--vita-spinner-rotate-z, 0deg))",
         ...style,
       }}
     />

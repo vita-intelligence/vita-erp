@@ -16,3 +16,10 @@
   --vita-accordion-content-padding-y: 8px;
   --vita-accordion-shadow: none;
 }
+
+/* Separator between accordion items — uses border-top on every item except the first */
+[data-slot="accordion-item"] + [data-slot="accordion-item"] {
+  border-top-width: var(--vita-accordion-separator-height, 1px) !important;
+  border-top-style: solid !important;
+  border-top-color: var(--vita-neutral-200) !important;
+}

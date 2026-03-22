@@ -8,7 +8,6 @@ import {
   BorderControls,
   BorderStyleRow,
   Chip,
-  CursorTrackControls,
   FontWeightRow,
   Hover3DControls,
   Row,
@@ -179,14 +178,6 @@ export function AvatarModule() {
           hoverTranslateY: "avatarHoverTranslateY",
           hoverScale: "avatarHoverScale",
           transitionDuration: "avatarTransitionDuration",
-        }}
-      />
-
-      {/* ── Cursor tracking ── */}
-      <CursorTrackControls
-        keys={{
-          intensity: "avatarCursorTrack",
-          restore: "avatarCursorTrackRestore",
         }}
       />
     </div>

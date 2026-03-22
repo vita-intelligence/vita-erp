@@ -48,11 +48,6 @@ function ThemedLabel({
     <HeroChipLabel
       {...props}
       style={{
-        fontWeight: "var(--vita-badge-font-weight, 600)",
-        fontSize: "var(--vita-badge-font-size, 0.6875rem)",
-        letterSpacing: "var(--vita-badge-letter-spacing, 0em)",
-        textTransform:
-          "var(--vita-badge-text-transform, none)" as React.CSSProperties["textTransform"],
         ...style,
       }}
     >
@@ -79,6 +74,11 @@ function ChipRoot({ children, style, ...props }: ChipRootProps) {
         paddingRight: "var(--vita-badge-padding-x, 0.55rem)",
         paddingTop: "var(--vita-badge-padding-y, 0.2rem)",
         paddingBottom: "var(--vita-badge-padding-y, 0.2rem)",
+        fontWeight: "var(--vita-badge-font-weight, 600)",
+        fontSize: "var(--vita-badge-font-size, 0.6875rem)",
+        letterSpacing: "var(--vita-badge-letter-spacing, 0em)",
+        textTransform:
+          "var(--vita-badge-text-transform, none)" as React.CSSProperties["textTransform"],
         transitionProperty: "transform, opacity",
         transitionTimingFunction: "ease",
         transitionDuration: "var(--vita-badge-transition-duration, 150ms)",

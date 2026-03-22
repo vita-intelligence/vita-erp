@@ -224,8 +224,6 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   avatarHoverTranslateY: "--vita-avatar-hover-translate-y",
   avatarHoverScale: "--vita-avatar-hover-scale",
   avatarTransitionDuration: "--vita-avatar-transition-duration",
-  avatarCursorTrack: "--vita-avatar-cursor-track",
-  avatarCursorTrackRestore: "--vita-avatar-cursor-track-restore",
 
   // Breadcrumbs
   breadcrumbsFontSize: "--vita-breadcrumbs-font-size",

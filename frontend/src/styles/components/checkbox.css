@@ -33,3 +33,10 @@
   height: var(--vita-checkbox-indicator-size) !important;
   stroke-width: var(--vita-checkbox-indicator-stroke) !important;
 }
+
+/* Label font — cascades into React Aria's inner label element */
+[data-slot="checkbox-content"],
+[data-slot="checkbox-content"] [data-slot="label"] {
+  font-size: var(--vita-checkbox-label-font-size) !important;
+  font-weight: var(--vita-checkbox-label-font-weight) !important;
+}
