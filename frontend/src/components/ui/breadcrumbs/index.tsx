@@ -18,6 +18,8 @@ import {
 } from "@heroui/react";
 import type { ComponentProps } from "react";
 
+import { useThemeStore } from "@/stores/theme";
+
 type BreadcrumbsItemAllProps = ComponentProps<typeof HeroBreadcrumbsItem>;
 
 // Re-export everything from HeroUI (types, variants, etc.)
@@ -31,9 +33,14 @@ function ThemedBreadcrumbsRoot({
   style,
   ...props
 }: BreadcrumbsRootProps) {
+  const underlineMode = useThemeStore(
+    (s) => s.tokens.breadcrumbsUnderline ?? "none",
+  );
+
   return (
     <HeroBreadcrumbsRoot
       {...props}
+      data-underline={underlineMode}
       style={{
         gap: "var(--vita-breadcrumbs-gap, 8px)",
         flexWrap: "wrap",

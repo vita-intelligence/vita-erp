@@ -1,9 +1,9 @@
 /**
  * Spinner — Vita ERP wrapper for HeroUI Spinner.
  *
- * Applies theme tokens as inline styles on the Root component.
  * Size is resolved from the `size` prop to the matching CSS variable.
- * 3D rotation is applied as a static perspective transform.
+ * 3D rotation is applied on a WRAPPER div (not the spinner itself)
+ * to avoid conflicting with HeroUI's spin animation transform.
  */
 
 "use client";
@@ -36,23 +36,33 @@ function ThemedRoot({
   const sizeToken = sizeTokenMap[size ?? "md"] ?? sizeTokenMap.md;
 
   return (
-    <HeroSpinner
-      {...props}
-      size={size}
+    <div
       style={{
-        width: sizeToken,
-        height: sizeToken,
-        ...style,
+        display: "inline-flex",
+        transform: [
+          "perspective(800px)",
+          "rotateX(var(--vita-spinner-rotate-x, 0deg))",
+          "rotateY(var(--vita-spinner-rotate-y, 0deg))",
+          "rotateZ(var(--vita-spinner-rotate-z, 0deg))",
+        ].join(" "),
       }}
-    />
+    >
+      <HeroSpinner
+        {...props}
+        size={size}
+        style={{
+          width: sizeToken,
+          height: sizeToken,
+          ...style,
+        }}
+      />
+    </div>
   );
 }
 
-// ── Named Exports (for direct imports) ───────────────────────────────────────
+// ── Named Exports ────────────────────────────────────────────────────────────
 
 export { ThemedRoot as SpinnerRoot };
-
-// ── Compound Export ──────────────────────────────────────────────────────────
 
 export const Spinner = Object.assign(ThemedRoot, {
   Root: ThemedRoot,

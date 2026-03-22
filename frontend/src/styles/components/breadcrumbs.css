@@ -1,7 +1,7 @@
 /* ── Breadcrumbs ──────────────────────────────────────────────────────────────
  * Vita ERP design-token defaults for the <Breadcrumbs> component.
- * Inline styles are applied via the themed wrapper in @/components/ui/breadcrumbs.
- * Only :root defaults and pseudo-class rules (hover, current) live here.
+ * Inline styles are applied via the wrapper. Underline behavior uses
+ * a data-underline attribute on the root set by the wrapper.
  */
 
 :root {
@@ -16,22 +16,28 @@
   --vita-breadcrumbs-item-radius: 0px;
   --vita-breadcrumbs-item-border-width: 0px;
   --vita-breadcrumbs-item-border-style: solid;
-  --vita-breadcrumbs-separator-icon: chevron-right;
   --vita-breadcrumbs-separator-size: 16px;
   --vita-breadcrumbs-separator-opacity: 0.5;
   --vita-breadcrumbs-underline: none;
 }
 
-/* Base text-decoration reset */
-[data-slot="breadcrumbs-item"],
-[data-slot="breadcrumbs-link"] {
+/* Kill ALL default underlines (HeroUI adds hover underline) */
+.breadcrumbs .breadcrumbs__link,
+.breadcrumbs .breadcrumbs__link:hover,
+.breadcrumbs .breadcrumbs__link[data-hovered="true"] {
   text-decoration: none !important;
+  text-decoration-line: none !important;
 }
 
-/* Current / active item weight */
-[data-slot="breadcrumbs-item"][data-current="true"],
-[data-slot="breadcrumbs-link"][data-current="true"] {
-  font-weight: var(--vita-breadcrumbs-active-font-weight) !important;
+/* Mode "underline" — always show */
+[data-underline="underline"] .breadcrumbs__link {
+  text-decoration: underline !important;
+}
+
+/* Mode "hover" — only on hover */
+[data-underline="hover"] .breadcrumbs__link:hover,
+[data-underline="hover"] .breadcrumbs__link[data-hovered="true"] {
+  text-decoration: underline !important;
 }
 
 /* Separator sizing */
@@ -41,32 +47,7 @@
   opacity: var(--vita-breadcrumbs-separator-opacity) !important;
 }
 
-/* "underline" mode — always show underline on non-current links */
-:root[style*="--vita-breadcrumbs-underline: underline"] [data-slot="breadcrumbs-item"]:not([data-current="true"]),
-:root[style*="--vita-breadcrumbs-underline:underline"] [data-slot="breadcrumbs-item"]:not([data-current="true"]),
-:root[style*="--vita-breadcrumbs-underline: underline"] [data-slot="breadcrumbs-link"]:not([data-current="true"]),
-:root[style*="--vita-breadcrumbs-underline:underline"] [data-slot="breadcrumbs-link"]:not([data-current="true"]) {
-  text-decoration: underline !important;
-}
-
-/* "hover" mode — show underline only on hover */
-:root[style*="--vita-breadcrumbs-underline: hover"] [data-slot="breadcrumbs-item"]:not([data-current="true"]):hover,
-:root[style*="--vita-breadcrumbs-underline:hover"] [data-slot="breadcrumbs-item"]:not([data-current="true"]):hover,
-:root[style*="--vita-breadcrumbs-underline: hover"] [data-slot="breadcrumbs-link"]:not([data-current="true"]):hover,
-:root[style*="--vita-breadcrumbs-underline:hover"] [data-slot="breadcrumbs-link"]:not([data-current="true"]):hover {
-  text-decoration: underline !important;
-}
-
-/* "none" mode — ensure no underline on hover (overrides HeroUI default hover underline) */
-:root[style*="--vita-breadcrumbs-underline: none"] [data-slot="breadcrumbs-item"]:hover,
-:root[style*="--vita-breadcrumbs-underline:none"] [data-slot="breadcrumbs-item"]:hover,
-:root[style*="--vita-breadcrumbs-underline: none"] [data-slot="breadcrumbs-link"]:hover,
-:root[style*="--vita-breadcrumbs-underline:none"] [data-slot="breadcrumbs-link"]:hover {
-  text-decoration: none !important;
-}
-
-/* Active/current item — font-weight cascade into inner link elements */
-[data-slot="breadcrumbs-item"][data-current="true"] *,
+/* Active/current item — font-weight */
 [data-slot="breadcrumbs-item"][aria-current="page"],
 [data-slot="breadcrumbs-item"][aria-current="page"] * {
   font-weight: var(--vita-breadcrumbs-active-font-weight) !important;
