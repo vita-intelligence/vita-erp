@@ -23,11 +23,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import {
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 
@@ -246,17 +242,6 @@ export function FormEditor({
 
   // ── Render ─────────────────────────────────────────────────────────────────
 
-  // Collect ALL IDs (root + children inside groups) for cross-container DnD
-  const elementIds: string[] = [];
-  for (const el of schema.elements) {
-    elementIds.push(el.id);
-    if (el.kind === "group") {
-      for (const child of el.elements) {
-        elementIds.push(child.id);
-      }
-    }
-  }
-
   return (
     <div
       className="flex flex-col gap-4 rounded-vita-xl p-6"
@@ -298,96 +283,90 @@ export function FormEditor({
               onDragStart={handleDragStart}
               onDragEnd={handleDragEnd}
             >
-              <SortableContext
-                items={elementIds}
-                strategy={verticalListSortingStrategy}
-              >
-                {/* Drop zone before first element */}
-                <DropZone id="drop:root:0" isDragActive={isDragActive} />
+              {/* Drop zone before first element */}
+              <DropZone id="drop:root:0" isDragActive={isDragActive} />
 
-                {schema.elements.map((element, index) => (
-                  <div key={element.id}>
-                    {element.kind === "field" ? (
-                      <FieldCard
-                        field={element}
-                        index={index}
-                        total={schema.elements.length}
-                        isDragActive={isDragActive}
-                        onEdit={() => setConfigField(element)}
-                        onDuplicate={() => duplicateEl(element.id)}
-                        onDelete={() => removeElement(element.id)}
-                        onMove={(dir) => moveElement(element.id, dir)}
-                      />
-                    ) : (
-                      <GroupCard
-                        group={element}
-                        index={index}
-                        total={schema.elements.length}
-                        allElements={schema.elements}
-                        isDragActive={isDragActive}
-                        onEdit={(field) => setConfigField(field)}
-                        onDelete={() => removeElement(element.id)}
-                        onMove={(dir) => moveElement(element.id, dir)}
-                        onAddField={() => {
-                          setAddModalTarget({ parentGroupId: element.id });
-                          setAddModalOpen(true);
-                        }}
-                        onRemoveChild={(childId) =>
-                          updateElements((els) =>
-                            els.map((el) =>
-                              el.kind === "group" && el.id === element.id
-                                ? {
-                                    ...el,
-                                    elements: el.elements.filter(
-                                      (c) => c.id !== childId,
-                                    ),
-                                  }
-                                : el,
-                            ),
-                          )
-                        }
-                        onDuplicateChild={(childId) =>
-                          updateElements((els) =>
-                            els.map((el) =>
-                              el.kind === "group" && el.id === element.id
-                                ? {
-                                    ...el,
-                                    elements: duplicateInList(
-                                      el.elements,
-                                      childId,
-                                    ),
-                                  }
-                                : el,
-                            ),
-                          )
-                        }
-                        onMoveChild={(childId, dir) =>
-                          updateElements((els) =>
-                            els.map((el) =>
-                              el.kind === "group" && el.id === element.id
-                                ? {
-                                    ...el,
-                                    elements: moveInList(
-                                      el.elements,
-                                      childId,
-                                      dir,
-                                    ),
-                                  }
-                                : el,
-                            ),
-                          )
-                        }
-                      />
-                    )}
-                    {/* Drop zone after each element */}
-                    <DropZone
-                      id={`drop:root:${index + 1}`}
+              {schema.elements.map((element, index) => (
+                <div key={element.id}>
+                  {element.kind === "field" ? (
+                    <FieldCard
+                      field={element}
+                      index={index}
+                      total={schema.elements.length}
                       isDragActive={isDragActive}
+                      onEdit={() => setConfigField(element)}
+                      onDuplicate={() => duplicateEl(element.id)}
+                      onDelete={() => removeElement(element.id)}
+                      onMove={(dir) => moveElement(element.id, dir)}
                     />
-                  </div>
-                ))}
-              </SortableContext>
-
+                  ) : (
+                    <GroupCard
+                      group={element}
+                      index={index}
+                      total={schema.elements.length}
+                      allElements={schema.elements}
+                      isDragActive={isDragActive}
+                      onEdit={(field) => setConfigField(field)}
+                      onDelete={() => removeElement(element.id)}
+                      onMove={(dir) => moveElement(element.id, dir)}
+                      onAddField={() => {
+                        setAddModalTarget({ parentGroupId: element.id });
+                        setAddModalOpen(true);
+                      }}
+                      onRemoveChild={(childId) =>
+                        updateElements((els) =>
+                          els.map((el) =>
+                            el.kind === "group" && el.id === element.id
+                              ? {
+                                  ...el,
+                                  elements: el.elements.filter(
+                                    (c) => c.id !== childId,
+                                  ),
+                                }
+                              : el,
+                          ),
+                        )
+                      }
+                      onDuplicateChild={(childId) =>
+                        updateElements((els) =>
+                          els.map((el) =>
+                            el.kind === "group" && el.id === element.id
+                              ? {
+                                  ...el,
+                                  elements: duplicateInList(
+                                    el.elements,
+                                    childId,
+                                  ),
+                                }
+                              : el,
+                          ),
+                        )
+                      }
+                      onMoveChild={(childId, dir) =>
+                        updateElements((els) =>
+                          els.map((el) =>
+                            el.kind === "group" && el.id === element.id
+                              ? {
+                                  ...el,
+                                  elements: moveInList(
+                                    el.elements,
+                                    childId,
+                                    dir,
+                                  ),
+                                }
+                              : el,
+                          ),
+                        )
+                      }
+                    />
+                  )}
+                  {/* Drop zone after each element */}
+                  <DropZone
+                    id={`drop:root:${index + 1}`}
+                    isDragActive={isDragActive}
+                  />
+                </div>
+              ))}
               {/* Drag overlay — floating preview that stays on top */}
               <DragOverlay dropAnimation={null}>
                 {activeDragId ? (
