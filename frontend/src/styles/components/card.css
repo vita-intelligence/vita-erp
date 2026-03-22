@@ -4,6 +4,10 @@
 
 .card {
   border-radius: var(--vita-card-radius) !important;
-  border-width: var(--vita-card-border-width) !important;
+  border-top-width: var(--vita-card-border-top) !important;
+  border-right-width: var(--vita-card-border-right) !important;
+  border-bottom-width: var(--vita-card-border-bottom) !important;
+  border-left-width: var(--vita-card-border-left) !important;
+  border-style: var(--vita-card-border-style) !important;
   box-shadow: var(--vita-card-shadow) !important;
 }

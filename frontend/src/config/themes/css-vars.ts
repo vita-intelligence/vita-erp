@@ -101,12 +101,26 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
 
   // Card
   cardRadius: "--vita-card-radius",
-  cardBorderWidth: "--vita-card-border-width",
+  cardBorderTop: "--vita-card-border-top",
+  cardBorderRight: "--vita-card-border-right",
+  cardBorderBottom: "--vita-card-border-bottom",
+  cardBorderLeft: "--vita-card-border-left",
+  cardBorderStyle: "--vita-card-border-style",
   cardShadow: "--vita-card-shadow",
 
   // Badge
   badgeRadius: "--vita-badge-radius",
+  badgeBorderTop: "--vita-badge-border-top",
+  badgeBorderRight: "--vita-badge-border-right",
+  badgeBorderBottom: "--vita-badge-border-bottom",
+  badgeBorderLeft: "--vita-badge-border-left",
+  badgeBorderStyle: "--vita-badge-border-style",
   badgeFontWeight: "--vita-badge-font-weight",
+  badgeFontSize: "--vita-badge-font-size",
+  badgeLetterSpacing: "--vita-badge-letter-spacing",
+  badgeTextTransform: "--vita-badge-text-transform",
+  badgePaddingX: "--vita-badge-padding-x",
+  badgePaddingY: "--vita-badge-padding-y",
 
   // Select
   selectRadius: "--vita-select-radius",

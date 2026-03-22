@@ -317,7 +317,10 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
         style={{
           background: "var(--vita-surface)",
           borderRadius: "var(--vita-card-radius)",
-          borderWidth: "var(--vita-card-border-width)",
+          borderTopWidth: "var(--vita-card-border-top)",
+          borderRightWidth: "var(--vita-card-border-right)",
+          borderBottomWidth: "var(--vita-card-border-bottom)",
+          borderLeftWidth: "var(--vita-card-border-left)",
           borderStyle: "solid",
           borderColor: "var(--vita-neutral-200)",
           boxShadow:

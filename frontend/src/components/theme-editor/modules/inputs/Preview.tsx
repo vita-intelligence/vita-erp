@@ -10,22 +10,22 @@ import { useState } from "react";
 import { useThemeStore } from "@/stores/theme";
 import { Chip } from "../_shared";
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-
-type LabelPlacement = "above" | "left" | "inside";
+import { type FieldData, FieldRenderer } from "./FieldRenderer";
+import {
+  buildInputStyle,
+  buildLabelStyle,
+  buildWrapperBase,
+} from "./input-styles";
 
 // ── Field data ────────────────────────────────────────────────────────────────
 
-const FIELDS = [
+type LabelPlacement = "above" | "left" | "inside";
+
+const FIELDS: FieldData[] = [
   { id: "order-id", label: "Order ID", value: "ORD-00842", mono: true },
   { id: "product", label: "Product", value: "Steel Frame A-14" },
   { id: "quantity", label: "Quantity", value: "3,891", mono: true },
-  {
-    id: "notes",
-    label: "Notes",
-    value: "",
-    placeholder: "Add a note…",
-  },
+  { id: "notes", label: "Notes", value: "", placeholder: "Add a note…" },
   {
     id: "date",
     label: "Due date",
@@ -43,181 +43,12 @@ export function Preview() {
   const [placement, setPlacement] = useState<LabelPlacement>("above");
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  // ── Shared styles derived from tokens ───────────────────────────────────
-
-  const wrapperBase: React.CSSProperties = {
-    borderTopWidth: tokens.inputBorderTop ?? "1px",
-    borderRightWidth: tokens.inputBorderRight ?? "1px",
-    borderBottomWidth: tokens.inputBorderBottom ?? "1px",
-    borderLeftWidth: tokens.inputBorderLeft ?? "1px",
-    borderStyle: (tokens.inputBorderStyle ??
-      "solid") as React.CSSProperties["borderStyle"],
-    borderColor: "var(--vita-neutral-300)",
-    borderRadius: tokens.inputRadius ?? "0px",
-    background: "var(--vita-surface)",
-    boxShadow: tokens.inputShadow ?? "none",
-    boxSizing: "border-box" as const,
-    width: "100%",
-    display: "flex",
-    flexDirection: "column" as const,
-    paddingLeft: tokens.inputPaddingX ?? "12px",
-    paddingRight: tokens.inputPaddingX ?? "12px",
-    paddingTop: tokens.inputPaddingY ?? "8px",
-    paddingBottom: tokens.inputPaddingY ?? "8px",
-    transition: `border-color ${tokens.inputTransitionDuration ?? "150ms"} ease, outline ${tokens.inputTransitionDuration ?? "150ms"} ease`,
-  };
-
-  function getWrapperStyle(
-    focused: boolean,
-    error = false,
-  ): React.CSSProperties {
-    const ringW = tokens.inputFocusRingWidth ?? "2px";
-    const ringO = tokens.inputFocusRingOffset ?? "0px";
-    const hasRing = parseFloat(ringW) > 0;
-    return {
-      ...wrapperBase,
-      borderColor: error
-        ? "var(--vita-error)"
-        : focused
-          ? "var(--vita-primary)"
-          : "var(--vita-neutral-300)",
-      ...(focused && hasRing
-        ? {
-            outlineStyle: "solid" as const,
-            outlineWidth: ringW,
-            outlineOffset: ringO,
-            outlineColor: error ? "var(--vita-error)" : "var(--vita-primary)",
-          }
-        : {}),
-    };
-  }
-
-  const inputStyle: React.CSSProperties = {
-    background: "transparent",
-    outline: "none",
-    width: "100%",
-    fontSize: tokens.inputFontSize ?? "14px",
-    color: "var(--vita-text-primary)",
-    textAlign: (tokens.inputTextAlign ??
-      "left") as React.CSSProperties["textAlign"],
-    border: "none",
-    padding: 0,
-  };
-
-  const labelStyle: React.CSSProperties = {
-    fontWeight: (tokens.inputLabelWeight ??
-      "500") as React.CSSProperties["fontWeight"],
-    fontSize: tokens.inputLabelSize ?? "12px",
-    color: "var(--vita-text-secondary)",
-    display: "block",
-    lineHeight: 1.3,
-  };
-
+  const wrapperBase = buildWrapperBase(tokens);
+  const inputStyle = buildInputStyle(tokens);
+  const labelStyle = buildLabelStyle(tokens);
   const placeholderOpacity = parseFloat(
     tokens.inputPlaceholderOpacity ?? "0.45",
   );
-
-  // ── Field renderer (shared across placements) ───────────────────────────
-
-  function renderField(f: (typeof FIELDS)[number]) {
-    const focused = focusedField === f.id;
-    const error = "error" in f && f.error;
-
-    const fieldInputStyle =
-      "mono" in f && f.mono
-        ? { ...inputStyle, fontFamily: "var(--vita-font-mono)" }
-        : inputStyle;
-
-    const input = (
-      <input
-        className="vita-field"
-        style={fieldInputStyle}
-        defaultValue={f.value}
-        placeholder={"placeholder" in f ? f.placeholder : undefined}
-        onFocus={() => setFocusedField(f.id)}
-        onBlur={() => setFocusedField(null)}
-        readOnly
-      />
-    );
-
-    const errorHint = error && "errorMsg" in f && (
-      <p
-        style={{
-          fontSize: "0.6875rem",
-          marginTop: "0.15rem",
-          color: "var(--vita-error)",
-        }}
-      >
-        {f.errorMsg}
-      </p>
-    );
-
-    const errorLabelColor = error ? { color: "var(--vita-error)" } : {};
-
-    if (placement === "left") {
-      return (
-        <div key={f.id}>
-          <div
-            style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}
-          >
-            <span
-              style={{
-                ...labelStyle,
-                width: "4.5rem",
-                flexShrink: 0,
-                textAlign: "right",
-                ...errorLabelColor,
-              }}
-            >
-              {f.label}
-            </span>
-            <div style={{ flex: 1 }}>
-              <div style={getWrapperStyle(focused, !!error)}>{input}</div>
-              {errorHint}
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    if (placement === "inside") {
-      return (
-        <div key={f.id}>
-          <div style={getWrapperStyle(focused, !!error)}>
-            <span
-              style={{
-                fontWeight: labelStyle.fontWeight,
-                fontSize: `calc(${tokens.inputLabelSize ?? "12px"} * 0.85)`,
-                color: error ? "var(--vita-error)" : "var(--vita-text-muted)",
-                display: "block",
-                lineHeight: 1.2,
-                marginBottom: "0.1rem",
-              }}
-            >
-              {f.label}
-            </span>
-            {input}
-          </div>
-          {errorHint}
-        </div>
-      );
-    }
-
-    // "above" (default)
-    return (
-      <div key={f.id}>
-        <span
-          style={{ ...labelStyle, marginBottom: "0.25rem", ...errorLabelColor }}
-        >
-          {f.label}
-        </span>
-        <div style={getWrapperStyle(focused, !!error)}>{input}</div>
-        {errorHint}
-      </div>
-    );
-  }
-
-  // ── Render ──────────────────────────────────────────────────────────────
 
   return (
     <div className="space-y-3 rounded-vita-md border border-vita-neutral-200 bg-vita-neutral-50 p-4">
@@ -251,13 +82,17 @@ export function Preview() {
         style={{
           background: "var(--vita-surface)",
           borderRadius: "var(--vita-card-radius)",
-          borderWidth: "var(--vita-card-border-width)",
-          borderStyle: "solid",
+          borderTopWidth: "var(--vita-card-border-top)",
+          borderRightWidth: "var(--vita-card-border-right)",
+          borderBottomWidth: "var(--vita-card-border-bottom)",
+          borderLeftWidth: "var(--vita-card-border-left)",
+          borderStyle:
+            "var(--vita-card-border-style)" as React.CSSProperties["borderStyle"],
           borderColor: "var(--vita-neutral-200)",
           boxShadow: "var(--vita-card-shadow)",
         }}
       >
-        {/* Form header */}
+        {/* Header */}
         <div
           style={{
             padding: "0.625rem 0.875rem",
@@ -278,21 +113,31 @@ export function Preview() {
             New Production Order
           </span>
           <span
-            style={{
-              fontSize: "0.6875rem",
-              color: "var(--vita-text-muted)",
-            }}
+            style={{ fontSize: "0.6875rem", color: "var(--vita-text-muted)" }}
           >
             Click fields to focus
           </span>
         </div>
 
-        {/* Form body */}
+        {/* Fields */}
         <div style={{ padding: "0.75rem 0.875rem" }} className="space-y-2.5">
-          {FIELDS.map(renderField)}
+          {FIELDS.map((f) => (
+            <FieldRenderer
+              key={f.id}
+              field={f}
+              placement={placement}
+              focused={focusedField === f.id}
+              tokens={tokens}
+              wrapperBase={wrapperBase}
+              inputStyle={inputStyle}
+              labelStyle={labelStyle}
+              onFocus={setFocusedField}
+              onBlur={() => setFocusedField(null)}
+            />
+          ))}
         </div>
 
-        {/* Form footer */}
+        {/* Footer */}
         <div
           style={{
             padding: "0.5rem 0.875rem",

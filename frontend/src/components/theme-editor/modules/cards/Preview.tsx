@@ -15,8 +15,12 @@ const PREVIEW_ROWS = [
 export function Preview() {
   const card: React.CSSProperties = {
     borderRadius: "var(--vita-card-radius)",
-    borderWidth: "var(--vita-card-border-width)",
-    borderStyle: "solid",
+    borderTopWidth: "var(--vita-card-border-top)",
+    borderRightWidth: "var(--vita-card-border-right)",
+    borderBottomWidth: "var(--vita-card-border-bottom)",
+    borderLeftWidth: "var(--vita-card-border-left)",
+    borderStyle:
+      "var(--vita-card-border-style)" as React.CSSProperties["borderStyle"],
     borderColor: "var(--vita-neutral-200)",
     boxShadow: "var(--vita-card-shadow)",
     background: "var(--vita-surface)",
@@ -32,7 +36,7 @@ export function Preview() {
         <div
           style={{
             padding: "0.75rem 1rem",
-            borderBottom: `var(--vita-card-border-width) solid var(--vita-neutral-200)`,
+            borderBottom: `var(--vita-card-border-top) solid var(--vita-neutral-200)`,
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -66,8 +70,21 @@ export function Preview() {
               borderRadius: "var(--vita-badge-radius)",
               fontWeight:
                 "var(--vita-badge-font-weight)" as React.CSSProperties["fontWeight"],
-              fontSize: "0.6875rem",
-              padding: "0.2rem 0.5rem",
+              fontSize: "var(--vita-badge-font-size)",
+              letterSpacing: "var(--vita-badge-letter-spacing)",
+              textTransform:
+                "var(--vita-badge-text-transform)" as React.CSSProperties["textTransform"],
+              paddingLeft: "var(--vita-badge-padding-x)",
+              paddingRight: "var(--vita-badge-padding-x)",
+              paddingTop: "var(--vita-badge-padding-y)",
+              paddingBottom: "var(--vita-badge-padding-y)",
+              borderTopWidth: "var(--vita-badge-border-top)",
+              borderRightWidth: "var(--vita-badge-border-right)",
+              borderBottomWidth: "var(--vita-badge-border-bottom)",
+              borderLeftWidth: "var(--vita-badge-border-left)",
+              borderStyle:
+                "var(--vita-badge-border-style)" as React.CSSProperties["borderStyle"],
+              borderColor: "var(--vita-warning)",
             }}
           >
             In Progress
@@ -106,7 +123,7 @@ export function Preview() {
         <div
           style={{
             padding: "0.75rem 1rem",
-            borderTop: `var(--vita-card-border-width) solid var(--vita-neutral-200)`,
+            borderTop: `var(--vita-card-border-top) solid var(--vita-neutral-200)`,
             display: "flex",
             justifyContent: "flex-end",
             gap: "0.5rem",

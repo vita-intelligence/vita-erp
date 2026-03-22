@@ -1,20 +1,35 @@
 "use client";
 
-import { RotateCcw } from "lucide-react";
-
 import { useThemeStore } from "@/stores/theme";
+
 import {
+  BorderControls,
+  BorderStyleRow,
   Chip,
   Row,
   Section,
   ShadowBuilder,
+  SliderRow,
   usePreviewExternal,
 } from "../_shared";
 import { Preview } from "./Preview";
 
+// ── Radius presets ───────────────────────────────────────────────────────────
+
+const RADIUS_PRESETS = [
+  { label: "Sharp", value: "0px" },
+  { label: "4px", value: "4px" },
+  { label: "8px", value: "8px" },
+  { label: "12px", value: "12px" },
+  { label: "16px", value: "16px" },
+];
+
+// ── Module ───────────────────────────────────────────────────────────────────
+
 export function CardsModule() {
   const { tokens, setTokens, resetColor } = useThemeStore();
   const previewExternal = usePreviewExternal();
+
   const radiusPx = parseFloat(tokens.cardRadius);
 
   return (
@@ -28,54 +43,43 @@ export function CardsModule() {
 
       {/* ── Shape ── */}
       <Section title="Shape">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-vita-text-secondary">
-              Corner radius
-            </span>
-            <div className="flex items-center gap-1">
-              <span className="text-xs font-semibold font-vita-mono text-vita-text-secondary">
-                {radiusPx}px
-              </span>
-              <button
-                type="button"
-                title="Reset"
-                className="p-0.5 text-vita-text-muted hover:text-vita-text-secondary"
-                onClick={() => resetColor(["cardRadius"])}
-              >
-                <RotateCcw size={11} />
-              </button>
-            </div>
-          </div>
-          <input
-            type="range"
-            min={0}
-            max={24}
-            step={1}
-            value={radiusPx}
-            className="w-full accent-vita-primary"
-            onChange={(e) => setTokens({ cardRadius: `${e.target.value}px` })}
-          />
-          <div className="flex justify-between text-xs text-vita-text-muted">
-            <span>0 — sharp</span>
-            <span>24px — rounded</span>
-          </div>
-        </div>
+        <SliderRow
+          label={`Radius — ${radiusPx}px`}
+          min={0}
+          max={24}
+          step={1}
+          value={radiusPx}
+          onChange={(v) => setTokens({ cardRadius: `${v}px` })}
+          hint={["0 sharp", "24px rounded"]}
+          onReset={() => resetColor(["cardRadius"])}
+        />
+        <Row label="Quick presets">
+          {RADIUS_PRESETS.map((p) => (
+            <Chip
+              key={p.value}
+              active={tokens.cardRadius === p.value}
+              onClick={() => setTokens({ cardRadius: p.value })}
+            >
+              {p.label}
+            </Chip>
+          ))}
+        </Row>
       </Section>
 
       {/* ── Border ── */}
       <Section title="Border">
-        <Row label="Width" onReset={() => resetColor(["cardBorderWidth"])}>
-          {["1px", "2px", "3px"].map((v) => (
-            <Chip
-              key={v}
-              active={tokens.cardBorderWidth === v}
-              onClick={() => setTokens({ cardBorderWidth: v })}
-            >
-              {v}
-            </Chip>
-          ))}
-        </Row>
+        <BorderControls
+          keys={{
+            top: "cardBorderTop",
+            right: "cardBorderRight",
+            bottom: "cardBorderBottom",
+            left: "cardBorderLeft",
+          }}
+          max={5}
+          step={0.5}
+          hintMax="5px heavy"
+        />
+        <BorderStyleRow tokenKey="cardBorderStyle" />
       </Section>
 
       {/* ── Shadow ── */}

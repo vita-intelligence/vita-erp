@@ -102,12 +102,26 @@ export type ThemeTokens = {
 
   // ── Component tokens: Card ─────────────────────────────────────────────────
   cardRadius: string; // border-radius of card panels
-  cardBorderWidth: string; // border-width of card panels
+  cardBorderTop: string; // border-top-width
+  cardBorderRight: string; // border-right-width
+  cardBorderBottom: string; // border-bottom-width
+  cardBorderLeft: string; // border-left-width
+  cardBorderStyle: string; // border-style: solid | dashed | dotted
   cardShadow: string; // box-shadow of card panels
 
   // ── Component tokens: Badge / Chip / Tag ──────────────────────────────────
   badgeRadius: string; // border-radius: 0 = square tag, 9999px = pill
+  badgeBorderTop: string; // border-top-width
+  badgeBorderRight: string; // border-right-width
+  badgeBorderBottom: string; // border-bottom-width
+  badgeBorderLeft: string; // border-left-width
+  badgeBorderStyle: string; // border-style: solid | dashed | dotted
   badgeFontWeight: string; // font-weight of badge / chip text
+  badgeFontSize: string; // font-size of badge text
+  badgeLetterSpacing: string; // letter-spacing of badge text
+  badgeTextTransform: string; // text-transform: none | uppercase | capitalize
+  badgePaddingX: string; // horizontal padding
+  badgePaddingY: string; // vertical padding
 
   // ── Component tokens: Select / Dropdown ───────────────────────────────────
   selectRadius: string; // border-radius of select trigger

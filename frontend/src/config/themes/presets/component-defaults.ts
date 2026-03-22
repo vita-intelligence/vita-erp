@@ -41,10 +41,24 @@ export const componentDefaults: Pick<
   | "inputTransitionDuration"
   | "inputTextAlign"
   | "cardRadius"
-  | "cardBorderWidth"
+  | "cardBorderTop"
+  | "cardBorderRight"
+  | "cardBorderBottom"
+  | "cardBorderLeft"
+  | "cardBorderStyle"
   | "cardShadow"
   | "badgeRadius"
+  | "badgeBorderTop"
+  | "badgeBorderRight"
+  | "badgeBorderBottom"
+  | "badgeBorderLeft"
+  | "badgeBorderStyle"
   | "badgeFontWeight"
+  | "badgeFontSize"
+  | "badgeLetterSpacing"
+  | "badgeTextTransform"
+  | "badgePaddingX"
+  | "badgePaddingY"
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
@@ -86,12 +100,26 @@ export const componentDefaults: Pick<
 
   // Card
   cardRadius: "0px",
-  cardBorderWidth: "1px",
+  cardBorderTop: "1px",
+  cardBorderRight: "1px",
+  cardBorderBottom: "1px",
+  cardBorderLeft: "1px",
+  cardBorderStyle: "solid",
   cardShadow: "none",
 
   // Badge
   badgeRadius: "0px",
+  badgeBorderTop: "1px",
+  badgeBorderRight: "1px",
+  badgeBorderBottom: "1px",
+  badgeBorderLeft: "1px",
+  badgeBorderStyle: "solid",
   badgeFontWeight: "600",
+  badgeFontSize: "0.6875rem",
+  badgeLetterSpacing: "0em",
+  badgeTextTransform: "none",
+  badgePaddingX: "0.55rem",
+  badgePaddingY: "0.2rem",
 
   // Select
   selectRadius: "0px",
