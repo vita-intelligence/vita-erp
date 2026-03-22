@@ -1,0 +1,43 @@
+/* ── Spinner ──────────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <Spinner> component.
+ * Includes static 3D rotation that adds depth to the spin animation.
+ * Size selectors ordered: base first, then modifiers override.
+ */
+
+:root {
+  --vita-spinner-size-sm: 20px;
+  --vita-spinner-size-md: 32px;
+  --vita-spinner-size-lg: 48px;
+  --vita-spinner-rotate-x: 0deg;
+  --vita-spinner-rotate-y: 0deg;
+  --vita-spinner-rotate-z: 0deg;
+}
+
+/* Base/default = md size. Must come FIRST so size modifiers override. */
+.spinner,
+[data-slot="spinner"] {
+  width: var(--vita-spinner-size-md) !important;
+  height: var(--vita-spinner-size-md) !important;
+}
+
+/* Size modifiers — come AFTER base so they win */
+.spinner.spinner--sm {
+  width: var(--vita-spinner-size-sm) !important;
+  height: var(--vita-spinner-size-sm) !important;
+}
+
+.spinner.spinner--lg {
+  width: var(--vita-spinner-size-lg) !important;
+  height: var(--vita-spinner-size-lg) !important;
+}
+
+/* 3D — static rotation adds perspective/depth to the spin.
+ * Uses transform-style to compose with HeroUI's spin animation.
+ * The perspective tilt makes the circular spin look elliptical/3D. */
+.spinner,
+[data-slot="spinner"] {
+  transform: perspective(800px)
+    rotateX(var(--vita-spinner-rotate-x, 0deg))
+    rotateY(var(--vita-spinner-rotate-y, 0deg))
+    rotateZ(var(--vita-spinner-rotate-z, 0deg)) !important;
+}

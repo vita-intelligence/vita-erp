@@ -1,0 +1,51 @@
+/* ── Date Picker ──────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <DatePicker> component,
+ * covering the trigger input, popover calendar container, and indicator icon.
+ * Values are injected at runtime by the theme store via applyTokens().
+ */
+
+:root {
+  --vita-date-picker-trigger-radius: 0px;
+  --vita-date-picker-trigger-border-width: 1px;
+  --vita-date-picker-trigger-border-style: solid;
+  --vita-date-picker-trigger-padding-x: 12px;
+  --vita-date-picker-trigger-padding-y: 8px;
+  --vita-date-picker-trigger-shadow: none;
+  --vita-date-picker-popover-radius: 0px;
+  --vita-date-picker-popover-shadow: none;
+  --vita-date-picker-popover-padding: 12px;
+  --vita-date-picker-indicator-size: 18px;
+  --vita-date-picker-transition-duration: 150ms;
+}
+
+.date-picker__trigger,
+[data-slot="date-picker-trigger"] {
+  border-radius: var(--vita-date-picker-trigger-radius) !important;
+  border-width: var(--vita-date-picker-trigger-border-width) !important;
+  border-style: var(--vita-date-picker-trigger-border-style) !important;
+  padding-left: var(--vita-date-picker-trigger-padding-x) !important;
+  padding-right: var(--vita-date-picker-trigger-padding-x) !important;
+  padding-top: var(--vita-date-picker-trigger-padding-y) !important;
+  padding-bottom: var(--vita-date-picker-trigger-padding-y) !important;
+  box-shadow: var(--vita-date-picker-trigger-shadow) !important;
+  transition-duration: var(--vita-date-picker-transition-duration) !important;
+}
+
+.date-picker__popover {
+  border-radius: var(--vita-date-picker-popover-radius) !important;
+  box-shadow: var(--vita-date-picker-popover-shadow) !important;
+  padding: var(--vita-date-picker-popover-padding) !important;
+}
+
+/* Indicator icon — override HeroUI's calc(var(--spacing)*4) */
+.date-picker__trigger-indicator,
+[data-slot="date-picker-trigger-indicator"] {
+  width: var(--vita-date-picker-indicator-size) !important;
+  height: var(--vita-date-picker-indicator-size) !important;
+}
+
+.date-picker__trigger-indicator svg,
+[data-slot="date-picker-trigger-indicator"] svg {
+  width: var(--vita-date-picker-indicator-size) !important;
+  height: var(--vita-date-picker-indicator-size) !important;
+}

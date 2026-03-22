@@ -1,0 +1,66 @@
+/* ── Tabs ─────────────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <Tabs> component.
+ * Includes 3D rotation (static + hover) and cursor tracking on the tab list.
+ */
+
+:root {
+  --vita-tabs-list-radius: 12px;
+  --vita-tabs-list-padding: 4px;
+  --vita-tabs-list-gap: 0px;
+  --vita-tabs-tab-radius: 8px;
+  --vita-tabs-tab-padding-x: 12px;
+  --vita-tabs-tab-padding-y: 6px;
+  --vita-tabs-tab-font-size: 14px;
+  --vita-tabs-tab-font-weight: 500;
+  --vita-tabs-panel-padding: 12px;
+  --vita-tabs-transition-duration: 200ms;
+  --vita-tabs-rotate-x: 0deg;
+  --vita-tabs-rotate-y: 0deg;
+  --vita-tabs-rotate-z: 0deg;
+  --vita-tabs-hover-translate-y: 0px;
+  --vita-tabs-hover-scale: 1;
+}
+
+/* Tab list container — 3D transform */
+.tabs__list,
+[data-slot="tabs-list"] {
+  border-radius: var(--vita-tabs-list-radius) !important;
+  padding: var(--vita-tabs-list-padding) !important;
+  gap: var(--vita-tabs-list-gap) !important;
+  transform: perspective(800px)
+    rotateX(var(--vita-tabs-rotate-x, 0deg))
+    rotateY(var(--vita-tabs-rotate-y, 0deg))
+    rotateZ(var(--vita-tabs-rotate-z, 0deg)) !important;
+  transition-property: transform !important;
+  transition-duration: var(--vita-tabs-transition-duration) !important;
+}
+
+/* Hover — composes 3D rotation with lift/scale */
+@media (hover: hover) {
+  .tabs__list:hover,
+  [data-slot="tabs-list"]:hover {
+    transform: perspective(800px)
+      rotateX(var(--vita-tabs-hover-rotate-x, var(--vita-tabs-rotate-x, 0deg)))
+      rotateY(var(--vita-tabs-hover-rotate-y, var(--vita-tabs-rotate-y, 0deg)))
+      rotateZ(var(--vita-tabs-hover-rotate-z, var(--vita-tabs-rotate-z, 0deg)))
+      translateY(var(--vita-tabs-hover-translate-y, 0px))
+      scale(var(--vita-tabs-hover-scale, 1)) !important;
+  }
+}
+
+/* Individual tab items */
+.tabs__tab,
+[data-slot="tabs-tab"] {
+  border-radius: var(--vita-tabs-tab-radius) !important;
+  padding-inline: var(--vita-tabs-tab-padding-x) !important;
+  padding-top: var(--vita-tabs-tab-padding-y) !important;
+  padding-bottom: var(--vita-tabs-tab-padding-y) !important;
+  font-size: var(--vita-tabs-tab-font-size) !important;
+  font-weight: var(--vita-tabs-tab-font-weight) !important;
+}
+
+/* Panel content area */
+.tabs__panel,
+[data-slot="tabs-panel"] {
+  padding: var(--vita-tabs-panel-padding) !important;
+}

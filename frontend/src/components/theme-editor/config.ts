@@ -41,9 +41,23 @@ import { Preview as CheckboxGroupPreview } from "./modules/checkbox-group/Previe
 import { ColorPickerModule } from "./modules/color-picker";
 import { Preview as ColorPickerPreview } from "./modules/color-picker/Preview";
 import { ColorsModule } from "./modules/colors";
+import { ComboBoxModule } from "./modules/combo-box";
+import { Preview as ComboBoxPreview } from "./modules/combo-box/Preview";
+import { DatePickerModule } from "./modules/date-picker";
+import { Preview as DatePickerPreview } from "./modules/date-picker/Preview";
 import { InputsModule } from "./modules/inputs";
 import { Preview as InputsPreview } from "./modules/inputs/Preview";
+import { SeparatorModule } from "./modules/separator";
+import { Preview as SeparatorPreview } from "./modules/separator/Preview";
+import { SkeletonModule } from "./modules/skeleton";
+import { Preview as SkeletonPreview } from "./modules/skeleton/Preview";
+import { SliderModule } from "./modules/slider";
+import { Preview as SliderPreview } from "./modules/slider/Preview";
 import { SpacingModule } from "./modules/spacing";
+import { SpinnerModule } from "./modules/spinner";
+import { Preview as SpinnerPreview } from "./modules/spinner/Preview";
+import { TabsModule } from "./modules/tabs";
+import { Preview as TabsPreview } from "./modules/tabs/Preview";
 import { TypographyModule } from "./modules/typography";
 
 export type ThemeModule = {
@@ -504,6 +518,140 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "colorPickerThumbBorderWidth",
       "colorPickerAreaRadius",
       "colorPickerTransitionDuration",
+    ],
+  },
+  {
+    id: "combo-box",
+    label: "Combo Box",
+    description: "Popover shape, trigger button, and list item styling",
+    component: ComboBoxModule,
+    preview: ComboBoxPreview,
+    group: "Components",
+    resetKeys: [
+      "comboBoxPopoverRadius",
+      "comboBoxPopoverShadow",
+      "comboBoxPopoverPadding",
+      "comboBoxPopoverBorderWidth",
+      "comboBoxPopoverBorderStyle",
+      "comboBoxTriggerRadius",
+      "comboBoxTriggerBorderWidth",
+      "comboBoxItemPaddingX",
+      "comboBoxItemPaddingY",
+      "comboBoxItemFontSize",
+      "comboBoxItemRadius",
+      "comboBoxTransitionDuration",
+    ],
+  },
+  {
+    id: "date-picker",
+    label: "Date Picker",
+    description: "Trigger, popover, and indicator of date picker fields",
+    component: DatePickerModule,
+    preview: DatePickerPreview,
+    group: "Components",
+    resetKeys: [
+      "datePickerTriggerRadius",
+      "datePickerTriggerBorderWidth",
+      "datePickerTriggerBorderStyle",
+      "datePickerTriggerPaddingX",
+      "datePickerTriggerPaddingY",
+      "datePickerTriggerShadow",
+      "datePickerPopoverRadius",
+      "datePickerPopoverShadow",
+      "datePickerPopoverPadding",
+      "datePickerIndicatorSize",
+      "datePickerTransitionDuration",
+    ],
+  },
+  {
+    id: "separator",
+    label: "Separator",
+    description: "Thickness and shape of divider lines",
+    component: SeparatorModule,
+    preview: SeparatorPreview,
+    group: "Components",
+    resetKeys: ["separatorThickness", "separatorRadius"],
+  },
+  {
+    id: "skeleton",
+    label: "Skeleton",
+    description: "Shape and animation speed of loading skeletons",
+    component: SkeletonModule,
+    preview: SkeletonPreview,
+    group: "Components",
+    resetKeys: [
+      "skeletonRadius",
+      "skeletonBaseColor",
+      "skeletonAnimationDuration",
+    ],
+  },
+  {
+    id: "slider",
+    label: "Slider",
+    description: "Track, thumb, and animation of range sliders",
+    component: SliderModule,
+    preview: SliderPreview,
+    group: "Components",
+    resetKeys: [
+      "sliderTrackHeight",
+      "sliderTrackRadius",
+      "sliderThumbSize",
+      "sliderThumbDotSize",
+      "sliderThumbRadius",
+      "sliderThumbShadow",
+      "sliderTransitionDuration",
+      "sliderRotateX",
+      "sliderRotateY",
+      "sliderRotateZ",
+      "sliderHoverRotateX",
+      "sliderHoverRotateY",
+      "sliderHoverRotateZ",
+      "sliderHoverTranslateY",
+      "sliderHoverScale",
+    ],
+  },
+  {
+    id: "spinner",
+    label: "Spinner",
+    description: "Size and stroke width of loading spinners",
+    component: SpinnerModule,
+    preview: SpinnerPreview,
+    group: "Components",
+    resetKeys: [
+      "spinnerSizeSm",
+      "spinnerSizeMd",
+      "spinnerSizeLg",
+      "spinnerRotateX",
+      "spinnerRotateY",
+      "spinnerRotateZ",
+    ],
+  },
+  {
+    id: "tabs",
+    label: "Tabs",
+    description: "Tab list, items, active indicator, and panel padding",
+    component: TabsModule,
+    preview: TabsPreview,
+    group: "Components",
+    resetKeys: [
+      "tabsListRadius",
+      "tabsListPadding",
+      "tabsListGap",
+      "tabsTabRadius",
+      "tabsTabPaddingX",
+      "tabsTabPaddingY",
+      "tabsTabFontSize",
+      "tabsTabFontWeight",
+      "tabsPanelPadding",
+      "tabsTransitionDuration",
+      "tabsRotateX",
+      "tabsRotateY",
+      "tabsRotateZ",
+      "tabsHoverRotateX",
+      "tabsHoverRotateY",
+      "tabsHoverRotateZ",
+      "tabsHoverTranslateY",
+      "tabsHoverScale",
     ],
   },
 ];

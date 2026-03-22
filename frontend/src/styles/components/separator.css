@@ -1,0 +1,21 @@
+/* ── Separator ────────────────────────────────────────────────────────────────
+ * Applies Vita ERP design tokens to the HeroUI <Separator> component.
+ */
+
+:root {
+  --vita-separator-thickness: 1px;
+  --vita-separator-radius: 0px;
+}
+
+.separator,
+[data-slot="separator"] {
+  border-radius: var(--vita-separator-radius) !important;
+}
+
+.separator--horizontal {
+  height: var(--vita-separator-thickness) !important;
+}
+
+.separator--vertical {
+  width: var(--vita-separator-thickness) !important;
+}

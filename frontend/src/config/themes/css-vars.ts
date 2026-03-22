@@ -316,6 +316,87 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
   colorPickerAreaRadius: "--vita-color-picker-area-radius",
   colorPickerTransitionDuration: "--vita-color-picker-transition-duration",
 
+  // ComboBox
+  comboBoxPopoverRadius: "--vita-combo-box-popover-radius",
+  comboBoxPopoverShadow: "--vita-combo-box-popover-shadow",
+  comboBoxPopoverPadding: "--vita-combo-box-popover-padding",
+  comboBoxPopoverBorderWidth: "--vita-combo-box-popover-border-width",
+  comboBoxPopoverBorderStyle: "--vita-combo-box-popover-border-style",
+  comboBoxTriggerRadius: "--vita-combo-box-trigger-radius",
+  comboBoxTriggerBorderWidth: "--vita-combo-box-trigger-border-width",
+  comboBoxItemPaddingX: "--vita-combo-box-item-padding-x",
+  comboBoxItemPaddingY: "--vita-combo-box-item-padding-y",
+  comboBoxItemFontSize: "--vita-combo-box-item-font-size",
+  comboBoxItemRadius: "--vita-combo-box-item-radius",
+  comboBoxTransitionDuration: "--vita-combo-box-transition-duration",
+
+  // DatePicker
+  datePickerTriggerRadius: "--vita-date-picker-trigger-radius",
+  datePickerTriggerBorderWidth: "--vita-date-picker-trigger-border-width",
+  datePickerTriggerBorderStyle: "--vita-date-picker-trigger-border-style",
+  datePickerTriggerPaddingX: "--vita-date-picker-trigger-padding-x",
+  datePickerTriggerPaddingY: "--vita-date-picker-trigger-padding-y",
+  datePickerTriggerShadow: "--vita-date-picker-trigger-shadow",
+  datePickerPopoverRadius: "--vita-date-picker-popover-radius",
+  datePickerPopoverShadow: "--vita-date-picker-popover-shadow",
+  datePickerPopoverPadding: "--vita-date-picker-popover-padding",
+  datePickerIndicatorSize: "--vita-date-picker-indicator-size",
+  datePickerTransitionDuration: "--vita-date-picker-transition-duration",
+
+  // Tabs
+  tabsListRadius: "--vita-tabs-list-radius",
+  tabsListPadding: "--vita-tabs-list-padding",
+  tabsListGap: "--vita-tabs-list-gap",
+  tabsTabRadius: "--vita-tabs-tab-radius",
+  tabsTabPaddingX: "--vita-tabs-tab-padding-x",
+  tabsTabPaddingY: "--vita-tabs-tab-padding-y",
+  tabsTabFontSize: "--vita-tabs-tab-font-size",
+  tabsTabFontWeight: "--vita-tabs-tab-font-weight",
+  tabsPanelPadding: "--vita-tabs-panel-padding",
+  tabsTransitionDuration: "--vita-tabs-transition-duration",
+  tabsRotateX: "--vita-tabs-rotate-x",
+  tabsRotateY: "--vita-tabs-rotate-y",
+  tabsRotateZ: "--vita-tabs-rotate-z",
+  tabsHoverRotateX: "--vita-tabs-hover-rotate-x",
+  tabsHoverRotateY: "--vita-tabs-hover-rotate-y",
+  tabsHoverRotateZ: "--vita-tabs-hover-rotate-z",
+  tabsHoverTranslateY: "--vita-tabs-hover-translate-y",
+  tabsHoverScale: "--vita-tabs-hover-scale",
+
+  // Slider
+  sliderTrackHeight: "--vita-slider-track-height",
+  sliderTrackRadius: "--vita-slider-track-radius",
+  sliderThumbSize: "--vita-slider-thumb-size",
+  sliderThumbDotSize: "--vita-slider-thumb-dot-size",
+  sliderThumbRadius: "--vita-slider-thumb-radius",
+  sliderThumbShadow: "--vita-slider-thumb-shadow",
+  sliderTransitionDuration: "--vita-slider-transition-duration",
+  sliderRotateX: "--vita-slider-rotate-x",
+  sliderRotateY: "--vita-slider-rotate-y",
+  sliderRotateZ: "--vita-slider-rotate-z",
+  sliderHoverRotateX: "--vita-slider-hover-rotate-x",
+  sliderHoverRotateY: "--vita-slider-hover-rotate-y",
+  sliderHoverRotateZ: "--vita-slider-hover-rotate-z",
+  sliderHoverTranslateY: "--vita-slider-hover-translate-y",
+  sliderHoverScale: "--vita-slider-hover-scale",
+
+  // Spinner
+  spinnerSizeSm: "--vita-spinner-size-sm",
+  spinnerSizeMd: "--vita-spinner-size-md",
+  spinnerSizeLg: "--vita-spinner-size-lg",
+  spinnerRotateX: "--vita-spinner-rotate-x",
+  spinnerRotateY: "--vita-spinner-rotate-y",
+  spinnerRotateZ: "--vita-spinner-rotate-z",
+
+  // Skeleton
+  skeletonRadius: "--vita-skeleton-radius",
+  skeletonBaseColor: "--vita-skeleton-base-color",
+  skeletonAnimationDuration: "--vita-skeleton-animation-duration",
+
+  // Separator
+  separatorThickness: "--vita-separator-thickness",
+  separatorRadius: "--vita-separator-radius",
+
   // Select
   selectRadius: "--vita-select-radius",
   selectBorderWidth: "--vita-select-border-width",

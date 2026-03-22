@@ -317,6 +317,87 @@ export type ThemeTokens = {
   colorPickerAreaRadius: string; // color area border-radius
   colorPickerTransitionDuration: string; // transition speed
 
+  // ── Component tokens: ComboBox ────────────────────────────────────────────
+  comboBoxPopoverRadius: string; // dropdown popover border-radius
+  comboBoxPopoverShadow: string; // dropdown popover box-shadow
+  comboBoxPopoverPadding: string; // dropdown popover padding
+  comboBoxPopoverBorderWidth: string; // dropdown popover border width
+  comboBoxPopoverBorderStyle: string; // dropdown popover border style
+  comboBoxTriggerRadius: string; // trigger button border-radius
+  comboBoxTriggerBorderWidth: string; // trigger button border width
+  comboBoxItemPaddingX: string; // list item horizontal padding
+  comboBoxItemPaddingY: string; // list item vertical padding
+  comboBoxItemFontSize: string; // list item font-size
+  comboBoxItemRadius: string; // list item border-radius
+  comboBoxTransitionDuration: string; // transition speed
+
+  // ── Component tokens: DatePicker ────────────────────────────────────────
+  datePickerTriggerRadius: string; // trigger border-radius
+  datePickerTriggerBorderWidth: string; // trigger border width
+  datePickerTriggerBorderStyle: string; // trigger border style
+  datePickerTriggerPaddingX: string; // trigger horizontal padding
+  datePickerTriggerPaddingY: string; // trigger vertical padding
+  datePickerTriggerShadow: string; // trigger box-shadow
+  datePickerPopoverRadius: string; // popover border-radius
+  datePickerPopoverShadow: string; // popover box-shadow
+  datePickerPopoverPadding: string; // popover padding
+  datePickerIndicatorSize: string; // calendar icon size
+  datePickerTransitionDuration: string; // transition speed
+
+  // ── Component tokens: Tabs ──────────────────────────────────────────────
+  tabsListRadius: string; // tab list container border-radius
+  tabsListPadding: string; // tab list internal padding
+  tabsListGap: string; // gap between tabs
+  tabsTabRadius: string; // individual tab border-radius
+  tabsTabPaddingX: string; // tab horizontal padding
+  tabsTabPaddingY: string; // tab vertical padding (via height)
+  tabsTabFontSize: string; // tab font-size
+  tabsTabFontWeight: string; // tab font-weight
+  tabsPanelPadding: string; // tab panel content padding
+  tabsTransitionDuration: string; // indicator animation speed
+  tabsRotateX: string; // static 3D rotation X
+  tabsRotateY: string; // static 3D rotation Y
+  tabsRotateZ: string; // static 3D rotation Z
+  tabsHoverRotateX: string; // hover 3D rotation X
+  tabsHoverRotateY: string; // hover 3D rotation Y
+  tabsHoverRotateZ: string; // hover 3D rotation Z
+  tabsHoverTranslateY: string; // hover vertical shift
+  tabsHoverScale: string; // hover scale
+
+  // ── Component tokens: Slider ────────────────────────────────────────────
+  sliderTrackHeight: string; // track height
+  sliderTrackRadius: string; // track border-radius
+  sliderThumbSize: string; // thumb hit-area size
+  sliderThumbDotSize: string; // visible thumb dot size (::after)
+  sliderThumbRadius: string; // thumb border-radius
+  sliderThumbShadow: string; // thumb box-shadow
+  sliderTransitionDuration: string; // animation speed
+  sliderRotateX: string; // static 3D rotation X
+  sliderRotateY: string; // static 3D rotation Y
+  sliderRotateZ: string; // static 3D rotation Z
+  sliderHoverRotateX: string; // hover 3D rotation X
+  sliderHoverRotateY: string; // hover 3D rotation Y
+  sliderHoverRotateZ: string; // hover 3D rotation Z
+  sliderHoverTranslateY: string; // hover vertical shift
+  sliderHoverScale: string; // hover scale
+
+  // ── Component tokens: Spinner ───────────────────────────────────────────
+  spinnerSizeSm: string; // small spinner size
+  spinnerSizeMd: string; // medium spinner size
+  spinnerSizeLg: string; // large spinner size
+  spinnerRotateX: string; // static 3D rotation X
+  spinnerRotateY: string; // static 3D rotation Y
+  spinnerRotateZ: string; // static 3D rotation Z
+
+  // ── Component tokens: Skeleton ──────────────────────────────────────────
+  skeletonRadius: string; // border-radius
+  skeletonBaseColor: string; // background color of skeleton
+  skeletonAnimationDuration: string; // pulse/shimmer speed
+
+  // ── Component tokens: Separator ─────────────────────────────────────────
+  separatorThickness: string; // line thickness (height for horizontal)
+  separatorRadius: string; // border-radius
+
   // ── Component tokens: Select / Dropdown ───────────────────────────────────
   selectRadius: string; // border-radius of select trigger
   selectBorderWidth: string; // border-width of select trigger

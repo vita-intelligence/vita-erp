@@ -231,6 +231,73 @@ export const componentDefaults: Pick<
   | "colorPickerThumbBorderWidth"
   | "colorPickerAreaRadius"
   | "colorPickerTransitionDuration"
+  | "comboBoxPopoverRadius"
+  | "comboBoxPopoverShadow"
+  | "comboBoxPopoverPadding"
+  | "comboBoxPopoverBorderWidth"
+  | "comboBoxPopoverBorderStyle"
+  | "comboBoxTriggerRadius"
+  | "comboBoxTriggerBorderWidth"
+  | "comboBoxItemPaddingX"
+  | "comboBoxItemPaddingY"
+  | "comboBoxItemFontSize"
+  | "comboBoxItemRadius"
+  | "comboBoxTransitionDuration"
+  | "datePickerTriggerRadius"
+  | "datePickerTriggerBorderWidth"
+  | "datePickerTriggerBorderStyle"
+  | "datePickerTriggerPaddingX"
+  | "datePickerTriggerPaddingY"
+  | "datePickerTriggerShadow"
+  | "datePickerPopoverRadius"
+  | "datePickerPopoverShadow"
+  | "datePickerPopoverPadding"
+  | "datePickerIndicatorSize"
+  | "datePickerTransitionDuration"
+  | "tabsListRadius"
+  | "tabsListPadding"
+  | "tabsListGap"
+  | "tabsTabRadius"
+  | "tabsTabPaddingX"
+  | "tabsTabPaddingY"
+  | "tabsTabFontSize"
+  | "tabsTabFontWeight"
+  | "tabsPanelPadding"
+  | "tabsTransitionDuration"
+  | "tabsRotateX"
+  | "tabsRotateY"
+  | "tabsRotateZ"
+  | "tabsHoverRotateX"
+  | "tabsHoverRotateY"
+  | "tabsHoverRotateZ"
+  | "tabsHoverTranslateY"
+  | "tabsHoverScale"
+  | "sliderTrackHeight"
+  | "sliderTrackRadius"
+  | "sliderThumbSize"
+  | "sliderThumbDotSize"
+  | "sliderThumbRadius"
+  | "sliderThumbShadow"
+  | "sliderTransitionDuration"
+  | "sliderRotateX"
+  | "sliderRotateY"
+  | "sliderRotateZ"
+  | "sliderHoverRotateX"
+  | "sliderHoverRotateY"
+  | "sliderHoverRotateZ"
+  | "sliderHoverTranslateY"
+  | "sliderHoverScale"
+  | "spinnerSizeSm"
+  | "spinnerSizeMd"
+  | "spinnerSizeLg"
+  | "spinnerRotateX"
+  | "spinnerRotateY"
+  | "spinnerRotateZ"
+  | "skeletonRadius"
+  | "skeletonBaseColor"
+  | "skeletonAnimationDuration"
+  | "separatorThickness"
+  | "separatorRadius"
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
@@ -485,6 +552,87 @@ export const componentDefaults: Pick<
   colorPickerThumbBorderWidth: "2px",
   colorPickerAreaRadius: "8px",
   colorPickerTransitionDuration: "150ms",
+
+  // ComboBox
+  comboBoxPopoverRadius: "0px",
+  comboBoxPopoverShadow: "none",
+  comboBoxPopoverPadding: "4px",
+  comboBoxPopoverBorderWidth: "1px",
+  comboBoxPopoverBorderStyle: "solid",
+  comboBoxTriggerRadius: "0px",
+  comboBoxTriggerBorderWidth: "1px",
+  comboBoxItemPaddingX: "12px",
+  comboBoxItemPaddingY: "8px",
+  comboBoxItemFontSize: "14px",
+  comboBoxItemRadius: "0px",
+  comboBoxTransitionDuration: "150ms",
+
+  // DatePicker
+  datePickerTriggerRadius: "0px",
+  datePickerTriggerBorderWidth: "1px",
+  datePickerTriggerBorderStyle: "solid",
+  datePickerTriggerPaddingX: "12px",
+  datePickerTriggerPaddingY: "8px",
+  datePickerTriggerShadow: "none",
+  datePickerPopoverRadius: "0px",
+  datePickerPopoverShadow: "none",
+  datePickerPopoverPadding: "12px",
+  datePickerIndicatorSize: "18px",
+  datePickerTransitionDuration: "150ms",
+
+  // Tabs
+  tabsListRadius: "12px",
+  tabsListPadding: "4px",
+  tabsListGap: "0px",
+  tabsTabRadius: "8px",
+  tabsTabPaddingX: "12px",
+  tabsTabPaddingY: "6px",
+  tabsTabFontSize: "14px",
+  tabsTabFontWeight: "500",
+  tabsPanelPadding: "12px",
+  tabsTransitionDuration: "200ms",
+  tabsRotateX: "0deg",
+  tabsRotateY: "0deg",
+  tabsRotateZ: "0deg",
+  tabsHoverRotateX: "",
+  tabsHoverRotateY: "",
+  tabsHoverRotateZ: "",
+  tabsHoverTranslateY: "0px",
+  tabsHoverScale: "1",
+
+  // Slider
+  sliderTrackHeight: "6px",
+  sliderTrackRadius: "9999px",
+  sliderThumbSize: "20px",
+  sliderThumbDotSize: "16px",
+  sliderThumbRadius: "9999px",
+  sliderThumbShadow: "0 1px 3px oklch(0 0 0 / 0.15)",
+  sliderTransitionDuration: "150ms",
+  sliderRotateX: "0deg",
+  sliderRotateY: "0deg",
+  sliderRotateZ: "0deg",
+  sliderHoverRotateX: "",
+  sliderHoverRotateY: "",
+  sliderHoverRotateZ: "",
+  sliderHoverTranslateY: "0px",
+  sliderHoverScale: "1",
+
+  // Spinner
+  spinnerSizeSm: "20px",
+  spinnerSizeMd: "32px",
+  spinnerSizeLg: "48px",
+  spinnerRotateX: "0deg",
+  spinnerRotateY: "0deg",
+  spinnerRotateZ: "0deg",
+
+  // Skeleton
+  skeletonRadius: "8px",
+  skeletonBaseColor: "var(--vita-neutral-200)",
+  skeletonAnimationDuration: "1.5s",
+
+  // Separator
+  separatorThickness: "1px",
+  separatorRadius: "0px",
 
   // Select
   selectRadius: "0px",
