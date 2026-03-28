@@ -75,6 +75,14 @@
       "descriptionPlaceholder": "Help text shown below the field",
       "defaultValue": "Default value",
       "defaultValuePlaceholder": "Pre-filled when form loads",
+      "appearance": "Appearance",
+      "appearances": {
+        "default": "Default",
+        "minimal": "Dropdown",
+        "compact": "Compact",
+        "likert": "Likert scale",
+        "multiline": "Multiline"
+      },
       "required": "Required",
       "requiredHint": "This field must be filled before submission",
       "hidden": "Hidden field",
@@ -176,7 +184,10 @@
     "calculate": "Calculate",
     "file": "File",
     "image": "Image",
-    "signature": "Signature"
+    "signature": "Signature",
+    "startTimestamp": "Start timestamp",
+    "endTimestamp": "End timestamp",
+    "username": "Username"
   },
   "categories": {
     "input": "Input",

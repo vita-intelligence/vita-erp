@@ -37,9 +37,11 @@ export type { RegexResult } from "./shared/validation-utils";
 export { buildZodSchema, validateRegex } from "./shared/validation-utils";
 // Types
 export type {
+  ChoiceFilter,
   CompoundVisibility,
   ConfigTabProps,
   CustomConstraintRule,
+  FieldAppearance,
   FieldConstraints,
   FieldElement,
   FieldRendererProps,

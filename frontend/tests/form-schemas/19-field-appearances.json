@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "name": "Field Appearances",
+  "description": "Tests all appearance modes: default, minimal (dropdown), compact (grid), likert, multiline",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "text_default",
+      "type": "text",
+      "label": "Text — Default (single line)",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "text_multiline",
+      "type": "text",
+      "label": "Text — Multiline (textarea)",
+      "required": false,
+      "hidden": false,
+      "appearance": "multiline"
+    },
+    {
+      "kind": "field",
+      "id": "select_default",
+      "type": "select_one",
+      "label": "Select One — Default (radio buttons)",
+      "required": false,
+      "hidden": false,
+      "options": [
+        { "value": "a", "label": "Option A" },
+        { "value": "b", "label": "Option B" },
+        { "value": "c", "label": "Option C" },
+        { "value": "d", "label": "Option D" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "select_minimal",
+      "type": "select_one",
+      "label": "Select One — Minimal (dropdown)",
+      "required": false,
+      "hidden": false,
+      "appearance": "minimal",
+      "options": [
+        { "value": "us", "label": "United States" },
+        { "value": "uk", "label": "United Kingdom" },
+        { "value": "de", "label": "Germany" },
+        { "value": "fr", "label": "France" },
+        { "value": "jp", "label": "Japan" },
+        { "value": "br", "label": "Brazil" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "select_compact",
+      "type": "select_one",
+      "label": "Select One — Compact (button grid)",
+      "required": false,
+      "hidden": false,
+      "appearance": "compact",
+      "options": [
+        { "value": "s", "label": "S" },
+        { "value": "m", "label": "M" },
+        { "value": "l", "label": "L" },
+        { "value": "xl", "label": "XL" },
+        { "value": "xxl", "label": "XXL" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "select_likert",
+      "type": "select_one",
+      "label": "Select One — Likert scale",
+      "description": "How satisfied are you?",
+      "required": false,
+      "hidden": false,
+      "appearance": "likert",
+      "options": [
+        { "value": "1", "label": "Very bad" },
+        { "value": "2", "label": "Bad" },
+        { "value": "3", "label": "Neutral" },
+        { "value": "4", "label": "Good" },
+        { "value": "5", "label": "Excellent" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "multi_default",
+      "type": "select_multiple",
+      "label": "Select Multiple — Default (checkboxes)",
+      "required": false,
+      "hidden": false,
+      "options": [
+        { "value": "email", "label": "Email" },
+        { "value": "sms", "label": "SMS" },
+        { "value": "push", "label": "Push notification" },
+        { "value": "mail", "label": "Postal mail" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "multi_minimal",
+      "type": "select_multiple",
+      "label": "Select Multiple — Minimal (list with checkmarks)",
+      "required": false,
+      "hidden": false,
+      "appearance": "minimal",
+      "options": [
+        { "value": "mon", "label": "Monday" },
+        { "value": "tue", "label": "Tuesday" },
+        { "value": "wed", "label": "Wednesday" },
+        { "value": "thu", "label": "Thursday" },
+        { "value": "fri", "label": "Friday" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "multi_compact",
+      "type": "select_multiple",
+      "label": "Select Multiple — Compact (toggle buttons)",
+      "required": false,
+      "hidden": false,
+      "appearance": "compact",
+      "options": [
+        { "value": "red", "label": "Red" },
+        { "value": "green", "label": "Green" },
+        { "value": "blue", "label": "Blue" },
+        { "value": "yellow", "label": "Yellow" },
+        { "value": "purple", "label": "Purple" }
+      ]
+    }
+  ]
+}

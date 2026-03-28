@@ -123,15 +123,24 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
   // The merged `watchedValues` map is used everywhere (visibility, warnings,
   // interpolation, and rendering).
 
+  // Capture form start time once (stable across re-renders)
+  const startTime = useMemo(() => new Date().toISOString(), []);
+
   const watchedValues = useMemo(() => {
     const merged = { ...rawValues };
     for (const field of allFields) {
       if (field.type === "calculate" && field.calculate) {
         merged[field.id] = evaluateExpression(field.calculate, merged);
+      } else if (field.type === "start_timestamp") {
+        merged[field.id] = startTime;
+      } else if (field.type === "end_timestamp") {
+        merged[field.id] = new Date().toISOString();
+      } else if (field.type === "username") {
+        merged[field.id] = "current_user"; // placeholder until auth is wired
       }
     }
     return merged;
-  }, [rawValues, allFields]);
+  }, [rawValues, allFields, startTime]);
 
   // ── Visibility evaluation ──────────────────────────────────────────────────
 

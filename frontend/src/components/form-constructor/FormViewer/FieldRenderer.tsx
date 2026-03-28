@@ -14,6 +14,7 @@ import type { FieldElement, FieldRendererProps, FieldType } from "../types";
 import { CalculateRenderer } from "./renderers/CalculateRenderer";
 import { DateTimeRenderer } from "./renderers/DateTimeRenderer";
 import { FileRenderer } from "./renderers/FileRenderer";
+import { MetadataRenderer } from "./renderers/MetadataRenderer";
 import { NoteRenderer } from "./renderers/NoteRenderer";
 import { NumberRenderer } from "./renderers/NumberRenderer";
 import { SelectMultipleRenderer } from "./renderers/SelectMultipleRenderer";
@@ -40,6 +41,9 @@ const RENDERER_MAP: Record<
   signature: SignatureRenderer,
   note: NoteRenderer,
   calculate: CalculateRenderer,
+  start_timestamp: MetadataRenderer,
+  end_timestamp: MetadataRenderer,
+  username: MetadataRenderer,
 };
 
 // ── Extended Props ───────────────────────────────────────────────────────────
@@ -73,9 +77,18 @@ export function FieldRenderer(props: FieldRendererWrapperProps) {
       ? interpolateText(field.description, formValues, allFields)
       : field.description;
 
+  // Filter options for cascading selects
+  let options = field.options;
+  if (formValues && field.choiceFilter && field.options) {
+    const parentValue = String(formValues[field.choiceFilter.fieldId] ?? "");
+    options = parentValue
+      ? field.options.filter((opt) => opt.filterBy === parentValue)
+      : field.options;
+  }
+
   // Pass interpolated field to all renderers so placeholders/content resolve
   const rendererProps = formValues
-    ? { ...props, field: { ...field, label, description } }
+    ? { ...props, field: { ...field, label, description, options } }
     : props;
 
   return (

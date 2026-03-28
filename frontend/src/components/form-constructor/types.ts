@@ -49,13 +49,26 @@ export type FieldElement = {
   regex?: RegexRule;
   /** Options list — only used by select_one and select_multiple */
   options?: SelectOption[];
+  /** Filter options based on another field's value (cascading selects) */
+  choiceFilter?: ChoiceFilter;
   /** Calculation expression — only used by calculate type */
   calculate?: string;
   /** Value/length constraints for validation */
   constraints?: FieldConstraints;
   /** Default value — pre-filled when the form loads */
   defaultValue?: string | number;
+  /** Display variant — controls how the field renders in the viewer */
+  appearance?: FieldAppearance;
 };
+
+// ── Field Appearances ───────────────────────────────────────────────────────
+
+export type FieldAppearance =
+  | "default"
+  | "minimal"
+  | "compact"
+  | "likert"
+  | "multiline";
 
 // ── Constraints ─────────────────────────────────────────────────────────────
 
@@ -130,7 +143,10 @@ export type FieldType =
   | "calculate"
   | "file"
   | "image"
-  | "signature";
+  | "signature"
+  | "start_timestamp"
+  | "end_timestamp"
+  | "username";
 
 // ── Field Settings ───────────────────────────────────────────────────────────
 
@@ -139,6 +155,15 @@ export type SelectOption = {
   value: string;
   /** Human-readable display label */
   label: string;
+  /** Filter key — option only shown when parent field's value matches this */
+  filterBy?: string;
+};
+
+export type ChoiceFilter = {
+  /** ID of the parent field whose value filters this field's options */
+  fieldId: string;
+  /** Which SelectOption property to match against (defaults to "filterBy") */
+  matchProperty?: string;
 };
 
 export type VisibilityRule = {

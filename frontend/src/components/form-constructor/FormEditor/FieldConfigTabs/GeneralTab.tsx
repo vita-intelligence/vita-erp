@@ -101,6 +101,46 @@ export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
           </TextField>
         )}
 
+      {/* Appearance — only if the field type has multiple options */}
+      {getFieldMeta(field.type).appearances.length > 1 && (
+        <div>
+          <p
+            className="mb-1 text-xs font-medium"
+            style={{ color: "var(--vita-text-secondary)" }}
+          >
+            {t("config.general.appearance")}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {getFieldMeta(field.type).appearances.map((app) => {
+              const isActive = (field.appearance ?? "default") === app;
+              return (
+                <button
+                  key={app}
+                  type="button"
+                  className="rounded-vita-md px-3 py-1.5 text-xs font-medium transition-colors"
+                  style={{
+                    border: `1px solid ${isActive ? "var(--vita-primary)" : "var(--vita-neutral-200)"}`,
+                    background: isActive
+                      ? "var(--vita-primary)"
+                      : "var(--vita-background)",
+                    color: isActive
+                      ? "var(--vita-text-on-primary, #fff)"
+                      : "var(--vita-text-primary)",
+                  }}
+                  onClick={() =>
+                    onUpdate({
+                      appearance: app === "default" ? undefined : app,
+                    })
+                  }
+                >
+                  {t(`config.general.appearances.${app}`)}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Required toggle */}
       <div className="flex items-center justify-between">
         <div className="flex flex-col">

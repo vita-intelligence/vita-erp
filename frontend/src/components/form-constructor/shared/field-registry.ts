@@ -20,15 +20,23 @@ import {
   CheckSquare,
   CircleDot,
   Clock,
+  ClockArrowDown,
+  ClockArrowUp,
   Hash,
   Image,
   MessageSquare,
   Paperclip,
   PenTool,
   Type,
+  User,
 } from "lucide-react";
 
-import type { FieldElement, FieldType, SelectOption } from "../types";
+import type {
+  FieldAppearance,
+  FieldElement,
+  FieldType,
+  SelectOption,
+} from "../types";
 
 // ── Field Category ───────────────────────────────────────────────────────────
 
@@ -58,6 +66,8 @@ export type FieldMeta = {
   isInput: boolean;
   /** Default field values when creating a new field of this type */
   defaults: Partial<FieldElement>;
+  /** Available appearance modes for this field type */
+  appearances: FieldAppearance[];
 };
 
 // ── Registry ─────────────────────────────────────────────────────────────────
@@ -78,6 +88,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: {},
+    appearances: ["default", "multiline"],
   },
   {
     type: "integer",
@@ -88,6 +99,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: {},
+    appearances: ["default"],
   },
   {
     type: "decimal",
@@ -98,6 +110,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: {},
+    appearances: ["default"],
   },
 
   // ── Choice fields ──
@@ -110,6 +123,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: { options: [...defaultOptions] },
+    appearances: ["default", "minimal", "compact", "likert"],
   },
   {
     type: "select_multiple",
@@ -120,6 +134,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: { options: [...defaultOptions] },
+    appearances: ["default", "minimal", "compact"],
   },
 
   // ── Date/time fields ──
@@ -132,6 +147,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: {},
+    appearances: ["default"],
   },
   {
     type: "datetime",
@@ -142,6 +158,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: {},
+    appearances: ["default"],
   },
   {
     type: "time",
@@ -152,6 +169,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: {},
+    appearances: ["default"],
   },
 
   // ── Media fields ──
@@ -164,6 +182,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: {},
+    appearances: ["default"],
   },
   {
     type: "image",
@@ -174,6 +193,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: {},
+    appearances: ["default"],
   },
   {
     type: "signature",
@@ -184,6 +204,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: true,
     defaults: {},
+    appearances: ["default"],
   },
 
   // ── Advanced fields ──
@@ -196,6 +217,7 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: false,
     isInput: false,
     defaults: {},
+    appearances: ["default"],
   },
   {
     type: "calculate",
@@ -206,6 +228,42 @@ export const FIELD_REGISTRY: FieldMeta[] = [
     hasCalculate: true,
     isInput: false,
     defaults: { calculate: "" },
+    appearances: ["default"],
+  },
+
+  // ── Metadata fields (auto-captured, hidden by default) ──
+  {
+    type: "start_timestamp",
+    icon: ClockArrowUp,
+    i18nKey: "startTimestamp",
+    category: "advanced",
+    hasOptions: false,
+    hasCalculate: false,
+    isInput: false,
+    defaults: { hidden: true },
+    appearances: ["default"],
+  },
+  {
+    type: "end_timestamp",
+    icon: ClockArrowDown,
+    i18nKey: "endTimestamp",
+    category: "advanced",
+    hasOptions: false,
+    hasCalculate: false,
+    isInput: false,
+    defaults: { hidden: true },
+    appearances: ["default"],
+  },
+  {
+    type: "username",
+    icon: User,
+    i18nKey: "username",
+    category: "advanced",
+    hasOptions: false,
+    hasCalculate: false,
+    isInput: false,
+    defaults: { hidden: true },
+    appearances: ["default"],
   },
 ];
 

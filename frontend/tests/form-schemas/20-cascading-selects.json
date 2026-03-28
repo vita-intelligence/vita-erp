@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "name": "Cascading Selects",
+  "description": "Tests choice filtering — city options change based on selected country",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "country",
+      "type": "select_one",
+      "label": "Country",
+      "required": true,
+      "hidden": false,
+      "appearance": "minimal",
+      "options": [
+        { "value": "us", "label": "United States" },
+        { "value": "uk", "label": "United Kingdom" },
+        { "value": "de", "label": "Germany" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "city",
+      "type": "select_one",
+      "label": "City",
+      "description": "Options filtered by country selection above",
+      "required": true,
+      "hidden": false,
+      "appearance": "minimal",
+      "choiceFilter": { "fieldId": "country" },
+      "options": [
+        { "value": "nyc", "label": "New York", "filterBy": "us" },
+        { "value": "la", "label": "Los Angeles", "filterBy": "us" },
+        { "value": "chi", "label": "Chicago", "filterBy": "us" },
+        { "value": "lon", "label": "London", "filterBy": "uk" },
+        { "value": "man", "label": "Manchester", "filterBy": "uk" },
+        { "value": "edi", "label": "Edinburgh", "filterBy": "uk" },
+        { "value": "ber", "label": "Berlin", "filterBy": "de" },
+        { "value": "mun", "label": "Munich", "filterBy": "de" },
+        { "value": "ham", "label": "Hamburg", "filterBy": "de" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "category",
+      "type": "select_one",
+      "label": "Product Category",
+      "required": false,
+      "hidden": false,
+      "appearance": "compact",
+      "options": [
+        { "value": "electronics", "label": "Electronics" },
+        { "value": "clothing", "label": "Clothing" },
+        { "value": "food", "label": "Food" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "product",
+      "type": "select_one",
+      "label": "Product",
+      "description": "Filtered by category above",
+      "required": false,
+      "hidden": false,
+      "choiceFilter": { "fieldId": "category" },
+      "options": [
+        { "value": "phone", "label": "Phone", "filterBy": "electronics" },
+        { "value": "laptop", "label": "Laptop", "filterBy": "electronics" },
+        { "value": "tablet", "label": "Tablet", "filterBy": "electronics" },
+        { "value": "shirt", "label": "T-Shirt", "filterBy": "clothing" },
+        { "value": "pants", "label": "Pants", "filterBy": "clothing" },
+        { "value": "jacket", "label": "Jacket", "filterBy": "clothing" },
+        { "value": "bread", "label": "Bread", "filterBy": "food" },
+        { "value": "milk", "label": "Milk", "filterBy": "food" },
+        { "value": "eggs", "label": "Eggs", "filterBy": "food" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "summary",
+      "type": "note",
+      "label": "Selection Summary",
+      "description": "You selected: ${country} → ${city}, Category: ${category} → ${product}",
+      "required": false,
+      "hidden": false
+    }
+  ]
+}
