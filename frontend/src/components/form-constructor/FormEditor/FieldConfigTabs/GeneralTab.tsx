@@ -11,10 +11,10 @@ import { useTranslations } from "next-intl";
 import { ColorInput } from "@/components/theme-editor/modules/colors/ColorInput";
 import { FieldError, Input, Label, TextField } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
-
 import { getFieldMeta } from "../../shared/field-registry";
 import { isIdUnique } from "../../shared/schema-utils";
 import type { ConfigTabProps, FieldStyling } from "../../types";
+import { BackgroundPicker } from "../BackgroundPicker";
 
 export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
   const t = useTranslations("formConstructor");
@@ -236,26 +236,24 @@ function StylingSection({
         {t("config.general.styling")}
       </p>
 
-      {/* Field wrapper colors */}
-      <div>
+      {/* Field wrapper styling */}
+      <div className="flex flex-col gap-3">
         <p
-          className="mb-2 text-[11px] font-medium"
+          className="text-[11px] font-medium"
           style={{ color: "var(--vita-text-secondary)" }}
         >
           {t("config.general.stylingFieldSection")}
         </p>
-        <div className="flex flex-wrap gap-3">
-          <ColorField
-            label={t("config.general.stylingBg")}
-            value={s.backgroundColor}
-            onChange={(v) => patch({ backgroundColor: v })}
-          />
-          <ColorField
-            label={t("config.general.stylingLabelColor")}
-            value={s.labelColor}
-            onChange={(v) => patch({ labelColor: v })}
-          />
-        </div>
+        <BackgroundPicker
+          label={t("config.general.stylingBg")}
+          value={s.backgroundColor}
+          onChange={(v) => patch({ backgroundColor: v })}
+        />
+        <ColorField
+          label={t("config.general.stylingLabelColor")}
+          value={s.labelColor}
+          onChange={(v) => patch({ labelColor: v })}
+        />
       </div>
 
       {/* Input element colors */}

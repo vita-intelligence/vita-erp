@@ -99,7 +99,7 @@ export function FieldRenderer(props: FieldRendererWrapperProps) {
       style={{
         ...(s?.backgroundColor
           ? {
-              backgroundColor: s.backgroundColor,
+              background: s.backgroundColor,
               padding: "10px 12px",
               borderRadius: "var(--vita-input-radius, 8px)",
             }

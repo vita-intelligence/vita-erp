@@ -93,6 +93,8 @@
       "styling": "Styling",
       "stylingFieldSection": "Field wrapper",
       "stylingBg": "Background",
+      "stylingBgSolid": "Solid",
+      "stylingBgGradient": "Gradient",
       "stylingLabelColor": "Label",
       "stylingInputSection": "Input element",
       "stylingInputBg": "Background",

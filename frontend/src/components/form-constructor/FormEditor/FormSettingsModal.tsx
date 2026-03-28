@@ -10,8 +10,8 @@ import { useState } from "react";
 import { ColorInput } from "@/components/theme-editor/modules/colors/ColorInput";
 import { Button } from "@/components/ui/button";
 import { Input, Label, TextField } from "@/components/ui/input";
-
 import type { FormLayout, FormSettings, FormStyling } from "../types";
+import { BackgroundPicker } from "./BackgroundPicker";
 
 type FormSettingsModalProps = {
   settings: FormSettings;
@@ -218,18 +218,16 @@ export function FormSettingsModal({
               {t("formSettings.styling")}
             </p>
 
-            <div className="flex flex-wrap gap-3">
-              <ColorFieldInline
-                label={t("formSettings.bgColor")}
-                value={s.backgroundColor}
-                onChange={(v) => patchStyling({ backgroundColor: v })}
-              />
-              <ColorFieldInline
-                label={t("formSettings.textColor")}
-                value={s.textColor}
-                onChange={(v) => patchStyling({ textColor: v })}
-              />
-            </div>
+            <BackgroundPicker
+              label={t("formSettings.bgColor")}
+              value={s.backgroundColor}
+              onChange={(v) => patchStyling({ backgroundColor: v })}
+            />
+            <ColorFieldInline
+              label={t("formSettings.textColor")}
+              value={s.textColor}
+              onChange={(v) => patchStyling({ textColor: v })}
+            />
 
             <div className="flex gap-3">
               <div className="flex-1">
