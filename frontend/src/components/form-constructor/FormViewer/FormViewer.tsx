@@ -13,7 +13,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
@@ -95,12 +95,18 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(zodSchema),
     defaultValues,
     mode: "onBlur",
   });
+
+  // Reset form when schema changes (e.g., after import) so defaults re-apply
+  useEffect(() => {
+    reset(defaultValues);
+  }, [defaultValues, reset]);
 
   // Watch all form values for visibility conditions and calculations
   const rawValues = useWatch({ control }) as Record<string, unknown>;

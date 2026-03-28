@@ -381,15 +381,28 @@ function callFunction(name: string, args: number[]): number {
  *
  * Returns NaN if the expression is invalid or references missing fields.
  */
+/** Convert a value to a number for expression evaluation. */
+function toNumeric(val: unknown): number {
+  if (val === undefined || val === null || val === "") return 0;
+  const num = Number(val);
+  if (!Number.isNaN(num)) return num;
+
+  // Date/datetime strings → millisecond timestamp (enables date comparisons)
+  if (typeof val === "string") {
+    const ms = new Date(val).getTime();
+    if (!Number.isNaN(ms)) return ms;
+  }
+
+  return 0;
+}
+
 export function evaluateExpression(
   expression: string,
   fieldValues: Record<string, unknown>,
 ): number {
   // Replace {field_id} with numeric values
   const resolved = expression.replace(/\{([^}]+)\}/g, (_, fieldId: string) => {
-    const val = fieldValues[fieldId];
-    const num = Number(val);
-    return Number.isNaN(num) ? "0" : String(num);
+    return String(toNumeric(fieldValues[fieldId]));
   });
 
   try {

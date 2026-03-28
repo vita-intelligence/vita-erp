@@ -48,13 +48,10 @@ export function evaluateConstraint(
   expression: string,
   allValues: Record<string, unknown>,
 ): number {
-  // Replace {.} with the current field's numeric value
-  const currentVal = Number(fieldValue);
-  const resolved = expression.replace(
-    /\{\.}/g,
-    Number.isNaN(currentVal) ? "0" : String(currentVal),
-  );
-  return evaluateExpression(resolved, allValues);
+  // Inject {.} as a virtual field so the expression evaluator
+  // handles date/number conversion uniformly via toNumeric()
+  const valuesWithSelf = { ...allValues, ".": fieldValue };
+  return evaluateExpression(expression, valuesWithSelf);
 }
 
 // ── Zod Schema Builder ───────────────────────────────────────────────────────
