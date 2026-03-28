@@ -293,11 +293,18 @@ function StylingSection({
             {t("config.general.stylingFontSize")}
           </p>
           <select
-            className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
+            className="w-full border"
             style={{
+              borderRadius: "var(--vita-input-radius, 6px)",
               borderColor: "var(--vita-neutral-200)",
+              borderStyle: "var(--vita-input-border-style, solid)",
               background: "var(--vita-surface)",
               color: "var(--vita-text-primary)",
+              paddingLeft: "var(--vita-input-padding-x, 12px)",
+              paddingRight: "var(--vita-input-padding-x, 12px)",
+              paddingTop: "var(--vita-input-padding-y, 8px)",
+              paddingBottom: "var(--vita-input-padding-y, 8px)",
+              fontSize: "var(--vita-input-font-size, 14px)",
             }}
             value={s.fontSize ?? ""}
             onChange={(e) => patch({ fontSize: e.target.value || undefined })}
@@ -319,11 +326,18 @@ function StylingSection({
             {t("config.general.stylingFontWeight")}
           </p>
           <select
-            className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
+            className="w-full border"
             style={{
+              borderRadius: "var(--vita-input-radius, 6px)",
               borderColor: "var(--vita-neutral-200)",
+              borderStyle: "var(--vita-input-border-style, solid)",
               background: "var(--vita-surface)",
               color: "var(--vita-text-primary)",
+              paddingLeft: "var(--vita-input-padding-x, 12px)",
+              paddingRight: "var(--vita-input-padding-x, 12px)",
+              paddingTop: "var(--vita-input-padding-y, 8px)",
+              paddingBottom: "var(--vita-input-padding-y, 8px)",
+              fontSize: "var(--vita-input-font-size, 14px)",
             }}
             value={s.fontWeight ?? ""}
             onChange={(e) => patch({ fontWeight: e.target.value || undefined })}
