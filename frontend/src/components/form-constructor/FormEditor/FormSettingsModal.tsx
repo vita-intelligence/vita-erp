@@ -10,6 +10,12 @@ import { useState } from "react";
 import { ColorInput } from "@/components/theme-editor/modules/colors/ColorInput";
 import { Button } from "@/components/ui/button";
 import { Input, Label, TextField } from "@/components/ui/input";
+import {
+  MONO_FONT_OPTIONS,
+  SANS_FONT_OPTIONS,
+  SERIF_FONT_OPTIONS,
+} from "@/config/fonts";
+
 import type { FormLayout, FormSettings, FormStyling } from "../types";
 import { BackgroundPicker } from "./BackgroundPicker";
 
@@ -272,16 +278,48 @@ export function FormSettingsModal({
                 </TextField>
               </div>
               <div className="flex-1">
-                <TextField>
-                  <Label>{t("formSettings.fontFamily")}</Label>
-                  <Input
-                    value={s.fontFamily ?? ""}
-                    onChange={(e) =>
-                      patchStyling({ fontFamily: e.target.value || undefined })
-                    }
-                    placeholder="Inter, sans-serif"
-                  />
-                </TextField>
+                <p
+                  className="mb-1 text-[11px] font-medium"
+                  style={{ color: "var(--vita-text-secondary)" }}
+                >
+                  {t("formSettings.fontFamily")}
+                </p>
+                <select
+                  className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
+                  style={{
+                    borderColor: "var(--vita-neutral-200)",
+                    background: "var(--vita-surface)",
+                    color: "var(--vita-text-primary)",
+                    fontFamily: s.fontFamily || undefined,
+                  }}
+                  value={s.fontFamily ?? ""}
+                  onChange={(e) =>
+                    patchStyling({ fontFamily: e.target.value || undefined })
+                  }
+                >
+                  <option value="">{t("config.general.stylingDefault")}</option>
+                  <optgroup label="Sans-serif">
+                    {SANS_FONT_OPTIONS.map((f) => (
+                      <option key={f.value} value={f.value}>
+                        {f.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Serif">
+                    {SERIF_FONT_OPTIONS.map((f) => (
+                      <option key={f.value} value={f.value}>
+                        {f.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Monospace">
+                    {MONO_FONT_OPTIONS.map((f) => (
+                      <option key={f.value} value={f.value}>
+                        {f.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                </select>
               </div>
             </div>
           </div>
