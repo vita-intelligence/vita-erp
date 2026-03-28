@@ -12,6 +12,9 @@
 | GSAP + `@gsap/react` | Animations |
 | Zustand | Client-side state |
 | TanStack Query | Server state / data fetching |
+| React Hook Form + Zod | Form validation |
+| @dnd-kit | Drag and drop |
+| BlockNote | Rich text editor (WYSIWYG) |
 | Axios | HTTP client |
 | next-intl | Internationalisation |
 | Biome | Linting and formatting |
@@ -22,31 +25,49 @@
 
 ```
 frontend/
-├── messages/                  ← translation files
+├── messages/                  ← translation files (14 languages)
 │   ├── en/
 │   │   ├── common.json
-│   │   └── auth.json
+│   │   ├── auth.json
+│   │   ├── themeEditor.json
+│   │   └── formConstructor.json
 │   └── {locale}/              ← same structure per language
+├── tests/
+│   └── form-schemas/          ← 25 JSON test schemas for form constructor
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx         ← minimal root shell
-│   │   ├── providers.tsx      ← TanStack Query provider
-│   │   ├── globals.css        ← Tailwind + HeroUI styles
+│   │   ├── providers.tsx      ← TanStack Query + Theme provider
+│   │   ├── globals.css        ← Tailwind + HeroUI + Vita token styles
 │   │   └── [locale]/
-│   │       ├── layout.tsx     ← locale-aware shell (NextIntlClientProvider)
-│   │       └── page.tsx       ← home page
+│   │       ├── layout.tsx     ← locale-aware shell (NextIntlClientProvider + HydrationGuard)
+│   │       ├── loading.tsx    ← route-level loading spinner
+│   │       └── page.tsx       ← design system demo page
 │   ├── components/
-│   │   └── ui/                ← HeroUI component wrappers (one folder per component)
-│   ├── config/                ← all app constants in one place
+│   │   ├── ui/                ← HeroUI component wrappers (45+ components)
+│   │   ├── form-constructor/  ← form schema builder + viewer
+│   │   ├── rich-text-editor/  ← BlockNote WYSIWYG + Markdown code editor
+│   │   ├── theme-editor/      ← live theme customization UI (25 modules, 8 presets)
+│   │   └── HydrationGuard.tsx ← prevents dead clicks before JS hydrates
+│   ├── config/                ← all app constants
 │   │   ├── app.ts             ← APP (name, theme, currency, timezone)
 │   │   ├── api.ts             ← API (baseUrl)
 │   │   ├── i18n.ts            ← I18N (locales, defaultLocale, namespaces)
+│   │   ├── fonts.ts           ← 50+ font options (Google Fonts metadata)
+│   │   ├── theme.ts           ← THEME (radii, shadows, zIndex, duration)
+│   │   ├── themes/            ← theme token system (8 presets, 180+ tokens)
 │   │   └── index.ts           ← barrel export
-│   ├── hooks/                 ← custom React hooks
+│   ├── hooks/
+│   │   └── useHydrated.ts     ← detects when React has hydrated
 │   ├── i18n/
-│   │   ├── routing.ts         ← next-intl routing (reads from config/i18n.ts)
-│   │   └── request.ts         ← next-intl request config (merges namespace files)
-│   ├── stores/                ← Zustand stores
+│   │   ├── routing.ts         ← next-intl routing
+│   │   └── request.ts         ← next-intl request config
+│   ├── stores/
+│   │   └── theme.ts           ← Zustand theme store (8 presets, per-mode persistence)
+│   ├── styles/
+│   │   ├── tokens.css         ← --vita-* CSS variables + hydration indicator
+│   │   ├── heroui.css         ← HeroUI semantic token mappings
+│   │   └── components/        ← per-component CSS token overrides
 │   └── types/
 │       └── api.ts             ← ApiResponse, PaginatedResponse, ApiError
 ```
@@ -58,7 +79,7 @@ frontend/
 All constants live in `src/config/`. Import from anywhere:
 
 ```ts
-import { APP, API, I18N } from "@/config";
+import { APP, API, I18N, THEME } from "@/config";
 ```
 
 | Export | Contents |
@@ -66,42 +87,57 @@ import { APP, API, I18N } from "@/config";
 | `APP` | `name`, `defaultTheme`, `defaultCurrency`, `defaultTimezone` |
 | `API` | `baseUrl` |
 | `I18N` | `locales`, `defaultLocale`, `namespaces` |
+| `THEME` | `radii`, `shadows`, `zIndex`, `duration` |
 
 ---
 
-## Internationalisation
+## Theme System
 
-14 supported languages: English, Chinese, Spanish, Hindi, Arabic, French, Portuguese, Russian, German, Japanese, Korean, Italian, Turkish, Indonesian.
+8 built-in presets: Light (brutalist B&W), Dark, Ocean Blue, Forest Green, Sunset Warm, Midnight Purple, Minimal Gray, Corporate Blue.
 
-The URL carries the locale: `/en/dashboard`, `/zh/dashboard`, etc. The middleware (`src/proxy.ts`) handles detection and redirects.
+180+ CSS custom property tokens (`--vita-*`). Managed by Zustand store, applied at runtime via inline styles. Theme editor window persists position/size to localStorage.
 
-### Using translations
-
-```tsx
-import { useTranslations } from "next-intl";
-
-const t = useTranslations("common");
-t("save") // → "Save" / "保存" / "Guardar" ...
-```
-
-### Adding a new namespace
-
-1. Add the namespace to `I18N.namespaces` in `src/config/i18n.ts`
-2. Create `messages/{locale}/{namespace}.json` for every language
-3. Use it: `useTranslations("yourNamespace")`
-
-### Adding a new language
-
-1. Add the locale code to `I18N.locales` in `src/config/i18n.ts`
-2. Create `messages/{locale}/` with all namespace files translated
+Theme overrides in `src/components/ui/` wrappers **must use inline styles** — HeroUI's Tailwind-generated atomic classes cannot be reliably overridden via CSS selectors.
 
 ---
 
-## UI components
+## UI Components
 
-HeroUI components are wrapped in `src/components/ui/`. Each folder re-exports the HeroUI component and is the place to add theme/style customization logic.
+Always import from `@/components/ui/`, never from `@heroui/react` directly.
 
 ```tsx
-// Always import from the wrapper, not directly from @heroui/react
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { NativeSelect } from "@/components/ui/input/NativeSelect";
 ```
+
+`NativeSelect` — themed `<select>` matching Input styling (appearance:none + SVG chevron + `--vita-input-*` tokens).
+
+---
+
+## Form Constructor
+
+`src/components/form-constructor/` — drag-and-drop form builder + live viewer.
+
+16 field types, repeat groups, 18-function expression engine, visibility conditions (AND/OR), cascading selects, text interpolation (`${field_id}`), per-field styling/gradients, per-field translations, rich text in labels, field appearances, form-level settings (3 layout modes), metadata fields, advanced constraints, default values.
+
+25 test schemas in `tests/form-schemas/`.
+
+---
+
+## Rich Text Editor
+
+`src/components/rich-text-editor/` — BlockNote WYSIWYG + Markdown code editor.
+
+Inline or fullscreen mode. Content stored as BlockNote JSON. Light/dark theme support.
+
+---
+
+## Hydration Guard
+
+Prevents dead clicks before JavaScript loads:
+
+1. CSS progress bar at top (no JS needed, visible immediately)
+2. HydrationGuard overlay (transparent, blocks clicks until React mounts)
+3. `loading.tsx` (route-level spinner during navigation)
+4. `useHydrated()` hook (component-level hydration detection)
