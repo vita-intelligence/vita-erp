@@ -101,7 +101,13 @@
       "stylingFontSize": "फ़ॉन्ट आकार",
       "stylingFontWeight": "फ़ॉन्ट वज़न",
       "stylingDefault": "डिफ़ॉल्ट",
-      "stylingReset": "सभी स्टाइल रीसेट करें"
+      "stylingReset": "सभी स्टाइल रीसेट करें",
+      "stylingBgSolid": "ठोस",
+      "stylingBgGradient": "ग्रेडिएंट",
+      "stylingGradientStart": "शुरू",
+      "stylingGradientEnd": "अंत",
+      "stylingGradientAngle": "कोण",
+      "stylingGradientPresets": "प्रीसेट"
     },
     "options": {
       "title": "विकल्प",

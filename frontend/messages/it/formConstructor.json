@@ -101,7 +101,13 @@
       "stylingFontSize": "Dimensione carattere",
       "stylingFontWeight": "Peso carattere",
       "stylingDefault": "Predefinito",
-      "stylingReset": "Ripristina tutti gli stili"
+      "stylingReset": "Ripristina tutti gli stili",
+      "stylingBgSolid": "Pieno",
+      "stylingBgGradient": "Gradiente",
+      "stylingGradientStart": "Inizio",
+      "stylingGradientEnd": "Fine",
+      "stylingGradientAngle": "Angolo",
+      "stylingGradientPresets": "Preset"
     },
     "options": {
       "title": "Opzioni",

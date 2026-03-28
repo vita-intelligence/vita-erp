@@ -101,7 +101,13 @@
       "stylingFontSize": "Yazı tipi boyutu",
       "stylingFontWeight": "Yazı tipi kalınlığı",
       "stylingDefault": "Varsayılan",
-      "stylingReset": "Tüm stilleri sıfırla"
+      "stylingReset": "Tüm stilleri sıfırla",
+      "stylingBgSolid": "Düz",
+      "stylingBgGradient": "Gradyan",
+      "stylingGradientStart": "Başlangıç",
+      "stylingGradientEnd": "Bitiş",
+      "stylingGradientAngle": "Açı",
+      "stylingGradientPresets": "Hazır şablonlar"
     },
     "options": {
       "title": "Seçenekler",

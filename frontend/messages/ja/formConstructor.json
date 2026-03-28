@@ -101,7 +101,13 @@
       "stylingFontSize": "フォントサイズ",
       "stylingFontWeight": "フォントウェイト",
       "stylingDefault": "デフォルト",
-      "stylingReset": "すべてのスタイルをリセット"
+      "stylingReset": "すべてのスタイルをリセット",
+      "stylingBgSolid": "単色",
+      "stylingBgGradient": "グラデーション",
+      "stylingGradientStart": "開始",
+      "stylingGradientEnd": "終了",
+      "stylingGradientAngle": "角度",
+      "stylingGradientPresets": "プリセット"
     },
     "options": {
       "title": "選択肢",

@@ -101,7 +101,13 @@
       "stylingFontSize": "Schriftgröße",
       "stylingFontWeight": "Schriftgewicht",
       "stylingDefault": "Standard",
-      "stylingReset": "Alle Stile zurücksetzen"
+      "stylingReset": "Alle Stile zurücksetzen",
+      "stylingBgSolid": "Einfarbig",
+      "stylingBgGradient": "Verlauf",
+      "stylingGradientStart": "Start",
+      "stylingGradientEnd": "Ende",
+      "stylingGradientAngle": "Winkel",
+      "stylingGradientPresets": "Vorlagen"
     },
     "options": {
       "title": "Optionen",

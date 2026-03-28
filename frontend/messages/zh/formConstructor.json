@@ -101,7 +101,13 @@
       "stylingFontSize": "字号",
       "stylingFontWeight": "字重",
       "stylingDefault": "默认",
-      "stylingReset": "重置所有样式"
+      "stylingReset": "重置所有样式",
+      "stylingBgSolid": "纯色",
+      "stylingBgGradient": "渐变",
+      "stylingGradientStart": "起始",
+      "stylingGradientEnd": "结束",
+      "stylingGradientAngle": "角度",
+      "stylingGradientPresets": "预设"
     },
     "options": {
       "title": "选项",

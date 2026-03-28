@@ -101,7 +101,13 @@
       "stylingFontSize": "حجم الخط",
       "stylingFontWeight": "وزن الخط",
       "stylingDefault": "افتراضي",
-      "stylingReset": "إعادة تعيين جميع التنسيقات"
+      "stylingReset": "إعادة تعيين جميع التنسيقات",
+      "stylingBgSolid": "لون ثابت",
+      "stylingBgGradient": "تدرج",
+      "stylingGradientStart": "البداية",
+      "stylingGradientEnd": "النهاية",
+      "stylingGradientAngle": "الزاوية",
+      "stylingGradientPresets": "قوالب جاهزة"
     },
     "options": {
       "title": "خيارات",

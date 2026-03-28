@@ -101,7 +101,13 @@
       "stylingFontSize": "Taille de police",
       "stylingFontWeight": "Graisse de police",
       "stylingDefault": "Par défaut",
-      "stylingReset": "Réinitialiser tous les styles"
+      "stylingReset": "Réinitialiser tous les styles",
+      "stylingBgSolid": "Uni",
+      "stylingBgGradient": "Dégradé",
+      "stylingGradientStart": "Début",
+      "stylingGradientEnd": "Fin",
+      "stylingGradientAngle": "Angle",
+      "stylingGradientPresets": "Préréglages"
     },
     "options": {
       "title": "Options",

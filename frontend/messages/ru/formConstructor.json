@@ -101,7 +101,13 @@
       "stylingFontSize": "Размер шрифта",
       "stylingFontWeight": "Толщина шрифта",
       "stylingDefault": "По умолчанию",
-      "stylingReset": "Сбросить все стили"
+      "stylingReset": "Сбросить все стили",
+      "stylingBgSolid": "Сплошной",
+      "stylingBgGradient": "Градиент",
+      "stylingGradientStart": "Начало",
+      "stylingGradientEnd": "Конец",
+      "stylingGradientAngle": "Угол",
+      "stylingGradientPresets": "Пресеты"
     },
     "options": {
       "title": "Варианты",

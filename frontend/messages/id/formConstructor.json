@@ -101,7 +101,13 @@
       "stylingFontSize": "Ukuran font",
       "stylingFontWeight": "Ketebalan font",
       "stylingDefault": "Default",
-      "stylingReset": "Atur ulang semua gaya"
+      "stylingReset": "Atur ulang semua gaya",
+      "stylingBgSolid": "Solid",
+      "stylingBgGradient": "Gradien",
+      "stylingGradientStart": "Awal",
+      "stylingGradientEnd": "Akhir",
+      "stylingGradientAngle": "Sudut",
+      "stylingGradientPresets": "Preset"
     },
     "options": {
       "title": "Opsi",

@@ -101,7 +101,13 @@
       "stylingFontSize": "글꼴 크기",
       "stylingFontWeight": "글꼴 두께",
       "stylingDefault": "기본",
-      "stylingReset": "모든 스타일 초기화"
+      "stylingReset": "모든 스타일 초기화",
+      "stylingBgSolid": "단색",
+      "stylingBgGradient": "그라데이션",
+      "stylingGradientStart": "시작",
+      "stylingGradientEnd": "끝",
+      "stylingGradientAngle": "각도",
+      "stylingGradientPresets": "프리셋"
     },
     "options": {
       "title": "옵션",
