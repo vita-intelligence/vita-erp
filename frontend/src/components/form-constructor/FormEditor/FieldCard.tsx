@@ -86,6 +86,7 @@ export function FieldCard({
       className="group/card flex items-center gap-2 rounded-vita-md border bg-[var(--vita-surface)] px-3 py-2"
       {...attributes}
       data-dragging={isDragging}
+      data-element-id={field.id}
     >
       {/* Drag handle */}
       <button

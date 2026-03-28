@@ -110,6 +110,7 @@ export function GroupCard({
       }}
       className="group/groupcard overflow-hidden rounded-vita-lg border"
       {...attributes}
+      data-element-id={group.id}
     >
       {/* Group header */}
       <div

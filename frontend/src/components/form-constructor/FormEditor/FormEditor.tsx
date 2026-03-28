@@ -177,11 +177,29 @@ export function FormEditor({
 
     // Open config modal for the new field
     setConfigField(field);
+
+    // Highlight and scroll to the new field
+    setJustDroppedId(field.id);
+    setTimeout(() => {
+      document
+        .querySelector(`[data-element-id="${field.id}"]`)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 50);
+    setTimeout(() => setJustDroppedId(null), 1500);
   }
 
   function addGroup(label: string, repeat?: RepeatConfig) {
     const group = createGroup(label, repeat?.enabled ? { repeat } : undefined);
     updateElements((els) => [...els, group]);
+
+    // Highlight and scroll to the new group
+    setJustDroppedId(group.id);
+    setTimeout(() => {
+      document
+        .querySelector(`[data-element-id="${group.id}"]`)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 50);
+    setTimeout(() => setJustDroppedId(null), 1500);
   }
 
   function removeElement(id: string) {
