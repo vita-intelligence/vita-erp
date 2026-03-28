@@ -662,175 +662,186 @@ function GroupConfigModal({
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: modal content */}
       <div
         role="dialog"
-        className="flex flex-col gap-4 rounded-vita-xl p-6 shadow-lg"
+        className="flex flex-col rounded-vita-xl shadow-lg"
         style={{
           background: "var(--vita-surface)",
           border: "1px solid var(--vita-neutral-200)",
           width: "min(480px, 90vw)",
           maxHeight: "85vh",
-          overflowY: "auto",
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <p
-          className="text-sm font-semibold"
-          style={{ color: "var(--vita-text-primary)" }}
-        >
-          {t("config.title")}
-        </p>
-
-        {/* Label */}
-        <div>
-          <p
-            className="mb-1 text-xs font-medium"
-            style={{ color: "var(--vita-text-secondary)" }}
-          >
-            {t("config.general.label")}
-          </p>
-          <Input
-            value={label}
-            onChange={(e) => setLabel(e.target.value)}
-            placeholder={t("addGroupModal.labelPlaceholder")}
-          />
-        </div>
-
-        {/* Description */}
-        <div>
-          <p
-            className="mb-1 text-xs font-medium"
-            style={{ color: "var(--vita-text-secondary)" }}
-          >
-            {t("config.general.description")}
-          </p>
-          <Input
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder={t("config.general.descriptionPlaceholder")}
-          />
-        </div>
-
-        {/* Repeat config */}
+        {/* Header */}
         <div
-          className="flex flex-col gap-3 rounded-vita-lg p-3"
-          style={{
-            border: "1px solid var(--vita-neutral-200)",
-            background: "var(--vita-background)",
-          }}
+          className="shrink-0 border-b px-6 py-4"
+          style={{ borderColor: "var(--vita-neutral-200)" }}
         >
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={repeatEnabled}
-              onChange={(e) => setRepeatEnabled(e.target.checked)}
-            />
-            <span
-              className="text-sm font-medium"
-              style={{ color: "var(--vita-text-primary)" }}
-            >
-              {t("addGroupModal.repeatToggle")}
-            </span>
-          </label>
-
-          {repeatEnabled && (
-            <div className="flex flex-col gap-3 pt-1">
-              <div className="flex gap-3">
-                <label className="flex items-center gap-1.5">
-                  <input
-                    type="radio"
-                    name="editRepeatMode"
-                    checked={repeatMode === "open"}
-                    onChange={() => setRepeatMode("open")}
-                  />
-                  <span
-                    className="text-xs"
-                    style={{ color: "var(--vita-text-primary)" }}
-                  >
-                    {t("addGroupModal.repeatOpenEnded")}
-                  </span>
-                </label>
-                <label className="flex items-center gap-1.5">
-                  <input
-                    type="radio"
-                    name="editRepeatMode"
-                    checked={repeatMode === "fixed"}
-                    onChange={() => setRepeatMode("fixed")}
-                  />
-                  <span
-                    className="text-xs"
-                    style={{ color: "var(--vita-text-primary)" }}
-                  >
-                    {t("addGroupModal.repeatFixedCount")}
-                  </span>
-                </label>
-              </div>
-
-              {repeatMode === "fixed" ? (
-                <div>
-                  <p
-                    className="mb-1 text-xs"
-                    style={{ color: "var(--vita-text-muted)" }}
-                  >
-                    {t("addGroupModal.repeatCountField")}
-                  </p>
-                  <select
-                    className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
-                    style={{
-                      borderColor: "var(--vita-neutral-200)",
-                      background: "var(--vita-surface)",
-                      color: "var(--vita-text-primary)",
-                    }}
-                    value={countFieldId}
-                    onChange={(e) => setCountFieldId(e.target.value)}
-                  >
-                    <option value="">
-                      {t("addGroupModal.repeatCountFieldPlaceholder")}
-                    </option>
-                    {integerFields.map((f) => (
-                      <option key={f.id} value={f.id}>
-                        {f.label} ({f.id})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ) : (
-                <div className="flex gap-3">
-                  <div className="flex-1">
-                    <p
-                      className="mb-1 text-xs"
-                      style={{ color: "var(--vita-text-muted)" }}
-                    >
-                      {t("addGroupModal.repeatMin")}
-                    </p>
-                    <Input
-                      type="number"
-                      min={0}
-                      value={minInstances}
-                      onChange={(e) => setMinInstances(e.target.value)}
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <p
-                      className="mb-1 text-xs"
-                      style={{ color: "var(--vita-text-muted)" }}
-                    >
-                      {t("addGroupModal.repeatMax")}
-                    </p>
-                    <Input
-                      type="number"
-                      min={0}
-                      placeholder={t("addGroupModal.repeatMaxPlaceholder")}
-                      value={maxInstances}
-                      onChange={(e) => setMaxInstances(e.target.value)}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
+          <p
+            className="text-sm font-semibold"
+            style={{ color: "var(--vita-text-primary)" }}
+          >
+            {t("config.title")}
+          </p>
         </div>
 
-        {/* Actions */}
-        <div className="flex justify-end gap-2">
+        {/* Scrollable body */}
+        <div className="flex flex-1 flex-col gap-4 overflow-y-auto px-6 py-5">
+          {/* Label */}
+          <div>
+            <p
+              className="mb-1 text-xs font-medium"
+              style={{ color: "var(--vita-text-secondary)" }}
+            >
+              {t("config.general.label")}
+            </p>
+            <Input
+              value={label}
+              onChange={(e) => setLabel(e.target.value)}
+              placeholder={t("addGroupModal.labelPlaceholder")}
+            />
+          </div>
+
+          {/* Description */}
+          <div>
+            <p
+              className="mb-1 text-xs font-medium"
+              style={{ color: "var(--vita-text-secondary)" }}
+            >
+              {t("config.general.description")}
+            </p>
+            <Input
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder={t("config.general.descriptionPlaceholder")}
+            />
+          </div>
+
+          {/* Repeat config */}
+          <div
+            className="flex flex-col gap-3 rounded-vita-lg p-3"
+            style={{
+              border: "1px solid var(--vita-neutral-200)",
+              background: "var(--vita-background)",
+            }}
+          >
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={repeatEnabled}
+                onChange={(e) => setRepeatEnabled(e.target.checked)}
+              />
+              <span
+                className="text-sm font-medium"
+                style={{ color: "var(--vita-text-primary)" }}
+              >
+                {t("addGroupModal.repeatToggle")}
+              </span>
+            </label>
+
+            {repeatEnabled && (
+              <div className="flex flex-col gap-3 pt-1">
+                <div className="flex gap-3">
+                  <label className="flex items-center gap-1.5">
+                    <input
+                      type="radio"
+                      name="editRepeatMode"
+                      checked={repeatMode === "open"}
+                      onChange={() => setRepeatMode("open")}
+                    />
+                    <span
+                      className="text-xs"
+                      style={{ color: "var(--vita-text-primary)" }}
+                    >
+                      {t("addGroupModal.repeatOpenEnded")}
+                    </span>
+                  </label>
+                  <label className="flex items-center gap-1.5">
+                    <input
+                      type="radio"
+                      name="editRepeatMode"
+                      checked={repeatMode === "fixed"}
+                      onChange={() => setRepeatMode("fixed")}
+                    />
+                    <span
+                      className="text-xs"
+                      style={{ color: "var(--vita-text-primary)" }}
+                    >
+                      {t("addGroupModal.repeatFixedCount")}
+                    </span>
+                  </label>
+                </div>
+
+                {repeatMode === "fixed" ? (
+                  <div>
+                    <p
+                      className="mb-1 text-xs"
+                      style={{ color: "var(--vita-text-muted)" }}
+                    >
+                      {t("addGroupModal.repeatCountField")}
+                    </p>
+                    <select
+                      className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
+                      style={{
+                        borderColor: "var(--vita-neutral-200)",
+                        background: "var(--vita-surface)",
+                        color: "var(--vita-text-primary)",
+                      }}
+                      value={countFieldId}
+                      onChange={(e) => setCountFieldId(e.target.value)}
+                    >
+                      <option value="">
+                        {t("addGroupModal.repeatCountFieldPlaceholder")}
+                      </option>
+                      {integerFields.map((f) => (
+                        <option key={f.id} value={f.id}>
+                          {f.label} ({f.id})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                ) : (
+                  <div className="flex gap-3">
+                    <div className="flex-1">
+                      <p
+                        className="mb-1 text-xs"
+                        style={{ color: "var(--vita-text-muted)" }}
+                      >
+                        {t("addGroupModal.repeatMin")}
+                      </p>
+                      <Input
+                        type="number"
+                        min={0}
+                        value={minInstances}
+                        onChange={(e) => setMinInstances(e.target.value)}
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <p
+                        className="mb-1 text-xs"
+                        style={{ color: "var(--vita-text-muted)" }}
+                      >
+                        {t("addGroupModal.repeatMax")}
+                      </p>
+                      <Input
+                        type="number"
+                        min={0}
+                        placeholder={t("addGroupModal.repeatMaxPlaceholder")}
+                        value={maxInstances}
+                        onChange={(e) => setMaxInstances(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Footer — always visible */}
+        <div
+          className="flex shrink-0 justify-end gap-2 border-t px-6 py-4"
+          style={{ borderColor: "var(--vita-neutral-200)" }}
+        >
           <Button size="sm" variant="outline" onPress={onClose}>
             {t("config.cancel")}
           </Button>
@@ -891,160 +902,165 @@ function AddGroupInlineModal({
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: modal content */}
       <div
         role="dialog"
-        className="flex flex-col gap-4 rounded-vita-xl p-6 shadow-lg"
+        className="flex flex-col rounded-vita-xl shadow-lg"
         style={{
           background: "var(--vita-surface)",
           border: "1px solid var(--vita-neutral-200)",
           width: "min(480px, 90vw)",
           maxHeight: "85vh",
-          overflowY: "auto",
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Group name */}
-        <div>
-          <p
-            className="mb-2 text-sm font-semibold"
-            style={{ color: "var(--vita-text-primary)" }}
-          >
-            {t("addGroupModal.labelPrompt")}
-          </p>
-          <Input
-            placeholder={t("addGroupModal.labelPlaceholder")}
-            value={label}
-            onChange={(e) => setLabel(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && label.trim()) handleCreate();
-            }}
-          />
-        </div>
-
-        {/* Repeat toggle */}
-        <div
-          className="flex flex-col gap-3 rounded-vita-lg p-3"
-          style={{
-            border: "1px solid var(--vita-neutral-200)",
-            background: "var(--vita-background)",
-          }}
-        >
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={repeatEnabled}
-              onChange={(e) => setRepeatEnabled(e.target.checked)}
-            />
-            <span
-              className="text-sm font-medium"
+        {/* Scrollable body */}
+        <div className="flex flex-1 flex-col gap-4 overflow-y-auto px-6 py-5">
+          {/* Group name */}
+          <div>
+            <p
+              className="mb-2 text-sm font-semibold"
               style={{ color: "var(--vita-text-primary)" }}
             >
-              {t("addGroupModal.repeatToggle")}
-            </span>
-          </label>
-          <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
-            {t("addGroupModal.repeatHint")}
-          </p>
+              {t("addGroupModal.labelPrompt")}
+            </p>
+            <Input
+              placeholder={t("addGroupModal.labelPlaceholder")}
+              value={label}
+              onChange={(e) => setLabel(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && label.trim()) handleCreate();
+              }}
+            />
+          </div>
 
-          {repeatEnabled && (
-            <div className="flex flex-col gap-3 pt-1">
-              {/* Repeat mode selector */}
-              <div className="flex gap-3">
-                <label className="flex items-center gap-1.5">
-                  <input
-                    type="radio"
-                    name="repeatMode"
-                    checked={repeatMode === "open"}
-                    onChange={() => setRepeatMode("open")}
-                  />
-                  <span
-                    className="text-xs"
-                    style={{ color: "var(--vita-text-primary)" }}
-                  >
-                    {t("addGroupModal.repeatOpenEnded")}
-                  </span>
-                </label>
-                <label className="flex items-center gap-1.5">
-                  <input
-                    type="radio"
-                    name="repeatMode"
-                    checked={repeatMode === "fixed"}
-                    onChange={() => setRepeatMode("fixed")}
-                  />
-                  <span
-                    className="text-xs"
-                    style={{ color: "var(--vita-text-primary)" }}
-                  >
-                    {t("addGroupModal.repeatFixedCount")}
-                  </span>
-                </label>
-              </div>
+          {/* Repeat toggle */}
+          <div
+            className="flex flex-col gap-3 rounded-vita-lg p-3"
+            style={{
+              border: "1px solid var(--vita-neutral-200)",
+              background: "var(--vita-background)",
+            }}
+          >
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={repeatEnabled}
+                onChange={(e) => setRepeatEnabled(e.target.checked)}
+              />
+              <span
+                className="text-sm font-medium"
+                style={{ color: "var(--vita-text-primary)" }}
+              >
+                {t("addGroupModal.repeatToggle")}
+              </span>
+            </label>
+            <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
+              {t("addGroupModal.repeatHint")}
+            </p>
 
-              {repeatMode === "fixed" ? (
-                <div>
-                  <p
-                    className="mb-1 text-xs"
-                    style={{ color: "var(--vita-text-muted)" }}
-                  >
-                    {t("addGroupModal.repeatCountField")}
-                  </p>
-                  <select
-                    className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
-                    style={{
-                      borderColor: "var(--vita-neutral-200)",
-                      background: "var(--vita-surface)",
-                      color: "var(--vita-text-primary)",
-                    }}
-                    value={countFieldId}
-                    onChange={(e) => setCountFieldId(e.target.value)}
-                  >
-                    <option value="">
-                      {t("addGroupModal.repeatCountFieldPlaceholder")}
-                    </option>
-                    {integerFields.map((f) => (
-                      <option key={f.id} value={f.id}>
-                        {f.label} ({f.id})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ) : (
+            {repeatEnabled && (
+              <div className="flex flex-col gap-3 pt-1">
+                {/* Repeat mode selector */}
                 <div className="flex gap-3">
-                  <div className="flex-1">
-                    <p
-                      className="mb-1 text-xs"
-                      style={{ color: "var(--vita-text-muted)" }}
-                    >
-                      {t("addGroupModal.repeatMin")}
-                    </p>
-                    <Input
-                      type="number"
-                      min={0}
-                      value={minInstances}
-                      onChange={(e) => setMinInstances(e.target.value)}
+                  <label className="flex items-center gap-1.5">
+                    <input
+                      type="radio"
+                      name="repeatMode"
+                      checked={repeatMode === "open"}
+                      onChange={() => setRepeatMode("open")}
                     />
-                  </div>
-                  <div className="flex-1">
-                    <p
-                      className="mb-1 text-xs"
-                      style={{ color: "var(--vita-text-muted)" }}
+                    <span
+                      className="text-xs"
+                      style={{ color: "var(--vita-text-primary)" }}
                     >
-                      {t("addGroupModal.repeatMax")}
-                    </p>
-                    <Input
-                      type="number"
-                      min={0}
-                      placeholder={t("addGroupModal.repeatMaxPlaceholder")}
-                      value={maxInstances}
-                      onChange={(e) => setMaxInstances(e.target.value)}
+                      {t("addGroupModal.repeatOpenEnded")}
+                    </span>
+                  </label>
+                  <label className="flex items-center gap-1.5">
+                    <input
+                      type="radio"
+                      name="repeatMode"
+                      checked={repeatMode === "fixed"}
+                      onChange={() => setRepeatMode("fixed")}
                     />
-                  </div>
+                    <span
+                      className="text-xs"
+                      style={{ color: "var(--vita-text-primary)" }}
+                    >
+                      {t("addGroupModal.repeatFixedCount")}
+                    </span>
+                  </label>
                 </div>
-              )}
-            </div>
-          )}
+
+                {repeatMode === "fixed" ? (
+                  <div>
+                    <p
+                      className="mb-1 text-xs"
+                      style={{ color: "var(--vita-text-muted)" }}
+                    >
+                      {t("addGroupModal.repeatCountField")}
+                    </p>
+                    <select
+                      className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
+                      style={{
+                        borderColor: "var(--vita-neutral-200)",
+                        background: "var(--vita-surface)",
+                        color: "var(--vita-text-primary)",
+                      }}
+                      value={countFieldId}
+                      onChange={(e) => setCountFieldId(e.target.value)}
+                    >
+                      <option value="">
+                        {t("addGroupModal.repeatCountFieldPlaceholder")}
+                      </option>
+                      {integerFields.map((f) => (
+                        <option key={f.id} value={f.id}>
+                          {f.label} ({f.id})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                ) : (
+                  <div className="flex gap-3">
+                    <div className="flex-1">
+                      <p
+                        className="mb-1 text-xs"
+                        style={{ color: "var(--vita-text-muted)" }}
+                      >
+                        {t("addGroupModal.repeatMin")}
+                      </p>
+                      <Input
+                        type="number"
+                        min={0}
+                        value={minInstances}
+                        onChange={(e) => setMinInstances(e.target.value)}
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <p
+                        className="mb-1 text-xs"
+                        style={{ color: "var(--vita-text-muted)" }}
+                      >
+                        {t("addGroupModal.repeatMax")}
+                      </p>
+                      <Input
+                        type="number"
+                        min={0}
+                        placeholder={t("addGroupModal.repeatMaxPlaceholder")}
+                        value={maxInstances}
+                        onChange={(e) => setMaxInstances(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Actions */}
-        <div className="flex justify-end gap-2">
+        {/* Footer — always visible */}
+        <div
+          className="flex shrink-0 justify-end gap-2 border-t px-6 py-4"
+          style={{ borderColor: "var(--vita-neutral-200)" }}
+        >
           <Button size="sm" variant="outline" onPress={onClose}>
             {t("addGroupModal.cancel")}
           </Button>

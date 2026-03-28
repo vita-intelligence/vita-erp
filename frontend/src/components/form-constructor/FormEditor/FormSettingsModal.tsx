@@ -55,7 +55,7 @@ export function FormSettingsModal({
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: modal */}
       <div
         role="dialog"
-        className="flex flex-col gap-5 overflow-y-auto rounded-vita-xl p-6 shadow-lg"
+        className="flex flex-col rounded-vita-xl shadow-lg"
         style={{
           background: "var(--vita-surface)",
           border: "1px solid var(--vita-neutral-200)",
@@ -64,222 +64,236 @@ export function FormSettingsModal({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <p
-          className="text-sm font-semibold"
-          style={{ color: "var(--vita-text-primary)" }}
-        >
-          {t("formSettings.title")}
-        </p>
-
-        {/* ── Layout Mode ──────────────────────────────────────────── */}
-        <div className="flex flex-col gap-2">
-          <p
-            className="text-xs font-semibold"
-            style={{ color: "var(--vita-text-primary)" }}
-          >
-            {t("formSettings.layout")}
-          </p>
-          <p
-            className="text-[11px]"
-            style={{ color: "var(--vita-text-muted)" }}
-          >
-            {t("formSettings.layoutHint")}
-          </p>
-          <div className="flex flex-col gap-1.5">
-            {(
-              [
-                "single-page",
-                "page-per-group",
-                "page-per-field",
-              ] as FormLayout[]
-            ).map((mode) => (
-              <label
-                key={mode}
-                className="flex cursor-pointer items-start gap-2 rounded-vita-md p-2.5 transition-colors"
-                style={{
-                  border:
-                    settings.layout === mode
-                      ? "2px solid var(--vita-primary)"
-                      : "1px solid var(--vita-neutral-200)",
-                  background:
-                    settings.layout === mode
-                      ? "color-mix(in oklch, var(--vita-primary) 5%, transparent)"
-                      : "var(--vita-background)",
-                }}
-              >
-                <input
-                  type="radio"
-                  name="layout"
-                  checked={settings.layout === mode}
-                  onChange={() => setSettings({ ...settings, layout: mode })}
-                  className="mt-0.5"
-                />
-                <div>
-                  <span
-                    className="text-xs font-medium"
-                    style={{ color: "var(--vita-text-primary)" }}
-                  >
-                    {t(`formSettings.layoutModes.${mode}`)}
-                  </span>
-                  <p
-                    className="mt-0.5 text-[11px]"
-                    style={{ color: "var(--vita-text-muted)" }}
-                  >
-                    {t(`formSettings.layoutDescriptions.${mode}`)}
-                  </p>
-                </div>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        {/* ── Display Options ──────────────────────────────────────── */}
-        <div className="flex flex-col gap-3">
-          <p
-            className="text-xs font-semibold"
-            style={{ color: "var(--vita-text-primary)" }}
-          >
-            {t("formSettings.displayOptions")}
-          </p>
-
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={settings.showProgressBar ?? false}
-              onChange={(e) =>
-                setSettings({
-                  ...settings,
-                  showProgressBar: e.target.checked || undefined,
-                })
-              }
-            />
-            <span
-              className="text-xs"
-              style={{ color: "var(--vita-text-primary)" }}
-            >
-              {t("formSettings.showProgressBar")}
-            </span>
-          </label>
-
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={settings.showFieldNumbers ?? false}
-              onChange={(e) =>
-                setSettings({
-                  ...settings,
-                  showFieldNumbers: e.target.checked || undefined,
-                })
-              }
-            />
-            <span
-              className="text-xs"
-              style={{ color: "var(--vita-text-primary)" }}
-            >
-              {t("formSettings.showFieldNumbers")}
-            </span>
-          </label>
-
-          <TextField>
-            <Label>{t("formSettings.submitButtonText")}</Label>
-            <Input
-              value={settings.submitButtonText ?? ""}
-              onChange={(e) =>
-                setSettings({
-                  ...settings,
-                  submitButtonText: e.target.value || undefined,
-                })
-              }
-              placeholder={t("viewer.submit")}
-            />
-          </TextField>
-        </div>
-
-        {/* ── Form Styling ─────────────────────────────────────────── */}
+        {/* Header */}
         <div
-          className="flex flex-col gap-3 rounded-vita-lg p-3"
-          style={{
-            border: "1px solid var(--vita-neutral-200)",
-            background: "var(--vita-background)",
-          }}
+          className="shrink-0 border-b px-6 py-4"
+          style={{ borderColor: "var(--vita-neutral-200)" }}
         >
           <p
-            className="text-xs font-semibold"
+            className="text-sm font-semibold"
             style={{ color: "var(--vita-text-primary)" }}
           >
-            {t("formSettings.styling")}
+            {t("formSettings.title")}
           </p>
+        </div>
 
-          <div className="flex flex-wrap gap-3">
-            <ColorFieldInline
-              label={t("formSettings.bgColor")}
-              value={s.backgroundColor}
-              onChange={(v) => patchStyling({ backgroundColor: v })}
-            />
-            <ColorFieldInline
-              label={t("formSettings.textColor")}
-              value={s.textColor}
-              onChange={(v) => patchStyling({ textColor: v })}
-            />
+        {/* Scrollable body */}
+        <div className="flex flex-1 flex-col gap-5 overflow-y-auto px-6 py-5">
+          {/* ── Layout Mode ──────────────────────────────────────────── */}
+          <div className="flex flex-col gap-2">
+            <p
+              className="text-xs font-semibold"
+              style={{ color: "var(--vita-text-primary)" }}
+            >
+              {t("formSettings.layout")}
+            </p>
+            <p
+              className="text-[11px]"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {t("formSettings.layoutHint")}
+            </p>
+            <div className="flex flex-col gap-1.5">
+              {(
+                [
+                  "single-page",
+                  "page-per-group",
+                  "page-per-field",
+                ] as FormLayout[]
+              ).map((mode) => (
+                <label
+                  key={mode}
+                  className="flex cursor-pointer items-start gap-2 rounded-vita-md p-2.5 transition-colors"
+                  style={{
+                    border:
+                      settings.layout === mode
+                        ? "2px solid var(--vita-primary)"
+                        : "1px solid var(--vita-neutral-200)",
+                    background:
+                      settings.layout === mode
+                        ? "color-mix(in oklch, var(--vita-primary) 5%, transparent)"
+                        : "var(--vita-background)",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="layout"
+                    checked={settings.layout === mode}
+                    onChange={() => setSettings({ ...settings, layout: mode })}
+                    className="mt-0.5"
+                  />
+                  <div>
+                    <span
+                      className="text-xs font-medium"
+                      style={{ color: "var(--vita-text-primary)" }}
+                    >
+                      {t(`formSettings.layoutModes.${mode}`)}
+                    </span>
+                    <p
+                      className="mt-0.5 text-[11px]"
+                      style={{ color: "var(--vita-text-muted)" }}
+                    >
+                      {t(`formSettings.layoutDescriptions.${mode}`)}
+                    </p>
+                  </div>
+                </label>
+              ))}
+            </div>
           </div>
 
-          <div className="flex gap-3">
-            <div className="flex-1">
-              <TextField>
-                <Label>{t("formSettings.maxWidth")}</Label>
-                <Input
-                  value={s.maxWidth ?? ""}
-                  onChange={(e) =>
-                    patchStyling({ maxWidth: e.target.value || undefined })
-                  }
-                  placeholder="600px"
-                />
-              </TextField>
-            </div>
-            <div className="flex-1">
-              <TextField>
-                <Label>{t("formSettings.padding")}</Label>
-                <Input
-                  value={s.padding ?? ""}
-                  onChange={(e) =>
-                    patchStyling({ padding: e.target.value || undefined })
-                  }
-                  placeholder="20px"
-                />
-              </TextField>
-            </div>
+          {/* ── Display Options ──────────────────────────────────────── */}
+          <div className="flex flex-col gap-3">
+            <p
+              className="text-xs font-semibold"
+              style={{ color: "var(--vita-text-primary)" }}
+            >
+              {t("formSettings.displayOptions")}
+            </p>
+
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={settings.showProgressBar ?? false}
+                onChange={(e) =>
+                  setSettings({
+                    ...settings,
+                    showProgressBar: e.target.checked || undefined,
+                  })
+                }
+              />
+              <span
+                className="text-xs"
+                style={{ color: "var(--vita-text-primary)" }}
+              >
+                {t("formSettings.showProgressBar")}
+              </span>
+            </label>
+
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={settings.showFieldNumbers ?? false}
+                onChange={(e) =>
+                  setSettings({
+                    ...settings,
+                    showFieldNumbers: e.target.checked || undefined,
+                  })
+                }
+              />
+              <span
+                className="text-xs"
+                style={{ color: "var(--vita-text-primary)" }}
+              >
+                {t("formSettings.showFieldNumbers")}
+              </span>
+            </label>
+
+            <TextField>
+              <Label>{t("formSettings.submitButtonText")}</Label>
+              <Input
+                value={settings.submitButtonText ?? ""}
+                onChange={(e) =>
+                  setSettings({
+                    ...settings,
+                    submitButtonText: e.target.value || undefined,
+                  })
+                }
+                placeholder={t("viewer.submit")}
+              />
+            </TextField>
           </div>
 
-          <div className="flex gap-3">
-            <div className="flex-1">
-              <TextField>
-                <Label>{t("formSettings.borderRadius")}</Label>
-                <Input
-                  value={s.borderRadius ?? ""}
-                  onChange={(e) =>
-                    patchStyling({ borderRadius: e.target.value || undefined })
-                  }
-                  placeholder="12px"
-                />
-              </TextField>
+          {/* ── Form Styling ─────────────────────────────────────────── */}
+          <div
+            className="flex flex-col gap-3 rounded-vita-lg p-3"
+            style={{
+              border: "1px solid var(--vita-neutral-200)",
+              background: "var(--vita-background)",
+            }}
+          >
+            <p
+              className="text-xs font-semibold"
+              style={{ color: "var(--vita-text-primary)" }}
+            >
+              {t("formSettings.styling")}
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              <ColorFieldInline
+                label={t("formSettings.bgColor")}
+                value={s.backgroundColor}
+                onChange={(v) => patchStyling({ backgroundColor: v })}
+              />
+              <ColorFieldInline
+                label={t("formSettings.textColor")}
+                value={s.textColor}
+                onChange={(v) => patchStyling({ textColor: v })}
+              />
             </div>
-            <div className="flex-1">
-              <TextField>
-                <Label>{t("formSettings.fontFamily")}</Label>
-                <Input
-                  value={s.fontFamily ?? ""}
-                  onChange={(e) =>
-                    patchStyling({ fontFamily: e.target.value || undefined })
-                  }
-                  placeholder="Inter, sans-serif"
-                />
-              </TextField>
+
+            <div className="flex gap-3">
+              <div className="flex-1">
+                <TextField>
+                  <Label>{t("formSettings.maxWidth")}</Label>
+                  <Input
+                    value={s.maxWidth ?? ""}
+                    onChange={(e) =>
+                      patchStyling({ maxWidth: e.target.value || undefined })
+                    }
+                    placeholder="600px"
+                  />
+                </TextField>
+              </div>
+              <div className="flex-1">
+                <TextField>
+                  <Label>{t("formSettings.padding")}</Label>
+                  <Input
+                    value={s.padding ?? ""}
+                    onChange={(e) =>
+                      patchStyling({ padding: e.target.value || undefined })
+                    }
+                    placeholder="20px"
+                  />
+                </TextField>
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <div className="flex-1">
+                <TextField>
+                  <Label>{t("formSettings.borderRadius")}</Label>
+                  <Input
+                    value={s.borderRadius ?? ""}
+                    onChange={(e) =>
+                      patchStyling({
+                        borderRadius: e.target.value || undefined,
+                      })
+                    }
+                    placeholder="12px"
+                  />
+                </TextField>
+              </div>
+              <div className="flex-1">
+                <TextField>
+                  <Label>{t("formSettings.fontFamily")}</Label>
+                  <Input
+                    value={s.fontFamily ?? ""}
+                    onChange={(e) =>
+                      patchStyling({ fontFamily: e.target.value || undefined })
+                    }
+                    placeholder="Inter, sans-serif"
+                  />
+                </TextField>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Actions */}
-        <div className="flex justify-end gap-2">
+        {/* Footer — always visible */}
+        <div
+          className="flex shrink-0 justify-end gap-2 border-t px-6 py-4"
+          style={{ borderColor: "var(--vita-neutral-200)" }}
+        >
           <Button size="sm" variant="outline" onPress={onClose}>
             {t("config.cancel")}
           </Button>
