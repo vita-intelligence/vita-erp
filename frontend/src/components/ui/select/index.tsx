@@ -60,9 +60,25 @@ function ThemedSelectTrigger({
     <HeroSelectTrigger
       {...props}
       style={{
-        borderRadius: "var(--vita-select-radius, 0px)",
-        borderWidth: "var(--vita-select-border-width, 1px)",
-        borderStyle: "var(--vita-select-border-style, solid)",
+        width: "100%",
+        borderRadius:
+          "var(--vita-select-radius, var(--vita-input-radius, 0px))",
+        borderTopWidth: "var(--vita-input-border-top, 1px)",
+        borderRightWidth: "var(--vita-input-border-right, 1px)",
+        borderBottomWidth: "var(--vita-input-border-bottom, 1px)",
+        borderLeftWidth: "var(--vita-input-border-left, 1px)",
+        borderStyle:
+          "var(--vita-select-border-style, var(--vita-input-border-style, solid))",
+        boxShadow: "var(--vita-input-shadow, none)",
+        paddingLeft: "var(--vita-input-padding-x, 12px)",
+        paddingRight: "var(--vita-input-padding-x, 12px)",
+        paddingTop: "var(--vita-input-padding-y, 8px)",
+        paddingBottom: "var(--vita-input-padding-y, 8px)",
+        fontSize: "var(--vita-input-font-size, 14px)",
+        transitionProperty:
+          "border-color, box-shadow, outline, background-color",
+        transitionTimingFunction: "ease",
+        transitionDuration: "var(--vita-input-transition-duration, 150ms)",
         ...style,
       }}
     >
