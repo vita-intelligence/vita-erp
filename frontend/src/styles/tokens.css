@@ -208,3 +208,37 @@ body {
     box-shadow: 0 0 0 0px transparent;
   }
 }
+
+/* ── Hydration indicator ─────────────────────────────────────────────────── */
+/* Shows a sliding progress bar before JS hydrates. Hidden once React mounts
+   and adds .vita-hydrated to <html>. */
+
+@keyframes vita-hydration-bar {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+
+#vita-hydration-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 999999;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#vita-hydration-indicator::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: oklch(0.55 0.15 250);
+  animation: vita-hydration-bar 1.2s ease-in-out infinite;
+}
+
+.vita-hydrated #vita-hydration-indicator {
+  display: none;
+}
