@@ -98,6 +98,7 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
     control,
     handleSubmit,
     reset,
+    trigger,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(zodSchema),
@@ -359,12 +360,13 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
   const formStyle: React.CSSProperties = {
     background: fs?.backgroundColor || "var(--vita-background)",
     border: "1px solid var(--vita-neutral-200)",
-    borderRadius: fs?.borderRadius || undefined,
-    padding: fs?.padding || undefined,
+    borderRadius: fs?.borderRadius ?? "var(--vita-radius-lg, 12px)",
+    padding: fs?.padding ?? "20px",
     maxWidth: fs?.maxWidth || undefined,
     fontFamily: fs?.fontFamily || undefined,
     color: fs?.textColor || undefined,
     margin: fs?.maxWidth ? "0 auto" : undefined,
+    width: "100%",
   };
 
   // ── Main render ────────────────────────────────────────────────────────────
@@ -375,7 +377,7 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
   return (
     <form
       onSubmit={handleFormSubmit}
-      className="flex flex-col gap-5 rounded-vita-lg p-5"
+      className="flex flex-col gap-5"
       style={formStyle}
     >
       {/* Form title + description */}
@@ -463,7 +465,26 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
             <Button
               type="button"
               variant="primary"
-              onPress={() => setCurrentPage((p) => p + 1)}
+              onPress={async () => {
+                // Collect field IDs on current page for validation
+                const pageFieldIds: string[] = [];
+                for (const el of elementsToRender) {
+                  if (el.kind === "field" && !el.hidden) {
+                    const meta = getFieldMeta(el.type);
+                    if (meta.isInput) pageFieldIds.push(el.id);
+                  } else if (el.kind === "group" && !el.repeat?.enabled) {
+                    for (const child of el.elements) {
+                      if (child.kind === "field" && !child.hidden) {
+                        const meta = getFieldMeta(child.type);
+                        if (meta.isInput) pageFieldIds.push(child.id);
+                      }
+                    }
+                  }
+                  // Repeat groups use nested paths — skip per-field validation for now
+                }
+                const valid = await trigger(pageFieldIds);
+                if (valid) setCurrentPage((p) => p + 1);
+              }}
             >
               {t("viewer.next")}
             </Button>
