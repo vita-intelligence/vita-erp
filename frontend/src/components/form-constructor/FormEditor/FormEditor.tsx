@@ -609,8 +609,9 @@ export function FormEditor({
       {settingsOpen && (
         <FormSettingsModal
           settings={schema.settings ?? { layout: "single-page" }}
-          onSave={(settings) => {
-            setSchema({ ...schema, settings });
+          description={schema.description}
+          onSave={(settings, description) => {
+            setSchema({ ...schema, settings, description });
             setSettingsOpen(false);
           }}
           onClose={() => setSettingsOpen(false)}

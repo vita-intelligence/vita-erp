@@ -22,7 +22,8 @@ import { BackgroundPicker } from "./BackgroundPicker";
 
 type FormSettingsModalProps = {
   settings: FormSettings;
-  onSave: (settings: FormSettings) => void;
+  description?: string;
+  onSave: (settings: FormSettings, description?: string) => void;
   onClose: () => void;
 };
 
@@ -32,6 +33,7 @@ const DEFAULT_SETTINGS: FormSettings = {
 
 export function FormSettingsModal({
   settings: initial,
+  description: initialDesc,
   onSave,
   onClose,
 }: FormSettingsModalProps) {
@@ -41,6 +43,7 @@ export function FormSettingsModal({
     ...initial,
   });
 
+  const [description, setDescription] = useState(initialDesc ?? "");
   const s = settings.styling ?? {};
 
   function patchStyling(patch: Partial<FormStyling>) {
@@ -86,6 +89,16 @@ export function FormSettingsModal({
 
         {/* Scrollable body */}
         <div className="flex flex-1 flex-col gap-5 overflow-y-auto px-6 py-5">
+          {/* ── Form Description ──────────────────────────────────────── */}
+          <TextField>
+            <Label>{t("editor.formDescription")}</Label>
+            <Input
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder={t("editor.formDescriptionPlaceholder")}
+            />
+          </TextField>
+
           {/* ── Layout Mode ──────────────────────────────────────────── */}
           <div className="flex flex-col gap-2">
             <p
@@ -338,7 +351,11 @@ export function FormSettingsModal({
           <Button size="sm" variant="outline" onPress={onClose}>
             {t("config.cancel")}
           </Button>
-          <Button size="sm" variant="primary" onPress={() => onSave(settings)}>
+          <Button
+            size="sm"
+            variant="primary"
+            onPress={() => onSave(settings, description || undefined)}
+          >
             {t("config.save")}
           </Button>
         </div>
