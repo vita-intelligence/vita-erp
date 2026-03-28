@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FormEditor } from "@/components/form-constructor/FormEditor/FormEditor";
 import type { FormSchema } from "@/components/form-constructor/types";
+import { RichTextEditor } from "@/components/rich-text-editor";
 import { ThemeEditor } from "@/components/theme-editor";
 import { ButtonRoot } from "@/components/ui/button";
 import { CardContent, CardHeader, CardRoot } from "@/components/ui/card";
@@ -16,6 +17,8 @@ export default function DesignSystemPage() {
     "window",
   );
   const [formSchema, setFormSchema] = useState<FormSchema | undefined>();
+  const [richTextContent, setRichTextContent] = useState("");
+  const [richTextFullscreen, setRichTextFullscreen] = useState(false);
 
   const openEditor = (mode: "fullscreen" | "window") => {
     setEditorMode(mode);
@@ -140,6 +143,43 @@ export default function DesignSystemPage() {
               Form Constructor
             </p>
             <FormEditor schema={formSchema} onChange={setFormSchema} />
+          </section>
+
+          <Separator />
+
+          {/* Rich Text Editor */}
+          <section className="space-y-3">
+            <div className="flex items-center justify-between">
+              <p className="text-xs font-medium uppercase tracking-wide text-vita-neutral-400">
+                Rich Text Editor
+              </p>
+              <ButtonRoot
+                variant="outline"
+                size="sm"
+                onPress={() => setRichTextFullscreen(true)}
+              >
+                Open fullscreen
+              </ButtonRoot>
+            </div>
+            <RichTextEditor
+              content={richTextContent}
+              onChange={setRichTextContent}
+              minHeight="350px"
+              placeholder="Start typing..."
+            />
+            {richTextFullscreen && (
+              <RichTextEditor
+                content={richTextContent}
+                onChange={setRichTextContent}
+                fullscreen
+                title="Rich Text Editor"
+                onSave={(content) => {
+                  setRichTextContent(content);
+                  setRichTextFullscreen(false);
+                }}
+                onClose={() => setRichTextFullscreen(false)}
+              />
+            )}
           </section>
 
           <Separator />
