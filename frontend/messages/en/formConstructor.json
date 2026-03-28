@@ -101,7 +101,15 @@
       "noOptions": "No options defined",
       "empty": "No options defined",
       "moveUp": "Move up",
-      "moveDown": "Move down"
+      "moveDown": "Move down",
+      "choiceFilter": "Cascading filter",
+      "choiceFilterDescription": "Make this field's options depend on another field. Only options matching the parent's selected value will be shown.",
+      "choiceFilterField": "Parent field",
+      "noFilter": "None — show all options",
+      "choiceFilterHint": "How it works: When the user selects a value in the parent field, only options whose \"Filter key\" matches that value will appear in this field.",
+      "choiceFilterExample": "Example: Parent = Country (values: us, uk). This field = City. Set filter key \"us\" on New York, \"uk\" on London. When user picks \"us\", only New York shows.",
+      "filterByLabel": "Filter key",
+      "filterByPlaceholder": "Parent value"
     },
     "validation": {
       "title": "Regex validation",
