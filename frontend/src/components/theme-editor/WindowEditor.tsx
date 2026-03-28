@@ -149,7 +149,7 @@ function ResizeHandles({
 // Window editor
 // ---------------------------------------------------------------------------
 
-const WIN_MIN_W = 320;
+const WIN_MIN_W = 280;
 const WIN_MIN_H = 420;
 const WIN_DEFAULT_W = 480;
 const WIN_DEFAULT_H = 600;
@@ -396,76 +396,88 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
         {/* Title bar */}
         {/* biome-ignore lint/a11y/noStaticElementInteractions: drag handle */}
         <div
-          className="flex h-11 shrink-0 select-none items-center justify-between border-b px-3 cursor-grab"
+          className="flex shrink-0 select-none flex-col border-b cursor-grab"
           style={{
             background: "var(--vita-surface)",
             borderBottomColor: "var(--vita-neutral-200)",
           }}
           onMouseDown={onDragMouseDown}
         >
-          <div className="flex items-center gap-2">
-            <GripHorizontal
-              aria-hidden="true"
-              size={14}
-              className="shrink-0"
-              style={{ color: "var(--vita-text-muted)" }}
-            />
-            <span
-              className="text-sm font-semibold font-vita-heading"
-              style={{ color: "var(--vita-text-primary)" }}
+          {/* Top row: title + actions */}
+          <div className="flex h-10 items-center justify-between px-3">
+            <div className="flex items-center gap-2">
+              <GripHorizontal
+                aria-hidden="true"
+                size={14}
+                className="shrink-0"
+                style={{ color: "var(--vita-text-muted)" }}
+              />
+              <span
+                className="text-sm font-semibold font-vita-heading"
+                style={{ color: "var(--vita-text-primary)" }}
+              >
+                {t("chrome.title")}
+              </span>
+            </div>
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
+            <div
+              className="flex items-center gap-1"
+              onMouseDown={(e) => e.stopPropagation()}
             >
-              {t("chrome.title")}
-            </span>
+              <Tooltip>
+                <button
+                  type="button"
+                  aria-label={t("chrome.resetAllTooltip")}
+                  className="flex h-7 w-7 items-center justify-center transition-colors"
+                  style={{ color: "var(--vita-text-muted)" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--vita-text-primary)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--vita-text-muted)";
+                  }}
+                  onClick={resetAll}
+                >
+                  <RotateCcw size={13} />
+                </button>
+                <Tooltip.Content>{t("chrome.resetAllTooltip")}</Tooltip.Content>
+              </Tooltip>
+              <Tooltip>
+                <button
+                  type="button"
+                  aria-label={t("chrome.close")}
+                  className="flex h-7 w-7 items-center justify-center transition-colors"
+                  style={{ color: "var(--vita-text-muted)" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--vita-text-primary)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--vita-text-muted)";
+                  }}
+                  onClick={onClose}
+                >
+                  <X size={13} />
+                </button>
+                <Tooltip.Content>{t("chrome.close")}</Tooltip.Content>
+              </Tooltip>
+            </div>
           </div>
+
+          {/* Theme presets row — separate line, scrollable */}
           {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
           <div
-            className="flex items-center gap-1.5"
+            className="flex items-center gap-1 overflow-x-auto px-3 pb-2"
+            style={{ scrollbarWidth: "none" }}
             onMouseDown={(e) => e.stopPropagation()}
           >
             <ModeSwitcher />
-            <Tooltip>
-              <button
-                type="button"
-                aria-label={t("chrome.resetAllTooltip")}
-                className="flex h-7 w-7 items-center justify-center transition-colors"
-                style={{ color: "var(--vita-text-muted)" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--vita-text-primary)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "var(--vita-text-muted)";
-                }}
-                onClick={resetAll}
-              >
-                <RotateCcw size={13} />
-              </button>
-              <Tooltip.Content>{t("chrome.resetAllTooltip")}</Tooltip.Content>
-            </Tooltip>
-            <Tooltip>
-              <button
-                type="button"
-                aria-label={t("chrome.close")}
-                className="flex h-7 w-7 items-center justify-center transition-colors"
-                style={{ color: "var(--vita-text-muted)" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--vita-text-primary)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "var(--vita-text-muted)";
-                }}
-                onClick={onClose}
-              >
-                <X size={13} />
-              </button>
-              <Tooltip.Content>{t("chrome.close")}</Tooltip.Content>
-            </Tooltip>
           </div>
         </div>
 
         {/* Group selector */}
         {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
         <div
-          className="flex shrink-0 items-center gap-1 border-b px-3 py-1.5"
+          className="flex shrink-0 items-center gap-1 overflow-x-auto border-b px-3 py-1.5"
           style={{
             background: "var(--vita-surface)",
             borderBottomColor: "var(--vita-neutral-200)",
@@ -476,7 +488,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
             <button
               key={group}
               type="button"
-              className="px-2.5 py-0.5 text-xs font-medium transition-colors"
+              className="whitespace-nowrap px-2.5 py-0.5 text-xs font-medium transition-colors"
               style={
                 activeGroup === group
                   ? {
