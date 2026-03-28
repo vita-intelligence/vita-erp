@@ -10,6 +10,7 @@ import { useState } from "react";
 import { ColorInput } from "@/components/theme-editor/modules/colors/ColorInput";
 import { Button } from "@/components/ui/button";
 import { Input, Label, TextField } from "@/components/ui/input";
+import { ListBox, Select } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import {
   MONO_FONT_OPTIONS,
@@ -296,48 +297,104 @@ export function FormSettingsModal({
                 </TextField>
               </div>
               <div className="flex-1">
-                <p
-                  className="mb-1 text-[11px] font-medium"
-                  style={{ color: "var(--vita-text-secondary)" }}
-                >
-                  {t("formSettings.fontFamily")}
-                </p>
-                <select
-                  className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
-                  style={{
-                    borderColor: "var(--vita-neutral-200)",
-                    background: "var(--vita-surface)",
-                    color: "var(--vita-text-primary)",
-                    fontFamily: s.fontFamily || undefined,
-                  }}
-                  value={s.fontFamily ?? ""}
-                  onChange={(e) =>
-                    patchStyling({ fontFamily: e.target.value || undefined })
+                <Select
+                  selectedKey={s.fontFamily ?? ""}
+                  onSelectionChange={(key) =>
+                    patchStyling({
+                      fontFamily: key ? String(key) : undefined,
+                    })
                   }
                 >
-                  <option value="">{t("config.general.stylingDefault")}</option>
-                  <optgroup label="Sans-serif">
-                    {SANS_FONT_OPTIONS.map((f) => (
-                      <option key={f.value} value={f.value}>
-                        {f.label}
-                      </option>
-                    ))}
-                  </optgroup>
-                  <optgroup label="Serif">
-                    {SERIF_FONT_OPTIONS.map((f) => (
-                      <option key={f.value} value={f.value}>
-                        {f.label}
-                      </option>
-                    ))}
-                  </optgroup>
-                  <optgroup label="Monospace">
-                    {MONO_FONT_OPTIONS.map((f) => (
-                      <option key={f.value} value={f.value}>
-                        {f.label}
-                      </option>
-                    ))}
-                  </optgroup>
-                </select>
+                  <Label>{t("formSettings.fontFamily")}</Label>
+                  <Select.Trigger>
+                    <Select.Value />
+                    <Select.Indicator />
+                  </Select.Trigger>
+                  <Select.Popover>
+                    <ListBox>
+                      <ListBox.Item
+                        key=""
+                        id=""
+                        textValue={t("config.general.stylingDefault")}
+                      >
+                        {t("config.general.stylingDefault")}
+                        <ListBox.ItemIndicator />
+                      </ListBox.Item>
+                      {/* Sans-serif */}
+                      <ListBox.Item
+                        key="__header_sans"
+                        id="__header_sans"
+                        textValue="Sans-serif"
+                        isDisabled
+                      >
+                        <span
+                          className="text-[10px] font-semibold uppercase"
+                          style={{ color: "var(--vita-text-muted)" }}
+                        >
+                          Sans-serif
+                        </span>
+                      </ListBox.Item>
+                      {SANS_FONT_OPTIONS.map((f) => (
+                        <ListBox.Item
+                          key={f.value}
+                          id={f.value}
+                          textValue={f.label}
+                        >
+                          <span style={{ fontFamily: f.value }}>{f.label}</span>
+                          <ListBox.ItemIndicator />
+                        </ListBox.Item>
+                      ))}
+                      {/* Serif */}
+                      <ListBox.Item
+                        key="__header_serif"
+                        id="__header_serif"
+                        textValue="Serif"
+                        isDisabled
+                      >
+                        <span
+                          className="text-[10px] font-semibold uppercase"
+                          style={{ color: "var(--vita-text-muted)" }}
+                        >
+                          Serif
+                        </span>
+                      </ListBox.Item>
+                      {SERIF_FONT_OPTIONS.map((f) => (
+                        <ListBox.Item
+                          key={f.value}
+                          id={f.value}
+                          textValue={f.label}
+                        >
+                          <span style={{ fontFamily: f.value }}>{f.label}</span>
+                          <ListBox.ItemIndicator />
+                        </ListBox.Item>
+                      ))}
+                      {/* Monospace */}
+                      <ListBox.Item
+                        key="__header_mono"
+                        id="__header_mono"
+                        textValue="Monospace"
+                        isDisabled
+                      >
+                        <span
+                          className="text-[10px] font-semibold uppercase"
+                          style={{ color: "var(--vita-text-muted)" }}
+                        >
+                          Monospace
+                        </span>
+                      </ListBox.Item>
+                      {MONO_FONT_OPTIONS.map((f) => (
+                        <ListBox.Item
+                          key={f.value}
+                          id={f.value}
+                          textValue={f.label}
+                        >
+                          <span style={{ fontFamily: f.value }}>{f.label}</span>
+                          <ListBox.ItemIndicator />
+                        </ListBox.Item>
+                      ))}
+                    </ListBox>
+                  </Select.Popover>
+                </Select>
               </div>
             </div>
           </div>
