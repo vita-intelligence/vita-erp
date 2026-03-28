@@ -330,12 +330,13 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
     // Outer shell — NO overflow-hidden so resize handles are never clipped
     <div
       ref={windowRef}
-      className="fixed z-vita-modal rounded-vita-xl font-vita-sans"
+      className="fixed rounded-vita-xl font-vita-sans"
       style={{
         left: pos.x,
         top: pos.y,
         width: size.width,
         height: size.height,
+        zIndex: 99999,
       }}
     >
       <ResizeHandles onStart={startResize} />
