@@ -14,7 +14,7 @@ import { Switch } from "@/components/ui/switch";
 
 import { getFieldMeta } from "../../shared/field-registry";
 import { isIdUnique } from "../../shared/schema-utils";
-import type { ConfigTabProps } from "../../types";
+import type { ConfigTabProps, FieldStyling } from "../../types";
 
 export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
   const t = useTranslations("formConstructor");
@@ -187,6 +187,177 @@ export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
             <Switch.Thumb />
           </Switch.Control>
         </Switch>
+      </div>
+
+      {/* Styling */}
+      <StylingSection
+        styling={field.styling}
+        onUpdate={(s) => onUpdate({ styling: s })}
+        t={t}
+      />
+    </div>
+  );
+}
+
+// ── Styling Section ─────────────────────────────────────────────────────────
+
+function StylingSection({
+  styling,
+  onUpdate,
+  t,
+}: {
+  styling?: FieldStyling;
+  onUpdate: (s: FieldStyling | undefined) => void;
+  t: ReturnType<typeof useTranslations>;
+}) {
+  const s = styling ?? {};
+  const hasAny = Object.values(s).some(Boolean);
+
+  function patch(updates: Partial<FieldStyling>) {
+    const next = { ...s, ...updates };
+    // Clean empty values
+    for (const key of Object.keys(next) as (keyof FieldStyling)[]) {
+      if (!next[key]) delete next[key];
+    }
+    onUpdate(Object.keys(next).length > 0 ? next : undefined);
+  }
+
+  return (
+    <div
+      className="flex flex-col gap-3 rounded-vita-lg p-3"
+      style={{
+        border: "1px solid var(--vita-neutral-200)",
+        background: "var(--vita-background)",
+      }}
+    >
+      <p
+        className="text-xs font-semibold"
+        style={{ color: "var(--vita-text-primary)" }}
+      >
+        {t("config.general.styling")}
+      </p>
+
+      {/* Color pickers row */}
+      <div className="flex flex-wrap gap-3">
+        <ColorField
+          label={t("config.general.stylingBg")}
+          value={s.backgroundColor}
+          onChange={(v) => patch({ backgroundColor: v })}
+        />
+        <ColorField
+          label={t("config.general.stylingLabelColor")}
+          value={s.labelColor}
+          onChange={(v) => patch({ labelColor: v })}
+        />
+        <ColorField
+          label={t("config.general.stylingTextColor")}
+          value={s.textColor}
+          onChange={(v) => patch({ textColor: v })}
+        />
+      </div>
+
+      {/* Font controls */}
+      <div className="flex gap-3">
+        <div className="flex-1">
+          <p
+            className="mb-1 text-[11px]"
+            style={{ color: "var(--vita-text-muted)" }}
+          >
+            {t("config.general.stylingFontSize")}
+          </p>
+          <select
+            className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
+            style={{
+              borderColor: "var(--vita-neutral-200)",
+              background: "var(--vita-surface)",
+              color: "var(--vita-text-primary)",
+            }}
+            value={s.fontSize ?? ""}
+            onChange={(e) => patch({ fontSize: e.target.value || undefined })}
+          >
+            <option value="">{t("config.general.stylingDefault")}</option>
+            <option value="12px">12px</option>
+            <option value="14px">14px</option>
+            <option value="16px">16px</option>
+            <option value="18px">18px</option>
+            <option value="20px">20px</option>
+            <option value="24px">24px</option>
+          </select>
+        </div>
+        <div className="flex-1">
+          <p
+            className="mb-1 text-[11px]"
+            style={{ color: "var(--vita-text-muted)" }}
+          >
+            {t("config.general.stylingFontWeight")}
+          </p>
+          <select
+            className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
+            style={{
+              borderColor: "var(--vita-neutral-200)",
+              background: "var(--vita-surface)",
+              color: "var(--vita-text-primary)",
+            }}
+            value={s.fontWeight ?? ""}
+            onChange={(e) => patch({ fontWeight: e.target.value || undefined })}
+          >
+            <option value="">{t("config.general.stylingDefault")}</option>
+            <option value="normal">Normal</option>
+            <option value="500">Medium</option>
+            <option value="600">Semibold</option>
+            <option value="bold">Bold</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Reset */}
+      {hasAny && (
+        <button
+          type="button"
+          className="self-start text-xs"
+          style={{ color: "var(--vita-error)" }}
+          onClick={() => onUpdate(undefined)}
+        >
+          {t("config.general.stylingReset")}
+        </button>
+      )}
+    </div>
+  );
+}
+
+// ── Color Field ─────────────────────────────────────────────────────────────
+
+function ColorField({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value?: string;
+  onChange: (v: string | undefined) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-1">
+      <p className="text-[11px]" style={{ color: "var(--vita-text-muted)" }}>
+        {label}
+      </p>
+      <div className="flex items-center gap-1.5">
+        <input
+          type="color"
+          value={value || "#000000"}
+          onChange={(e) => onChange(e.target.value)}
+          className="h-7 w-7 cursor-pointer rounded-vita-sm border-0 p-0"
+        />
+        {value && (
+          <button
+            type="button"
+            className="text-[10px]"
+            style={{ color: "var(--vita-text-muted)" }}
+            onClick={() => onChange(undefined)}
+          >
+            ✕
+          </button>
+        )}
       </div>
     </div>
   );

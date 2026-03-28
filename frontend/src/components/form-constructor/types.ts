@@ -61,6 +61,21 @@ export type FieldElement = {
   appearance?: FieldAppearance;
   /** Per-locale translations for label and description */
   translations?: Record<string, FieldTranslation>;
+  /** Per-field visual styling overrides */
+  styling?: FieldStyling;
+};
+
+export type FieldStyling = {
+  /** Background color of the field wrapper */
+  backgroundColor?: string;
+  /** Text color for the input value */
+  textColor?: string;
+  /** Label color override */
+  labelColor?: string;
+  /** Font size (e.g., "14px", "1rem") */
+  fontSize?: string;
+  /** Font weight (e.g., "normal", "bold", "600") */
+  fontWeight?: string;
 };
 
 export type FieldTranslation = {

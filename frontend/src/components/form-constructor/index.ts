@@ -45,6 +45,7 @@ export type {
   FieldConstraints,
   FieldElement,
   FieldRendererProps,
+  FieldStyling,
   FieldTranslation,
   FieldType,
   FormElement,

@@ -91,15 +91,32 @@ export function FieldRenderer(props: FieldRendererWrapperProps) {
     ? { ...props, field: { ...field, label, description, options } }
     : props;
 
+  const s = field.styling;
+
   return (
-    <div className="flex flex-col gap-1.5">
+    <div
+      className="flex flex-col gap-1.5"
+      style={{
+        ...(s?.backgroundColor
+          ? {
+              backgroundColor: s.backgroundColor,
+              padding: "10px 12px",
+              borderRadius: "var(--vita-input-radius, 8px)",
+            }
+          : {}),
+        ...(s?.fontSize ? { fontSize: s.fontSize } : {}),
+        ...(s?.fontWeight ? { fontWeight: s.fontWeight } : {}),
+      }}
+    >
       {/* Label row */}
       <div className="flex items-baseline gap-1">
         <RichText
           as="label"
           text={label}
           className="text-sm font-medium"
-          style={{ color: "var(--vita-text-primary)" }}
+          style={{
+            color: s?.labelColor || "var(--vita-text-primary)",
+          }}
           htmlFor={field.id}
         />
         {field.required && !isNonInput && (
@@ -123,7 +140,9 @@ export function FieldRenderer(props: FieldRendererWrapperProps) {
       )}
 
       {/* Renderer */}
-      <Renderer {...rendererProps} />
+      <div style={s?.textColor ? { color: s.textColor } : undefined}>
+        <Renderer {...rendererProps} />
+      </div>
 
       {/* Error message */}
       {error && (

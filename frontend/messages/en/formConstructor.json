@@ -89,7 +89,15 @@
       "requiredHint": "This field must be filled before submission",
       "hidden": "Hidden field",
       "hiddenHint": "Hidden fields are part of the schema but not visible to users",
-      "duplicateIdWarning": "This ID is already used by another field"
+      "duplicateIdWarning": "This ID is already used by another field",
+      "styling": "Styling",
+      "stylingBg": "Background",
+      "stylingLabelColor": "Label color",
+      "stylingTextColor": "Text color",
+      "stylingFontSize": "Font size",
+      "stylingFontWeight": "Font weight",
+      "stylingDefault": "Default",
+      "stylingReset": "Reset all styles"
     },
     "options": {
       "title": "Options",
