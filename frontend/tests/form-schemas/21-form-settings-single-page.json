@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "name": "Form Settings — Single Page (styled)",
+  "description": "Tests form-level styling: custom background, text color, max width, padding, border radius, font family",
+  "settings": {
+    "layout": "single-page",
+    "showFieldNumbers": true,
+    "styling": {
+      "backgroundColor": "#f0f4ff",
+      "textColor": "#1e293b",
+      "maxWidth": "600px",
+      "padding": "32px",
+      "borderRadius": "16px",
+      "fontFamily": "Georgia, serif"
+    }
+  },
+  "elements": [
+    {
+      "kind": "field",
+      "id": "name",
+      "type": "text",
+      "label": "Full Name",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "email",
+      "type": "text",
+      "label": "Email",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "rating",
+      "type": "select_one",
+      "label": "How would you rate our service?",
+      "required": false,
+      "hidden": false,
+      "appearance": "likert",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" },
+        { "value": "5", "label": "5" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "feedback",
+      "type": "text",
+      "label": "Additional Feedback",
+      "required": false,
+      "hidden": false,
+      "appearance": "multiline"
+    }
+  ]
+}

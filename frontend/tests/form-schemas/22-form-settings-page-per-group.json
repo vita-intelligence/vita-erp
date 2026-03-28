@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "name": "Form Settings — Page Per Group",
+  "description": "Each group is a separate page with Previous/Next navigation and a progress bar",
+  "settings": {
+    "layout": "page-per-group",
+    "showProgressBar": true,
+    "submitButtonText": "Finish Inspection"
+  },
+  "elements": [
+    {
+      "kind": "group",
+      "id": "step1",
+      "label": "Step 1: Inspector Info",
+      "description": "Identify who is performing this inspection",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "inspector_name",
+          "type": "text",
+          "label": "Inspector Name",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "inspection_date",
+          "type": "date",
+          "label": "Inspection Date",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "department",
+          "type": "select_one",
+          "label": "Department",
+          "required": true,
+          "hidden": false,
+          "appearance": "minimal",
+          "options": [
+            { "value": "production", "label": "Production" },
+            { "value": "quality", "label": "Quality Control" },
+            { "value": "maintenance", "label": "Maintenance" }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "step2",
+      "label": "Step 2: Product Details",
+      "description": "Describe the product being inspected",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "product_code",
+          "type": "text",
+          "label": "Product Code",
+          "required": true,
+          "hidden": false,
+          "regex": {
+            "pattern": "^[A-Z]{2}-[0-9]{4}$",
+            "mode": "hard",
+            "message": "Format: AB-1234"
+          }
+        },
+        {
+          "kind": "field",
+          "id": "batch_number",
+          "type": "text",
+          "label": "Batch Number",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "quantity",
+          "type": "integer",
+          "label": "Quantity Inspected",
+          "required": true,
+          "hidden": false,
+          "constraints": { "min": 1 }
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "step3",
+      "label": "Step 3: Measurements",
+      "description": "Record quality measurements",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "dimension",
+          "type": "decimal",
+          "label": "Dimension (mm)",
+          "required": true,
+          "hidden": false,
+          "constraints": { "min": 0, "max": 1000 }
+        },
+        {
+          "kind": "field",
+          "id": "weight",
+          "type": "decimal",
+          "label": "Weight (g)",
+          "required": true,
+          "hidden": false,
+          "constraints": { "min": 0 }
+        },
+        {
+          "kind": "field",
+          "id": "surface_quality",
+          "type": "select_one",
+          "label": "Surface Quality",
+          "required": true,
+          "hidden": false,
+          "appearance": "compact",
+          "options": [
+            { "value": "excellent", "label": "Excellent" },
+            { "value": "good", "label": "Good" },
+            { "value": "fair", "label": "Fair" },
+            { "value": "poor", "label": "Poor" }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "step4",
+      "label": "Step 4: Result & Sign-off",
+      "description": "Final inspection result and signature",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "result",
+          "type": "select_one",
+          "label": "Inspection Result",
+          "required": true,
+          "hidden": false,
+          "options": [
+            { "value": "pass", "label": "Pass" },
+            { "value": "conditional", "label": "Conditional Pass" },
+            { "value": "fail", "label": "Fail" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "notes",
+          "type": "text",
+          "label": "Notes",
+          "required": false,
+          "hidden": false,
+          "appearance": "multiline"
+        },
+        {
+          "kind": "field",
+          "id": "signature",
+          "type": "signature",
+          "label": "Inspector Signature",
+          "required": true,
+          "hidden": false
+        }
+      ]
+    }
+  ]
+}

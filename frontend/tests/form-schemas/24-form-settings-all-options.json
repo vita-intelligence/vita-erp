@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "name": "Form Settings — All Options Combined",
+  "description": "Tests every form setting: layout, progress bar, field numbers, custom submit text, full styling, and per-field styling overrides",
+  "settings": {
+    "layout": "page-per-group",
+    "showProgressBar": true,
+    "showFieldNumbers": true,
+    "submitButtonText": "Complete Order",
+    "styling": {
+      "backgroundColor": "#f8fafc",
+      "textColor": "#334155",
+      "maxWidth": "640px",
+      "padding": "28px",
+      "borderRadius": "12px",
+      "fontFamily": "Inter, system-ui, sans-serif"
+    }
+  },
+  "elements": [
+    {
+      "kind": "group",
+      "id": "customer",
+      "label": "Customer Information",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "company",
+          "type": "text",
+          "label": "Company Name",
+          "required": true,
+          "hidden": false,
+          "styling": {
+            "labelColor": "#1e40af",
+            "fontWeight": "600"
+          }
+        },
+        {
+          "kind": "field",
+          "id": "contact",
+          "type": "text",
+          "label": "Contact Person",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "email",
+          "type": "text",
+          "label": "Email",
+          "required": true,
+          "hidden": false,
+          "regex": {
+            "pattern": "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$",
+            "mode": "hard",
+            "message": "Enter a valid email"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "order",
+      "label": "Order Details",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "product",
+          "type": "select_one",
+          "label": "Product",
+          "required": true,
+          "hidden": false,
+          "appearance": "minimal",
+          "options": [
+            { "value": "basic", "label": "Basic Plan — $9/mo" },
+            { "value": "pro", "label": "Pro Plan — $29/mo" },
+            { "value": "enterprise", "label": "Enterprise — $99/mo" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "quantity",
+          "type": "integer",
+          "label": "Number of Seats",
+          "required": true,
+          "hidden": false,
+          "defaultValue": 1,
+          "constraints": { "min": 1, "max": 1000 }
+        },
+        {
+          "kind": "field",
+          "id": "billing",
+          "type": "select_one",
+          "label": "Billing Cycle",
+          "required": true,
+          "hidden": false,
+          "appearance": "compact",
+          "options": [
+            { "value": "monthly", "label": "Monthly" },
+            { "value": "annual", "label": "Annual (save 20%)" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "promo_note",
+          "type": "note",
+          "label": "Promotion",
+          "description": "<b>Annual billing</b> saves you <span style='color:#16a34a'>20%</span> compared to monthly!",
+          "required": false,
+          "hidden": false,
+          "styling": {
+            "backgroundColor": "#ecfdf5"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "payment",
+      "label": "Payment & Confirmation",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "card_name",
+          "type": "text",
+          "label": "Cardholder Name",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "card_number",
+          "type": "text",
+          "label": "Card Number",
+          "required": true,
+          "hidden": false,
+          "constraints": { "minLength": 16, "maxLength": 19 },
+          "styling": {
+            "inputBgColor": "#fffbeb",
+            "inputBorderColor": "#f59e0b"
+          }
+        },
+        {
+          "kind": "field",
+          "id": "expiry",
+          "type": "text",
+          "label": "Expiry (MM/YY)",
+          "required": true,
+          "hidden": false,
+          "regex": {
+            "pattern": "^(0[1-9]|1[0-2])/[0-9]{2}$",
+            "mode": "hard",
+            "message": "Format: MM/YY"
+          }
+        },
+        {
+          "kind": "field",
+          "id": "terms",
+          "type": "select_one",
+          "label": "I agree to the terms and conditions",
+          "required": true,
+          "hidden": false,
+          "appearance": "compact",
+          "options": [
+            { "value": "yes", "label": "I agree" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "confirm_note",
+          "type": "note",
+          "label": "Confirmation",
+          "description": "You are ordering <b>${quantity} seats</b> of <b>${product}</b> with <b>${billing}</b> billing for <b>${company}</b>.",
+          "required": false,
+          "hidden": false,
+          "styling": {
+            "backgroundColor": "#eff6ff",
+            "fontSize": "16px"
+          }
+        }
+      ]
+    }
+  ]
+}

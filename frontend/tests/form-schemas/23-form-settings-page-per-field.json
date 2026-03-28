@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "name": "Form Settings — Page Per Field (Survey Style)",
+  "description": "One question at a time with progress bar — like a survey",
+  "settings": {
+    "layout": "page-per-field",
+    "showProgressBar": true,
+    "submitButtonText": "Submit Survey",
+    "styling": {
+      "maxWidth": "500px",
+      "padding": "40px",
+      "backgroundColor": "#fefce8",
+      "borderRadius": "20px"
+    }
+  },
+  "elements": [
+    {
+      "kind": "field",
+      "id": "q1",
+      "type": "text",
+      "label": "What is your name?",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "q2",
+      "type": "select_one",
+      "label": "What is your role?",
+      "required": true,
+      "hidden": false,
+      "appearance": "compact",
+      "options": [
+        { "value": "engineer", "label": "Engineer" },
+        { "value": "designer", "label": "Designer" },
+        { "value": "manager", "label": "Manager" },
+        { "value": "analyst", "label": "Analyst" },
+        { "value": "other", "label": "Other" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "q3",
+      "type": "select_one",
+      "label": "How satisfied are you with the product?",
+      "required": true,
+      "hidden": false,
+      "appearance": "likert",
+      "options": [
+        { "value": "1", "label": "Very unsatisfied" },
+        { "value": "2", "label": "Unsatisfied" },
+        { "value": "3", "label": "Neutral" },
+        { "value": "4", "label": "Satisfied" },
+        { "value": "5", "label": "Very satisfied" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "q4",
+      "type": "select_multiple",
+      "label": "Which features do you use most?",
+      "required": false,
+      "hidden": false,
+      "appearance": "compact",
+      "options": [
+        { "value": "forms", "label": "Form Builder" },
+        { "value": "reports", "label": "Reports" },
+        { "value": "inventory", "label": "Inventory" },
+        { "value": "orders", "label": "Orders" },
+        { "value": "quality", "label": "Quality Control" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "q5",
+      "type": "text",
+      "label": "What would you improve?",
+      "required": false,
+      "hidden": false,
+      "appearance": "multiline"
+    },
+    {
+      "kind": "field",
+      "id": "q6",
+      "type": "select_one",
+      "label": "Would you recommend us?",
+      "required": true,
+      "hidden": false,
+      "options": [
+        { "value": "yes", "label": "Yes, definitely" },
+        { "value": "maybe", "label": "Maybe" },
+        { "value": "no", "label": "No" }
+      ]
+    }
+  ]
+}
