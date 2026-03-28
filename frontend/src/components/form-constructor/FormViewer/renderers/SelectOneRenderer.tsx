@@ -22,7 +22,7 @@ export function SelectOneRenderer({
         disabled={readOnly}
         className="w-full"
         style={{
-          borderRadius: "var(--vita-input-radius, 6px)",
+          borderRadius: "var(--vita-input-radius)",
           borderWidth: "1px",
           borderStyle: "var(--vita-input-border-style, solid)",
           borderColor: error ? "var(--vita-error)" : "var(--vita-neutral-200)",

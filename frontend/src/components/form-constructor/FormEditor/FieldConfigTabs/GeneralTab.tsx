@@ -293,11 +293,12 @@ function StylingSection({
             {t("config.general.stylingFontSize")}
           </p>
           <select
-            className="w-full border"
+            className="w-full"
             style={{
-              borderRadius: "var(--vita-input-radius, 6px)",
-              borderColor: "var(--vita-neutral-200)",
+              borderRadius: "var(--vita-input-radius)",
+              borderWidth: "1px",
               borderStyle: "var(--vita-input-border-style, solid)",
+              borderColor: "var(--vita-neutral-200)",
               background: "var(--vita-surface)",
               color: "var(--vita-text-primary)",
               paddingLeft: "var(--vita-input-padding-x, 12px)",
@@ -326,11 +327,12 @@ function StylingSection({
             {t("config.general.stylingFontWeight")}
           </p>
           <select
-            className="w-full border"
+            className="w-full"
             style={{
-              borderRadius: "var(--vita-input-radius, 6px)",
-              borderColor: "var(--vita-neutral-200)",
+              borderRadius: "var(--vita-input-radius)",
+              borderWidth: "1px",
               borderStyle: "var(--vita-input-border-style, solid)",
+              borderColor: "var(--vita-neutral-200)",
               background: "var(--vita-surface)",
               color: "var(--vita-text-primary)",
               paddingLeft: "var(--vita-input-padding-x, 12px)",

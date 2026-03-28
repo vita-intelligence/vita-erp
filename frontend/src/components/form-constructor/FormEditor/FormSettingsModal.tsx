@@ -303,9 +303,9 @@ export function FormSettingsModal({
                   {t("formSettings.fontFamily")}
                 </p>
                 <select
-                  className="w-full border"
+                  className="w-full"
                   style={{
-                    borderRadius: "var(--vita-input-radius, 0px)",
+                    borderRadius: "var(--vita-input-radius)",
                     borderTopWidth: "var(--vita-input-border-top, 1px)",
                     borderRightWidth: "var(--vita-input-border-right, 1px)",
                     borderBottomWidth: "var(--vita-input-border-bottom, 1px)",
