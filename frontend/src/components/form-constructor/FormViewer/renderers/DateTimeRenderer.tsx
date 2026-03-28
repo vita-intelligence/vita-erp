@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import type { FieldRendererProps } from "../../types";
+import { buildInputStyle } from "./input-style";
 
 const TYPE_MAP = {
   date: "date",
@@ -26,7 +27,7 @@ export function DateTimeRenderer({
       onChange={(e) => onChange(e.target.value)}
       onBlur={onBlur}
       readOnly={readOnly}
-      style={error ? { borderColor: "var(--vita-error)" } : undefined}
+      style={buildInputStyle(field.styling, error)}
     />
   );
 }

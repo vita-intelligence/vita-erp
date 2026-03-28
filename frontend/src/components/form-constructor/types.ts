@@ -68,14 +68,18 @@ export type FieldElement = {
 export type FieldStyling = {
   /** Background color of the field wrapper */
   backgroundColor?: string;
-  /** Text color for the input value */
-  textColor?: string;
   /** Label color override */
   labelColor?: string;
-  /** Font size (e.g., "14px", "1rem") */
+  /** Font size for the entire field (e.g., "14px") */
   fontSize?: string;
-  /** Font weight (e.g., "normal", "bold", "600") */
+  /** Font weight for the entire field (e.g., "bold") */
   fontWeight?: string;
+  /** Background color of the input element */
+  inputBgColor?: string;
+  /** Text color inside the input element */
+  inputTextColor?: string;
+  /** Border color of the input element */
+  inputBorderColor?: string;
 };
 
 export type FieldTranslation = {

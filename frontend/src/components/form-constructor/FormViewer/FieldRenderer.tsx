@@ -139,8 +139,18 @@ export function FieldRenderer(props: FieldRendererWrapperProps) {
         />
       )}
 
-      {/* Renderer */}
-      <div style={s?.textColor ? { color: s.textColor } : undefined}>
+      {/* Renderer — input-level style overrides applied via wrapper div */}
+      <div
+        style={
+          {
+            ...(s?.inputTextColor ? { color: s.inputTextColor } : {}),
+            ...(s?.inputBgColor ? { "--field-input-bg": s.inputBgColor } : {}),
+            ...(s?.inputBorderColor
+              ? { "--field-input-border": s.inputBorderColor }
+              : {}),
+          } as React.CSSProperties
+        }
+      >
         <Renderer {...rendererProps} />
       </div>
 

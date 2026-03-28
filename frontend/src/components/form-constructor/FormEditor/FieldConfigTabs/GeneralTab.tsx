@@ -215,7 +215,6 @@ function StylingSection({
 
   function patch(updates: Partial<FieldStyling>) {
     const next = { ...s, ...updates };
-    // Clean empty values
     for (const key of Object.keys(next) as (keyof FieldStyling)[]) {
       if (!next[key]) delete next[key];
     }
@@ -224,7 +223,7 @@ function StylingSection({
 
   return (
     <div
-      className="flex flex-col gap-3 rounded-vita-lg p-3"
+      className="flex flex-col gap-4 rounded-vita-lg p-3"
       style={{
         border: "1px solid var(--vita-neutral-200)",
         background: "var(--vita-background)",
@@ -237,23 +236,53 @@ function StylingSection({
         {t("config.general.styling")}
       </p>
 
-      {/* Color pickers row */}
-      <div className="flex flex-wrap gap-3">
-        <ColorField
-          label={t("config.general.stylingBg")}
-          value={s.backgroundColor}
-          onChange={(v) => patch({ backgroundColor: v })}
-        />
-        <ColorField
-          label={t("config.general.stylingLabelColor")}
-          value={s.labelColor}
-          onChange={(v) => patch({ labelColor: v })}
-        />
-        <ColorField
-          label={t("config.general.stylingTextColor")}
-          value={s.textColor}
-          onChange={(v) => patch({ textColor: v })}
-        />
+      {/* Field wrapper colors */}
+      <div>
+        <p
+          className="mb-2 text-[11px] font-medium"
+          style={{ color: "var(--vita-text-secondary)" }}
+        >
+          {t("config.general.stylingFieldSection")}
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <ColorField
+            label={t("config.general.stylingBg")}
+            value={s.backgroundColor}
+            onChange={(v) => patch({ backgroundColor: v })}
+          />
+          <ColorField
+            label={t("config.general.stylingLabelColor")}
+            value={s.labelColor}
+            onChange={(v) => patch({ labelColor: v })}
+          />
+        </div>
+      </div>
+
+      {/* Input element colors */}
+      <div>
+        <p
+          className="mb-2 text-[11px] font-medium"
+          style={{ color: "var(--vita-text-secondary)" }}
+        >
+          {t("config.general.stylingInputSection")}
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <ColorField
+            label={t("config.general.stylingInputBg")}
+            value={s.inputBgColor}
+            onChange={(v) => patch({ inputBgColor: v })}
+          />
+          <ColorField
+            label={t("config.general.stylingInputText")}
+            value={s.inputTextColor}
+            onChange={(v) => patch({ inputTextColor: v })}
+          />
+          <ColorField
+            label={t("config.general.stylingInputBorder")}
+            value={s.inputBorderColor}
+            onChange={(v) => patch({ inputBorderColor: v })}
+          />
+        </div>
       </div>
 
       {/* Font controls */}
@@ -325,7 +354,7 @@ function StylingSection({
   );
 }
 
-// ── Color Field ─────────────────────────────────────────────────────────────
+// ── Color Field (shows "not set" when empty) ────────────────────────────────
 
 function ColorField({
   label,
@@ -341,14 +370,28 @@ function ColorField({
       <p className="text-[11px]" style={{ color: "var(--vita-text-muted)" }}>
         {label}
       </p>
-      <div className="flex items-center gap-1.5">
-        <input
-          type="color"
-          value={value || "#000000"}
-          onChange={(e) => onChange(e.target.value)}
-          className="h-7 w-7 cursor-pointer rounded-vita-sm border-0 p-0"
-        />
-        {value && (
+      {value ? (
+        <div className="flex items-center gap-1.5">
+          <label
+            className="relative flex h-7 w-7 cursor-pointer items-center justify-center overflow-hidden rounded-vita-sm"
+            style={{
+              border: "2px solid var(--vita-neutral-200)",
+              backgroundColor: value,
+            }}
+          >
+            <input
+              type="color"
+              value={value}
+              onChange={(e) => onChange(e.target.value)}
+              className="absolute inset-0 cursor-pointer opacity-0"
+            />
+          </label>
+          <span
+            className="font-mono text-[10px]"
+            style={{ color: "var(--vita-text-muted)" }}
+          >
+            {value}
+          </span>
           <button
             type="button"
             className="text-[10px]"
@@ -357,8 +400,36 @@ function ColorField({
           >
             ✕
           </button>
-        )}
-      </div>
+        </div>
+      ) : (
+        <label
+          className="flex h-7 cursor-pointer items-center gap-1.5 rounded-vita-sm px-2"
+          style={{
+            border: "1px dashed var(--vita-neutral-300)",
+          }}
+        >
+          <span
+            className="h-3.5 w-3.5 rounded-sm"
+            style={{
+              background:
+                "conic-gradient(var(--vita-neutral-200) 25%, transparent 25%, transparent 50%, var(--vita-neutral-200) 50%, var(--vita-neutral-200) 75%, transparent 75%)",
+              backgroundSize: "6px 6px",
+            }}
+          />
+          <span
+            className="text-[10px]"
+            style={{ color: "var(--vita-text-muted)" }}
+          >
+            Set
+          </span>
+          <input
+            type="color"
+            value="#000000"
+            onChange={(e) => onChange(e.target.value)}
+            className="absolute opacity-0"
+          />
+        </label>
+      )}
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import type { FieldRendererProps } from "../../types";
+import { buildInputStyle } from "./input-style";
 
 export function NumberRenderer({
   field,
@@ -29,7 +30,7 @@ export function NumberRenderer({
       onBlur={onBlur}
       placeholder={field.description || field.label}
       readOnly={readOnly}
-      style={error ? { borderColor: "var(--vita-error)" } : undefined}
+      style={buildInputStyle(field.styling, error)}
     />
   );
 }

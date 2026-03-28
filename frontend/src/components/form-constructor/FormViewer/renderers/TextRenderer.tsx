@@ -3,6 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { TextArea } from "@/components/ui/textarea";
 import type { FieldRendererProps } from "../../types";
+import { buildInputStyle } from "./input-style";
 
 export function TextRenderer({
   field,
@@ -12,6 +13,8 @@ export function TextRenderer({
   error,
   readOnly,
 }: FieldRendererProps) {
+  const inputStyle = buildInputStyle(field.styling, error);
+
   if (field.appearance === "multiline") {
     return (
       <TextArea
@@ -21,7 +24,7 @@ export function TextRenderer({
         placeholder={field.description || field.label}
         readOnly={readOnly}
         rows={4}
-        style={error ? { borderColor: "var(--vita-error)" } : undefined}
+        style={inputStyle}
       />
     );
   }
@@ -33,7 +36,7 @@ export function TextRenderer({
       onBlur={onBlur}
       placeholder={field.description || field.label}
       readOnly={readOnly}
-      style={error ? { borderColor: "var(--vita-error)" } : undefined}
+      style={inputStyle}
     />
   );
 }
