@@ -8,7 +8,7 @@
  */
 
 import { useTranslations } from "next-intl";
-
+import { ColorInput } from "@/components/theme-editor/modules/colors/ColorInput";
 import { FieldError, Input, Label, TextField } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 
@@ -354,7 +354,7 @@ function StylingSection({
   );
 }
 
-// ── Color Field (shows "not set" when empty) ────────────────────────────────
+// ── Color Field (uses HeroUI ColorPicker via ColorInput wrapper) ─────────────
 
 function ColorField({
   label,
@@ -372,20 +372,11 @@ function ColorField({
       </p>
       {value ? (
         <div className="flex items-center gap-1.5">
-          <label
-            className="relative flex h-7 w-7 cursor-pointer items-center justify-center overflow-hidden rounded-vita-sm"
-            style={{
-              border: "2px solid var(--vita-neutral-200)",
-              backgroundColor: value,
-            }}
-          >
-            <input
-              type="color"
-              value={value}
-              onChange={(e) => onChange(e.target.value)}
-              className="absolute inset-0 cursor-pointer opacity-0"
-            />
-          </label>
+          <ColorInput
+            value={value}
+            onChange={(hex) => onChange(hex)}
+            title={label}
+          />
           <span
             className="font-mono text-[10px]"
             style={{ color: "var(--vita-text-muted)" }}
@@ -402,33 +393,19 @@ function ColorField({
           </button>
         </div>
       ) : (
-        <label
-          className="flex h-7 cursor-pointer items-center gap-1.5 rounded-vita-sm px-2"
-          style={{
-            border: "1px dashed var(--vita-neutral-300)",
-          }}
-        >
-          <span
-            className="h-3.5 w-3.5 rounded-sm"
-            style={{
-              background:
-                "conic-gradient(var(--vita-neutral-200) 25%, transparent 25%, transparent 50%, var(--vita-neutral-200) 50%, var(--vita-neutral-200) 75%, transparent 75%)",
-              backgroundSize: "6px 6px",
-            }}
+        <div className="flex items-center">
+          <ColorInput
+            value="#808080"
+            onChange={(hex) => onChange(hex)}
+            title={label}
           />
           <span
-            className="text-[10px]"
+            className="ml-1.5 text-[10px]"
             style={{ color: "var(--vita-text-muted)" }}
           >
             Set
           </span>
-          <input
-            type="color"
-            value="#000000"
-            onChange={(e) => onChange(e.target.value)}
-            className="absolute opacity-0"
-          />
-        </label>
+        </div>
       )}
     </div>
   );
