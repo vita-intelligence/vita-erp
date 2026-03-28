@@ -27,21 +27,36 @@ type ThemeState = {
   applyTheme: () => void;
 };
 
+// Build initial tokensByMode from all registered themes
+const initialTokensByMode = Object.fromEntries(
+  Object.entries(themes).map(([key, value]) => [key, value]),
+) as Record<ThemeName, ThemeTokens>;
+
+/** Theme names that should apply the "dark" class to <html>. */
+const DARK_MODES = new Set<string>(["dark", "midnight", "ocean"]);
+
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set, get) => ({
       mode: "light",
-      tokensByMode: {
-        light: themes.light,
-        dark: themes.dark,
-      },
+      tokensByMode: initialTokensByMode,
       tokens: themes.light,
 
       setMode(mode) {
-        const tokens = get().tokensByMode[mode];
-        set({ mode, tokens });
+        // Ensure tokensByMode has this theme (handles new themes added after persistence)
+        const byMode = get().tokensByMode;
+        const tokens = byMode[mode] ?? themes[mode];
+        if (!byMode[mode]) {
+          set({
+            mode,
+            tokensByMode: { ...byMode, [mode]: tokens },
+            tokens,
+          });
+        } else {
+          set({ mode, tokens });
+        }
         applyTokens(tokens);
-        document.documentElement.classList.toggle("dark", mode === "dark");
+        document.documentElement.classList.toggle("dark", DARK_MODES.has(mode));
       },
 
       setTokens(overrides) {
@@ -70,15 +85,15 @@ export const useThemeStore = create<ThemeState>()(
           tokens,
         });
         applyTokens(tokens);
-        document.documentElement.classList.toggle("dark", mode === "dark");
+        document.documentElement.classList.toggle("dark", DARK_MODES.has(mode));
       },
 
       applyTheme() {
         const { mode, tokensByMode } = get();
-        const tokens = tokensByMode[mode];
+        const tokens = tokensByMode[mode] ?? themes[mode];
         set({ tokens });
         applyTokens(tokens);
-        document.documentElement.classList.toggle("dark", mode === "dark");
+        document.documentElement.classList.toggle("dark", DARK_MODES.has(mode));
       },
     }),
     {
