@@ -10,6 +10,7 @@ import { useState } from "react";
 import { ColorInput } from "@/components/theme-editor/modules/colors/ColorInput";
 import { Button } from "@/components/ui/button";
 import { Input, Label, TextField } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 import {
   MONO_FONT_OPTIONS,
   SANS_FONT_OPTIONS,
@@ -156,43 +157,47 @@ export function FormSettingsModal({
               {t("formSettings.displayOptions")}
             </p>
 
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={settings.showProgressBar ?? false}
-                onChange={(e) =>
-                  setSettings({
-                    ...settings,
-                    showProgressBar: e.target.checked || undefined,
-                  })
-                }
-              />
+            <Switch
+              isSelected={settings.showProgressBar ?? false}
+              onChange={(val) =>
+                setSettings({
+                  ...settings,
+                  showProgressBar: val || undefined,
+                })
+              }
+              size="sm"
+            >
+              <Switch.Control>
+                <Switch.Thumb />
+              </Switch.Control>
               <span
                 className="text-xs"
                 style={{ color: "var(--vita-text-primary)" }}
               >
                 {t("formSettings.showProgressBar")}
               </span>
-            </label>
+            </Switch>
 
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={settings.showFieldNumbers ?? false}
-                onChange={(e) =>
-                  setSettings({
-                    ...settings,
-                    showFieldNumbers: e.target.checked || undefined,
-                  })
-                }
-              />
+            <Switch
+              isSelected={settings.showFieldNumbers ?? false}
+              onChange={(val) =>
+                setSettings({
+                  ...settings,
+                  showFieldNumbers: val || undefined,
+                })
+              }
+              size="sm"
+            >
+              <Switch.Control>
+                <Switch.Thumb />
+              </Switch.Control>
               <span
                 className="text-xs"
                 style={{ color: "var(--vita-text-primary)" }}
               >
                 {t("formSettings.showFieldNumbers")}
               </span>
-            </label>
+            </Switch>
 
             <TextField>
               <Label>{t("formSettings.submitButtonText")}</Label>

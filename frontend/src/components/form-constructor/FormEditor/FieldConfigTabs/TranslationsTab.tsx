@@ -13,7 +13,8 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input, Label, TextField } from "@/components/ui/input";
-import { I18N } from "@/config";
+import { ListBox, Select } from "@/components/ui/select";
+import { I18N, type Locale } from "@/config";
 
 import type { ConfigTabProps, FieldTranslation } from "../../types";
 
@@ -176,22 +177,31 @@ export function TranslationsTab({ field, onUpdate }: ConfigTabProps) {
       {/* Add translation */}
       {availableLocales.length > 0 && (
         <div className="flex items-center gap-2">
-          <select
-            className="rounded-vita-md border px-2 py-1.5 text-xs"
-            style={{
-              borderColor: "var(--vita-neutral-200)",
-              background: "var(--vita-surface)",
-              color: "var(--vita-text-primary)",
+          <Select
+            selectedKey={addLocale || null}
+            onSelectionChange={(key) => {
+              if (key) setAddLocale(String(key) as Locale);
             }}
-            value={addLocale}
-            onChange={(e) => setAddLocale(e.target.value)}
           >
-            {availableLocales.map((loc) => (
-              <option key={loc} value={loc}>
-                {LOCALE_NAMES[loc] ?? loc} ({loc})
-              </option>
-            ))}
-          </select>
+            <Select.Trigger>
+              <Select.Value />
+              <Select.Indicator />
+            </Select.Trigger>
+            <Select.Popover>
+              <ListBox>
+                {availableLocales.map((loc) => (
+                  <ListBox.Item
+                    key={loc}
+                    id={loc}
+                    textValue={`${LOCALE_NAMES[loc] ?? loc} (${loc})`}
+                  >
+                    {LOCALE_NAMES[loc] ?? loc} ({loc})
+                    <ListBox.ItemIndicator />
+                  </ListBox.Item>
+                ))}
+              </ListBox>
+            </Select.Popover>
+          </Select>
           <Button variant="outline" size="sm" onPress={addTranslation}>
             <Plus size={12} />
             {t("config.translations.add")}

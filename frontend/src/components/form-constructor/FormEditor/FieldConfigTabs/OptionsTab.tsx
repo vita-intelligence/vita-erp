@@ -15,6 +15,7 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ListBox, Select } from "@/components/ui/select";
 
 import { collectFields } from "../../shared/schema-utils";
 import type { ChoiceFilter, ConfigTabProps, SelectOption } from "../../types";
@@ -106,23 +107,39 @@ export function OptionsTab({ field, onUpdate, allElements }: ConfigTabProps) {
             >
               {t("config.options.choiceFilterField")}
             </p>
-            <select
-              className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
-              style={{
-                borderColor: "var(--vita-neutral-200)",
-                background: "var(--vita-surface)",
-                color: "var(--vita-text-primary)",
-              }}
-              value={field.choiceFilter?.fieldId ?? ""}
-              onChange={(e) => setChoiceFilter(e.target.value)}
+            <Select
+              selectedKey={field.choiceFilter?.fieldId || null}
+              onSelectionChange={(key) =>
+                setChoiceFilter(key ? String(key) : "")
+              }
             >
-              <option value="">{t("config.options.noFilter")}</option>
-              {selectFields.map((f) => (
-                <option key={f.id} value={f.id}>
-                  {f.label} ({f.id})
-                </option>
-              ))}
-            </select>
+              <Select.Trigger>
+                <Select.Value />
+                <Select.Indicator />
+              </Select.Trigger>
+              <Select.Popover>
+                <ListBox>
+                  <ListBox.Item
+                    key=""
+                    id=""
+                    textValue={t("config.options.noFilter")}
+                  >
+                    {t("config.options.noFilter")}
+                    <ListBox.ItemIndicator />
+                  </ListBox.Item>
+                  {selectFields.map((f) => (
+                    <ListBox.Item
+                      key={f.id}
+                      id={f.id}
+                      textValue={`${f.label} (${f.id})`}
+                    >
+                      {f.label} ({f.id})
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                  ))}
+                </ListBox>
+              </Select.Popover>
+            </Select>
           </div>
 
           {hasFilter && (

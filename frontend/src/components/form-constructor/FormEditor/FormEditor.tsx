@@ -30,6 +30,8 @@ import { useCallback, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ListBox, Select } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import { FormViewer } from "../FormViewer/FormViewer";
 import {
   collectFields,
@@ -745,19 +747,21 @@ function GroupConfigModal({
               background: "var(--vita-background)",
             }}
           >
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={repeatEnabled}
-                onChange={(e) => setRepeatEnabled(e.target.checked)}
-              />
+            <Switch
+              isSelected={repeatEnabled}
+              onChange={(val) => setRepeatEnabled(val)}
+              size="sm"
+            >
+              <Switch.Control>
+                <Switch.Thumb />
+              </Switch.Control>
               <span
                 className="text-sm font-medium"
                 style={{ color: "var(--vita-text-primary)" }}
               >
                 {t("addGroupModal.repeatToggle")}
               </span>
-            </label>
+            </Switch>
 
             {repeatEnabled && (
               <div className="flex flex-col gap-3 pt-1">
@@ -800,25 +804,41 @@ function GroupConfigModal({
                     >
                       {t("addGroupModal.repeatCountField")}
                     </p>
-                    <select
-                      className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
-                      style={{
-                        borderColor: "var(--vita-neutral-200)",
-                        background: "var(--vita-surface)",
-                        color: "var(--vita-text-primary)",
-                      }}
-                      value={countFieldId}
-                      onChange={(e) => setCountFieldId(e.target.value)}
+                    <Select
+                      selectedKey={countFieldId || null}
+                      onSelectionChange={(key) =>
+                        setCountFieldId(key ? String(key) : "")
+                      }
                     >
-                      <option value="">
-                        {t("addGroupModal.repeatCountFieldPlaceholder")}
-                      </option>
-                      {integerFields.map((f) => (
-                        <option key={f.id} value={f.id}>
-                          {f.label} ({f.id})
-                        </option>
-                      ))}
-                    </select>
+                      <Select.Trigger>
+                        <Select.Value />
+                        <Select.Indicator />
+                      </Select.Trigger>
+                      <Select.Popover>
+                        <ListBox>
+                          <ListBox.Item
+                            key=""
+                            id=""
+                            textValue={t(
+                              "addGroupModal.repeatCountFieldPlaceholder",
+                            )}
+                          >
+                            {t("addGroupModal.repeatCountFieldPlaceholder")}
+                            <ListBox.ItemIndicator />
+                          </ListBox.Item>
+                          {integerFields.map((f) => (
+                            <ListBox.Item
+                              key={f.id}
+                              id={f.id}
+                              textValue={`${f.label} (${f.id})`}
+                            >
+                              {f.label} ({f.id})
+                              <ListBox.ItemIndicator />
+                            </ListBox.Item>
+                          ))}
+                        </ListBox>
+                      </Select.Popover>
+                    </Select>
                   </div>
                 ) : (
                   <div className="flex gap-3">
@@ -960,19 +980,21 @@ function AddGroupInlineModal({
               background: "var(--vita-background)",
             }}
           >
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={repeatEnabled}
-                onChange={(e) => setRepeatEnabled(e.target.checked)}
-              />
+            <Switch
+              isSelected={repeatEnabled}
+              onChange={(val) => setRepeatEnabled(val)}
+              size="sm"
+            >
+              <Switch.Control>
+                <Switch.Thumb />
+              </Switch.Control>
               <span
                 className="text-sm font-medium"
                 style={{ color: "var(--vita-text-primary)" }}
               >
                 {t("addGroupModal.repeatToggle")}
               </span>
-            </label>
+            </Switch>
             <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
               {t("addGroupModal.repeatHint")}
             </p>
@@ -1019,25 +1041,41 @@ function AddGroupInlineModal({
                     >
                       {t("addGroupModal.repeatCountField")}
                     </p>
-                    <select
-                      className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
-                      style={{
-                        borderColor: "var(--vita-neutral-200)",
-                        background: "var(--vita-surface)",
-                        color: "var(--vita-text-primary)",
-                      }}
-                      value={countFieldId}
-                      onChange={(e) => setCountFieldId(e.target.value)}
+                    <Select
+                      selectedKey={countFieldId || null}
+                      onSelectionChange={(key) =>
+                        setCountFieldId(key ? String(key) : "")
+                      }
                     >
-                      <option value="">
-                        {t("addGroupModal.repeatCountFieldPlaceholder")}
-                      </option>
-                      {integerFields.map((f) => (
-                        <option key={f.id} value={f.id}>
-                          {f.label} ({f.id})
-                        </option>
-                      ))}
-                    </select>
+                      <Select.Trigger>
+                        <Select.Value />
+                        <Select.Indicator />
+                      </Select.Trigger>
+                      <Select.Popover>
+                        <ListBox>
+                          <ListBox.Item
+                            key=""
+                            id=""
+                            textValue={t(
+                              "addGroupModal.repeatCountFieldPlaceholder",
+                            )}
+                          >
+                            {t("addGroupModal.repeatCountFieldPlaceholder")}
+                            <ListBox.ItemIndicator />
+                          </ListBox.Item>
+                          {integerFields.map((f) => (
+                            <ListBox.Item
+                              key={f.id}
+                              id={f.id}
+                              textValue={`${f.label} (${f.id})`}
+                            >
+                              {f.label} ({f.id})
+                              <ListBox.ItemIndicator />
+                            </ListBox.Item>
+                          ))}
+                        </ListBox>
+                      </Select.Popover>
+                    </Select>
                   </div>
                 ) : (
                   <div className="flex gap-3">

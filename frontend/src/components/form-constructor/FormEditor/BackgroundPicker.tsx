@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 
 import { ColorInput } from "@/components/theme-editor/modules/colors/ColorInput";
 import { isGradient } from "@/components/theme-editor/modules/colors/gradient-picker/helpers";
+import { Slider } from "@/components/ui/slider";
 
 type BackgroundPickerProps = {
   value?: string;
@@ -219,16 +220,24 @@ export function BackgroundPicker({
               >
                 {t("config.general.stylingGradientAngle")}
               </span>
-              <input
-                type="range"
-                min={0}
-                max={360}
-                value={angle}
-                onChange={(e) =>
-                  updateGradient(color1, color2, Number(e.target.value))
+              <Slider
+                minValue={0}
+                maxValue={360}
+                value={[angle]}
+                onChange={(val: number | number[]) =>
+                  updateGradient(
+                    color1,
+                    color2,
+                    Array.isArray(val) ? val[0] : val,
+                  )
                 }
                 className="flex-1"
-              />
+              >
+                <Slider.Track>
+                  <Slider.Fill />
+                  <Slider.Thumb />
+                </Slider.Track>
+              </Slider>
               <span
                 className="w-8 text-right font-mono text-[10px]"
                 style={{ color: "var(--vita-text-muted)" }}
