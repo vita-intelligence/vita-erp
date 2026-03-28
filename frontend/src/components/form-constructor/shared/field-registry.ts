@@ -47,6 +47,15 @@ export type FieldCategory =
   | "media"
   | "advanced";
 
+/** CSS color per category for visual coding in the editor. */
+export const CATEGORY_COLORS: Record<FieldCategory, string> = {
+  input: "var(--vita-primary, #3b82f6)",
+  choice: "#8b5cf6",
+  datetime: "#10b981",
+  media: "#f59e0b",
+  advanced: "var(--vita-neutral-400, #9ca3af)",
+};
+
 // ── Registry Entry ───────────────────────────────────────────────────────────
 
 export type FieldMeta = {

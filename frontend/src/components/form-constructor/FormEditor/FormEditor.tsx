@@ -24,6 +24,7 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 
@@ -337,13 +338,30 @@ export function FormEditor({
         <div className="space-y-2">
           {schema.elements.length === 0 ? (
             <div
-              className="flex items-center justify-center rounded-vita-lg border-2 border-dashed py-12"
+              className="flex flex-col items-center justify-center gap-3 rounded-vita-lg border-2 border-dashed py-16"
               style={{
                 borderColor: "var(--vita-neutral-300)",
                 color: "var(--vita-text-muted)",
+                background: "var(--vita-background)",
               }}
             >
-              <p className="text-sm">{t("editor.addFirstField")}</p>
+              <div
+                className="flex h-12 w-12 items-center justify-center rounded-full"
+                style={{
+                  background:
+                    "color-mix(in oklch, var(--vita-primary) 10%, transparent)",
+                  color: "var(--vita-primary)",
+                }}
+              >
+                <Plus size={24} />
+              </div>
+              <p className="text-sm font-medium">{t("editor.addFirstField")}</p>
+              <p
+                className="max-w-xs text-center text-xs"
+                style={{ color: "var(--vita-neutral-400)" }}
+              >
+                {t("editor.emptyHint")}
+              </p>
             </div>
           ) : (
             <DndContext

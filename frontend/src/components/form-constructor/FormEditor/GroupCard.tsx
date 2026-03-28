@@ -102,8 +102,13 @@ export function GroupCard({
   return (
     <div
       ref={setNodeRef}
-      style={style}
-      className="rounded-vita-lg border"
+      style={{
+        ...style,
+        borderLeftWidth: "3px",
+        borderLeftStyle: "solid",
+        borderLeftColor: "var(--vita-primary)",
+      }}
+      className="group/groupcard overflow-hidden rounded-vita-lg border"
       {...attributes}
     >
       {/* Group header */}
@@ -119,19 +124,25 @@ export function GroupCard({
         {/* Drag handle */}
         <button
           type="button"
-          className="shrink-0 cursor-grab touch-none"
+          className="shrink-0 cursor-grab touch-none rounded-vita-sm p-0.5 transition-colors hover:bg-[var(--vita-neutral-100)]"
           style={{ color: "var(--vita-neutral-400)" }}
           title={t("fieldCard.dragToReorder")}
           {...listeners}
         >
-          <GripVertical size={14} />
+          <GripVertical size={16} />
         </button>
 
-        {/* Group icon */}
-        <FolderOpen
-          size={14}
-          style={{ color: "var(--vita-primary)", flexShrink: 0 }}
-        />
+        {/* Group icon — primary colored */}
+        <span
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-vita-sm"
+          style={{
+            background:
+              "color-mix(in oklch, var(--vita-primary) 15%, transparent)",
+            color: "var(--vita-primary)",
+          }}
+        >
+          <FolderOpen size={14} />
+        </span>
 
         {/* Label */}
         <p
@@ -174,70 +185,66 @@ export function GroupCard({
           {collapsed ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
         </button>
 
-        {/* Separator */}
-        <span
-          className="h-4"
-          style={{
-            borderLeftWidth: "1px",
-            borderLeftStyle: "solid",
-            borderLeftColor: "var(--vita-neutral-200)",
-          }}
-        />
+        {/* Actions — visible on hover */}
+        <div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover/groupcard:opacity-100">
+          <span
+            className="h-4"
+            style={{
+              borderLeftWidth: "1px",
+              borderLeftStyle: "solid",
+              borderLeftColor: "var(--vita-neutral-200)",
+            }}
+          />
+          <button
+            type="button"
+            className="flex h-7 w-7 items-center justify-center rounded-vita-sm transition-colors hover:bg-[var(--vita-neutral-100)]"
+            style={{
+              color:
+                index === 0
+                  ? "var(--vita-neutral-300)"
+                  : "var(--vita-text-muted)",
+            }}
+            disabled={index === 0}
+            title={t("fieldCard.moveUp")}
+            onClick={() => onMove("up")}
+          >
+            <ArrowUp size={13} />
+          </button>
+          <button
+            type="button"
+            className="flex h-7 w-7 items-center justify-center rounded-vita-sm transition-colors hover:bg-[var(--vita-neutral-100)]"
+            style={{
+              color:
+                index === total - 1
+                  ? "var(--vita-neutral-300)"
+                  : "var(--vita-text-muted)",
+            }}
+            disabled={index === total - 1}
+            title={t("fieldCard.moveDown")}
+            onClick={() => onMove("down")}
+          >
+            <ArrowDown size={13} />
+          </button>
+          <button
+            type="button"
+            className="flex h-7 w-7 items-center justify-center rounded-vita-sm transition-colors hover:bg-[var(--vita-neutral-100)]"
+            style={{ color: "var(--vita-primary)" }}
+            title={t("fieldCard.edit")}
+            onClick={onEditGroup}
+          >
+            <Pencil size={13} />
+          </button>
+        </div>
 
-        {/* Move up */}
+        {/* Delete group — always visible (destructive action) */}
         <button
           type="button"
-          className="flex h-6 w-6 items-center justify-center rounded-vita-sm"
-          style={{
-            color:
-              index === 0
-                ? "var(--vita-neutral-300)"
-                : "var(--vita-text-muted)",
-          }}
-          disabled={index === 0}
-          title={t("fieldCard.moveUp")}
-          onClick={() => onMove("up")}
-        >
-          <ArrowUp size={12} />
-        </button>
-
-        {/* Move down */}
-        <button
-          type="button"
-          className="flex h-6 w-6 items-center justify-center rounded-vita-sm"
-          style={{
-            color:
-              index === total - 1
-                ? "var(--vita-neutral-300)"
-                : "var(--vita-text-muted)",
-          }}
-          disabled={index === total - 1}
-          title={t("fieldCard.moveDown")}
-          onClick={() => onMove("down")}
-        >
-          <ArrowDown size={12} />
-        </button>
-
-        {/* Edit group settings */}
-        <button
-          type="button"
-          className="flex h-6 w-6 items-center justify-center rounded-vita-sm"
-          style={{ color: "var(--vita-primary)" }}
-          title={t("fieldCard.edit")}
-          onClick={onEditGroup}
-        >
-          <Pencil size={12} />
-        </button>
-
-        {/* Delete group */}
-        <button
-          type="button"
-          className="flex h-6 w-6 items-center justify-center rounded-vita-sm"
+          className="flex h-7 w-7 items-center justify-center rounded-vita-sm transition-colors hover:bg-[var(--vita-neutral-100)]"
           style={{ color: "var(--vita-error)" }}
           title={t("fieldCard.delete")}
           onClick={onDelete}
         >
-          <Trash2 size={12} />
+          <Trash2 size={13} />
         </button>
       </div>
 
