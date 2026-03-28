@@ -327,7 +327,7 @@ function ColorFieldInline({
             className="text-[10px]"
             style={{ color: "var(--vita-text-muted)" }}
           >
-            {t("config.general.stylingDefault")}
+            Default
           </span>
         )}
       </div>
