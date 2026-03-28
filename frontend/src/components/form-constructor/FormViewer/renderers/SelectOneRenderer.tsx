@@ -1,5 +1,6 @@
 "use client";
 
+import { NativeSelect } from "@/components/ui/input/NativeSelect";
 import { Label, Radio, RadioGroup } from "@/components/ui/radio-group";
 import type { FieldRendererProps } from "../../types";
 
@@ -16,30 +17,11 @@ export function SelectOneRenderer({
   // ── Minimal: native dropdown ──────────────────────────────────────────────
   if (field.appearance === "minimal") {
     return (
-      <select
+      <NativeSelect
         value={selected}
         onChange={(e) => onChange(e.target.value)}
         disabled={readOnly}
-        className="w-full appearance-none"
-        style={{
-          WebkitAppearance: "none",
-          borderRadius: "var(--vita-input-radius, 0px)",
-          borderWidth: "1px",
-          borderStyle: "var(--vita-input-border-style, solid)",
-          borderColor: error ? "var(--vita-error)" : "var(--vita-neutral-200)",
-          background: "var(--vita-surface)",
-          color: "var(--vita-text-primary)",
-          paddingLeft: "var(--vita-input-padding-x, 12px)",
-          paddingRight: "36px",
-          paddingTop: "var(--vita-input-padding-y, 8px)",
-          paddingBottom: "var(--vita-input-padding-y, 8px)",
-          fontSize: "var(--vita-input-font-size, 14px)",
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "right 12px center",
-          boxShadow: "var(--vita-input-shadow, none)",
-        }}
+        style={error ? { borderColor: "var(--vita-error)" } : undefined}
       >
         <option value="">{field.description || field.label}</option>
         {options.map((opt) => (
@@ -47,7 +29,7 @@ export function SelectOneRenderer({
             {opt.label}
           </option>
         ))}
-      </select>
+      </NativeSelect>
     );
   }
 

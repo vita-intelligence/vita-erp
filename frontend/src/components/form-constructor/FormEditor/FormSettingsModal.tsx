@@ -10,6 +10,7 @@ import { useState } from "react";
 import { ColorInput } from "@/components/theme-editor/modules/colors/ColorInput";
 import { Button } from "@/components/ui/button";
 import { Input, Label, TextField } from "@/components/ui/input";
+import { NativeSelect } from "@/components/ui/input/NativeSelect";
 import { Switch } from "@/components/ui/switch";
 import {
   MONO_FONT_OPTIONS,
@@ -302,31 +303,8 @@ export function FormSettingsModal({
                 >
                   {t("formSettings.fontFamily")}
                 </p>
-                <select
-                  className="w-full appearance-none"
-                  style={{
-                    WebkitAppearance: "none",
-                    borderRadius: "var(--vita-input-radius, 0px)",
-                    borderTopWidth: "var(--vita-input-border-top, 1px)",
-                    borderRightWidth: "var(--vita-input-border-right, 1px)",
-                    borderBottomWidth: "var(--vita-input-border-bottom, 1px)",
-                    borderLeftWidth: "var(--vita-input-border-left, 1px)",
-                    borderStyle: "var(--vita-input-border-style, solid)",
-                    borderColor: "var(--vita-neutral-200)",
-                    boxShadow: "var(--vita-input-shadow, none)",
-                    background: "var(--vita-surface)",
-                    color: "var(--vita-text-primary)",
-                    paddingLeft: "var(--vita-input-padding-x, 12px)",
-                    paddingTop: "var(--vita-input-padding-y, 8px)",
-                    paddingBottom: "var(--vita-input-padding-y, 8px)",
-                    fontSize: "var(--vita-input-font-size, 14px)",
-                    fontFamily: s.fontFamily || undefined,
-                    backgroundImage:
-                      "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "right 12px center",
-                    paddingRight: "36px",
-                  }}
+                <NativeSelect
+                  style={{ fontFamily: s.fontFamily || undefined }}
                   value={s.fontFamily ?? ""}
                   onChange={(e) =>
                     patchStyling({ fontFamily: e.target.value || undefined })
@@ -354,7 +332,7 @@ export function FormSettingsModal({
                       </option>
                     ))}
                   </optgroup>
-                </select>
+                </NativeSelect>
               </div>
             </div>
           </div>
