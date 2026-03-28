@@ -197,6 +197,19 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
   }
 
   const [pos, setPos] = useState(() => {
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem("vita-theme-editor-pos") ?? "",
+      );
+      if (saved?.x !== undefined && saved?.y !== undefined) {
+        return {
+          x: Math.min(saved.x, window.innerWidth - 100),
+          y: Math.min(saved.y, window.innerHeight - 100),
+        };
+      }
+    } catch {
+      /* no saved position */
+    }
     const w = Math.min(WIN_DEFAULT_W, window.innerWidth - 16);
     const h = Math.min(WIN_DEFAULT_H, window.innerHeight - 16);
     return {
@@ -205,10 +218,33 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
     };
   });
 
-  const [size, setSize] = useState(() => ({
-    width: Math.min(WIN_DEFAULT_W, window.innerWidth - 16),
-    height: Math.min(WIN_DEFAULT_H, window.innerHeight - 16),
-  }));
+  const [size, setSize] = useState(() => {
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem("vita-theme-editor-size") ?? "",
+      );
+      if (saved?.width && saved?.height) {
+        return {
+          width: Math.min(saved.width, window.innerWidth - 16),
+          height: Math.min(saved.height, window.innerHeight - 16),
+        };
+      }
+    } catch {
+      /* no saved size */
+    }
+    return {
+      width: Math.min(WIN_DEFAULT_W, window.innerWidth - 16),
+      height: Math.min(WIN_DEFAULT_H, window.innerHeight - 16),
+    };
+  });
+
+  // Persist position and size to localStorage
+  useEffect(() => {
+    localStorage.setItem("vita-theme-editor-pos", JSON.stringify(pos));
+  }, [pos]);
+  useEffect(() => {
+    localStorage.setItem("vita-theme-editor-size", JSON.stringify(size));
+  }, [size]);
 
   const windowRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
