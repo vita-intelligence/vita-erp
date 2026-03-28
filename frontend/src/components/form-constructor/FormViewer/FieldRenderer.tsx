@@ -8,8 +8,8 @@
  */
 
 import { useTranslations } from "next-intl";
-
 import { interpolateText } from "../shared/interpolate";
+import { RichText } from "../shared/RichText";
 import type { FieldElement, FieldRendererProps, FieldType } from "../types";
 import { CalculateRenderer } from "./renderers/CalculateRenderer";
 import { DateTimeRenderer } from "./renderers/DateTimeRenderer";
@@ -95,13 +95,13 @@ export function FieldRenderer(props: FieldRendererWrapperProps) {
     <div className="flex flex-col gap-1.5">
       {/* Label row */}
       <div className="flex items-baseline gap-1">
-        <label
+        <RichText
+          as="label"
+          text={label}
           className="text-sm font-medium"
           style={{ color: "var(--vita-text-primary)" }}
           htmlFor={field.id}
-        >
-          {label}
-        </label>
+        />
         {field.required && !isNonInput && (
           <span
             className="text-xs font-medium"
@@ -114,9 +114,12 @@ export function FieldRenderer(props: FieldRendererWrapperProps) {
 
       {/* Description (for input fields — notes handle their own) */}
       {description && !isNonInput && (
-        <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
-          {description}
-        </p>
+        <RichText
+          as="p"
+          text={description}
+          className="text-xs"
+          style={{ color: "var(--vita-text-muted)" }}
+        />
       )}
 
       {/* Renderer */}

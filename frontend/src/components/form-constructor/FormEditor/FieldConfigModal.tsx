@@ -16,6 +16,7 @@ import { CalculateTab } from "./FieldConfigTabs/CalculateTab";
 import { ConditionsTab } from "./FieldConfigTabs/ConditionsTab";
 import { GeneralTab } from "./FieldConfigTabs/GeneralTab";
 import { OptionsTab } from "./FieldConfigTabs/OptionsTab";
+import { TranslationsTab } from "./FieldConfigTabs/TranslationsTab";
 import { ValidationTab } from "./FieldConfigTabs/ValidationTab";
 
 type FieldConfigModalProps = {
@@ -25,7 +26,13 @@ type FieldConfigModalProps = {
   onClose: () => void;
 };
 
-type TabId = "general" | "options" | "validation" | "conditions" | "calculate";
+type TabId =
+  | "general"
+  | "options"
+  | "validation"
+  | "conditions"
+  | "calculate"
+  | "translations";
 
 export function FieldConfigModal({
   field: initialField,
@@ -53,6 +60,11 @@ export function FieldConfigModal({
       id: "calculate",
       label: t("config.tabs.calculate"),
       show: meta.hasCalculate,
+    },
+    {
+      id: "translations",
+      label: t("config.tabs.translations"),
+      show: true,
     },
   ];
   const tabs = allTabs.filter((tab) => tab.show);
@@ -153,6 +165,13 @@ export function FieldConfigModal({
           )}
           {activeTab === "calculate" && (
             <CalculateTab
+              field={field}
+              onUpdate={handleUpdate}
+              allElements={allElements}
+            />
+          )}
+          {activeTab === "translations" && (
+            <TranslationsTab
               field={field}
               onUpdate={handleUpdate}
               allElements={allElements}

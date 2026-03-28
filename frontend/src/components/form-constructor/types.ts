@@ -59,6 +59,13 @@ export type FieldElement = {
   defaultValue?: string | number;
   /** Display variant — controls how the field renders in the viewer */
   appearance?: FieldAppearance;
+  /** Per-locale translations for label and description */
+  translations?: Record<string, FieldTranslation>;
+};
+
+export type FieldTranslation = {
+  label?: string;
+  description?: string;
 };
 
 // ── Field Appearances ───────────────────────────────────────────────────────
@@ -109,6 +116,8 @@ export type GroupElement = {
   elements: FormElement[];
   /** Repeat configuration — makes this a repeating section */
   repeat?: RepeatConfig;
+  /** Per-locale translations for label and description */
+  translations?: Record<string, FieldTranslation>;
 };
 
 // ── Repeat Groups ───────────────────────────────────────────────────────────

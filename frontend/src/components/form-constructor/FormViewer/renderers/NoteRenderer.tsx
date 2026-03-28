@@ -1,5 +1,6 @@
 "use client";
 
+import { RichText } from "../../shared/RichText";
 import type { FieldRendererProps } from "../../types";
 
 export function NoteRenderer({ field }: FieldRendererProps) {
@@ -12,9 +13,11 @@ export function NoteRenderer({ field }: FieldRendererProps) {
         color: "var(--vita-text-secondary)",
       }}
     >
-      <p className="text-sm leading-relaxed">
-        {field.description || field.label}
-      </p>
+      <RichText
+        as="p"
+        text={field.description || field.label}
+        className="text-sm leading-relaxed"
+      />
     </div>
   );
 }

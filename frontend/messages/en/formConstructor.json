@@ -63,7 +63,8 @@
       "options": "Options",
       "validation": "Validation",
       "conditions": "Conditions",
-      "calculate": "Calculate"
+      "calculate": "Calculate",
+      "translations": "Translations"
     },
     "general": {
       "fieldId": "Field ID",
@@ -175,6 +176,13 @@
       "availableFields": "Available fields",
       "noFieldsAvailable": "No other fields available",
       "availableFunctions": "Available functions"
+    },
+    "translations": {
+      "description": "Add translations for this field's label and description. The default language text is set in the General tab.",
+      "default": "default",
+      "add": "Add language",
+      "remove": "Remove",
+      "empty": "No translations added yet. Add a language to start translating."
     },
     "save": "Save",
     "cancel": "Cancel"

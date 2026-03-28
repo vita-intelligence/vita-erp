@@ -12,12 +12,13 @@
  */
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { evaluateExpression } from "../shared/expression-eval";
+import { resolveFieldText } from "../shared/field-i18n";
 import { getFieldMeta } from "../shared/field-registry";
 import { interpolateText } from "../shared/interpolate";
 import { collectFields } from "../shared/schema-utils";
@@ -44,6 +45,7 @@ type FormViewerProps = {
 
 export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
   const t = useTranslations("formConstructor");
+  const locale = useLocale();
 
   // Build Zod schema and default values from form elements
   const zodSchema = useMemo(
@@ -204,12 +206,16 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
 
   function renderElement(element: FormElement) {
     if (element.kind === "group") {
+      // Resolve per-locale translations for group
+      const groupText = resolveFieldText(element, locale);
+
       // Repeat groups get their own renderer
       if (element.repeat?.enabled) {
+        const translatedGroup = { ...element, ...groupText };
         return (
           <RepeatGroupRenderer
             key={element.id}
-            group={element}
+            group={translatedGroup}
             control={control}
             errors={errors as Record<string, unknown>}
             readOnly={readOnly}
@@ -227,10 +233,10 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
       return (
         <GroupRenderer
           key={element.id}
-          label={interpolateText(element.label, watchedValues, allFields)}
+          label={interpolateText(groupText.label, watchedValues, allFields)}
           description={
-            element.description
-              ? interpolateText(element.description, watchedValues, allFields)
+            groupText.description
+              ? interpolateText(groupText.description, watchedValues, allFields)
               : undefined
           }
         >
@@ -241,6 +247,10 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
 
     // Field element
     if (!checkFieldVisible(element)) return null;
+
+    // Resolve per-locale translations
+    const fieldText = resolveFieldText(element, locale);
+    const translatedField = { ...element, ...fieldText };
 
     const meta = getFieldMeta(element.type);
     const isNonInput = !meta.isInput;
@@ -256,7 +266,7 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
       return (
         <FieldRenderer
           key={element.id}
-          field={element}
+          field={translatedField}
           value={calculatedValue}
           onChange={() => {}}
           onBlur={() => {}}
@@ -274,7 +284,7 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
         control={control}
         render={({ field: formField }) => (
           <FieldRenderer
-            field={element}
+            field={translatedField}
             value={formField.value}
             onChange={formField.onChange}
             onBlur={formField.onBlur}
