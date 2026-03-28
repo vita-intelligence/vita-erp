@@ -293,19 +293,24 @@ function StylingSection({
             {t("config.general.stylingFontSize")}
           </p>
           <select
-            className="w-full"
+            className="w-full appearance-none"
             style={{
-              borderRadius: "var(--vita-input-radius)",
+              WebkitAppearance: "none",
+              borderRadius: "var(--vita-input-radius, 0px)",
               borderWidth: "1px",
               borderStyle: "var(--vita-input-border-style, solid)",
               borderColor: "var(--vita-neutral-200)",
               background: "var(--vita-surface)",
               color: "var(--vita-text-primary)",
               paddingLeft: "var(--vita-input-padding-x, 12px)",
-              paddingRight: "var(--vita-input-padding-x, 12px)",
+              paddingRight: "36px",
               paddingTop: "var(--vita-input-padding-y, 8px)",
               paddingBottom: "var(--vita-input-padding-y, 8px)",
               fontSize: "var(--vita-input-font-size, 14px)",
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "right 10px center",
             }}
             value={s.fontSize ?? ""}
             onChange={(e) => patch({ fontSize: e.target.value || undefined })}
@@ -327,19 +332,24 @@ function StylingSection({
             {t("config.general.stylingFontWeight")}
           </p>
           <select
-            className="w-full"
+            className="w-full appearance-none"
             style={{
-              borderRadius: "var(--vita-input-radius)",
+              WebkitAppearance: "none",
+              borderRadius: "var(--vita-input-radius, 0px)",
               borderWidth: "1px",
               borderStyle: "var(--vita-input-border-style, solid)",
               borderColor: "var(--vita-neutral-200)",
               background: "var(--vita-surface)",
               color: "var(--vita-text-primary)",
               paddingLeft: "var(--vita-input-padding-x, 12px)",
-              paddingRight: "var(--vita-input-padding-x, 12px)",
+              paddingRight: "36px",
               paddingTop: "var(--vita-input-padding-y, 8px)",
               paddingBottom: "var(--vita-input-padding-y, 8px)",
               fontSize: "var(--vita-input-font-size, 14px)",
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "right 10px center",
             }}
             value={s.fontWeight ?? ""}
             onChange={(e) => patch({ fontWeight: e.target.value || undefined })}
