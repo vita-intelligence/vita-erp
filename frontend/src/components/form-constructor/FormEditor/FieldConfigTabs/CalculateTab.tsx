@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl";
 
 import { Label, TextArea, TextField } from "@/components/ui/textarea";
 
+import { EXPRESSION_FUNCTIONS } from "../../shared/expression-eval";
 import { collectFields } from "../../shared/schema-utils";
 import type { ConfigTabProps } from "../../types";
 
@@ -94,6 +95,43 @@ export function CalculateTab({ field, onUpdate, allElements }: ConfigTabProps) {
             ))}
           </div>
         )}
+      </div>
+
+      {/* Available functions reference */}
+      <div className="flex flex-col gap-2">
+        <span
+          className="text-xs font-medium"
+          style={{ color: "var(--vita-text-secondary)" }}
+        >
+          {t("config.calculate.availableFunctions")}
+        </span>
+        <div
+          className="flex max-h-48 flex-col gap-0.5 overflow-y-auto rounded-vita-md p-2"
+          style={{
+            background: "var(--vita-background)",
+            border: "1px solid var(--vita-neutral-200)",
+          }}
+        >
+          {EXPRESSION_FUNCTIONS.map((fn) => (
+            <div key={fn.name} className="flex items-baseline gap-2 py-0.5">
+              <code
+                className="shrink-0 text-[11px]"
+                style={{
+                  color: "var(--vita-primary)",
+                  fontFamily: "monospace",
+                }}
+              >
+                {fn.signature}
+              </code>
+              <span
+                className="truncate text-[11px]"
+                style={{ color: "var(--vita-text-muted)" }}
+              >
+                {fn.description}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

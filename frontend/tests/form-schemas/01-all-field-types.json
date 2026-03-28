@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "name": "All Field Types",
+  "description": "Tests every single field type renders correctly",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "text_field",
+      "type": "text",
+      "label": "Text Field",
+      "description": "A simple text input",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "integer_field",
+      "type": "integer",
+      "label": "Integer Field",
+      "description": "Whole numbers only",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "decimal_field",
+      "type": "decimal",
+      "label": "Decimal Field",
+      "description": "Numbers with decimals",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "select_one_field",
+      "type": "select_one",
+      "label": "Select One",
+      "description": "Pick one option",
+      "required": false,
+      "hidden": false,
+      "options": [
+        { "value": "a", "label": "Option A" },
+        { "value": "b", "label": "Option B" },
+        { "value": "c", "label": "Option C" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "select_multi_field",
+      "type": "select_multiple",
+      "label": "Select Multiple",
+      "description": "Pick one or more",
+      "required": false,
+      "hidden": false,
+      "options": [
+        { "value": "x", "label": "Choice X" },
+        { "value": "y", "label": "Choice Y" },
+        { "value": "z", "label": "Choice Z" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "date_field",
+      "type": "date",
+      "label": "Date Field",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "datetime_field",
+      "type": "datetime",
+      "label": "Date & Time Field",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "time_field",
+      "type": "time",
+      "label": "Time Field",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "file_field",
+      "type": "file",
+      "label": "File Upload",
+      "description": "Any file type",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "image_field",
+      "type": "image",
+      "label": "Image Upload",
+      "description": "Images only",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "signature_field",
+      "type": "signature",
+      "label": "Signature",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "note_field",
+      "type": "note",
+      "label": "Information Note",
+      "description": "This is a read-only note. It displays guidance text to the user but collects no data.",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "calc_field",
+      "type": "calculate",
+      "label": "Calculated Value",
+      "description": "integer + decimal",
+      "required": false,
+      "hidden": false,
+      "calculate": "{integer_field} + {decimal_field}"
+    }
+  ]
+}

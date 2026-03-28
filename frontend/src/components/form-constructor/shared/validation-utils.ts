@@ -5,8 +5,7 @@
 
 import { z } from "zod";
 
-import type { FormElement, RegexRule } from "../types";
-import { collectFields } from "./schema-utils";
+import type { FieldElement, FormElement, RegexRule } from "../types";
 
 // ── Regex Validation ─────────────────────────────────────────────────────────
 
@@ -39,69 +38,102 @@ export function validateRegex(value: string, rule: RegexRule): RegexResult {
 // ── Zod Schema Builder ───────────────────────────────────────────────────────
 
 /**
+ * Build a zod field schema for a single FieldElement.
+ * Returns undefined for non-input fields (note, calculate).
+ */
+function buildFieldSchema(field: FieldElement): z.ZodTypeAny | undefined {
+  if (field.hidden) return undefined;
+
+  switch (field.type) {
+    case "integer":
+      return field.required
+        ? z.preprocess(
+            (v) => (v === "" || v === undefined ? undefined : v),
+            z.coerce.number({ message: "Required" }).int(),
+          )
+        : z.preprocess(
+            (v) => (v === "" || v === undefined ? undefined : v),
+            z.coerce.number().int().optional(),
+          );
+
+    case "decimal":
+      return field.required
+        ? z.preprocess(
+            (v) => (v === "" || v === undefined ? undefined : v),
+            z.coerce.number({ message: "Required" }),
+          )
+        : z.preprocess(
+            (v) => (v === "" || v === undefined ? undefined : v),
+            z.coerce.number().optional(),
+          );
+
+    case "select_multiple":
+      return field.required
+        ? z.array(z.string()).min(1, "Required")
+        : z.array(z.string()).optional();
+
+    case "note":
+    case "calculate":
+      return undefined;
+
+    default: {
+      let s = z.string();
+      if (field.required) s = s.min(1, "Required");
+
+      if (field.regex?.mode === "hard" && field.regex.pattern) {
+        try {
+          s = s.regex(new RegExp(field.regex.pattern), field.regex.message);
+        } catch {
+          // Invalid regex — skip
+        }
+      }
+
+      return field.required ? s : s.optional();
+    }
+  }
+}
+
+/**
  * Build a zod validation schema from form elements.
  *
- * Each FieldElement produces a zod field:
- * - Required fields use z.string().min(1)
- * - Hard regex adds z.regex()
- * - Number types use z.coerce.number()
- * - Non-input fields (note, calculate) are excluded
+ * Handles flat fields, regular groups (fields merged into parent),
+ * and repeat groups (z.array of z.object for child fields).
  */
 export function buildZodSchema(
   elements: FormElement[],
 ): z.ZodObject<Record<string, z.ZodTypeAny>> {
   const shape: Record<string, z.ZodTypeAny> = {};
-  const fields = collectFields(elements);
 
-  for (const field of fields) {
-    if (field.hidden) continue;
-
-    let schema: z.ZodTypeAny;
-
-    switch (field.type) {
-      case "integer":
-        schema = field.required
-          ? z.coerce.number().int({ message: "Required" })
-          : z.coerce.number().int().optional();
-        break;
-
-      case "decimal":
-        schema = field.required
-          ? z.coerce.number({ message: "Required" })
-          : z.coerce.number().optional();
-        break;
-
-      case "select_multiple":
-        schema = field.required
-          ? z.array(z.string()).min(1, "Required")
-          : z.array(z.string()).optional();
-        break;
-
-      case "note":
-      case "calculate":
-        // Non-input fields don't produce form values
-        continue;
-
-      default: {
-        // String-based fields (text, email, phone, date, time, select_one, etc.)
-        let s = z.string();
-        if (field.required) s = s.min(1, "Required");
-
-        // Hard regex validation
-        if (field.regex?.mode === "hard" && field.regex.pattern) {
-          try {
-            s = s.regex(new RegExp(field.regex.pattern), field.regex.message);
-          } catch {
-            // Invalid regex — skip
-          }
-        }
-
-        schema = field.required ? s : s.optional();
-        break;
-      }
+  for (const el of elements) {
+    if (el.kind === "field") {
+      const schema = buildFieldSchema(el);
+      if (schema) shape[el.id] = schema;
+      continue;
     }
 
-    shape[field.id] = schema;
+    // Group element
+    if (el.repeat?.enabled) {
+      // Repeat group → z.array(z.object({ child fields }))
+      const childShape: Record<string, z.ZodTypeAny> = {};
+      for (const child of el.elements) {
+        if (child.kind === "field") {
+          const schema = buildFieldSchema(child);
+          if (schema) childShape[child.id] = schema;
+        }
+      }
+      if (Object.keys(childShape).length > 0) {
+        const min = el.repeat.min ?? 1;
+        shape[el.id] = z.array(z.object(childShape)).min(min);
+      }
+    } else {
+      // Regular group → flatten child fields into parent shape
+      for (const child of el.elements) {
+        if (child.kind === "field") {
+          const schema = buildFieldSchema(child);
+          if (schema) shape[child.id] = schema;
+        }
+      }
+    }
   }
 
   return z.object(shape);

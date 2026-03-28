@@ -19,6 +19,7 @@ import { Controller, useForm, useWatch } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { evaluateExpression } from "../shared/expression-eval";
 import { getFieldMeta } from "../shared/field-registry";
+import { interpolateText } from "../shared/interpolate";
 import { collectFields } from "../shared/schema-utils";
 import { buildZodSchema, validateRegex } from "../shared/validation-utils";
 import type {
@@ -29,6 +30,7 @@ import type {
 } from "../types";
 import { FieldRenderer } from "./FieldRenderer";
 import { GroupRenderer } from "./GroupRenderer";
+import { RepeatGroupRenderer } from "./RepeatGroupRenderer";
 
 // ── Props ────────────────────────────────────────────────────────────────────
 
@@ -51,13 +53,39 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
 
   const defaultValues = useMemo(() => {
     const defaults: Record<string, unknown> = {};
-    const fields = collectFields(schema.elements);
-    for (const field of fields) {
-      if (field.hidden) continue;
-      const meta = getFieldMeta(field.type);
-      if (!meta.isInput) continue;
-      defaults[field.id] = field.type === "select_multiple" ? [] : "";
+
+    for (const el of schema.elements) {
+      if (el.kind === "field") {
+        if (el.hidden) continue;
+        const meta = getFieldMeta(el.type);
+        if (!meta.isInput) continue;
+        defaults[el.id] = el.type === "select_multiple" ? [] : "";
+      } else if (el.repeat?.enabled) {
+        // Repeat group → array of empty instances (start with min or 1)
+        const instanceDefaults: Record<string, unknown> = {};
+        for (const child of el.elements) {
+          if (child.kind !== "field" || child.hidden) continue;
+          const meta = getFieldMeta(child.type);
+          if (!meta.isInput) continue;
+          instanceDefaults[child.id] =
+            child.type === "select_multiple" ? [] : "";
+        }
+        const min = el.repeat.min ?? 1;
+        const initialCount = el.repeat.countFieldId ? 0 : min;
+        defaults[el.id] = Array.from({ length: initialCount }, () => ({
+          ...instanceDefaults,
+        }));
+      } else {
+        // Regular group → flatten children
+        for (const child of el.elements) {
+          if (child.kind !== "field" || child.hidden) continue;
+          const meta = getFieldMeta(child.type);
+          if (!meta.isInput) continue;
+          defaults[child.id] = child.type === "select_multiple" ? [] : "";
+        }
+      }
     }
+
     return defaults;
   }, [schema.elements]);
 
@@ -72,7 +100,29 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
   });
 
   // Watch all form values for visibility conditions and calculations
-  const watchedValues = useWatch({ control }) as Record<string, unknown>;
+  const rawValues = useWatch({ control }) as Record<string, unknown>;
+
+  // ── All fields (for interpolation select label resolution) ─────────────────
+
+  const allFields = useMemo(
+    () => collectFields(schema.elements),
+    [schema.elements],
+  );
+
+  // ── Calculated field values ────────────────────────────────────────────────
+  // Compute ALL calculated fields in order so they can reference each other.
+  // The merged `watchedValues` map is used everywhere (visibility, warnings,
+  // interpolation, and rendering).
+
+  const watchedValues = useMemo(() => {
+    const merged = { ...rawValues };
+    for (const field of allFields) {
+      if (field.type === "calculate" && field.calculate) {
+        merged[field.id] = evaluateExpression(field.calculate, merged);
+      }
+    }
+    return merged;
+  }, [rawValues, allFields]);
 
   // ── Visibility evaluation ──────────────────────────────────────────────────
 
@@ -98,16 +148,6 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
     [watchedValues],
   );
 
-  // ── Calculated field values ────────────────────────────────────────────────
-
-  const getCalculatedValue = useCallback(
-    (field: FieldElement): number | undefined => {
-      if (field.type !== "calculate" || !field.calculate) return undefined;
-      return evaluateExpression(field.calculate, watchedValues);
-    },
-    [watchedValues],
-  );
-
   // ── Submit handler ─────────────────────────────────────────────────────────
 
   const handleFormSubmit = handleSubmit((data) => {
@@ -118,6 +158,21 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
 
   function renderElement(element: FormElement) {
     if (element.kind === "group") {
+      // Repeat groups get their own renderer
+      if (element.repeat?.enabled) {
+        return (
+          <RepeatGroupRenderer
+            key={element.id}
+            group={element}
+            control={control}
+            errors={errors as Record<string, unknown>}
+            readOnly={readOnly}
+            allValues={watchedValues}
+          />
+        );
+      }
+
+      // Regular group
       const visibleChildren = element.elements.filter(
         (child) => child.kind !== "field" || isFieldVisible(child),
       );
@@ -126,8 +181,12 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
       return (
         <GroupRenderer
           key={element.id}
-          label={element.label}
-          description={element.description}
+          label={interpolateText(element.label, watchedValues, allFields)}
+          description={
+            element.description
+              ? interpolateText(element.description, watchedValues, allFields)
+              : undefined
+          }
         >
           {visibleChildren.map(renderElement)}
         </GroupRenderer>
@@ -145,7 +204,7 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
 
     // Non-input fields (note, calculate) don't need form Controller
     if (isNonInput) {
-      const calculatedValue = getCalculatedValue(element);
+      const calculatedValue = watchedValues[element.id] ?? undefined;
       return (
         <FieldRenderer
           key={element.id}
@@ -154,6 +213,8 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
           onChange={() => {}}
           onBlur={() => {}}
           readOnly={readOnly}
+          formValues={watchedValues}
+          allFields={allFields}
         />
       );
     }
@@ -172,6 +233,8 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
             error={errorMessage}
             warning={warning}
             readOnly={readOnly}
+            formValues={watchedValues}
+            allFields={allFields}
           />
         )}
       />
@@ -180,7 +243,6 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
 
   // ── Empty state ────────────────────────────────────────────────────────────
 
-  const allFields = collectFields(schema.elements);
   const hasVisibleFields = allFields.some((f) => !f.hidden);
 
   if (!hasVisibleFields) {

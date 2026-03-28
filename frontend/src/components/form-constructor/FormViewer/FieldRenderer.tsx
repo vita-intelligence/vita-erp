@@ -9,7 +9,8 @@
 
 import { useTranslations } from "next-intl";
 
-import type { FieldRendererProps, FieldType } from "../types";
+import { interpolateText } from "../shared/interpolate";
+import type { FieldElement, FieldRendererProps, FieldType } from "../types";
 import { CalculateRenderer } from "./renderers/CalculateRenderer";
 import { DateTimeRenderer } from "./renderers/DateTimeRenderer";
 import { FileRenderer } from "./renderers/FileRenderer";
@@ -41,17 +42,41 @@ const RENDERER_MAP: Record<
   calculate: CalculateRenderer,
 };
 
+// ── Extended Props ───────────────────────────────────────────────────────────
+
+type FieldRendererWrapperProps = FieldRendererProps & {
+  /** Live form values for ${field_id} interpolation in labels/descriptions */
+  formValues?: Record<string, unknown>;
+  /** All field definitions for resolving select option labels in interpolation */
+  allFields?: FieldElement[];
+};
+
 // ── Component ───────────────────────────────────────────────────────────────
 
-export function FieldRenderer(props: FieldRendererProps) {
+export function FieldRenderer(props: FieldRendererWrapperProps) {
   const t = useTranslations("formConstructor");
-  const { field, error, warning } = props;
+  const { field, error, warning, formValues, allFields } = props;
   const Renderer = RENDERER_MAP[field.type];
 
   if (!Renderer) return null;
 
   // Note and calculate don't need the full label wrapper
   const isNonInput = field.type === "note" || field.type === "calculate";
+
+  // Interpolate ${field_id} references in label and description
+  const label =
+    formValues && field.label
+      ? interpolateText(field.label, formValues, allFields)
+      : field.label;
+  const description =
+    formValues && field.description
+      ? interpolateText(field.description, formValues, allFields)
+      : field.description;
+
+  // Pass interpolated field to all renderers so placeholders/content resolve
+  const rendererProps = formValues
+    ? { ...props, field: { ...field, label, description } }
+    : props;
 
   return (
     <div className="flex flex-col gap-1.5">
@@ -62,7 +87,7 @@ export function FieldRenderer(props: FieldRendererProps) {
           style={{ color: "var(--vita-text-primary)" }}
           htmlFor={field.id}
         >
-          {field.label}
+          {label}
         </label>
         {field.required && !isNonInput && (
           <span
@@ -75,14 +100,14 @@ export function FieldRenderer(props: FieldRendererProps) {
       </div>
 
       {/* Description (for input fields — notes handle their own) */}
-      {field.description && !isNonInput && (
+      {description && !isNonInput && (
         <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
-          {field.description}
+          {description}
         </p>
       )}
 
       {/* Renderer */}
-      <Renderer {...props} />
+      <Renderer {...rendererProps} />
 
       {/* Error message */}
       {error && (

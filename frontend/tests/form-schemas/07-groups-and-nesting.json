@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "name": "Groups and Nesting",
+  "description": "Tests regular groups, groups with descriptions, and groups with visibility on children",
+  "elements": [
+    {
+      "kind": "group",
+      "id": "contact_info",
+      "label": "Contact Information",
+      "description": "Personal and contact details",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "full_name",
+          "type": "text",
+          "label": "Full Name",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "email",
+          "type": "text",
+          "label": "Email Address",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "phone",
+          "type": "text",
+          "label": "Phone Number",
+          "required": false,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "preferences",
+      "label": "Preferences",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "contact_method",
+          "type": "select_one",
+          "label": "Preferred Contact Method",
+          "required": false,
+          "hidden": false,
+          "options": [
+            { "value": "email", "label": "Email" },
+            { "value": "phone", "label": "Phone" },
+            { "value": "mail", "label": "Postal Mail" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "mailing_address",
+          "type": "text",
+          "label": "Mailing Address",
+          "description": "Only visible when contact method is 'Postal Mail'",
+          "required": false,
+          "hidden": false,
+          "visibility": {
+            "fieldId": "contact_method",
+            "operator": "equals",
+            "value": "mail"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "empty_group",
+      "label": "Empty Group",
+      "description": "This group has no fields — tests empty state rendering",
+      "elements": []
+    },
+    {
+      "kind": "field",
+      "id": "standalone",
+      "type": "text",
+      "label": "Standalone Field (outside any group)",
+      "required": false,
+      "hidden": false
+    }
+  ]
+}

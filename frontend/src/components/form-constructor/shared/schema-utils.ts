@@ -75,6 +75,7 @@ export function createGroup(
     label,
     description: undefined,
     elements: [],
+    repeat: undefined,
     ...overrides,
   };
 }

@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "name": "Empty Form",
+  "description": "Tests the empty state — should show 'no fields' message in preview",
+  "elements": []
+}

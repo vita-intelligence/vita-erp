@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "Hidden Fields",
+  "description": "Tests that hidden fields exist in schema but do not render in preview",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "visible_name",
+      "type": "text",
+      "label": "Your Name (visible)",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "tracking_id",
+      "type": "text",
+      "label": "Tracking ID (hidden)",
+      "required": false,
+      "hidden": true
+    },
+    {
+      "kind": "field",
+      "id": "internal_status",
+      "type": "text",
+      "label": "Internal Status (hidden)",
+      "required": false,
+      "hidden": true
+    },
+    {
+      "kind": "field",
+      "id": "visible_email",
+      "type": "text",
+      "label": "Your Email (visible)",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "session_token",
+      "type": "text",
+      "label": "Session Token (hidden)",
+      "required": false,
+      "hidden": true
+    }
+  ]
+}

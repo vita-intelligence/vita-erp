@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "name": "Text Interpolation (Piping)",
+  "description": "Tests ${field_id} references in labels, descriptions, and notes — values update live",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "customer_name",
+      "type": "text",
+      "label": "Customer Name",
+      "description": "Type a name — it will appear in labels below",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "product",
+      "type": "select_one",
+      "label": "Product",
+      "required": false,
+      "hidden": false,
+      "options": [
+        { "value": "widget_a", "label": "Widget A" },
+        { "value": "widget_b", "label": "Widget B" },
+        { "value": "gadget_x", "label": "Gadget X" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "quantity",
+      "type": "integer",
+      "label": "Quantity",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "unit_price",
+      "type": "decimal",
+      "label": "Unit Price ($)",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "total",
+      "type": "calculate",
+      "label": "Total",
+      "required": false,
+      "hidden": false,
+      "calculate": "{quantity} * {unit_price}"
+    },
+    {
+      "kind": "field",
+      "id": "order_summary",
+      "type": "note",
+      "label": "Order Summary",
+      "description": "Dear ${customer_name}, you are ordering ${quantity} units of ${product} at $${unit_price} each. Your total is $${total}.",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "shipping_label",
+      "type": "text",
+      "label": "Shipping address for ${customer_name}",
+      "description": "Where should we ship ${quantity} units of ${product}?",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "group",
+      "id": "confirmation",
+      "label": "Confirmation for ${customer_name}",
+      "description": "Review the details for your ${product} order below",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "confirm_note",
+          "type": "note",
+          "label": "Please confirm",
+          "description": "By proceeding, ${customer_name} agrees to purchase ${quantity} × ${product} for a total of $${total}.",
+          "required": false,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "confirm_signature",
+          "type": "signature",
+          "label": "${customer_name}'s Signature",
+          "required": false,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "colors",
+      "type": "select_multiple",
+      "label": "Colors",
+      "required": false,
+      "hidden": false,
+      "options": [
+        { "value": "red", "label": "Red" },
+        { "value": "blue", "label": "Blue" },
+        { "value": "green", "label": "Green" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "multi_note",
+      "type": "note",
+      "label": "Selected Colors",
+      "description": "You selected: ${colors}",
+      "required": false,
+      "hidden": false
+    }
+  ]
+}

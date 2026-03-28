@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "name": "Calculations — Basic Arithmetic",
+  "description": "Tests basic math operators: +, -, *, /, %, ^",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "a",
+      "type": "decimal",
+      "label": "Value A",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "b",
+      "type": "decimal",
+      "label": "Value B",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "sum",
+      "type": "calculate",
+      "label": "A + B (Addition)",
+      "required": false,
+      "hidden": false,
+      "calculate": "{a} + {b}"
+    },
+    {
+      "kind": "field",
+      "id": "diff",
+      "type": "calculate",
+      "label": "A - B (Subtraction)",
+      "required": false,
+      "hidden": false,
+      "calculate": "{a} - {b}"
+    },
+    {
+      "kind": "field",
+      "id": "product",
+      "type": "calculate",
+      "label": "A * B (Multiplication)",
+      "required": false,
+      "hidden": false,
+      "calculate": "{a} * {b}"
+    },
+    {
+      "kind": "field",
+      "id": "quotient",
+      "type": "calculate",
+      "label": "A / B (Division)",
+      "required": false,
+      "hidden": false,
+      "calculate": "{a} / {b}"
+    },
+    {
+      "kind": "field",
+      "id": "remainder",
+      "type": "calculate",
+      "label": "A % B (Modulo)",
+      "required": false,
+      "hidden": false,
+      "calculate": "{a} % {b}"
+    },
+    {
+      "kind": "field",
+      "id": "power",
+      "type": "calculate",
+      "label": "A ^ B (Exponentiation)",
+      "required": false,
+      "hidden": false,
+      "calculate": "{a} ^ {b}"
+    },
+    {
+      "kind": "field",
+      "id": "complex",
+      "type": "calculate",
+      "label": "Complex: (A + B) * 2 - A / 4",
+      "required": false,
+      "hidden": false,
+      "calculate": "({a} + {b}) * 2 - {a} / 4"
+    }
+  ]
+}

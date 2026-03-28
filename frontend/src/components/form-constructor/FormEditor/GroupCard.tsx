@@ -10,11 +10,15 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import {
+  ArrowDown,
+  ArrowUp,
   ChevronDown,
   ChevronUp,
   FolderOpen,
   GripVertical,
+  Pencil,
   Plus,
+  Repeat,
   Trash2,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -30,6 +34,7 @@ type GroupCardProps = {
   total: number;
   allElements: FormElement[];
   onEdit: (field: FieldElement) => void;
+  onEditGroup: () => void;
   onDelete: () => void;
   onMove: (direction: "up" | "down") => void;
   onAddField: () => void;
@@ -46,6 +51,7 @@ export function GroupCard({
   index,
   total,
   onEdit,
+  onEditGroup,
   onDelete,
   onMove,
   onAddField,
@@ -96,11 +102,10 @@ export function GroupCard({
       <div
         className="flex items-center gap-2 px-3 py-2.5"
         style={{
-          borderBottom: collapsed
-            ? "none"
-            : "1px solid var(--vita-neutral-200)",
+          borderBottomWidth: collapsed ? "0px" : "1px",
+          borderBottomStyle: "solid",
+          borderBottomColor: "var(--vita-neutral-200)",
           background: "var(--vita-neutral-50)",
-          borderColor: "var(--vita-neutral-200)",
         }}
       >
         {/* Drag handle */}
@@ -128,6 +133,20 @@ export function GroupCard({
           {group.label}
         </p>
 
+        {/* Repeat badge */}
+        {group.repeat?.enabled && (
+          <span
+            className="flex shrink-0 items-center gap-1 rounded-vita-sm px-1.5 py-0.5 text-xs font-medium"
+            style={{
+              background: "var(--vita-info-light, var(--vita-neutral-100))",
+              color: "var(--vita-info, var(--vita-primary))",
+            }}
+          >
+            <Repeat size={10} />
+            {t("repeat.badge")}
+          </span>
+        )}
+
         {/* Field count */}
         <span
           className="shrink-0 text-xs"
@@ -136,7 +155,7 @@ export function GroupCard({
           {group.elements.length}
         </span>
 
-        {/* Collapse toggle */}
+        {/* Collapse / expand */}
         <button
           type="button"
           className="flex h-6 w-6 items-center justify-center rounded-vita-sm"
@@ -147,7 +166,17 @@ export function GroupCard({
           {collapsed ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
         </button>
 
-        {/* Move up/down */}
+        {/* Separator */}
+        <span
+          className="h-4"
+          style={{
+            borderLeftWidth: "1px",
+            borderLeftStyle: "solid",
+            borderLeftColor: "var(--vita-neutral-200)",
+          }}
+        />
+
+        {/* Move up */}
         <button
           type="button"
           className="flex h-6 w-6 items-center justify-center rounded-vita-sm"
@@ -161,8 +190,10 @@ export function GroupCard({
           title={t("fieldCard.moveUp")}
           onClick={() => onMove("up")}
         >
-          <ChevronUp size={12} />
+          <ArrowUp size={12} />
         </button>
+
+        {/* Move down */}
         <button
           type="button"
           className="flex h-6 w-6 items-center justify-center rounded-vita-sm"
@@ -176,7 +207,18 @@ export function GroupCard({
           title={t("fieldCard.moveDown")}
           onClick={() => onMove("down")}
         >
-          <ChevronDown size={12} />
+          <ArrowDown size={12} />
+        </button>
+
+        {/* Edit group settings */}
+        <button
+          type="button"
+          className="flex h-6 w-6 items-center justify-center rounded-vita-sm"
+          style={{ color: "var(--vita-primary)" }}
+          title={t("fieldCard.edit")}
+          onClick={onEditGroup}
+        >
+          <Pencil size={12} />
         </button>
 
         {/* Delete group */}

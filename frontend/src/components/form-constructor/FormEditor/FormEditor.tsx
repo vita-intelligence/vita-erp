@@ -31,6 +31,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormViewer } from "../FormViewer/FormViewer";
 import {
+  collectFields,
   createEmptySchema,
   createField,
   createGroup,
@@ -41,6 +42,8 @@ import type {
   FieldType,
   FormElement,
   FormSchema,
+  GroupElement,
+  RepeatConfig,
 } from "../types";
 import { AddFieldModal } from "./AddFieldModal";
 import { DropZone, parseDropZoneId } from "./DropZone";
@@ -90,6 +93,7 @@ export function FormEditor({
     hidden?: boolean;
   }>({});
   const [configField, setConfigField] = useState<FieldElement | null>(null);
+  const [configGroup, setConfigGroup] = useState<GroupElement | null>(null);
   const [addGroupModalOpen, setAddGroupModalOpen] = useState(false);
   const [isDragActive, setIsDragActive] = useState(false);
   const [activeDragId, setActiveDragId] = useState<string | null>(null);
@@ -170,8 +174,8 @@ export function FormEditor({
     setConfigField(field);
   }
 
-  function addGroup(label: string) {
-    const group = createGroup(label);
+  function addGroup(label: string, repeat?: RepeatConfig) {
+    const group = createGroup(label, repeat?.enabled ? { repeat } : undefined);
     updateElements((els) => [...els, group]);
   }
 
@@ -189,6 +193,14 @@ export function FormEditor({
 
   function updateField(updated: FieldElement) {
     updateElements((els) => updateInList(els, updated));
+  }
+
+  function updateGroup(updated: GroupElement) {
+    updateElements((els) =>
+      els.map((el) =>
+        el.kind === "group" && el.id === updated.id ? updated : el,
+      ),
+    );
   }
 
   // ── DnD ────────────────────────────────────────────────────────────────────
@@ -338,6 +350,7 @@ export function FormEditor({
                       isDragActive={isDragActive}
                       activeDragId={activeDragId}
                       onEdit={(field) => setConfigField(field)}
+                      onEditGroup={() => setConfigGroup(element)}
                       onDelete={() => removeElement(element.id)}
                       onMove={(dir) => moveElement(element.id, dir)}
                       onAddField={() => {
@@ -480,9 +493,10 @@ export function FormEditor({
       {/* Add group modal — simple inline prompt */}
       {addGroupModalOpen && (
         <AddGroupInlineModal
+          schema={schema}
           onClose={() => setAddGroupModalOpen(false)}
-          onAdd={(label) => {
-            addGroup(label);
+          onAdd={(label, repeat) => {
+            addGroup(label, repeat);
             setAddGroupModalOpen(false);
           }}
         />
@@ -500,21 +514,79 @@ export function FormEditor({
           onClose={() => setConfigField(null)}
         />
       )}
+
+      {/* Group config modal */}
+      {configGroup && (
+        <GroupConfigModal
+          group={configGroup}
+          schema={schema}
+          onSave={(updated) => {
+            updateGroup(updated);
+            setConfigGroup(null);
+          }}
+          onClose={() => setConfigGroup(null)}
+        />
+      )}
     </div>
   );
 }
 
-// ── Add Group Inline Modal ───────────────────────────────────────────────────
+// ── Group Config Modal ──────────────────────────────────────────────────────
 
-function AddGroupInlineModal({
+function GroupConfigModal({
+  group,
+  schema,
+  onSave,
   onClose,
-  onAdd,
 }: {
+  group: GroupElement;
+  schema: FormSchema;
+  onSave: (updated: GroupElement) => void;
   onClose: () => void;
-  onAdd: (label: string) => void;
 }) {
   const t = useTranslations("formConstructor");
-  const [label, setLabel] = useState("");
+  const [label, setLabel] = useState(group.label);
+  const [description, setDescription] = useState(group.description ?? "");
+  const [repeatEnabled, setRepeatEnabled] = useState(
+    group.repeat?.enabled ?? false,
+  );
+  const [repeatMode, setRepeatMode] = useState<"open" | "fixed">(
+    group.repeat?.countFieldId ? "fixed" : "open",
+  );
+  const [countFieldId, setCountFieldId] = useState(
+    group.repeat?.countFieldId ?? "",
+  );
+  const [minInstances, setMinInstances] = useState(
+    String(group.repeat?.min ?? 1),
+  );
+  const [maxInstances, setMaxInstances] = useState(
+    group.repeat?.max ? String(group.repeat.max) : "",
+  );
+
+  const integerFields = collectFields(schema.elements).filter(
+    (f) => f.type === "integer" && !f.hidden,
+  );
+
+  function handleSave() {
+    const repeat: RepeatConfig | undefined = repeatEnabled
+      ? {
+          enabled: true,
+          countFieldId:
+            repeatMode === "fixed" && countFieldId ? countFieldId : undefined,
+          min: Number.parseInt(minInstances, 10) || 1,
+          max: maxInstances
+            ? Number.parseInt(maxInstances, 10) || undefined
+            : undefined,
+        }
+      : undefined;
+
+    onSave({
+      ...group,
+      label: label.trim() || group.label,
+      description: description.trim() || undefined,
+      repeat,
+    });
+  }
 
   return (
     <div
@@ -524,29 +596,388 @@ function AddGroupInlineModal({
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: modal content */}
       <div
         role="dialog"
-        className="rounded-vita-xl p-6 shadow-lg"
+        className="flex flex-col gap-4 rounded-vita-xl p-6 shadow-lg"
         style={{
           background: "var(--vita-surface)",
           border: "1px solid var(--vita-neutral-200)",
-          width: "min(420px, 90vw)",
+          width: "min(480px, 90vw)",
+          maxHeight: "85vh",
+          overflowY: "auto",
         }}
         onClick={(e) => e.stopPropagation()}
       >
         <p
-          className="mb-3 text-sm font-semibold"
+          className="text-sm font-semibold"
           style={{ color: "var(--vita-text-primary)" }}
         >
-          {t("addGroupModal.labelPrompt")}
+          {t("config.title")}
         </p>
-        <Input
-          className="mb-4"
-          placeholder={t("addGroupModal.labelPlaceholder")}
-          value={label}
-          onChange={(e) => setLabel(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && label.trim()) onAdd(label.trim());
+
+        {/* Label */}
+        <div>
+          <p
+            className="mb-1 text-xs font-medium"
+            style={{ color: "var(--vita-text-secondary)" }}
+          >
+            {t("config.general.label")}
+          </p>
+          <Input
+            value={label}
+            onChange={(e) => setLabel(e.target.value)}
+            placeholder={t("addGroupModal.labelPlaceholder")}
+          />
+        </div>
+
+        {/* Description */}
+        <div>
+          <p
+            className="mb-1 text-xs font-medium"
+            style={{ color: "var(--vita-text-secondary)" }}
+          >
+            {t("config.general.description")}
+          </p>
+          <Input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder={t("config.general.descriptionPlaceholder")}
+          />
+        </div>
+
+        {/* Repeat config */}
+        <div
+          className="flex flex-col gap-3 rounded-vita-lg p-3"
+          style={{
+            border: "1px solid var(--vita-neutral-200)",
+            background: "var(--vita-background)",
           }}
-        />
+        >
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={repeatEnabled}
+              onChange={(e) => setRepeatEnabled(e.target.checked)}
+            />
+            <span
+              className="text-sm font-medium"
+              style={{ color: "var(--vita-text-primary)" }}
+            >
+              {t("addGroupModal.repeatToggle")}
+            </span>
+          </label>
+
+          {repeatEnabled && (
+            <div className="flex flex-col gap-3 pt-1">
+              <div className="flex gap-3">
+                <label className="flex items-center gap-1.5">
+                  <input
+                    type="radio"
+                    name="editRepeatMode"
+                    checked={repeatMode === "open"}
+                    onChange={() => setRepeatMode("open")}
+                  />
+                  <span
+                    className="text-xs"
+                    style={{ color: "var(--vita-text-primary)" }}
+                  >
+                    {t("addGroupModal.repeatOpenEnded")}
+                  </span>
+                </label>
+                <label className="flex items-center gap-1.5">
+                  <input
+                    type="radio"
+                    name="editRepeatMode"
+                    checked={repeatMode === "fixed"}
+                    onChange={() => setRepeatMode("fixed")}
+                  />
+                  <span
+                    className="text-xs"
+                    style={{ color: "var(--vita-text-primary)" }}
+                  >
+                    {t("addGroupModal.repeatFixedCount")}
+                  </span>
+                </label>
+              </div>
+
+              {repeatMode === "fixed" ? (
+                <div>
+                  <p
+                    className="mb-1 text-xs"
+                    style={{ color: "var(--vita-text-muted)" }}
+                  >
+                    {t("addGroupModal.repeatCountField")}
+                  </p>
+                  <select
+                    className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
+                    style={{
+                      borderColor: "var(--vita-neutral-200)",
+                      background: "var(--vita-surface)",
+                      color: "var(--vita-text-primary)",
+                    }}
+                    value={countFieldId}
+                    onChange={(e) => setCountFieldId(e.target.value)}
+                  >
+                    <option value="">
+                      {t("addGroupModal.repeatCountFieldPlaceholder")}
+                    </option>
+                    {integerFields.map((f) => (
+                      <option key={f.id} value={f.id}>
+                        {f.label} ({f.id})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ) : (
+                <div className="flex gap-3">
+                  <div className="flex-1">
+                    <p
+                      className="mb-1 text-xs"
+                      style={{ color: "var(--vita-text-muted)" }}
+                    >
+                      {t("addGroupModal.repeatMin")}
+                    </p>
+                    <Input
+                      type="number"
+                      min={0}
+                      value={minInstances}
+                      onChange={(e) => setMinInstances(e.target.value)}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <p
+                      className="mb-1 text-xs"
+                      style={{ color: "var(--vita-text-muted)" }}
+                    >
+                      {t("addGroupModal.repeatMax")}
+                    </p>
+                    <Input
+                      type="number"
+                      min={0}
+                      placeholder={t("addGroupModal.repeatMaxPlaceholder")}
+                      value={maxInstances}
+                      onChange={(e) => setMaxInstances(e.target.value)}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Actions */}
+        <div className="flex justify-end gap-2">
+          <Button size="sm" variant="outline" onPress={onClose}>
+            {t("config.cancel")}
+          </Button>
+          <Button size="sm" variant="primary" onPress={handleSave}>
+            {t("config.save")}
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Add Group Inline Modal ───────────────────────────────────────────────────
+
+function AddGroupInlineModal({
+  schema,
+  onClose,
+  onAdd,
+}: {
+  schema: FormSchema;
+  onClose: () => void;
+  onAdd: (label: string, repeat?: RepeatConfig) => void;
+}) {
+  const t = useTranslations("formConstructor");
+  const [label, setLabel] = useState("");
+  const [repeatEnabled, setRepeatEnabled] = useState(false);
+  const [repeatMode, setRepeatMode] = useState<"open" | "fixed">("open");
+  const [countFieldId, setCountFieldId] = useState("");
+  const [minInstances, setMinInstances] = useState("1");
+  const [maxInstances, setMaxInstances] = useState("");
+
+  // Collect integer fields for the fixed-count dropdown
+  const integerFields = collectFields(schema.elements).filter(
+    (f) => f.type === "integer" && !f.hidden,
+  );
+
+  function handleCreate() {
+    if (!label.trim()) return;
+    const repeat: RepeatConfig | undefined = repeatEnabled
+      ? {
+          enabled: true,
+          countFieldId:
+            repeatMode === "fixed" && countFieldId ? countFieldId : undefined,
+          min: Number.parseInt(minInstances, 10) || 1,
+          max: maxInstances
+            ? Number.parseInt(maxInstances, 10) || undefined
+            : undefined,
+        }
+      : undefined;
+    onAdd(label.trim(), repeat);
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{ background: "oklch(0 0 0 / 0.4)" }}
+    >
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: modal content */}
+      <div
+        role="dialog"
+        className="flex flex-col gap-4 rounded-vita-xl p-6 shadow-lg"
+        style={{
+          background: "var(--vita-surface)",
+          border: "1px solid var(--vita-neutral-200)",
+          width: "min(480px, 90vw)",
+          maxHeight: "85vh",
+          overflowY: "auto",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Group name */}
+        <div>
+          <p
+            className="mb-2 text-sm font-semibold"
+            style={{ color: "var(--vita-text-primary)" }}
+          >
+            {t("addGroupModal.labelPrompt")}
+          </p>
+          <Input
+            placeholder={t("addGroupModal.labelPlaceholder")}
+            value={label}
+            onChange={(e) => setLabel(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && label.trim()) handleCreate();
+            }}
+          />
+        </div>
+
+        {/* Repeat toggle */}
+        <div
+          className="flex flex-col gap-3 rounded-vita-lg p-3"
+          style={{
+            border: "1px solid var(--vita-neutral-200)",
+            background: "var(--vita-background)",
+          }}
+        >
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={repeatEnabled}
+              onChange={(e) => setRepeatEnabled(e.target.checked)}
+            />
+            <span
+              className="text-sm font-medium"
+              style={{ color: "var(--vita-text-primary)" }}
+            >
+              {t("addGroupModal.repeatToggle")}
+            </span>
+          </label>
+          <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
+            {t("addGroupModal.repeatHint")}
+          </p>
+
+          {repeatEnabled && (
+            <div className="flex flex-col gap-3 pt-1">
+              {/* Repeat mode selector */}
+              <div className="flex gap-3">
+                <label className="flex items-center gap-1.5">
+                  <input
+                    type="radio"
+                    name="repeatMode"
+                    checked={repeatMode === "open"}
+                    onChange={() => setRepeatMode("open")}
+                  />
+                  <span
+                    className="text-xs"
+                    style={{ color: "var(--vita-text-primary)" }}
+                  >
+                    {t("addGroupModal.repeatOpenEnded")}
+                  </span>
+                </label>
+                <label className="flex items-center gap-1.5">
+                  <input
+                    type="radio"
+                    name="repeatMode"
+                    checked={repeatMode === "fixed"}
+                    onChange={() => setRepeatMode("fixed")}
+                  />
+                  <span
+                    className="text-xs"
+                    style={{ color: "var(--vita-text-primary)" }}
+                  >
+                    {t("addGroupModal.repeatFixedCount")}
+                  </span>
+                </label>
+              </div>
+
+              {repeatMode === "fixed" ? (
+                <div>
+                  <p
+                    className="mb-1 text-xs"
+                    style={{ color: "var(--vita-text-muted)" }}
+                  >
+                    {t("addGroupModal.repeatCountField")}
+                  </p>
+                  <select
+                    className="w-full rounded-vita-md border px-2 py-1.5 text-xs"
+                    style={{
+                      borderColor: "var(--vita-neutral-200)",
+                      background: "var(--vita-surface)",
+                      color: "var(--vita-text-primary)",
+                    }}
+                    value={countFieldId}
+                    onChange={(e) => setCountFieldId(e.target.value)}
+                  >
+                    <option value="">
+                      {t("addGroupModal.repeatCountFieldPlaceholder")}
+                    </option>
+                    {integerFields.map((f) => (
+                      <option key={f.id} value={f.id}>
+                        {f.label} ({f.id})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ) : (
+                <div className="flex gap-3">
+                  <div className="flex-1">
+                    <p
+                      className="mb-1 text-xs"
+                      style={{ color: "var(--vita-text-muted)" }}
+                    >
+                      {t("addGroupModal.repeatMin")}
+                    </p>
+                    <Input
+                      type="number"
+                      min={0}
+                      value={minInstances}
+                      onChange={(e) => setMinInstances(e.target.value)}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <p
+                      className="mb-1 text-xs"
+                      style={{ color: "var(--vita-text-muted)" }}
+                    >
+                      {t("addGroupModal.repeatMax")}
+                    </p>
+                    <Input
+                      type="number"
+                      min={0}
+                      placeholder={t("addGroupModal.repeatMaxPlaceholder")}
+                      value={maxInstances}
+                      onChange={(e) => setMaxInstances(e.target.value)}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Actions */}
         <div className="flex justify-end gap-2">
           <Button size="sm" variant="outline" onPress={onClose}>
             {t("addGroupModal.cancel")}
@@ -554,7 +985,7 @@ function AddGroupInlineModal({
           <Button
             size="sm"
             variant="primary"
-            onPress={() => label.trim() && onAdd(label.trim())}
+            onPress={handleCreate}
             isDisabled={!label.trim()}
           >
             {t("addGroupModal.create")}

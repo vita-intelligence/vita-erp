@@ -31,7 +31,19 @@
     "labelPrompt": "What name should this group have?",
     "labelPlaceholder": "Group name",
     "cancel": "Cancel",
-    "create": "Create group"
+    "create": "Create group",
+    "repeatToggle": "Repeating group",
+    "repeatHint": "Allow multiple instances of this group (e.g., line items, samples)",
+    "repeatMode": "Repeat mode",
+    "repeatOpenEnded": "Open-ended",
+    "repeatOpenEndedHint": "User adds/removes instances manually",
+    "repeatFixedCount": "Fixed count",
+    "repeatFixedCountHint": "Number of instances determined by another field",
+    "repeatCountField": "Count field",
+    "repeatCountFieldPlaceholder": "Select an integer field",
+    "repeatMin": "Minimum instances",
+    "repeatMax": "Maximum instances",
+    "repeatMaxPlaceholder": "No limit"
   },
   "fieldCard": {
     "edit": "Edit",
@@ -122,11 +134,12 @@
       "title": "Calculation expression",
       "description": "Reference other fields using {field_id} syntax",
       "expression": "Expression",
-      "expressionPlaceholder": "{quantity} * {unit_price}",
+      "expressionPlaceholder": "'{'quantity'}' * '{'unit_price'}'",
       "preview": "Result preview",
-      "syntaxHint": "Use {field_id} to reference other fields. Supports +, -, *, /, and parentheses.",
+      "syntaxHint": "Use '{'field_id'}' to reference other fields. Supports +, -, *, /, %, ^ operators, comparisons (>, <, ==, !=), and functions like round(), if(), min(), max().",
       "availableFields": "Available fields",
-      "noFieldsAvailable": "No other fields available"
+      "noFieldsAvailable": "No other fields available",
+      "availableFunctions": "Available functions"
     },
     "save": "Save",
     "cancel": "Cancel"
@@ -174,5 +187,13 @@
     "collapse": "Collapse",
     "expand": "Expand",
     "emptyGroup": "No fields in this group"
+  },
+  "repeat": {
+    "badge": "Repeating",
+    "instanceTitle": "{label} #{number}",
+    "addInstance": "Add another",
+    "removeInstance": "Remove",
+    "emptyRepeat": "No entries yet. Click \"Add another\" to start.",
+    "fixedCount": "Instances controlled by field: {fieldLabel}"
   }
 }

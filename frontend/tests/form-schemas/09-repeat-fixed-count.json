@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "name": "Repeat Groups — Fixed Count",
+  "description": "Number of instances controlled by an integer field — change the number and watch instances appear/disappear",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "num_items",
+      "type": "integer",
+      "label": "How many line items?",
+      "description": "Enter a number (e.g., 3) — that many line item rows will appear below",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "group",
+      "id": "line_items",
+      "label": "Line Items",
+      "description": "One row per item — count syncs with the field above",
+      "repeat": {
+        "enabled": true,
+        "countFieldId": "num_items",
+        "min": 0
+      },
+      "elements": [
+        {
+          "kind": "field",
+          "id": "item_name",
+          "type": "text",
+          "label": "Item Name",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "item_qty",
+          "type": "integer",
+          "label": "Quantity",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "item_price",
+          "type": "decimal",
+          "label": "Unit Price",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "item_total",
+          "type": "calculate",
+          "label": "Line Total",
+          "required": false,
+          "hidden": false,
+          "calculate": "{item_qty} * {item_price}"
+        }
+      ]
+    }
+  ]
+}

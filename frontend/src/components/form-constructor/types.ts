@@ -63,6 +63,25 @@ export type GroupElement = {
   description?: string;
   /** Nested elements within this group */
   elements: FormElement[];
+  /** Repeat configuration — makes this a repeating section */
+  repeat?: RepeatConfig;
+};
+
+// ── Repeat Groups ───────────────────────────────────────────────────────────
+
+export type RepeatConfig = {
+  /** Whether this group repeats */
+  enabled: boolean;
+  /**
+   * Fixed-count mode: ID of an integer field whose value determines
+   * the number of instances. When absent, the repeat is open-ended
+   * (user adds/removes instances manually).
+   */
+  countFieldId?: string;
+  /** Minimum instances for open-ended repeats (default: 1) */
+  min?: number;
+  /** Maximum instances for open-ended repeats (default: unlimited) */
+  max?: number;
 };
 
 // ── Field Types ──────────────────────────────────────────────────────────────

@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "name": "Manufacturing Quality Inspection",
+  "description": "Real-world scenario: full inspection form with repeat groups, conditional logic, calculations, and all field types",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "inspector",
+      "type": "text",
+      "label": "Inspector Name",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "inspection_date",
+      "type": "datetime",
+      "label": "Inspection Date & Time",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "batch_code",
+      "type": "text",
+      "label": "Batch Code",
+      "description": "Format: ABC-1234",
+      "required": true,
+      "hidden": false,
+      "regex": {
+        "pattern": "^[A-Z]{3}-[0-9]{4}$",
+        "mode": "hard",
+        "message": "Must match format: ABC-1234"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "product_type",
+      "type": "select_one",
+      "label": "Product Type",
+      "required": true,
+      "hidden": false,
+      "options": [
+        { "value": "metal", "label": "Metal Parts" },
+        { "value": "plastic", "label": "Plastic Components" },
+        { "value": "assembly", "label": "Final Assembly" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "num_samples",
+      "type": "integer",
+      "label": "Number of Samples Tested",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "group",
+      "id": "samples",
+      "label": "Sample Measurements",
+      "repeat": {
+        "enabled": true,
+        "countFieldId": "num_samples",
+        "min": 0
+      },
+      "elements": [
+        {
+          "kind": "field",
+          "id": "dimension_mm",
+          "type": "decimal",
+          "label": "Dimension (mm)",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "weight_g",
+          "type": "decimal",
+          "label": "Weight (g)",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "surface_quality",
+          "type": "select_one",
+          "label": "Surface Quality",
+          "required": true,
+          "hidden": false,
+          "options": [
+            { "value": "excellent", "label": "Excellent" },
+            { "value": "good", "label": "Good" },
+            { "value": "fair", "label": "Fair" },
+            { "value": "poor", "label": "Poor" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "sample_photo",
+          "type": "image",
+          "label": "Sample Photo",
+          "required": false,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "defects",
+      "label": "Defects Found",
+      "description": "Log each defect separately",
+      "repeat": {
+        "enabled": true,
+        "min": 0,
+        "max": 50
+      },
+      "elements": [
+        {
+          "kind": "field",
+          "id": "defect_type",
+          "type": "select_one",
+          "label": "Defect Type",
+          "required": true,
+          "hidden": false,
+          "options": [
+            { "value": "scratch", "label": "Surface Scratch" },
+            { "value": "dent", "label": "Dent" },
+            { "value": "crack", "label": "Crack" },
+            { "value": "discolor", "label": "Discoloration" },
+            { "value": "dimension", "label": "Out of Spec" },
+            { "value": "other", "label": "Other" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "defect_severity",
+          "type": "select_one",
+          "label": "Severity",
+          "required": true,
+          "hidden": false,
+          "options": [
+            { "value": "minor", "label": "Minor" },
+            { "value": "major", "label": "Major" },
+            { "value": "critical", "label": "Critical" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "defect_desc",
+          "type": "text",
+          "label": "Description",
+          "required": false,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "defect_photo",
+          "type": "image",
+          "label": "Defect Photo",
+          "required": false,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "cost_summary",
+      "label": "Cost Summary",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "units_produced",
+          "type": "integer",
+          "label": "Units Produced",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "units_rejected",
+          "type": "integer",
+          "label": "Units Rejected",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "yield_rate",
+          "type": "calculate",
+          "label": "Yield Rate (%)",
+          "required": false,
+          "hidden": false,
+          "calculate": "if({units_produced} > 0, round(({units_produced} - {units_rejected}) / {units_produced} * 100, 1), 0)"
+        },
+        {
+          "kind": "field",
+          "id": "unit_cost",
+          "type": "decimal",
+          "label": "Unit Cost ($)",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "scrap_cost",
+          "type": "calculate",
+          "label": "Scrap Cost ($)",
+          "required": false,
+          "hidden": false,
+          "calculate": "round({units_rejected} * {unit_cost}, 2)"
+        },
+        {
+          "kind": "field",
+          "id": "total_cost",
+          "type": "calculate",
+          "label": "Total Production Cost ($)",
+          "required": false,
+          "hidden": false,
+          "calculate": "round({units_produced} * {unit_cost}, 2)"
+        }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "result",
+      "type": "select_one",
+      "label": "Inspection Result",
+      "required": true,
+      "hidden": false,
+      "options": [
+        { "value": "pass", "label": "Pass" },
+        { "value": "conditional", "label": "Conditional Pass" },
+        { "value": "fail", "label": "Fail" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "fail_reason",
+      "type": "text",
+      "label": "Failure Reason",
+      "description": "Required when result is Fail",
+      "required": true,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "result",
+        "operator": "equals",
+        "value": "fail"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "corrective_action",
+      "type": "text",
+      "label": "Corrective Action Required",
+      "description": "Appears for Conditional Pass or Fail",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "result",
+        "operator": "not_equals",
+        "value": "pass"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "report_attachment",
+      "type": "file",
+      "label": "Supporting Document",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "info_note",
+      "type": "note",
+      "label": "Confirmation",
+      "description": "By signing below, I confirm that this inspection report is accurate and complete.",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "signature",
+      "type": "signature",
+      "label": "Inspector Signature",
+      "required": true,
+      "hidden": false
+    }
+  ]
+}

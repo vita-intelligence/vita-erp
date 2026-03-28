@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "name": "Repeat Groups — Open-Ended",
+  "description": "User adds/removes instances manually with min/max constraints",
+  "elements": [
+    {
+      "kind": "group",
+      "id": "contacts",
+      "label": "Emergency Contacts",
+      "description": "Add at least 1, up to 5 emergency contacts",
+      "repeat": {
+        "enabled": true,
+        "min": 1,
+        "max": 5
+      },
+      "elements": [
+        {
+          "kind": "field",
+          "id": "contact_name",
+          "type": "text",
+          "label": "Contact Name",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "relationship",
+          "type": "select_one",
+          "label": "Relationship",
+          "required": true,
+          "hidden": false,
+          "options": [
+            { "value": "spouse", "label": "Spouse" },
+            { "value": "parent", "label": "Parent" },
+            { "value": "sibling", "label": "Sibling" },
+            { "value": "friend", "label": "Friend" },
+            { "value": "other", "label": "Other" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "contact_phone",
+          "type": "text",
+          "label": "Phone Number",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "other_relationship",
+          "type": "text",
+          "label": "Specify Relationship",
+          "description": "Visible only when 'Other' is selected",
+          "required": false,
+          "hidden": false,
+          "visibility": {
+            "fieldId": "relationship",
+            "operator": "equals",
+            "value": "other"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "no_limit",
+      "label": "Open Notes",
+      "description": "Unlimited instances, minimum 0",
+      "repeat": {
+        "enabled": true,
+        "min": 0
+      },
+      "elements": [
+        {
+          "kind": "field",
+          "id": "note_title",
+          "type": "text",
+          "label": "Title",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "note_body",
+          "type": "text",
+          "label": "Content",
+          "required": false,
+          "hidden": false
+        }
+      ]
+    }
+  ]
+}

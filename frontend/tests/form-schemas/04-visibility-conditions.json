@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "name": "Visibility Conditions",
+  "description": "Tests all visibility operators — fields appear/disappear based on other field values",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "trigger_select",
+      "type": "select_one",
+      "label": "Select a category",
+      "description": "Changes which fields appear below",
+      "required": false,
+      "hidden": false,
+      "options": [
+        { "value": "electronics", "label": "Electronics" },
+        { "value": "clothing", "label": "Clothing" },
+        { "value": "food", "label": "Food" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "voltage",
+      "type": "decimal",
+      "label": "Operating Voltage",
+      "description": "Visible when category EQUALS 'electronics'",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "trigger_select",
+        "operator": "equals",
+        "value": "electronics"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "fabric",
+      "type": "text",
+      "label": "Fabric Type",
+      "description": "Visible when category EQUALS 'clothing'",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "trigger_select",
+        "operator": "equals",
+        "value": "clothing"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "expiry",
+      "type": "date",
+      "label": "Expiry Date",
+      "description": "Visible when category EQUALS 'food'",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "trigger_select",
+        "operator": "equals",
+        "value": "food"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "general_notes",
+      "type": "text",
+      "label": "General Notes",
+      "description": "Visible when category is NOT EQUAL to 'food' (hidden for food)",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "trigger_select",
+        "operator": "not_equals",
+        "value": "food"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "trigger_text",
+      "type": "text",
+      "label": "Enter a search term",
+      "description": "Used to test CONTAINS, IS_EMPTY, IS_NOT_EMPTY operators below",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "contains_result",
+      "type": "note",
+      "label": "Contains 'urgent'",
+      "description": "This note appears when the search term CONTAINS 'urgent'",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "trigger_text",
+        "operator": "contains",
+        "value": "urgent"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "empty_result",
+      "type": "note",
+      "label": "Search is empty",
+      "description": "This note appears when the search term IS EMPTY",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "trigger_text",
+        "operator": "is_empty"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "not_empty_result",
+      "type": "note",
+      "label": "Search has a value",
+      "description": "This note appears when the search term IS NOT EMPTY",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "trigger_text",
+        "operator": "is_not_empty"
+      }
+    }
+  ]
+}

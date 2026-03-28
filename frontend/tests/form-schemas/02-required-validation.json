@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "name": "Required Field Validation",
+  "description": "Every field is required — submit should fail until all are filled",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "req_text",
+      "type": "text",
+      "label": "Required Text",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "req_integer",
+      "type": "integer",
+      "label": "Required Integer",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "req_decimal",
+      "type": "decimal",
+      "label": "Required Decimal",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "req_select_one",
+      "type": "select_one",
+      "label": "Required Select One",
+      "required": true,
+      "hidden": false,
+      "options": [
+        { "value": "yes", "label": "Yes" },
+        { "value": "no", "label": "No" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "req_select_multi",
+      "type": "select_multiple",
+      "label": "Required Select Multiple",
+      "required": true,
+      "hidden": false,
+      "options": [
+        { "value": "a", "label": "A" },
+        { "value": "b", "label": "B" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "req_date",
+      "type": "date",
+      "label": "Required Date",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "req_time",
+      "type": "time",
+      "label": "Required Time",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "req_signature",
+      "type": "signature",
+      "label": "Required Signature",
+      "required": true,
+      "hidden": false
+    }
+  ]
+}

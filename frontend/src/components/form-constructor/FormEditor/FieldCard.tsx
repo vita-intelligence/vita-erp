@@ -14,8 +14,8 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import {
-  ChevronDown,
-  ChevronUp,
+  ArrowDown,
+  ArrowUp,
   Copy,
   GripVertical,
   Pencil,
@@ -148,13 +148,13 @@ export function FieldCard({
       {/* Actions */}
       <div className="flex shrink-0 items-center gap-0.5">
         <IconBtn
-          icon={ChevronUp}
+          icon={ArrowUp}
           title={t("fieldCard.moveUp")}
           disabled={index === 0}
           onClick={() => onMove("up")}
         />
         <IconBtn
-          icon={ChevronDown}
+          icon={ArrowDown}
           title={t("fieldCard.moveDown")}
           disabled={index === total - 1}
           onClick={() => onMove("down")}

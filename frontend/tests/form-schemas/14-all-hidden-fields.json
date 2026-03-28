@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "name": "All Hidden Fields",
+  "description": "Every field is hidden — preview should show 'no fields' message since nothing is visible",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "hidden_1",
+      "type": "text",
+      "label": "Hidden Text",
+      "required": false,
+      "hidden": true
+    },
+    {
+      "kind": "field",
+      "id": "hidden_2",
+      "type": "integer",
+      "label": "Hidden Integer",
+      "required": false,
+      "hidden": true
+    },
+    {
+      "kind": "field",
+      "id": "hidden_3",
+      "type": "calculate",
+      "label": "Hidden Calc",
+      "required": false,
+      "hidden": true,
+      "calculate": "{hidden_2} * 2"
+    }
+  ]
+}

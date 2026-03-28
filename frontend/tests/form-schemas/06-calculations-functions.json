@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "name": "Calculations — Functions",
+  "description": "Tests all built-in functions: round, floor, ceil, abs, sqrt, min, max, pow, if, clamp, coalesce",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "x",
+      "type": "decimal",
+      "label": "X (try 12.3456)",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "y",
+      "type": "decimal",
+      "label": "Y (try -7.89)",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "round_0",
+      "type": "calculate",
+      "label": "round(X) — round to integer",
+      "required": false,
+      "hidden": false,
+      "calculate": "round({x})"
+    },
+    {
+      "kind": "field",
+      "id": "round_2",
+      "type": "calculate",
+      "label": "round(X, 2) — round to 2 decimals",
+      "required": false,
+      "hidden": false,
+      "calculate": "round({x}, 2)"
+    },
+    {
+      "kind": "field",
+      "id": "floor_x",
+      "type": "calculate",
+      "label": "floor(X)",
+      "required": false,
+      "hidden": false,
+      "calculate": "floor({x})"
+    },
+    {
+      "kind": "field",
+      "id": "ceil_x",
+      "type": "calculate",
+      "label": "ceil(X)",
+      "required": false,
+      "hidden": false,
+      "calculate": "ceil({x})"
+    },
+    {
+      "kind": "field",
+      "id": "int_x",
+      "type": "calculate",
+      "label": "int(X) — truncate decimals",
+      "required": false,
+      "hidden": false,
+      "calculate": "int({x})"
+    },
+    {
+      "kind": "field",
+      "id": "abs_y",
+      "type": "calculate",
+      "label": "abs(Y) — absolute value",
+      "required": false,
+      "hidden": false,
+      "calculate": "abs({y})"
+    },
+    {
+      "kind": "field",
+      "id": "sqrt_x",
+      "type": "calculate",
+      "label": "sqrt(abs(X))",
+      "required": false,
+      "hidden": false,
+      "calculate": "sqrt(abs({x}))"
+    },
+    {
+      "kind": "field",
+      "id": "pow_xy",
+      "type": "calculate",
+      "label": "pow(X, 2) — X squared",
+      "required": false,
+      "hidden": false,
+      "calculate": "pow({x}, 2)"
+    },
+    {
+      "kind": "field",
+      "id": "min_xy",
+      "type": "calculate",
+      "label": "min(X, Y)",
+      "required": false,
+      "hidden": false,
+      "calculate": "min({x}, {y})"
+    },
+    {
+      "kind": "field",
+      "id": "max_xy",
+      "type": "calculate",
+      "label": "max(X, Y)",
+      "required": false,
+      "hidden": false,
+      "calculate": "max({x}, {y})"
+    },
+    {
+      "kind": "field",
+      "id": "clamp_x",
+      "type": "calculate",
+      "label": "clamp(X, 0, 10) — constrain to 0..10",
+      "required": false,
+      "hidden": false,
+      "calculate": "clamp({x}, 0, 10)"
+    },
+    {
+      "kind": "field",
+      "id": "if_positive",
+      "type": "calculate",
+      "label": "if(X > 0, X, 0) — return X if positive, else 0",
+      "required": false,
+      "hidden": false,
+      "calculate": "if({x} > 0, {x}, 0)"
+    },
+    {
+      "kind": "field",
+      "id": "coalesce_xy",
+      "type": "calculate",
+      "label": "coalesce(X, Y, 99) — first non-zero",
+      "required": false,
+      "hidden": false,
+      "calculate": "coalesce({x}, {y}, 99)"
+    },
+    {
+      "kind": "field",
+      "id": "nested",
+      "type": "calculate",
+      "label": "Nested: round(max(X, Y) * pi, 2)",
+      "required": false,
+      "hidden": false,
+      "calculate": "round(max({x}, {y}) * pi, 2)"
+    }
+  ]
+}

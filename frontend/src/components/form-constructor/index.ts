@@ -9,7 +9,10 @@
 // Components
 export { FormViewer } from "./FormViewer/FormViewer";
 
-export { evaluateExpression } from "./shared/expression-eval";
+export {
+  EXPRESSION_FUNCTIONS,
+  evaluateExpression,
+} from "./shared/expression-eval";
 export type { FieldCategory, FieldMeta } from "./shared/field-registry";
 // Shared utilities
 export {
@@ -18,6 +21,7 @@ export {
   getFieldMeta,
   getFieldsByCategory,
 } from "./shared/field-registry";
+export { hasInterpolation, interpolateText } from "./shared/interpolate";
 export {
   collectFieldIds,
   collectFields,
@@ -41,6 +45,7 @@ export type {
   FormSchema,
   GroupElement,
   RegexRule,
+  RepeatConfig,
   SelectOption,
   VisibilityOperator,
   VisibilityRule,

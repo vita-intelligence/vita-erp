@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "name": "Regex Validation",
+  "description": "Tests hard regex (blocks submit) and soft regex (warning only)",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "email",
+      "type": "text",
+      "label": "Email (hard regex)",
+      "description": "Must be a valid email format — blocks submit if invalid",
+      "required": true,
+      "hidden": false,
+      "regex": {
+        "pattern": "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$",
+        "mode": "hard",
+        "message": "Please enter a valid email address"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "phone",
+      "type": "text",
+      "label": "Phone (hard regex)",
+      "description": "Must start with + and contain 10-15 digits",
+      "required": true,
+      "hidden": false,
+      "regex": {
+        "pattern": "^\\+[0-9]{10,15}$",
+        "mode": "hard",
+        "message": "Phone must start with + followed by 10-15 digits"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "sku",
+      "type": "text",
+      "label": "SKU Code (hard regex)",
+      "description": "Format: 2 uppercase letters, dash, 6 digits (e.g., AB-123456)",
+      "required": true,
+      "hidden": false,
+      "regex": {
+        "pattern": "^[A-Z]{2}-[0-9]{6}$",
+        "mode": "hard",
+        "message": "SKU must match format: AB-123456"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "internal_ref",
+      "type": "text",
+      "label": "Internal Reference (soft regex)",
+      "description": "Warns if it contains spaces but allows submission",
+      "required": false,
+      "hidden": false,
+      "regex": {
+        "pattern": "^\\S+$",
+        "mode": "soft",
+        "message": "References usually don't contain spaces — double check"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "notes",
+      "type": "text",
+      "label": "Notes (soft regex)",
+      "description": "Warns if shorter than 10 characters",
+      "required": false,
+      "hidden": false,
+      "regex": {
+        "pattern": "^.{10,}$",
+        "mode": "soft",
+        "message": "Consider adding more detail (at least 10 characters)"
+      }
+    }
+  ]
+}

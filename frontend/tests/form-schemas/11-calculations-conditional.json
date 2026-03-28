@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "name": "Calculations — Conditional & Comparison",
+  "description": "Tests if(), comparison operators (>, <, ==, !=), and real-world pricing logic",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "quantity",
+      "type": "integer",
+      "label": "Order Quantity",
+      "description": "Try different values: 10, 50, 100, 200",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "base_price",
+      "type": "decimal",
+      "label": "Base Unit Price ($)",
+      "description": "e.g., 25.00",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "discount_rate",
+      "type": "calculate",
+      "label": "Discount Rate",
+      "description": "10% over 100 units, 5% over 50, 0% otherwise",
+      "required": false,
+      "hidden": false,
+      "calculate": "if({quantity} >= 100, 0.10, if({quantity} >= 50, 0.05, 0))"
+    },
+    {
+      "kind": "field",
+      "id": "discount_amount",
+      "type": "calculate",
+      "label": "Discount Amount ($)",
+      "required": false,
+      "hidden": false,
+      "calculate": "round({quantity} * {base_price} * {discount_rate}, 2)"
+    },
+    {
+      "kind": "field",
+      "id": "subtotal",
+      "type": "calculate",
+      "label": "Subtotal ($)",
+      "required": false,
+      "hidden": false,
+      "calculate": "round({quantity} * {base_price} - {discount_amount}, 2)"
+    },
+    {
+      "kind": "field",
+      "id": "tax_rate",
+      "type": "decimal",
+      "label": "Tax Rate (%)",
+      "description": "e.g., 8.5 for 8.5%",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "tax_amount",
+      "type": "calculate",
+      "label": "Tax Amount ($)",
+      "required": false,
+      "hidden": false,
+      "calculate": "round({subtotal} * {tax_rate} / 100, 2)"
+    },
+    {
+      "kind": "field",
+      "id": "total",
+      "type": "calculate",
+      "label": "Grand Total ($)",
+      "required": false,
+      "hidden": false,
+      "calculate": "round({subtotal} + {tax_amount}, 2)"
+    },
+    {
+      "kind": "field",
+      "id": "is_bulk",
+      "type": "calculate",
+      "label": "Is Bulk Order? (1=yes, 0=no)",
+      "description": "Tests comparison: quantity >= 100",
+      "required": false,
+      "hidden": false,
+      "calculate": "{quantity} >= 100"
+    },
+    {
+      "kind": "field",
+      "id": "is_free_shipping",
+      "type": "calculate",
+      "label": "Free Shipping? (1=yes, 0=no)",
+      "description": "Free if total > 500",
+      "required": false,
+      "hidden": false,
+      "calculate": "{total} > 500"
+    }
+  ]
+}
