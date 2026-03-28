@@ -89,7 +89,19 @@
       "requiredHint": "Ce champ doit être rempli avant la soumission",
       "hidden": "Champ masqué",
       "hiddenHint": "Les champs masqués font partie du schéma mais ne sont pas visibles par les utilisateurs",
-      "duplicateIdWarning": "Cet ID est déjà utilisé par un autre champ"
+      "duplicateIdWarning": "Cet ID est déjà utilisé par un autre champ",
+      "styling": "Style",
+      "stylingFieldSection": "Conteneur du champ",
+      "stylingBg": "Arrière-plan",
+      "stylingLabelColor": "Libellé",
+      "stylingInputSection": "Élément de saisie",
+      "stylingInputBg": "Arrière-plan",
+      "stylingInputText": "Texte",
+      "stylingInputBorder": "Bordure",
+      "stylingFontSize": "Taille de police",
+      "stylingFontWeight": "Graisse de police",
+      "stylingDefault": "Par défaut",
+      "stylingReset": "Réinitialiser tous les styles"
     },
     "options": {
       "title": "Options",
@@ -228,7 +240,35 @@
       "maxSize": "Taille maximale : {size}",
       "remove": "Supprimer"
     },
-    "noFieldsMessage": "Ce formulaire ne contient aucun champ."
+    "noFieldsMessage": "Ce formulaire ne contient aucun champ.",
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "formSettings": {
+    "title": "Paramètres du formulaire",
+    "layout": "Mode de mise en page",
+    "layoutHint": "Contrôle la façon dont le formulaire est affiché aux utilisateurs qui le remplissent.",
+    "layoutModes": {
+      "single-page": "Page unique",
+      "page-per-group": "Page par groupe",
+      "page-per-field": "Page par champ"
+    },
+    "layoutDescriptions": {
+      "single-page": "Tous les champs et groupes affichés sur une page défilante.",
+      "page-per-group": "Chaque groupe devient une page séparée avec des boutons de navigation.",
+      "page-per-field": "Un champ par page — style enquête, une question à la fois."
+    },
+    "displayOptions": "Options d'affichage",
+    "showProgressBar": "Afficher la barre de progression",
+    "showFieldNumbers": "Afficher les numéros de champ (1, 2, 3...)",
+    "submitButtonText": "Texte du bouton de soumission",
+    "styling": "Style du formulaire",
+    "bgColor": "Arrière-plan",
+    "textColor": "Couleur du texte",
+    "maxWidth": "Largeur maximale",
+    "padding": "Espacement intérieur",
+    "borderRadius": "Rayon de bordure",
+    "fontFamily": "Famille de polices"
   },
   "group": {
     "collapse": "Réduire",

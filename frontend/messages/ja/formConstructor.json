@@ -89,7 +89,19 @@
       "requiredHint": "送信前にこのフィールドへの入力が必要です",
       "hidden": "非表示フィールド",
       "hiddenHint": "非表示フィールドはスキーマの一部ですがユーザーには表示されません",
-      "duplicateIdWarning": "この ID は別のフィールドで既に使用されています"
+      "duplicateIdWarning": "この ID は別のフィールドで既に使用されています",
+      "styling": "スタイル",
+      "stylingFieldSection": "フィールドラッパー",
+      "stylingBg": "背景",
+      "stylingLabelColor": "ラベル",
+      "stylingInputSection": "入力要素",
+      "stylingInputBg": "背景",
+      "stylingInputText": "テキスト",
+      "stylingInputBorder": "ボーダー",
+      "stylingFontSize": "フォントサイズ",
+      "stylingFontWeight": "フォントウェイト",
+      "stylingDefault": "デフォルト",
+      "stylingReset": "すべてのスタイルをリセット"
     },
     "options": {
       "title": "選択肢",
@@ -228,7 +240,35 @@
       "maxSize": "最大ファイルサイズ：{size}",
       "remove": "削除"
     },
-    "noFieldsMessage": "このフォームにはフィールドがありません。"
+    "noFieldsMessage": "このフォームにはフィールドがありません。",
+    "previous": "前へ",
+    "next": "次へ"
+  },
+  "formSettings": {
+    "title": "フォーム設定",
+    "layout": "レイアウトモード",
+    "layoutHint": "フォームを記入するユーザーへの表示方法を制御します。",
+    "layoutModes": {
+      "single-page": "単一ページ",
+      "page-per-group": "グループごとのページ",
+      "page-per-field": "フィールドごとのページ"
+    },
+    "layoutDescriptions": {
+      "single-page": "すべてのフィールドとグループが1つのスクロール可能なページに表示されます。",
+      "page-per-group": "各グループがナビゲーションボタン付きの個別ページになります。",
+      "page-per-field": "1ページに1フィールド — アンケート形式、一度に1つの質問。"
+    },
+    "displayOptions": "表示オプション",
+    "showProgressBar": "プログレスバーを表示",
+    "showFieldNumbers": "フィールド番号を表示（1、2、3...）",
+    "submitButtonText": "送信ボタンのテキスト",
+    "styling": "フォームのスタイル",
+    "bgColor": "背景",
+    "textColor": "テキスト色",
+    "maxWidth": "最大幅",
+    "padding": "パディング",
+    "borderRadius": "角丸",
+    "fontFamily": "フォントファミリー"
   },
   "group": {
     "collapse": "折りたたむ",

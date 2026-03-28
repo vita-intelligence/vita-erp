@@ -89,7 +89,19 @@
       "requiredHint": "सबमिट करने से पहले यह फ़ील्ड भरना आवश्यक है",
       "hidden": "छिपा फ़ील्ड",
       "hiddenHint": "छिपे फ़ील्ड स्कीमा का हिस्सा हैं लेकिन उपयोगकर्ताओं को दिखाई नहीं देते",
-      "duplicateIdWarning": "यह ID पहले से किसी अन्य फ़ील्ड द्वारा उपयोग में है"
+      "duplicateIdWarning": "यह ID पहले से किसी अन्य फ़ील्ड द्वारा उपयोग में है",
+      "styling": "स्टाइलिंग",
+      "stylingFieldSection": "फ़ील्ड रैपर",
+      "stylingBg": "पृष्ठभूमि",
+      "stylingLabelColor": "लेबल",
+      "stylingInputSection": "इनपुट एलीमेंट",
+      "stylingInputBg": "पृष्ठभूमि",
+      "stylingInputText": "टेक्स्ट",
+      "stylingInputBorder": "बॉर्डर",
+      "stylingFontSize": "फ़ॉन्ट आकार",
+      "stylingFontWeight": "फ़ॉन्ट वज़न",
+      "stylingDefault": "डिफ़ॉल्ट",
+      "stylingReset": "सभी स्टाइल रीसेट करें"
     },
     "options": {
       "title": "विकल्प",
@@ -228,7 +240,35 @@
       "maxSize": "अधिकतम फ़ाइल आकार: {size}",
       "remove": "हटाएँ"
     },
-    "noFieldsMessage": "इस फ़ॉर्म में कोई फ़ील्ड नहीं है।"
+    "noFieldsMessage": "इस फ़ॉर्म में कोई फ़ील्ड नहीं है।",
+    "previous": "पिछला",
+    "next": "अगला"
+  },
+  "formSettings": {
+    "title": "फ़ॉर्म सेटिंग्स",
+    "layout": "लेआउट मोड",
+    "layoutHint": "नियंत्रित करता है कि फ़ॉर्म भरने वाले उपयोगकर्ताओं को कैसे प्रदर्शित किया जाता है।",
+    "layoutModes": {
+      "single-page": "एकल पृष्ठ",
+      "page-per-group": "प्रति समूह एक पृष्ठ",
+      "page-per-field": "प्रति फ़ील्ड एक पृष्ठ"
+    },
+    "layoutDescriptions": {
+      "single-page": "सभी फ़ील्ड और समूह एक स्क्रॉल करने योग्य पृष्ठ पर प्रदर्शित होते हैं।",
+      "page-per-group": "प्रत्येक समूह नेविगेशन बटनों के साथ एक अलग पृष्ठ बन जाता है।",
+      "page-per-field": "प्रति पृष्ठ एक फ़ील्ड — सर्वेक्षण शैली, एक बार में एक प्रश्न।"
+    },
+    "displayOptions": "प्रदर्शन विकल्प",
+    "showProgressBar": "प्रगति बार दिखाएँ",
+    "showFieldNumbers": "फ़ील्ड नंबर दिखाएँ (1, 2, 3...)",
+    "submitButtonText": "सबमिट बटन टेक्स्ट",
+    "styling": "फ़ॉर्म स्टाइलिंग",
+    "bgColor": "पृष्ठभूमि",
+    "textColor": "टेक्स्ट रंग",
+    "maxWidth": "अधिकतम चौड़ाई",
+    "padding": "पैडिंग",
+    "borderRadius": "बॉर्डर रेडियस",
+    "fontFamily": "फ़ॉन्ट फ़ैमिली"
   },
   "group": {
     "collapse": "संक्षिप्त करें",

@@ -89,7 +89,19 @@
       "requiredHint": "Bidang ini harus diisi sebelum pengiriman",
       "hidden": "Bidang tersembunyi",
       "hiddenHint": "Bidang tersembunyi adalah bagian dari skema tetapi tidak terlihat oleh pengguna",
-      "duplicateIdWarning": "ID ini sudah digunakan oleh bidang lain"
+      "duplicateIdWarning": "ID ini sudah digunakan oleh bidang lain",
+      "styling": "Penataan gaya",
+      "stylingFieldSection": "Pembungkus bidang",
+      "stylingBg": "Latar belakang",
+      "stylingLabelColor": "Label",
+      "stylingInputSection": "Elemen input",
+      "stylingInputBg": "Latar belakang",
+      "stylingInputText": "Teks",
+      "stylingInputBorder": "Batas",
+      "stylingFontSize": "Ukuran font",
+      "stylingFontWeight": "Ketebalan font",
+      "stylingDefault": "Default",
+      "stylingReset": "Atur ulang semua gaya"
     },
     "options": {
       "title": "Opsi",
@@ -228,7 +240,35 @@
       "maxSize": "Ukuran berkas maksimum: {size}",
       "remove": "Hapus"
     },
-    "noFieldsMessage": "Formulir ini tidak memiliki bidang."
+    "noFieldsMessage": "Formulir ini tidak memiliki bidang.",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya"
+  },
+  "formSettings": {
+    "title": "Pengaturan Formulir",
+    "layout": "Mode tata letak",
+    "layoutHint": "Mengontrol bagaimana formulir ditampilkan kepada pengguna yang mengisinya.",
+    "layoutModes": {
+      "single-page": "Halaman tunggal",
+      "page-per-group": "Halaman per grup",
+      "page-per-field": "Halaman per bidang"
+    },
+    "layoutDescriptions": {
+      "single-page": "Semua bidang dan grup ditampilkan pada satu halaman yang dapat digulir.",
+      "page-per-group": "Setiap grup menjadi halaman terpisah dengan tombol navigasi.",
+      "page-per-field": "Satu bidang per halaman — gaya survei, satu pertanyaan dalam satu waktu."
+    },
+    "displayOptions": "Opsi tampilan",
+    "showProgressBar": "Tampilkan bilah kemajuan",
+    "showFieldNumbers": "Tampilkan nomor bidang (1, 2, 3...)",
+    "submitButtonText": "Teks tombol kirim",
+    "styling": "Penataan gaya formulir",
+    "bgColor": "Latar belakang",
+    "textColor": "Warna teks",
+    "maxWidth": "Lebar maksimum",
+    "padding": "Jarak dalam",
+    "borderRadius": "Radius batas",
+    "fontFamily": "Keluarga font"
   },
   "group": {
     "collapse": "Ciutkan",

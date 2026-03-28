@@ -89,7 +89,19 @@
       "requiredHint": "Este campo deve ser preenchido antes do envio",
       "hidden": "Campo oculto",
       "hiddenHint": "Campos ocultos fazem parte do esquema mas não são visíveis aos usuários",
-      "duplicateIdWarning": "Este ID já está em uso por outro campo"
+      "duplicateIdWarning": "Este ID já está em uso por outro campo",
+      "styling": "Estilo",
+      "stylingFieldSection": "Contêiner do campo",
+      "stylingBg": "Fundo",
+      "stylingLabelColor": "Rótulo",
+      "stylingInputSection": "Elemento de entrada",
+      "stylingInputBg": "Fundo",
+      "stylingInputText": "Texto",
+      "stylingInputBorder": "Borda",
+      "stylingFontSize": "Tamanho da fonte",
+      "stylingFontWeight": "Peso da fonte",
+      "stylingDefault": "Padrão",
+      "stylingReset": "Redefinir todos os estilos"
     },
     "options": {
       "title": "Opções",
@@ -228,7 +240,35 @@
       "maxSize": "Tamanho máximo: {size}",
       "remove": "Remover"
     },
-    "noFieldsMessage": "Este formulário não possui campos."
+    "noFieldsMessage": "Este formulário não possui campos.",
+    "previous": "Anterior",
+    "next": "Próximo"
+  },
+  "formSettings": {
+    "title": "Configurações do formulário",
+    "layout": "Modo de layout",
+    "layoutHint": "Controla como o formulário é exibido para os usuários que o preenchem.",
+    "layoutModes": {
+      "single-page": "Página única",
+      "page-per-group": "Página por grupo",
+      "page-per-field": "Página por campo"
+    },
+    "layoutDescriptions": {
+      "single-page": "Todos os campos e grupos exibidos em uma página rolável.",
+      "page-per-group": "Cada grupo se torna uma página separada com botões de navegação.",
+      "page-per-field": "Um campo por página — estilo pesquisa, uma pergunta de cada vez."
+    },
+    "displayOptions": "Opções de exibição",
+    "showProgressBar": "Mostrar barra de progresso",
+    "showFieldNumbers": "Mostrar números dos campos (1, 2, 3...)",
+    "submitButtonText": "Texto do botão de envio",
+    "styling": "Estilo do formulário",
+    "bgColor": "Fundo",
+    "textColor": "Cor do texto",
+    "maxWidth": "Largura máxima",
+    "padding": "Espaçamento interno",
+    "borderRadius": "Raio da borda",
+    "fontFamily": "Família da fonte"
   },
   "group": {
     "collapse": "Recolher",

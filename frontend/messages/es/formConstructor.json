@@ -89,7 +89,19 @@
       "requiredHint": "Este campo debe completarse antes de enviar",
       "hidden": "Campo oculto",
       "hiddenHint": "Los campos ocultos son parte del esquema pero no son visibles para los usuarios",
-      "duplicateIdWarning": "Este ID ya está en uso por otro campo"
+      "duplicateIdWarning": "Este ID ya está en uso por otro campo",
+      "styling": "Estilo",
+      "stylingFieldSection": "Contenedor del campo",
+      "stylingBg": "Fondo",
+      "stylingLabelColor": "Etiqueta",
+      "stylingInputSection": "Elemento de entrada",
+      "stylingInputBg": "Fondo",
+      "stylingInputText": "Texto",
+      "stylingInputBorder": "Borde",
+      "stylingFontSize": "Tamaño de fuente",
+      "stylingFontWeight": "Peso de fuente",
+      "stylingDefault": "Predeterminado",
+      "stylingReset": "Restablecer todos los estilos"
     },
     "options": {
       "title": "Opciones",
@@ -228,7 +240,35 @@
       "maxSize": "Tamaño máximo: {size}",
       "remove": "Eliminar"
     },
-    "noFieldsMessage": "Este formulario no tiene campos."
+    "noFieldsMessage": "Este formulario no tiene campos.",
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
+  "formSettings": {
+    "title": "Configuración del formulario",
+    "layout": "Modo de diseño",
+    "layoutHint": "Controla cómo se muestra el formulario a los usuarios que lo completan.",
+    "layoutModes": {
+      "single-page": "Página única",
+      "page-per-group": "Página por grupo",
+      "page-per-field": "Página por campo"
+    },
+    "layoutDescriptions": {
+      "single-page": "Todos los campos y grupos se muestran en una página con desplazamiento.",
+      "page-per-group": "Cada grupo se convierte en una página separada con botones de navegación.",
+      "page-per-field": "Un campo por página — estilo encuesta, una pregunta a la vez."
+    },
+    "displayOptions": "Opciones de visualización",
+    "showProgressBar": "Mostrar barra de progreso",
+    "showFieldNumbers": "Mostrar números de campo (1, 2, 3...)",
+    "submitButtonText": "Texto del botón de envío",
+    "styling": "Estilo del formulario",
+    "bgColor": "Fondo",
+    "textColor": "Color del texto",
+    "maxWidth": "Ancho máximo",
+    "padding": "Relleno",
+    "borderRadius": "Radio del borde",
+    "fontFamily": "Familia de fuentes"
   },
   "group": {
     "collapse": "Contraer",

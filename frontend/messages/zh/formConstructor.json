@@ -89,7 +89,19 @@
       "requiredHint": "提交前必须填写此字段",
       "hidden": "隐藏字段",
       "hiddenHint": "隐藏字段是架构的一部分但对用户不可见",
-      "duplicateIdWarning": "此 ID 已被另一个字段使用"
+      "duplicateIdWarning": "此 ID 已被另一个字段使用",
+      "styling": "样式",
+      "stylingFieldSection": "字段容器",
+      "stylingBg": "背景",
+      "stylingLabelColor": "标签",
+      "stylingInputSection": "输入元素",
+      "stylingInputBg": "背景",
+      "stylingInputText": "文本",
+      "stylingInputBorder": "边框",
+      "stylingFontSize": "字号",
+      "stylingFontWeight": "字重",
+      "stylingDefault": "默认",
+      "stylingReset": "重置所有样式"
     },
     "options": {
       "title": "选项",
@@ -228,7 +240,35 @@
       "maxSize": "最大文件大小：{size}",
       "remove": "删除"
     },
-    "noFieldsMessage": "此表单没有字段。"
+    "noFieldsMessage": "此表单没有字段。",
+    "previous": "上一步",
+    "next": "下一步"
+  },
+  "formSettings": {
+    "title": "表单设置",
+    "layout": "布局模式",
+    "layoutHint": "控制表单向填写用户的显示方式。",
+    "layoutModes": {
+      "single-page": "单页",
+      "page-per-group": "每组一页",
+      "page-per-field": "每题一页"
+    },
+    "layoutDescriptions": {
+      "single-page": "所有字段和分组显示在一个可滚动页面上。",
+      "page-per-group": "每个分组成为一个单独的页面，带有导航按钮。",
+      "page-per-field": "每页一题 — 问卷式，每次一个问题。"
+    },
+    "displayOptions": "显示选项",
+    "showProgressBar": "显示进度条",
+    "showFieldNumbers": "显示字段编号（1、2、3...）",
+    "submitButtonText": "提交按钮文本",
+    "styling": "表单样式",
+    "bgColor": "背景",
+    "textColor": "文字颜色",
+    "maxWidth": "最大宽度",
+    "padding": "内边距",
+    "borderRadius": "圆角",
+    "fontFamily": "字体"
   },
   "group": {
     "collapse": "折叠",

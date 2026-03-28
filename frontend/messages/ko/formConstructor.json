@@ -89,7 +89,19 @@
       "requiredHint": "제출 전에 이 필드를 입력해야 합니다",
       "hidden": "숨김 필드",
       "hiddenHint": "숨김 필드는 스키마의 일부이지만 사용자에게 표시되지 않습니다",
-      "duplicateIdWarning": "이 ID는 다른 필드에서 이미 사용 중입니다"
+      "duplicateIdWarning": "이 ID는 다른 필드에서 이미 사용 중입니다",
+      "styling": "스타일링",
+      "stylingFieldSection": "필드 래퍼",
+      "stylingBg": "배경",
+      "stylingLabelColor": "레이블",
+      "stylingInputSection": "입력 요소",
+      "stylingInputBg": "배경",
+      "stylingInputText": "텍스트",
+      "stylingInputBorder": "테두리",
+      "stylingFontSize": "글꼴 크기",
+      "stylingFontWeight": "글꼴 두께",
+      "stylingDefault": "기본",
+      "stylingReset": "모든 스타일 초기화"
     },
     "options": {
       "title": "옵션",
@@ -228,7 +240,35 @@
       "maxSize": "최대 파일 크기: {size}",
       "remove": "제거"
     },
-    "noFieldsMessage": "이 폼에는 필드가 없습니다."
+    "noFieldsMessage": "이 폼에는 필드가 없습니다.",
+    "previous": "이전",
+    "next": "다음"
+  },
+  "formSettings": {
+    "title": "폼 설정",
+    "layout": "레이아웃 모드",
+    "layoutHint": "폼을 작성하는 사용자에게 표시되는 방식을 제어합니다.",
+    "layoutModes": {
+      "single-page": "단일 페이지",
+      "page-per-group": "그룹당 페이지",
+      "page-per-field": "필드당 페이지"
+    },
+    "layoutDescriptions": {
+      "single-page": "모든 필드와 그룹이 하나의 스크롤 가능한 페이지에 표시됩니다.",
+      "page-per-group": "각 그룹이 탐색 버튼이 있는 별도의 페이지가 됩니다.",
+      "page-per-field": "페이지당 하나의 필드 — 설문 방식, 한 번에 하나의 질문."
+    },
+    "displayOptions": "표시 옵션",
+    "showProgressBar": "진행률 표시줄 표시",
+    "showFieldNumbers": "필드 번호 표시 (1, 2, 3...)",
+    "submitButtonText": "제출 버튼 텍스트",
+    "styling": "폼 스타일링",
+    "bgColor": "배경",
+    "textColor": "텍스트 색상",
+    "maxWidth": "최대 너비",
+    "padding": "패딩",
+    "borderRadius": "테두리 반경",
+    "fontFamily": "글꼴 패밀리"
   },
   "group": {
     "collapse": "접기",

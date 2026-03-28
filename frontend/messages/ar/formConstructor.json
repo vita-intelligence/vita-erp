@@ -89,7 +89,19 @@
       "requiredHint": "يجب ملء هذا الحقل قبل الإرسال",
       "hidden": "حقل مخفي",
       "hiddenHint": "الحقول المخفية جزء من المخطط لكنها غير مرئية للمستخدمين",
-      "duplicateIdWarning": "هذا المعرّف مستخدم بالفعل من قبل حقل آخر"
+      "duplicateIdWarning": "هذا المعرّف مستخدم بالفعل من قبل حقل آخر",
+      "styling": "التنسيق",
+      "stylingFieldSection": "حاوية الحقل",
+      "stylingBg": "الخلفية",
+      "stylingLabelColor": "التسمية",
+      "stylingInputSection": "عنصر الإدخال",
+      "stylingInputBg": "الخلفية",
+      "stylingInputText": "النص",
+      "stylingInputBorder": "الحدود",
+      "stylingFontSize": "حجم الخط",
+      "stylingFontWeight": "وزن الخط",
+      "stylingDefault": "افتراضي",
+      "stylingReset": "إعادة تعيين جميع التنسيقات"
     },
     "options": {
       "title": "خيارات",
@@ -228,7 +240,35 @@
       "maxSize": "الحد الأقصى لحجم الملف: {size}",
       "remove": "إزالة"
     },
-    "noFieldsMessage": "هذا النموذج لا يحتوي على حقول."
+    "noFieldsMessage": "هذا النموذج لا يحتوي على حقول.",
+    "previous": "السابق",
+    "next": "التالي"
+  },
+  "formSettings": {
+    "title": "إعدادات النموذج",
+    "layout": "وضع التخطيط",
+    "layoutHint": "يتحكم في كيفية عرض النموذج للمستخدمين الذين يقومون بملئه.",
+    "layoutModes": {
+      "single-page": "صفحة واحدة",
+      "page-per-group": "صفحة لكل مجموعة",
+      "page-per-field": "صفحة لكل حقل"
+    },
+    "layoutDescriptions": {
+      "single-page": "جميع الحقول والمجموعات معروضة في صفحة واحدة قابلة للتمرير.",
+      "page-per-group": "كل مجموعة تصبح صفحة منفصلة مع أزرار التنقل.",
+      "page-per-field": "حقل واحد لكل صفحة — بأسلوب الاستبيان، سؤال واحد في كل مرة."
+    },
+    "displayOptions": "خيارات العرض",
+    "showProgressBar": "إظهار شريط التقدم",
+    "showFieldNumbers": "إظهار أرقام الحقول (1، 2، 3...)",
+    "submitButtonText": "نص زر الإرسال",
+    "styling": "تنسيق النموذج",
+    "bgColor": "الخلفية",
+    "textColor": "لون النص",
+    "maxWidth": "العرض الأقصى",
+    "padding": "الحشو",
+    "borderRadius": "نصف قطر الحدود",
+    "fontFamily": "عائلة الخط"
   },
   "group": {
     "collapse": "طي",

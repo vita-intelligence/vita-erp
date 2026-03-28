@@ -89,7 +89,19 @@
       "requiredHint": "Bu alan gönderimden önce doldurulmalıdır",
       "hidden": "Gizli alan",
       "hiddenHint": "Gizli alanlar şemanın parçasıdır ancak kullanıcılara görünmez",
-      "duplicateIdWarning": "Bu ID zaten başka bir alan tarafından kullanılıyor"
+      "duplicateIdWarning": "Bu ID zaten başka bir alan tarafından kullanılıyor",
+      "styling": "Biçimlendirme",
+      "stylingFieldSection": "Alan kapsayıcısı",
+      "stylingBg": "Arka plan",
+      "stylingLabelColor": "Etiket",
+      "stylingInputSection": "Giriş öğesi",
+      "stylingInputBg": "Arka plan",
+      "stylingInputText": "Metin",
+      "stylingInputBorder": "Kenarlık",
+      "stylingFontSize": "Yazı tipi boyutu",
+      "stylingFontWeight": "Yazı tipi kalınlığı",
+      "stylingDefault": "Varsayılan",
+      "stylingReset": "Tüm stilleri sıfırla"
     },
     "options": {
       "title": "Seçenekler",
@@ -228,7 +240,35 @@
       "maxSize": "Maksimum dosya boyutu: {size}",
       "remove": "Kaldır"
     },
-    "noFieldsMessage": "Bu formda alan bulunmuyor."
+    "noFieldsMessage": "Bu formda alan bulunmuyor.",
+    "previous": "Önceki",
+    "next": "Sonraki"
+  },
+  "formSettings": {
+    "title": "Form Ayarları",
+    "layout": "Düzen modu",
+    "layoutHint": "Formu dolduran kullanıcılara nasıl gösterileceğini kontrol eder.",
+    "layoutModes": {
+      "single-page": "Tek sayfa",
+      "page-per-group": "Grup başına sayfa",
+      "page-per-field": "Alan başına sayfa"
+    },
+    "layoutDescriptions": {
+      "single-page": "Tüm alanlar ve gruplar kaydırılabilir tek bir sayfada gösterilir.",
+      "page-per-group": "Her grup, gezinme düğmeleriyle ayrı bir sayfa olur.",
+      "page-per-field": "Sayfa başına bir alan — anket tarzı, tek seferde bir soru."
+    },
+    "displayOptions": "Görüntüleme seçenekleri",
+    "showProgressBar": "İlerleme çubuğunu göster",
+    "showFieldNumbers": "Alan numaralarını göster (1, 2, 3...)",
+    "submitButtonText": "Gönder düğmesi metni",
+    "styling": "Form biçimlendirmesi",
+    "bgColor": "Arka plan",
+    "textColor": "Metin rengi",
+    "maxWidth": "Maksimum genişlik",
+    "padding": "İç boşluk",
+    "borderRadius": "Kenarlık yarıçapı",
+    "fontFamily": "Yazı tipi ailesi"
   },
   "group": {
     "collapse": "Daralt",

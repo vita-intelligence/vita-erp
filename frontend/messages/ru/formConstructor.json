@@ -89,7 +89,19 @@
       "requiredHint": "Это поле должно быть заполнено перед отправкой",
       "hidden": "Скрытое поле",
       "hiddenHint": "Скрытые поля являются частью схемы, но не видны пользователям",
-      "duplicateIdWarning": "Этот ID уже используется другим полем"
+      "duplicateIdWarning": "Этот ID уже используется другим полем",
+      "styling": "Оформление",
+      "stylingFieldSection": "Обёртка поля",
+      "stylingBg": "Фон",
+      "stylingLabelColor": "Метка",
+      "stylingInputSection": "Элемент ввода",
+      "stylingInputBg": "Фон",
+      "stylingInputText": "Текст",
+      "stylingInputBorder": "Граница",
+      "stylingFontSize": "Размер шрифта",
+      "stylingFontWeight": "Толщина шрифта",
+      "stylingDefault": "По умолчанию",
+      "stylingReset": "Сбросить все стили"
     },
     "options": {
       "title": "Варианты",
@@ -228,7 +240,35 @@
       "maxSize": "Макс. размер файла: {size}",
       "remove": "Удалить"
     },
-    "noFieldsMessage": "В этой форме нет полей."
+    "noFieldsMessage": "В этой форме нет полей.",
+    "previous": "Назад",
+    "next": "Далее"
+  },
+  "formSettings": {
+    "title": "Настройки формы",
+    "layout": "Режим макета",
+    "layoutHint": "Управляет отображением формы для заполняющих её пользователей.",
+    "layoutModes": {
+      "single-page": "Одна страница",
+      "page-per-group": "Страница на группу",
+      "page-per-field": "Страница на поле"
+    },
+    "layoutDescriptions": {
+      "single-page": "Все поля и группы отображаются на одной прокручиваемой странице.",
+      "page-per-group": "Каждая группа становится отдельной страницей с кнопками навигации.",
+      "page-per-field": "Одно поле на странице — стиль опроса, один вопрос за раз."
+    },
+    "displayOptions": "Параметры отображения",
+    "showProgressBar": "Показать индикатор прогресса",
+    "showFieldNumbers": "Показать номера полей (1, 2, 3...)",
+    "submitButtonText": "Текст кнопки отправки",
+    "styling": "Оформление формы",
+    "bgColor": "Фон",
+    "textColor": "Цвет текста",
+    "maxWidth": "Макс. ширина",
+    "padding": "Отступы",
+    "borderRadius": "Скругление углов",
+    "fontFamily": "Шрифт"
   },
   "group": {
     "collapse": "Свернуть",

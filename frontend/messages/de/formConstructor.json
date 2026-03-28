@@ -89,7 +89,19 @@
       "requiredHint": "Dieses Feld muss vor dem Absenden ausgefüllt werden",
       "hidden": "Verstecktes Feld",
       "hiddenHint": "Versteckte Felder sind Teil des Schemas, aber für Benutzer nicht sichtbar",
-      "duplicateIdWarning": "Diese ID wird bereits von einem anderen Feld verwendet"
+      "duplicateIdWarning": "Diese ID wird bereits von einem anderen Feld verwendet",
+      "styling": "Gestaltung",
+      "stylingFieldSection": "Feld-Container",
+      "stylingBg": "Hintergrund",
+      "stylingLabelColor": "Bezeichnung",
+      "stylingInputSection": "Eingabeelement",
+      "stylingInputBg": "Hintergrund",
+      "stylingInputText": "Text",
+      "stylingInputBorder": "Rahmen",
+      "stylingFontSize": "Schriftgröße",
+      "stylingFontWeight": "Schriftgewicht",
+      "stylingDefault": "Standard",
+      "stylingReset": "Alle Stile zurücksetzen"
     },
     "options": {
       "title": "Optionen",
@@ -228,7 +240,35 @@
       "maxSize": "Max. Dateigröße: {size}",
       "remove": "Entfernen"
     },
-    "noFieldsMessage": "Dieses Formular hat keine Felder."
+    "noFieldsMessage": "Dieses Formular hat keine Felder.",
+    "previous": "Zurück",
+    "next": "Weiter"
+  },
+  "formSettings": {
+    "title": "Formulareinstellungen",
+    "layout": "Layout-Modus",
+    "layoutHint": "Steuert, wie das Formular den ausfüllenden Benutzern angezeigt wird.",
+    "layoutModes": {
+      "single-page": "Einzelseite",
+      "page-per-group": "Seite pro Gruppe",
+      "page-per-field": "Seite pro Feld"
+    },
+    "layoutDescriptions": {
+      "single-page": "Alle Felder und Gruppen auf einer scrollbaren Seite angezeigt.",
+      "page-per-group": "Jede Gruppe wird zu einer separaten Seite mit Navigationsschaltflächen.",
+      "page-per-field": "Ein Feld pro Seite — Umfrage-Stil, eine Frage auf einmal."
+    },
+    "displayOptions": "Anzeigeoptionen",
+    "showProgressBar": "Fortschrittsbalken anzeigen",
+    "showFieldNumbers": "Feldnummern anzeigen (1, 2, 3...)",
+    "submitButtonText": "Text der Absenden-Schaltfläche",
+    "styling": "Formulargestaltung",
+    "bgColor": "Hintergrund",
+    "textColor": "Textfarbe",
+    "maxWidth": "Max. Breite",
+    "padding": "Innenabstand",
+    "borderRadius": "Eckenradius",
+    "fontFamily": "Schriftfamilie"
   },
   "group": {
     "collapse": "Einklappen",

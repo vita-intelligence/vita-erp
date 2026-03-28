@@ -89,7 +89,19 @@
       "requiredHint": "Questo campo deve essere compilato prima dell'invio",
       "hidden": "Campo nascosto",
       "hiddenHint": "I campi nascosti fanno parte dello schema ma non sono visibili agli utenti",
-      "duplicateIdWarning": "Questo ID è già utilizzato da un altro campo"
+      "duplicateIdWarning": "Questo ID è già utilizzato da un altro campo",
+      "styling": "Stile",
+      "stylingFieldSection": "Contenitore del campo",
+      "stylingBg": "Sfondo",
+      "stylingLabelColor": "Etichetta",
+      "stylingInputSection": "Elemento di input",
+      "stylingInputBg": "Sfondo",
+      "stylingInputText": "Testo",
+      "stylingInputBorder": "Bordo",
+      "stylingFontSize": "Dimensione carattere",
+      "stylingFontWeight": "Peso carattere",
+      "stylingDefault": "Predefinito",
+      "stylingReset": "Ripristina tutti gli stili"
     },
     "options": {
       "title": "Opzioni",
@@ -228,7 +240,35 @@
       "maxSize": "Dimensione massima: {size}",
       "remove": "Rimuovi"
     },
-    "noFieldsMessage": "Questo modulo non ha campi."
+    "noFieldsMessage": "Questo modulo non ha campi.",
+    "previous": "Precedente",
+    "next": "Successivo"
+  },
+  "formSettings": {
+    "title": "Impostazioni del modulo",
+    "layout": "Modalità di layout",
+    "layoutHint": "Controlla come il modulo viene visualizzato agli utenti che lo compilano.",
+    "layoutModes": {
+      "single-page": "Pagina singola",
+      "page-per-group": "Pagina per gruppo",
+      "page-per-field": "Pagina per campo"
+    },
+    "layoutDescriptions": {
+      "single-page": "Tutti i campi e i gruppi visualizzati su una pagina scorrevole.",
+      "page-per-group": "Ogni gruppo diventa una pagina separata con pulsanti di navigazione.",
+      "page-per-field": "Un campo per pagina — stile sondaggio, una domanda alla volta."
+    },
+    "displayOptions": "Opzioni di visualizzazione",
+    "showProgressBar": "Mostra barra di avanzamento",
+    "showFieldNumbers": "Mostra numeri dei campi (1, 2, 3...)",
+    "submitButtonText": "Testo del pulsante di invio",
+    "styling": "Stile del modulo",
+    "bgColor": "Sfondo",
+    "textColor": "Colore del testo",
+    "maxWidth": "Larghezza massima",
+    "padding": "Spaziatura interna",
+    "borderRadius": "Raggio del bordo",
+    "fontFamily": "Famiglia di caratteri"
   },
   "group": {
     "collapse": "Comprimi",
