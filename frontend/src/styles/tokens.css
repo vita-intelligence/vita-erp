@@ -197,3 +197,14 @@ body {
    * styles/components/button.css, card.css, input.css, badge.css,
    * accordion.css, select.css, modal.css */
 }
+
+/* ── Utility keyframes ───────────────────────────────────────────────────── */
+
+@keyframes fade-ring {
+  0% {
+    box-shadow: 0 0 0 2px var(--vita-primary);
+  }
+  100% {
+    box-shadow: 0 0 0 0px transparent;
+  }
+}

@@ -34,6 +34,8 @@ type FieldCardProps = {
   onDelete: () => void;
   onMove: (direction: "up" | "down") => void;
   isDragActive?: boolean;
+  /** Briefly true after this element was dropped to highlight it */
+  isJustDropped?: boolean;
 };
 
 export function FieldCard({
@@ -42,6 +44,7 @@ export function FieldCard({
   total,
   onEdit,
   isDragActive = false,
+  isJustDropped = false,
   onDuplicate,
   onDelete,
   onMove,
@@ -64,6 +67,13 @@ export function FieldCard({
     transform: isDragging ? CSS.Transform.toString(transform) : undefined,
     transition,
     opacity: isDragging ? 0.5 : 1,
+    // Highlight after drop
+    ...(isJustDropped
+      ? {
+          boxShadow: "0 0 0 2px var(--vita-primary)",
+          animation: "fade-ring 1.2s ease-out forwards",
+        }
+      : {}),
   };
 
   return (

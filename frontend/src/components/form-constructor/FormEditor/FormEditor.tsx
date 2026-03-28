@@ -97,6 +97,8 @@ export function FormEditor({
   const [addGroupModalOpen, setAddGroupModalOpen] = useState(false);
   const [isDragActive, setIsDragActive] = useState(false);
   const [activeDragId, setActiveDragId] = useState<string | null>(null);
+  /** ID of the element that was just dropped — triggers highlight animation */
+  const [justDroppedId, setJustDroppedId] = useState<string | null>(null);
 
   // ── Schema update with history ─────────────────────────────────────────────
 
@@ -234,22 +236,51 @@ export function FormEditor({
         const dragResult = findWithParent(els, activeId);
         if (!dragResult.element) return els;
         const draggedEl = dragResult.element;
+
+        // Find the source position BEFORE removal
+        const sourceContainer = dragResult.parentId ?? "root";
+        let sourceIndex = -1;
+        if (sourceContainer === "root") {
+          sourceIndex = els.findIndex((e) => e.id === activeId);
+        } else {
+          const group = els.find(
+            (e) => e.kind === "group" && e.id === sourceContainer,
+          );
+          if (group?.kind === "group") {
+            sourceIndex = group.elements.findIndex((e) => e.id === activeId);
+          }
+        }
+
         let next = removeFromAllLists(els, activeId);
 
+        // Adjust target index: if the element was removed from the same
+        // container BEFORE the target position, indices shift down by 1
+        let targetIndex = dropZone.index;
+        if (
+          sourceContainer === dropZone.container &&
+          sourceIndex !== -1 &&
+          sourceIndex < targetIndex
+        ) {
+          targetIndex--;
+        }
+
         if (dropZone.container === "root") {
-          next.splice(dropZone.index, 0, draggedEl);
+          next.splice(targetIndex, 0, draggedEl);
         } else {
           next = next.map((el) => {
             if (el.kind !== "group" || el.id !== dropZone.container) return el;
             const children = [...el.elements];
-            children.splice(dropZone.index, 0, draggedEl);
+            children.splice(targetIndex, 0, draggedEl);
             return { ...el, elements: children };
           });
         }
         return next;
       });
+
+      // Highlight the just-dropped element briefly
+      setJustDroppedId(activeId);
+      setTimeout(() => setJustDroppedId(null), 1200);
     }
-    // No fallback reorder — all drops go through DropZones
   }
 
   // ── Drag source position (hide adjacent drop zones) ────────────────────
@@ -336,6 +367,7 @@ export function FormEditor({
                       index={index}
                       total={schema.elements.length}
                       isDragActive={isDragActive}
+                      isJustDropped={justDroppedId === element.id}
                       onEdit={() => setConfigField(element)}
                       onDuplicate={() => duplicateEl(element.id)}
                       onDelete={() => removeElement(element.id)}
@@ -349,6 +381,7 @@ export function FormEditor({
                       allElements={schema.elements}
                       isDragActive={isDragActive}
                       activeDragId={activeDragId}
+                      justDroppedId={justDroppedId}
                       onEdit={(field) => setConfigField(field)}
                       onEditGroup={() => setConfigGroup(element)}
                       onDelete={() => removeElement(element.id)}

@@ -44,6 +44,8 @@ type GroupCardProps = {
   isDragActive?: boolean;
   /** ID of the element currently being dragged (to hide adjacent zones) */
   activeDragId?: string | null;
+  /** ID of the element that was just dropped — triggers highlight */
+  justDroppedId?: string | null;
 };
 
 export function GroupCard({
@@ -60,6 +62,7 @@ export function GroupCard({
   onMoveChild,
   isDragActive = false,
   activeDragId = null,
+  justDroppedId = null,
 }: GroupCardProps) {
   const t = useTranslations("formConstructor");
   const [collapsed, setCollapsed] = useState(false);
@@ -83,12 +86,17 @@ export function GroupCard({
     isDragging,
   } = useSortable({ id: group.id, disabled: isDragActive });
 
+  const isGroupJustDropped = justDroppedId === group.id;
   const style: React.CSSProperties = {
-    // Only apply transform when THIS group is being dragged, not when
-    // something else is dragged over it (which causes the "escape" bug)
     transform: isDragging ? CSS.Transform.toString(transform) : undefined,
     transition,
     opacity: isDragging ? 0.5 : 1,
+    ...(isGroupJustDropped
+      ? {
+          boxShadow: "0 0 0 2px var(--vita-primary)",
+          animation: "fade-ring 1.2s ease-out forwards",
+        }
+      : {}),
   };
 
   return (
@@ -263,6 +271,7 @@ export function GroupCard({
                     index={childIndex}
                     total={group.elements.length}
                     isDragActive={isDragActive}
+                    isJustDropped={justDroppedId === child.id}
                     onEdit={() => onEdit(child)}
                     onDuplicate={() => onDuplicateChild(child.id)}
                     onDelete={() => onRemoveChild(child.id)}
