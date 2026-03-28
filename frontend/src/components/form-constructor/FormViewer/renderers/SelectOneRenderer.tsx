@@ -20,11 +20,13 @@ export function SelectOneRenderer({
         value={selected}
         onChange={(e) => onChange(e.target.value)}
         disabled={readOnly}
-        className="w-full rounded-vita-md px-3 py-2 text-sm"
+        className="w-full px-3 py-2 text-sm"
         style={{
+          borderRadius: "var(--vita-input-radius, 6px)",
           border: `1px solid ${error ? "var(--vita-error)" : "var(--vita-neutral-200)"}`,
           background: "var(--vita-surface)",
           color: "var(--vita-text-primary)",
+          fontSize: "var(--vita-input-font-size, 14px)",
         }}
       >
         <option value="">{field.description || field.label}</option>
