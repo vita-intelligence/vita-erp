@@ -25,6 +25,7 @@ function ThemedInputRoot({ style, ...props }: InputRootProps) {
     <HeroInputRoot
       {...props}
       style={{
+        width: "100%",
         borderRadius: "var(--vita-input-radius, 0px)",
         borderTopWidth: "var(--vita-input-border-top, 1px)",
         borderRightWidth: "var(--vita-input-border-right, 1px)",
