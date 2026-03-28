@@ -1,16 +1,15 @@
 "use client";
 
 /**
- * BackgroundPicker — lets user choose a solid color or CSS gradient
- * for field/form backgrounds. Compact UI with toggle between modes.
+ * BackgroundPicker — solid color or gradient background picker.
+ * Gradient mode uses visual ColorInput pickers for each stop + angle slider.
  */
 
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ColorInput } from "@/components/theme-editor/modules/colors/ColorInput";
 import { isGradient } from "@/components/theme-editor/modules/colors/gradient-picker/helpers";
-import { Input } from "@/components/ui/input";
 
 type BackgroundPickerProps = {
   value?: string;
@@ -31,6 +30,29 @@ const PRESET_GRADIENTS = [
   "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
 ];
 
+/** Parse two hex colors and angle from a linear-gradient CSS string. */
+function parseGradientStops(css: string): {
+  color1: string;
+  color2: string;
+  angle: number;
+} {
+  const defaults = { color1: "#667eea", color2: "#764ba2", angle: 135 };
+  if (!css.includes("linear-gradient")) return defaults;
+  const match = css.match(
+    /linear-gradient\(\s*(\d+)deg\s*,\s*(#[0-9a-fA-F]{3,8})\s+\d+%\s*,\s*(#[0-9a-fA-F]{3,8})\s+\d+%/,
+  );
+  if (!match) return defaults;
+  return {
+    angle: Number.parseInt(match[1], 10),
+    color1: match[2],
+    color2: match[3],
+  };
+}
+
+function buildGradient(color1: string, color2: string, angle: number): string {
+  return `linear-gradient(${angle}deg, ${color1} 0%, ${color2} 100%)`;
+}
+
 export function BackgroundPicker({
   value,
   onChange,
@@ -41,6 +63,31 @@ export function BackgroundPicker({
   const [mode, setMode] = useState<"solid" | "gradient">(
     isGrad ? "gradient" : "solid",
   );
+
+  // Gradient builder state
+  const parsed = isGrad
+    ? parseGradientStops(value ?? "")
+    : { color1: "#667eea", color2: "#764ba2", angle: 135 };
+  const [color1, setColor1] = useState(parsed.color1);
+  const [color2, setColor2] = useState(parsed.color2);
+  const [angle, setAngle] = useState(parsed.angle);
+
+  // Sync state when value changes externally (e.g., preset click)
+  useEffect(() => {
+    if (isGrad && value) {
+      const p = parseGradientStops(value);
+      setColor1(p.color1);
+      setColor2(p.color2);
+      setAngle(p.angle);
+    }
+  }, [value, isGrad]);
+
+  function updateGradient(c1: string, c2: string, a: number) {
+    setColor1(c1);
+    setColor2(c2);
+    setAngle(a);
+    onChange(buildGradient(c1, c2, a));
+  }
 
   return (
     <div className="flex flex-col gap-2">
@@ -83,7 +130,12 @@ export function BackgroundPicker({
                 ? "var(--vita-text-on-primary, #fff)"
                 : "var(--vita-text-muted)",
           }}
-          onClick={() => setMode("gradient")}
+          onClick={() => {
+            setMode("gradient");
+            if (!isGrad) {
+              onChange(buildGradient(color1, color2, angle));
+            }
+          }}
         >
           {t("config.general.stylingBgGradient")}
         </button>
@@ -119,48 +171,110 @@ export function BackgroundPicker({
           )}
         </div>
       ) : (
-        <div className="flex flex-col gap-2">
-          {/* Gradient presets */}
-          <div className="flex flex-wrap gap-1.5">
-            {PRESET_GRADIENTS.map((grad) => (
-              <button
-                key={grad}
-                type="button"
-                className="h-6 w-6 rounded-vita-sm transition-transform hover:scale-110"
-                style={{
-                  background: grad,
-                  border:
-                    value === grad
-                      ? "2px solid var(--vita-primary)"
-                      : "1px solid var(--vita-neutral-200)",
-                }}
-                onClick={() => onChange(grad)}
-                title={grad}
+        <div className="flex flex-col gap-3">
+          {/* Visual gradient builder */}
+          <div className="flex flex-col gap-2">
+            {/* Color stops with pickers */}
+            <div className="flex items-center gap-2">
+              <div className="flex flex-col gap-1">
+                <span
+                  className="text-[10px]"
+                  style={{ color: "var(--vita-text-muted)" }}
+                >
+                  {t("config.general.stylingGradientStart")}
+                </span>
+                <ColorInput
+                  value={color1}
+                  onChange={(hex) => updateGradient(hex, color2, angle)}
+                  title="Start color"
+                />
+              </div>
+              {/* Arrow */}
+              <span
+                className="mt-3 text-sm"
+                style={{ color: "var(--vita-neutral-400)" }}
+              >
+                →
+              </span>
+              <div className="flex flex-col gap-1">
+                <span
+                  className="text-[10px]"
+                  style={{ color: "var(--vita-text-muted)" }}
+                >
+                  {t("config.general.stylingGradientEnd")}
+                </span>
+                <ColorInput
+                  value={color2}
+                  onChange={(hex) => updateGradient(color1, hex, angle)}
+                  title="End color"
+                />
+              </div>
+            </div>
+
+            {/* Angle slider */}
+            <div className="flex items-center gap-2">
+              <span
+                className="text-[10px]"
+                style={{ color: "var(--vita-text-muted)" }}
+              >
+                {t("config.general.stylingGradientAngle")}
+              </span>
+              <input
+                type="range"
+                min={0}
+                max={360}
+                value={angle}
+                onChange={(e) =>
+                  updateGradient(color1, color2, Number(e.target.value))
+                }
+                className="flex-1"
               />
-            ))}
+              <span
+                className="w-8 text-right font-mono text-[10px]"
+                style={{ color: "var(--vita-text-muted)" }}
+              >
+                {angle}°
+              </span>
+            </div>
           </div>
 
-          {/* Custom gradient input */}
-          <Input
-            value={isGrad ? (value ?? "") : ""}
-            onChange={(e) => {
-              const v = e.target.value;
-              if (v.includes("gradient(")) onChange(v);
+          {/* Preview */}
+          <div
+            className="h-8 w-full rounded-vita-sm"
+            style={{
+              background:
+                value && isGrad ? value : buildGradient(color1, color2, angle),
+              border: "1px solid var(--vita-neutral-200)",
             }}
-            placeholder="linear-gradient(135deg, #hex 0%, #hex 100%)"
-            className="font-mono text-[11px]"
           />
 
-          {/* Preview */}
-          {value && isGrad && (
-            <div
-              className="h-6 w-full rounded-vita-sm"
-              style={{
-                background: value,
-                border: "1px solid var(--vita-neutral-200)",
-              }}
-            />
-          )}
+          {/* Presets */}
+          <div>
+            <span
+              className="text-[10px]"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {t("config.general.stylingGradientPresets")}
+            </span>
+            <div className="mt-1 flex flex-wrap gap-1.5">
+              {PRESET_GRADIENTS.map((grad) => (
+                <button
+                  key={grad}
+                  type="button"
+                  className="h-6 w-6 rounded-vita-sm transition-transform hover:scale-110"
+                  style={{
+                    background: grad,
+                    border:
+                      value === grad
+                        ? "2px solid var(--vita-primary)"
+                        : "1px solid var(--vita-neutral-200)",
+                  }}
+                  onClick={() => onChange(grad)}
+                  title={grad}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       )}
     </div>
