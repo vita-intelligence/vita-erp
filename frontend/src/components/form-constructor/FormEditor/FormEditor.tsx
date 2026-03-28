@@ -29,6 +29,7 @@ import { useCallback, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { FormViewer } from "../FormViewer/FormViewer";
 import {
   createEmptySchema,
   createField,
@@ -457,16 +458,8 @@ export function FormEditor({
           </div>
         </div>
       ) : (
-        /* Preview pane — placeholder, FormViewer will be added in Phase 4 */
-        <div
-          className="flex items-center justify-center rounded-vita-lg border py-20"
-          style={{
-            borderColor: "var(--vita-neutral-200)",
-            color: "var(--vita-text-muted)",
-          }}
-        >
-          <p className="text-sm">{t("editor.preview")}</p>
-        </div>
+        /* Live preview — renders the form as users will see it */
+        <FormViewer schema={schema} />
       )}
 
       {/* Add field modal */}

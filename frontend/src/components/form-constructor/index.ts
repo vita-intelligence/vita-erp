@@ -6,6 +6,9 @@
  *   - FormViewer: renders a form from a FormSchema (fillable or read-only)
  */
 
+// Components
+export { FormViewer } from "./FormViewer/FormViewer";
+
 export { evaluateExpression } from "./shared/expression-eval";
 export type { FieldCategory, FieldMeta } from "./shared/field-registry";
 // Shared utilities
