@@ -478,55 +478,58 @@ export function FormEditor({
               </DragOverlay>
             </DndContext>
           )}
-
-          {/* Bottom action bar — */}
-          <div
-            className="flex items-center gap-2 rounded-vita-lg border px-4 py-2.5"
-            style={{
-              borderColor: "var(--vita-neutral-200)",
-              background: "var(--vita-background)",
-            }}
-          >
-            <Button
-              size="sm"
-              variant="ghost"
-              className="text-xs font-medium"
-              style={{ color: "var(--vita-primary)" }}
-              onPress={() => {
-                setAddModalTarget({});
-                setAddModalOpen(true);
-              }}
-            >
-              + {t("editor.addVisibleField")}
-            </Button>
-            <span style={{ color: "var(--vita-neutral-300)" }}>|</span>
-            <Button
-              size="sm"
-              variant="ghost"
-              className="text-xs font-medium"
-              style={{ color: "var(--vita-primary)" }}
-              onPress={() => setAddGroupModalOpen(true)}
-            >
-              {t("editor.addGroup")}
-            </Button>
-            <span style={{ color: "var(--vita-neutral-300)" }}>|</span>
-            <Button
-              size="sm"
-              variant="ghost"
-              className="text-xs font-medium"
-              style={{ color: "var(--vita-primary)" }}
-              onPress={() => {
-                setAddModalTarget({ hidden: true });
-                setAddModalOpen(true);
-              }}
-            >
-              + {t("editor.addHiddenField")}
-            </Button>
-          </div>
         </div>
       ) : (
         /* Live preview — renders the form as users will see it */
         <FormViewer schema={schema} />
+      )}
+
+      {/* Sticky action bar — always visible at bottom when in editor mode */}
+      {!showPreview && (
+        <div
+          className="sticky bottom-0 z-10 flex items-center gap-2 rounded-vita-lg border px-4 py-2.5"
+          style={{
+            borderColor: "var(--vita-neutral-200)",
+            background: "var(--vita-surface)",
+            boxShadow: "0 -4px 12px oklch(0 0 0 / 0.05)",
+          }}
+        >
+          <Button
+            size="sm"
+            variant="ghost"
+            className="text-xs font-medium"
+            style={{ color: "var(--vita-primary)" }}
+            onPress={() => {
+              setAddModalTarget({});
+              setAddModalOpen(true);
+            }}
+          >
+            + {t("editor.addVisibleField")}
+          </Button>
+          <span style={{ color: "var(--vita-neutral-300)" }}>|</span>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="text-xs font-medium"
+            style={{ color: "var(--vita-primary)" }}
+            onPress={() => setAddGroupModalOpen(true)}
+          >
+            {t("editor.addGroup")}
+          </Button>
+          <span style={{ color: "var(--vita-neutral-300)" }}>|</span>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="text-xs font-medium"
+            style={{ color: "var(--vita-primary)" }}
+            onPress={() => {
+              setAddModalTarget({ hidden: true });
+              setAddModalOpen(true);
+            }}
+          >
+            + {t("editor.addHiddenField")}
+          </Button>
+        </div>
       )}
 
       {/* Add field modal */}

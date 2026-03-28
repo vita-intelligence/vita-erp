@@ -1,0 +1,546 @@
+{
+  "version": 1,
+  "name": "Comprehensive Long Form — All Features",
+  "description": "A long form using every feature: all field types, appearances, repeat groups, calculations, visibility, constraints, cascading selects, interpolation, translations, styling, defaults",
+  "settings": {
+    "layout": "single-page",
+    "showFieldNumbers": true,
+    "styling": {
+      "maxWidth": "700px",
+      "padding": "24px"
+    }
+  },
+  "elements": [
+    {
+      "kind": "field",
+      "id": "form_date",
+      "type": "start_timestamp",
+      "label": "Form Started",
+      "hidden": true,
+      "required": false
+    },
+    {
+      "kind": "group",
+      "id": "customer_info",
+      "label": "1. Customer Information",
+      "description": "Basic customer details",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "company_name",
+          "type": "text",
+          "label": "Company Name",
+          "required": true,
+          "hidden": false,
+          "styling": { "labelColor": "#1e40af", "fontWeight": "600" }
+        },
+        {
+          "kind": "field",
+          "id": "contact_person",
+          "type": "text",
+          "label": "Contact Person",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "email",
+          "type": "text",
+          "label": "Email",
+          "required": true,
+          "hidden": false,
+          "regex": {
+            "pattern": "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$",
+            "mode": "hard",
+            "message": "Enter a valid email"
+          }
+        },
+        {
+          "kind": "field",
+          "id": "phone",
+          "type": "text",
+          "label": "Phone",
+          "required": false,
+          "hidden": false,
+          "regex": {
+            "pattern": "^\\+?[0-9\\s()-]{7,20}$",
+            "mode": "soft",
+            "message": "Doesn't look like a valid phone number"
+          }
+        },
+        {
+          "kind": "field",
+          "id": "country",
+          "type": "select_one",
+          "label": "Country",
+          "required": true,
+          "hidden": false,
+          "appearance": "minimal",
+          "options": [
+            { "value": "us", "label": "United States" },
+            { "value": "uk", "label": "United Kingdom" },
+            { "value": "de", "label": "Germany" },
+            { "value": "fr", "label": "France" },
+            { "value": "jp", "label": "Japan" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "city",
+          "type": "select_one",
+          "label": "City",
+          "required": true,
+          "hidden": false,
+          "appearance": "minimal",
+          "choiceFilter": { "fieldId": "country" },
+          "options": [
+            { "value": "nyc", "label": "New York", "filterBy": "us" },
+            { "value": "la", "label": "Los Angeles", "filterBy": "us" },
+            { "value": "chi", "label": "Chicago", "filterBy": "us" },
+            { "value": "lon", "label": "London", "filterBy": "uk" },
+            { "value": "man", "label": "Manchester", "filterBy": "uk" },
+            { "value": "ber", "label": "Berlin", "filterBy": "de" },
+            { "value": "mun", "label": "Munich", "filterBy": "de" },
+            { "value": "par", "label": "Paris", "filterBy": "fr" },
+            { "value": "lyo", "label": "Lyon", "filterBy": "fr" },
+            { "value": "tok", "label": "Tokyo", "filterBy": "jp" },
+            { "value": "osa", "label": "Osaka", "filterBy": "jp" }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "order_details",
+      "label": "2. Order Details",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "order_type",
+          "type": "select_one",
+          "label": "Order Type",
+          "required": true,
+          "hidden": false,
+          "appearance": "compact",
+          "options": [
+            { "value": "standard", "label": "Standard" },
+            { "value": "express", "label": "Express" },
+            { "value": "bulk", "label": "Bulk" },
+            { "value": "custom", "label": "Custom" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "priority",
+          "type": "select_one",
+          "label": "Priority Level",
+          "required": true,
+          "hidden": false,
+          "appearance": "likert",
+          "options": [
+            { "value": "1", "label": "Low" },
+            { "value": "2", "label": "Normal" },
+            { "value": "3", "label": "High" },
+            { "value": "4", "label": "Urgent" },
+            { "value": "5", "label": "Critical" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "delivery_date",
+          "type": "date",
+          "label": "Requested Delivery Date",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "special_instructions",
+          "type": "text",
+          "label": "Special Instructions",
+          "required": false,
+          "hidden": false,
+          "appearance": "multiline",
+          "constraints": { "maxLength": 500 }
+        }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "num_items",
+      "type": "integer",
+      "label": "Number of Line Items",
+      "description": "How many products in this order?",
+      "required": true,
+      "hidden": false,
+      "defaultValue": 1,
+      "constraints": { "min": 1, "max": 50 }
+    },
+    {
+      "kind": "group",
+      "id": "line_items",
+      "label": "3. Line Items",
+      "description": "One row per product — controlled by 'Number of Line Items' above",
+      "repeat": {
+        "enabled": true,
+        "countFieldId": "num_items",
+        "min": 0
+      },
+      "elements": [
+        {
+          "kind": "field",
+          "id": "product_name",
+          "type": "text",
+          "label": "Product Name",
+          "required": true,
+          "hidden": false
+        },
+        {
+          "kind": "field",
+          "id": "sku",
+          "type": "text",
+          "label": "SKU",
+          "required": true,
+          "hidden": false,
+          "regex": {
+            "pattern": "^[A-Z]{2}-[0-9]{4}$",
+            "mode": "hard",
+            "message": "Format: AB-1234"
+          }
+        },
+        {
+          "kind": "field",
+          "id": "item_qty",
+          "type": "integer",
+          "label": "Quantity",
+          "required": true,
+          "hidden": false,
+          "defaultValue": 1,
+          "constraints": { "min": 1 }
+        },
+        {
+          "kind": "field",
+          "id": "unit_price",
+          "type": "decimal",
+          "label": "Unit Price ($)",
+          "required": true,
+          "hidden": false,
+          "constraints": { "min": 0.01 }
+        },
+        {
+          "kind": "field",
+          "id": "line_total",
+          "type": "calculate",
+          "label": "Line Total",
+          "required": false,
+          "hidden": false,
+          "calculate": "round({item_qty} * {unit_price}, 2)"
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "quality_notes",
+      "label": "4. Quality Notes",
+      "description": "Add any quality observations (open-ended, add as needed)",
+      "repeat": {
+        "enabled": true,
+        "min": 0,
+        "max": 20
+      },
+      "elements": [
+        {
+          "kind": "field",
+          "id": "note_category",
+          "type": "select_one",
+          "label": "Category",
+          "required": true,
+          "hidden": false,
+          "appearance": "compact",
+          "options": [
+            { "value": "defect", "label": "Defect" },
+            { "value": "observation", "label": "Observation" },
+            { "value": "suggestion", "label": "Suggestion" },
+            { "value": "praise", "label": "Praise" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "note_severity",
+          "type": "select_one",
+          "label": "Severity",
+          "required": true,
+          "hidden": false,
+          "visibility": {
+            "fieldId": "note_category",
+            "operator": "equals",
+            "value": "defect"
+          },
+          "options": [
+            { "value": "minor", "label": "Minor" },
+            { "value": "major", "label": "Major" },
+            { "value": "critical", "label": "Critical" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "note_text",
+          "type": "text",
+          "label": "Description",
+          "required": true,
+          "hidden": false,
+          "appearance": "multiline"
+        },
+        {
+          "kind": "field",
+          "id": "note_photo",
+          "type": "image",
+          "label": "Photo (optional)",
+          "required": false,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "kind": "group",
+      "id": "pricing",
+      "label": "5. Pricing Summary",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "subtotal_manual",
+          "type": "decimal",
+          "label": "Subtotal ($)",
+          "description": "Enter the order subtotal",
+          "required": true,
+          "hidden": false,
+          "constraints": { "min": 0 }
+        },
+        {
+          "kind": "field",
+          "id": "discount_pct",
+          "type": "decimal",
+          "label": "Discount (%)",
+          "required": false,
+          "hidden": false,
+          "defaultValue": 0,
+          "constraints": { "min": 0, "max": 100 }
+        },
+        {
+          "kind": "field",
+          "id": "discount_amount",
+          "type": "calculate",
+          "label": "Discount Amount ($)",
+          "required": false,
+          "hidden": false,
+          "calculate": "round({subtotal_manual} * {discount_pct} / 100, 2)"
+        },
+        {
+          "kind": "field",
+          "id": "after_discount",
+          "type": "calculate",
+          "label": "After Discount ($)",
+          "required": false,
+          "hidden": false,
+          "calculate": "round({subtotal_manual} - {discount_amount}, 2)"
+        },
+        {
+          "kind": "field",
+          "id": "tax_rate",
+          "type": "decimal",
+          "label": "Tax Rate (%)",
+          "required": false,
+          "hidden": false,
+          "defaultValue": 8.5
+        },
+        {
+          "kind": "field",
+          "id": "tax_amount",
+          "type": "calculate",
+          "label": "Tax ($)",
+          "required": false,
+          "hidden": false,
+          "calculate": "round({after_discount} * {tax_rate} / 100, 2)"
+        },
+        {
+          "kind": "field",
+          "id": "shipping",
+          "type": "calculate",
+          "label": "Shipping ($)",
+          "description": "Free for orders over $500",
+          "required": false,
+          "hidden": false,
+          "calculate": "if({after_discount} > 500, 0, 25)"
+        },
+        {
+          "kind": "field",
+          "id": "grand_total",
+          "type": "calculate",
+          "label": "Grand Total ($)",
+          "required": false,
+          "hidden": false,
+          "calculate": "round({after_discount} + {tax_amount} + {shipping}, 2)",
+          "styling": {
+            "backgroundColor": "#ecfdf5",
+            "labelColor": "#065f46",
+            "fontSize": "18px",
+            "fontWeight": "bold"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "payment_method",
+      "type": "select_one",
+      "label": "6. Payment Method",
+      "required": true,
+      "hidden": false,
+      "options": [
+        { "value": "credit", "label": "Credit Card" },
+        { "value": "wire", "label": "Wire Transfer" },
+        { "value": "po", "label": "Purchase Order" },
+        { "value": "cod", "label": "Cash on Delivery" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "po_number",
+      "type": "text",
+      "label": "Purchase Order Number",
+      "description": "Required for PO payment",
+      "required": true,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "payment_method",
+        "operator": "equals",
+        "value": "po"
+      },
+      "regex": {
+        "pattern": "^PO-[0-9]{6,}$",
+        "mode": "hard",
+        "message": "Format: PO-123456"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "wire_details",
+      "type": "text",
+      "label": "Wire Transfer Reference",
+      "required": true,
+      "hidden": false,
+      "appearance": "multiline",
+      "visibility": {
+        "fieldId": "payment_method",
+        "operator": "equals",
+        "value": "wire"
+      }
+    },
+    {
+      "kind": "group",
+      "id": "shipping_info",
+      "label": "7. Shipping",
+      "elements": [
+        {
+          "kind": "field",
+          "id": "shipping_method",
+          "type": "select_one",
+          "label": "Shipping Method",
+          "required": true,
+          "hidden": false,
+          "appearance": "compact",
+          "options": [
+            { "value": "ground", "label": "Ground" },
+            { "value": "air", "label": "Air" },
+            { "value": "overnight", "label": "Overnight" },
+            { "value": "pickup", "label": "Pickup" }
+          ]
+        },
+        {
+          "kind": "field",
+          "id": "shipping_address",
+          "type": "text",
+          "label": "Shipping Address",
+          "required": true,
+          "hidden": false,
+          "appearance": "multiline",
+          "visibility": {
+            "fieldId": "shipping_method",
+            "operator": "not_equals",
+            "value": "pickup"
+          }
+        },
+        {
+          "kind": "field",
+          "id": "pickup_note",
+          "type": "note",
+          "label": "Pickup Info",
+          "description": "Pick up from our warehouse at 123 Industrial Blvd, Mon-Fri 8am-5pm.",
+          "required": false,
+          "hidden": false,
+          "visibility": {
+            "fieldId": "shipping_method",
+            "operator": "equals",
+            "value": "pickup"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "notifications",
+      "type": "select_multiple",
+      "label": "8. Notification Preferences",
+      "required": false,
+      "hidden": false,
+      "appearance": "compact",
+      "options": [
+        { "value": "email", "label": "Email" },
+        { "value": "sms", "label": "SMS" },
+        { "value": "whatsapp", "label": "WhatsApp" },
+        { "value": "none", "label": "None" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "terms",
+      "type": "select_one",
+      "label": "9. Terms & Conditions",
+      "required": true,
+      "hidden": false,
+      "appearance": "compact",
+      "options": [
+        { "value": "agree", "label": "I agree to the terms and conditions" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "summary_note",
+      "type": "note",
+      "label": "Order Summary",
+      "description": "<b>${company_name}</b> — ${contact_person} (${email})<br/>Location: ${country} → ${city}<br/>Order type: <b>${order_type}</b>, Priority: ${priority}<br/>Payment: ${payment_method}<br/><br/>Grand total: <b>$${grand_total}</b> (incl. $${tax_amount} tax, $${shipping} shipping)",
+      "required": false,
+      "hidden": false,
+      "styling": {
+        "backgroundColor": "#eff6ff",
+        "fontSize": "14px"
+      }
+    },
+    {
+      "kind": "field",
+      "id": "signature",
+      "type": "signature",
+      "label": "10. Authorized Signature",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "form_end",
+      "type": "end_timestamp",
+      "label": "Form Completed",
+      "hidden": true,
+      "required": false
+    }
+  ]
+}
