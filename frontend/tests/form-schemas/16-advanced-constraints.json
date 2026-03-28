@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "name": "Advanced Constraints",
+  "description": "Tests min/max value, min/max length, and custom constraint expressions",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "age",
+      "type": "integer",
+      "label": "Age",
+      "description": "Must be between 18 and 120",
+      "required": true,
+      "hidden": false,
+      "constraints": {
+        "min": 18,
+        "max": 120
+      }
+    },
+    {
+      "kind": "field",
+      "id": "temperature",
+      "type": "decimal",
+      "label": "Temperature (°C)",
+      "description": "Must be between -40 and 200",
+      "required": true,
+      "hidden": false,
+      "constraints": {
+        "min": -40,
+        "max": 200
+      }
+    },
+    {
+      "kind": "field",
+      "id": "username",
+      "type": "text",
+      "label": "Username",
+      "description": "3 to 20 characters",
+      "required": true,
+      "hidden": false,
+      "constraints": {
+        "minLength": 3,
+        "maxLength": 20
+      }
+    },
+    {
+      "kind": "field",
+      "id": "bio",
+      "type": "text",
+      "label": "Bio",
+      "description": "Max 500 characters",
+      "required": false,
+      "hidden": false,
+      "constraints": {
+        "maxLength": 500
+      }
+    },
+    {
+      "kind": "field",
+      "id": "min_price",
+      "type": "decimal",
+      "label": "Minimum Price ($)",
+      "required": true,
+      "hidden": false,
+      "constraints": {
+        "min": 0
+      }
+    },
+    {
+      "kind": "field",
+      "id": "max_price",
+      "type": "decimal",
+      "label": "Maximum Price ($)",
+      "description": "Must be greater than minimum price (custom constraint)",
+      "required": true,
+      "hidden": false,
+      "constraints": {
+        "min": 0,
+        "customRule": {
+          "expression": "{.} > {min_price}",
+          "message": "Maximum price must be greater than minimum price",
+          "mode": "hard"
+        }
+      }
+    },
+    {
+      "kind": "field",
+      "id": "quantity",
+      "type": "integer",
+      "label": "Order Quantity",
+      "description": "Soft warning if over 1000 units (custom constraint, soft mode)",
+      "required": true,
+      "hidden": false,
+      "constraints": {
+        "min": 1,
+        "customRule": {
+          "expression": "{.} <= 1000",
+          "message": "Large order detected — consider splitting into multiple shipments",
+          "mode": "soft"
+        }
+      }
+    },
+    {
+      "kind": "field",
+      "id": "start_date",
+      "type": "date",
+      "label": "Start Date",
+      "required": true,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "end_date",
+      "type": "date",
+      "label": "End Date",
+      "description": "Must be after start date (cross-field constraint)",
+      "required": true,
+      "hidden": false,
+      "constraints": {
+        "customRule": {
+          "expression": "{.} > {start_date}",
+          "message": "End date must be after start date",
+          "mode": "hard"
+        }
+      }
+    }
+  ]
+}

@@ -24,8 +24,9 @@ import { evaluateExpression } from "../shared/expression-eval";
 import { getFieldMeta } from "../shared/field-registry";
 import { interpolateText } from "../shared/interpolate";
 import { collectFields } from "../shared/schema-utils";
-import { validateRegex } from "../shared/validation-utils";
-import type { FieldElement, GroupElement, VisibilityRule } from "../types";
+import { evaluateConstraint, validateRegex } from "../shared/validation-utils";
+import { evaluateVisibility } from "../shared/visibility";
+import type { FieldElement, GroupElement } from "../types";
 import { FieldRenderer } from "./FieldRenderer";
 
 // ── Props ────────────────────────────────────────────────────────────────────
@@ -267,37 +268,31 @@ export function RepeatGroupRenderer({
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
-function evaluateVisibility(
-  rule: VisibilityRule,
-  values: Record<string, unknown>,
-): boolean {
-  const fieldValue = values[rule.fieldId];
-  const strValue =
-    fieldValue === undefined || fieldValue === null ? "" : String(fieldValue);
-
-  switch (rule.operator) {
-    case "equals":
-      return strValue === (rule.value ?? "");
-    case "not_equals":
-      return strValue !== (rule.value ?? "");
-    case "contains":
-      return strValue.includes(rule.value ?? "");
-    case "is_empty":
-      return strValue === "";
-    case "is_not_empty":
-      return strValue !== "";
-    default:
-      return true;
-  }
-}
-
 function getWarningForField(
   field: FieldElement,
   values: Record<string, unknown>,
 ): string | undefined {
-  if (!field.regex || field.regex.mode !== "soft") return undefined;
   const val = values[field.id];
-  if (typeof val !== "string" || val === "") return undefined;
-  const result = validateRegex(val, field.regex);
-  return result.valid ? undefined : result.message;
+
+  // Soft regex
+  if (field.regex?.mode === "soft") {
+    if (typeof val === "string" && val !== "") {
+      const result = validateRegex(val, field.regex);
+      if (!result.valid) return result.message;
+    }
+  }
+
+  // Soft custom constraint
+  const rule = field.constraints?.customRule;
+  if (
+    rule?.mode === "soft" &&
+    rule.expression &&
+    val !== "" &&
+    val !== undefined
+  ) {
+    const result = evaluateConstraint(val, rule.expression, values);
+    if (result === 0) return rule.message;
+  }
+
+  return undefined;
 }

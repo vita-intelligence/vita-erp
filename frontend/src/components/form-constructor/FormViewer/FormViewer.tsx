@@ -21,13 +21,13 @@ import { evaluateExpression } from "../shared/expression-eval";
 import { getFieldMeta } from "../shared/field-registry";
 import { interpolateText } from "../shared/interpolate";
 import { collectFields } from "../shared/schema-utils";
-import { buildZodSchema, validateRegex } from "../shared/validation-utils";
-import type {
-  FieldElement,
-  FormElement,
-  FormSchema,
-  VisibilityRule,
-} from "../types";
+import {
+  buildZodSchema,
+  evaluateConstraint,
+  validateRegex,
+} from "../shared/validation-utils";
+import { isFieldVisible } from "../shared/visibility";
+import type { FieldElement, FormElement, FormSchema } from "../types";
 import { FieldRenderer } from "./FieldRenderer";
 import { GroupRenderer } from "./GroupRenderer";
 import { RepeatGroupRenderer } from "./RepeatGroupRenderer";
@@ -54,21 +54,24 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
   const defaultValues = useMemo(() => {
     const defaults: Record<string, unknown> = {};
 
+    function fieldDefault(f: FieldElement): unknown {
+      if (f.defaultValue !== undefined) return f.defaultValue;
+      return f.type === "select_multiple" ? [] : "";
+    }
+
     for (const el of schema.elements) {
       if (el.kind === "field") {
         if (el.hidden) continue;
         const meta = getFieldMeta(el.type);
         if (!meta.isInput) continue;
-        defaults[el.id] = el.type === "select_multiple" ? [] : "";
+        defaults[el.id] = fieldDefault(el);
       } else if (el.repeat?.enabled) {
-        // Repeat group → array of empty instances (start with min or 1)
         const instanceDefaults: Record<string, unknown> = {};
         for (const child of el.elements) {
           if (child.kind !== "field" || child.hidden) continue;
           const meta = getFieldMeta(child.type);
           if (!meta.isInput) continue;
-          instanceDefaults[child.id] =
-            child.type === "select_multiple" ? [] : "";
+          instanceDefaults[child.id] = fieldDefault(child);
         }
         const min = el.repeat.min ?? 1;
         const initialCount = el.repeat.countFieldId ? 0 : min;
@@ -81,7 +84,7 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
           if (child.kind !== "field" || child.hidden) continue;
           const meta = getFieldMeta(child.type);
           if (!meta.isInput) continue;
-          defaults[child.id] = child.type === "select_multiple" ? [] : "";
+          defaults[child.id] = fieldDefault(child);
         }
       }
     }
@@ -126,24 +129,52 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
 
   // ── Visibility evaluation ──────────────────────────────────────────────────
 
-  const isFieldVisible = useCallback(
-    (field: FieldElement): boolean => {
-      if (field.hidden) return false;
-      if (!field.visibility) return true;
-      return evaluateVisibility(field.visibility, watchedValues);
+  const checkFieldVisible = useCallback(
+    (field: FieldElement): boolean => isFieldVisible(field, watchedValues),
+    [watchedValues],
+  );
+
+  // ── Soft warnings (regex + custom constraints) ────────────────────────────
+
+  const getWarning = useCallback(
+    (field: FieldElement): string | undefined => {
+      const val = watchedValues[field.id];
+
+      // Soft regex
+      if (field.regex?.mode === "soft") {
+        if (typeof val === "string" && val !== "") {
+          const result = validateRegex(val, field.regex);
+          if (!result.valid) return result.message;
+        }
+      }
+
+      // Soft custom constraint
+      const rule = field.constraints?.customRule;
+      if (
+        rule?.mode === "soft" &&
+        rule.expression &&
+        val !== "" &&
+        val !== undefined
+      ) {
+        const result = evaluateConstraint(val, rule.expression, watchedValues);
+        if (result === 0) return rule.message;
+      }
+
+      return undefined;
     },
     [watchedValues],
   );
 
-  // ── Soft regex warnings ────────────────────────────────────────────────────
+  // ── Hard custom constraint errors (evaluated at runtime, not by Zod) ──────
 
-  const getWarning = useCallback(
+  const getConstraintError = useCallback(
     (field: FieldElement): string | undefined => {
-      if (!field.regex || field.regex.mode !== "soft") return undefined;
+      const rule = field.constraints?.customRule;
+      if (!rule || rule.mode !== "hard" || !rule.expression) return undefined;
       const val = watchedValues[field.id];
-      if (typeof val !== "string" || val === "") return undefined;
-      const result = validateRegex(val, field.regex);
-      return result.valid ? undefined : result.message;
+      if (val === "" || val === undefined) return undefined;
+      const result = evaluateConstraint(val, rule.expression, watchedValues);
+      return result === 0 ? rule.message : undefined;
     },
     [watchedValues],
   );
@@ -174,7 +205,7 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
 
       // Regular group
       const visibleChildren = element.elements.filter(
-        (child) => child.kind !== "field" || isFieldVisible(child),
+        (child) => child.kind !== "field" || checkFieldVisible(child),
       );
       if (visibleChildren.length === 0) return null;
 
@@ -194,12 +225,14 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
     }
 
     // Field element
-    if (!isFieldVisible(element)) return null;
+    if (!checkFieldVisible(element)) return null;
 
     const meta = getFieldMeta(element.type);
     const isNonInput = !meta.isInput;
     const fieldError = errors[element.id];
-    const errorMessage = fieldError?.message as string | undefined;
+    const zodError = fieldError?.message as string | undefined;
+    const constraintError = getConstraintError(element);
+    const errorMessage = zodError || constraintError;
     const warning = getWarning(element);
 
     // Non-input fields (note, calculate) don't need form Controller
@@ -302,30 +335,4 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
       )}
     </form>
   );
-}
-
-// ── Helpers ──────────────────────────────────────────────────────────────────
-
-function evaluateVisibility(
-  rule: VisibilityRule,
-  values: Record<string, unknown>,
-): boolean {
-  const fieldValue = values[rule.fieldId];
-  const strValue =
-    fieldValue === undefined || fieldValue === null ? "" : String(fieldValue);
-
-  switch (rule.operator) {
-    case "equals":
-      return strValue === (rule.value ?? "");
-    case "not_equals":
-      return strValue !== (rule.value ?? "");
-    case "contains":
-      return strValue.includes(rule.value ?? "");
-    case "is_empty":
-      return strValue === "";
-    case "is_not_empty":
-      return strValue !== "";
-    default:
-      return true;
-  }
 }

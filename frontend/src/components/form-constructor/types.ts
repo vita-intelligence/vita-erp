@@ -43,14 +43,45 @@ export type FieldElement = {
   required: boolean;
   /** Hidden fields are part of the schema but not visible in FormViewer */
   hidden: boolean;
-  /** Conditional visibility — show/hide based on another field's value */
-  visibility?: VisibilityRule;
+  /** Conditional visibility — single rule or compound rules with AND/OR logic */
+  visibility?: VisibilityRule | CompoundVisibility;
   /** Regex validation with hard (error) or soft (warning) mode */
   regex?: RegexRule;
   /** Options list — only used by select_one and select_multiple */
   options?: SelectOption[];
   /** Calculation expression — only used by calculate type */
   calculate?: string;
+  /** Value/length constraints for validation */
+  constraints?: FieldConstraints;
+  /** Default value — pre-filled when the form loads */
+  defaultValue?: string | number;
+};
+
+// ── Constraints ─────────────────────────────────────────────────────────────
+
+export type FieldConstraints = {
+  /** Minimum value — applies to integer and decimal fields */
+  min?: number;
+  /** Maximum value — applies to integer and decimal fields */
+  max?: number;
+  /** Minimum text length — applies to text fields */
+  minLength?: number;
+  /** Maximum text length — applies to text fields */
+  maxLength?: number;
+  /** Custom constraint expression evaluated at runtime */
+  customRule?: CustomConstraintRule;
+};
+
+export type CustomConstraintRule = {
+  /**
+   * Boolean expression — must evaluate to nonzero (true) for the value to pass.
+   * Use {.} to reference the current field's value, {other_field} for cross-field.
+   */
+  expression: string;
+  /** Error or warning message shown when the constraint fails */
+  message: string;
+  /** Hard = blocks submission; Soft = shows warning only */
+  mode: "hard" | "soft";
 };
 
 export type GroupElement = {
@@ -125,6 +156,13 @@ export type VisibilityOperator =
   | "contains"
   | "is_empty"
   | "is_not_empty";
+
+export type CompoundVisibility = {
+  /** How to combine rules: "and" = all must match, "or" = any must match */
+  logic: "and" | "or";
+  /** Multiple visibility rules */
+  rules: VisibilityRule[];
+};
 
 export type RegexRule = {
   /** Regular expression pattern (without delimiters) */

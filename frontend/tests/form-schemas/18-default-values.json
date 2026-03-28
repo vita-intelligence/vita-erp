@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "name": "Default Values",
+  "description": "Tests pre-filled values on form load",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "country",
+      "type": "text",
+      "label": "Country",
+      "description": "Pre-filled with 'United States'",
+      "required": false,
+      "hidden": false,
+      "defaultValue": "United States"
+    },
+    {
+      "kind": "field",
+      "id": "quantity",
+      "type": "integer",
+      "label": "Default Quantity",
+      "description": "Pre-filled with 1",
+      "required": false,
+      "hidden": false,
+      "defaultValue": 1
+    },
+    {
+      "kind": "field",
+      "id": "tax_rate",
+      "type": "decimal",
+      "label": "Tax Rate (%)",
+      "description": "Pre-filled with 8.5",
+      "required": false,
+      "hidden": false,
+      "defaultValue": 8.5
+    },
+    {
+      "kind": "field",
+      "id": "priority",
+      "type": "select_one",
+      "label": "Priority",
+      "description": "Pre-filled with 'medium'",
+      "required": false,
+      "hidden": false,
+      "defaultValue": "medium",
+      "options": [
+        { "value": "low", "label": "Low" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "high", "label": "High" },
+        { "value": "critical", "label": "Critical" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "no_default",
+      "type": "text",
+      "label": "No Default",
+      "description": "This field has no default value — should be empty on load",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "total",
+      "type": "calculate",
+      "label": "Tax Amount",
+      "description": "Should auto-calculate from defaults: 1 * 8.5 / 100",
+      "required": false,
+      "hidden": false,
+      "calculate": "{quantity} * {tax_rate} / 100"
+    }
+  ]
+}

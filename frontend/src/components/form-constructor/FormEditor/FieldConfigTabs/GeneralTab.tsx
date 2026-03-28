@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl";
 import { FieldError, Input, Label, TextField } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 
+import { getFieldMeta } from "../../shared/field-registry";
 import { isIdUnique } from "../../shared/schema-utils";
 import type { ConfigTabProps } from "../../types";
 
@@ -56,6 +57,49 @@ export function GeneralTab({ field, onUpdate, allElements }: ConfigTabProps) {
           placeholder={t("config.general.descriptionPlaceholder")}
         />
       </TextField>
+
+      {/* Default value — only for input fields */}
+      {getFieldMeta(field.type).isInput &&
+        field.type !== "file" &&
+        field.type !== "image" &&
+        field.type !== "signature" && (
+          <TextField>
+            <Label>{t("config.general.defaultValue")}</Label>
+            <Input
+              type={
+                field.type === "integer" || field.type === "decimal"
+                  ? "number"
+                  : field.type === "date"
+                    ? "date"
+                    : field.type === "time"
+                      ? "time"
+                      : field.type === "datetime"
+                        ? "datetime-local"
+                        : "text"
+              }
+              value={
+                field.defaultValue !== undefined
+                  ? String(field.defaultValue)
+                  : ""
+              }
+              onChange={(e) => {
+                const raw = e.target.value;
+                if (raw === "") {
+                  onUpdate({ defaultValue: undefined });
+                  return;
+                }
+                if (field.type === "integer") {
+                  onUpdate({ defaultValue: Number.parseInt(raw, 10) });
+                } else if (field.type === "decimal") {
+                  onUpdate({ defaultValue: Number.parseFloat(raw) });
+                } else {
+                  onUpdate({ defaultValue: raw });
+                }
+              }}
+              placeholder={t("config.general.defaultValuePlaceholder")}
+            />
+          </TextField>
+        )}
 
       {/* Required toggle */}
       <div className="flex items-center justify-between">

@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "name": "Compound Visibility Conditions",
+  "description": "Tests AND/OR logic with multiple visibility rules per field",
+  "elements": [
+    {
+      "kind": "field",
+      "id": "department",
+      "type": "select_one",
+      "label": "Department",
+      "required": false,
+      "hidden": false,
+      "options": [
+        { "value": "engineering", "label": "Engineering" },
+        { "value": "sales", "label": "Sales" },
+        { "value": "hr", "label": "HR" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "role",
+      "type": "select_one",
+      "label": "Role",
+      "required": false,
+      "hidden": false,
+      "options": [
+        { "value": "manager", "label": "Manager" },
+        { "value": "senior", "label": "Senior" },
+        { "value": "junior", "label": "Junior" },
+        { "value": "intern", "label": "Intern" }
+      ]
+    },
+    {
+      "kind": "field",
+      "id": "budget_access",
+      "type": "note",
+      "label": "Budget Access Granted",
+      "description": "You have budget access because you are in Engineering AND are a Manager (AND logic, both must match)",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "logic": "and",
+        "rules": [
+          { "fieldId": "department", "operator": "equals", "value": "engineering" },
+          { "fieldId": "role", "operator": "equals", "value": "manager" }
+        ]
+      }
+    },
+    {
+      "kind": "field",
+      "id": "leadership_training",
+      "type": "note",
+      "label": "Leadership Training Available",
+      "description": "Shown because you are a Manager OR a Senior (OR logic, either matches)",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "logic": "or",
+        "rules": [
+          { "fieldId": "role", "operator": "equals", "value": "manager" },
+          { "fieldId": "role", "operator": "equals", "value": "senior" }
+        ]
+      }
+    },
+    {
+      "kind": "field",
+      "id": "status",
+      "type": "text",
+      "label": "Employment Status",
+      "required": false,
+      "hidden": false
+    },
+    {
+      "kind": "field",
+      "id": "hr_review_note",
+      "type": "note",
+      "label": "HR Review Required",
+      "description": "Shown because: department is HR AND role is NOT intern AND status is not empty (3-rule AND)",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "logic": "and",
+        "rules": [
+          { "fieldId": "department", "operator": "equals", "value": "hr" },
+          { "fieldId": "role", "operator": "not_equals", "value": "intern" },
+          { "fieldId": "status", "operator": "is_not_empty" }
+        ]
+      }
+    },
+    {
+      "kind": "field",
+      "id": "single_rule",
+      "type": "note",
+      "label": "Single Rule (backward compat)",
+      "description": "Uses old single-rule format — visible when department = sales",
+      "required": false,
+      "hidden": false,
+      "visibility": {
+        "fieldId": "department",
+        "operator": "equals",
+        "value": "sales"
+      }
+    }
+  ]
+}

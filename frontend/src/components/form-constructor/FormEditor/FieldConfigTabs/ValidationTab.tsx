@@ -1,13 +1,12 @@
 "use client";
 
 /**
- * ValidationTab — regex validation settings for input fields.
+ * ValidationTab — validation settings for input fields.
  *
- * Supports two modes:
- * - Hard: blocks form submission and shows an error message.
- * - Soft: allows submission but shows a warning message.
- *
- * When no regex rule exists, shows a single "Add validation" button.
+ * Sections:
+ *   1. Value constraints (min/max for numbers, minLength/maxLength for text)
+ *   2. Regex validation (hard/soft mode)
+ *   3. Custom constraint expression (cross-field, complex logic)
  */
 
 import { useTranslations } from "next-intl";
@@ -15,16 +14,44 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input, Label, TextField } from "@/components/ui/input";
 
-import type { ConfigTabProps, RegexRule } from "../../types";
+import type {
+  ConfigTabProps,
+  CustomConstraintRule,
+  FieldConstraints,
+  RegexRule,
+} from "../../types";
 
 export function ValidationTab({ field, onUpdate }: ConfigTabProps) {
   const t = useTranslations("formConstructor");
+  const c = field.constraints;
+  const isNumber = field.type === "integer" || field.type === "decimal";
+  const isText = field.type === "text";
+
+  // ── Constraints helpers ───────────────────────────────────────────────────
+
+  function updateConstraints(patch: Partial<FieldConstraints>) {
+    onUpdate({ constraints: { ...c, ...patch } });
+  }
+
+  function updateCustomRule(patch: Partial<CustomConstraintRule>) {
+    const existing = c?.customRule ?? {
+      expression: "",
+      message: "",
+      mode: "hard" as const,
+    };
+    updateConstraints({ customRule: { ...existing, ...patch } });
+  }
+
+  function removeCustomRule() {
+    updateConstraints({ customRule: undefined });
+  }
+
+  // ── Regex helpers ─────────────────────────────────────────────────────────
 
   const hasRegex = field.regex !== undefined;
 
   function addRegex() {
-    const rule: RegexRule = { pattern: "", mode: "hard", message: "" };
-    onUpdate({ regex: rule });
+    onUpdate({ regex: { pattern: "", mode: "hard", message: "" } });
   }
 
   function removeRegex() {
@@ -36,125 +63,306 @@ export function ValidationTab({ field, onUpdate }: ConfigTabProps) {
     onUpdate({ regex: { ...field.regex, ...patch } });
   }
 
-  if (!hasRegex) {
-    return (
-      <div className="flex flex-col items-center gap-3 py-8">
-        <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
-          {t("config.validation.noRule")}
-        </p>
-        <Button variant="outline" size="sm" onPress={addRegex}>
-          {t("config.validation.addRegex")}
-        </Button>
-      </div>
-    );
-  }
-
-  const regex = field.regex as NonNullable<typeof field.regex>;
+  // ── Render ────────────────────────────────────────────────────────────────
 
   return (
-    <div className="flex flex-col gap-5">
-      {/* Pattern */}
-      <TextField>
-        <Label>{t("config.validation.pattern")}</Label>
-        <Input
-          value={regex.pattern}
-          onChange={(e) => updateRegex({ pattern: e.target.value })}
-          placeholder={t("config.validation.patternPlaceholder")}
-          className="font-mono"
-        />
-      </TextField>
+    <div className="flex flex-col gap-6">
+      {/* ── Value / Length Constraints ───────────────────────────────────── */}
+      {(isNumber || isText) && (
+        <div className="flex flex-col gap-3">
+          <span
+            className="text-xs font-semibold"
+            style={{ color: "var(--vita-text-primary)" }}
+          >
+            {isNumber
+              ? t("config.validation.valueRange")
+              : t("config.validation.lengthRange")}
+          </span>
 
-      {/* Mode toggle */}
-      <div className="flex flex-col gap-2">
+          <div className="flex gap-3">
+            <div className="flex-1">
+              <TextField>
+                <Label>
+                  {isNumber
+                    ? t("config.validation.minValue")
+                    : t("config.validation.minLengthLabel")}
+                </Label>
+                <Input
+                  type="number"
+                  value={
+                    isNumber
+                      ? c?.min !== undefined
+                        ? String(c.min)
+                        : ""
+                      : c?.minLength !== undefined
+                        ? String(c.minLength)
+                        : ""
+                  }
+                  onChange={(e) => {
+                    const raw = e.target.value;
+                    if (isNumber) {
+                      updateConstraints({
+                        min: raw ? Number(raw) : undefined,
+                      });
+                    } else {
+                      updateConstraints({
+                        minLength: raw ? Number(raw) : undefined,
+                      });
+                    }
+                  }}
+                  placeholder={t("config.validation.noLimit")}
+                />
+              </TextField>
+            </div>
+            <div className="flex-1">
+              <TextField>
+                <Label>
+                  {isNumber
+                    ? t("config.validation.maxValue")
+                    : t("config.validation.maxLengthLabel")}
+                </Label>
+                <Input
+                  type="number"
+                  value={
+                    isNumber
+                      ? c?.max !== undefined
+                        ? String(c.max)
+                        : ""
+                      : c?.maxLength !== undefined
+                        ? String(c.maxLength)
+                        : ""
+                  }
+                  onChange={(e) => {
+                    const raw = e.target.value;
+                    if (isNumber) {
+                      updateConstraints({
+                        max: raw ? Number(raw) : undefined,
+                      });
+                    } else {
+                      updateConstraints({
+                        maxLength: raw ? Number(raw) : undefined,
+                      });
+                    }
+                  }}
+                  placeholder={t("config.validation.noLimit")}
+                />
+              </TextField>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Regex Validation ─────────────────────────────────────────────── */}
+      <div className="flex flex-col gap-3">
         <span
-          className="text-xs font-medium"
-          style={{ color: "var(--vita-text-secondary)" }}
+          className="text-xs font-semibold"
+          style={{ color: "var(--vita-text-primary)" }}
         >
-          {t("config.validation.mode")}
+          {t("config.validation.title")}
         </span>
 
-        <div className="flex gap-2">
-          {/* Hard mode */}
-          <button
-            type="button"
-            className="flex flex-1 cursor-pointer flex-col gap-1 rounded-vita-md p-3 text-left transition-colors"
+        {!hasRegex ? (
+          <div className="flex items-center gap-3">
+            <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
+              {t("config.validation.noRule")}
+            </p>
+            <Button variant="outline" size="sm" onPress={addRegex}>
+              {t("config.validation.addRegex")}
+            </Button>
+          </div>
+        ) : (
+          <div
+            className="flex flex-col gap-3 rounded-vita-md p-3"
             style={{
-              border:
-                regex.mode === "hard"
-                  ? "2px solid var(--vita-primary)"
-                  : "1px solid var(--vita-neutral-200)",
-              background:
-                regex.mode === "hard"
-                  ? "var(--vita-primary-light)"
-                  : "var(--vita-background)",
+              border: "1px solid var(--vita-neutral-200)",
+              background: "var(--vita-background)",
             }}
-            onClick={() => updateRegex({ mode: "hard" })}
           >
-            <span
-              className="text-xs font-semibold"
-              style={{ color: "var(--vita-text-primary)" }}
-            >
-              {t("config.validation.modeHard")}
-            </span>
-            <span
-              className="text-[11px]"
-              style={{ color: "var(--vita-text-muted)" }}
-            >
-              {t("config.validation.modeHardDesc")}
-            </span>
-          </button>
+            <TextField>
+              <Label>{t("config.validation.pattern")}</Label>
+              <Input
+                value={field.regex?.pattern}
+                onChange={(e) => updateRegex({ pattern: e.target.value })}
+                placeholder={t("config.validation.patternPlaceholder")}
+                className="font-mono"
+              />
+            </TextField>
 
-          {/* Soft mode */}
-          <button
-            type="button"
-            className="flex flex-1 cursor-pointer flex-col gap-1 rounded-vita-md p-3 text-left transition-colors"
-            style={{
-              border:
-                regex.mode === "soft"
-                  ? "2px solid var(--vita-primary)"
-                  : "1px solid var(--vita-neutral-200)",
-              background:
-                regex.mode === "soft"
-                  ? "var(--vita-primary-light)"
-                  : "var(--vita-background)",
-            }}
-            onClick={() => updateRegex({ mode: "soft" })}
-          >
-            <span
-              className="text-xs font-semibold"
-              style={{ color: "var(--vita-text-primary)" }}
+            {/* Mode toggle */}
+            <div className="flex gap-2">
+              <ModeButton
+                active={field.regex?.mode === "hard"}
+                label={t("config.validation.modeHard")}
+                desc={t("config.validation.modeHardDesc")}
+                onClick={() => updateRegex({ mode: "hard" })}
+              />
+              <ModeButton
+                active={field.regex?.mode === "soft"}
+                label={t("config.validation.modeSoft")}
+                desc={t("config.validation.modeSoftDesc")}
+                onClick={() => updateRegex({ mode: "soft" })}
+              />
+            </div>
+
+            <TextField>
+              <Label>{t("config.validation.message")}</Label>
+              <Input
+                value={field.regex?.message}
+                onChange={(e) => updateRegex({ message: e.target.value })}
+                placeholder={t("config.validation.messagePlaceholder")}
+              />
+            </TextField>
+
+            <Button
+              variant="ghost"
+              size="sm"
+              onPress={removeRegex}
+              className="self-start text-[var(--vita-error)]"
             >
-              {t("config.validation.modeSoft")}
-            </span>
-            <span
-              className="text-[11px]"
-              style={{ color: "var(--vita-text-muted)" }}
-            >
-              {t("config.validation.modeSoftDesc")}
-            </span>
-          </button>
-        </div>
+              {t("config.validation.removeRegex")}
+            </Button>
+          </div>
+        )}
       </div>
 
-      {/* Custom message */}
-      <TextField>
-        <Label>{t("config.validation.message")}</Label>
-        <Input
-          value={regex.message}
-          onChange={(e) => updateRegex({ message: e.target.value })}
-          placeholder={t("config.validation.messagePlaceholder")}
-        />
-      </TextField>
+      {/* ── Custom Constraint Expression ─────────────────────────────────── */}
+      <div className="flex flex-col gap-3">
+        <span
+          className="text-xs font-semibold"
+          style={{ color: "var(--vita-text-primary)" }}
+        >
+          {t("config.validation.customConstraint")}
+        </span>
 
-      {/* Remove link */}
-      <Button
-        variant="ghost"
-        size="sm"
-        onPress={removeRegex}
-        className="self-start text-[var(--vita-error)]"
-      >
-        {t("config.validation.removeRegex")}
-      </Button>
+        {!c?.customRule ? (
+          <div className="flex items-center gap-3">
+            <p className="text-xs" style={{ color: "var(--vita-text-muted)" }}>
+              {t("config.validation.noCustomRule")}
+            </p>
+            <Button
+              variant="outline"
+              size="sm"
+              onPress={() =>
+                updateCustomRule({
+                  expression: "",
+                  message: "",
+                  mode: "hard",
+                })
+              }
+            >
+              {t("config.validation.addCustomRule")}
+            </Button>
+          </div>
+        ) : (
+          <div
+            className="flex flex-col gap-3 rounded-vita-md p-3"
+            style={{
+              border: "1px solid var(--vita-neutral-200)",
+              background: "var(--vita-background)",
+            }}
+          >
+            <TextField>
+              <Label>{t("config.validation.customExpression")}</Label>
+              <Input
+                value={c.customRule.expression}
+                onChange={(e) =>
+                  updateCustomRule({ expression: e.target.value })
+                }
+                placeholder={t("config.validation.customExpressionPlaceholder")}
+                className="font-mono"
+              />
+            </TextField>
+
+            <div
+              className="rounded-vita-sm p-2"
+              style={{
+                background: "var(--vita-info-light, var(--vita-neutral-50))",
+              }}
+            >
+              <p
+                className="text-[11px]"
+                style={{ color: "var(--vita-text-muted)" }}
+              >
+                {t("config.validation.customExpressionHint")}
+              </p>
+            </div>
+
+            {/* Mode toggle */}
+            <div className="flex gap-2">
+              <ModeButton
+                active={c.customRule.mode === "hard"}
+                label={t("config.validation.modeHard")}
+                desc={t("config.validation.modeHardDesc")}
+                onClick={() => updateCustomRule({ mode: "hard" })}
+              />
+              <ModeButton
+                active={c.customRule.mode === "soft"}
+                label={t("config.validation.modeSoft")}
+                desc={t("config.validation.modeSoftDesc")}
+                onClick={() => updateCustomRule({ mode: "soft" })}
+              />
+            </div>
+
+            <TextField>
+              <Label>{t("config.validation.message")}</Label>
+              <Input
+                value={c.customRule.message}
+                onChange={(e) => updateCustomRule({ message: e.target.value })}
+                placeholder={t("config.validation.messagePlaceholder")}
+              />
+            </TextField>
+
+            <Button
+              variant="ghost"
+              size="sm"
+              onPress={removeCustomRule}
+              className="self-start text-[var(--vita-error)]"
+            >
+              {t("config.validation.removeCustomRule")}
+            </Button>
+          </div>
+        )}
+      </div>
     </div>
+  );
+}
+
+// ── Shared Mode Button ──────────────────────────────────────────────────────
+
+function ModeButton({
+  active,
+  label,
+  desc,
+  onClick,
+}: {
+  active: boolean;
+  label: string;
+  desc: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      className="flex flex-1 cursor-pointer flex-col gap-1 rounded-vita-md p-3 text-left transition-colors"
+      style={{
+        border: active
+          ? "2px solid var(--vita-primary)"
+          : "1px solid var(--vita-neutral-200)",
+        background: active
+          ? "var(--vita-primary-light)"
+          : "var(--vita-background)",
+      }}
+      onClick={onClick}
+    >
+      <span
+        className="text-xs font-semibold"
+        style={{ color: "var(--vita-text-primary)" }}
+      >
+        {label}
+      </span>
+      <span className="text-[11px]" style={{ color: "var(--vita-text-muted)" }}>
+        {desc}
+      </span>
+    </button>
   );
 }
