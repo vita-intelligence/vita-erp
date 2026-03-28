@@ -23,6 +23,38 @@ export type FormSchema = {
   description?: string;
   /** Ordered list of top-level elements */
   elements: FormElement[];
+  /** Form-level settings */
+  settings?: FormSettings;
+};
+
+export type FormSettings = {
+  /** How to display the form */
+  layout: FormLayout;
+  /** Form-level visual styling */
+  styling?: FormStyling;
+  /** Show progress bar in paginated modes */
+  showProgressBar?: boolean;
+  /** Show field numbering (1, 2, 3...) */
+  showFieldNumbers?: boolean;
+  /** Custom submit button text */
+  submitButtonText?: string;
+};
+
+export type FormLayout = "single-page" | "page-per-group" | "page-per-field";
+
+export type FormStyling = {
+  /** Form container background */
+  backgroundColor?: string;
+  /** Default text color for all fields */
+  textColor?: string;
+  /** Maximum width of the form (e.g., "600px", "100%") */
+  maxWidth?: string;
+  /** Font family override */
+  fontFamily?: string;
+  /** Form container padding */
+  padding?: string;
+  /** Form container border radius */
+  borderRadius?: string;
 };
 
 // ── Elements (discriminated union on `kind`) ─────────────────────────────────

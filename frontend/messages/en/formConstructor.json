@@ -240,7 +240,35 @@
       "maxSize": "Max file size: {size}",
       "remove": "Remove"
     },
-    "noFieldsMessage": "This form has no fields."
+    "noFieldsMessage": "This form has no fields.",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "formSettings": {
+    "title": "Form Settings",
+    "layout": "Layout mode",
+    "layoutHint": "Controls how the form is displayed to users filling it out.",
+    "layoutModes": {
+      "single-page": "Single page",
+      "page-per-group": "Page per group",
+      "page-per-field": "Page per field"
+    },
+    "layoutDescriptions": {
+      "single-page": "All fields and groups displayed on one scrollable page.",
+      "page-per-group": "Each group becomes a separate page with navigation buttons.",
+      "page-per-field": "One field per page — survey-style, one question at a time."
+    },
+    "displayOptions": "Display options",
+    "showProgressBar": "Show progress bar",
+    "showFieldNumbers": "Show field numbers (1, 2, 3...)",
+    "submitButtonText": "Submit button text",
+    "styling": "Form styling",
+    "bgColor": "Background",
+    "textColor": "Text color",
+    "maxWidth": "Max width",
+    "padding": "Padding",
+    "borderRadius": "Border radius",
+    "fontFamily": "Font family"
   },
   "group": {
     "collapse": "Collapse",

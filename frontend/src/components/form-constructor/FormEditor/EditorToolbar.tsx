@@ -4,7 +4,15 @@
  * EditorToolbar — top bar with form name, undo/redo, preview, export/import.
  */
 
-import { Download, Eye, EyeOff, Redo2, Undo2, Upload } from "lucide-react";
+import {
+  Download,
+  Eye,
+  EyeOff,
+  Redo2,
+  Settings,
+  Undo2,
+  Upload,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
@@ -21,6 +29,7 @@ type EditorToolbarProps = {
   onUndo: () => void;
   onRedo: () => void;
   onImport: (schema: FormSchema) => void;
+  onOpenSettings: () => void;
 };
 
 export function EditorToolbar({
@@ -33,6 +42,7 @@ export function EditorToolbar({
   onUndo,
   onRedo,
   onImport,
+  onOpenSettings,
 }: EditorToolbarProps) {
   const t = useTranslations("formConstructor");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -123,6 +133,17 @@ export function EditorToolbar({
         onClick={onTogglePreview}
       >
         {showPreview ? <EyeOff size={16} /> : <Eye size={16} />}
+      </button>
+
+      {/* Form settings */}
+      <button
+        type="button"
+        title={t("formSettings.title")}
+        className={iconBtnClass}
+        style={{ color: "var(--vita-text-secondary)" }}
+        onClick={onOpenSettings}
+      >
+        <Settings size={16} />
       </button>
 
       {/* Export */}

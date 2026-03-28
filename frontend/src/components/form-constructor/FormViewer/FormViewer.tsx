@@ -13,7 +13,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
@@ -299,6 +299,43 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
     );
   }
 
+  // ── Settings / Pagination ──────────────────────────────────────────────────
+
+  const settings = schema.settings;
+  const layout = settings?.layout ?? "single-page";
+  const fs = settings?.styling;
+  const submitText = settings?.submitButtonText || t("viewer.submit");
+
+  // Build pages for paginated modes
+  const pages = useMemo(() => {
+    if (layout === "page-per-group") {
+      // Each top-level element is a page (groups become pages, loose fields = 1 page)
+      const result: FormElement[][] = [];
+      let currentLoose: FormElement[] = [];
+      for (const el of schema.elements) {
+        if (el.kind === "group") {
+          if (currentLoose.length > 0) {
+            result.push(currentLoose);
+            currentLoose = [];
+          }
+          result.push([el]);
+        } else {
+          currentLoose.push(el);
+        }
+      }
+      if (currentLoose.length > 0) result.push(currentLoose);
+      return result;
+    }
+    if (layout === "page-per-field") {
+      return schema.elements.map((el) => [el]);
+    }
+    return [schema.elements]; // single-page
+  }, [schema.elements, layout]);
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = pages.length;
+  const isLastPage = currentPage >= totalPages - 1;
+
   // ── Empty state ────────────────────────────────────────────────────────────
 
   const hasVisibleFields = allFields.some((f) => !f.hidden);
@@ -317,16 +354,29 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
     );
   }
 
+  // ── Form-level styles ─────────────────────────────────────────────────────
+
+  const formStyle: React.CSSProperties = {
+    background: fs?.backgroundColor || "var(--vita-background)",
+    border: "1px solid var(--vita-neutral-200)",
+    borderRadius: fs?.borderRadius || undefined,
+    padding: fs?.padding || undefined,
+    maxWidth: fs?.maxWidth || undefined,
+    fontFamily: fs?.fontFamily || undefined,
+    color: fs?.textColor || undefined,
+    margin: fs?.maxWidth ? "0 auto" : undefined,
+  };
+
   // ── Main render ────────────────────────────────────────────────────────────
+
+  const elementsToRender =
+    layout === "single-page" ? schema.elements : (pages[currentPage] ?? []);
 
   return (
     <form
       onSubmit={handleFormSubmit}
       className="flex flex-col gap-5 rounded-vita-lg p-5"
-      style={{
-        background: "var(--vita-background)",
-        border: "1px solid var(--vita-neutral-200)",
-      }}
+      style={formStyle}
     >
       {/* Form title + description */}
       {(schema.name || schema.description) && (
@@ -334,7 +384,7 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
           {schema.name && (
             <h2
               className="text-lg font-semibold"
-              style={{ color: "var(--vita-text-primary)" }}
+              style={{ color: fs?.textColor || "var(--vita-text-primary)" }}
             >
               {schema.name}
             </h2>
@@ -347,15 +397,81 @@ export function FormViewer({ schema, onSubmit, readOnly }: FormViewerProps) {
         </div>
       )}
 
-      {/* Elements */}
-      {schema.elements.map(renderElement)}
+      {/* Progress bar */}
+      {settings?.showProgressBar && totalPages > 1 && (
+        <div className="flex flex-col gap-1">
+          <div
+            className="h-1.5 w-full overflow-hidden rounded-full"
+            style={{ background: "var(--vita-neutral-200)" }}
+          >
+            <div
+              className="h-full rounded-full transition-all"
+              style={{
+                width: `${((currentPage + 1) / totalPages) * 100}%`,
+                background: "var(--vita-primary)",
+              }}
+            />
+          </div>
+          <p
+            className="text-right text-[11px]"
+            style={{ color: "var(--vita-text-muted)" }}
+          >
+            {currentPage + 1} / {totalPages}
+          </p>
+        </div>
+      )}
 
-      {/* Submit button */}
+      {/* Elements (current page or all) */}
+      {elementsToRender.map((el, i) => {
+        const rendered = renderElement(el);
+        if (!rendered) return null;
+        // Field numbering
+        if (settings?.showFieldNumbers && el.kind === "field") {
+          return (
+            <div key={el.id} className="flex gap-3">
+              <span
+                className="mt-0.5 shrink-0 text-sm font-semibold"
+                style={{ color: "var(--vita-text-muted)", minWidth: "24px" }}
+              >
+                {i + 1}.
+              </span>
+              <div className="flex-1">{rendered}</div>
+            </div>
+          );
+        }
+        return rendered;
+      })}
+
+      {/* Navigation / Submit */}
       {!readOnly && (
-        <div className="flex justify-end pt-2">
-          <Button type="submit" variant="primary">
-            {t("viewer.submit")}
-          </Button>
+        <div className="flex items-center justify-between pt-2">
+          {/* Previous button (paginated modes) */}
+          {layout !== "single-page" && currentPage > 0 ? (
+            <Button
+              type="button"
+              variant="outline"
+              onPress={() => setCurrentPage((p) => p - 1)}
+            >
+              {t("viewer.previous")}
+            </Button>
+          ) : (
+            <div />
+          )}
+
+          {/* Next or Submit */}
+          {layout !== "single-page" && !isLastPage ? (
+            <Button
+              type="button"
+              variant="primary"
+              onPress={() => setCurrentPage((p) => p + 1)}
+            >
+              {t("viewer.next")}
+            </Button>
+          ) : (
+            <Button type="submit" variant="primary">
+              {submitText}
+            </Button>
+          )}
         </div>
       )}
     </form>

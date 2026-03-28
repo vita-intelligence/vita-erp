@@ -51,6 +51,7 @@ import { DropZone, parseDropZoneId } from "./DropZone";
 import { EditorToolbar } from "./EditorToolbar";
 import { FieldCard } from "./FieldCard";
 import { FieldConfigModal } from "./FieldConfigModal";
+import { FormSettingsModal } from "./FormSettingsModal";
 import { GroupCard } from "./GroupCard";
 
 // ── Props ────────────────────────────────────────────────────────────────────
@@ -96,6 +97,7 @@ export function FormEditor({
   const [configField, setConfigField] = useState<FieldElement | null>(null);
   const [configGroup, setConfigGroup] = useState<GroupElement | null>(null);
   const [addGroupModalOpen, setAddGroupModalOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [isDragActive, setIsDragActive] = useState(false);
   const [activeDragId, setActiveDragId] = useState<string | null>(null);
   /** ID of the element that was just dropped — triggers highlight animation */
@@ -331,6 +333,7 @@ export function FormEditor({
         onUndo={undo}
         onRedo={redo}
         onImport={(imported) => setSchema(imported)}
+        onOpenSettings={() => setSettingsOpen(true)}
       />
 
       {/* Canvas */}
@@ -576,6 +579,18 @@ export function FormEditor({
             setConfigGroup(null);
           }}
           onClose={() => setConfigGroup(null)}
+        />
+      )}
+
+      {/* Form settings modal */}
+      {settingsOpen && (
+        <FormSettingsModal
+          settings={schema.settings ?? { layout: "single-page" }}
+          onSave={(settings) => {
+            setSchema({ ...schema, settings });
+            setSettingsOpen(false);
+          }}
+          onClose={() => setSettingsOpen(false)}
         />
       )}
     </div>
