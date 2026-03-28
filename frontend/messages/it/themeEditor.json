@@ -549,6 +549,11 @@
       "label": "Schede",
       "description": "Lista schede, elementi, indicatore attivo e margine interno del pannello",
       "allControls": "Controlla la lista schede, gli elementi, l'indicatore attivo e il margine interno del pannello."
+    },
+    "switch": {
+      "label": "Interruttore",
+      "description": "Traccia, cursore e spaziatura etichetta degli interruttori",
+      "allControls": "Controlla dimensione traccia, dimensione cursore, raggio bordo, spaziatura etichetta e animazione degli interruttori."
     }
   },
   "preview": {

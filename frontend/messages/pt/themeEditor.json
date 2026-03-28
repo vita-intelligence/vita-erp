@@ -549,6 +549,11 @@
       "label": "Abas",
       "description": "Lista de abas, itens, indicador ativo e preenchimento do painel",
       "allControls": "Controla a lista de abas, itens, indicador ativo e preenchimento do painel."
+    },
+    "switch": {
+      "label": "Interruptor",
+      "description": "Trilha, controle deslizante e espaçamento do rótulo dos interruptores",
+      "allControls": "Controla o tamanho da trilha, tamanho do controle, raio da borda, espaçamento do rótulo e animação dos interruptores."
     }
   },
   "preview": {

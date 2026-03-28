@@ -549,6 +549,11 @@
       "label": "Pestañas",
       "description": "Lista de pestañas, elementos, indicador activo y relleno del panel",
       "allControls": "Controla la lista de pestañas, elementos, indicador activo y relleno del panel."
+    },
+    "switch": {
+      "label": "Interruptor",
+      "description": "Pista, deslizador y espacio de etiqueta de los interruptores",
+      "allControls": "Controla el tamaño de la pista, tamaño del deslizador, radio de borde, espacio de etiqueta y animación de los interruptores."
     }
   },
   "preview": {

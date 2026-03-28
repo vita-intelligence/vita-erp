@@ -549,6 +549,11 @@
       "label": "Tab",
       "description": "Daftar tab, item, indikator aktif, dan padding panel",
       "allControls": "Mengontrol daftar tab, item, indikator aktif, dan padding panel."
+    },
+    "switch": {
+      "label": "Sakelar",
+      "description": "Trek, jempol, dan jarak label sakelar toggle",
+      "allControls": "Mengontrol ukuran trek, ukuran jempol, radius border, jarak label, dan animasi sakelar toggle."
     }
   },
   "preview": {

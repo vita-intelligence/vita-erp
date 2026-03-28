@@ -549,6 +549,11 @@
       "label": "Sekmeler",
       "description": "Sekme listesi, ogeler, aktif gosterge ve panel ic boslugu",
       "allControls": "Sekme listesini, ogeleri, aktif gostergeyi ve panel ic boslugunu kontrol eder."
+    },
+    "switch": {
+      "label": "Anahtar",
+      "description": "Geçiş anahtarlarının iz, başlık ve etiket aralığı",
+      "allControls": "Geçiş anahtarlarının iz boyutu, başlık boyutu, kenar yarıçapı, etiket aralığı ve animasyonunu kontrol eder."
     }
   },
   "preview": {
