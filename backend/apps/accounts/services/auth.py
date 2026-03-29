@@ -8,7 +8,7 @@ and never touch tokens or cookies directly.
 from __future__ import annotations
 
 import hashlib
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 from django.conf import settings
 from django.utils import timezone
@@ -63,8 +63,9 @@ def get_client_ip(request: HttpRequest) -> str | None:
     """Extract client IP from request, handling proxies."""
     forwarded = request.META.get("HTTP_X_FORWARDED_FOR")
     if forwarded:
-        return forwarded.split(",")[0].strip()
-    return request.META.get("REMOTE_ADDR")
+        return str(forwarded).split(",")[0].strip()
+    addr = request.META.get("REMOTE_ADDR")
+    return str(addr) if addr else None
 
 
 def create_tokens(user: User) -> tuple[str, str]:
@@ -75,8 +76,8 @@ def create_tokens(user: User) -> tuple[str, str]:
 
 def set_auth_cookies(response: HttpResponse, access_token: str, refresh_token: str) -> None:
     """Set httpOnly JWT cookies on the response."""
-    secure = getattr(settings, "VITA_COOKIE_SECURE", True)
-    samesite = getattr(settings, "VITA_COOKIE_SAMESITE", "Lax")
+    secure: bool = getattr(settings, "VITA_COOKIE_SECURE", True)
+    samesite: Literal["Lax", "Strict", "None", False] = getattr(settings, "VITA_COOKIE_SAMESITE", "Lax")
 
     response.set_cookie(
         key=settings.VITA_ACCESS_COOKIE,

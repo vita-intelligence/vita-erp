@@ -129,7 +129,7 @@ class RefreshView(APIView):
 
         try:
             token = RefreshToken(refresh_token)
-            user_id = token.payload.get("user_id")
+            user_id = str(token.payload.get("user_id", ""))
         except TokenError:
             response = Response(
                 {"error": "refresh_token_invalid"},

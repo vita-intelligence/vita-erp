@@ -43,8 +43,8 @@ PASSWORD_RESET_COOLDOWN_SECONDS = 60 * 60  # 1 hour
 def _get_client_ip(request: HttpRequest) -> str:
     forwarded = request.META.get("HTTP_X_FORWARDED_FOR")
     if forwarded:
-        return forwarded.split(",")[0].strip()
-    return request.META.get("REMOTE_ADDR", "unknown")
+        return str(forwarded).split(",")[0].strip()
+    return str(request.META.get("REMOTE_ADDR", "unknown"))
 
 
 # ── Login Rate Limiting (3 layers) ───────────────────────────────────────────
@@ -71,7 +71,7 @@ def check_login_allowed(request: HttpRequest, email: str = "") -> bool:
 
     # Layer 3: IP only (catches credential stuffing)
     key_ip = f"rate_limit:login:ip:{ip}"
-    return cache.get(key_ip, 0) < MAX_LOGIN_ATTEMPTS_PER_IP
+    return bool(cache.get(key_ip, 0) < MAX_LOGIN_ATTEMPTS_PER_IP)
 
 
 def record_login_attempt(request: HttpRequest, email: str = "") -> None:
@@ -113,7 +113,7 @@ def check_register_allowed(request: HttpRequest) -> bool:
     """Return True if registration is allowed from this IP."""
     ip = _get_client_ip(request)
     key = f"rate_limit:register:{ip}"
-    return cache.get(key, 0) < MAX_REGISTER_ATTEMPTS
+    return bool(cache.get(key, 0) < MAX_REGISTER_ATTEMPTS)
 
 
 def record_register_attempt(request: HttpRequest) -> None:
@@ -131,7 +131,7 @@ def check_password_reset_allowed(request: HttpRequest) -> bool:
     """Return True if password reset request is allowed from this IP."""
     ip = _get_client_ip(request)
     key = f"rate_limit:password_reset:{ip}"
-    return cache.get(key, 0) < MAX_PASSWORD_RESET_ATTEMPTS
+    return bool(cache.get(key, 0) < MAX_PASSWORD_RESET_ATTEMPTS)
 
 
 def record_password_reset_attempt(request: HttpRequest) -> None:

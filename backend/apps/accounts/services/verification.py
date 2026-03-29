@@ -44,7 +44,8 @@ def verify_token(token: str) -> str | None:
     user_id = cache.get(_cache_key(token))
     if user_id:
         cache.delete(_cache_key(token))  # One-time use
-    return user_id
+        return str(user_id)
+    return None
 
 
 def send_verification_email(user: User, token: str) -> None:

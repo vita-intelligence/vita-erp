@@ -22,7 +22,7 @@ CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": f"redis://{REDIS_HOST}:{REDIS_PORT}/0",
-        "OPTIONS": {
+        "OPTIONS": {  # type: ignore[dict-item]
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
     }
