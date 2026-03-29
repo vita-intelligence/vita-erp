@@ -53,7 +53,7 @@ export function Preview() {
 
       <Calendar
         value={value}
-        onChange={setValue}
+        onChange={(v) => setValue(v as typeof value)}
         aria-label="Calendar preview"
         onMouseMove={trackIntensity > 0 ? onMouseMove : undefined}
         onMouseLeave={trackIntensity > 0 ? onMouseLeave : undefined}

@@ -77,7 +77,7 @@ export function parseGradient(css: string): ParsedGradient | null {
   const type: GradientType = isLinear ? "linear" : "radial";
 
   // Extract content inside gradient(...)
-  const match = css.match(/gradient\((.+)\)$/s);
+  const match = css.match(/gradient\(([\s\S]+)\)$/);
   if (!match) return null;
   const content = match[1];
 
