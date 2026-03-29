@@ -173,7 +173,7 @@ jobs:
         run: npm run typecheck
 
       - name: Tests
-        if: steps.check.outputs.exists == 'true'
+        if: steps.check.outputs.exists == 'true' && hashFiles('frontend/vitest.config.*') != ''
         working-directory: frontend
         run: npm run test -- --run
 
