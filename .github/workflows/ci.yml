@@ -120,6 +120,8 @@ jobs:
         if: steps.check.outputs.exists == 'true'
         working-directory: backend
         run: uv run mypy .
+        env:
+          SECRET_KEY: ci-secret-key
 
       - name: Tests (pytest)
         if: steps.check.outputs.exists == 'true'
