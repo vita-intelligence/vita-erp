@@ -13,12 +13,29 @@ from apps.accounts.models import Session, User
 
 
 class UserSerializer(serializers.ModelSerializer):
-    """Read-only representation of the current user."""
+    """Read-only representation of the current user.
+
+    Includes the list of organizations the user belongs to,
+    used by the frontend to determine post-login routing:
+    - No orgs → redirect to create-organization
+    - One org → auto-select
+    - Multiple orgs → show org selector
+    """
+
+    organizations = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ("id", "email", "is_verified", "date_joined")
+        fields = ("id", "email", "is_verified", "date_joined", "organizations")
         read_only_fields = fields
+
+    def get_organizations(self, user: User) -> list[dict]:
+        from apps.organizations.models import Membership, Organization
+        from apps.organizations.serializers import OrganizationSummarySerializer
+
+        org_ids = Membership.objects.filter(user=user, is_active=True).values_list("organization_id", flat=True)
+        orgs = Organization.objects.filter(id__in=org_ids).order_by("-created_at")
+        return OrganizationSummarySerializer(orgs, many=True).data  # type: ignore[no-any-return]
 
 
 class ChangePasswordSerializer(serializers.Serializer):

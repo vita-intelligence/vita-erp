@@ -33,11 +33,21 @@ THIRD_PARTY_APPS = [
     "corsheaders",
 ]
 
-LOCAL_APPS = [
+# Central DB apps
+LOCAL_SHARED_APPS = [
+    "apps.platform_audit",
     "apps.accounts",
+    "apps.organizations",
+    "apps.billing",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+# Org DB apps — migrated per-organization, not on the central DB
+LOCAL_TENANT_APPS = [
+    "apps.audit",
+    "apps.rbac",
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_SHARED_APPS + LOCAL_TENANT_APPS
 
 # ---------------------------------------------------------------------------
 # Custom User Model
@@ -50,6 +60,7 @@ AUTH_USER_MODEL = "accounts.User"
 # ---------------------------------------------------------------------------
 
 MIDDLEWARE = [
+    "apps.organizations.middleware.TenantMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -101,6 +112,9 @@ DATABASES = {
         "PORT": config("DB_PORT", default="5432"),
     }
 }
+
+# Multi-tenant routing — shared apps → default DB, tenant apps → org DB
+DATABASE_ROUTERS = ["apps.organizations.router.TenantDatabaseRouter"]
 
 # ---------------------------------------------------------------------------
 # Cache — overridden per environment (Redis in dev/prod, LocMem in test)

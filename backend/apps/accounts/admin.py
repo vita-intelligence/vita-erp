@@ -7,7 +7,7 @@ Custom UserAdmin since we use email instead of username.
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from apps.accounts.models import AuditLog, Session, User
+from apps.accounts.models import Session, User
 
 
 @admin.register(User)
@@ -57,23 +57,3 @@ class SessionAdmin(admin.ModelAdmin):
         "last_used_at",
     )
     ordering = ("-last_used_at",)
-
-
-@admin.register(AuditLog)
-class AuditLogAdmin(admin.ModelAdmin):
-    """Admin for audit log — strictly read-only."""
-
-    list_display = ("user", "action", "ip_address", "created_at")
-    list_filter = ("action",)
-    search_fields = ("user__email", "action", "ip_address")
-    readonly_fields = ("id", "user", "action", "ip_address", "user_agent", "metadata", "created_at")
-    ordering = ("-created_at",)
-
-    def has_add_permission(self, request):
-        return False
-
-    def has_change_permission(self, request, obj=None):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False

@@ -15,7 +15,8 @@ from django.utils import timezone
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from apps.accounts.constants import AUDIT_LOGIN, AUDIT_LOGOUT
-from apps.accounts.models import AuditLog, Session
+from apps.accounts.models import Session
+from apps.platform_audit.models import AuditLog
 
 if TYPE_CHECKING:
     from django.http import HttpRequest, HttpResponse
@@ -68,9 +69,16 @@ def get_client_ip(request: HttpRequest) -> str | None:
     return str(addr) if addr else None
 
 
-def create_tokens(user: User) -> tuple[str, str]:
-    """Generate a new access + refresh token pair for a user."""
+def create_tokens(user: User, org_id: str | None = None) -> tuple[str, str]:
+    """Generate a new access + refresh token pair for a user.
+
+    If org_id is provided, both tokens include the org_id claim.
+    The TenantMiddleware reads this claim to set the database context.
+    """
     refresh = RefreshToken.for_user(user)
+    if org_id:
+        refresh["org_id"] = org_id
+        refresh.access_token["org_id"] = org_id
     return str(refresh.access_token), str(refresh)
 
 
@@ -188,8 +196,15 @@ def rotate_refresh_token(
         clear_auth_cookies(response)
         return False
 
+    # Preserve org_id from the old token (if present)
+    try:
+        old_token_obj = RefreshToken(old_refresh_token)  # type: ignore[arg-type]
+        org_id = old_token_obj.get("org_id")
+    except Exception:
+        org_id = None
+
     # Generate new tokens
-    access_token, new_refresh_token = create_tokens(user)
+    access_token, new_refresh_token = create_tokens(user, org_id=org_id)
 
     # Update session with new hash
     session.refresh_token_hash = hash_token(new_refresh_token)

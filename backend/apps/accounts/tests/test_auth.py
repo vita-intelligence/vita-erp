@@ -9,8 +9,9 @@ import pytest
 from django.core.cache import cache
 from rest_framework.test import APIClient
 
-from apps.accounts.models import AuditLog, Session, User
+from apps.accounts.models import Session, User
 from apps.accounts.tests.factories import DEFAULT_PASSWORD, UserFactory
+from apps.platform_audit.models import AuditLog
 
 # Fresh client for each test
 pytestmark = pytest.mark.django_db

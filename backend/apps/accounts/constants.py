@@ -6,8 +6,8 @@ Only central auth concerns here — org-specific constants live in the org app.
 """
 
 # ── Audit Log Actions ────────────────────────────────────────────────────────
-# Used as the `action` field in AuditLog. Plain strings, not an enum —
-# new actions can be added without migrations.
+# Used as the `action` field in platform_audit.AuditLog. Plain strings,
+# not an enum — new actions can be added without migrations.
 
 AUDIT_LOGIN = "login"
 AUDIT_LOGIN_FAILED = "login_failed"

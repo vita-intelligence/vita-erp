@@ -16,6 +16,7 @@ __pycache__/
 dist/
 build/
 .eggs/
+.pytest_cache/
 
 # ---------------------------------------------------------------------------
 # uv / virtual environments
