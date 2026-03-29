@@ -1,9 +1,11 @@
 from apps.accounts.views.auth import (
+    ForgotPasswordView,
     LoginView,
     LogoutView,
     RefreshView,
     RegisterView,
     ResendVerificationView,
+    ResetPasswordView,
     VerifyEmailView,
 )
 from apps.accounts.views.user import (
@@ -17,12 +19,14 @@ from apps.accounts.views.user import (
 __all__ = [
     "ChangeEmailView",
     "ChangePasswordView",
+    "ForgotPasswordView",
     "LoginView",
     "LogoutView",
     "MeView",
     "RefreshView",
     "RegisterView",
     "ResendVerificationView",
+    "ResetPasswordView",
     "SessionListView",
     "SessionRevokeView",
     "VerifyEmailView",

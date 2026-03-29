@@ -1,4 +1,9 @@
-from apps.accounts.serializers.auth import LoginSerializer, RegisterSerializer
+from apps.accounts.serializers.auth import (
+    ForgotPasswordSerializer,
+    LoginSerializer,
+    RegisterSerializer,
+    ResetPasswordSerializer,
+)
 from apps.accounts.serializers.user import (
     ChangeEmailSerializer,
     ChangePasswordSerializer,
@@ -9,8 +14,10 @@ from apps.accounts.serializers.user import (
 __all__ = [
     "ChangeEmailSerializer",
     "ChangePasswordSerializer",
+    "ForgotPasswordSerializer",
     "LoginSerializer",
     "RegisterSerializer",
+    "ResetPasswordSerializer",
     "SessionSerializer",
     "UserSerializer",
 ]

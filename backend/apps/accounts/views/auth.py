@@ -15,7 +15,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.accounts.constants import AUDIT_LOGIN_FAILED
-from apps.accounts.serializers import LoginSerializer, RegisterSerializer, UserSerializer
+from apps.accounts.serializers import (
+    ForgotPasswordSerializer,
+    LoginSerializer,
+    RegisterSerializer,
+    ResetPasswordSerializer,
+    UserSerializer,
+)
 from apps.accounts.services.auth import (
     clear_auth_cookies,
     log_auth_event,
@@ -23,11 +29,18 @@ from apps.accounts.services.auth import (
     logout_user,
     rotate_refresh_token,
 )
+from apps.accounts.services.password_reset import (
+    request_password_reset,
+    reset_password,
+    verify_reset_token,
+)
 from apps.accounts.services.rate_limit import (
     check_login_allowed,
+    check_password_reset_allowed,
     check_register_allowed,
     clear_login_attempts,
     record_login_attempt,
+    record_password_reset_attempt,
     record_register_attempt,
 )
 from apps.accounts.services.verification import (
@@ -211,6 +224,69 @@ class ResendVerificationView(APIView):
 
         token = generate_verification_token(request.user)
         send_verification_email(request.user, token)
+        return Response({"status": "ok"})
+
+
+class ForgotPasswordView(APIView):
+    """POST /api/v1/auth/forgot-password/ — request a password reset email."""
+
+    permission_classes = [AllowAny]
+
+    def post(self, request: Request) -> Response:
+        if not check_password_reset_allowed(request):
+            return RATE_LIMITED_RESPONSE
+
+        serializer = ForgotPasswordSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        email = serializer.validated_data["email"]
+        record_password_reset_attempt(request)
+
+        # Always return success to prevent email enumeration
+        from apps.accounts.models import User
+
+        user = User.objects.filter(email=email, is_active=True).first()
+        if user:
+            request_password_reset(user, request)
+
+        return Response({"status": "ok"})
+
+
+class ResetPasswordView(APIView):
+    """POST /api/v1/auth/reset-password/ — set new password using reset token."""
+
+    permission_classes = [AllowAny]
+
+    def post(self, request: Request) -> Response:
+        serializer = ResetPasswordSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        token = serializer.validated_data["token"]
+        password = serializer.validated_data["password"]
+
+        user_id = verify_reset_token(token)
+        if not user_id:
+            return Response(
+                {"error": "token_invalid_or_expired"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        from apps.accounts.models import User
+
+        user = User.objects.filter(id=user_id, is_active=True).first()
+        if not user:
+            return Response(
+                {"error": "token_invalid_or_expired"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        error_codes = reset_password(user, password, token, request)
+        if error_codes:
+            return Response(
+                {"password": error_codes},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         return Response({"status": "ok"})
 
 

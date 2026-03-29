@@ -46,6 +46,22 @@ class RegisterSerializer(serializers.Serializer):
         )
 
 
+class ForgotPasswordSerializer(serializers.Serializer):
+    """Validates forgot-password input: email only."""
+
+    email = serializers.EmailField()
+
+    def validate_email(self, value: str) -> str:
+        return value.lower().strip()
+
+
+class ResetPasswordSerializer(serializers.Serializer):
+    """Validates reset-password input: token + new password."""
+
+    token = serializers.CharField()
+    password = serializers.CharField(write_only=True, min_length=8)
+
+
 class LoginSerializer(serializers.Serializer):
     """Validates login input: email + password."""
 

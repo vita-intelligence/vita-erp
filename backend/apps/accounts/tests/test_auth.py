@@ -199,6 +199,125 @@ class TestEmailVerification:
         assert response.status_code == 401
 
 
+# ── Forgot Password ─────────────────────────────────────────────────────────
+
+
+class TestForgotPassword:
+    URL = "/api/v1/auth/forgot-password/"
+
+    def test_forgot_password_existing_email(self, client, user):
+        """Always returns 200, sends email if user exists."""
+        response = client.post(self.URL, {"email": user.email})
+        assert response.status_code == 200
+        assert response.data["status"] == "ok"
+
+    def test_forgot_password_nonexistent_email(self, client):
+        """Returns 200 even for unknown emails — prevents enumeration."""
+        response = client.post(self.URL, {"email": "nobody@example.com"})
+        assert response.status_code == 200
+        assert response.data["status"] == "ok"
+
+    def test_forgot_password_creates_audit_log(self, client, user):
+        """Audit log created when user exists."""
+        client.post(self.URL, {"email": user.email})
+        assert AuditLog.objects.filter(user=user, action="password_reset_requested").exists()
+
+    def test_forgot_password_no_audit_for_unknown(self, client):
+        """No audit log for non-existent emails."""
+        client.post(self.URL, {"email": "nobody@example.com"})
+        assert not AuditLog.objects.filter(action="password_reset_requested").exists()
+
+    def test_forgot_password_missing_email(self, client):
+        response = client.post(self.URL, {})
+        assert response.status_code == 400
+
+    def test_forgot_password_invalid_email(self, client):
+        response = client.post(self.URL, {"email": "not-an-email"})
+        assert response.status_code == 400
+
+    def test_forgot_password_inactive_user(self, client):
+        """Inactive users don't receive reset emails — but still returns 200."""
+        user = UserFactory(is_active=False)
+        response = client.post(self.URL, {"email": user.email})
+        assert response.status_code == 200
+        assert not AuditLog.objects.filter(action="password_reset_requested").exists()
+
+    def test_forgot_password_rate_limited(self, client, user):
+        for _ in range(3):
+            client.post(self.URL, {"email": user.email})
+        response = client.post(self.URL, {"email": user.email})
+        assert response.status_code == 429
+
+
+# ── Reset Password ──────────────────────────────────────────────────────────
+
+
+class TestResetPassword:
+    URL = "/api/v1/auth/reset-password/"
+
+    def _get_token(self, user):
+        from apps.accounts.services.password_reset import generate_reset_token
+
+        return generate_reset_token(user)
+
+    def test_reset_password_success(self, client, user):
+        token = self._get_token(user)
+        response = client.post(self.URL, {"token": token, "password": "BrandNewPass99"})
+        assert response.status_code == 200
+        assert response.data["status"] == "ok"
+        # Verify new password works
+        fresh_client = APIClient()
+        login = fresh_client.post("/api/v1/auth/login/", {"email": user.email, "password": "BrandNewPass99"})
+        assert login.status_code == 200
+
+    def test_reset_password_invalid_token(self, client):
+        response = client.post(self.URL, {"token": "bogustoken", "password": "BrandNewPass99"})
+        assert response.status_code == 400
+        assert response.data["error"] == "token_invalid_or_expired"
+
+    def test_reset_password_expired_token(self, client, user):
+        """Consumed tokens can't be reused."""
+        token = self._get_token(user)
+        client.post(self.URL, {"token": token, "password": "BrandNewPass99"})
+        # Second attempt with same token
+        response = client.post(self.URL, {"token": token, "password": "AnotherPass99"})
+        assert response.status_code == 400
+        assert response.data["error"] == "token_invalid_or_expired"
+
+    def test_reset_password_weak_password(self, client, user):
+        token = self._get_token(user)
+        response = client.post(self.URL, {"token": token, "password": "123"})
+        assert response.status_code == 400
+        assert "password" in response.data
+
+    def test_reset_password_creates_audit_log(self, client, user):
+        token = self._get_token(user)
+        client.post(self.URL, {"token": token, "password": "BrandNewPass99"})
+        assert AuditLog.objects.filter(user=user, action="password_reset_completed").exists()
+
+    def test_reset_password_no_audit_on_failure(self, client, user):
+        """No audit log when token is invalid."""
+        client.post(self.URL, {"token": "bogus", "password": "BrandNewPass99"})
+        assert not AuditLog.objects.filter(action="password_reset_completed").exists()
+
+    def test_reset_password_missing_token(self, client):
+        response = client.post(self.URL, {"password": "BrandNewPass99"})
+        assert response.status_code == 400
+
+    def test_reset_password_missing_password(self, client, user):
+        token = self._get_token(user)
+        response = client.post(self.URL, {"token": token})
+        assert response.status_code == 400
+
+    def test_reset_password_inactive_user(self, client):
+        """Inactive users can't reset password even with valid token."""
+        user = UserFactory(is_active=False)
+        token = self._get_token(user)
+        response = client.post(self.URL, {"token": token, "password": "BrandNewPass99"})
+        assert response.status_code == 400
+        assert response.data["error"] == "token_invalid_or_expired"
+
+
 # ── Verified-Only Endpoints ──────────────────────────────────────────────────
 
 
