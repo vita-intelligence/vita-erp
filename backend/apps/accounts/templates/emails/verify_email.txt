@@ -1,0 +1,9 @@
+{% load i18n %}{% blocktrans %}Welcome to Vita ERP!{% endblocktrans %}
+
+{% blocktrans %}Please verify your email by clicking the link below:{% endblocktrans %}
+
+{{ verification_url }}
+
+{% blocktrans %}This link expires in 24 hours.{% endblocktrans %}
+
+{% blocktrans %}If you didn't create this account, ignore this email.{% endblocktrans %}

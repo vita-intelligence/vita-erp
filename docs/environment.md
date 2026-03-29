@@ -1,6 +1,6 @@
 # Environment Variables
 
-There are two `.env` files with different purposes.
+Two `.env` files control the local dev environment. Neither is committed to git.
 
 ---
 
@@ -28,25 +28,41 @@ Located at `backend/.env`. Read by Django via `python-decouple`.
 | `DB_USER` | `postgres` | PostgreSQL user |
 | `DB_PASSWORD` | `postgres` | PostgreSQL password |
 | `DB_HOST` | `localhost` | PostgreSQL host |
-| `DB_PORT` | `5432` | PostgreSQL port — must match `POSTGRES_PORT` in root `.env` |
+| `DB_PORT` | `5432` | Must match `POSTGRES_PORT` in root `.env` |
+| `REDIS_HOST` | `localhost` | Redis host |
+| `REDIS_PORT` | `6379` | Must match `REDIS_PORT` in root `.env` |
 
-> Never commit either `.env` file. Both are gitignored. Commit the `.env.example` files instead.
+> Never commit either `.env` file. Both are gitignored. Copy from `.env.example` files.
 
 ---
 
 ## Settings files
 
-| File | Used when | Purpose |
+| File | Used when | How it's selected |
 |---|---|---|
-| `config/settings/base.py` | always | Shared settings across all environments |
-| `config/settings/dev.py` | local development | `DEBUG=True`, relaxed CORS |
-| `config/settings/prod.py` | production | `DEBUG=False`, security headers enforced |
-| `config/settings/test.py` | test runner | In-memory SQLite, fast password hashing |
+| `config/settings/base.py` | always | Shared — imported by all others |
+| `config/settings/dev.py` | local development | Default via `manage.py` |
+| `config/settings/prod.py` | production | Default via `wsgi.py` / `asgi.py`, or set by hosting env var |
+| `config/settings/test.py` | running tests | Set via `pytest.ini` or `DJANGO_SETTINGS_MODULE` |
 
-`manage.py` defaults to `dev`. `wsgi.py` and `asgi.py` default to `prod`.
+### What each environment adds
 
-To run with a specific settings file:
+| Concern | dev | test | prod |
+|---|---|---|---|
+| DEBUG | True | False | False |
+| Database | PostgreSQL (Docker) | SQLite (in-memory) | PostgreSQL (Azure) |
+| Cache | Redis (Docker) | LocMemCache | Redis (Azure) |
+| Email | Console (prints to terminal) | In-memory (inspectable in tests) | Real service |
+| Cookie Secure | False (HTTP) | False | True (HTTPS only) |
+| CORS | Allow all origins | — | Whitelist |
+| Media files | Local filesystem (`media/`) | Local filesystem | Azure Blob Storage |
+
+### Switching settings manually
 
 ```bash
-DJANGO_SETTINGS_MODULE=config.settings.test uv run python manage.py test
+# Use test settings
+DJANGO_SETTINGS_MODULE=config.settings.test uv run pytest
+
+# Use prod settings (rarely needed locally)
+DJANGO_SETTINGS_MODULE=config.settings.prod uv run python manage.py check
 ```

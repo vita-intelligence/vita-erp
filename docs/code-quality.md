@@ -6,8 +6,9 @@
 |---|---|
 | `ruff` | Linting and formatting — replaces flake8, isort, black |
 | `mypy` | Static type checking |
+| `pytest` | Test runner — with pytest-django and factory-boy |
 
-Configured in `backend/pyproject.toml`.
+Configured in `backend/pyproject.toml` and `backend/pytest.ini`.
 
 ## Frontend tools
 
@@ -28,8 +29,6 @@ To run manually against all files:
 pre-commit run --all-files
 ```
 
-> `pre-commit install` was already run during project setup. Nothing to configure.
-
 ---
 
 ## Backend commands
@@ -37,10 +36,21 @@ pre-commit run --all-files
 ```bash
 cd backend
 
+# Linting
 uv run ruff check .          # lint
 uv run ruff check . --fix    # lint and auto-fix
 uv run ruff format .         # format
-uv run mypy .                # type check
+uv run ruff format --check . # format check (CI mode)
+
+# Type checking
+uv run mypy .
+
+# Tests
+uv run pytest                # run all tests
+uv run pytest -v             # verbose output
+uv run pytest -v --tb=short  # verbose + short tracebacks
+uv run pytest apps/accounts/ # run tests for one app only
+uv run pytest -k "test_login" # run tests matching a name
 ```
 
 ## Frontend commands

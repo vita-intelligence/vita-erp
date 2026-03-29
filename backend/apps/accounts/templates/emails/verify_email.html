@@ -1,0 +1,45 @@
+{% extends "emails/base_email.html" %}
+{% load i18n %}
+
+{% block subject %}{% blocktrans %}Verify your email — Vita ERP{% endblocktrans %}{% endblock %}
+
+{% block body %}
+  <h1 style="margin: 0 0 16px 0; font-size: 22px; font-weight: 700; color: #18181b; line-height: 1.3;">
+    {% blocktrans %}Welcome to Vita ERP!{% endblocktrans %}
+  </h1>
+
+  <p style="margin: 0 0 24px 0; font-size: 15px; color: #3f3f46; line-height: 1.6;">
+    {% blocktrans %}Please verify your email address to get started. Click the button below:{% endblocktrans %}
+  </p>
+
+  <!-- CTA Button — table-based for Outlook compatibility -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto 24px auto;">
+    <tr>
+      <td align="center" style="background-color: #18181b; border-radius: 6px;">
+        <!--[if mso]>
+        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ verification_url }}" style="height:44px;v-text-anchor:middle;width:220px;" arcsize="14%" strokecolor="#18181b" fillcolor="#18181b">
+        <w:anchorlock/>
+        <center style="color:#ffffff;font-family:sans-serif;font-size:14px;font-weight:bold;">Verify Email</center>
+        </v:roundrect>
+        <![endif]-->
+        <!--[if !mso]><!-->
+        <a href="{{ verification_url }}" target="_blank" style="display: inline-block; padding: 12px 32px; font-size: 14px; font-weight: 600; color: #ffffff; text-decoration: none; letter-spacing: 0.02em;">
+          {% blocktrans %}Verify Email{% endblocktrans %}
+        </a>
+        <!--<![endif]-->
+      </td>
+    </tr>
+  </table>
+
+  <p style="margin: 0 0 8px 0; font-size: 13px; color: #71717a; line-height: 1.5;">
+    {% blocktrans %}Or copy and paste this link into your browser:{% endblocktrans %}
+  </p>
+
+  <p style="margin: 0 0 24px 0; font-size: 12px; color: #a1a1aa; word-break: break-all; line-height: 1.5;">
+    {{ verification_url }}
+  </p>
+
+  <p style="margin: 0; font-size: 13px; color: #71717a; line-height: 1.5;">
+    {% blocktrans %}This link expires in 24 hours.{% endblocktrans %}
+  </p>
+{% endblock %}

@@ -21,41 +21,57 @@ npm run dev
 |---|---|
 | API | `http://localhost:8000` |
 | Frontend | `http://localhost:3000` |
+| Django Admin | `http://localhost:8000/admin/` |
 
 ---
 
-## Services
+## Docker services
 
-| Service | Host | Default port |
+| Service | Image | Default port |
 |---|---|---|
-| PostgreSQL | `localhost` | `5432` |
-| Redis | `localhost` | `6379` |
+| PostgreSQL | postgres:16-alpine | `5432` (configurable in `.env`) |
+| Redis | redis:7-alpine | `6379` (configurable in `.env`) |
 
-Port conflicts? See [environment.md](environment.md).
-
-## Docker commands
+### Docker commands
 
 | Command | What it does |
 |---|---|
 | `docker compose up -d` | Start services in background |
 | `docker compose down` | Stop services |
-| `docker compose down -v` | Stop services and wipe all data |
+| `docker compose down -v` | Stop services and **wipe all data** |
 | `docker compose ps` | Show service status |
 | `docker compose logs db` | View PostgreSQL logs |
 
-## Common Django commands
+---
+
+## Backend commands
 
 ```bash
 cd backend
 
-uv run python manage.py runserver        # start dev server
-uv run python manage.py migrate          # apply migrations
-uv run python manage.py makemigrations   # create new migrations
-uv run python manage.py createsuperuser  # create admin user
-uv run python manage.py shell_plus       # interactive shell (django-extensions)
+# Server
+uv run python manage.py runserver      # start dev server (port 8000)
+
+# Database
+uv run python manage.py migrate        # apply migrations
+uv run python manage.py makemigrations # create new migrations
+uv run python manage.py createsuperuser # create admin user (email-based)
+
+# Shell
+uv run python manage.py shell_plus    # interactive shell (django-extensions)
+
+# Tests
+uv run pytest                          # run all tests
+uv run pytest -v --tb=short            # verbose + short tracebacks
+uv run pytest apps/accounts/           # run one app's tests
+
+# Code quality
+uv run ruff check .                    # lint
+uv run ruff format .                   # format
+uv run mypy .                          # type check
 ```
 
-## uv commands
+### uv commands
 
 | Command | What it does |
 |---|---|
@@ -67,14 +83,16 @@ uv run python manage.py shell_plus       # interactive shell (django-extensions)
 
 > Never use `source .venv/bin/activate`. Always prefix commands with `uv run`.
 
-## Common frontend commands
+---
+
+## Frontend commands
 
 ```bash
 cd frontend
 
-npm run dev        # start dev server
+npm run dev        # start dev server (port 3000)
 npm run build      # production build
 npm run lint       # biome lint + format check
 npm run format     # biome format and fix
-npm run typecheck  # TypeScript check
+npm run typecheck  # TypeScript type check
 ```

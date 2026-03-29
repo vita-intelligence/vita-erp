@@ -5,15 +5,78 @@ on:
     branches:
       - main
       - dev
+  push:
+    branches:
+      - "**"
 
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  # ── Fast check — runs on EVERY push to ANY branch ────────────────────────
+  # Lint + format + type check only. No tests. ~30 seconds.
+  # Gives developers instant feedback without waiting for full test suite.
+
+  quick-check:
+    name: Quick Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Backend checks
+      - name: Install uv
+        if: hashFiles('backend/pyproject.toml') != ''
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        if: hashFiles('backend/pyproject.toml') != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: backend/.python-version
+
+      - name: Install backend dependencies
+        if: hashFiles('backend/pyproject.toml') != ''
+        working-directory: backend
+        run: uv sync --group dev
+
+      - name: Backend lint + format
+        if: hashFiles('backend/pyproject.toml') != ''
+        working-directory: backend
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+
+      # Frontend checks
+      - name: Set up Node
+        if: hashFiles('frontend/package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: frontend/.nvmrc
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        if: hashFiles('frontend/package.json') != ''
+        working-directory: frontend
+        run: npm ci
+
+      - name: Frontend lint + type check
+        if: hashFiles('frontend/package.json') != ''
+        working-directory: frontend
+        run: |
+          npm run lint
+          npm run typecheck
+
+  # ── Full suite — runs on PRs to main/dev and pushes to main/dev ──────────
+  # Lint + format + type check + tests. The real gate.
+
   backend-ci:
     name: Backend CI
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
 
     steps:
       - name: Checkout
@@ -26,7 +89,6 @@ jobs:
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
-            echo "backend/ not found — skipping backend CI"
           fi
 
       - name: Install uv
@@ -59,10 +121,10 @@ jobs:
         working-directory: backend
         run: uv run mypy .
 
-      - name: Tests
+      - name: Tests (pytest)
         if: steps.check.outputs.exists == 'true'
         working-directory: backend
-        run: uv run python manage.py test --verbosity=2
+        run: uv run pytest -v --tb=short
         env:
           DJANGO_SETTINGS_MODULE: config.settings.test
           SECRET_KEY: ci-secret-key
@@ -70,6 +132,7 @@ jobs:
   frontend-ci:
     name: Frontend CI
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
 
     steps:
       - name: Checkout
@@ -82,7 +145,6 @@ jobs:
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
-            echo "frontend/ not found — skipping frontend CI"
           fi
 
       - name: Set up Node
@@ -116,15 +178,16 @@ jobs:
   ci-success:
     name: CI Passed
     runs-on: ubuntu-latest
-    needs: [backend-ci, frontend-ci]
+    needs: [quick-check, backend-ci, frontend-ci]
     if: always()
     steps:
       - name: Verify all checks passed or were skipped
         run: |
+          quick="${{ needs.quick-check.result }}"
           backend="${{ needs.backend-ci.result }}"
           frontend="${{ needs.frontend-ci.result }}"
 
-          for result in "$backend" "$frontend"; do
+          for result in "$quick" "$backend" "$frontend"; do
             if [[ "$result" != "success" && "$result" != "skipped" ]]; then
               echo "Check failed with result: $result"
               exit 1

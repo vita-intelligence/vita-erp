@@ -12,3 +12,10 @@ DATABASES = {
 
 # Disable password hashing for speed
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
+
+# Email — capture instead of sending
+EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
+
+# Cookies — no HTTPS in tests
+VITA_COOKIE_SECURE = False
+VITA_COOKIE_SAMESITE = "Lax"
