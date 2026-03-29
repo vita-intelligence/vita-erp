@@ -52,7 +52,7 @@ jobs:
       # Frontend checks
       - name: Set up Node
         if: hashFiles('frontend/package.json') != ''
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: frontend/.nvmrc
           cache: npm
@@ -151,7 +151,7 @@ jobs:
 
       - name: Set up Node
         if: steps.check.outputs.exists == 'true'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: frontend/.nvmrc
           cache: npm
