@@ -160,9 +160,7 @@
           "required": true,
           "hidden": false,
           "appearance": "compact",
-          "options": [
-            { "value": "yes", "label": "I agree" }
-          ]
+          "options": [{ "value": "yes", "label": "I agree" }]
         },
         {
           "kind": "field",

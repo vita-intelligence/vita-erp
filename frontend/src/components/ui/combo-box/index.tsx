@@ -15,7 +15,6 @@
 import {
   type ComboBoxInputGroupProps,
   type ComboBoxPopoverProps,
-  type ComboBoxRootProps,
   type ComboBoxTriggerProps,
   ComboBoxInputGroup as HeroComboBoxInputGroup,
   ComboBoxPopover as HeroComboBoxPopover,

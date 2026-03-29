@@ -24,9 +24,15 @@
   .slider:hover,
   [data-slot="slider"]:hover {
     transform: perspective(800px)
-      rotateX(var(--vita-slider-hover-rotate-x, var(--vita-slider-rotate-x, 0deg)))
-      rotateY(var(--vita-slider-hover-rotate-y, var(--vita-slider-rotate-y, 0deg)))
-      rotateZ(var(--vita-slider-hover-rotate-z, var(--vita-slider-rotate-z, 0deg)))
+      rotateX(
+        var(--vita-slider-hover-rotate-x, var(--vita-slider-rotate-x, 0deg))
+      )
+      rotateY(
+        var(--vita-slider-hover-rotate-y, var(--vita-slider-rotate-y, 0deg))
+      )
+      rotateZ(
+        var(--vita-slider-hover-rotate-z, var(--vita-slider-rotate-z, 0deg))
+      )
       translateY(var(--vita-slider-hover-translate-y, 0px))
       scale(var(--vita-slider-hover-scale, 1)) !important;
   }

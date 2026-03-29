@@ -26,9 +26,15 @@
 @media (hover: hover) {
   [data-slot="calendar"]:hover {
     transform: perspective(800px)
-      rotateX(var(--vita-calendar-hover-rotate-x, var(--vita-calendar-rotate-x, 0deg)))
-      rotateY(var(--vita-calendar-hover-rotate-y, var(--vita-calendar-rotate-y, 0deg)))
-      rotateZ(var(--vita-calendar-hover-rotate-z, var(--vita-calendar-rotate-z, 0deg)))
+      rotateX(
+        var(--vita-calendar-hover-rotate-x, var(--vita-calendar-rotate-x, 0deg))
+      )
+      rotateY(
+        var(--vita-calendar-hover-rotate-y, var(--vita-calendar-rotate-y, 0deg))
+      )
+      rotateZ(
+        var(--vita-calendar-hover-rotate-z, var(--vita-calendar-rotate-z, 0deg))
+      )
       translateY(var(--vita-calendar-hover-translate-y, 0px))
       scale(var(--vita-calendar-hover-scale, 1)) !important;
   }

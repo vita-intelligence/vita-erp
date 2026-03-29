@@ -33,9 +33,15 @@
 @media (hover: hover) {
   .avatar:hover {
     transform: perspective(800px)
-      rotateX(var(--vita-avatar-hover-rotate-x, var(--vita-avatar-rotate-x, 0deg)))
-      rotateY(var(--vita-avatar-hover-rotate-y, var(--vita-avatar-rotate-y, 0deg)))
-      rotateZ(var(--vita-avatar-hover-rotate-z, var(--vita-avatar-rotate-z, 0deg)))
+      rotateX(
+        var(--vita-avatar-hover-rotate-x, var(--vita-avatar-rotate-x, 0deg))
+      )
+      rotateY(
+        var(--vita-avatar-hover-rotate-y, var(--vita-avatar-rotate-y, 0deg))
+      )
+      rotateZ(
+        var(--vita-avatar-hover-rotate-z, var(--vita-avatar-rotate-z, 0deg))
+      )
       translateY(var(--vita-avatar-hover-translate-y, 0px))
       scale(var(--vita-avatar-hover-scale, 1)) !important;
   }

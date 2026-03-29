@@ -14,7 +14,6 @@ import {
   type AlertDialogDialogProps,
   type AlertDialogFooterProps,
   type AlertDialogHeaderProps,
-  type AlertDialogRootProps,
   AlertDialogBackdrop as HeroAlertDialogBackdrop,
   AlertDialogBody as HeroAlertDialogBody,
   AlertDialogCloseTrigger as HeroAlertDialogCloseTrigger,

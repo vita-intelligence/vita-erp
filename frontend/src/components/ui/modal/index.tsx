@@ -33,17 +33,7 @@ import {
   ModalIcon as HeroModalIcon,
   ModalRoot as HeroModalRoot,
   ModalTrigger as HeroModalTrigger,
-  type ModalBackdropProps,
-  type ModalBodyProps,
-  type ModalCloseTriggerProps,
-  type ModalContainerProps,
   type ModalDialogProps,
-  type ModalFooterProps,
-  type ModalHeaderProps,
-  type ModalHeadingProps,
-  type ModalIconProps,
-  type ModalRootProps,
-  type ModalTriggerProps,
 } from "@heroui/react";
 
 // Re-export everything from HeroUI (types, variants, etc.)

@@ -41,7 +41,11 @@
       "visibility": {
         "logic": "and",
         "rules": [
-          { "fieldId": "department", "operator": "equals", "value": "engineering" },
+          {
+            "fieldId": "department",
+            "operator": "equals",
+            "value": "engineering"
+          },
           { "fieldId": "role", "operator": "equals", "value": "manager" }
         ]
       }

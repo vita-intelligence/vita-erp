@@ -120,8 +120,12 @@
  * can hold solid colors OR gradient values interchangeably.
  * --------------------------------------------------------------------------- */
 
-.bg-vita-background { background: var(--vita-background) !important; }
-.bg-vita-surface { background: var(--vita-surface) !important; }
+.bg-vita-background {
+  background: var(--vita-background) !important;
+}
+.bg-vita-surface {
+  background: var(--vita-surface) !important;
+}
 
 /* ---------------------------------------------------------------------------
  * Default light theme values — fallback before store hydration.
@@ -214,9 +218,15 @@ body {
    and adds .vita-hydrated to <html>. */
 
 @keyframes vita-hydration-bar {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(0%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 #vita-hydration-indicator {

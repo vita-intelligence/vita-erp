@@ -9,7 +9,6 @@
 "use client";
 
 import {
-  type AlertContentProps,
   type AlertDescriptionProps,
   type AlertIndicatorProps,
   type AlertRootProps,

@@ -33,9 +33,15 @@
 @media (hover: hover) {
   [data-slot="chip"]:hover {
     transform: perspective(800px)
-      rotateX(var(--vita-badge-hover-rotate-x, var(--vita-badge-rotate-x, 0deg)))
-      rotateY(var(--vita-badge-hover-rotate-y, var(--vita-badge-rotate-y, 0deg)))
-      rotateZ(var(--vita-badge-hover-rotate-z, var(--vita-badge-rotate-z, 0deg)))
+      rotateX(
+        var(--vita-badge-hover-rotate-x, var(--vita-badge-rotate-x, 0deg))
+      )
+      rotateY(
+        var(--vita-badge-hover-rotate-y, var(--vita-badge-rotate-y, 0deg))
+      )
+      rotateZ(
+        var(--vita-badge-hover-rotate-z, var(--vita-badge-rotate-z, 0deg))
+      )
       translateY(var(--vita-badge-hover-translate-y, 0px))
       scale(var(--vita-badge-hover-scale, 1)) !important;
   }

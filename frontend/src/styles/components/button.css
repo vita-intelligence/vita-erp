@@ -25,7 +25,9 @@
 
 /* Hover — pointer devices only; composes 3D rotation with optional 2D transform */
 @media (hover: hover) {
-  [data-slot="button"]:not([data-disabled="true"]):not([aria-disabled="true"]):hover {
+  [data-slot="button"]:not([data-disabled="true"]):not(
+      [aria-disabled="true"]
+    ):hover {
     transform: perspective(800px)
       rotateX(var(--vita-btn-hover-rotate-x, var(--vita-btn-rotate-x, 0deg)))
       rotateY(var(--vita-btn-hover-rotate-y, var(--vita-btn-rotate-y, 0deg)))
@@ -38,8 +40,7 @@
 /* Press / active — preserves 3D rotation while scaling */
 [data-slot="button"]:active,
 [data-slot="button"][data-pressed="true"] {
-  transform: perspective(800px)
-    rotateX(var(--vita-btn-rotate-x, 0deg))
+  transform: perspective(800px) rotateX(var(--vita-btn-rotate-x, 0deg))
     rotateY(var(--vita-btn-rotate-y, 0deg))
     rotateZ(var(--vita-btn-rotate-z, 0deg))
     scale(var(--vita-btn-press-scale, 0.97)) !important;

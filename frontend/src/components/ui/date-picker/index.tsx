@@ -11,7 +11,6 @@
 
 import {
   type DatePickerPopoverProps,
-  type DatePickerRootProps,
   type DatePickerTriggerIndicatorProps,
   type DatePickerTriggerProps,
   DatePickerPopover as HeroDatePickerPopover,

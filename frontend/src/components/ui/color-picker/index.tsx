@@ -13,8 +13,6 @@ import {
   type ColorAreaRootProps,
   type ColorAreaThumbProps,
   type ColorPickerPopoverProps,
-  type ColorPickerRootProps,
-  type ColorPickerTriggerProps,
   type ColorSliderRootProps,
   type ColorSliderThumbProps,
   type ColorSliderTrackProps,
