@@ -9,12 +9,14 @@
 import { create } from "zustand";
 
 import api from "@/lib/api";
+import type { OrganizationSummary } from "@/types/api";
 
 type User = {
   id: string;
   email: string;
   is_verified: boolean;
   date_joined: string;
+  organizations: OrganizationSummary[];
 };
 
 type AuthState = {

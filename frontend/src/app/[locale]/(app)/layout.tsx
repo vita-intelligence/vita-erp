@@ -3,12 +3,12 @@
 /**
  * App layout — wraps all authenticated pages.
  *
- * Responsibilities:
- * 1. Auth guard — redirects to /login if not authenticated
- * 2. Future: sidebar + topbar + notification system
+ * Guard chain:
+ * 1. AuthGuard — redirects to /login if not authenticated, blocks if unverified
+ * 2. (org)/layout.tsx → OrgGuard — handles org selection/creation
  *
- * The sidebar/topbar will be added when the organization system is built.
- * For now, this is a minimal wrapper that ensures auth state.
+ * Pages outside (org)/ (create-organization, select-organization) only
+ * need auth — they are accessible without an org context.
  */
 
 import AuthGuard from "./_components/AuthGuard";

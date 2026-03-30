@@ -19,10 +19,10 @@ class CreateOrganizationSerializer(serializers.Serializer):
 
     name = serializers.CharField(max_length=255, required=True)
     slug = serializers.SlugField(max_length=63, required=False, allow_blank=True)
-    industry = serializers.CharField(max_length=100, required=False, default="")
-    country = serializers.CharField(max_length=2, required=False, default="")
-    timezone = serializers.CharField(max_length=50, required=False, default="UTC")
-    base_currency = serializers.CharField(max_length=3, required=False, default="USD")
+    industry = serializers.CharField(max_length=100, required=True)
+    country = serializers.CharField(max_length=2, required=True)
+    timezone = serializers.CharField(max_length=50, required=True)
+    base_currency = serializers.CharField(max_length=3, required=True)
 
     def validate_name(self, value: str) -> str:
         value = value.strip()

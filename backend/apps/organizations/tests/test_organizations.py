@@ -53,6 +53,21 @@ def trial_plan():
     return plan
 
 
+# All required fields for org creation
+ORG_DEFAULTS = {
+    "name": "Test Org",
+    "industry": "electronics",
+    "country": "US",
+    "timezone": "America/New_York",
+    "base_currency": "USD",
+}
+
+
+def org_data(**overrides):
+    """Build org creation payload with required fields."""
+    return {**ORG_DEFAULTS, **overrides}
+
+
 # ── Create Organization ──────────────────────────────────────────────────────
 
 
@@ -61,7 +76,7 @@ class TestCreateOrganization:
     def test_create_success(self, auth_client, verified_user, trial_plan):
         response = auth_client.post(
             "/api/v1/organizations/",
-            {"name": "Acme Manufacturing", "country": "US", "timezone": "America/New_York"},
+            org_data(name="Acme Manufacturing"),
         )
         assert response.status_code == 201
         data = response.json()
@@ -73,7 +88,7 @@ class TestCreateOrganization:
     def test_create_sets_org_scoped_cookies(self, auth_client, verified_user, trial_plan):
         response = auth_client.post(
             "/api/v1/organizations/",
-            {"name": "Cookie Test Org"},
+            org_data(name="Cookie Test Org"),
         )
         assert response.status_code == 201
         assert "vita_access" in response.cookies
@@ -82,7 +97,7 @@ class TestCreateOrganization:
     def test_create_creates_membership(self, auth_client, verified_user, trial_plan):
         auth_client.post(
             "/api/v1/organizations/",
-            {"name": "Membership Test Org"},
+            org_data(name="Membership Test Org"),
         )
         assert Membership.objects.filter(
             user=verified_user,
@@ -92,7 +107,7 @@ class TestCreateOrganization:
     def test_create_creates_subscription(self, auth_client, verified_user, trial_plan):
         response = auth_client.post(
             "/api/v1/organizations/",
-            {"name": "Subscription Test Org"},
+            org_data(name="Subscription Test Org"),
         )
         org_id = response.json()["id"]
         sub = Subscription.objects.get(organization_id=org_id)
@@ -103,7 +118,7 @@ class TestCreateOrganization:
     def test_create_logs_audit_event(self, auth_client, verified_user, trial_plan):
         auth_client.post(
             "/api/v1/organizations/",
-            {"name": "Audit Test Org"},
+            org_data(name="Audit Test Org"),
         )
         assert AuditLog.objects.filter(
             user=verified_user,
@@ -113,7 +128,7 @@ class TestCreateOrganization:
     def test_create_custom_slug(self, auth_client, verified_user, trial_plan):
         response = auth_client.post(
             "/api/v1/organizations/",
-            {"name": "Custom Slug Org", "slug": "my-custom-slug"},
+            org_data(name="Custom Slug Org", slug="my-custom-slug"),
         )
         assert response.status_code == 201
         assert response.json()["slug"] == "my-custom-slug"
@@ -122,14 +137,14 @@ class TestCreateOrganization:
         OrganizationFactory(slug="taken-slug")
         response = auth_client.post(
             "/api/v1/organizations/",
-            {"name": "Dup Slug Org", "slug": "taken-slug"},
+            org_data(name="Dup Slug Org", slug="taken-slug"),
         )
         assert response.status_code == 400
 
     def test_create_reserved_slug(self, auth_client, verified_user, trial_plan):
         response = auth_client.post(
             "/api/v1/organizations/",
-            {"name": "Admin Org", "slug": "admin"},
+            org_data(name="Admin Org", slug="admin"),
         )
         assert response.status_code == 400
 
@@ -139,10 +154,17 @@ class TestCreateOrganization:
 
         response = auth_client.post(
             "/api/v1/organizations/",
-            {"name": "One Too Many Org"},
+            org_data(name="One Too Many Org"),
         )
         assert response.status_code == 400
         assert response.json()["detail"] == "max_orgs_reached"
+
+    def test_create_missing_required_fields(self, auth_client, verified_user, trial_plan):
+        response = auth_client.post(
+            "/api/v1/organizations/",
+            {"name": "Missing Fields Org"},
+        )
+        assert response.status_code == 400
 
     def test_create_requires_auth(self, client):
         response = client.post(

@@ -16,3 +16,22 @@ export type ApiError = {
   detail?: string;
   [field: string]: string | string[] | undefined;
 };
+
+// Organization types
+export type OrgStatus = "trial" | "active" | "suspended" | "deactivated";
+
+export type OrganizationSummary = {
+  id: string;
+  name: string;
+  slug: string;
+  status: OrgStatus;
+  industry: string;
+  country: string;
+};
+
+export type OrganizationDetail = OrganizationSummary & {
+  timezone: string;
+  base_currency: string;
+  created_at: string;
+  trial_days_remaining: number | null;
+};
