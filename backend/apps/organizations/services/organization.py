@@ -154,6 +154,7 @@ def create_organization(
             create_org_database(db_name)
             migrate_org_database(db_name)
             _create_owner_role(org, user)
+            _create_company_settings(org, user, request)
         except Exception:
             logger.exception("Failed to provision org database: %s", db_name)
             org.delete()
@@ -212,6 +213,31 @@ def _create_owner_role(org: Organization, user: User) -> None:
     finally:
         from apps.organizations.context import clear_current_org_db
 
+        clear_current_org_db()
+
+
+def _create_company_settings(
+    org: Organization,
+    user: User,
+    request: HttpRequest | None = None,
+) -> None:
+    """Create default CompanySettings in the org database."""
+    from apps.company.services.company_settings import create_default_settings
+    from apps.organizations.context import clear_current_org_db, set_current_org_db
+    from apps.organizations.db import register_org_database
+
+    db_alias = register_org_database(org.db_name)
+    set_current_org_db(db_alias)
+
+    try:
+        create_default_settings(
+            country=org.country,
+            currency=org.base_currency,
+            user_id=user.id,
+            request=request,
+        )
+        logger.info("CompanySettings created for org %s", org.slug)
+    finally:
         clear_current_org_db()
 
 

@@ -45,6 +45,7 @@ LOCAL_SHARED_APPS = [
 LOCAL_TENANT_APPS = [
     "apps.audit",
     "apps.rbac",
+    "apps.company",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_SHARED_APPS + LOCAL_TENANT_APPS
