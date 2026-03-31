@@ -15,6 +15,7 @@ NOT stored here (user-defined via form builder):
 from __future__ import annotations
 
 import calendar
+from typing import Any
 
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -285,7 +286,7 @@ class CompanySettings(models.Model):
         if errors:
             raise ValidationError(errors)
 
-    def save(self, *args: object, **kwargs: object) -> None:
+    def save(self, *args: Any, **kwargs: Any) -> None:
         if not self.pk and CompanySettings.objects.exists():
             raise ValidationError("company_settings_already_exists")
         self.full_clean()

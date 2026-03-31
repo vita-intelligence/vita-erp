@@ -58,10 +58,12 @@ def _log_audit(
 def _get_client_ip(request: HttpRequest | None) -> str | None:
     if request is None:
         return None
-    forwarded = request.META.get("HTTP_X_FORWARDED_FOR")
+    forwarded: str | None = request.META.get("HTTP_X_FORWARDED_FOR")
     if forwarded:
-        return forwarded.split(",")[0].strip()
-    return request.META.get("REMOTE_ADDR")
+        ip: str = forwarded.split(",")[0].strip()
+        return ip
+    addr: str | None = request.META.get("REMOTE_ADDR")
+    return addr
 
 
 def _snapshot(settings: CompanySettings) -> dict[str, str]:
@@ -87,13 +89,13 @@ def get_settings() -> CompanySettings:
         CompanySettings.DoesNotExist: If settings have not been created yet.
     """
     key = _cache_key()
-    settings = cache.get(key)
+    cached: CompanySettings | None = cache.get(key)
 
-    if settings is None:
-        settings = CompanySettings.objects.get()
-        cache.set(key, settings, CACHE_TTL)
+    if cached is None:
+        cached = CompanySettings.objects.get()
+        cache.set(key, cached, CACHE_TTL)
 
-    return settings
+    return cached
 
 
 def update_settings(
