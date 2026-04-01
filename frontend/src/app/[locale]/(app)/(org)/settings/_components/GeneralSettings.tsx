@@ -65,13 +65,17 @@ export default function GeneralSettings() {
       return;
     }
 
-    await toast.promise(updateCompanySettings(patch), {
-      loading: t("saving"),
-      success: t("saved"),
-      error: t("errors.save_failed"),
-    });
+    const toastId = toast(t("saving"), { isLoading: true, timeout: 0 });
 
-    await refetch();
+    try {
+      await updateCompanySettings(patch);
+      toast.close(toastId);
+      toast.success(t("saved"));
+      await refetch();
+    } catch {
+      toast.close(toastId);
+      toast.danger(t("errors.save_failed"));
+    }
   };
 
   return (
