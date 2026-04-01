@@ -410,6 +410,33 @@ export const CSS_VAR_MAP: Record<keyof ThemeTokens, string> = {
 
   // Modal
   modalRadius: "--vita-modal-radius",
+
+  // Toast
+  toastPlacement: "--vita-toast-placement",
+  toastRadius: "--vita-toast-radius",
+  toastBorderWidth: "--vita-toast-border-width",
+  toastBorderStyle: "--vita-toast-border-style",
+  toastPaddingX: "--vita-toast-padding-x",
+  toastPaddingY: "--vita-toast-padding-y",
+  toastShadow: "--vita-toast-shadow",
+  toastGap: "--vita-toast-gap",
+  toastMinWidth: "--vita-toast-min-width",
+  toastMaxWidth: "--vita-toast-max-width",
+  toastContentGap: "--vita-toast-content-gap",
+  toastTitleFontWeight: "--vita-toast-title-font-weight",
+  toastTitleFontSize: "--vita-toast-title-font-size",
+  toastDescriptionFontSize: "--vita-toast-description-font-size",
+  toastDescriptionOpacity: "--vita-toast-description-opacity",
+  toastIconSize: "--vita-toast-icon-size",
+  toastActionRadius: "--vita-toast-action-radius",
+  toastActionFontSize: "--vita-toast-action-font-size",
+  toastActionFontWeight: "--vita-toast-action-font-weight",
+  toastActionPaddingX: "--vita-toast-action-padding-x",
+  toastActionPaddingY: "--vita-toast-action-padding-y",
+  toastCloseSize: "--vita-toast-close-size",
+  toastCloseRadius: "--vita-toast-close-radius",
+  toastCloseOpacity: "--vita-toast-close-opacity",
+  toastCloseHoverOpacity: "--vita-toast-close-hover-opacity",
 };
 
 /**

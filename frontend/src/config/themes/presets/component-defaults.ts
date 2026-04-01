@@ -306,6 +306,31 @@ export const componentDefaults: Pick<
   | "selectRadius"
   | "selectBorderWidth"
   | "modalRadius"
+  | "toastPlacement"
+  | "toastRadius"
+  | "toastBorderWidth"
+  | "toastBorderStyle"
+  | "toastPaddingX"
+  | "toastPaddingY"
+  | "toastShadow"
+  | "toastGap"
+  | "toastMinWidth"
+  | "toastMaxWidth"
+  | "toastContentGap"
+  | "toastTitleFontWeight"
+  | "toastTitleFontSize"
+  | "toastDescriptionFontSize"
+  | "toastDescriptionOpacity"
+  | "toastIconSize"
+  | "toastActionRadius"
+  | "toastActionFontSize"
+  | "toastActionFontWeight"
+  | "toastActionPaddingX"
+  | "toastActionPaddingY"
+  | "toastCloseSize"
+  | "toastCloseRadius"
+  | "toastCloseOpacity"
+  | "toastCloseHoverOpacity"
 > = {
   // Button — sharp, flat, no decorative radius or shadow
   btnRadius: "0px",
@@ -652,4 +677,32 @@ export const componentDefaults: Pick<
 
   // Modal
   modalRadius: "0px",
+
+  // Toast
+  toastPlacement: "bottom end",
+  toastRadius: "12px",
+  toastBorderWidth: "1px",
+  toastBorderStyle: "solid",
+  toastPaddingX: "16px",
+  toastPaddingY: "12px",
+  toastShadow:
+    "0 4px 6px -1px oklch(0 0 0 / 0.10), 0 2px 4px -2px oklch(0 0 0 / 0.10)",
+  toastGap: "8px",
+  toastMinWidth: "320px",
+  toastMaxWidth: "420px",
+  toastContentGap: "4px",
+  toastTitleFontWeight: "600",
+  toastTitleFontSize: "14px",
+  toastDescriptionFontSize: "13px",
+  toastDescriptionOpacity: "0.7",
+  toastIconSize: "20px",
+  toastActionRadius: "6px",
+  toastActionFontSize: "13px",
+  toastActionFontWeight: "500",
+  toastActionPaddingX: "10px",
+  toastActionPaddingY: "4px",
+  toastCloseSize: "28px",
+  toastCloseRadius: "6px",
+  toastCloseOpacity: "0.5",
+  toastCloseHoverOpacity: "1",
 };

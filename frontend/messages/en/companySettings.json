@@ -1,0 +1,215 @@
+{
+  "page": {
+    "title": "Settings"
+  },
+  "tabs": {
+    "general": "General"
+  },
+  "save": "Save Changes",
+  "saving": "Saving...",
+  "saved": "Settings saved successfully.",
+  "no_changes": "No changes to save.",
+  "sections": {
+    "number_formatting": "Number Formatting",
+    "precision": "Precision",
+    "currency_display": "Currency Display",
+    "rounding": "Rounding",
+    "date_time": "Date & Time",
+    "measurement": "Measurement",
+    "fiscal": "Fiscal & Financial",
+    "document_defaults": "Document Defaults"
+  },
+  "fields": {
+    "decimal_separator": "Decimal Separator",
+    "thousands_separator": "Thousands Separator",
+    "digit_grouping": "Digit Grouping",
+    "quantity_precision": "Quantity Precision",
+    "price_precision": "Price Precision",
+    "currency_precision": "Currency Precision",
+    "exchange_rate_precision": "Exchange Rate Precision",
+    "percentage_precision": "Percentage Precision",
+    "weight_precision": "Weight Precision",
+    "currency_symbol_position": "Currency Symbol Position",
+    "currency_spacing": "Space Between Symbol and Amount",
+    "negative_format": "Negative Number Format",
+    "multi_currency_enabled": "Multi-Currency Mode",
+    "rounding_method": "Rounding Method",
+    "cash_rounding_enabled": "Cash Rounding",
+    "cash_rounding_increment": "Cash Rounding Increment",
+    "date_format": "Date Format",
+    "time_format": "Time Format",
+    "week_start_day": "First Day of Week",
+    "calendar_system": "Calendar System",
+    "measurement_system": "Measurement System",
+    "default_weight_uom": "Default Weight Unit",
+    "default_length_uom": "Default Length Unit",
+    "default_volume_uom": "Default Volume Unit",
+    "default_temperature_uom": "Default Temperature Unit",
+    "default_area_uom": "Default Area Unit",
+    "fiscal_year_start_month": "Fiscal Year Start Month",
+    "fiscal_year_start_day": "Fiscal Year Start Day",
+    "fiscal_calendar_type": "Fiscal Calendar Type",
+    "cost_method": "Cost Method",
+    "tax_inclusive_pricing": "Tax-Inclusive Pricing",
+    "default_document_language": "Document Language",
+    "default_paper_size": "Default Paper Size",
+    "text_direction": "Text Direction"
+  },
+  "options": {
+    "decimal_separator": {
+      "dot": "Dot (1234.56)",
+      "comma": "Comma (1234,56)"
+    },
+    "thousands_separator": {
+      "comma": "Comma (1,234)",
+      "dot": "Dot (1.234)",
+      "space": "Space (1 234)",
+      "apostrophe": "Apostrophe (1'234)",
+      "none": "None (1234)"
+    },
+    "digit_grouping": {
+      "standard": "Standard (1,234,567)",
+      "indian": "Indian (12,34,567)",
+      "none": "No grouping"
+    },
+    "currency_symbol_position": {
+      "before": "Before amount ($100)",
+      "after": "After amount (100€)"
+    },
+    "negative_format": {
+      "minus_before": "Minus before (-100)",
+      "minus_after": "Minus after (100-)",
+      "parentheses": "Parentheses ((100))"
+    },
+    "rounding_method": {
+      "half_up": "Standard (half up)",
+      "half_even": "Banker's rounding (half even)",
+      "ceiling": "Always round up",
+      "floor": "Always round down"
+    },
+    "cash_rounding_increment": {
+      "0.01": "0.01",
+      "0.05": "0.05",
+      "0.10": "0.10",
+      "0.25": "0.25",
+      "0.50": "0.50",
+      "1.00": "1.00"
+    },
+    "date_format": {
+      "YYYY-MM-DD": "2026-03-31 (ISO 8601)",
+      "DD/MM/YYYY": "31/03/2026",
+      "MM/DD/YYYY": "03/31/2026",
+      "DD.MM.YYYY": "31.03.2026",
+      "YYYY/MM/DD": "2026/03/31",
+      "DD-MM-YYYY": "31-03-2026"
+    },
+    "time_format": {
+      "24h": "24-hour (14:30)",
+      "12h": "12-hour (2:30 PM)"
+    },
+    "week_start_day": {
+      "monday": "Monday",
+      "sunday": "Sunday",
+      "saturday": "Saturday"
+    },
+    "calendar_system": {
+      "gregorian": "Gregorian",
+      "hijri": "Hijri (Islamic)",
+      "thai_buddhist": "Thai Buddhist",
+      "persian": "Persian (Jalali)",
+      "japanese": "Japanese Imperial"
+    },
+    "measurement_system": {
+      "metric": "Metric",
+      "imperial": "Imperial"
+    },
+    "default_weight_uom": {
+      "kg": "Kilogram (kg)",
+      "g": "Gram (g)",
+      "mg": "Milligram (mg)",
+      "t": "Metric ton (t)",
+      "lb": "Pound (lb)",
+      "oz": "Ounce (oz)"
+    },
+    "default_length_uom": {
+      "m": "Meter (m)",
+      "cm": "Centimeter (cm)",
+      "mm": "Millimeter (mm)",
+      "ft": "Foot (ft)",
+      "in": "Inch (in)",
+      "yd": "Yard (yd)"
+    },
+    "default_volume_uom": {
+      "L": "Liter (L)",
+      "mL": "Milliliter (mL)",
+      "m3": "Cubic meter (m³)",
+      "gal": "Gallon (gal)",
+      "fl_oz": "Fluid ounce (fl oz)",
+      "ft3": "Cubic foot (ft³)"
+    },
+    "default_temperature_uom": {
+      "celsius": "Celsius (°C)",
+      "fahrenheit": "Fahrenheit (°F)"
+    },
+    "default_area_uom": {
+      "m2": "Square meter (m²)",
+      "ft2": "Square foot (ft²)",
+      "hectare": "Hectare",
+      "acre": "Acre"
+    },
+    "fiscal_calendar_type": {
+      "standard": "Standard (calendar months)",
+      "445_week": "4-4-5 week (retail)",
+      "454_week": "4-5-4 week (retail)",
+      "544_week": "5-4-4 week (retail)"
+    },
+    "cost_method": {
+      "standard": "Standard costing",
+      "average": "Weighted average",
+      "fifo": "First-in, first-out (FIFO)"
+    },
+    "default_paper_size": {
+      "A4": "A4 (210 × 297 mm)",
+      "letter": "Letter (8.5 × 11 in)",
+      "legal": "Legal (8.5 × 14 in)"
+    },
+    "text_direction": {
+      "ltr": "Left to right",
+      "rtl": "Right to left"
+    },
+    "months": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May",
+      "6": "June",
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    }
+  },
+  "descriptions": {
+    "decimal_separator": "Character used to separate the integer part from the fractional part.",
+    "thousands_separator": "Character used to group digits for readability.",
+    "digit_grouping": "How digits are grouped. Indian system groups in lakhs and crores.",
+    "currency_spacing": "Add a space between the currency symbol and the amount (e.g., 100 € vs 100€).",
+    "multi_currency_enabled": "Enable transactions and reporting in multiple currencies.",
+    "cash_rounding_enabled": "Round cash totals to the nearest physical denomination.",
+    "cash_rounding_increment": "Smallest cash denomination to round to.",
+    "calendar_system": "Calendar used for date display. Internal storage always uses Gregorian.",
+    "fiscal_calendar_type": "Retail calendars divide the year into 4-week and 5-week periods.",
+    "cost_method": "How inventory costs are calculated across the system.",
+    "tax_inclusive_pricing": "Prices already include tax. Common in EU, Australia, and New Zealand.",
+    "text_direction": "Text direction for generated documents and reports."
+  },
+  "errors": {
+    "separator_conflict": "Decimal separator and thousands separator cannot use the same character.",
+    "digit_grouping_requires_separator": "Digit grouping requires a thousands separator.",
+    "fiscal_day_exceeds_month": "This day does not exist in the selected month.",
+    "save_failed": "Failed to save settings. Please try again."
+  }
+}

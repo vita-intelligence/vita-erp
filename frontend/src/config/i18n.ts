@@ -22,6 +22,7 @@ export const I18N = {
     "themeEditor",
     "formConstructor",
     "organizations",
+    "companySettings",
   ],
 } as const;
 

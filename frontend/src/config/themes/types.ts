@@ -411,4 +411,31 @@ export type ThemeTokens = {
 
   // ── Component tokens: Modal / Drawer / Popover ────────────────────────────
   modalRadius: string; // border-radius of overlay panels
+
+  // ── Component tokens: Toast ──────────────────────────────────────────────
+  toastPlacement: string; // toast position: "top" | "top start" | "top end" | "bottom" | "bottom start" | "bottom end"
+  toastRadius: string; // toast border-radius
+  toastBorderWidth: string; // toast border-width
+  toastBorderStyle: string; // toast border-style: solid | dashed | dotted
+  toastPaddingX: string; // toast horizontal padding
+  toastPaddingY: string; // toast vertical padding
+  toastShadow: string; // toast box-shadow
+  toastGap: string; // gap between stacked toasts
+  toastMinWidth: string; // minimum toast width
+  toastMaxWidth: string; // maximum toast width
+  toastContentGap: string; // gap between title and description
+  toastTitleFontWeight: string; // title font-weight
+  toastTitleFontSize: string; // title font-size
+  toastDescriptionFontSize: string; // description font-size
+  toastDescriptionOpacity: string; // description text opacity
+  toastIconSize: string; // indicator icon size
+  toastActionRadius: string; // action button border-radius
+  toastActionFontSize: string; // action button font-size
+  toastActionFontWeight: string; // action button font-weight
+  toastActionPaddingX: string; // action button horizontal padding
+  toastActionPaddingY: string; // action button vertical padding
+  toastCloseSize: string; // close button size
+  toastCloseRadius: string; // close button border-radius
+  toastCloseOpacity: string; // close button opacity
+  toastCloseHoverOpacity: string; // close button hover opacity
 };

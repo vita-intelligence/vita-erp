@@ -1,0 +1,55 @@
+/* ── Toast ────────────────────────────────────────────────────────────────────
+ * Vita ERP design-token defaults for the <Toast> component.
+ * Inline styles are applied via the themed wrapper in @/components/ui/toast.
+ * Only :root defaults live here — no class-based overrides needed.
+ *
+ * Sub-components: Toast.Provider, Toast (root), Toast.Indicator,
+ * Toast.Content, Toast.Title, Toast.Description, Toast.ActionButton,
+ * Toast.CloseButton.
+ */
+
+:root {
+  /* ── Provider ── */
+  --vita-toast-placement: bottom end;
+  --vita-toast-gap: 8px;
+  --vita-toast-max-visible: 3;
+  --vita-toast-scale-factor: 0.95;
+  --vita-toast-min-width: 320px;
+  --vita-toast-max-width: 420px;
+
+  /* ── Toast root ── */
+  --vita-toast-radius: 12px;
+  --vita-toast-border-width: 1px;
+  --vita-toast-border-style: solid;
+  --vita-toast-padding-x: 16px;
+  --vita-toast-padding-y: 12px;
+  --vita-toast-shadow:
+    0 4px 6px -1px oklch(0 0 0 / 0.1), 0 2px 4px -2px oklch(0 0 0 / 0.1);
+
+  /* ── Content ── */
+  --vita-toast-content-gap: 4px;
+
+  /* ── Title ── */
+  --vita-toast-title-font-weight: 600;
+  --vita-toast-title-font-size: 14px;
+
+  /* ── Description ── */
+  --vita-toast-description-font-size: 13px;
+  --vita-toast-description-opacity: 0.7;
+
+  /* ── Indicator icon ── */
+  --vita-toast-icon-size: 20px;
+
+  /* ── Action button ── */
+  --vita-toast-action-radius: 6px;
+  --vita-toast-action-font-size: 13px;
+  --vita-toast-action-font-weight: 500;
+  --vita-toast-action-padding-x: 10px;
+  --vita-toast-action-padding-y: 4px;
+
+  /* ── Close button ── */
+  --vita-toast-close-size: 28px;
+  --vita-toast-close-radius: 6px;
+  --vita-toast-close-opacity: 0.5;
+  --vita-toast-close-hover-opacity: 1;
+}
