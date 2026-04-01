@@ -18,6 +18,10 @@ type SelectFieldProps = SettingsFieldProps & {
   optionKey: string;
 };
 
+function i18nKey(value: string): string {
+  return value.replaceAll(".", "_");
+}
+
 export default function SelectField({
   name,
   options,
@@ -50,9 +54,9 @@ export default function SelectField({
                   <ListBoxItem
                     key={opt}
                     id={opt}
-                    textValue={t(`options.${optionKey}.${opt}`)}
+                    textValue={t(`options.${optionKey}.${i18nKey(opt)}`)}
                   >
-                    {t(`options.${optionKey}.${opt}`)}
+                    {t(`options.${optionKey}.${i18nKey(opt)}`)}
                   </ListBoxItem>
                 ))}
               </ListBox>
