@@ -29,7 +29,7 @@ export default function NumberField({
             type="number"
             min={min}
             max={max}
-            value={Number(field.value)}
+            value={field.value != null ? Number(field.value) : ""}
             onChange={(e) => field.onChange(Number(e.target.value))}
             aria-label={t(`fields.${name}`)}
             className="w-full rounded-md border px-3 py-2 text-sm"
