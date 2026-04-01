@@ -4,7 +4,7 @@
  */
 
 :root {
-  --vita-select-radius: 0px;
+  --vita-select-radius: 8px;
   --vita-select-border-width: 1px;
   --vita-select-border-style: solid;
 }

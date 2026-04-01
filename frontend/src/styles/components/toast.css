@@ -1,11 +1,8 @@
 /* ── Toast ────────────────────────────────────────────────────────────────────
- * Vita ERP design-token defaults for the <Toast> component.
- * Inline styles are applied via the themed wrapper in @/components/ui/toast.
- * Only :root defaults live here — no class-based overrides needed.
- *
- * Sub-components: Toast.Provider, Toast (root), Toast.Indicator,
- * Toast.Content, Toast.Title, Toast.Description, Toast.ActionButton,
- * Toast.CloseButton.
+ * Vita ERP design-token overrides for the HeroUI Toast component.
+ * Targets HeroUI's data-slot attributes with !important to override
+ * Tailwind-generated atomic classes while preserving animations and
+ * variant colors.
  */
 
 :root {
@@ -52,4 +49,64 @@
   --vita-toast-close-radius: 6px;
   --vita-toast-close-opacity: 0.5;
   --vita-toast-close-hover-opacity: 1;
+}
+
+/* ── Toast root ── */
+[data-slot="toast"] {
+  border-radius: var(--vita-toast-radius) !important;
+  border-width: var(--vita-toast-border-width) !important;
+  border-style: var(--vita-toast-border-style) !important;
+  padding-left: var(--vita-toast-padding-x) !important;
+  padding-right: var(--vita-toast-padding-x) !important;
+  padding-top: var(--vita-toast-padding-y) !important;
+  padding-bottom: var(--vita-toast-padding-y) !important;
+  box-shadow: var(--vita-toast-shadow) !important;
+}
+
+/* ── Content ── */
+[data-slot="toast-content"] {
+  gap: var(--vita-toast-content-gap) !important;
+}
+
+/* ── Title ── */
+[data-slot="toast-title"] {
+  font-weight: var(--vita-toast-title-font-weight) !important;
+  font-size: var(--vita-toast-title-font-size) !important;
+}
+
+/* ── Description ── */
+[data-slot="toast-description"] {
+  font-size: var(--vita-toast-description-font-size) !important;
+  opacity: var(--vita-toast-description-opacity) !important;
+}
+
+/* ── Indicator icon ── */
+[data-slot="toast-indicator"] {
+  width: var(--vita-toast-icon-size) !important;
+  height: var(--vita-toast-icon-size) !important;
+}
+
+/* ── Action button ── */
+[data-slot="toast-action-button"] {
+  border-radius: var(--vita-toast-action-radius) !important;
+  font-size: var(--vita-toast-action-font-size) !important;
+  font-weight: var(--vita-toast-action-font-weight) !important;
+  padding-left: var(--vita-toast-action-padding-x) !important;
+  padding-right: var(--vita-toast-action-padding-x) !important;
+  padding-top: var(--vita-toast-action-padding-y) !important;
+  padding-bottom: var(--vita-toast-action-padding-y) !important;
+}
+
+/* ── Close button ── */
+[data-slot="toast-close"] {
+  width: var(--vita-toast-close-size) !important;
+  height: var(--vita-toast-close-size) !important;
+  border-radius: var(--vita-toast-close-radius) !important;
+  opacity: var(--vita-toast-close-opacity) !important;
+}
+
+@media (hover: hover) {
+  [data-slot="toast-close"]:hover {
+    opacity: var(--vita-toast-close-hover-opacity) !important;
+  }
 }

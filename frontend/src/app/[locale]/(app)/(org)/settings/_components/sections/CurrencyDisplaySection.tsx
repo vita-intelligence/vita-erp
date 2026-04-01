@@ -13,7 +13,10 @@ type Props = Pick<SettingsFieldProps, "control" | "t">;
 
 export default function CurrencyDisplaySection({ control, t }: Props) {
   return (
-    <Section title={t("sections.currency_display")}>
+    <Section
+      title={t("sections.currency_display")}
+      description={t("sections.currency_display_description")}
+    >
       <SelectField
         name="currency_symbol_position"
         options={CURRENCY_POSITIONS}
@@ -28,18 +31,8 @@ export default function CurrencyDisplaySection({ control, t }: Props) {
         control={control}
         t={t}
       />
-      <SwitchField
-        name="currency_spacing"
-        control={control}
-        t={t}
-        description={t("descriptions.currency_spacing")}
-      />
-      <SwitchField
-        name="multi_currency_enabled"
-        control={control}
-        t={t}
-        description={t("descriptions.multi_currency_enabled")}
-      />
+      <SwitchField name="currency_spacing" control={control} t={t} />
+      <SwitchField name="multi_currency_enabled" control={control} t={t} />
     </Section>
   );
 }

@@ -60,6 +60,8 @@ import { SwitchModule } from "./modules/switch";
 import { Preview as SwitchPreview } from "./modules/switch/Preview";
 import { TabsModule } from "./modules/tabs";
 import { Preview as TabsPreview } from "./modules/tabs/Preview";
+import { ToastModule } from "./modules/toast";
+import { Preview as ToastPreview } from "./modules/toast/Preview";
 import { TypographyModule } from "./modules/typography";
 
 export type ThemeModule = {
@@ -669,6 +671,42 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "tabsHoverRotateZ",
       "tabsHoverTranslateY",
       "tabsHoverScale",
+    ],
+  },
+  {
+    id: "toast",
+    label: "Toast",
+    description:
+      "Placement, shape, spacing, and typography of toast notifications",
+    component: ToastModule,
+    preview: ToastPreview,
+    group: "Components",
+    resetKeys: [
+      "toastPlacement",
+      "toastRadius",
+      "toastBorderWidth",
+      "toastBorderStyle",
+      "toastPaddingX",
+      "toastPaddingY",
+      "toastShadow",
+      "toastGap",
+      "toastMinWidth",
+      "toastMaxWidth",
+      "toastContentGap",
+      "toastTitleFontWeight",
+      "toastTitleFontSize",
+      "toastDescriptionFontSize",
+      "toastDescriptionOpacity",
+      "toastIconSize",
+      "toastActionRadius",
+      "toastActionFontSize",
+      "toastActionFontWeight",
+      "toastActionPaddingX",
+      "toastActionPaddingY",
+      "toastCloseSize",
+      "toastCloseRadius",
+      "toastCloseOpacity",
+      "toastCloseHoverOpacity",
     ],
   },
 ];

@@ -466,7 +466,7 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
           {/* Theme presets row — separate line, scrollable */}
           {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
           <div
-            className="flex items-center gap-1 overflow-x-auto px-3 pb-2"
+            className="flex items-center gap-1.5 overflow-x-auto px-3 py-3"
             style={{ scrollbarWidth: "none" }}
             onMouseDown={(e) => e.stopPropagation()}
           >

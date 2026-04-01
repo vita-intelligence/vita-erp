@@ -16,7 +16,10 @@ type Props = Pick<SettingsFieldProps, "control" | "t">;
 
 export default function MeasurementSection({ control, t }: Props) {
   return (
-    <Section title={t("sections.measurement")}>
+    <Section
+      title={t("sections.measurement")}
+      description={t("sections.measurement_description")}
+    >
       <SelectField
         name="measurement_system"
         options={MEASUREMENT_SYSTEMS}

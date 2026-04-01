@@ -14,7 +14,10 @@ type Props = Pick<SettingsFieldProps, "control" | "t">;
 
 export default function DateTimeSection({ control, t }: Props) {
   return (
-    <Section title={t("sections.date_time")}>
+    <Section
+      title={t("sections.date_time")}
+      description={t("sections.date_time_description")}
+    >
       <SelectField
         name="date_format"
         options={DATE_FORMATS}

@@ -794,6 +794,25 @@
       "label": "Tabs",
       "description": "Tab list, items, active indicator, and panel padding",
       "allControls": "Controls the tab list, items, active indicator, and panel padding."
+    },
+    "toast": {
+      "label": "Toast",
+      "description": "Placement, shape, spacing, and typography of toast notifications",
+      "allControls": "Controls the placement, shape, border, spacing, typography, and buttons of toast notifications.",
+      "placement": "Placement",
+      "position": "Position on screen",
+      "stackGap": "Stack gap",
+      "contentGap": "Content gap",
+      "minWidth": "Min width",
+      "maxWidth": "Max width",
+      "titleSize": "Title size",
+      "descriptionSize": "Description size",
+      "descriptionOpacity": "Description opacity",
+      "icon": "Indicator Icon",
+      "actionButton": "Action Button",
+      "actionFontSize": "Font size",
+      "closeButton": "Close Button",
+      "closeOpacity": "Opacity"
     }
   }
 }

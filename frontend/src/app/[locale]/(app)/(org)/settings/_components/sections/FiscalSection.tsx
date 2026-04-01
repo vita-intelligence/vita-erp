@@ -26,10 +26,16 @@ const MONTHS = Array.from({ length: 12 }, (_, i) => String(i + 1));
 
 export default function FiscalSection({ control, t }: Props) {
   return (
-    <Section title={t("sections.fiscal")}>
-      <div>
-        <span className="mb-1 block text-sm font-medium">
+    <Section
+      title={t("sections.fiscal")}
+      description={t("sections.fiscal_description")}
+    >
+      <div className="py-4">
+        <span className="block text-sm font-medium text-vita-text-primary">
           {t("fields.fiscal_year_start_month")}
+        </span>
+        <span className="mb-2 block text-xs text-vita-text-muted">
+          {t("descriptions.fiscal_year_start_month")}
         </span>
         <Controller
           name="fiscal_year_start_month"
@@ -84,12 +90,7 @@ export default function FiscalSection({ control, t }: Props) {
         control={control}
         t={t}
       />
-      <SwitchField
-        name="tax_inclusive_pricing"
-        control={control}
-        t={t}
-        description={t("descriptions.tax_inclusive_pricing")}
-      />
+      <SwitchField name="tax_inclusive_pricing" control={control} t={t} />
     </Section>
   );
 }

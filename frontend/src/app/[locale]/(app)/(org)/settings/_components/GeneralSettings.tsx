@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { ButtonRoot } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/toast";
 import { updateCompanySettings } from "@/services/company-settings";
@@ -82,24 +81,23 @@ function GeneralSettingsForm({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <NumberFormattingSection control={control} t={t} />
-      <Separator />
       <PrecisionSection control={control} t={t} />
-      <Separator />
       <CurrencyDisplaySection control={control} t={t} />
-      <Separator />
       <RoundingSection control={control} t={t} />
-      <Separator />
       <DateTimeSection control={control} t={t} />
-      <Separator />
       <MeasurementSection control={control} t={t} />
-      <Separator />
       <FiscalSection control={control} t={t} />
-      <Separator />
       <DocumentDefaultsSection control={control} t={t} />
 
-      <div className="sticky bottom-0 flex items-center gap-3 border-t bg-background py-4">
+      <div
+        className="sticky bottom-0 -mx-6 flex items-center gap-3 border-t px-6 py-4"
+        style={{
+          backgroundColor: "var(--vita-background)",
+          borderColor: "color-mix(in srgb, currentColor 15%, transparent)",
+        }}
+      >
         <ButtonRoot type="submit" isDisabled={!isDirty || isSubmitting}>
           {isSubmitting ? (
             <>

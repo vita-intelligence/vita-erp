@@ -6,11 +6,21 @@
  * Sits inside AppLayout (AuthGuard) and adds OrgGuard on top.
  * Guard chain: AuthGuard → OrgGuard → children
  *
- * Future: sidebar + topbar + notification system will live here.
+ * Applies theme background and text colors so all org pages
+ * inherit the active theme automatically.
  */
 
 import OrgGuard from "./_components/OrgGuard";
 
 export default function OrgLayout({ children }: { children: React.ReactNode }) {
-  return <OrgGuard>{children}</OrgGuard>;
+  return (
+    <OrgGuard>
+      <div
+        className="min-h-screen text-vita-text-secondary"
+        style={{ backgroundColor: "var(--vita-background)" }}
+      >
+        {children}
+      </div>
+    </OrgGuard>
+  );
 }

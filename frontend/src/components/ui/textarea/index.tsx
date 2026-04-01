@@ -13,6 +13,7 @@ function ThemedTextArea({ style, ...props }: TextAreaProps) {
         borderRadius: "var(--vita-input-radius, 0px)",
         borderWidth: "1px",
         borderStyle: "var(--vita-input-border-style, solid)",
+        borderColor: "var(--vita-input-border-color)",
         boxShadow: "var(--vita-input-shadow, none)",
         paddingLeft: "var(--vita-input-padding-x, 12px)",
         paddingRight: "var(--vita-input-padding-x, 12px)",

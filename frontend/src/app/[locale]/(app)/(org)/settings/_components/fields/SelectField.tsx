@@ -30,9 +30,12 @@ export default function SelectField({
   t,
 }: SelectFieldProps) {
   return (
-    <div>
-      <span className="mb-1 block text-sm font-medium">
+    <div className="py-4">
+      <span className="block text-sm font-medium text-vita-text-primary">
         {t(`fields.${name}`)}
+      </span>
+      <span className="mb-2 block text-xs text-vita-text-muted">
+        {t(`descriptions.${name}`)}
       </span>
       <Controller
         name={name}

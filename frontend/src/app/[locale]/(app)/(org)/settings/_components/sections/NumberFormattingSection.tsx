@@ -13,7 +13,10 @@ type Props = Pick<SettingsFieldProps, "control" | "t">;
 
 export default function NumberFormattingSection({ control, t }: Props) {
   return (
-    <Section title={t("sections.number_formatting")}>
+    <Section
+      title={t("sections.number_formatting")}
+      description={t("sections.number_formatting_description")}
+    >
       <SelectField
         name="decimal_separator"
         options={DECIMAL_SEPARATORS}

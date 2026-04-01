@@ -5,7 +5,7 @@
  */
 
 :root {
-  --vita-input-radius: 0px;
+  --vita-input-radius: 8px;
   --vita-input-border-top: 1px;
   --vita-input-border-right: 1px;
   --vita-input-border-bottom: 1px;
@@ -22,6 +22,7 @@
   --vita-input-focus-ring-offset: 0px;
   --vita-input-transition-duration: 150ms;
   --vita-input-text-align: left;
+  --vita-input-border-color: color-mix(in srgb, currentColor 25%, transparent);
 }
 
 /* Placeholder — pseudo-element, cannot be applied via inline styles */

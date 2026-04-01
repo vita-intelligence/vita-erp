@@ -19,7 +19,10 @@ const CASH_ROUNDING_INCREMENTS = [
 
 export default function RoundingSection({ control, t }: Props) {
   return (
-    <Section title={t("sections.rounding")}>
+    <Section
+      title={t("sections.rounding")}
+      description={t("sections.rounding_description")}
+    >
       <SelectField
         name="rounding_method"
         options={ROUNDING_METHODS}
@@ -27,12 +30,7 @@ export default function RoundingSection({ control, t }: Props) {
         control={control}
         t={t}
       />
-      <SwitchField
-        name="cash_rounding_enabled"
-        control={control}
-        t={t}
-        description={t("descriptions.cash_rounding_enabled")}
-      />
+      <SwitchField name="cash_rounding_enabled" control={control} t={t} />
       <SelectField
         name="cash_rounding_increment"
         options={CASH_ROUNDING_INCREMENTS}

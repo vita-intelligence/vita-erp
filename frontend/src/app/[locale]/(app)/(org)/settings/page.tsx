@@ -41,8 +41,12 @@ export default function SettingsPage() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-8">
-      <h1 className="mb-6 text-2xl font-semibold">{t("page.title")}</h1>
+    <div className="mx-auto max-w-4xl px-6 py-10">
+      <div className="mb-8">
+        <h1 className="text-2xl font-semibold text-vita-text-primary">
+          {t("page.title")}
+        </h1>
+      </div>
 
       <Tabs selectedKey={activeTab} onSelectionChange={handleTabChange}>
         <TabList aria-label={t("page.title")}>
@@ -53,7 +57,7 @@ export default function SettingsPage() {
         </TabList>
 
         <TabPanel id="general">
-          <div className="pt-4">
+          <div className="pt-6">
             <GeneralSettings />
           </div>
         </TabPanel>

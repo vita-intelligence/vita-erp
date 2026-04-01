@@ -332,8 +332,8 @@ export const componentDefaults: Pick<
   | "toastCloseOpacity"
   | "toastCloseHoverOpacity"
 > = {
-  // Button — sharp, flat, no decorative radius or shadow
-  btnRadius: "0px",
+  // Button
+  btnRadius: "8px",
   btnBorderTop: "1px",
   btnBorderRight: "1px",
   btnBorderBottom: "1px",
@@ -357,7 +357,7 @@ export const componentDefaults: Pick<
   btnCursorTrackRestore: "300ms",
 
   // Input
-  inputRadius: "0px",
+  inputRadius: "8px",
   inputBorderTop: "1px",
   inputBorderRight: "1px",
   inputBorderBottom: "1px",
@@ -376,13 +376,14 @@ export const componentDefaults: Pick<
   inputTextAlign: "left",
 
   // Card
-  cardRadius: "0px",
+  cardRadius: "12px",
   cardBorderTop: "1px",
   cardBorderRight: "1px",
   cardBorderBottom: "1px",
   cardBorderLeft: "1px",
   cardBorderStyle: "solid",
-  cardShadow: "none",
+  cardShadow:
+    "0 1px 3px 0 oklch(0 0 0 / 0.06), 0 1px 2px -1px oklch(0 0 0 / 0.06)",
   cardRotateX: "0deg",
   cardRotateY: "0deg",
   cardRotateZ: "0deg",
@@ -672,7 +673,7 @@ export const componentDefaults: Pick<
   separatorRadius: "0px",
 
   // Select
-  selectRadius: "0px",
+  selectRadius: "8px",
   selectBorderWidth: "1px",
 
   // Modal

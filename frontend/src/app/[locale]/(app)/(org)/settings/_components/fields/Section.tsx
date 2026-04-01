@@ -1,14 +1,42 @@
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 export default function Section({
   title,
+  description,
   children,
 }: {
   title: string;
+  description?: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="space-y-4">
-      <h3 className="text-lg font-semibold">{title}</h3>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">{children}</div>
-    </section>
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-base font-semibold text-vita-text-primary">
+          {title}
+        </CardTitle>
+        {description && (
+          <CardDescription className="text-sm text-vita-text-muted">
+            {description}
+          </CardDescription>
+        )}
+      </CardHeader>
+      <CardContent>
+        <div
+          className="divide-y"
+          style={{
+            borderColor: "color-mix(in srgb, currentColor 10%, transparent)",
+          }}
+        >
+          {children}
+        </div>
+      </CardContent>
+    </Card>
   );
 }

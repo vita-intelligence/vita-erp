@@ -2,6 +2,8 @@
 
 import { Controller } from "react-hook-form";
 
+import { Input } from "@/components/ui/input";
+
 import { PAPER_SIZES, TEXT_DIRECTIONS } from "../../_types/company-settings";
 import Section from "../fields/Section";
 import SelectField from "../fields/SelectField";
@@ -11,7 +13,10 @@ type Props = Pick<SettingsFieldProps, "control" | "t">;
 
 export default function DocumentDefaultsSection({ control, t }: Props) {
   return (
-    <Section title={t("sections.document_defaults")}>
+    <Section
+      title={t("sections.document_defaults")}
+      description={t("sections.document_defaults_description")}
+    >
       <SelectField
         name="default_paper_size"
         options={PAPER_SIZES}
@@ -26,26 +31,24 @@ export default function DocumentDefaultsSection({ control, t }: Props) {
         control={control}
         t={t}
       />
-      <div>
-        <span className="mb-1 block text-sm font-medium">
+      <div className="py-4">
+        <span className="block text-sm font-medium text-vita-text-primary">
           {t("fields.default_document_language")}
+        </span>
+        <span className="mb-2 block text-xs text-vita-text-muted">
+          {t("descriptions.default_document_language")}
         </span>
         <Controller
           name="default_document_language"
           control={control}
           render={({ field }) => (
-            <input
+            <Input
               type="text"
               value={String(field.value)}
               onChange={field.onChange}
               maxLength={10}
               placeholder="en"
               aria-label={t("fields.default_document_language")}
-              className="w-full rounded-md border px-3 py-2 text-sm"
-              style={{
-                borderRadius: "var(--vita-input-radius, 0px)",
-                borderColor: "var(--vita-input-border-color, #d4d4d8)",
-              }}
             />
           )}
         />

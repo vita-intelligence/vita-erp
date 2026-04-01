@@ -69,6 +69,7 @@ function ThemedSelectTrigger({
         borderLeftWidth: "var(--vita-input-border-left, 1px)",
         borderStyle:
           "var(--vita-select-border-style, var(--vita-input-border-style, solid))",
+        borderColor: "var(--vita-input-border-color)",
         boxShadow: "var(--vita-input-shadow, none)",
         paddingLeft: "var(--vita-input-padding-x, 12px)",
         paddingRight: "var(--vita-input-padding-x, 12px)",

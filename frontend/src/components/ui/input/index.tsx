@@ -32,6 +32,7 @@ function ThemedInputRoot({ style, ...props }: InputRootProps) {
         borderBottomWidth: "var(--vita-input-border-bottom, 1px)",
         borderLeftWidth: "var(--vita-input-border-left, 1px)",
         borderStyle: "var(--vita-input-border-style, solid)",
+        borderColor: "var(--vita-input-border-color)",
         boxShadow: "var(--vita-input-shadow, none)",
         paddingLeft: "var(--vita-input-padding-x, 12px)",
         paddingRight: "var(--vita-input-padding-x, 12px)",

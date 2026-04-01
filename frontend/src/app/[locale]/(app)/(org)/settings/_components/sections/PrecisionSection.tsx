@@ -8,7 +8,10 @@ type Props = Pick<SettingsFieldProps, "control" | "t">;
 
 export default function PrecisionSection({ control, t }: Props) {
   return (
-    <Section title={t("sections.precision")}>
+    <Section
+      title={t("sections.precision")}
+      description={t("sections.precision_description")}
+    >
       <NumberField
         name="quantity_precision"
         min={0}

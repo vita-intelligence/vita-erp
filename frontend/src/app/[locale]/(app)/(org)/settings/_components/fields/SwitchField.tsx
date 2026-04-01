@@ -6,31 +6,28 @@ import { Switch } from "@/components/ui/switch";
 
 import type { SettingsFieldProps } from "./types";
 
-type SwitchFieldProps = SettingsFieldProps & {
-  description?: string;
-};
-
-export default function SwitchField({
-  name,
-  control,
-  t,
-  description,
-}: SwitchFieldProps) {
+export default function SwitchField({ name, control, t }: SettingsFieldProps) {
   return (
     <Controller
       name={name}
       control={control}
       render={({ field }) => (
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <span className="text-sm font-medium">{t(`fields.${name}`)}</span>
-            {description && <p className="text-xs opacity-60">{description}</p>}
+        <div className="flex items-start justify-between gap-4 py-4">
+          <div className="min-w-0 flex-1">
+            <span className="block text-sm font-medium text-vita-text-primary">
+              {t(`fields.${name}`)}
+            </span>
+            <span className="block text-xs text-vita-text-muted">
+              {t(`descriptions.${name}`)}
+            </span>
           </div>
-          <Switch isSelected={Boolean(field.value)} onChange={field.onChange}>
-            <Switch.Control>
-              <Switch.Thumb />
-            </Switch.Control>
-          </Switch>
+          <div className="shrink-0 pt-0.5">
+            <Switch isSelected={Boolean(field.value)} onChange={field.onChange}>
+              <Switch.Control>
+                <Switch.Thumb />
+              </Switch.Control>
+            </Switch>
+          </div>
         </div>
       )}
     />
