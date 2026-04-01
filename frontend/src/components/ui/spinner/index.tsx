@@ -1,42 +1,55 @@
 /**
- * Spinner — Vita ERP wrapper for HeroUI Spinner.
+ * Spinner — Vita ERP loading indicator.
  *
- * Size is resolved from the `size` prop to the matching CSS variable.
- * 3D rotation is applied on a WRAPPER div (not the spinner itself)
- * to avoid conflicting with HeroUI's spin animation transform.
+ * Accessible via role="status" and aria-label.
+ * Size is resolved from the `size` prop to matching CSS variables.
+ * 3D rotation is applied on a wrapper to avoid conflicting with spin animation.
  */
 
 "use client";
 
-import { Spinner as HeroSpinner, type SpinnerRootProps } from "@heroui/react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 
-// Re-export everything else from HeroUI
-export {
-  type SpinnerProps,
-  type SpinnerRootProps,
-  type SpinnerVariants,
-  spinnerVariants,
-} from "@heroui/react";
+// ── Types ───────────────────────────────────────────────────────────────────
 
-// ── Size token map ───────────────────────────────────────────────────────────
+export type SpinnerSize = "sm" | "md" | "lg";
 
-const sizeTokenMap: Record<string, string> = {
+export interface SpinnerRootProps {
+  size?: SpinnerSize;
+  className?: string;
+  style?: CSSProperties;
+  /** Accessible label for screen readers */
+  "aria-label"?: string;
+}
+
+// ── Size token map ──────────────────────────────────────────────────────────
+
+const SIZE_TOKEN_MAP: Record<SpinnerSize, string> = {
   sm: "var(--vita-spinner-size-sm, 20px)",
   md: "var(--vita-spinner-size-md, 32px)",
   lg: "var(--vita-spinner-size-lg, 48px)",
 };
 
-// ── Themed Root ──────────────────────────────────────────────────────────────
+// ── Component ───────────────────────────────────────────────────────────────
 
-function ThemedRoot({
-  style,
-  size = "md",
-  ...props
-}: SpinnerRootProps & { style?: React.CSSProperties }) {
-  const sizeToken = sizeTokenMap[size ?? "md"] ?? sizeTokenMap.md;
+function SpinnerRootInner(
+  {
+    size = "md",
+    className,
+    style,
+    "aria-label": ariaLabel = "Loading",
+  }: SpinnerRootProps,
+  ref: ForwardedRef<HTMLOutputElement>,
+) {
+  const sizeToken = SIZE_TOKEN_MAP[size];
 
   return (
-    <div
+    <output
+      ref={ref}
+      aria-label={ariaLabel}
+      data-slot="spinner"
+      data-size={size}
+      className={["vita-spinner", className].filter(Boolean).join(" ")}
       style={{
         display: "inline-flex",
         transform: [
@@ -45,25 +58,51 @@ function ThemedRoot({
           "rotateY(var(--vita-spinner-rotate-y, 0deg))",
           "rotateZ(var(--vita-spinner-rotate-z, 0deg))",
         ].join(" "),
+        ...style,
       }}
     >
-      <HeroSpinner
-        {...props}
-        size={size}
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
         style={{
           width: sizeToken,
           height: sizeToken,
-          ...style,
+          animation: "vita-spin 0.8s linear infinite",
         }}
-      />
-    </div>
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          style={{
+            opacity: 0.2,
+          }}
+        />
+        <path
+          d="M12 2a10 10 0 0 1 10 10"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          style={{
+            color: "var(--vita-primary)",
+          }}
+        />
+      </svg>
+    </output>
   );
 }
 
-// ── Named Exports ────────────────────────────────────────────────────────────
+// ── Exports ─────────────────────────────────────────────────────────────────
 
-export { ThemedRoot as SpinnerRoot };
+export const SpinnerRoot = forwardRef(SpinnerRootInner);
+SpinnerRoot.displayName = "SpinnerRoot";
 
-export const Spinner = Object.assign(ThemedRoot, {
-  Root: ThemedRoot,
+export const Spinner = Object.assign(forwardRef(SpinnerRootInner), {
+  Root: SpinnerRoot,
 });
+Spinner.displayName = "Spinner";

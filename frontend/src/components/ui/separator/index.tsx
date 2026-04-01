@@ -1,54 +1,69 @@
 /**
- * Separator — Vita ERP wrapper for HeroUI Separator.
+ * Separator — Vita ERP divider built on React Aria.
  *
- * Applies theme tokens as inline styles on the root Separator element
- * so they override HeroUI's built-in Tailwind styles.
- * This is the single place to customize separator appearance.
- *
- * Orientation-specific thickness (height for horizontal, width for vertical)
- * is handled via inline styles based on the resolved orientation.
+ * Accessible separator with proper ARIA role. Supports horizontal
+ * and vertical orientations with theme-controlled thickness and radius.
  */
 
 "use client";
 
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import {
-  SeparatorRoot as HeroSeparatorRoot,
-  type SeparatorRootProps,
-} from "@heroui/react";
+  Separator as AriaSeparator,
+  type SeparatorProps as AriaSeparatorProps,
+} from "react-aria-components";
 
-// Re-export everything from HeroUI (types, variants, etc.)
-// The local named exports below take precedence over the wildcard.
-export * from "@heroui/react";
+// ── Types ───────────────────────────────────────────────────────────────────
 
-// ── Themed Root ──────────────────────────────────────────────────────────────
+export interface SeparatorRootProps
+  extends Omit<AriaSeparatorProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
 
-function ThemedSeparatorRoot({
-  style,
-  orientation,
-  ...props
-}: SeparatorRootProps) {
+// ── Component ───────────────────────────────────────────────────────────────
+
+function SeparatorRootInner(
+  { className, style, orientation, ...ariaProps }: SeparatorRootProps,
+  ref: ForwardedRef<HTMLHRElement>,
+) {
   const resolvedOrientation = orientation ?? "horizontal";
   const isHorizontal = resolvedOrientation === "horizontal";
 
   return (
-    <HeroSeparatorRoot
+    <AriaSeparator
+      {...ariaProps}
+      ref={ref}
       orientation={resolvedOrientation}
-      {...props}
+      data-slot="separator"
+      className={["vita-separator", className].filter(Boolean).join(" ")}
       style={{
+        border: "none",
+        margin: 0,
+        flexShrink: 0,
+        backgroundColor: "var(--vita-neutral-200)",
         borderRadius: "var(--vita-separator-radius, 0px)",
         ...(isHorizontal
-          ? { height: "var(--vita-separator-thickness, 1px)" }
-          : { width: "var(--vita-separator-thickness, 1px)" }),
+          ? {
+              width: "100%",
+              height: "var(--vita-separator-thickness, 1px)",
+            }
+          : {
+              alignSelf: "stretch",
+              width: "var(--vita-separator-thickness, 1px)",
+            }),
         ...style,
       }}
     />
   );
 }
 
-// ── Compound Export ──────────────────────────────────────────────────────────
+// ── Exports ─────────────────────────────────────────────────────────────────
 
-export const SeparatorRoot = ThemedSeparatorRoot;
+export const SeparatorRoot = forwardRef(SeparatorRootInner);
+SeparatorRoot.displayName = "SeparatorRoot";
 
-export const Separator = Object.assign(ThemedSeparatorRoot, {
-  Root: ThemedSeparatorRoot,
+export const Separator = Object.assign(forwardRef(SeparatorRootInner), {
+  Root: SeparatorRoot,
 });
+Separator.displayName = "Separator";

@@ -1,98 +1,174 @@
 /**
- * Switch — Vita ERP wrapper for HeroUI Switch.
+ * Switch — Vita ERP toggle switch built on React Aria.
  *
- * Applies theme tokens as inline styles on the Control and Thumb
- * sub-components so they override HeroUI's built-in Tailwind styles.
- * This is the single place to customize switch appearance.
+ * Fully accessible (WCAG 2.1 AA) with keyboard toggle (Space),
+ * focus management, and screen reader support via React Aria.
+ *
+ * All visual properties are driven by --vita-switch-* CSS custom properties,
+ * giving the theme editor full control over appearance.
+ *
+ * Compound usage:
+ *   <Switch isSelected={val} onChange={setVal}>
+ *     <Switch.Control>
+ *       <Switch.Thumb />
+ *     </Switch.Control>
+ *     <Switch.Content>Label text</Switch.Content>
+ *   </Switch>
  */
 
 "use client";
 
 import {
-  Switch as HeroSwitch,
-  SwitchContent as HeroSwitchContent,
-  SwitchControl as HeroSwitchControl,
-  SwitchThumb as HeroSwitchThumb,
-  type SwitchRootProps,
-} from "@heroui/react";
+  type CSSProperties,
+  type ForwardedRef,
+  forwardRef,
+  type ReactNode,
+} from "react";
+import {
+  Switch as AriaSwitch,
+  type SwitchProps as AriaSwitchProps,
+} from "react-aria-components";
 
-// Re-export everything else from HeroUI
-export {
-  type SwitchContentProps,
-  type SwitchControlProps,
-  SwitchIcon,
-  type SwitchIconProps,
-  type SwitchProps,
-  type SwitchRootProps,
-  type SwitchThumbProps,
-  type SwitchVariants,
-  switchVariants,
-} from "@heroui/react";
+// ── Switch Root ─────────────────────────────────────────────────────────────
 
-// ── Themed Sub-Components ────────────────────────────────────────────────────
+export type SwitchSize = "sm" | "md" | "lg";
 
-function ThemedControl({
-  children,
-  style,
-  ...props
-}: React.ComponentProps<typeof HeroSwitchControl>) {
+export interface SwitchRootProps
+  extends Omit<AriaSwitchProps, "className" | "style" | "children"> {
+  /** Visual size — scales track and thumb via data-size attribute */
+  size?: SwitchSize;
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+function SwitchRootInner(
+  { size = "md", className, style, children, ...ariaProps }: SwitchRootProps,
+  ref: ForwardedRef<HTMLLabelElement>,
+) {
   return (
-    <HeroSwitchControl
-      {...props}
+    <AriaSwitch
+      {...ariaProps}
+      ref={ref}
+      data-slot="switch"
+      data-size={size}
+      className={["vita-switch", className].filter(Boolean).join(" ")}
       style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "var(--vita-switch-gap, 8px)",
+        cursor: ariaProps.isDisabled ? "not-allowed" : "pointer",
+        opacity: ariaProps.isDisabled ? 0.5 : 1,
+        userSelect: "none",
+        ...style,
+      }}
+    >
+      {children}
+    </AriaSwitch>
+  );
+}
+
+// ── Control (Track) ─────────────────────────────────────────────────────────
+
+export interface SwitchControlProps {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+export function SwitchControl({
+  className,
+  style,
+  children,
+}: SwitchControlProps) {
+  return (
+    <span
+      data-slot="switch-control"
+      className={["vita-switch-control", className].filter(Boolean).join(" ")}
+      style={{
+        position: "relative",
+        display: "inline-flex",
+        alignItems: "center",
+        flexShrink: 0,
         width: "var(--vita-switch-track-width, 44px)",
         height: "var(--vita-switch-track-height, 24px)",
         borderRadius: "var(--vita-switch-track-radius, 9999px)",
+        transitionProperty: "background-color",
+        transitionTimingFunction: "ease",
         transitionDuration: "var(--vita-switch-transition-duration, 200ms)",
         ...style,
       }}
     >
       {children}
-    </HeroSwitchControl>
+    </span>
   );
 }
 
-function ThemedThumb({
-  children,
-  style,
-  ...props
-}: React.ComponentProps<typeof HeroSwitchThumb>) {
+// ── Thumb ───────────────────────────────────────────────────────────────────
+
+export interface SwitchThumbProps {
+  className?: string;
+  style?: CSSProperties;
+}
+
+export function SwitchThumb({ className, style }: SwitchThumbProps) {
   return (
-    <HeroSwitchThumb
-      {...props}
+    <span
+      data-slot="switch-thumb"
+      className={["vita-switch-thumb", className].filter(Boolean).join(" ")}
       style={{
+        display: "block",
         width: "var(--vita-switch-thumb-size, 20px)",
         height: "var(--vita-switch-thumb-size, 20px)",
         borderRadius: "var(--vita-switch-thumb-radius, 9999px)",
+        backgroundColor: "white",
+        boxShadow: "0 1px 3px oklch(0 0 0 / 0.15)",
+        transitionProperty: "transform",
+        transitionTimingFunction: "ease",
         transitionDuration: "var(--vita-switch-transition-duration, 200ms)",
         ...style,
       }}
-    >
-      {children}
-    </HeroSwitchThumb>
+    />
   );
 }
 
-// ── Main Switch Component ────────────────────────────────────────────────────
+// ── Content (Label) ─────────────────────────────────────────────────────────
 
-function SwitchRoot({ children, style, ...props }: SwitchRootProps) {
+export interface SwitchContentProps {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+export function SwitchContent({
+  className,
+  style,
+  children,
+}: SwitchContentProps) {
   return (
-    <HeroSwitch
-      {...props}
+    <span
+      data-slot="switch-content"
+      className={["vita-switch-content", className].filter(Boolean).join(" ")}
       style={{
-        gap: "var(--vita-switch-gap, 8px)",
+        fontSize: "14px",
+        color: "var(--vita-text-primary)",
         ...style,
       }}
     >
       {children}
-    </HeroSwitch>
+    </span>
   );
 }
 
 // ── Compound Export ──────────────────────────────────────────────────────────
 
-export const Switch = Object.assign(SwitchRoot, {
-  Control: ThemedControl,
-  Thumb: ThemedThumb,
-  Content: HeroSwitchContent,
+export const Switch = Object.assign(forwardRef(SwitchRootInner), {
+  Control: SwitchControl,
+  Thumb: SwitchThumb,
+  Content: SwitchContent,
 });
+Switch.displayName = "Switch";
+
+// ── Type exports ────────────────────────────────────────────────────────────
+
+export type { SwitchRootProps as SwitchProps };

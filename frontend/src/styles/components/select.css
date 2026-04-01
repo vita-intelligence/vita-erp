@@ -8,3 +8,31 @@
   --vita-select-border-width: 1px;
   --vita-select-border-style: solid;
 }
+
+/* ListBox item — hover / focus highlight */
+.vita-listbox-item[data-hovered],
+.vita-listbox-item[data-focused] {
+  background: var(--vita-neutral-100);
+}
+
+/* ListBox item — selected state */
+.vita-listbox-item[data-selected] {
+  font-weight: 500;
+}
+
+/* Item indicator — hidden by default, visible when parent is selected */
+.vita-item-indicator {
+  display: none;
+}
+
+.vita-listbox-item[data-selected] .vita-item-indicator {
+  display: block;
+}
+
+/* Select trigger — focus ring (matching input focus behavior) */
+.vita-select-trigger[data-focused] {
+  outline-style: solid;
+  outline-width: var(--vita-input-focus-ring-width, 2px);
+  outline-offset: var(--vita-input-focus-ring-offset, 0px);
+  outline-color: var(--vita-primary);
+}

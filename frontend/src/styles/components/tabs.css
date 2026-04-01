@@ -22,9 +22,52 @@
   --vita-tabs-hover-scale: 1;
 }
 
+/* Tab — selected state */
+.vita-tab[data-selected] {
+  color: var(--vita-text-primary);
+  background-color: var(--vita-surface);
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.06);
+}
+
+/* Tab — hover (non-selected) */
+@media (hover: hover) {
+  .vita-tab:not([data-selected]):not([data-disabled])[data-hovered] {
+    color: var(--vita-text-primary);
+    background-color: oklch(0 0 0 / 0.04);
+  }
+}
+
+/* Tab — focus visible */
+.vita-tab[data-focus-visible] {
+  outline: 2px solid var(--vita-primary);
+  outline-offset: -2px;
+}
+
+/* Tab — disabled */
+.vita-tab[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tab indicator — bottom bar for selected tab */
+.vita-tab-indicator {
+  display: none;
+}
+
+.vita-tab[data-selected] .vita-tab-indicator {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--vita-primary);
+}
+
 /* Hover — composes 3D rotation with lift/scale (cannot be done via inline styles) */
 @media (hover: hover) {
-  [data-slot="tabs-list"]:hover {
+  .vita-tab-list:hover {
     transform: perspective(800px)
       rotateX(var(--vita-tabs-hover-rotate-x, var(--vita-tabs-rotate-x, 0deg)))
       rotateY(var(--vita-tabs-hover-rotate-y, var(--vita-tabs-rotate-y, 0deg)))

@@ -11,3 +11,9 @@
   --vita-spinner-rotate-y: 0deg;
   --vita-spinner-rotate-z: 0deg;
 }
+
+@keyframes vita-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

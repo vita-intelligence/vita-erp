@@ -12,3 +12,72 @@
   --vita-switch-gap: 8px;
   --vita-switch-transition-duration: 200ms;
 }
+
+/* Default state — track color and thumb position */
+.vita-switch-control {
+  background-color: var(--vita-neutral-300);
+}
+
+.vita-switch-thumb {
+  transform: translateX(2px);
+}
+
+/* Selected state — track turns primary, thumb slides right */
+.vita-switch[data-selected] .vita-switch-control {
+  background-color: var(--vita-primary);
+}
+
+.vita-switch[data-selected] .vita-switch-thumb {
+  /*
+   * Translate = trackWidth - thumbSize - inset(2px)
+   * Default: 44 - 20 - 2 = 22px
+   * Using calc so it adapts to custom token values.
+   */
+  transform: translateX(
+    calc(
+      var(--vita-switch-track-width, 44px) -
+        var(--vita-switch-thumb-size, 20px) - 2px
+    )
+  );
+}
+
+/* Focus ring on the track */
+.vita-switch[data-focus-visible] .vita-switch-control {
+  outline: 2px solid var(--vita-primary);
+  outline-offset: 2px;
+}
+
+/* Pressed — subtle scale */
+.vita-switch[data-pressed] .vita-switch-control {
+  transform: scale(0.95);
+}
+
+/* ── Size variants ─────────────────────────────────────────────────────────── */
+
+.vita-switch[data-size="sm"] .vita-switch-control {
+  width: 32px;
+  height: 18px;
+}
+
+.vita-switch[data-size="sm"] .vita-switch-thumb {
+  width: 14px;
+  height: 14px;
+}
+
+.vita-switch[data-size="sm"][data-selected] .vita-switch-thumb {
+  transform: translateX(calc(32px - 14px - 2px));
+}
+
+.vita-switch[data-size="lg"] .vita-switch-control {
+  width: 56px;
+  height: 30px;
+}
+
+.vita-switch[data-size="lg"] .vita-switch-thumb {
+  width: 26px;
+  height: 26px;
+}
+
+.vita-switch[data-size="lg"][data-selected] .vita-switch-thumb {
+  transform: translateX(calc(56px - 26px - 2px));
+}

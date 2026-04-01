@@ -1,9 +1,9 @@
 /**
- * Card — Vita ERP wrapper for HeroUI Card (compound component).
+ * Card — Vita ERP card layout component.
  *
- * Applies theme tokens as inline styles on the root Card element
- * so they override HeroUI's built-in Tailwind styles.
- * This is the single place to customize card appearance.
+ * A presentational container with theme-controlled radius, border,
+ * shadow, and 3D transform tokens. All visual properties are driven
+ * by --vita-card-* CSS custom properties.
  *
  * Compound usage:
  *   <Card>
@@ -16,55 +16,205 @@
 "use client";
 
 import {
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  type CardRootProps,
-  CardTitle,
-  CardRoot as HeroCardRoot,
-} from "@heroui/react";
+  type CSSProperties,
+  type ForwardedRef,
+  forwardRef,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 
-// Re-export everything from HeroUI (types, variants, etc.)
-// The local named exports below take precedence over the wildcard.
-export * from "@heroui/react";
+// ── Shared sub-component type ───────────────────────────────────────────────
 
-// ── Themed Root ──────────────────────────────────────────────────────────────
+type SlotProps = HTMLAttributes<HTMLDivElement> & {
+  children?: ReactNode;
+};
 
-function ThemedCardRoot({ children, style, ...props }: CardRootProps) {
+// ── Card Root ───────────────────────────────────────────────────────────────
+
+export interface CardRootProps extends SlotProps {
+  style?: CSSProperties;
+}
+
+function CardRootInner(
+  { className, style, children, ...htmlProps }: CardRootProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroCardRoot
-      {...props}
+    <div
+      {...htmlProps}
+      ref={ref}
+      data-slot="card"
+      className={["vita-card", className].filter(Boolean).join(" ")}
       style={{
-        borderRadius: "var(--vita-card-radius, 0px)",
+        backgroundColor: "var(--vita-surface)",
+        borderColor: "var(--vita-neutral-200)",
+        color: "var(--vita-text-primary)",
+        overflow: "hidden",
+
+        // Theme tokens
+        borderRadius: "var(--vita-card-radius, 12px)",
         borderTopWidth: "var(--vita-card-border-top, 1px)",
         borderRightWidth: "var(--vita-card-border-right, 1px)",
         borderBottomWidth: "var(--vita-card-border-bottom, 1px)",
         borderLeftWidth: "var(--vita-card-border-left, 1px)",
-        borderStyle: "var(--vita-card-border-style, solid)",
+        borderStyle:
+          "var(--vita-card-border-style, solid)" as CSSProperties["borderStyle"],
         boxShadow: "var(--vita-card-shadow, none)",
+
+        // Transitions
         transitionProperty: "transform, box-shadow, opacity",
         transitionTimingFunction: "ease",
         transitionDuration: "var(--vita-card-transition-duration, 150ms)",
+
+        // 3D perspective rotation
         transform:
           "perspective(800px) rotateX(var(--vita-card-rotate-x, 0deg)) rotateY(var(--vita-card-rotate-y, 0deg)) rotateZ(var(--vita-card-rotate-z, 0deg))",
+
         ...style,
       }}
     >
       {children}
-    </HeroCardRoot>
+    </div>
   );
 }
 
-// ── Compound Export ──────────────────────────────────────────────────────────
+export const CardRoot = forwardRef(CardRootInner);
+CardRoot.displayName = "CardRoot";
 
-export const CardRoot = ThemedCardRoot;
+// ── Sub-components ──────────────────────────────────────────────────────────
 
-export const Card = Object.assign(ThemedCardRoot, {
-  Root: ThemedCardRoot,
+function CardHeaderInner(
+  { className, style, children, ...htmlProps }: SlotProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <div
+      {...htmlProps}
+      ref={ref}
+      data-slot="card-header"
+      className={className}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "4px",
+        padding: "20px 24px 0",
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export const CardHeader = forwardRef(CardHeaderInner);
+CardHeader.displayName = "CardHeader";
+
+function CardTitleInner(
+  { className, style, children, ...htmlProps }: SlotProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <div
+      {...htmlProps}
+      ref={ref}
+      data-slot="card-title"
+      className={className}
+      style={{
+        fontWeight: 600,
+        fontSize: "16px",
+        lineHeight: "1.4",
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export const CardTitle = forwardRef(CardTitleInner);
+CardTitle.displayName = "CardTitle";
+
+function CardDescriptionInner(
+  { className, style, children, ...htmlProps }: SlotProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <div
+      {...htmlProps}
+      ref={ref}
+      data-slot="card-description"
+      className={className}
+      style={{
+        fontSize: "14px",
+        color: "var(--vita-text-muted)",
+        lineHeight: "1.5",
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export const CardDescription = forwardRef(CardDescriptionInner);
+CardDescription.displayName = "CardDescription";
+
+function CardContentInner(
+  { className, style, children, ...htmlProps }: SlotProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <div
+      {...htmlProps}
+      ref={ref}
+      data-slot="card-content"
+      className={className}
+      style={{
+        padding: "20px 24px",
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export const CardContent = forwardRef(CardContentInner);
+CardContent.displayName = "CardContent";
+
+function CardFooterInner(
+  { className, style, children, ...htmlProps }: SlotProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <div
+      {...htmlProps}
+      ref={ref}
+      data-slot="card-footer"
+      className={className}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        padding: "0 24px 20px",
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export const CardFooter = forwardRef(CardFooterInner);
+CardFooter.displayName = "CardFooter";
+
+// ── Compound Export ─────────────────────────────────────────────────────────
+
+export const Card = Object.assign(forwardRef(CardRootInner), {
+  Root: CardRoot,
   Header: CardHeader,
   Title: CardTitle,
   Description: CardDescription,
   Content: CardContent,
   Footer: CardFooter,
 });
+Card.displayName = "Card";
