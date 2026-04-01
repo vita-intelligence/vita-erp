@@ -10,7 +10,7 @@ import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import api from "@/lib/api";
+import { login } from "@/services/auth";
 import { useAuthStore } from "@/stores/auth";
 
 import AuthField from "../_components/AuthField";
@@ -75,7 +75,7 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginForm) => {
     clearError();
     try {
-      await api.post("/auth/login/", data);
+      await login(data);
       await fetchUser();
       router.push("/dashboard");
     } catch (err: unknown) {

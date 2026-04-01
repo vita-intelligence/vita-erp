@@ -8,7 +8,7 @@
 
 import axios from "axios";
 
-import { API } from "@/config";
+import { API, ENDPOINTS } from "@/config";
 
 const api = axios.create({
   baseURL: API.baseUrl,
@@ -47,7 +47,11 @@ api.interceptors.response.use(
     }
 
     // Don't retry refresh/login/register endpoints (would cause infinite loop)
-    const skipPaths = ["/auth/login/", "/auth/register/", "/auth/refresh/"];
+    const skipPaths = [
+      ENDPOINTS.auth.login,
+      ENDPOINTS.auth.register,
+      ENDPOINTS.auth.refresh,
+    ];
     if (skipPaths.some((path) => originalRequest.url?.includes(path))) {
       return Promise.reject(error);
     }
@@ -71,7 +75,7 @@ api.interceptors.response.use(
     originalRequest._retried = true;
 
     try {
-      await api.post("/auth/refresh/");
+      await api.post(ENDPOINTS.auth.refresh);
       processPendingRequests();
       return api(originalRequest);
     } catch (refreshError) {

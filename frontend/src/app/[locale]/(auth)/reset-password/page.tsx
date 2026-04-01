@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import api from "@/lib/api";
+import { resetPassword } from "@/services/auth";
 
 import PasswordField from "../_components/PasswordField";
 import ServerError from "../_components/ServerError";
@@ -83,10 +83,7 @@ export default function ResetPasswordPage() {
   const onSubmit = async (data: ResetForm) => {
     setServerError(null);
     try {
-      await api.post("/auth/reset-password/", {
-        token,
-        password: data.password,
-      });
+      await resetPassword({ token: token ?? "", password: data.password });
       setDone(true);
     } catch (err: unknown) {
       const error = err as {

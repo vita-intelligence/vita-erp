@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import api from "@/lib/api";
+import { logout, resendVerification } from "@/services/auth";
 import { useAuthStore } from "@/stores/auth";
 
 /** Cooldown between resend attempts (seconds) */
@@ -61,7 +61,7 @@ export default function VerificationRequired() {
     setResending(true);
     setResent(false);
     try {
-      await api.post("/auth/resend-verification/");
+      await resendVerification();
       setResent(true);
       setCooldown(RESEND_COOLDOWN);
     } catch {
@@ -80,7 +80,7 @@ export default function VerificationRequired() {
 
   const handleLogout = useCallback(async () => {
     try {
-      await api.post("/auth/logout/");
+      await logout();
     } catch {
       // Clear state regardless
     }

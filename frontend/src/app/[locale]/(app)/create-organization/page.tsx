@@ -16,10 +16,9 @@ import {
   INDUSTRY_CODES,
   LANGUAGE_OPTIONS,
 } from "@/config/options";
-import api from "@/lib/api";
+import { createOrganization } from "@/services/organization";
 import { useAuthStore } from "@/stores/auth";
 import { useOrgStore } from "@/stores/organization";
-import type { OrganizationDetail } from "@/types/api";
 
 // ---------------------------------------------------------------------------
 // Shared styles
@@ -130,17 +129,14 @@ export default function CreateOrganizationPage() {
   const onSubmit = async (data: CreateOrgForm) => {
     setServerError("");
     try {
-      const { data: org } = await api.post<OrganizationDetail>(
-        "/organizations/",
-        {
-          name: data.name,
-          slug: data.slug || undefined,
-          industry: data.industry || undefined,
-          country: data.country || undefined,
-          timezone: data.timezone || undefined,
-          base_currency: data.base_currency || undefined,
-        },
-      );
+      const org = await createOrganization({
+        name: data.name,
+        slug: data.slug || undefined,
+        industry: data.industry || undefined,
+        country: data.country || undefined,
+        timezone: data.timezone || undefined,
+        base_currency: data.base_currency || undefined,
+      });
 
       await fetchUser();
       await selectOrganization(org.id);

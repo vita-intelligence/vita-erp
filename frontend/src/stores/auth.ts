@@ -7,17 +7,8 @@
  */
 
 import { create } from "zustand";
-
-import api from "@/lib/api";
-import type { OrganizationSummary } from "@/types/api";
-
-type User = {
-  id: string;
-  email: string;
-  is_verified: boolean;
-  date_joined: string;
-  organizations: OrganizationSummary[];
-};
+import type { User } from "@/services/auth";
+import { getMe } from "@/services/auth";
 
 type AuthState = {
   user: User | null;
@@ -38,8 +29,8 @@ export const useAuthStore = create<AuthState>()((set) => ({
 
   async fetchUser() {
     try {
-      const { data } = await api.get<User>("/auth/me/");
-      set({ user: data, isAuthenticated: true, isLoading: false });
+      const user = await getMe();
+      set({ user, isAuthenticated: true, isLoading: false });
     } catch {
       set({ user: null, isAuthenticated: false, isLoading: false });
     }

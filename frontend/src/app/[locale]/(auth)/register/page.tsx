@@ -10,7 +10,7 @@ import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import api from "@/lib/api";
+import { register as registerUser } from "@/services/auth";
 import { useAuthStore } from "@/stores/auth";
 
 import AuthField from "../_components/AuthField";
@@ -88,10 +88,7 @@ export default function RegisterPage() {
   const onSubmit = async (data: RegisterForm) => {
     clearError();
     try {
-      await api.post("/auth/register/", {
-        email: data.email,
-        password: data.password,
-      });
+      await registerUser({ email: data.email, password: data.password });
       await fetchUser();
       router.push("/dashboard");
     } catch (err: unknown) {

@@ -1,5 +1,6 @@
 export * from "./api";
 export * from "./app";
+export * from "./endpoints";
 export * from "./fonts";
 export * from "./i18n";
 export * from "./options";

@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import api from "@/lib/api";
+import { forgotPassword } from "@/services/auth";
 
 import AuthField from "../_components/AuthField";
 import ServerError from "../_components/ServerError";
@@ -71,7 +71,7 @@ export default function ForgotPasswordPage() {
   const onSubmit = async (data: ForgotForm) => {
     clearError();
     try {
-      await api.post("/auth/forgot-password/", { email: data.email });
+      await forgotPassword(data.email);
       setSent(true);
     } catch (err: unknown) {
       // Security: always show success to prevent email enumeration.

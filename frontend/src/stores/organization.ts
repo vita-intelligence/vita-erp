@@ -14,7 +14,7 @@
 
 import { create } from "zustand";
 
-import api from "@/lib/api";
+import { selectOrganization as selectOrgApi } from "@/services/organization";
 import type { OrganizationDetail } from "@/types/api";
 
 type OrgState = {
@@ -35,10 +35,8 @@ export const useOrgStore = create<OrgState>()((set) => ({
   async selectOrganization(orgId: string) {
     set({ isLoading: true });
     try {
-      const { data } = await api.post<OrganizationDetail>(
-        `/organizations/${orgId}/select/`,
-      );
-      set({ currentOrg: data, isLoading: false });
+      const org = await selectOrgApi(orgId);
+      set({ currentOrg: org, isLoading: false });
       return true;
     } catch {
       set({ currentOrg: null, isLoading: false });
