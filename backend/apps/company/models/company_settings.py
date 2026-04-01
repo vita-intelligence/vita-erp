@@ -26,7 +26,6 @@ from apps.company.constants import (
     AREA_UOM_CHOICES,
     CALENDAR_GREGORIAN,
     CALENDAR_SYSTEM_CHOICES,
-    CASH_ROUNDING_INCREMENT_CHOICES,
     COST_METHOD_AVERAGE,
     COST_METHOD_CHOICES,
     CURRENCY_POS_BEFORE,
@@ -157,7 +156,6 @@ class CompanySettings(models.Model):
     cash_rounding_increment = models.DecimalField(
         max_digits=4,
         decimal_places=2,
-        choices=CASH_ROUNDING_INCREMENT_CHOICES,
         default="0.01",
     )
 
