@@ -37,7 +37,10 @@ export default function FiscalSection({ control, t }: Props) {
           render={({ field }) => (
             <Select
               selectedKey={String(field.value)}
-              onSelectionChange={(key) => field.onChange(Number(key))}
+              onSelectionChange={(key) => {
+                if (key == null) return;
+                field.onChange(Number(key));
+              }}
               aria-label={t("fields.fiscal_year_start_month")}
             >
               <SelectTrigger>

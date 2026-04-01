@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { ButtonRoot } from "@/components/ui/button";
@@ -15,6 +14,7 @@ import { updateCompanySettings } from "@/services/company-settings";
 import { useCompanySettings } from "../_hooks/useCompanySettings";
 import {
   type CompanySettings,
+  type CompanySettingsResponse,
   companySettingsSchema,
 } from "../_types/company-settings";
 import CurrencyDisplaySection from "./sections/CurrencyDisplaySection";
@@ -26,10 +26,31 @@ import NumberFormattingSection from "./sections/NumberFormattingSection";
 import PrecisionSection from "./sections/PrecisionSection";
 import RoundingSection from "./sections/RoundingSection";
 
-export default function GeneralSettings() {
-  const t = useTranslations("companySettings");
-  const { data: settings, isLoading, refetch } = useCompanySettings();
+function extractFormValues(settings: CompanySettingsResponse): CompanySettings {
+  const { created_at: _, updated_at: __, ...formValues } = settings;
+  return formValues;
+}
 
+export default function GeneralSettings() {
+  const { data: settings, isLoading } = useCompanySettings();
+
+  if (isLoading || !settings) {
+    return (
+      <div className="flex justify-center py-16">
+        <Spinner />
+      </div>
+    );
+  }
+
+  return <GeneralSettingsForm settings={settings} />;
+}
+
+function GeneralSettingsForm({
+  settings,
+}: {
+  settings: CompanySettingsResponse;
+}) {
+  const t = useTranslations("companySettings");
   const {
     control,
     handleSubmit,
@@ -37,22 +58,8 @@ export default function GeneralSettings() {
     formState: { isDirty, dirtyFields, isSubmitting },
   } = useForm<CompanySettings>({
     resolver: zodResolver(companySettingsSchema),
+    defaultValues: extractFormValues(settings),
   });
-
-  useEffect(() => {
-    if (settings) {
-      const { created_at: _, updated_at: __, ...formValues } = settings;
-      reset(formValues);
-    }
-  }, [settings, reset]);
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center py-16">
-        <Spinner />
-      </div>
-    );
-  }
 
   const onSubmit = async (data: CompanySettings) => {
     const patch: Partial<CompanySettings> = {};
@@ -65,15 +72,11 @@ export default function GeneralSettings() {
       return;
     }
 
-    const toastId = toast(t("saving"), { isLoading: true, timeout: 0 });
-
     try {
-      await updateCompanySettings(patch);
-      toast.close(toastId);
+      const fresh = await updateCompanySettings(patch);
       toast.success(t("saved"));
-      await refetch();
+      reset(extractFormValues(fresh));
     } catch {
-      toast.close(toastId);
       toast.danger(t("errors.save_failed"));
     }
   };

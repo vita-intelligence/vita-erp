@@ -40,9 +40,10 @@ export default function SelectField({
         render={({ field }) => (
           <Select
             selectedKey={String(field.value)}
-            onSelectionChange={(key) =>
-              field.onChange(String(key) as CompanySettings[typeof name])
-            }
+            onSelectionChange={(key) => {
+              if (key == null) return;
+              field.onChange(String(key) as CompanySettings[typeof name]);
+            }}
             aria-label={t(`fields.${name}`)}
           >
             <SelectTrigger>
