@@ -36,7 +36,8 @@
   transform: translateX(
     calc(
       var(--vita-switch-track-width, 44px) -
-        var(--vita-switch-thumb-size, 20px) - 2px
+      var(--vita-switch-thumb-size, 20px) -
+      2px
     )
   );
 }

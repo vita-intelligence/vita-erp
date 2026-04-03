@@ -18,12 +18,7 @@
 
 "use client";
 
-import {
-  type CSSProperties,
-  type ForwardedRef,
-  forwardRef,
-  type ReactNode,
-} from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import {
   Tab as AriaTab,
   TabList as AriaTabList,
