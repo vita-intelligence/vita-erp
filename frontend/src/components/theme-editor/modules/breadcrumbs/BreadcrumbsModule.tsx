@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -13,6 +14,7 @@ import {
   SliderRow,
   usePreviewExternal,
 } from "../_shared";
+import { ColorInput } from "../colors/ColorInput";
 import { Preview } from "./Preview";
 
 const RADIUS_PRESETS = [
@@ -181,6 +183,24 @@ export function BreadcrumbsModule() {
           onReset={() => resetColor(["breadcrumbsItemBorderWidth"])}
         />
         <BorderStyleRow tokenKey="breadcrumbsItemBorderStyle" />
+        <Row
+          label={t("labels.borderColor")}
+          onReset={() => resetColor(["breadcrumbsItemBorderColor"])}
+        >
+          <div className="flex items-center gap-2">
+            <ColorInput
+              value={cssColorToHex(tokens.breadcrumbsItemBorderColor)}
+              onChange={(hex) => setTokens({ breadcrumbsItemBorderColor: hex })}
+              title={t("labels.borderColor")}
+            />
+            <span
+              className="text-xs font-vita-mono"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {tokens.breadcrumbsItemBorderColor}
+            </span>
+          </div>
+        </Row>
       </Section>
 
       {/* ── Spacing ── */}

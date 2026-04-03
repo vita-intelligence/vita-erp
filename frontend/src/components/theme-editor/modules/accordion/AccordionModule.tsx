@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -14,6 +15,7 @@ import {
   SliderRow,
   usePreviewExternal,
 } from "../_shared";
+import { ColorInput } from "../colors/ColorInput";
 import { Preview } from "./Preview";
 
 // ── Radius presets ───────────────────────────────────────────────────────────
@@ -93,6 +95,24 @@ export function AccordionModule() {
           onReset={() => resetColor(["accordionBorderWidth"])}
         />
         <BorderStyleRow tokenKey="accordionBorderStyle" />
+        <Row
+          label={t("labels.borderColor")}
+          onReset={() => resetColor(["accordionBorderColor"])}
+        >
+          <div className="flex items-center gap-2">
+            <ColorInput
+              value={cssColorToHex(tokens.accordionBorderColor)}
+              onChange={(hex) => setTokens({ accordionBorderColor: hex })}
+              title={t("labels.borderColor")}
+            />
+            <span
+              className="text-xs font-vita-mono"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {tokens.accordionBorderColor}
+            </span>
+          </div>
+        </Row>
       </Section>
 
       {/* ── Separator ── */}

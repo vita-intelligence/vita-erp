@@ -90,7 +90,8 @@ function DatePickerTriggerInner(
         alignItems: "center",
         borderRadius:
           "var(--vita-date-picker-trigger-radius, var(--vita-input-radius, 8px))",
-        border: "1px solid var(--vita-input-border-color)",
+        border:
+          "1px solid var(--vita-date-picker-border-color, var(--vita-input-border-color))",
         backgroundColor: "var(--vita-surface)",
         padding:
           "var(--vita-date-picker-trigger-padding-y, 8px) var(--vita-date-picker-trigger-padding-x, 12px)",
@@ -200,7 +201,8 @@ export function DatePickerPopover({
         borderRadius: "var(--vita-date-picker-popover-radius, 8px)",
         boxShadow:
           "var(--vita-date-picker-popover-shadow, 0 4px 16px oklch(0 0 0 / 0.08))",
-        border: "1px solid var(--vita-neutral-200)",
+        border:
+          "1px solid var(--vita-date-picker-border-color, var(--vita-neutral-200))",
         padding: "var(--vita-date-picker-popover-padding, 12px)",
         ...style,
       }}

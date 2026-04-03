@@ -72,6 +72,7 @@ export type ThemeTokens = {
   btnBorderBottom: string; // border-bottom-width
   btnBorderLeft: string; // border-left-width
   btnBorderStyle: string; // border-style: solid | dashed | dotted
+  btnBorderColor: string; // border-color applied to all button variants
   btnFontWeight: string; // font-weight of button label
   btnLetterSpacing: string; // letter-spacing of button label
   btnTextTransform: string; // text-transform: none | uppercase | capitalize
@@ -96,6 +97,7 @@ export type ThemeTokens = {
   inputBorderBottom: string; // border-bottom-width
   inputBorderLeft: string; // border-left-width
   inputBorderStyle: string; // border-style: solid | dashed | dotted
+  inputBorderColor: string; // border-color of the input wrapper
   inputLabelWeight: string; // font-weight of the label
   inputLabelSize: string; // font-size of the label
   inputShadow: string; // box-shadow of the input wrapper
@@ -115,6 +117,7 @@ export type ThemeTokens = {
   cardBorderBottom: string; // border-bottom-width
   cardBorderLeft: string; // border-left-width
   cardBorderStyle: string; // border-style: solid | dashed | dotted
+  cardBorderColor: string; // border-color of card panels
   cardShadow: string; // box-shadow of card panels
   cardRotateX: string; // static 3D rotation around X axis
   cardRotateY: string; // static 3D rotation around Y axis
@@ -157,6 +160,7 @@ export type ThemeTokens = {
   accordionRadius: string; // border-radius of accordion container
   accordionBorderWidth: string; // border-width of container
   accordionBorderStyle: string; // border-style: solid | dashed | dotted
+  accordionBorderColor: string; // border-color of accordion container and separators
   accordionSeparatorHeight: string; // separator thickness between items (0 = hidden)
   accordionTriggerPaddingX: string; // horizontal padding of trigger
   accordionTriggerPaddingY: string; // vertical padding of trigger
@@ -201,6 +205,7 @@ export type ThemeTokens = {
   autocompletePopoverBorderBottom: string; // popover border-bottom-width
   autocompletePopoverBorderLeft: string; // popover border-left-width
   autocompletePopoverBorderStyle: string; // popover border-style
+  autocompleteBorderColor: string; // border-color of popover and input
   autocompleteMaxHeight: string; // max dropdown height
 
   // ── Component tokens: Avatar ──────────────────────────────────────────────
@@ -210,6 +215,7 @@ export type ThemeTokens = {
   avatarBorderBottom: string; // border-bottom-width
   avatarBorderLeft: string; // border-left-width
   avatarBorderStyle: string; // border-style: solid | dashed | dotted
+  avatarBorderColor: string; // border-color of avatar
   avatarSizeSm: string; // small avatar size (width & height)
   avatarSizeMd: string; // medium avatar size
   avatarSizeLg: string; // large avatar size
@@ -238,6 +244,7 @@ export type ThemeTokens = {
   breadcrumbsItemRadius: string; // item border-radius (for tag/pill-style breadcrumbs)
   breadcrumbsItemBorderWidth: string; // item border-width (0 = no border)
   breadcrumbsItemBorderStyle: string; // item border-style
+  breadcrumbsItemBorderColor: string; // item border-color
   breadcrumbsSeparatorIcon: string; // separator icon name: chevron-right | slash | dot | arrow-right | minus
   breadcrumbsSeparatorSize: string; // separator icon size
   breadcrumbsSeparatorOpacity: string; // separator opacity (0–1)
@@ -250,6 +257,7 @@ export type ThemeTokens = {
   buttonGroupBorderBottom: string; // border-bottom-width
   buttonGroupBorderLeft: string; // border-left-width
   buttonGroupBorderStyle: string; // border-style: solid | dashed | dotted
+  buttonGroupBorderColor: string; // border-color of the group container
   buttonGroupShadow: string; // container shadow
 
   // ── Component tokens: Calendar ──────────────────────────────────────────
@@ -259,6 +267,7 @@ export type ThemeTokens = {
   calendarBorderBottom: string; // border-bottom-width
   calendarBorderLeft: string; // border-left-width
   calendarBorderStyle: string; // border-style: solid | dashed | dotted
+  calendarBorderColor: string; // border-color of calendar container
   calendarShadow: string; // container box-shadow
   calendarRotateX: string; // static 3D rotation around X axis
   calendarRotateY: string; // static 3D rotation around Y axis
@@ -277,6 +286,7 @@ export type ThemeTokens = {
   checkboxRadius: string; // control box border-radius
   checkboxBorderWidth: string; // control box border width
   checkboxBorderStyle: string; // control box border style
+  checkboxBorderColor: string; // unchecked control box border-color
   checkboxGap: string; // gap between control and label
   checkboxLabelFontSize: string; // label font-size
   checkboxLabelFontWeight: string; // label font-weight
@@ -293,6 +303,7 @@ export type ThemeTokens = {
   checkboxGroupPaddingY: string; // container vertical padding
   checkboxGroupBorderWidth: string; // container border width
   checkboxGroupBorderStyle: string; // container border style
+  checkboxGroupBorderColor: string; // container border-color
   checkboxGroupShadow: string; // container shadow
   checkboxGroupLabelFontSize: string; // group label font-size
   checkboxGroupLabelFontWeight: string; // group label font-weight
@@ -304,6 +315,7 @@ export type ThemeTokens = {
   colorPickerPopoverPadding: string; // popover internal padding
   colorPickerPopoverBorderWidth: string; // popover border width
   colorPickerPopoverBorderStyle: string; // popover border style
+  colorPickerBorderColor: string; // border-color of popover, swatches, and thumbs
   colorPickerSwatchRadius: string; // individual swatch border-radius
   colorPickerSwatchSize: string; // swatch width & height
   colorPickerSwatchGap: string; // gap between swatches
@@ -321,6 +333,7 @@ export type ThemeTokens = {
   comboBoxPopoverPadding: string; // dropdown popover padding
   comboBoxPopoverBorderWidth: string; // dropdown popover border width
   comboBoxPopoverBorderStyle: string; // dropdown popover border style
+  comboBoxBorderColor: string; // border-color of popover and trigger
   comboBoxTriggerRadius: string; // trigger button border-radius
   comboBoxTriggerBorderWidth: string; // trigger button border width
   comboBoxItemPaddingX: string; // list item horizontal padding
@@ -333,6 +346,7 @@ export type ThemeTokens = {
   datePickerTriggerRadius: string; // trigger border-radius
   datePickerTriggerBorderWidth: string; // trigger border width
   datePickerTriggerBorderStyle: string; // trigger border style
+  datePickerBorderColor: string; // border-color of trigger and popover
   datePickerTriggerPaddingX: string; // trigger horizontal padding
   datePickerTriggerPaddingY: string; // trigger vertical padding
   datePickerTriggerShadow: string; // trigger box-shadow

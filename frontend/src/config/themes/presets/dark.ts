@@ -69,4 +69,20 @@ export const darkTheme: ThemeTokens = {
 
   // ── Component tokens (shared brutalist defaults) ─────────────────────────
   ...componentDefaults,
+
+  // ── Border colors (mode-dependent) ────────────────────────────────────────
+  btnBorderColor: "oklch(0.22 0 0)",
+  inputBorderColor: "oklch(0.22 0 0)",
+  cardBorderColor: "oklch(0.22 0 0)",
+  accordionBorderColor: "oklch(0.22 0 0)",
+  autocompleteBorderColor: "oklch(0.22 0 0)",
+  avatarBorderColor: "oklch(0.22 0 0)",
+  breadcrumbsItemBorderColor: "oklch(0.22 0 0)",
+  buttonGroupBorderColor: "oklch(0.22 0 0)",
+  calendarBorderColor: "oklch(0.22 0 0)",
+  checkboxBorderColor: "oklch(0.32 0 0)",
+  checkboxGroupBorderColor: "oklch(0.22 0 0)",
+  colorPickerBorderColor: "oklch(0.22 0 0)",
+  comboBoxBorderColor: "oklch(0.22 0 0)",
+  datePickerBorderColor: "oklch(0.22 0 0)",
 };

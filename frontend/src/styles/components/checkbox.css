@@ -20,7 +20,7 @@
 
 /* Default — unchecked border color */
 .vita-checkbox-control {
-  border-color: var(--vita-neutral-300);
+  border-color: var(--vita-checkbox-border-color);
   background-color: transparent;
 }
 

@@ -47,7 +47,7 @@ function CardRootInner(
       className={["vita-card", className].filter(Boolean).join(" ")}
       style={{
         backgroundColor: "var(--vita-surface)",
-        borderColor: "var(--vita-neutral-200)",
+        borderColor: "var(--vita-card-border-color)",
         color: "var(--vita-text-primary)",
         overflow: "hidden",
 

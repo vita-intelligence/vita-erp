@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -16,6 +17,7 @@ import {
   TransitionRow,
   usePreviewExternal,
 } from "../_shared";
+import { ColorInput } from "../colors/ColorInput";
 import { Preview } from "./Preview";
 
 // ── Module ────────────────────────────────────────────────────────────────────
@@ -89,6 +91,24 @@ export function InputsModule() {
           }}
         />
         <BorderStyleRow tokenKey="inputBorderStyle" />
+        <Row
+          label={t("labels.borderColor")}
+          onReset={() => resetColor(["inputBorderColor"])}
+        >
+          <div className="flex items-center gap-2">
+            <ColorInput
+              value={cssColorToHex(tokens.inputBorderColor)}
+              onChange={(hex) => setTokens({ inputBorderColor: hex })}
+              title={t("labels.borderColor")}
+            />
+            <span
+              className="text-xs font-vita-mono"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {tokens.inputBorderColor}
+            </span>
+          </div>
+        </Row>
       </Section>
 
       {/* ── Shadow ── */}

@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -14,6 +15,7 @@ import {
   TransitionRow,
   usePreviewExternal,
 } from "../_shared";
+import { ColorInput } from "../colors/ColorInput";
 import { Preview } from "./Preview";
 
 // ── Presets ──────────────────────────────────────────────────────────────────
@@ -121,6 +123,25 @@ export function ColorPickerModule() {
         {popoverBorder > 0 && (
           <BorderStyleRow tokenKey="colorPickerPopoverBorderStyle" />
         )}
+
+        <Row
+          label={t("labels.borderColor")}
+          onReset={() => resetColor(["colorPickerBorderColor"])}
+        >
+          <div className="flex items-center gap-2">
+            <ColorInput
+              value={cssColorToHex(tokens.colorPickerBorderColor)}
+              onChange={(hex) => setTokens({ colorPickerBorderColor: hex })}
+              title={t("labels.borderColor")}
+            />
+            <span
+              className="text-xs font-vita-mono"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {tokens.colorPickerBorderColor}
+            </span>
+          </div>
+        </Row>
       </Section>
 
       {/* ── Popover shadow ── */}

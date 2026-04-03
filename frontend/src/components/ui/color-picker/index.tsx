@@ -129,7 +129,8 @@ export function ColorPickerPopover({
         borderWidth: "var(--vita-color-picker-popover-border-width, 1px)",
         borderStyle:
           "var(--vita-color-picker-popover-border-style, solid)" as CSSProperties["borderStyle"],
-        borderColor: "var(--vita-neutral-200)",
+        borderColor:
+          "var(--vita-color-picker-border-color, var(--vita-neutral-200))",
         backgroundColor: "var(--vita-surface)",
         ...style,
       }}
@@ -359,7 +360,8 @@ function ColorSwatchRootInner(
         height: "var(--vita-color-picker-swatch-size, 28px)",
         borderWidth: "var(--vita-color-picker-swatch-border-width, 2px)",
         borderStyle: "solid",
-        borderColor: "oklch(0 0 0 / 0.1)",
+        borderColor:
+          "var(--vita-color-picker-border-color, oklch(0 0 0 / 0.1))",
         transitionProperty: "transform, box-shadow",
         transitionDuration:
           "var(--vita-color-picker-transition-duration, 150ms)",

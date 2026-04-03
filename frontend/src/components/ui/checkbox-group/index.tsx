@@ -44,6 +44,7 @@ function CheckboxGroupInner(
         borderWidth: "var(--vita-checkbox-group-border-width, 0px)",
         borderStyle:
           "var(--vita-checkbox-group-border-style, solid)" as CSSProperties["borderStyle"],
+        borderColor: "var(--vita-checkbox-group-border-color, transparent)",
         boxShadow: "var(--vita-checkbox-group-shadow, none)",
         gap: "var(--vita-checkbox-group-label-gap, 8px)",
         ...style,

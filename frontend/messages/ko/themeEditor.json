@@ -271,7 +271,8 @@
     "itemRadius": "항목 반경",
     "itemPadding": "항목 패딩",
     "glow": "글로우",
-    "tiltZ": "Z 기울기"
+    "tiltZ": "Z 기울기",
+    "borderColor": "테두리 색상"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

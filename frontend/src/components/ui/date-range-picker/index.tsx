@@ -55,7 +55,8 @@ function DateRangePickerInner<T extends DateValue = DateValue>(
               alignItems: "center",
               gap: "4px",
               borderRadius: "var(--vita-input-radius, 8px)",
-              border: "1px solid var(--vita-input-border-color)",
+              border:
+                "1px solid var(--vita-date-picker-border-color, var(--vita-input-border-color))",
               backgroundColor: "var(--vita-surface)",
               padding: "8px 12px",
             }}
@@ -125,7 +126,8 @@ function DateRangePickerInner<T extends DateValue = DateValue>(
             style={{
               backgroundColor: "var(--vita-surface)",
               borderRadius: "8px",
-              border: "1px solid var(--vita-neutral-200)",
+              border:
+                "1px solid var(--vita-date-picker-border-color, var(--vita-neutral-200))",
               boxShadow: "0 4px 16px oklch(0 0 0 / 0.08)",
               padding: "12px",
             }}

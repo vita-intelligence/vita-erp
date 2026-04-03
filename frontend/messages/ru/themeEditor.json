@@ -271,7 +271,8 @@
     "itemRadius": "Радиус элемента",
     "itemPadding": "Отступ элемента",
     "glow": "Свечение",
-    "tiltZ": "Наклон Z"
+    "tiltZ": "Наклон Z",
+    "borderColor": "Цвет границы"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

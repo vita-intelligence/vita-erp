@@ -46,7 +46,7 @@ function ButtonGroupRootInner(
         borderLeftWidth: "var(--vita-button-group-border-left, 0px)",
         borderStyle:
           "var(--vita-button-group-border-style, solid)" as CSSProperties["borderStyle"],
-        borderColor: "var(--vita-neutral-200)",
+        borderColor: "var(--vita-button-group-border-color)",
         boxShadow: "var(--vita-button-group-shadow, none)",
         gap: "var(--vita-button-group-gap, 0px)",
         ...style,

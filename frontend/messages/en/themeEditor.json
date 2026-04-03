@@ -271,7 +271,8 @@
     "itemRadius": "Item radius",
     "itemPadding": "Item padding",
     "glow": "Glow",
-    "tiltZ": "Tilt Z"
+    "tiltZ": "Tilt Z",
+    "borderColor": "Border color"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

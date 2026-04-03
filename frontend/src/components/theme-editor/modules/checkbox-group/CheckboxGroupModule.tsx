@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -14,6 +15,7 @@ import {
   SliderRow,
   usePreviewExternal,
 } from "../_shared";
+import { ColorInput } from "../colors/ColorInput";
 import { Preview } from "./Preview";
 
 // ── Presets ──────────────────────────────────────────────────────────────────
@@ -145,6 +147,25 @@ export function CheckboxGroupModule() {
         />
 
         {borderW > 0 && <BorderStyleRow tokenKey="checkboxGroupBorderStyle" />}
+
+        <Row
+          label={t("labels.borderColor")}
+          onReset={() => resetColor(["checkboxGroupBorderColor"])}
+        >
+          <div className="flex items-center gap-2">
+            <ColorInput
+              value={cssColorToHex(tokens.checkboxGroupBorderColor)}
+              onChange={(hex) => setTokens({ checkboxGroupBorderColor: hex })}
+              title={t("labels.borderColor")}
+            />
+            <span
+              className="text-xs font-vita-mono"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {tokens.checkboxGroupBorderColor}
+            </span>
+          </div>
+        </Row>
       </Section>
 
       {/* ── Shadow ── */}

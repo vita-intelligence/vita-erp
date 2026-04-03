@@ -81,7 +81,8 @@ export function ComboBoxInputGroup({
         alignItems: "center",
         borderRadius:
           "var(--vita-combo-box-trigger-radius, var(--vita-input-radius, 8px))",
-        border: "1px solid var(--vita-input-border-color)",
+        border:
+          "1px solid var(--vita-combo-box-border-color, var(--vita-input-border-color))",
         backgroundColor: "var(--vita-surface)",
         overflow: "hidden",
         ...style,
@@ -157,7 +158,8 @@ function ComboBoxPopoverInner(
       style={{
         backgroundColor: "var(--vita-surface)",
         borderRadius: "var(--vita-combo-box-popover-radius, 8px)",
-        border: "1px solid var(--vita-neutral-200)",
+        border:
+          "1px solid var(--vita-combo-box-border-color, var(--vita-neutral-200))",
         boxShadow:
           "var(--vita-combo-box-popover-shadow, 0 4px 16px oklch(0 0 0 / 0.08))",
         padding: "var(--vita-combo-box-popover-padding, 4px)",

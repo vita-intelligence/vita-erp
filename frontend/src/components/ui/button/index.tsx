@@ -53,37 +53,37 @@ const VARIANT_STYLES: Record<ButtonVariant, CSSProperties> = {
   primary: {
     backgroundColor: "var(--vita-primary)",
     color: "var(--vita-text-on-primary)",
-    borderColor: "var(--vita-primary)",
+    borderColor: "var(--vita-btn-border-color)",
   },
   secondary: {
     backgroundColor: "var(--vita-neutral-200)",
     color: "var(--vita-neutral-900)",
-    borderColor: "var(--vita-neutral-200)",
+    borderColor: "var(--vita-btn-border-color)",
   },
   tertiary: {
     backgroundColor: "transparent",
     color: "var(--vita-text-secondary)",
-    borderColor: "transparent",
+    borderColor: "var(--vita-btn-border-color)",
   },
   ghost: {
     backgroundColor: "transparent",
     color: "var(--vita-text-secondary)",
-    borderColor: "transparent",
+    borderColor: "var(--vita-btn-border-color)",
   },
   outline: {
     backgroundColor: "transparent",
     color: "var(--vita-neutral-900)",
-    borderColor: "var(--vita-neutral-300)",
+    borderColor: "var(--vita-btn-border-color)",
   },
   danger: {
     backgroundColor: "var(--vita-error)",
     color: "var(--vita-text-on-danger)",
-    borderColor: "var(--vita-error)",
+    borderColor: "var(--vita-btn-border-color)",
   },
   "danger-soft": {
     backgroundColor: "var(--vita-error-light)",
     color: "var(--vita-error-dark)",
-    borderColor: "var(--vita-error-light)",
+    borderColor: "var(--vita-btn-border-color)",
   },
 };
 

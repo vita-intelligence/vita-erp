@@ -271,7 +271,8 @@
     "itemRadius": "项目半径",
     "itemPadding": "项目内边距",
     "glow": "发光",
-    "tiltZ": "Z 轴倾斜"
+    "tiltZ": "Z 轴倾斜",
+    "borderColor": "边框颜色"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

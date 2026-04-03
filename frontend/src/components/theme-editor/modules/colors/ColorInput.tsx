@@ -50,7 +50,7 @@ export function ColorInput({ value, onChange, title }: ColorInputProps) {
         />
       </ColorPicker.Trigger>
       <ColorPicker.Popover>
-        <div className="space-y-3">
+        <div className="space-y-3" style={{ width: "200px" }}>
           <ColorArea
             xChannel="saturation"
             yChannel="lightness"

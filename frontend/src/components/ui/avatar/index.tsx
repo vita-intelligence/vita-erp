@@ -71,7 +71,7 @@ function AvatarRootInner(
         borderLeftWidth: "var(--vita-avatar-border-left, 0px)",
         borderStyle:
           "var(--vita-avatar-border-style, solid)" as CSSProperties["borderStyle"],
-        borderColor: "var(--vita-neutral-200)",
+        borderColor: "var(--vita-avatar-border-color)",
         overflow: "hidden",
         transitionProperty: "transform, opacity",
         transitionTimingFunction: "ease",

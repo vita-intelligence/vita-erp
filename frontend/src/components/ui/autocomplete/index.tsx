@@ -113,7 +113,7 @@ function AutocompleteValueInner(
         width: "100%",
         borderRadius:
           "var(--vita-autocomplete-popover-radius, var(--vita-input-radius, 8px))",
-        border: "1px solid var(--vita-input-border-color)",
+        border: "1px solid var(--vita-autocomplete-border-color)",
         padding:
           "var(--vita-input-padding-y, 8px) var(--vita-input-padding-x, 12px)",
         fontSize: "var(--vita-input-font-size, 14px)",
@@ -226,7 +226,7 @@ function AutocompletePopoverInner(
       style={{
         backgroundColor: "var(--vita-surface)",
         borderRadius: "var(--vita-autocomplete-popover-radius, 8px)",
-        border: "1px solid var(--vita-neutral-200)",
+        border: "1px solid var(--vita-autocomplete-border-color)",
         boxShadow:
           "var(--vita-autocomplete-popover-shadow, 0 4px 16px oklch(0 0 0 / 0.08))",
         padding: "var(--vita-autocomplete-popover-padding, 4px)",

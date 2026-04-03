@@ -271,7 +271,8 @@
     "itemRadius": "Raggio dell'elemento",
     "itemPadding": "Margine interno dell'elemento",
     "glow": "Bagliore",
-    "tiltZ": "Inclinazione Z"
+    "tiltZ": "Inclinazione Z",
+    "borderColor": "Colore del bordo"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

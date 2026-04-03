@@ -70,6 +70,22 @@ export const oceanTheme: ThemeTokens = {
   // ── Component tokens (defaults + ocean overrides) ──────────────────────
   ...componentDefaults,
 
+  // ── Border colors (mode-dependent) ────────────────────────────────────────
+  btnBorderColor: "oklch(0.22 0.02 245)",
+  inputBorderColor: "oklch(0.22 0.02 245)",
+  cardBorderColor: "oklch(0.22 0.02 245)",
+  accordionBorderColor: "oklch(0.22 0.02 245)",
+  autocompleteBorderColor: "oklch(0.22 0.02 245)",
+  avatarBorderColor: "oklch(0.22 0.02 245)",
+  breadcrumbsItemBorderColor: "oklch(0.22 0.02 245)",
+  buttonGroupBorderColor: "oklch(0.22 0.02 245)",
+  calendarBorderColor: "oklch(0.22 0.02 245)",
+  checkboxBorderColor: "oklch(0.32 0.02 245)",
+  checkboxGroupBorderColor: "oklch(0.22 0.02 245)",
+  colorPickerBorderColor: "oklch(0.22 0.02 245)",
+  comboBoxBorderColor: "oklch(0.22 0.02 245)",
+  datePickerBorderColor: "oklch(0.22 0.02 245)",
+
   // Rounded corners, subtle shadows, smooth transitions
   btnRadius: "12px",
   btnShadow: "0 2px 8px oklch(0.10 0.04 240 / 0.3)",

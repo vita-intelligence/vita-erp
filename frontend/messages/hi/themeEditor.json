@@ -271,7 +271,8 @@
     "itemRadius": "आइटम त्रिज्या",
     "itemPadding": "आइटम पैडिंग",
     "glow": "चमक",
-    "tiltZ": "झुकाव Z"
+    "tiltZ": "झुकाव Z",
+    "borderColor": "बॉर्डर रंग"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

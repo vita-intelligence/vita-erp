@@ -4,6 +4,7 @@ import { RotateCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
+import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -20,6 +21,7 @@ import {
   TransitionRow,
   usePreviewExternal,
 } from "../_shared";
+import { ColorInput } from "../colors/ColorInput";
 import {
   computeHoverVars,
   type HoverParams,
@@ -246,6 +248,24 @@ export function ButtonsModule() {
           hintMax={`8px ${t("hints.thick")}`}
         />
         <BorderStyleRow tokenKey="btnBorderStyle" />
+        <Row
+          label={t("labels.borderColor")}
+          onReset={() => resetColor(["btnBorderColor"])}
+        >
+          <div className="flex items-center gap-2">
+            <ColorInput
+              value={cssColorToHex(tokens.btnBorderColor)}
+              onChange={(hex) => setTokens({ btnBorderColor: hex })}
+              title={t("labels.borderColor")}
+            />
+            <span
+              className="text-xs font-vita-mono"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {tokens.btnBorderColor}
+            </span>
+          </div>
+        </Row>
       </Section>
 
       {/* ── Shadow ── */}

@@ -271,7 +271,8 @@
     "itemRadius": "Radius item",
     "itemPadding": "Padding item",
     "glow": "Cahaya",
-    "tiltZ": "Kemiringan Z"
+    "tiltZ": "Kemiringan Z",
+    "borderColor": "Warna batas"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

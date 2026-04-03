@@ -70,6 +70,22 @@ export const midnightTheme: ThemeTokens = {
   // ── Component tokens (defaults + midnight overrides) ───────────────────
   ...componentDefaults,
 
+  // ── Border colors (mode-dependent) ────────────────────────────────────────
+  btnBorderColor: "oklch(0.20 0.02 290)",
+  inputBorderColor: "oklch(0.20 0.02 290)",
+  cardBorderColor: "oklch(0.20 0.02 290)",
+  accordionBorderColor: "oklch(0.20 0.02 290)",
+  autocompleteBorderColor: "oklch(0.20 0.02 290)",
+  avatarBorderColor: "oklch(0.20 0.02 290)",
+  breadcrumbsItemBorderColor: "oklch(0.20 0.02 290)",
+  buttonGroupBorderColor: "oklch(0.20 0.02 290)",
+  calendarBorderColor: "oklch(0.20 0.02 290)",
+  checkboxBorderColor: "oklch(0.30 0.02 290)",
+  checkboxGroupBorderColor: "oklch(0.20 0.02 290)",
+  colorPickerBorderColor: "oklch(0.20 0.02 290)",
+  comboBoxBorderColor: "oklch(0.20 0.02 290)",
+  datePickerBorderColor: "oklch(0.20 0.02 290)",
+
   // Pill buttons, rounded cards, glow shadows
   btnRadius: "9999px",
   btnShadow:

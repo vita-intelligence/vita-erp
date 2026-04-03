@@ -70,6 +70,22 @@ export const minimalTheme: ThemeTokens = {
   // ── Component tokens (defaults + minimal overrides) ────────────────────
   ...componentDefaults,
 
+  // ── Border colors (mode-dependent) ────────────────────────────────────────
+  btnBorderColor: "oklch(0.92 0 0)",
+  inputBorderColor: "oklch(0.92 0 0)",
+  cardBorderColor: "oklch(0.92 0 0)",
+  accordionBorderColor: "oklch(0.92 0 0)",
+  autocompleteBorderColor: "oklch(0.92 0 0)",
+  avatarBorderColor: "oklch(0.92 0 0)",
+  breadcrumbsItemBorderColor: "oklch(0.92 0 0)",
+  buttonGroupBorderColor: "oklch(0.92 0 0)",
+  calendarBorderColor: "oklch(0.92 0 0)",
+  checkboxBorderColor: "oklch(0.85 0 0)",
+  checkboxGroupBorderColor: "oklch(0.92 0 0)",
+  colorPickerBorderColor: "oklch(0.92 0 0)",
+  comboBoxBorderColor: "oklch(0.92 0 0)",
+  datePickerBorderColor: "oklch(0.92 0 0)",
+
   // Small radius, thin borders, no shadows at all
   btnRadius: "6px",
   btnBorderTop: "1px",

@@ -70,6 +70,22 @@ export const forestTheme: ThemeTokens = {
   // ── Component tokens (defaults + forest overrides) ─────────────────────
   ...componentDefaults,
 
+  // ── Border colors (mode-dependent) ────────────────────────────────────────
+  btnBorderColor: "oklch(0.89 0.008 80)",
+  inputBorderColor: "oklch(0.89 0.008 80)",
+  cardBorderColor: "oklch(0.89 0.008 80)",
+  accordionBorderColor: "oklch(0.89 0.008 80)",
+  autocompleteBorderColor: "oklch(0.89 0.008 80)",
+  avatarBorderColor: "oklch(0.89 0.008 80)",
+  breadcrumbsItemBorderColor: "oklch(0.89 0.008 80)",
+  buttonGroupBorderColor: "oklch(0.89 0.008 80)",
+  calendarBorderColor: "oklch(0.89 0.008 80)",
+  checkboxBorderColor: "oklch(0.81 0.008 75)",
+  checkboxGroupBorderColor: "oklch(0.89 0.008 80)",
+  colorPickerBorderColor: "oklch(0.89 0.008 80)",
+  comboBoxBorderColor: "oklch(0.89 0.008 80)",
+  datePickerBorderColor: "oklch(0.89 0.008 80)",
+
   // Medium radius, 2px borders, warm feel
   btnRadius: "8px",
   btnBorderTop: "2px",

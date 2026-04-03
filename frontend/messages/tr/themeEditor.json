@@ -271,7 +271,8 @@
     "itemRadius": "Oge yaricapi",
     "itemPadding": "Oge ic boslugu",
     "glow": "Parlama",
-    "tiltZ": "Egim Z"
+    "tiltZ": "Egim Z",
+    "borderColor": "Kenarlık rengi"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

@@ -271,7 +271,8 @@
     "itemRadius": "نصف قطر العنصر",
     "itemPadding": "حشو العنصر",
     "glow": "توهّج",
-    "tiltZ": "ميلان Z"
+    "tiltZ": "ميلان Z",
+    "borderColor": "لون الحدود"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

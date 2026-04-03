@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -15,6 +16,7 @@ import {
   TransitionRow,
   usePreviewExternal,
 } from "../_shared";
+import { ColorInput } from "../colors/ColorInput";
 import { Preview } from "./Preview";
 
 // ── Presets ──────────────────────────────────────────────────────────────────
@@ -130,6 +132,24 @@ export function CheckboxModule() {
           onReset={() => resetColor(["checkboxBorderWidth"])}
         />
         <BorderStyleRow tokenKey="checkboxBorderStyle" />
+        <Row
+          label={t("labels.borderColor")}
+          onReset={() => resetColor(["checkboxBorderColor"])}
+        >
+          <div className="flex items-center gap-2">
+            <ColorInput
+              value={cssColorToHex(tokens.checkboxBorderColor)}
+              onChange={(hex) => setTokens({ checkboxBorderColor: hex })}
+              title={t("labels.borderColor")}
+            />
+            <span
+              className="text-xs font-vita-mono"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {tokens.checkboxBorderColor}
+            </span>
+          </div>
+        </Row>
       </Section>
 
       {/* ── Indicator (checkmark) ── */}

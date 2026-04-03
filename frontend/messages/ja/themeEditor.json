@@ -271,7 +271,8 @@
     "itemRadius": "アイテム半径",
     "itemPadding": "アイテムパディング",
     "glow": "グロー",
-    "tiltZ": "Z チルト"
+    "tiltZ": "Z チルト",
+    "borderColor": "枠線の色"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

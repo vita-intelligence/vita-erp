@@ -70,6 +70,22 @@ export const sunsetTheme: ThemeTokens = {
   // ── Component tokens (defaults + sunset overrides) ─────────────────────
   ...componentDefaults,
 
+  // ── Border colors (mode-dependent) ────────────────────────────────────────
+  btnBorderColor: "oklch(0.89 0.01 48)",
+  inputBorderColor: "oklch(0.89 0.01 48)",
+  cardBorderColor: "oklch(0.89 0.01 48)",
+  accordionBorderColor: "oklch(0.89 0.01 48)",
+  autocompleteBorderColor: "oklch(0.89 0.01 48)",
+  avatarBorderColor: "oklch(0.89 0.01 48)",
+  breadcrumbsItemBorderColor: "oklch(0.89 0.01 48)",
+  buttonGroupBorderColor: "oklch(0.89 0.01 48)",
+  calendarBorderColor: "oklch(0.89 0.01 48)",
+  checkboxBorderColor: "oklch(0.81 0.01 45)",
+  checkboxGroupBorderColor: "oklch(0.89 0.01 48)",
+  colorPickerBorderColor: "oklch(0.89 0.01 48)",
+  comboBoxBorderColor: "oklch(0.89 0.01 48)",
+  datePickerBorderColor: "oklch(0.89 0.01 48)",
+
   // Large radius, bold buttons, warm shadows
   btnRadius: "16px",
   btnFontWeight: "700",

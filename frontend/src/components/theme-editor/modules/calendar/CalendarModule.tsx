@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -17,6 +18,7 @@ import {
   Transform3DControls,
   usePreviewExternal,
 } from "../_shared";
+import { ColorInput } from "../colors/ColorInput";
 import { Preview } from "./Preview";
 
 const RADIUS_PRESETS = [
@@ -80,6 +82,24 @@ export function CalendarModule() {
           hintMax={`3px ${t("hints.heavy")}`}
         />
         <BorderStyleRow tokenKey="calendarBorderStyle" />
+        <Row
+          label={t("labels.borderColor")}
+          onReset={() => resetColor(["calendarBorderColor"])}
+        >
+          <div className="flex items-center gap-2">
+            <ColorInput
+              value={cssColorToHex(tokens.calendarBorderColor)}
+              onChange={(hex) => setTokens({ calendarBorderColor: hex })}
+              title={t("labels.borderColor")}
+            />
+            <span
+              className="text-xs font-vita-mono"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {tokens.calendarBorderColor}
+            </span>
+          </div>
+        </Row>
       </Section>
 
       {/* ── Shadow ── */}

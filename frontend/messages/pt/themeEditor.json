@@ -271,7 +271,8 @@
     "itemRadius": "Raio do item",
     "itemPadding": "Preenchimento do item",
     "glow": "Brilho",
-    "tiltZ": "Inclinação Z"
+    "tiltZ": "Inclinação Z",
+    "borderColor": "Cor da borda"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

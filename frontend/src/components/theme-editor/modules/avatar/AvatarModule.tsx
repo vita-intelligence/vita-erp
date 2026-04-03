@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -16,6 +17,7 @@ import {
   Transform3DControls,
   usePreviewExternal,
 } from "../_shared";
+import { ColorInput } from "../colors/ColorInput";
 import { Preview } from "./Preview";
 
 const RADIUS_PRESETS_RAW = [
@@ -129,6 +131,24 @@ export function AvatarModule() {
           hintMax={`4px ${t("hints.heavy")}`}
         />
         <BorderStyleRow tokenKey="avatarBorderStyle" />
+        <Row
+          label={t("labels.borderColor")}
+          onReset={() => resetColor(["avatarBorderColor"])}
+        >
+          <div className="flex items-center gap-2">
+            <ColorInput
+              value={cssColorToHex(tokens.avatarBorderColor)}
+              onChange={(hex) => setTokens({ avatarBorderColor: hex })}
+              title={t("labels.borderColor")}
+            />
+            <span
+              className="text-xs font-vita-mono"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {tokens.avatarBorderColor}
+            </span>
+          </div>
+        </Row>
       </Section>
 
       {/* ── Typography ── */}

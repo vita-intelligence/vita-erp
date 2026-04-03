@@ -63,7 +63,7 @@ function AccordionRootInner(
         borderWidth: "var(--vita-accordion-border-width, 1px)",
         borderStyle:
           "var(--vita-accordion-border-style, solid)" as CSSProperties["borderStyle"],
-        borderColor: "var(--vita-neutral-200)",
+        borderColor: "var(--vita-accordion-border-color)",
         boxShadow: "var(--vita-accordion-shadow, none)",
         overflow: "hidden",
         ...style,
@@ -98,7 +98,7 @@ function AccordionItemInner(
       style={{
         borderBottomWidth: "var(--vita-accordion-separator-height, 1px)",
         borderBottomStyle: "solid",
-        borderBottomColor: "var(--vita-neutral-200)",
+        borderBottomColor: "var(--vita-accordion-border-color)",
         ...style,
       }}
     >

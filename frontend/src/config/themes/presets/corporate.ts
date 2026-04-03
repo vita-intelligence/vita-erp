@@ -71,6 +71,22 @@ export const corporateTheme: ThemeTokens = {
   // ── Component tokens (defaults + corporate overrides) ──────────────────
   ...componentDefaults,
 
+  // ── Border colors (mode-dependent) ────────────────────────────────────────
+  btnBorderColor: "oklch(0.90 0.003 246)",
+  inputBorderColor: "oklch(0.90 0.003 246)",
+  cardBorderColor: "oklch(0.90 0.003 246)",
+  accordionBorderColor: "oklch(0.90 0.003 246)",
+  autocompleteBorderColor: "oklch(0.90 0.003 246)",
+  avatarBorderColor: "oklch(0.90 0.003 246)",
+  breadcrumbsItemBorderColor: "oklch(0.90 0.003 246)",
+  buttonGroupBorderColor: "oklch(0.90 0.003 246)",
+  calendarBorderColor: "oklch(0.90 0.003 246)",
+  checkboxBorderColor: "oklch(0.82 0.004 244)",
+  checkboxGroupBorderColor: "oklch(0.90 0.003 246)",
+  colorPickerBorderColor: "oklch(0.90 0.003 246)",
+  comboBoxBorderColor: "oklch(0.90 0.003 246)",
+  datePickerBorderColor: "oklch(0.90 0.003 246)",
+
   // Medium radius, medium shadows, letter-spacing on buttons
   btnRadius: "8px",
   btnFontWeight: "500",

@@ -271,7 +271,8 @@
     "itemRadius": "Radio del elemento",
     "itemPadding": "Relleno del elemento",
     "glow": "Resplandor",
-    "tiltZ": "Inclinación Z"
+    "tiltZ": "Inclinación Z",
+    "borderColor": "Color del borde"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

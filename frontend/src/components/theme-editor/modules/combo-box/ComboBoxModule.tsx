@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import { cssColorToHex } from "@/lib/color";
 import { useThemeStore } from "@/stores/theme";
 
 import {
@@ -14,6 +15,7 @@ import {
   TransitionRow,
   usePreviewExternal,
 } from "../_shared";
+import { ColorInput } from "../colors/ColorInput";
 import { Preview } from "./Preview";
 
 const POPOVER_RADIUS_PRESETS = [
@@ -99,6 +101,25 @@ export function ComboBoxModule() {
           onReset={() => resetColor(["comboBoxPopoverBorderWidth"])}
         />
         <BorderStyleRow tokenKey="comboBoxPopoverBorderStyle" />
+
+        <Row
+          label={t("labels.borderColor")}
+          onReset={() => resetColor(["comboBoxBorderColor"])}
+        >
+          <div className="flex items-center gap-2">
+            <ColorInput
+              value={cssColorToHex(tokens.comboBoxBorderColor)}
+              onChange={(hex) => setTokens({ comboBoxBorderColor: hex })}
+              title={t("labels.borderColor")}
+            />
+            <span
+              className="text-xs font-vita-mono"
+              style={{ color: "var(--vita-text-muted)" }}
+            >
+              {tokens.comboBoxBorderColor}
+            </span>
+          </div>
+        </Row>
       </Section>
 
       {/* ── Popover shadow ── */}

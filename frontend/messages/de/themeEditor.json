@@ -271,7 +271,8 @@
     "itemRadius": "Element-Radius",
     "itemPadding": "Element-Innenabstand",
     "glow": "Leuchten",
-    "tiltZ": "Neigung Z"
+    "tiltZ": "Neigung Z",
+    "borderColor": "Rahmenfarbe"
   },
   "sliderValue": "{label} — {value}",
   "hints": {

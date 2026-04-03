@@ -112,6 +112,7 @@ function BreadcrumbsItemInner(
         borderWidth: "var(--vita-breadcrumbs-item-border-width, 0px)",
         borderStyle:
           "var(--vita-breadcrumbs-item-border-style, solid)" as CSSProperties["borderStyle"],
+        borderColor: "var(--vita-breadcrumbs-item-border-color)",
         color: "var(--vita-text-secondary)",
         ...style,
       }}

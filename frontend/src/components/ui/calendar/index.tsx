@@ -82,7 +82,7 @@ function CalendarRootInner<T extends DateValue = DateValue>(
         borderLeftWidth: "var(--vita-calendar-border-left, 1px)",
         borderStyle:
           "var(--vita-calendar-border-style, solid)" as CSSProperties["borderStyle"],
-        borderColor: "var(--vita-neutral-200)",
+        borderColor: "var(--vita-calendar-border-color)",
         boxShadow: "var(--vita-calendar-shadow, none)",
         backgroundColor: "var(--vita-surface)",
         padding: "16px",
