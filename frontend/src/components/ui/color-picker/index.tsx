@@ -1,46 +1,126 @@
 /**
- * ColorPicker — Vita ERP wrapper for HeroUI ColorPicker compound component.
+ * ColorPicker — Vita ERP color picker built on React Aria.
  *
- * Applies theme tokens as inline styles on each sub-component
- * (Popover, ColorArea, ColorSlider tracks/thumbs, ColorSwatch)
- * so they override HeroUI's built-in Tailwind styles.
- * This is the single place to customize color-picker appearance.
+ * Fully accessible color selection with area, sliders, and swatches.
+ * All visual properties driven by --vita-color-picker-* CSS custom properties.
+ *
+ * Compound usage:
+ *   <ColorPicker value={color} onChange={setColor}>
+ *     <ColorPicker.Trigger>...</ColorPicker.Trigger>
+ *     <ColorPicker.Popover>
+ *       <ColorArea xChannel="saturation" yChannel="lightness">
+ *         <ColorArea.Thumb />
+ *       </ColorArea>
+ *       <ColorSlider channel="hue">
+ *         <ColorSlider.Track><ColorSlider.Thumb /></ColorSlider.Track>
+ *       </ColorSlider>
+ *     </ColorPicker.Popover>
+ *   </ColorPicker>
  */
 
 "use client";
 
 import {
-  type ColorAreaRootProps,
-  type ColorAreaThumbProps,
-  type ColorPickerPopoverProps,
-  type ColorSliderRootProps,
-  type ColorSliderThumbProps,
-  type ColorSliderTrackProps,
-  type ColorSwatchRootProps,
-  ColorAreaRoot as HeroColorAreaRoot,
-  ColorAreaThumb as HeroColorAreaThumb,
-  ColorPickerPopover as HeroColorPickerPopover,
-  ColorPickerRoot as HeroColorPickerRoot,
-  ColorPickerTrigger as HeroColorPickerTrigger,
-  ColorSliderRoot as HeroColorSliderRoot,
-  ColorSliderThumb as HeroColorSliderThumb,
-  ColorSliderTrack as HeroColorSliderTrack,
-  ColorSwatchRoot as HeroColorSwatchRoot,
-} from "@heroui/react";
+  type CSSProperties,
+  type ForwardedRef,
+  forwardRef,
+  type ReactNode,
+} from "react";
+import {
+  Button as AriaButton,
+  ColorArea as AriaColorArea,
+  type ColorAreaProps as AriaColorAreaProps,
+  ColorPicker as AriaColorPicker,
+  type ColorPickerProps as AriaColorPickerProps,
+  ColorSlider as AriaColorSlider,
+  type ColorSliderProps as AriaColorSliderProps,
+  ColorSwatch as AriaColorSwatch,
+  type ColorSwatchProps as AriaColorSwatchProps,
+  ColorThumb as AriaColorThumb,
+  type ColorThumbProps as AriaColorThumbProps,
+  Dialog as AriaDialog,
+  DialogTrigger as AriaDialogTrigger,
+  Popover as AriaPopover,
+  SliderTrack as AriaSliderTrack,
+  type SliderTrackProps as AriaSliderTrackProps,
+} from "react-aria-components";
+import { parseColor } from "react-stately";
 
-// Re-export everything from HeroUI (types, variants, etc.)
-// The local named exports below take precedence over the wildcard.
-export * from "@heroui/react";
+// Re-export parseColor for consumer convenience
+export { parseColor };
 
-// ── Themed Popover ───────────────────────────────────────────────────────────
+// ── ColorPicker Root ────────────────────────────────────────────────────────
 
-function ThemedColorPickerPopover({
+export interface ColorPickerRootProps
+  extends Omit<AriaColorPickerProps, "children"> {
+  children?: ReactNode;
+}
+
+function ColorPickerRootInner({
   children,
-  ...props
+  ...ariaProps
+}: ColorPickerRootProps) {
+  return (
+    <AriaColorPicker {...ariaProps} data-slot="color-picker">
+      <AriaDialogTrigger>{children}</AriaDialogTrigger>
+    </AriaColorPicker>
+  );
+}
+
+// ── ColorPicker Trigger ─────────────────────────────────────────────────────
+
+export interface ColorPickerTriggerProps {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+function ColorPickerTriggerInner(
+  { className, style, children }: ColorPickerTriggerProps,
+  ref: ForwardedRef<HTMLButtonElement>,
+) {
+  return (
+    <AriaButton
+      ref={ref}
+      data-slot="color-picker-trigger"
+      className={className}
+      style={{
+        appearance: "none",
+        border: "none",
+        background: "none",
+        cursor: "pointer",
+        padding: 0,
+        outline: "none",
+        ...style,
+      }}
+    >
+      {children}
+    </AriaButton>
+  );
+}
+
+export const ColorPickerTrigger = forwardRef(ColorPickerTriggerInner);
+ColorPickerTrigger.displayName = "ColorPickerTrigger";
+
+// ── ColorPicker Popover ─────────────────────────────────────────────────────
+
+export interface ColorPickerPopoverProps {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+export function ColorPickerPopover({
+  className,
+  style,
+  children,
 }: ColorPickerPopoverProps) {
   return (
-    <HeroColorPickerPopover
-      {...props}
+    <AriaPopover
+      data-slot="color-picker-popover"
+      className={["vita-color-picker-popover", className]
+        .filter(Boolean)
+        .join(" ")}
       style={{
         borderRadius: "var(--vita-color-picker-popover-radius, 8px)",
         boxShadow:
@@ -48,180 +128,251 @@ function ThemedColorPickerPopover({
         padding: "var(--vita-color-picker-popover-padding, 16px)",
         borderWidth: "var(--vita-color-picker-popover-border-width, 1px)",
         borderStyle:
-          "var(--vita-color-picker-popover-border-style, solid)" as React.CSSProperties["borderStyle"],
+          "var(--vita-color-picker-popover-border-style, solid)" as CSSProperties["borderStyle"],
+        borderColor: "var(--vita-neutral-200)",
+        backgroundColor: "var(--vita-surface)",
+        ...style,
       }}
     >
-      {children}
-    </HeroColorPickerPopover>
+      <AriaDialog style={{ outline: "none" }}>{children}</AriaDialog>
+    </AriaPopover>
   );
 }
 
-// ── Themed ColorArea Root ────────────────────────────────────────────────────
+// ── Compound ColorPicker ────────────────────────────────────────────────────
 
-function ThemedColorAreaRoot({
-  children,
-  style,
-  ...props
-}: ColorAreaRootProps) {
+export const ColorPickerRoot = ColorPickerRootInner;
+
+export const ColorPicker = Object.assign(ColorPickerRootInner, {
+  Root: ColorPickerRootInner,
+  Trigger: ColorPickerTrigger,
+  Popover: ColorPickerPopover,
+});
+
+// ── ColorArea ───────────────────────────────────────────────────────────────
+
+export interface ColorAreaRootProps
+  extends Omit<AriaColorAreaProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+function ColorAreaRootInner(
+  { className, style, children, ...ariaProps }: ColorAreaRootProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroColorAreaRoot
-      {...props}
-      style={(renderProps) => {
-        const userStyle =
-          typeof style === "function" ? style(renderProps) : style;
-        return {
-          ...renderProps.defaultStyle,
-          borderRadius: "var(--vita-color-picker-area-radius, 8px)",
-          "--color-area-background": renderProps.defaultStyle.background,
-          ...userStyle,
-        };
+    <AriaColorArea
+      {...ariaProps}
+      ref={ref}
+      data-slot="color-area"
+      className={["vita-color-area", className].filter(Boolean).join(" ")}
+      style={{
+        borderRadius: "var(--vita-color-picker-area-radius, 8px)",
+        width: "100%",
+        height: "160px",
+        ...style,
       }}
     >
       {children}
-    </HeroColorAreaRoot>
+    </AriaColorArea>
   );
 }
 
-// ── Themed ColorArea Thumb ───────────────────────────────────────────────────
+const ColorAreaWithRef = forwardRef(ColorAreaRootInner);
+ColorAreaWithRef.displayName = "ColorArea";
 
-function ThemedColorAreaThumb({ style, ...props }: ColorAreaThumbProps) {
+// ── ColorArea Thumb ─────────────────────────────────────────────────────────
+
+export interface ColorAreaThumbProps
+  extends Omit<AriaColorThumbProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
+
+function ColorAreaThumbInner(
+  { className, style, ...ariaProps }: ColorAreaThumbProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroColorAreaThumb
-      {...props}
-      style={(renderProps) => {
-        const userStyle =
-          typeof style === "function" ? style(renderProps) : style;
-        return {
-          "--color-area-thumb-color": renderProps.defaultStyle.backgroundColor,
-          width: "var(--vita-color-picker-thumb-size, 18px)",
-          height: "var(--vita-color-picker-thumb-size, 18px)",
-          borderWidth: "var(--vita-color-picker-thumb-border-width, 2px)",
-          transitionProperty: "transform, box-shadow",
-          transitionDuration:
-            "var(--vita-color-picker-transition-duration, 150ms)",
-          ...userStyle,
-        };
+    <AriaColorThumb
+      {...ariaProps}
+      ref={ref}
+      data-slot="color-area-thumb"
+      className={className}
+      style={{
+        width: "var(--vita-color-picker-thumb-size, 18px)",
+        height: "var(--vita-color-picker-thumb-size, 18px)",
+        borderRadius: "9999px",
+        border: "var(--vita-color-picker-thumb-border-width, 2px) solid white",
+        boxShadow:
+          "0 0 0 1px oklch(0 0 0 / 0.2), 0 1px 3px oklch(0 0 0 / 0.15)",
+        ...style,
       }}
     />
   );
 }
 
-// ── Themed ColorSlider Track ─────────────────────────────────────────────────
+const ColorAreaThumbWithRef = forwardRef(ColorAreaThumbInner);
+ColorAreaThumbWithRef.displayName = "ColorAreaThumb";
 
-function ThemedColorSliderTrack({
-  children,
-  style,
-  ...props
-}: ColorSliderTrackProps) {
+export const ColorAreaRoot = ColorAreaWithRef;
+export const ColorAreaThumb = ColorAreaThumbWithRef;
+
+export const ColorArea = Object.assign(ColorAreaWithRef, {
+  Root: ColorAreaWithRef,
+  Thumb: ColorAreaThumbWithRef,
+});
+
+// ── ColorSlider ─────────────────────────────────────────────────────────────
+
+export interface ColorSliderRootProps
+  extends Omit<AriaColorSliderProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+function ColorSliderRootInner(
+  { className, style, children, ...ariaProps }: ColorSliderRootProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroColorSliderTrack
-      {...props}
-      style={(renderProps) => {
-        const userStyle =
-          typeof style === "function" ? style(renderProps) : style;
-        return {
-          ...renderProps.defaultStyle,
-          borderRadius: "var(--vita-color-picker-slider-radius, 9999px)",
-          height: "var(--vita-color-picker-slider-height, 12px)",
-          ...userStyle,
-        };
-      }}
+    <AriaColorSlider
+      {...ariaProps}
+      ref={ref}
+      data-slot="color-slider"
+      className={["vita-color-slider", className].filter(Boolean).join(" ")}
+      style={{ width: "100%", ...style }}
     >
       {children}
-    </HeroColorSliderTrack>
+    </AriaColorSlider>
   );
 }
 
-// ── Themed ColorSlider Thumb ─────────────────────────────────────────────────
+const ColorSliderWithRef = forwardRef(ColorSliderRootInner);
+ColorSliderWithRef.displayName = "ColorSlider";
 
-function ThemedColorSliderThumb({
-  children,
-  style,
-  ...props
-}: ColorSliderThumbProps) {
+// ── ColorSlider Track ───────────────────────────────────────────────────────
+
+export interface ColorSliderTrackProps
+  extends Omit<AriaSliderTrackProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+function ColorSliderTrackInner(
+  { className, style, children, ...ariaProps }: ColorSliderTrackProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroColorSliderThumb
-      {...props}
-      style={(renderProps) => {
-        const userStyle =
-          typeof style === "function" ? style(renderProps) : style;
-        return {
-          ...renderProps.defaultStyle,
-          width: "var(--vita-color-picker-thumb-size, 18px)",
-          height: "var(--vita-color-picker-thumb-size, 18px)",
-          borderWidth: "var(--vita-color-picker-thumb-border-width, 2px)",
-          transitionProperty: "transform, box-shadow",
-          transitionDuration:
-            "var(--vita-color-picker-transition-duration, 150ms)",
-          ...userStyle,
-        };
+    <AriaSliderTrack
+      {...ariaProps}
+      ref={ref}
+      data-slot="color-slider-track"
+      className={className}
+      style={{
+        borderRadius: "var(--vita-color-picker-slider-radius, 9999px)",
+        height: "var(--vita-color-picker-slider-height, 12px)",
+        width: "100%",
+        ...style,
       }}
     >
       {children}
-    </HeroColorSliderThumb>
+    </AriaSliderTrack>
   );
 }
 
-// ── Themed ColorSwatch ───────────────────────────────────────────────────────
+const ColorSliderTrackWithRef = forwardRef(ColorSliderTrackInner);
+ColorSliderTrackWithRef.displayName = "ColorSliderTrack";
 
-function ThemedColorSwatchRoot({ style, ...props }: ColorSwatchRootProps) {
+// ── ColorSlider Thumb ───────────────────────────────────────────────────────
+
+export interface ColorSliderThumbProps
+  extends Omit<AriaColorThumbProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
+
+function ColorSliderThumbInner(
+  { className, style, ...ariaProps }: ColorSliderThumbProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroColorSwatchRoot
-      {...props}
-      style={(renderProps) => {
-        const userStyle =
-          typeof style === "function" ? style(renderProps) : style;
-        return {
-          "--color-swatch-current": renderProps.color.toString("css"),
-          borderRadius: "var(--vita-color-picker-swatch-radius, 6px)",
-          width: "var(--vita-color-picker-swatch-size, 28px)",
-          height: "var(--vita-color-picker-swatch-size, 28px)",
-          borderWidth: "var(--vita-color-picker-swatch-border-width, 2px)",
-          transitionProperty: "transform, box-shadow",
-          transitionDuration:
-            "var(--vita-color-picker-transition-duration, 150ms)",
-          ...userStyle,
-        };
+    <AriaColorThumb
+      {...ariaProps}
+      ref={ref}
+      data-slot="color-slider-thumb"
+      className={className}
+      style={{
+        width: "var(--vita-color-picker-thumb-size, 18px)",
+        height: "var(--vita-color-picker-thumb-size, 18px)",
+        borderRadius: "9999px",
+        border: "var(--vita-color-picker-thumb-border-width, 2px) solid white",
+        boxShadow:
+          "0 0 0 1px oklch(0 0 0 / 0.2), 0 1px 3px oklch(0 0 0 / 0.15)",
+        top: "50%",
+        ...style,
       }}
     />
   );
 }
 
-// ── Compound Exports ─────────────────────────────────────────────────────────
+const ColorSliderThumbWithRef = forwardRef(ColorSliderThumbInner);
+ColorSliderThumbWithRef.displayName = "ColorSliderThumb";
 
-export const ColorPickerRoot = HeroColorPickerRoot;
-export const ColorPickerTrigger = HeroColorPickerTrigger;
-export const ColorPickerPopover = ThemedColorPickerPopover;
+export const ColorSliderRoot = ColorSliderWithRef;
+export const ColorSliderTrack = ColorSliderTrackWithRef;
+export const ColorSliderThumb = ColorSliderThumbWithRef;
 
-export const ColorPicker = Object.assign(HeroColorPickerRoot, {
-  Root: HeroColorPickerRoot,
-  Trigger: HeroColorPickerTrigger,
-  Popover: ThemedColorPickerPopover,
+export const ColorSlider = Object.assign(ColorSliderWithRef, {
+  Root: ColorSliderWithRef,
+  Track: ColorSliderTrackWithRef,
+  Thumb: ColorSliderThumbWithRef,
 });
 
-export const ColorAreaRoot = ThemedColorAreaRoot;
-export const ColorAreaThumb = ThemedColorAreaThumb;
+// ── ColorSwatch ─────────────────────────────────────────────────────────────
 
-export const ColorArea = Object.assign(ThemedColorAreaRoot, {
-  Root: ThemedColorAreaRoot,
-  Thumb: ThemedColorAreaThumb,
+export interface ColorSwatchRootProps
+  extends Omit<AriaColorSwatchProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+  onClick?: React.MouseEventHandler;
+}
+
+function ColorSwatchRootInner(
+  { className, style, onClick, ...ariaProps }: ColorSwatchRootProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <AriaColorSwatch
+      {...ariaProps}
+      ref={ref}
+      data-slot="color-swatch"
+      className={["vita-color-swatch", className].filter(Boolean).join(" ")}
+      onClick={onClick}
+      style={{
+        borderRadius: "var(--vita-color-picker-swatch-radius, 6px)",
+        width: "var(--vita-color-picker-swatch-size, 28px)",
+        height: "var(--vita-color-picker-swatch-size, 28px)",
+        borderWidth: "var(--vita-color-picker-swatch-border-width, 2px)",
+        borderStyle: "solid",
+        borderColor: "oklch(0 0 0 / 0.1)",
+        transitionProperty: "transform, box-shadow",
+        transitionDuration:
+          "var(--vita-color-picker-transition-duration, 150ms)",
+        ...style,
+      }}
+    />
+  );
+}
+
+export const ColorSwatchRoot = forwardRef(ColorSwatchRootInner);
+ColorSwatchRoot.displayName = "ColorSwatchRoot";
+
+export const ColorSwatch = Object.assign(forwardRef(ColorSwatchRootInner), {
+  Root: forwardRef(ColorSwatchRootInner),
 });
-
-export const ColorSliderRoot = HeroColorSliderRoot;
-export const ColorSliderTrack = ThemedColorSliderTrack;
-export const ColorSliderThumb = ThemedColorSliderThumb;
-
-export const ColorSlider = Object.assign(
-  (props: ColorSliderRootProps) => <HeroColorSliderRoot {...props} />,
-  {
-    Root: HeroColorSliderRoot,
-    Track: ThemedColorSliderTrack,
-    Thumb: ThemedColorSliderThumb,
-  },
-);
-
-export const ColorSwatchRoot = ThemedColorSwatchRoot;
-
-export const ColorSwatch = Object.assign(ThemedColorSwatchRoot, {
-  Root: ThemedColorSwatchRoot,
-});
+ColorSwatch.displayName = "ColorSwatch";
