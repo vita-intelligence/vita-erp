@@ -1,9 +1,8 @@
 /**
- * Modal — Vita ERP wrapper for HeroUI Modal compound component.
+ * Modal — Vita ERP modal dialog built on React Aria.
  *
- * Applies theme tokens as inline styles on the ModalDialog sub-component
- * so they override HeroUI's built-in Tailwind styles.
- * This is the single place to customize modal appearance.
+ * Accessible modal overlay with focus trap, keyboard dismiss (Escape),
+ * and screen reader support.
  *
  * Compound usage:
  *   <Modal>
@@ -22,80 +21,279 @@
 "use client";
 
 import {
-  ModalBackdrop as HeroModalBackdrop,
-  ModalBody as HeroModalBody,
-  ModalCloseTrigger as HeroModalCloseTrigger,
-  ModalContainer as HeroModalContainer,
-  ModalDialog as HeroModalDialog,
-  ModalFooter as HeroModalFooter,
-  ModalHeader as HeroModalHeader,
-  ModalHeading as HeroModalHeading,
-  ModalIcon as HeroModalIcon,
-  ModalRoot as HeroModalRoot,
-  ModalTrigger as HeroModalTrigger,
-  type ModalDialogProps,
-} from "@heroui/react";
+  type CSSProperties,
+  type ForwardedRef,
+  forwardRef,
+  type ReactNode,
+} from "react";
+import {
+  Button as AriaButton,
+  type ButtonProps as AriaButtonProps,
+  Dialog as AriaDialog,
+  type DialogProps as AriaDialogProps,
+  DialogTrigger as AriaDialogTrigger,
+  type DialogTriggerProps as AriaDialogTriggerProps,
+  Heading as AriaHeading,
+  type HeadingProps as AriaHeadingProps,
+  Modal as AriaModal,
+  ModalOverlay as AriaModalOverlay,
+  type ModalOverlayProps as AriaModalOverlayProps,
+} from "react-aria-components";
 
-// Re-export everything from HeroUI (types, variants, etc.)
-// The local named exports below take precedence over the wildcard.
-export * from "@heroui/react";
+// ── Modal Root (DialogTrigger) ──────────────────────────────────────────────
 
-// ── Themed Dialog ────────────────────────────────────────────────────────────
+export type ModalRootProps = AriaDialogTriggerProps;
+export function ModalRoot(props: ModalRootProps) {
+  return <AriaDialogTrigger {...props} />;
+}
 
-function ThemedModalDialog({ children, style, ...props }: ModalDialogProps) {
+// ── Modal Trigger ───────────────────────────────────────────────────────────
+
+export interface ModalTriggerProps
+  extends Omit<AriaButtonProps, "className" | "style" | "children"> {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+function ModalTriggerInner(
+  { children, ...props }: ModalTriggerProps,
+  ref: ForwardedRef<HTMLButtonElement>,
+) {
   return (
-    <HeroModalDialog
-      {...props}
-      style={{
-        borderRadius: "var(--vita-modal-radius, 0px)",
-        ...(style as React.CSSProperties),
-      }}
-    >
+    <AriaButton {...props} ref={ref}>
       {children}
-    </HeroModalDialog>
+    </AriaButton>
   );
 }
 
-// ── Compound Exports ─────────────────────────────────────────────────────────
+export const ModalTrigger = forwardRef(ModalTriggerInner);
+ModalTrigger.displayName = "ModalTrigger";
 
-export const ModalRoot = HeroModalRoot;
-export const ModalTrigger = HeroModalTrigger;
-export const ModalBackdrop = HeroModalBackdrop;
-export const ModalContainer = HeroModalContainer;
-export const ModalDialog = ThemedModalDialog;
-export const ModalHeader = HeroModalHeader;
-export const ModalIcon = HeroModalIcon;
-export const ModalHeading = HeroModalHeading;
-export const ModalBody = HeroModalBody;
-export const ModalFooter = HeroModalFooter;
-export const ModalCloseTrigger = HeroModalCloseTrigger;
+// ── Modal Backdrop ──────────────────────────────────────────────────────────
 
-export const Modal = Object.assign(HeroModalRoot, {
-  Root: HeroModalRoot,
-  Trigger: HeroModalTrigger,
-  Backdrop: HeroModalBackdrop,
-  Container: HeroModalContainer,
-  Dialog: ThemedModalDialog,
-  Header: HeroModalHeader,
-  Icon: HeroModalIcon,
-  Heading: HeroModalHeading,
-  Body: HeroModalBody,
-  Footer: HeroModalFooter,
-  CloseTrigger: HeroModalCloseTrigger,
+export interface ModalBackdropProps
+  extends Omit<AriaModalOverlayProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
+
+function ModalBackdropInner(
+  { className, style, children, ...ariaProps }: ModalBackdropProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <AriaModalOverlay
+      {...ariaProps}
+      ref={ref}
+      data-slot="modal-backdrop"
+      className={["vita-modal-backdrop", className].filter(Boolean).join(" ")}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 50,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background:
+          "var(--vita-alert-dialog-backdrop-color, oklch(0 0 0 / 0.4))",
+        backdropFilter: "blur(var(--vita-alert-dialog-backdrop-blur, 0px))",
+        ...style,
+      }}
+    >
+      {children}
+    </AriaModalOverlay>
+  );
+}
+
+export const ModalBackdrop = forwardRef(ModalBackdropInner);
+ModalBackdrop.displayName = "ModalBackdrop";
+
+// ── Modal Container ─────────────────────────────────────────────────────────
+
+export interface ModalContainerProps {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+export function ModalContainer({
+  className,
+  style,
+  children,
+}: ModalContainerProps) {
+  return (
+    <AriaModal data-slot="modal-container" className={className} style={style}>
+      {children}
+    </AriaModal>
+  );
+}
+
+// ── Modal Dialog ────────────────────────────────────────────────────────────
+
+export interface ModalDialogProps
+  extends Omit<AriaDialogProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+function ModalDialogInner(
+  { className, style, children, ...ariaProps }: ModalDialogProps,
+  ref: ForwardedRef<HTMLElement>,
+) {
+  return (
+    <AriaDialog
+      {...ariaProps}
+      ref={ref}
+      data-slot="modal-dialog"
+      className={["vita-modal-dialog", className].filter(Boolean).join(" ")}
+      style={{
+        outline: "none",
+        backgroundColor: "var(--vita-surface)",
+        borderRadius: "var(--vita-modal-radius, 12px)",
+        boxShadow: "0 8px 32px oklch(0 0 0 / 0.12)",
+        border: "1px solid var(--vita-neutral-200)",
+        width: "min(520px, 92vw)",
+        maxHeight: "85vh",
+        overflow: "auto",
+        ...style,
+      }}
+    >
+      {children}
+    </AriaDialog>
+  );
+}
+
+export const ModalDialog = forwardRef(ModalDialogInner);
+ModalDialog.displayName = "ModalDialog";
+
+// ── Sub-components ──────────────────────────────────────────────────────────
+
+type SlotProps = {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+};
+
+function ModalHeaderInner(
+  { className, style, children }: SlotProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <div
+      ref={ref}
+      data-slot="modal-header"
+      className={className}
+      style={{ padding: "20px 24px 0", ...style }}
+    >
+      {children}
+    </div>
+  );
+}
+export const ModalHeader = forwardRef(ModalHeaderInner);
+ModalHeader.displayName = "ModalHeader";
+
+export interface ModalHeadingProps
+  extends Omit<AriaHeadingProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+function ModalHeadingInner(
+  { className, style, children, ...ariaProps }: ModalHeadingProps,
+  ref: ForwardedRef<HTMLHeadingElement>,
+) {
+  return (
+    <AriaHeading
+      {...ariaProps}
+      ref={ref}
+      data-slot="modal-heading"
+      className={className}
+      style={{ fontSize: "18px", fontWeight: 600, margin: 0, ...style }}
+    >
+      {children}
+    </AriaHeading>
+  );
+}
+export const ModalHeading = forwardRef(ModalHeadingInner);
+ModalHeading.displayName = "ModalHeading";
+
+function ModalBodyInner(
+  { className, style, children }: SlotProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <div
+      ref={ref}
+      data-slot="modal-body"
+      className={className}
+      style={{ padding: "16px 24px", ...style }}
+    >
+      {children}
+    </div>
+  );
+}
+export const ModalBody = forwardRef(ModalBodyInner);
+ModalBody.displayName = "ModalBody";
+
+function ModalFooterInner(
+  { className, style, children }: SlotProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <div
+      ref={ref}
+      data-slot="modal-footer"
+      className={className}
+      style={{
+        display: "flex",
+        justifyContent: "flex-end",
+        gap: "8px",
+        padding: "0 24px 20px",
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+export const ModalFooter = forwardRef(ModalFooterInner);
+ModalFooter.displayName = "ModalFooter";
+
+export function ModalIcon({ children, style }: SlotProps) {
+  return (
+    <span data-slot="modal-icon" style={style}>
+      {children}
+    </span>
+  );
+}
+
+export function ModalCloseTrigger({ children, style, className }: SlotProps) {
+  return (
+    <AriaButton
+      slot="close"
+      data-slot="modal-close"
+      className={className}
+      style={style}
+    >
+      {children}
+    </AriaButton>
+  );
+}
+
+// ── Compound Export ─────────────────────────────────────────────────────────
+
+export const Modal = Object.assign(ModalRoot, {
+  Root: ModalRoot,
+  Trigger: ModalTrigger,
+  Backdrop: ModalBackdrop,
+  Container: ModalContainer,
+  Dialog: ModalDialog,
+  Header: ModalHeader,
+  Icon: ModalIcon,
+  Heading: ModalHeading,
+  Body: ModalBody,
+  Footer: ModalFooter,
+  CloseTrigger: ModalCloseTrigger,
 });
-
-// Re-export types explicitly for consumers
-export type {
-  ModalBackdropProps,
-  ModalBodyProps,
-  ModalCloseTriggerProps,
-  ModalContainerProps,
-  ModalDialogProps,
-  ModalFooterProps,
-  ModalHeaderProps,
-  ModalHeadingProps,
-  ModalIconProps,
-  ModalProps,
-  ModalRootProps,
-  ModalTriggerProps,
-} from "@heroui/react";

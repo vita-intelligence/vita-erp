@@ -1,109 +1,232 @@
 /**
- * DatePicker — Vita ERP wrapper for HeroUI DatePicker compound component.
+ * DatePicker — Vita ERP date picker built on React Aria.
  *
- * Applies theme tokens as inline styles on each sub-component
- * (Trigger, TriggerIndicator, Popover) so they override HeroUI's built-in
- * Tailwind styles.
- * This is the single place to customize date-picker appearance.
+ * Accessible date picker with calendar popover, keyboard navigation,
+ * and locale-aware formatting.
+ * All visual properties driven by --vita-date-picker-* CSS custom properties.
  */
 
 "use client";
 
 import {
-  type DatePickerPopoverProps,
-  type DatePickerTriggerIndicatorProps,
-  type DatePickerTriggerProps,
-  DatePickerPopover as HeroDatePickerPopover,
-  DatePickerRoot as HeroDatePickerRoot,
-  DatePickerTrigger as HeroDatePickerTrigger,
-  DatePickerTriggerIndicator as HeroDatePickerTriggerIndicator,
-} from "@heroui/react";
-import React from "react";
+  type CSSProperties,
+  type ForwardedRef,
+  forwardRef,
+  type ReactNode,
+} from "react";
+import type { DateValue } from "react-aria-components";
+import {
+  Button as AriaButton,
+  Calendar as AriaCalendar,
+  CalendarCell as AriaCalendarCell,
+  CalendarGrid as AriaCalendarGrid,
+  CalendarGridBody as AriaCalendarGridBody,
+  CalendarGridHeader as AriaCalendarGridHeader,
+  CalendarHeaderCell as AriaCalendarHeaderCell,
+  DateInput as AriaDateInput,
+  DatePicker as AriaDatePicker,
+  type DatePickerProps as AriaDatePickerProps,
+  DateSegment as AriaDateSegment,
+  Dialog as AriaDialog,
+  Group as AriaGroup,
+  Heading as AriaHeading,
+  Popover as AriaPopover,
+} from "react-aria-components";
 
-// Re-export everything from HeroUI (types, variants, etc.)
-// The local named exports below take precedence over the wildcard.
-export * from "@heroui/react";
+// ── Root ────────────────────────────────────────────────────────────────────
 
-// ── Themed Trigger ───────────────────────────────────────────────────────────
+export interface DatePickerRootProps<T extends DateValue = DateValue>
+  extends Omit<AriaDatePickerProps<T>, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
 
-const ThemedDatePickerTrigger = React.forwardRef<
-  HTMLButtonElement,
-  DatePickerTriggerProps
->(function ThemedDatePickerTrigger({ children, ...props }, ref) {
+function DatePickerRootInner<T extends DateValue = DateValue>(
+  { className, style, children, ...ariaProps }: DatePickerRootProps<T>,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroDatePickerTrigger
+    <AriaDatePicker<T>
+      {...ariaProps}
       ref={ref}
-      {...props}
+      data-slot="date-picker"
+      className={["vita-date-picker", className].filter(Boolean).join(" ")}
+      style={style}
+    >
+      {children}
+    </AriaDatePicker>
+  );
+}
+
+const DatePickerRootWithRef = forwardRef(DatePickerRootInner) as <
+  T extends DateValue = DateValue,
+>(
+  props: DatePickerRootProps<T> & { ref?: ForwardedRef<HTMLDivElement> },
+) => ReturnType<typeof DatePickerRootInner>;
+
+export { DatePickerRootWithRef as DatePickerRoot };
+
+// ── Trigger ─────────────────────────────────────────────────────────────────
+
+export interface DatePickerTriggerProps {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+function DatePickerTriggerInner(
+  { className, style, children }: DatePickerTriggerProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <AriaGroup
+      ref={ref}
+      data-slot="date-picker-trigger"
+      className={["vita-date-picker-trigger", className]
+        .filter(Boolean)
+        .join(" ")}
       style={{
-        borderRadius: "var(--vita-date-picker-trigger-radius, 0px)",
-        borderWidth: "var(--vita-date-picker-trigger-border-width, 1px)",
-        borderStyle:
-          "var(--vita-date-picker-trigger-border-style, solid)" as React.CSSProperties["borderStyle"],
-        paddingLeft: "var(--vita-date-picker-trigger-padding-x, 12px)",
-        paddingRight: "var(--vita-date-picker-trigger-padding-x, 12px)",
-        paddingTop: "var(--vita-date-picker-trigger-padding-y, 8px)",
-        paddingBottom: "var(--vita-date-picker-trigger-padding-y, 8px)",
+        display: "inline-flex",
+        alignItems: "center",
+        borderRadius:
+          "var(--vita-date-picker-trigger-radius, var(--vita-input-radius, 8px))",
+        border: "1px solid var(--vita-input-border-color)",
+        backgroundColor: "var(--vita-surface)",
+        padding:
+          "var(--vita-date-picker-trigger-padding-y, 8px) var(--vita-date-picker-trigger-padding-x, 12px)",
         boxShadow: "var(--vita-date-picker-trigger-shadow, none)",
         transitionDuration:
           "var(--vita-date-picker-transition-duration, 150ms)",
-      }}
-    >
-      {children}
-    </HeroDatePickerTrigger>
-  );
-});
-
-// ── Themed TriggerIndicator ──────────────────────────────────────────────────
-
-function ThemedDatePickerTriggerIndicator({
-  children,
-  style,
-  ...props
-}: DatePickerTriggerIndicatorProps) {
-  return (
-    <HeroDatePickerTriggerIndicator
-      {...props}
-      style={{
-        width: "var(--vita-date-picker-indicator-size, 18px)",
-        height: "var(--vita-date-picker-indicator-size, 18px)",
         ...style,
       }}
     >
-      {children}
-    </HeroDatePickerTriggerIndicator>
+      {children ?? (
+        <>
+          <AriaDateInput
+            data-slot="date-picker-input"
+            style={{ display: "flex", gap: "1px", flex: 1 }}
+          >
+            {(segment) => (
+              <AriaDateSegment
+                segment={segment}
+                style={{
+                  padding: "0 2px",
+                  fontSize: "var(--vita-input-font-size, 14px)",
+                  color: segment.isPlaceholder
+                    ? "var(--vita-text-muted)"
+                    : "var(--vita-text-primary)",
+                  outline: "none",
+                }}
+              />
+            )}
+          </AriaDateInput>
+          <AriaButton
+            data-slot="date-picker-indicator"
+            style={{
+              appearance: "none",
+              border: "none",
+              background: "none",
+              cursor: "pointer",
+              padding: "0 0 0 8px",
+              color: "var(--vita-text-muted)",
+            }}
+          >
+            <svg
+              width="var(--vita-date-picker-indicator-size, 18px)"
+              height="var(--vita-date-picker-indicator-size, 18px)"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+              <line x1="16" x2="16" y1="2" y2="6" />
+              <line x1="8" x2="8" y1="2" y2="6" />
+              <line x1="3" x2="21" y1="10" y2="10" />
+            </svg>
+          </AriaButton>
+        </>
+      )}
+    </AriaGroup>
   );
 }
 
-// ── Themed Popover ───────────────────────────────────────────────────────────
+export const DatePickerTrigger = forwardRef(DatePickerTriggerInner);
+DatePickerTrigger.displayName = "DatePickerTrigger";
 
-function ThemedDatePickerPopover({
+// ── TriggerIndicator (for compatibility) ────────────────────────────────────
+
+export function DatePickerTriggerIndicator({
   children,
-  ...props
-}: DatePickerPopoverProps) {
+  style,
+}: {
+  children?: ReactNode;
+  style?: CSSProperties;
+}) {
   return (
-    <HeroDatePickerPopover
-      {...props}
-      style={{
-        borderRadius: "var(--vita-date-picker-popover-radius, 0px)",
-        boxShadow: "var(--vita-date-picker-popover-shadow, none)",
-        padding: "var(--vita-date-picker-popover-padding, 12px)",
-      }}
+    <span
+      data-slot="date-picker-indicator"
+      style={{ display: "inline-flex", ...style }}
     >
       {children}
-    </HeroDatePickerPopover>
+    </span>
   );
 }
 
-// ── Compound Exports ─────────────────────────────────────────────────────────
+// ── Popover ─────────────────────────────────────────────────────────────────
 
-export const DatePickerRoot = HeroDatePickerRoot;
-export const DatePickerTrigger = ThemedDatePickerTrigger;
-export const DatePickerTriggerIndicator = ThemedDatePickerTriggerIndicator;
-export const DatePickerPopover = ThemedDatePickerPopover;
+export interface DatePickerPopoverProps {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
 
-export const DatePicker = Object.assign(HeroDatePickerRoot, {
-  Root: HeroDatePickerRoot,
-  Trigger: ThemedDatePickerTrigger,
-  TriggerIndicator: ThemedDatePickerTriggerIndicator,
-  Popover: ThemedDatePickerPopover,
+export function DatePickerPopover({
+  className,
+  style,
+  children,
+}: DatePickerPopoverProps) {
+  return (
+    <AriaPopover
+      data-slot="date-picker-popover"
+      className={["vita-date-picker-popover", className]
+        .filter(Boolean)
+        .join(" ")}
+      style={{
+        backgroundColor: "var(--vita-surface)",
+        borderRadius: "var(--vita-date-picker-popover-radius, 8px)",
+        boxShadow:
+          "var(--vita-date-picker-popover-shadow, 0 4px 16px oklch(0 0 0 / 0.08))",
+        border: "1px solid var(--vita-neutral-200)",
+        padding: "var(--vita-date-picker-popover-padding, 12px)",
+        ...style,
+      }}
+    >
+      <AriaDialog style={{ outline: "none" }}>{children}</AriaDialog>
+    </AriaPopover>
+  );
+}
+
+// ── Compound Export ─────────────────────────────────────────────────────────
+
+export const DatePicker = Object.assign(DatePickerRootWithRef, {
+  Root: DatePickerRootWithRef,
+  Trigger: DatePickerTrigger,
+  TriggerIndicator: DatePickerTriggerIndicator,
+  Popover: DatePickerPopover,
 });
+
+// Re-export calendar building blocks for use inside popover
+export {
+  AriaCalendar as Calendar,
+  AriaCalendarGrid as CalendarGrid,
+  AriaCalendarGridHeader as CalendarGridHeader,
+  AriaCalendarGridBody as CalendarGridBody,
+  AriaCalendarHeaderCell as CalendarHeaderCell,
+  AriaCalendarCell as CalendarCell,
+  AriaHeading as CalendarHeading,
+  AriaButton as CalendarNavButton,
+};

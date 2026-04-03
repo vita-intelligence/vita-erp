@@ -1,83 +1,261 @@
 /**
- * Autocomplete — Vita ERP wrapper for HeroUI Autocomplete.
+ * Autocomplete — Vita ERP autocomplete built on React Aria ComboBox.
  *
- * Applies theme tokens as inline styles on the popover sub-component
- * so they override HeroUI's built-in Tailwind styles.
- * Trigger styling inherits from input tokens.
- * This is the single place to customize autocomplete appearance.
+ * Filterable dropdown with text input, keyboard navigation, and typeahead.
+ * All visual properties driven by --vita-autocomplete-* CSS custom properties.
  */
 
 "use client";
 
 import {
-  type AutocompletePopoverProps,
-  AutocompleteClearButton as HeroAutocompleteClearButton,
-  AutocompleteFilter as HeroAutocompleteFilter,
-  AutocompleteIndicator as HeroAutocompleteIndicator,
-  AutocompletePopover as HeroAutocompletePopover,
-  AutocompleteRoot as HeroAutocompleteRoot,
-  AutocompleteTrigger as HeroAutocompleteTrigger,
-  AutocompleteValue as HeroAutocompleteValue,
-} from "@heroui/react";
+  type CSSProperties,
+  type ForwardedRef,
+  forwardRef,
+  type ReactNode,
+} from "react";
+import {
+  Button as AriaButton,
+  ComboBox as AriaComboBox,
+  type ComboBoxProps as AriaComboBoxProps,
+  Input as AriaInput,
+  type InputProps as AriaInputProps,
+  ListBox as AriaListBox,
+  type ListBoxProps as AriaListBoxProps,
+  Popover as AriaPopover,
+  type PopoverProps as AriaPopoverProps,
+} from "react-aria-components";
 
-// Re-export everything from HeroUI (types, variants, etc.)
-// The local named exports below take precedence over the wildcard.
-export * from "@heroui/react";
+// ── Root ────────────────────────────────────────────────────────────────────
 
-// ── Themed Popover ───────────────────────────────────────────────────────────
+export interface AutocompleteRootProps<T extends object = object>
+  extends Omit<AriaComboBoxProps<T>, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
 
-function ThemedAutocompletePopover({
-  children,
-  style,
-  ...props
-}: AutocompletePopoverProps) {
+function AutocompleteRootInner<T extends object = object>(
+  { className, style, children, ...ariaProps }: AutocompleteRootProps<T>,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroAutocompletePopover
-      {...props}
+    <AriaComboBox<T>
+      {...ariaProps}
+      ref={ref}
+      data-slot="autocomplete"
+      className={["vita-autocomplete", className].filter(Boolean).join(" ")}
+      style={{ position: "relative", ...style }}
+    >
+      {children}
+    </AriaComboBox>
+  );
+}
+
+const AutocompleteRootWithRef = forwardRef(AutocompleteRootInner) as <
+  T extends object = object,
+>(
+  props: AutocompleteRootProps<T> & { ref?: ForwardedRef<HTMLDivElement> },
+) => ReturnType<typeof AutocompleteRootInner>;
+
+export { AutocompleteRootWithRef as AutocompleteRoot };
+
+// ── Trigger (input wrapper) ─────────────────────────────────────────────────
+
+export interface AutocompleteTriggerProps {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+export function AutocompleteTrigger({
+  className,
+  style,
+  children,
+}: AutocompleteTriggerProps) {
+  return (
+    <div
+      data-slot="autocomplete-trigger"
+      className={className}
       style={{
-        borderRadius: "var(--vita-autocomplete-popover-radius, 0px)",
-        borderTopWidth: "var(--vita-autocomplete-popover-border-top, 1px)",
-        borderRightWidth: "var(--vita-autocomplete-popover-border-right, 1px)",
-        borderBottomWidth:
-          "var(--vita-autocomplete-popover-border-bottom, 1px)",
-        borderLeftWidth: "var(--vita-autocomplete-popover-border-left, 1px)",
-        borderStyle: "var(--vita-autocomplete-popover-border-style, solid)",
-        boxShadow: "var(--vita-autocomplete-popover-shadow, none)",
-        padding: "var(--vita-autocomplete-popover-padding, 4px)",
-        maxHeight: "var(--vita-autocomplete-max-height, 256px)",
+        display: "flex",
+        alignItems: "center",
+        position: "relative",
         ...style,
       }}
     >
       {children}
-    </HeroAutocompletePopover>
+    </div>
   );
 }
 
-// ── Pass-through sub-components ──────────────────────────────────────────────
+// ── Input / Value ───────────────────────────────────────────────────────────
 
-const ThemedAutocompleteRoot = HeroAutocompleteRoot;
-const ThemedAutocompleteTrigger = HeroAutocompleteTrigger;
-const ThemedAutocompleteValue = HeroAutocompleteValue;
-const ThemedAutocompleteIndicator = HeroAutocompleteIndicator;
-const ThemedAutocompleteFilter = HeroAutocompleteFilter;
-const ThemedAutocompleteClearButton = HeroAutocompleteClearButton;
+export interface AutocompleteValueProps
+  extends Omit<AriaInputProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
 
-// ── Compound Export ──────────────────────────────────────────────────────────
+function AutocompleteValueInner(
+  { className, style, ...ariaProps }: AutocompleteValueProps,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
+  return (
+    <AriaInput
+      {...ariaProps}
+      ref={ref}
+      data-slot="autocomplete-value"
+      className={["vita-autocomplete-input", className]
+        .filter(Boolean)
+        .join(" ")}
+      style={{
+        appearance: "none",
+        outline: "none",
+        width: "100%",
+        borderRadius:
+          "var(--vita-autocomplete-popover-radius, var(--vita-input-radius, 8px))",
+        border: "1px solid var(--vita-input-border-color)",
+        padding:
+          "var(--vita-input-padding-y, 8px) var(--vita-input-padding-x, 12px)",
+        fontSize: "var(--vita-input-font-size, 14px)",
+        backgroundColor: "var(--vita-surface)",
+        color: "var(--vita-text-primary)",
+        fontFamily: "inherit",
+        ...style,
+      }}
+    />
+  );
+}
 
-export const AutocompleteRoot = ThemedAutocompleteRoot;
-export const AutocompleteTrigger = ThemedAutocompleteTrigger;
-export const AutocompleteValue = ThemedAutocompleteValue;
-export const AutocompleteIndicator = ThemedAutocompleteIndicator;
-export const AutocompletePopover = ThemedAutocompletePopover;
-export const AutocompleteFilter = ThemedAutocompleteFilter;
-export const AutocompleteClearButton = ThemedAutocompleteClearButton;
+export const AutocompleteValue = forwardRef(AutocompleteValueInner);
+AutocompleteValue.displayName = "AutocompleteValue";
 
-export const Autocomplete = Object.assign(ThemedAutocompleteRoot, {
-  Root: ThemedAutocompleteRoot,
-  Trigger: ThemedAutocompleteTrigger,
-  Value: ThemedAutocompleteValue,
-  Indicator: ThemedAutocompleteIndicator,
-  Popover: ThemedAutocompletePopover,
-  Filter: ThemedAutocompleteFilter,
-  ClearButton: ThemedAutocompleteClearButton,
+// ── Indicator / ClearButton ─────────────────────────────────────────────────
+
+export function AutocompleteIndicator({ style }: { style?: CSSProperties }) {
+  return (
+    <AriaButton
+      data-slot="autocomplete-indicator"
+      style={{
+        appearance: "none",
+        border: "none",
+        background: "none",
+        cursor: "pointer",
+        padding: "4px",
+        position: "absolute",
+        right: "8px",
+        color: "var(--vita-text-muted)",
+        ...style,
+      }}
+    >
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </AriaButton>
+  );
+}
+
+export function AutocompleteClearButton({ style }: { style?: CSSProperties }) {
+  return (
+    <AriaButton
+      data-slot="autocomplete-clear"
+      style={{
+        appearance: "none",
+        border: "none",
+        background: "none",
+        cursor: "pointer",
+        padding: "4px",
+        color: "var(--vita-text-muted)",
+        ...style,
+      }}
+    >
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </svg>
+    </AriaButton>
+  );
+}
+
+// ── Filter (pass-through for compatibility) ─────────────────────────────────
+
+export function AutocompleteFilter({ children }: { children?: ReactNode }) {
+  return <>{children}</>;
+}
+
+// ── Popover ─────────────────────────────────────────────────────────────────
+
+export interface AutocompletePopoverProps
+  extends Omit<AriaPopoverProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+function AutocompletePopoverInner(
+  { className, style, children, ...ariaProps }: AutocompletePopoverProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <AriaPopover
+      {...ariaProps}
+      ref={ref}
+      data-slot="autocomplete-popover"
+      className={["vita-autocomplete-popover", className]
+        .filter(Boolean)
+        .join(" ")}
+      style={{
+        backgroundColor: "var(--vita-surface)",
+        borderRadius: "var(--vita-autocomplete-popover-radius, 8px)",
+        border: "1px solid var(--vita-neutral-200)",
+        boxShadow:
+          "var(--vita-autocomplete-popover-shadow, 0 4px 16px oklch(0 0 0 / 0.08))",
+        padding: "var(--vita-autocomplete-popover-padding, 4px)",
+        maxHeight: "var(--vita-autocomplete-max-height, 256px)",
+        overflow: "auto",
+        width: "var(--trigger-width)",
+        ...style,
+      }}
+    >
+      {children}
+    </AriaPopover>
+  );
+}
+
+export const AutocompletePopover = forwardRef(AutocompletePopoverInner);
+AutocompletePopover.displayName = "AutocompletePopover";
+
+// ── Compound Export ─────────────────────────────────────────────────────────
+
+export const Autocomplete = Object.assign(AutocompleteRootWithRef, {
+  Root: AutocompleteRootWithRef,
+  Trigger: AutocompleteTrigger,
+  Value: AutocompleteValue,
+  Indicator: AutocompleteIndicator,
+  Popover: AutocompletePopover,
+  Filter: AutocompleteFilter,
+  ClearButton: AutocompleteClearButton,
 });
+
+// Re-export ListBox for use inside Autocomplete popover
+export { AriaListBox as ListBox };
+export type { AriaListBoxProps as ListBoxProps };

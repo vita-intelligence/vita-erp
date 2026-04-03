@@ -1,4 +1,20 @@
-// Custom wrapper for HeroUI Dropdown
-// Add theme/style customization logic here
+/**
+ * Dropdown — re-exports from the Menu component.
+ *
+ * Dropdown is an alias for Menu. This file exists for import path convenience.
+ */
 
-export * from "@heroui/react";
+export type {
+  MenuItemProps,
+  MenuPopoverProps,
+  MenuProps,
+  MenuTriggerProps,
+} from "@/components/ui/menu";
+export {
+  Dropdown,
+  Menu,
+  MenuItem,
+  MenuPopover,
+  MenuSeparator,
+  MenuTrigger,
+} from "@/components/ui/menu";
