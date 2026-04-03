@@ -1,0 +1,33 @@
+/* ── Radio ────────────────────────────────────────────────────────────────────
+ * State-dependent styles for the Radio component.
+ */
+
+/* Default — unchecked */
+.vita-radio-control {
+  border-color: var(--vita-neutral-300);
+  background-color: transparent;
+}
+
+.vita-radio-indicator {
+  background-color: transparent;
+}
+
+/* Selected — primary ring + filled dot */
+.vita-radio[data-selected] .vita-radio-control {
+  border-color: var(--vita-primary);
+}
+
+.vita-radio[data-selected] .vita-radio-indicator {
+  background-color: var(--vita-primary);
+}
+
+/* Focus visible */
+.vita-radio[data-focus-visible] .vita-radio-control {
+  outline: 2px solid var(--vita-primary);
+  outline-offset: 2px;
+}
+
+/* Pressed */
+.vita-radio[data-pressed] .vita-radio-control {
+  transform: scale(0.9);
+}

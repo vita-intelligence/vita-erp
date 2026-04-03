@@ -1,32 +1,38 @@
 /**
- * CheckboxGroup — Vita ERP wrapper for HeroUI CheckboxGroup.
+ * CheckboxGroup — Vita ERP checkbox group built on React Aria.
  *
- * Applies theme tokens as inline styles on the root CheckboxGroup element
- * so they override HeroUI's built-in Tailwind styles.
- * This is the single place to customize checkbox-group appearance.
+ * Manages selection state for multiple Checkbox children.
+ * All visual properties driven by --vita-checkbox-group-* CSS custom properties.
  */
 
 "use client";
 
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import {
-  type CheckboxGroupProps,
-  CheckboxGroup as HeroCheckboxGroup,
-} from "@heroui/react";
+  CheckboxGroup as AriaCheckboxGroup,
+  type CheckboxGroupProps as AriaCheckboxGroupProps,
+} from "react-aria-components";
 
-// Re-export everything from HeroUI (types, variants, etc.)
-// The local named exports below take precedence over the wildcard.
-export * from "@heroui/react";
+// ── Types ───────────────────────────────────────────────────────────────────
 
-// ── Themed Root ──────────────────────────────────────────────────────────────
+export interface CheckboxGroupProps
+  extends Omit<AriaCheckboxGroupProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
 
-function ThemedCheckboxGroup({
-  children,
-  style,
-  ...props
-}: CheckboxGroupProps) {
+// ── Component ───────────────────────────────────────────────────────────────
+
+function CheckboxGroupInner(
+  { className, style, children, ...ariaProps }: CheckboxGroupProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroCheckboxGroup
-      {...props}
+    <AriaCheckboxGroup
+      {...ariaProps}
+      ref={ref}
+      data-slot="checkbox-group"
+      className={["vita-checkbox-group", className].filter(Boolean).join(" ")}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -37,17 +43,18 @@ function ThemedCheckboxGroup({
         paddingBottom: "var(--vita-checkbox-group-padding-y, 0px)",
         borderWidth: "var(--vita-checkbox-group-border-width, 0px)",
         borderStyle:
-          "var(--vita-checkbox-group-border-style, solid)" as React.CSSProperties["borderStyle"],
+          "var(--vita-checkbox-group-border-style, solid)" as CSSProperties["borderStyle"],
         boxShadow: "var(--vita-checkbox-group-shadow, none)",
         gap: "var(--vita-checkbox-group-label-gap, 8px)",
         ...style,
       }}
     >
       {children}
-    </HeroCheckboxGroup>
+    </AriaCheckboxGroup>
   );
 }
 
-// ── Compound Export ──────────────────────────────────────────────────────────
+// ── Export ───────────────────────────────────────────────────────────────────
 
-export const CheckboxGroup = ThemedCheckboxGroup;
+export const CheckboxGroup = forwardRef(CheckboxGroupInner);
+CheckboxGroup.displayName = "CheckboxGroup";

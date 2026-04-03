@@ -10,10 +10,12 @@
   --vita-skeleton-animation-duration: 1.5s;
 }
 
-.skeleton--pulse {
-  animation-duration: var(--vita-skeleton-animation-duration) !important;
-}
-
-.skeleton--shimmer::after {
-  animation-duration: var(--vita-skeleton-animation-duration) !important;
+@keyframes vita-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

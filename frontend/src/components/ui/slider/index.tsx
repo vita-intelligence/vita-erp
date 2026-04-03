@@ -1,12 +1,13 @@
 /**
- * Slider — Vita ERP wrapper for HeroUI Slider (compound component).
+ * Slider — Vita ERP slider built on React Aria.
  *
- * Applies theme tokens as inline styles on the Root, Track, Fill, and Thumb
- * sub-components so they override HeroUI's built-in Tailwind styles.
- * Hover transforms remain in CSS for :hover pseudo-class support.
+ * Fully accessible with keyboard navigation (Arrow keys, Home, End),
+ * drag interaction, and screen reader support.
+ *
+ * All visual properties driven by --vita-slider-* CSS custom properties.
  *
  * Compound usage:
- *   <Slider>
+ *   <Slider minValue={0} maxValue={100} value={[50]} onChange={setVal}>
  *     <Slider.Output />
  *     <Slider.Track>
  *       <Slider.Fill />
@@ -18,31 +19,44 @@
 "use client";
 
 import {
-  SliderFill as HeroSliderFill,
-  SliderRoot as HeroSliderRoot,
-  SliderThumb as HeroSliderThumb,
-  SliderTrack as HeroSliderTrack,
-  type SliderFillProps,
-  SliderMarks,
-  type SliderMarksProps,
-  SliderOutput,
-  type SliderOutputProps,
-  type SliderRootProps,
-  type SliderThumbProps,
-  type SliderTrackProps,
-} from "@heroui/react";
+  type CSSProperties,
+  type ForwardedRef,
+  forwardRef,
+  type ReactNode,
+} from "react";
+import {
+  Slider as AriaSlider,
+  SliderOutput as AriaSliderOutput,
+  type SliderOutputProps as AriaSliderOutputProps,
+  type SliderProps as AriaSliderProps,
+  SliderThumb as AriaSliderThumb,
+  type SliderThumbProps as AriaSliderThumbProps,
+  SliderTrack as AriaSliderTrack,
+  type SliderTrackProps as AriaSliderTrackProps,
+} from "react-aria-components";
 
-// Re-export everything from HeroUI (types, variants, etc.)
-// The local named exports below take precedence over the wildcard.
-export * from "@heroui/react";
+// ── Slider Root ─────────────────────────────────────────────────────────────
 
-// ── Themed Sub-Components ────────────────────────────────────────────────────
+export interface SliderRootProps
+  extends Omit<AriaSliderProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
 
-function ThemedSliderRoot({ children, style, ...props }: SliderRootProps) {
+function SliderRootInner(
+  { className, style, children, ...ariaProps }: SliderRootProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroSliderRoot
-      {...props}
+    <AriaSlider
+      {...ariaProps}
+      ref={ref}
+      data-slot="slider"
+      className={["vita-slider", className].filter(Boolean).join(" ")}
       style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "4px",
         transform:
           "perspective(800px)" +
           " rotateX(var(--vita-slider-rotate-x, 0deg))" +
@@ -55,78 +69,152 @@ function ThemedSliderRoot({ children, style, ...props }: SliderRootProps) {
       }}
     >
       {children}
-    </HeroSliderRoot>
+    </AriaSlider>
   );
 }
 
-function ThemedSliderTrack({ children, style, ...props }: SliderTrackProps) {
+// ── Slider Output ───────────────────────────────────────────────────────────
+
+export interface SliderOutputProps
+  extends Omit<AriaSliderOutputProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
+
+function SliderOutputInner(
+  { className, style, children, ...ariaProps }: SliderOutputProps,
+  ref: ForwardedRef<HTMLOutputElement>,
+) {
   return (
-    <HeroSliderTrack
-      {...props}
+    <AriaSliderOutput
+      {...ariaProps}
+      ref={ref}
+      data-slot="slider-output"
+      className={className}
       style={{
-        borderRadius: "var(--vita-slider-track-radius, 9999px)",
-        height: "var(--vita-slider-track-height, 6px)",
+        fontSize: "12px",
+        color: "var(--vita-text-secondary)",
         ...style,
       }}
     >
       {children}
-    </HeroSliderTrack>
+    </AriaSliderOutput>
   );
 }
 
-function ThemedSliderFill({ style, ...props }: SliderFillProps) {
+export const SliderOutput = forwardRef(SliderOutputInner);
+SliderOutput.displayName = "SliderOutput";
+
+// ── Slider Track ────────────────────────────────────────────────────────────
+
+export interface SliderTrackProps
+  extends Omit<AriaSliderTrackProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+function SliderTrackInner(
+  { className, style, children, ...ariaProps }: SliderTrackProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroSliderFill
-      {...props}
+    <AriaSliderTrack
+      {...ariaProps}
+      ref={ref}
+      data-slot="slider-track"
+      className={["vita-slider-track", className].filter(Boolean).join(" ")}
       style={{
+        position: "relative",
+        height: "var(--vita-slider-track-height, 6px)",
+        width: "100%",
         borderRadius: "var(--vita-slider-track-radius, 9999px)",
+        ...style,
+      }}
+    >
+      {children}
+    </AriaSliderTrack>
+  );
+}
+
+export const SliderTrack = forwardRef(SliderTrackInner);
+SliderTrack.displayName = "SliderTrack";
+
+// ── Slider Fill ─────────────────────────────────────────────────────────────
+
+export interface SliderFillProps {
+  className?: string;
+  style?: CSSProperties;
+}
+
+export function SliderFill({ className, style }: SliderFillProps) {
+  return (
+    <span
+      data-slot="slider-fill"
+      className={["vita-slider-fill", className].filter(Boolean).join(" ")}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        height: "100%",
+        borderRadius: "var(--vita-slider-track-radius, 9999px)",
+        backgroundColor: "var(--vita-primary)",
         ...style,
       }}
     />
   );
 }
 
-function ThemedSliderThumb({ children, style, ...props }: SliderThumbProps) {
+// ── Slider Thumb ────────────────────────────────────────────────────────────
+
+export interface SliderThumbProps
+  extends Omit<AriaSliderThumbProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+}
+
+function SliderThumbInner(
+  { className, style, ...ariaProps }: SliderThumbProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroSliderThumb
-      {...props}
+    <AriaSliderThumb
+      {...ariaProps}
+      ref={ref}
+      data-slot="slider-thumb"
+      className={["vita-slider-thumb", className].filter(Boolean).join(" ")}
       style={{
         width: "var(--vita-slider-thumb-size, 20px)",
         height: "var(--vita-slider-thumb-size, 20px)",
         borderRadius: "var(--vita-slider-thumb-radius, 9999px)",
+        backgroundColor: "var(--vita-surface)",
+        border: "2px solid var(--vita-primary)",
+        boxShadow:
+          "var(--vita-slider-thumb-shadow, 0 1px 3px oklch(0 0 0 / 0.15))",
+        cursor: "grab",
+        top: "50%",
         transitionDuration: "var(--vita-slider-transition-duration, 150ms)",
         ...style,
       }}
-    >
-      {children}
-    </HeroSliderThumb>
+    />
   );
 }
 
-// ── Named Exports ────────────────────────────────────────────────────────────
+export const SliderThumb = forwardRef(SliderThumbInner);
+SliderThumb.displayName = "SliderThumb";
 
-export { ThemedSliderRoot as SliderRoot };
-export { SliderOutput };
-export { ThemedSliderTrack as SliderTrack };
-export { ThemedSliderFill as SliderFill };
-export { ThemedSliderThumb as SliderThumb };
-export { SliderMarks };
-export type {
-  SliderRootProps,
-  SliderOutputProps,
-  SliderTrackProps,
-  SliderFillProps,
-  SliderThumbProps,
-  SliderMarksProps,
-};
+// ── Compound Export ─────────────────────────────────────────────────────────
 
-// ── Compound Export ──────────────────────────────────────────────────────────
+const SliderRootWithRef = forwardRef(SliderRootInner);
+SliderRootWithRef.displayName = "SliderRoot";
 
-export const Slider = Object.assign(ThemedSliderRoot, {
-  Root: ThemedSliderRoot,
+export { SliderRootWithRef as SliderRoot };
+
+export const Slider = Object.assign(SliderRootWithRef, {
+  Root: SliderRootWithRef,
   Output: SliderOutput,
-  Track: ThemedSliderTrack,
-  Fill: ThemedSliderFill,
-  Thumb: ThemedSliderThumb,
-  Marks: SliderMarks,
+  Track: SliderTrack,
+  Fill: SliderFill,
+  Thumb: SliderThumb,
 });
+Slider.displayName = "Slider";

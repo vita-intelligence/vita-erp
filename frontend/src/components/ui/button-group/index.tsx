@@ -1,60 +1,94 @@
 /**
- * ButtonGroup — Vita ERP wrapper for HeroUI ButtonGroup.
+ * ButtonGroup — Vita ERP button group container.
  *
- * Applies theme tokens as inline styles on the root group element
- * so they override HeroUI's built-in Tailwind styles.
- * Individual button styling is handled by the button wrapper.
- * This is the single place to customize button-group appearance.
+ * Groups related buttons with configurable gap, border, and shadow.
+ * All visual properties driven by --vita-button-group-* CSS custom properties.
  */
 
 "use client";
 
 import {
-  type ButtonGroupRootProps,
-  ButtonGroupRoot as HeroButtonGroupRoot,
-  ButtonGroupSeparator as HeroButtonGroupSeparator,
-} from "@heroui/react";
+  type CSSProperties,
+  type ForwardedRef,
+  forwardRef,
+  type ReactNode,
+} from "react";
+import {
+  Group as AriaGroup,
+  type GroupProps as AriaGroupProps,
+} from "react-aria-components";
 
-// Re-export everything from HeroUI (types, variants, etc.)
-// The local named exports below take precedence over the wildcard.
-export * from "@heroui/react";
+// ── ButtonGroup Root ────────────────────────────────────────────────────────
 
-// ── Themed Root ──────────────────────────────────────────────────────────────
+export interface ButtonGroupRootProps
+  extends Omit<AriaGroupProps, "className" | "style"> {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
 
-function ThemedButtonGroupRoot({
-  children,
-  style,
-  ...props
-}: ButtonGroupRootProps) {
+function ButtonGroupRootInner(
+  { className, style, children, ...ariaProps }: ButtonGroupRootProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroButtonGroupRoot
-      {...props}
+    <AriaGroup
+      {...ariaProps}
+      ref={ref}
+      data-slot="button-group"
+      className={["vita-button-group", className].filter(Boolean).join(" ")}
       style={{
+        display: "inline-flex",
+        alignItems: "center",
         borderTopWidth: "var(--vita-button-group-border-top, 0px)",
         borderRightWidth: "var(--vita-button-group-border-right, 0px)",
         borderBottomWidth: "var(--vita-button-group-border-bottom, 0px)",
         borderLeftWidth: "var(--vita-button-group-border-left, 0px)",
-        borderStyle: "var(--vita-button-group-border-style, solid)",
+        borderStyle:
+          "var(--vita-button-group-border-style, solid)" as CSSProperties["borderStyle"],
+        borderColor: "var(--vita-neutral-200)",
         boxShadow: "var(--vita-button-group-shadow, none)",
         gap: "var(--vita-button-group-gap, 0px)",
         ...style,
       }}
     >
       {children}
-    </HeroButtonGroupRoot>
+    </AriaGroup>
   );
 }
 
-// ── Pass-through sub-components ──────────────────────────────────────────────
+// ── Separator ───────────────────────────────────────────────────────────────
 
-const ThemedButtonGroupSeparator = HeroButtonGroupSeparator;
+export interface ButtonGroupSeparatorProps {
+  className?: string;
+  style?: CSSProperties;
+}
 
-// ── Compound Export ──────────────────────────────────────────────────────────
+export function ButtonGroupSeparator({
+  className,
+  style,
+}: ButtonGroupSeparatorProps) {
+  return (
+    <span
+      data-slot="button-group-separator"
+      className={className}
+      style={{
+        width: "1px",
+        alignSelf: "stretch",
+        backgroundColor: "var(--vita-neutral-200)",
+        ...style,
+      }}
+    />
+  );
+}
 
-export const ButtonGroupRoot = ThemedButtonGroupRoot;
-export const ButtonGroupSeparator = ThemedButtonGroupSeparator;
+// ── Exports ─────────────────────────────────────────────────────────────────
 
-export const ButtonGroup = Object.assign(ThemedButtonGroupRoot, {
-  Root: ThemedButtonGroupRoot,
-  Separator: ThemedButtonGroupSeparator,
+export const ButtonGroupRoot = forwardRef(ButtonGroupRootInner);
+ButtonGroupRoot.displayName = "ButtonGroupRoot";
+
+export const ButtonGroup = Object.assign(forwardRef(ButtonGroupRootInner), {
+  Root: ButtonGroupRoot,
+  Separator: ButtonGroupSeparator,
 });
+ButtonGroup.displayName = "ButtonGroup";

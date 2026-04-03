@@ -1,31 +1,28 @@
 /**
- * Skeleton — Vita ERP wrapper for HeroUI Skeleton.
+ * Skeleton — Vita ERP loading placeholder.
  *
- * Applies theme tokens as inline styles on the root Skeleton element
- * so they override HeroUI's built-in Tailwind styles.
- * This is the single place to customize skeleton appearance.
- *
- * Pseudo-class tokens (animation-duration for pulse/shimmer) remain in CSS
- * because they target ::after and animation states not reachable via inline styles.
+ * Presentational component with pulse animation.
+ * All visual properties driven by --vita-skeleton-* CSS custom properties.
  */
 
 "use client";
 
-import {
-  SkeletonRoot as HeroSkeletonRoot,
-  type SkeletonRootProps,
-} from "@heroui/react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 
-// Re-export everything from HeroUI (types, variants, etc.)
-// The local named exports below take precedence over the wildcard.
-export * from "@heroui/react";
+export interface SkeletonRootProps {
+  className?: string;
+  style?: CSSProperties;
+}
 
-// ── Themed Root ──────────────────────────────────────────────────────────────
-
-function ThemedSkeletonRoot({ style, ...props }: SkeletonRootProps) {
+function SkeletonRootInner(
+  { className, style }: SkeletonRootProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
-    <HeroSkeletonRoot
-      {...props}
+    <div
+      ref={ref}
+      data-slot="skeleton"
+      className={["vita-skeleton", className].filter(Boolean).join(" ")}
       style={{
         borderRadius: "var(--vita-skeleton-radius, 8px)",
         backgroundColor:
@@ -36,10 +33,10 @@ function ThemedSkeletonRoot({ style, ...props }: SkeletonRootProps) {
   );
 }
 
-// ── Compound Export ──────────────────────────────────────────────────────────
+export const SkeletonRoot = forwardRef(SkeletonRootInner);
+SkeletonRoot.displayName = "SkeletonRoot";
 
-export const SkeletonRoot = ThemedSkeletonRoot;
-
-export const Skeleton = Object.assign(ThemedSkeletonRoot, {
-  Root: ThemedSkeletonRoot,
+export const Skeleton = Object.assign(forwardRef(SkeletonRootInner), {
+  Root: SkeletonRoot,
 });
+Skeleton.displayName = "Skeleton";

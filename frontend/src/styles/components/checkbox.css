@@ -1,8 +1,6 @@
 /* ── Checkbox ─────────────────────────────────────────────────────────────────
  * :root defaults for Vita ERP checkbox design tokens.
- * Inline styles are applied by the Checkbox wrapper component; this file only
- * declares the custom-property defaults and pseudo-state rules that
- * cannot be expressed via inline styles.
+ * State-dependent styles live here; static styles are inline in the component.
  */
 
 :root {
@@ -16,27 +14,45 @@
   --vita-checkbox-shadow: none;
   --vita-checkbox-checked-scale: 0.95;
   --vita-checkbox-transition-duration: 150ms;
-  --vita-checkbox-indicator-size: 12px;
+  --vita-checkbox-indicator-size: 14px;
   --vita-checkbox-indicator-stroke: 2.5;
 }
 
-/* Scale animation on check — requires [data-selected] pseudo which cannot be inline */
-[data-slot="checkbox-control"][data-selected="true"] {
-  transform: scale(var(--vita-checkbox-checked-scale, 0.95)) !important;
+/* Default — unchecked border color */
+.vita-checkbox-control {
+  border-color: var(--vita-neutral-300);
+  background-color: transparent;
 }
 
-/* Checkmark SVG icon sizing — targets nested SVGs inside the indicator */
-[data-slot="checkbox-indicator"] svg,
-[data-slot="checkbox-default-indicator--checkmark"],
-[data-slot="checkbox-default-indicator--indeterminate"] {
-  width: var(--vita-checkbox-indicator-size) !important;
-  height: var(--vita-checkbox-indicator-size) !important;
-  stroke-width: var(--vita-checkbox-indicator-stroke) !important;
+/* Selected — filled with primary */
+.vita-checkbox[data-selected] .vita-checkbox-control {
+  background-color: var(--vita-primary);
+  border-color: var(--vita-primary);
+  transform: scale(var(--vita-checkbox-checked-scale, 0.95));
 }
 
-/* Label font — cascades into React Aria's inner label element */
-[data-slot="checkbox-content"],
-[data-slot="checkbox-content"] [data-slot="label"] {
-  font-size: var(--vita-checkbox-label-font-size) !important;
-  font-weight: var(--vita-checkbox-label-font-weight) !important;
+/* Indicator — hidden when unchecked */
+.vita-checkbox-indicator {
+  display: none;
+}
+
+.vita-checkbox[data-selected] .vita-checkbox-indicator {
+  display: block;
+}
+
+/* Indeterminate */
+.vita-checkbox[data-indeterminate] .vita-checkbox-control {
+  background-color: var(--vita-primary);
+  border-color: var(--vita-primary);
+}
+
+/* Focus visible */
+.vita-checkbox[data-focus-visible] .vita-checkbox-control {
+  outline: 2px solid var(--vita-primary);
+  outline-offset: 2px;
+}
+
+/* Pressed — slight scale */
+.vita-checkbox[data-pressed] .vita-checkbox-control {
+  transform: scale(0.9);
 }

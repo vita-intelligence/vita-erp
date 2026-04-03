@@ -1,7 +1,5 @@
 /* ── Slider ───────────────────────────────────────────────────────────────────
- * :root defaults for Vita ERP design tokens.
- * Inline styles are applied via the themed wrapper (src/components/ui/slider).
- * Hover transforms and thumb ::after pseudo-element rules remain here.
+ * :root defaults and state-dependent styles for the Slider component.
  */
 
 :root {
@@ -19,10 +17,25 @@
   --vita-slider-hover-scale: 1;
 }
 
-/* Hover transform — requires :hover pseudo-class */
+/* Track background */
+.vita-slider-track {
+  background-color: var(--vita-neutral-200);
+}
+
+/* Thumb focus */
+.vita-slider-thumb[data-focus-visible] {
+  outline: 2px solid var(--vita-primary);
+  outline-offset: 2px;
+}
+
+/* Thumb dragging */
+.vita-slider-thumb[data-dragging] {
+  cursor: grabbing;
+}
+
+/* Hover transform */
 @media (hover: hover) {
-  .slider:hover,
-  [data-slot="slider"]:hover {
+  .vita-slider:hover {
     transform: perspective(800px)
       rotateX(
         var(--vita-slider-hover-rotate-x, var(--vita-slider-rotate-x, 0deg))
@@ -36,13 +49,4 @@
       translateY(var(--vita-slider-hover-translate-y, 0px))
       scale(var(--vita-slider-hover-scale, 1)) !important;
   }
-}
-
-/* Thumb visible dot — requires ::after pseudo-element */
-.slider__thumb::after,
-[data-slot="slider-thumb"]::after {
-  width: var(--vita-slider-thumb-dot-size) !important;
-  height: var(--vita-slider-thumb-dot-size) !important;
-  border-radius: var(--vita-slider-thumb-radius) !important;
-  box-shadow: var(--vita-slider-thumb-shadow) !important;
 }
