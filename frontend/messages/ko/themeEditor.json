@@ -555,6 +555,25 @@
       "label": "스위치",
       "description": "토글 스위치의 트랙, 썸, 레이블 간격",
       "allControls": "토글 스위치의 트랙 크기, 썸 크기, 테두리 반경, 레이블 간격 및 애니메이션을 제어합니다."
+    },
+    "toast": {
+      "label": "토스트",
+      "description": "토스트 알림의 배치, 모양, 간격 및 타이포그래피",
+      "allControls": "토스트 알림의 배치, 모양, 테두리, 간격, 타이포그래피 및 버튼을 제어합니다.",
+      "placement": "배치",
+      "position": "화면 위치",
+      "stackGap": "스택 간격",
+      "contentGap": "콘텐츠 간격",
+      "minWidth": "최소 너비",
+      "maxWidth": "최대 너비",
+      "titleSize": "제목 크기",
+      "descriptionSize": "설명 크기",
+      "descriptionOpacity": "설명 불투명도",
+      "icon": "표시 아이콘",
+      "actionButton": "액션 버튼",
+      "actionFontSize": "글꼴 크기",
+      "closeButton": "닫기 버튼",
+      "closeOpacity": "불투명도"
     }
   },
   "preview": {

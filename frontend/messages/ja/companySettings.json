@@ -1,0 +1,245 @@
+{
+  "page": {
+    "title": "設定"
+  },
+  "tabs": {
+    "general": "一般"
+  },
+  "save": "変更を保存",
+  "saving": "保存中...",
+  "saved": "設定が正常に保存されました。",
+  "no_changes": "保存する変更はありません。",
+  "sections": {
+    "number_formatting": "数値の書式",
+    "number_formatting_description": "システム全体での数値の表示方法 — 小数点記号、桁区切り記号、桁グループ化。",
+    "precision": "精度",
+    "precision_description": "システム全体でさまざまな種類の値に使用される小数点以下の桁数。",
+    "currency_display": "通貨の表示",
+    "currency_display_description": "金額の表示方法 — 記号の配置、スペース、負数のスタイル。",
+    "rounding": "丸め",
+    "rounding_description": "計算および現金取引の丸めルール。",
+    "date_time": "日付と時刻",
+    "date_time_description": "システム全体で使用される日付形式、時刻形式、暦法、週の開始曜日。",
+    "measurement": "測定単位",
+    "measurement_description": "新しいアイテムや材料を作成する際にデフォルトで選択される測定単位。",
+    "fiscal": "会計・財務",
+    "fiscal_description": "会計年度の設定、在庫原価計算方法、税金の動作。",
+    "document_defaults": "ドキュメントのデフォルト",
+    "document_defaults_description": "生成されるドキュメントやレポートの言語、用紙サイズ、テキスト方向。"
+  },
+  "fields": {
+    "decimal_separator": "小数点記号",
+    "thousands_separator": "桁区切り記号",
+    "digit_grouping": "桁グループ化",
+    "quantity_precision": "数量の精度",
+    "price_precision": "価格の精度",
+    "currency_precision": "通貨の精度",
+    "exchange_rate_precision": "為替レートの精度",
+    "percentage_precision": "パーセンテージの精度",
+    "weight_precision": "重量の精度",
+    "currency_symbol_position": "通貨記号の位置",
+    "currency_spacing": "記号と金額の間のスペース",
+    "negative_format": "負数の表示形式",
+    "multi_currency_enabled": "多通貨モード",
+    "rounding_method": "丸め方法",
+    "cash_rounding_enabled": "現金丸め",
+    "cash_rounding_increment": "現金丸め単位",
+    "date_format": "日付形式",
+    "time_format": "時刻形式",
+    "week_start_day": "週の開始曜日",
+    "calendar_system": "暦法",
+    "measurement_system": "測定単位系",
+    "default_weight_uom": "デフォルト重量単位",
+    "default_length_uom": "デフォルト長さ単位",
+    "default_volume_uom": "デフォルト体積単位",
+    "default_temperature_uom": "デフォルト温度単位",
+    "default_area_uom": "デフォルト面積単位",
+    "fiscal_year_start_month": "会計年度開始月",
+    "fiscal_year_start_day": "会計年度開始日",
+    "fiscal_calendar_type": "会計カレンダーの種類",
+    "cost_method": "原価計算方法",
+    "tax_inclusive_pricing": "税込価格",
+    "default_document_language": "ドキュメント言語",
+    "default_paper_size": "デフォルト用紙サイズ",
+    "text_direction": "テキスト方向"
+  },
+  "options": {
+    "decimal_separator": {
+      "dot": "ドット (1234.56)",
+      "comma": "カンマ (1234,56)"
+    },
+    "thousands_separator": {
+      "comma": "カンマ (1,234)",
+      "dot": "ドット (1.234)",
+      "space": "スペース (1 234)",
+      "apostrophe": "アポストロフィ (1'234)",
+      "none": "なし (1234)"
+    },
+    "digit_grouping": {
+      "standard": "標準 (1,234,567)",
+      "indian": "インド式 (12,34,567)",
+      "none": "グループ化なし"
+    },
+    "currency_symbol_position": {
+      "before": "金額の前 ($100)",
+      "after": "金額の後 (100€)"
+    },
+    "negative_format": {
+      "minus_before": "前にマイナス (-100)",
+      "minus_after": "後にマイナス (100-)",
+      "parentheses": "括弧 ((100))"
+    },
+    "rounding_method": {
+      "half_up": "標準（四捨五入）",
+      "half_even": "銀行丸め（偶数丸め）",
+      "ceiling": "常に切り上げ",
+      "floor": "常に切り捨て"
+    },
+    "cash_rounding_increment": {
+      "0_01": "0.01",
+      "0_05": "0.05",
+      "0_10": "0.10",
+      "0_25": "0.25",
+      "0_50": "0.50",
+      "1_00": "1.00"
+    },
+    "date_format": {
+      "YYYY-MM-DD": "2026-03-31 (ISO 8601)",
+      "DD/MM/YYYY": "31/03/2026",
+      "MM/DD/YYYY": "03/31/2026",
+      "DD_MM_YYYY": "31.03.2026",
+      "YYYY/MM/DD": "2026/03/31",
+      "DD-MM-YYYY": "31-03-2026"
+    },
+    "time_format": {
+      "24h": "24時間制 (14:30)",
+      "12h": "12時間制 (2:30 PM)"
+    },
+    "week_start_day": {
+      "monday": "月曜日",
+      "sunday": "日曜日",
+      "saturday": "土曜日"
+    },
+    "calendar_system": {
+      "gregorian": "グレゴリオ暦",
+      "hijri": "ヒジュラ暦（イスラム暦）",
+      "thai_buddhist": "タイ仏暦",
+      "persian": "ペルシア暦（ジャラーリー暦）",
+      "japanese": "和暦"
+    },
+    "measurement_system": {
+      "metric": "メートル法",
+      "imperial": "ヤード・ポンド法"
+    },
+    "default_weight_uom": {
+      "kg": "キログラム (kg)",
+      "g": "グラム (g)",
+      "mg": "ミリグラム (mg)",
+      "t": "メートルトン (t)",
+      "lb": "ポンド (lb)",
+      "oz": "オンス (oz)"
+    },
+    "default_length_uom": {
+      "m": "メートル (m)",
+      "cm": "センチメートル (cm)",
+      "mm": "ミリメートル (mm)",
+      "ft": "フィート (ft)",
+      "in": "インチ (in)",
+      "yd": "ヤード (yd)"
+    },
+    "default_volume_uom": {
+      "L": "リットル (L)",
+      "mL": "ミリリットル (mL)",
+      "m3": "立方メートル (m³)",
+      "gal": "ガロン (gal)",
+      "fl_oz": "液量オンス (fl oz)",
+      "ft3": "立方フィート (ft³)"
+    },
+    "default_temperature_uom": {
+      "celsius": "摂氏 (°C)",
+      "fahrenheit": "華氏 (°F)"
+    },
+    "default_area_uom": {
+      "m2": "平方メートル (m²)",
+      "ft2": "平方フィート (ft²)",
+      "hectare": "ヘクタール",
+      "acre": "エーカー"
+    },
+    "fiscal_calendar_type": {
+      "standard": "標準（暦月）",
+      "445_week": "4-4-5週（小売業）",
+      "454_week": "4-5-4週（小売業）",
+      "544_week": "5-4-4週（小売業）"
+    },
+    "cost_method": {
+      "standard": "標準原価計算",
+      "average": "加重平均法",
+      "fifo": "先入先出法 (FIFO)"
+    },
+    "default_paper_size": {
+      "A4": "A4 (210 × 297 mm)",
+      "letter": "レター (8.5 × 11 in)",
+      "legal": "リーガル (8.5 × 14 in)"
+    },
+    "text_direction": {
+      "ltr": "左から右",
+      "rtl": "右から左"
+    },
+    "months": {
+      "1": "1月",
+      "2": "2月",
+      "3": "3月",
+      "4": "4月",
+      "5": "5月",
+      "6": "6月",
+      "7": "7月",
+      "8": "8月",
+      "9": "9月",
+      "10": "10月",
+      "11": "11月",
+      "12": "12月"
+    }
+  },
+  "descriptions": {
+    "decimal_separator": "整数部と小数部の間の文字。例：1234.56（ドット）または1234,56（カンマ）。",
+    "thousands_separator": "読みやすさのために桁をグループ化する文字。例：1,234（カンマ）または1.234（ドット）。",
+    "digit_grouping": "桁のグループ化方法。標準：1,234,567。インド式：12,34,567（ラークとクロール）。",
+    "quantity_precision": "アイテム数量の小数点以下の桁数（例：2.5 kgまたは2.5000 kg）。",
+    "price_precision": "注文書や請求書の単価の小数点以下の桁数。",
+    "currency_precision": "金額合計の小数点以下の桁数。JPYは0、KWDは3を使用します。",
+    "exchange_rate_precision": "為替レートの小数点以下の桁数。多いほど正確な換算が可能です。",
+    "percentage_precision": "税率や割引などのパーセンテージの小数点以下の桁数。",
+    "weight_precision": "在庫や生産における重量値の小数点以下の桁数。",
+    "currency_symbol_position": "金額に対する通貨記号の表示位置。例：$100（前）または100€（後）。",
+    "currency_spacing": "通貨記号と金額の間にスペースを入れます。例：$100や100€の代わりに$ 100や100 €。",
+    "negative_format": "負数の表示方法。会計形式では-100の代わりに括弧を使用：(100)。",
+    "multi_currency_enabled": "基本通貨以外の通貨で取引、請求書、レポートを使用できるようにします。",
+    "rounding_method": "計算値の丸め方法。銀行丸め（偶数丸め）は累積丸め誤差を軽減します。",
+    "cash_rounding_enabled": "現金支払い合計を最も近い物理的額面に丸めます。例：スイスでは0.05 CHFに丸めます。",
+    "cash_rounding_increment": "丸める最小現金単位。例：0.05（5セント硬貨）、0.10（10セント硬貨）、または1.00（整数単位）。",
+    "date_format": "システム全体での日付の表示方法。内部での日付の保存方法には影響しません。",
+    "time_format": "12時間制はAM/PMを表示（2:30 PM）。24時間制は軍用時間を使用（14:30）。",
+    "week_start_day": "カレンダーや週次レポートでの週の開始曜日。地域によって異なります。",
+    "calendar_system": "日付表示に使用される暦法。内部保存は常にグレゴリオ暦です。ヒジュラ暦はサウジアラビアで一般的です。",
+    "measurement_system": "組織のデフォルト単位系。個別のフィールドでは任意の単位を使用できます。",
+    "default_weight_uom": "新しいアイテムや材料を作成する際にデフォルトで選択される重量単位。",
+    "default_length_uom": "新しいアイテムの寸法にデフォルトで選択される長さ単位。",
+    "default_volume_uom": "液体やバルク材料にデフォルトで選択される体積単位。",
+    "default_temperature_uom": "コールドチェーン、食品安全、環境モニタリングのデフォルト温度単位。",
+    "default_area_uom": "倉庫のフロアスペースや生産ゾーンのデフォルト面積単位。",
+    "fiscal_year_start_month": "会計年度が始まる月。例：英国/インドは4月、オーストラリアは7月。",
+    "fiscal_year_start_day": "会計年度が始まる日。例：英国は4月6日開始。",
+    "fiscal_calendar_type": "標準は暦月を使用します。小売カレンダー（4-4-5、4-5-4、5-4-4）は一貫した比較のために固定週期間を使用します。",
+    "cost_method": "在庫原価の計算方法。平均：加重平均。標準：所定原価。FIFO：最も古い在庫から。",
+    "tax_inclusive_pricing": "有効にすると、システムに入力された価格にはすでに税金が含まれます。EU、オーストラリア、ニュージーランドで一般的です。",
+    "default_document_language": "生成されるPDF、請求書、レポートで使用される言語。ロケールコードを入力してください（例：en、de、fr）。",
+    "default_paper_size": "生成されるPDFの用紙サイズ。A4は世界標準です。レターは米国とカナダで使用されます。",
+    "text_direction": "生成されるドキュメントのテキスト方向。RTLはアラビア語、ヘブライ語、ペルシア語、ウルドゥー語で使用されます。"
+  },
+  "errors": {
+    "separator_conflict": "小数点記号と桁区切り記号に同じ文字は使用できません。",
+    "digit_grouping_requires_separator": "桁グループ化には桁区切り記号が必要です。",
+    "fiscal_day_exceeds_month": "選択された月にはこの日は存在しません。",
+    "save_failed": "設定の保存に失敗しました。もう一度お試しください。"
+  }
+}

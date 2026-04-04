@@ -1,0 +1,245 @@
+{
+  "page": {
+    "title": "Pengaturan"
+  },
+  "tabs": {
+    "general": "Umum"
+  },
+  "save": "Simpan Perubahan",
+  "saving": "Menyimpan...",
+  "saved": "Pengaturan berhasil disimpan.",
+  "no_changes": "Tidak ada perubahan untuk disimpan.",
+  "sections": {
+    "number_formatting": "Format Angka",
+    "number_formatting_description": "Bagaimana angka ditampilkan di seluruh sistem — pemisah desimal dan ribuan, pengelompokan digit.",
+    "precision": "Presisi",
+    "precision_description": "Jumlah tempat desimal yang digunakan untuk berbagai jenis nilai di seluruh sistem.",
+    "currency_display": "Tampilan Mata Uang",
+    "currency_display_description": "Bagaimana nilai moneter diformat — penempatan simbol, spasi, dan gaya angka negatif.",
+    "rounding": "Pembulatan",
+    "rounding_description": "Aturan pembulatan untuk perhitungan dan transaksi tunai.",
+    "date_time": "Tanggal & Waktu",
+    "date_time_description": "Format tanggal, format waktu, sistem kalender, dan hari awal minggu yang digunakan di seluruh sistem.",
+    "measurement": "Pengukuran",
+    "measurement_description": "Satuan ukur default yang dipilih saat membuat item dan material baru.",
+    "fiscal": "Fiskal & Keuangan",
+    "fiscal_description": "Konfigurasi tahun fiskal, metode perhitungan biaya inventaris, dan perilaku pajak.",
+    "document_defaults": "Default Dokumen",
+    "document_defaults_description": "Bahasa, ukuran kertas, dan arah teks untuk dokumen dan laporan yang dihasilkan."
+  },
+  "fields": {
+    "decimal_separator": "Pemisah Desimal",
+    "thousands_separator": "Pemisah Ribuan",
+    "digit_grouping": "Pengelompokan Digit",
+    "quantity_precision": "Presisi Kuantitas",
+    "price_precision": "Presisi Harga",
+    "currency_precision": "Presisi Mata Uang",
+    "exchange_rate_precision": "Presisi Kurs Tukar",
+    "percentage_precision": "Presisi Persentase",
+    "weight_precision": "Presisi Berat",
+    "currency_symbol_position": "Posisi Simbol Mata Uang",
+    "currency_spacing": "Spasi Antara Simbol dan Jumlah",
+    "negative_format": "Format Angka Negatif",
+    "multi_currency_enabled": "Mode Multi-Mata Uang",
+    "rounding_method": "Metode Pembulatan",
+    "cash_rounding_enabled": "Pembulatan Tunai",
+    "cash_rounding_increment": "Inkremen Pembulatan Tunai",
+    "date_format": "Format Tanggal",
+    "time_format": "Format Waktu",
+    "week_start_day": "Hari Pertama Minggu",
+    "calendar_system": "Sistem Kalender",
+    "measurement_system": "Sistem Pengukuran",
+    "default_weight_uom": "Satuan Berat Default",
+    "default_length_uom": "Satuan Panjang Default",
+    "default_volume_uom": "Satuan Volume Default",
+    "default_temperature_uom": "Satuan Suhu Default",
+    "default_area_uom": "Satuan Luas Default",
+    "fiscal_year_start_month": "Bulan Awal Tahun Fiskal",
+    "fiscal_year_start_day": "Hari Awal Tahun Fiskal",
+    "fiscal_calendar_type": "Jenis Kalender Fiskal",
+    "cost_method": "Metode Biaya",
+    "tax_inclusive_pricing": "Harga Termasuk Pajak",
+    "default_document_language": "Bahasa Dokumen",
+    "default_paper_size": "Ukuran Kertas Default",
+    "text_direction": "Arah Teks"
+  },
+  "options": {
+    "decimal_separator": {
+      "dot": "Titik (1234.56)",
+      "comma": "Koma (1234,56)"
+    },
+    "thousands_separator": {
+      "comma": "Koma (1,234)",
+      "dot": "Titik (1.234)",
+      "space": "Spasi (1 234)",
+      "apostrophe": "Apostrof (1'234)",
+      "none": "Tidak ada (1234)"
+    },
+    "digit_grouping": {
+      "standard": "Standar (1,234,567)",
+      "indian": "India (12,34,567)",
+      "none": "Tanpa pengelompokan"
+    },
+    "currency_symbol_position": {
+      "before": "Sebelum jumlah ($100)",
+      "after": "Setelah jumlah (100€)"
+    },
+    "negative_format": {
+      "minus_before": "Minus sebelum (-100)",
+      "minus_after": "Minus setelah (100-)",
+      "parentheses": "Tanda kurung ((100))"
+    },
+    "rounding_method": {
+      "half_up": "Standar (setengah ke atas)",
+      "half_even": "Pembulatan bankir (setengah genap)",
+      "ceiling": "Selalu bulatkan ke atas",
+      "floor": "Selalu bulatkan ke bawah"
+    },
+    "cash_rounding_increment": {
+      "0_01": "0.01",
+      "0_05": "0.05",
+      "0_10": "0.10",
+      "0_25": "0.25",
+      "0_50": "0.50",
+      "1_00": "1.00"
+    },
+    "date_format": {
+      "YYYY-MM-DD": "2026-03-31 (ISO 8601)",
+      "DD/MM/YYYY": "31/03/2026",
+      "MM/DD/YYYY": "03/31/2026",
+      "DD_MM_YYYY": "31.03.2026",
+      "YYYY/MM/DD": "2026/03/31",
+      "DD-MM-YYYY": "31-03-2026"
+    },
+    "time_format": {
+      "24h": "24 jam (14:30)",
+      "12h": "12 jam (2:30 PM)"
+    },
+    "week_start_day": {
+      "monday": "Senin",
+      "sunday": "Minggu",
+      "saturday": "Sabtu"
+    },
+    "calendar_system": {
+      "gregorian": "Gregorian",
+      "hijri": "Hijri (Islam)",
+      "thai_buddhist": "Buddha Thailand",
+      "persian": "Persia (Jalali)",
+      "japanese": "Kekaisaran Jepang"
+    },
+    "measurement_system": {
+      "metric": "Metrik",
+      "imperial": "Imperial"
+    },
+    "default_weight_uom": {
+      "kg": "Kilogram (kg)",
+      "g": "Gram (g)",
+      "mg": "Miligram (mg)",
+      "t": "Ton metrik (t)",
+      "lb": "Pon (lb)",
+      "oz": "Ons (oz)"
+    },
+    "default_length_uom": {
+      "m": "Meter (m)",
+      "cm": "Sentimeter (cm)",
+      "mm": "Milimeter (mm)",
+      "ft": "Kaki (ft)",
+      "in": "Inci (in)",
+      "yd": "Yard (yd)"
+    },
+    "default_volume_uom": {
+      "L": "Liter (L)",
+      "mL": "Mililiter (mL)",
+      "m3": "Meter kubik (m³)",
+      "gal": "Galon (gal)",
+      "fl_oz": "Ons cairan (fl oz)",
+      "ft3": "Kaki kubik (ft³)"
+    },
+    "default_temperature_uom": {
+      "celsius": "Celsius (°C)",
+      "fahrenheit": "Fahrenheit (°F)"
+    },
+    "default_area_uom": {
+      "m2": "Meter persegi (m²)",
+      "ft2": "Kaki persegi (ft²)",
+      "hectare": "Hektare",
+      "acre": "Acre"
+    },
+    "fiscal_calendar_type": {
+      "standard": "Standar (bulan kalender)",
+      "445_week": "4-4-5 minggu (ritel)",
+      "454_week": "4-5-4 minggu (ritel)",
+      "544_week": "5-4-4 minggu (ritel)"
+    },
+    "cost_method": {
+      "standard": "Biaya standar",
+      "average": "Rata-rata tertimbang",
+      "fifo": "Masuk pertama, keluar pertama (FIFO)"
+    },
+    "default_paper_size": {
+      "A4": "A4 (210 × 297 mm)",
+      "letter": "Letter (8.5 × 11 in)",
+      "legal": "Legal (8.5 × 14 in)"
+    },
+    "text_direction": {
+      "ltr": "Kiri ke kanan",
+      "rtl": "Kanan ke kiri"
+    },
+    "months": {
+      "1": "Januari",
+      "2": "Februari",
+      "3": "Maret",
+      "4": "April",
+      "5": "Mei",
+      "6": "Juni",
+      "7": "Juli",
+      "8": "Agustus",
+      "9": "September",
+      "10": "Oktober",
+      "11": "November",
+      "12": "Desember"
+    }
+  },
+  "descriptions": {
+    "decimal_separator": "Karakter antara bagian bilangan bulat dan desimal. Contoh: 1234.56 (titik) atau 1234,56 (koma).",
+    "thousands_separator": "Karakter yang mengelompokkan digit untuk keterbacaan. Contoh: 1,234 (koma) atau 1.234 (titik).",
+    "digit_grouping": "Bagaimana digit dikelompokkan. Standar: 1,234,567. India: 12,34,567 (lakh dan crore).",
+    "quantity_precision": "Jumlah tempat desimal untuk kuantitas item (contoh: 2.5 kg atau 2.5000 kg).",
+    "price_precision": "Jumlah tempat desimal untuk harga satuan pada pesanan dan faktur.",
+    "currency_precision": "Jumlah tempat desimal untuk total moneter. JPY menggunakan 0, KWD menggunakan 3.",
+    "exchange_rate_precision": "Jumlah tempat desimal untuk kurs tukar mata uang. Lebih tinggi = konversi lebih akurat.",
+    "percentage_precision": "Jumlah tempat desimal untuk persentase seperti tarif pajak dan diskon.",
+    "weight_precision": "Jumlah tempat desimal untuk nilai berat dalam inventaris dan produksi.",
+    "currency_symbol_position": "Di mana simbol mata uang muncul relatif terhadap jumlah. Contoh: $100 (sebelum) atau 100€ (setelah).",
+    "currency_spacing": "Tambahkan spasi antara simbol mata uang dan jumlah. Contoh: $ 100 atau 100 € alih-alih $100 atau 100€.",
+    "negative_format": "Bagaimana angka negatif ditampilkan. Format akuntansi menggunakan tanda kurung: (100) alih-alih -100.",
+    "multi_currency_enabled": "Izinkan transaksi, faktur, dan laporan dalam mata uang selain mata uang dasar Anda.",
+    "rounding_method": "Bagaimana nilai yang dihitung dibulatkan. Pembulatan bankir (setengah genap) mengurangi bias pembulatan kumulatif.",
+    "cash_rounding_enabled": "Bulatkan total pembayaran tunai ke denominasi fisik terdekat. Contoh: Swiss membulatkan ke 0.05 CHF.",
+    "cash_rounding_increment": "Denominasi tunai terkecil untuk pembulatan. Contoh: 0.05 (nikel), 0.10 (dime), atau 1.00 (unit utuh).",
+    "date_format": "Bagaimana tanggal ditampilkan di seluruh sistem. Tidak memengaruhi cara tanggal disimpan secara internal.",
+    "time_format": "Format 12 jam menampilkan AM/PM (2:30 PM). Format 24 jam menggunakan waktu militer (14:30).",
+    "week_start_day": "Hari pertama minggu di kalender dan laporan mingguan. Berbeda menurut wilayah.",
+    "calendar_system": "Kalender yang digunakan untuk tampilan tanggal. Penyimpanan internal selalu menggunakan Gregorian. Hijri umum di Arab Saudi.",
+    "measurement_system": "Sistem satuan default untuk organisasi. Bidang individual masih dapat menggunakan satuan apa pun.",
+    "default_weight_uom": "Satuan berat default yang dipilih saat membuat item atau material baru.",
+    "default_length_uom": "Satuan panjang default yang dipilih untuk dimensi pada item baru.",
+    "default_volume_uom": "Satuan volume default yang dipilih untuk cairan atau material curah.",
+    "default_temperature_uom": "Satuan suhu default untuk rantai dingin, keamanan pangan, dan pemantauan lingkungan.",
+    "default_area_uom": "Satuan luas default untuk ruang gudang dan zona produksi.",
+    "fiscal_year_start_month": "Bulan saat tahun fiskal Anda dimulai. Contoh: April untuk Inggris/India, Juli untuk Australia.",
+    "fiscal_year_start_day": "Hari dalam bulan saat tahun fiskal Anda dimulai. Contoh: Inggris dimulai 6 April.",
+    "fiscal_calendar_type": "Standar menggunakan bulan kalender. Kalender ritel (4-4-5, 4-5-4, 5-4-4) menggunakan periode minggu tetap untuk perbandingan yang konsisten.",
+    "cost_method": "Bagaimana biaya inventaris dihitung. Rata-rata: rata-rata tertimbang. Standar: biaya yang ditentukan sebelumnya. FIFO: stok paling lama lebih dulu.",
+    "tax_inclusive_pricing": "Saat diaktifkan, harga yang dimasukkan dalam sistem sudah termasuk pajak. Umum di UE, Australia, dan Selandia Baru.",
+    "default_document_language": "Bahasa yang digunakan untuk PDF, faktur, dan laporan yang dihasilkan. Masukkan kode lokal (contoh: en, de, fr).",
+    "default_paper_size": "Ukuran kertas untuk PDF yang dihasilkan. A4 adalah standar di seluruh dunia. Letter digunakan di AS dan Kanada.",
+    "text_direction": "Arah teks untuk dokumen yang dihasilkan. RTL digunakan untuk bahasa Arab, Ibrani, Persia, dan Urdu."
+  },
+  "errors": {
+    "separator_conflict": "Pemisah desimal dan pemisah ribuan tidak boleh menggunakan karakter yang sama.",
+    "digit_grouping_requires_separator": "Pengelompokan digit memerlukan pemisah ribuan.",
+    "fiscal_day_exceeds_month": "Hari ini tidak ada di bulan yang dipilih.",
+    "save_failed": "Gagal menyimpan pengaturan. Silakan coba lagi."
+  }
+}

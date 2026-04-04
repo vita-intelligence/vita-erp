@@ -555,6 +555,25 @@
       "label": "开关",
       "description": "切换开关的轨道、滑块和标签间距",
       "allControls": "控制切换开关的轨道大小、滑块大小、圆角、标签间距和动画。"
+    },
+    "toast": {
+      "label": "消息提示",
+      "description": "消息提示的位置、形状、间距和排版",
+      "allControls": "控制消息提示的位置、形状、边框、间距、排版和按钮。",
+      "placement": "位置",
+      "position": "屏幕位置",
+      "stackGap": "堆叠间距",
+      "contentGap": "内容间距",
+      "minWidth": "最小宽度",
+      "maxWidth": "最大宽度",
+      "titleSize": "标题大小",
+      "descriptionSize": "描述大小",
+      "descriptionOpacity": "描述不透明度",
+      "icon": "指示图标",
+      "actionButton": "操作按钮",
+      "actionFontSize": "字体大小",
+      "closeButton": "关闭按钮",
+      "closeOpacity": "不透明度"
     }
   },
   "preview": {

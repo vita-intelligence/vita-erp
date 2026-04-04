@@ -555,6 +555,25 @@
       "label": "Interruptor",
       "description": "Pista, deslizador y espacio de etiqueta de los interruptores",
       "allControls": "Controla el tamaño de la pista, tamaño del deslizador, radio de borde, espacio de etiqueta y animación de los interruptores."
+    },
+    "toast": {
+      "label": "Notificación",
+      "description": "Ubicación, forma, espaciado y tipografía de las notificaciones emergentes",
+      "allControls": "Controla la ubicación, forma, borde, espaciado, tipografía y botones de las notificaciones emergentes.",
+      "placement": "Ubicación",
+      "position": "Posición en pantalla",
+      "stackGap": "Espacio de apilamiento",
+      "contentGap": "Espacio del contenido",
+      "minWidth": "Ancho mínimo",
+      "maxWidth": "Ancho máximo",
+      "titleSize": "Tamaño del título",
+      "descriptionSize": "Tamaño de descripción",
+      "descriptionOpacity": "Opacidad de descripción",
+      "icon": "Ícono indicador",
+      "actionButton": "Botón de acción",
+      "actionFontSize": "Tamaño de fuente",
+      "closeButton": "Botón de cerrar",
+      "closeOpacity": "Opacidad"
     }
   },
   "preview": {

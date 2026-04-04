@@ -555,6 +555,25 @@
       "label": "Interruttore",
       "description": "Traccia, cursore e spaziatura etichetta degli interruttori",
       "allControls": "Controlla dimensione traccia, dimensione cursore, raggio bordo, spaziatura etichetta e animazione degli interruttori."
+    },
+    "toast": {
+      "label": "Toast",
+      "description": "Posizione, forma, spaziatura e tipografia delle notifiche toast",
+      "allControls": "Controlla posizione, forma, bordo, spaziatura, tipografia e pulsanti delle notifiche toast.",
+      "placement": "Posizione",
+      "position": "Posizione sullo schermo",
+      "stackGap": "Distanza pila",
+      "contentGap": "Distanza contenuto",
+      "minWidth": "Larghezza minima",
+      "maxWidth": "Larghezza massima",
+      "titleSize": "Dimensione titolo",
+      "descriptionSize": "Dimensione descrizione",
+      "descriptionOpacity": "Opacità descrizione",
+      "icon": "Icona indicatore",
+      "actionButton": "Pulsante azione",
+      "actionFontSize": "Dimensione carattere",
+      "closeButton": "Pulsante chiudi",
+      "closeOpacity": "Opacità"
     }
   },
   "preview": {

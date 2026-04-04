@@ -1,0 +1,245 @@
+{
+  "page": {
+    "title": "Impostazioni"
+  },
+  "tabs": {
+    "general": "Generale"
+  },
+  "save": "Salva modifiche",
+  "saving": "Salvataggio...",
+  "saved": "Impostazioni salvate con successo.",
+  "no_changes": "Nessuna modifica da salvare.",
+  "sections": {
+    "number_formatting": "Formato numeri",
+    "number_formatting_description": "Come i numeri vengono visualizzati nel sistema — separatori decimali e delle migliaia, raggruppamento cifre.",
+    "precision": "Precisione",
+    "precision_description": "Numero di cifre decimali utilizzate per i diversi tipi di valori in tutto il sistema.",
+    "currency_display": "Visualizzazione valuta",
+    "currency_display_description": "Come i valori monetari vengono formattati — posizione del simbolo, spaziatura e stile dei numeri negativi.",
+    "rounding": "Arrotondamento",
+    "rounding_description": "Regole di arrotondamento per calcoli e transazioni in contanti.",
+    "date_time": "Data e ora",
+    "date_time_description": "Formato data, formato ora, sistema di calendario e giorno di inizio settimana utilizzati nel sistema.",
+    "measurement": "Misurazione",
+    "measurement_description": "Unità di misura predefinite preselezionate durante la creazione di nuovi articoli e materiali.",
+    "fiscal": "Fiscale e finanziario",
+    "fiscal_description": "Configurazione dell'anno fiscale, metodo di calcolo dei costi di inventario e comportamento fiscale.",
+    "document_defaults": "Impostazioni predefinite documenti",
+    "document_defaults_description": "Lingua, formato carta e direzione del testo per documenti e report generati."
+  },
+  "fields": {
+    "decimal_separator": "Separatore decimale",
+    "thousands_separator": "Separatore delle migliaia",
+    "digit_grouping": "Raggruppamento cifre",
+    "quantity_precision": "Precisione quantità",
+    "price_precision": "Precisione prezzo",
+    "currency_precision": "Precisione valuta",
+    "exchange_rate_precision": "Precisione tasso di cambio",
+    "percentage_precision": "Precisione percentuale",
+    "weight_precision": "Precisione peso",
+    "currency_symbol_position": "Posizione del simbolo valuta",
+    "currency_spacing": "Spazio tra simbolo e importo",
+    "negative_format": "Formato numeri negativi",
+    "multi_currency_enabled": "Modalità multivaluta",
+    "rounding_method": "Metodo di arrotondamento",
+    "cash_rounding_enabled": "Arrotondamento contanti",
+    "cash_rounding_increment": "Incremento arrotondamento contanti",
+    "date_format": "Formato data",
+    "time_format": "Formato ora",
+    "week_start_day": "Primo giorno della settimana",
+    "calendar_system": "Sistema di calendario",
+    "measurement_system": "Sistema di misurazione",
+    "default_weight_uom": "Unità di peso predefinita",
+    "default_length_uom": "Unità di lunghezza predefinita",
+    "default_volume_uom": "Unità di volume predefinita",
+    "default_temperature_uom": "Unità di temperatura predefinita",
+    "default_area_uom": "Unità di superficie predefinita",
+    "fiscal_year_start_month": "Mese di inizio anno fiscale",
+    "fiscal_year_start_day": "Giorno di inizio anno fiscale",
+    "fiscal_calendar_type": "Tipo di calendario fiscale",
+    "cost_method": "Metodo di costo",
+    "tax_inclusive_pricing": "Prezzi IVA inclusa",
+    "default_document_language": "Lingua documenti",
+    "default_paper_size": "Formato carta predefinito",
+    "text_direction": "Direzione del testo"
+  },
+  "options": {
+    "decimal_separator": {
+      "dot": "Punto (1234.56)",
+      "comma": "Virgola (1234,56)"
+    },
+    "thousands_separator": {
+      "comma": "Virgola (1,234)",
+      "dot": "Punto (1.234)",
+      "space": "Spazio (1 234)",
+      "apostrophe": "Apostrofo (1'234)",
+      "none": "Nessuno (1234)"
+    },
+    "digit_grouping": {
+      "standard": "Standard (1,234,567)",
+      "indian": "Indiano (12,34,567)",
+      "none": "Nessun raggruppamento"
+    },
+    "currency_symbol_position": {
+      "before": "Prima dell'importo ($100)",
+      "after": "Dopo l'importo (100€)"
+    },
+    "negative_format": {
+      "minus_before": "Meno prima (-100)",
+      "minus_after": "Meno dopo (100-)",
+      "parentheses": "Parentesi ((100))"
+    },
+    "rounding_method": {
+      "half_up": "Standard (metà per eccesso)",
+      "half_even": "Arrotondamento bancario (metà pari)",
+      "ceiling": "Sempre per eccesso",
+      "floor": "Sempre per difetto"
+    },
+    "cash_rounding_increment": {
+      "0_01": "0.01",
+      "0_05": "0.05",
+      "0_10": "0.10",
+      "0_25": "0.25",
+      "0_50": "0.50",
+      "1_00": "1.00"
+    },
+    "date_format": {
+      "YYYY-MM-DD": "2026-03-31 (ISO 8601)",
+      "DD/MM/YYYY": "31/03/2026",
+      "MM/DD/YYYY": "03/31/2026",
+      "DD_MM_YYYY": "31.03.2026",
+      "YYYY/MM/DD": "2026/03/31",
+      "DD-MM-YYYY": "31-03-2026"
+    },
+    "time_format": {
+      "24h": "24 ore (14:30)",
+      "12h": "12 ore (2:30 PM)"
+    },
+    "week_start_day": {
+      "monday": "Lunedì",
+      "sunday": "Domenica",
+      "saturday": "Sabato"
+    },
+    "calendar_system": {
+      "gregorian": "Gregoriano",
+      "hijri": "Hijri (islamico)",
+      "thai_buddhist": "Buddista thailandese",
+      "persian": "Persiano (Jalali)",
+      "japanese": "Imperiale giapponese"
+    },
+    "measurement_system": {
+      "metric": "Metrico",
+      "imperial": "Imperiale"
+    },
+    "default_weight_uom": {
+      "kg": "Chilogrammo (kg)",
+      "g": "Grammo (g)",
+      "mg": "Milligrammo (mg)",
+      "t": "Tonnellata metrica (t)",
+      "lb": "Libbra (lb)",
+      "oz": "Oncia (oz)"
+    },
+    "default_length_uom": {
+      "m": "Metro (m)",
+      "cm": "Centimetro (cm)",
+      "mm": "Millimetro (mm)",
+      "ft": "Piede (ft)",
+      "in": "Pollice (in)",
+      "yd": "Iarda (yd)"
+    },
+    "default_volume_uom": {
+      "L": "Litro (L)",
+      "mL": "Millilitro (mL)",
+      "m3": "Metro cubo (m³)",
+      "gal": "Gallone (gal)",
+      "fl_oz": "Oncia liquida (fl oz)",
+      "ft3": "Piede cubo (ft³)"
+    },
+    "default_temperature_uom": {
+      "celsius": "Celsius (°C)",
+      "fahrenheit": "Fahrenheit (°F)"
+    },
+    "default_area_uom": {
+      "m2": "Metro quadrato (m²)",
+      "ft2": "Piede quadrato (ft²)",
+      "hectare": "Ettaro",
+      "acre": "Acro"
+    },
+    "fiscal_calendar_type": {
+      "standard": "Standard (mesi di calendario)",
+      "445_week": "4-4-5 settimane (vendita al dettaglio)",
+      "454_week": "4-5-4 settimane (vendita al dettaglio)",
+      "544_week": "5-4-4 settimane (vendita al dettaglio)"
+    },
+    "cost_method": {
+      "standard": "Costo standard",
+      "average": "Media ponderata",
+      "fifo": "Primo entrato, primo uscito (FIFO)"
+    },
+    "default_paper_size": {
+      "A4": "A4 (210 × 297 mm)",
+      "letter": "Letter (8.5 × 11 in)",
+      "legal": "Legal (8.5 × 14 in)"
+    },
+    "text_direction": {
+      "ltr": "Da sinistra a destra",
+      "rtl": "Da destra a sinistra"
+    },
+    "months": {
+      "1": "Gennaio",
+      "2": "Febbraio",
+      "3": "Marzo",
+      "4": "Aprile",
+      "5": "Maggio",
+      "6": "Giugno",
+      "7": "Luglio",
+      "8": "Agosto",
+      "9": "Settembre",
+      "10": "Ottobre",
+      "11": "Novembre",
+      "12": "Dicembre"
+    }
+  },
+  "descriptions": {
+    "decimal_separator": "Carattere tra la parte intera e la parte decimale. Es.: 1234.56 (punto) o 1234,56 (virgola).",
+    "thousands_separator": "Carattere che raggruppa le cifre per la leggibilità. Es.: 1,234 (virgola) o 1.234 (punto).",
+    "digit_grouping": "Come vengono raggruppate le cifre. Standard: 1,234,567. Indiano: 12,34,567 (lakh e crore).",
+    "quantity_precision": "Numero di cifre decimali per le quantità degli articoli (es.: 2.5 kg o 2.5000 kg).",
+    "price_precision": "Numero di cifre decimali per i prezzi unitari su ordini e fatture.",
+    "currency_precision": "Numero di cifre decimali per i totali monetari. JPY usa 0, KWD usa 3.",
+    "exchange_rate_precision": "Numero di cifre decimali per i tassi di cambio. Più alto = conversioni più precise.",
+    "percentage_precision": "Numero di cifre decimali per le percentuali come aliquote fiscali e sconti.",
+    "weight_precision": "Numero di cifre decimali per i valori di peso nell'inventario e nella produzione.",
+    "currency_symbol_position": "Dove appare il simbolo della valuta rispetto all'importo. Es.: $100 (prima) o 100€ (dopo).",
+    "currency_spacing": "Aggiungere uno spazio tra il simbolo della valuta e l'importo. Es.: $ 100 o 100 € invece di $100 o 100€.",
+    "negative_format": "Come vengono visualizzati i numeri negativi. Il formato contabile usa le parentesi: (100) invece di -100.",
+    "multi_currency_enabled": "Consentire transazioni, fatture e report in valute diverse dalla valuta di base.",
+    "rounding_method": "Come vengono arrotondati i valori calcolati. L'arrotondamento bancario (metà pari) riduce la distorsione cumulativa dell'arrotondamento.",
+    "cash_rounding_enabled": "Arrotondare i totali dei pagamenti in contanti alla denominazione fisica più vicina. Es.: la Svizzera arrotonda a 0.05 CHF.",
+    "cash_rounding_increment": "La più piccola denominazione in contanti per l'arrotondamento. Es.: 0.05 (nickel), 0.10 (dime) o 1.00 (unità intere).",
+    "date_format": "Come le date vengono visualizzate in tutto il sistema. Non influisce su come le date vengono memorizzate internamente.",
+    "time_format": "Il formato 12 ore mostra AM/PM (2:30 PM). Il formato 24 ore usa l'orario militare (14:30).",
+    "week_start_day": "Primo giorno della settimana nei calendari e nei report settimanali. Varia in base alla regione.",
+    "calendar_system": "Calendario utilizzato per la visualizzazione delle date. La memorizzazione interna usa sempre il gregoriano. L'Hijri è comune in Arabia Saudita.",
+    "measurement_system": "Sistema di unità predefinito per l'organizzazione. I singoli campi possono comunque utilizzare qualsiasi unità.",
+    "default_weight_uom": "Unità di peso predefinita preselezionata durante la creazione di nuovi articoli o materiali.",
+    "default_length_uom": "Unità di lunghezza predefinita preselezionata per le dimensioni dei nuovi articoli.",
+    "default_volume_uom": "Unità di volume predefinita preselezionata per liquidi o materiali sfusi.",
+    "default_temperature_uom": "Unità di temperatura predefinita per la catena del freddo, la sicurezza alimentare e il monitoraggio ambientale.",
+    "default_area_uom": "Unità di superficie predefinita per gli spazi di magazzino e le zone di produzione.",
+    "fiscal_year_start_month": "Mese di inizio del vostro anno fiscale. Es.: aprile per Regno Unito/India, luglio per l'Australia.",
+    "fiscal_year_start_day": "Giorno del mese di inizio del vostro anno fiscale. Es.: il Regno Unito inizia il 6 aprile.",
+    "fiscal_calendar_type": "Lo standard usa i mesi di calendario. I calendari per la vendita al dettaglio (4-4-5, 4-5-4, 5-4-4) usano periodi settimanali fissi per confronti coerenti.",
+    "cost_method": "Come vengono calcolati i costi di inventario. Media: media ponderata. Standard: costo predeterminato. FIFO: scorte più vecchie per prime.",
+    "tax_inclusive_pricing": "Quando attivato, i prezzi inseriti nel sistema includono già l'imposta. Comune nell'UE, in Australia e in Nuova Zelanda.",
+    "default_document_language": "Lingua utilizzata per i PDF, le fatture e i report generati. Inserire un codice lingua (es.: en, de, fr).",
+    "default_paper_size": "Formato carta per i PDF generati. A4 è lo standard mondiale. Letter è usato negli USA e in Canada.",
+    "text_direction": "Direzione del testo per i documenti generati. RTL è usato per arabo, ebraico, persiano e urdu."
+  },
+  "errors": {
+    "separator_conflict": "Il separatore decimale e il separatore delle migliaia non possono usare lo stesso carattere.",
+    "digit_grouping_requires_separator": "Il raggruppamento cifre richiede un separatore delle migliaia.",
+    "fiscal_day_exceeds_month": "Questo giorno non esiste nel mese selezionato.",
+    "save_failed": "Impossibile salvare le impostazioni. Riprova."
+  }
+}

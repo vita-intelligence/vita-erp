@@ -1,0 +1,245 @@
+{
+  "page": {
+    "title": "设置"
+  },
+  "tabs": {
+    "general": "常规"
+  },
+  "save": "保存更改",
+  "saving": "保存中...",
+  "saved": "设置已成功保存。",
+  "no_changes": "没有需要保存的更改。",
+  "sections": {
+    "number_formatting": "数字格式",
+    "number_formatting_description": "系统中数字的显示方式——小数点分隔符、千位分隔符、数字分组。",
+    "precision": "精度",
+    "precision_description": "系统中不同类型值所使用的小数位数。",
+    "currency_display": "货币显示",
+    "currency_display_description": "货币值的格式化方式——符号位置、间距和负数样式。",
+    "rounding": "舍入",
+    "rounding_description": "计算和现金交易的舍入规则。",
+    "date_time": "日期与时间",
+    "date_time_description": "系统中使用的日期格式、时间格式、日历系统和一周起始日。",
+    "measurement": "计量单位",
+    "measurement_description": "创建新物品和材料时默认预选的计量单位。",
+    "fiscal": "财务与税务",
+    "fiscal_description": "财政年度配置、库存成本核算方法和税务行为。",
+    "document_defaults": "文档默认值",
+    "document_defaults_description": "生成的文档和报告的语言、纸张大小和文本方向。"
+  },
+  "fields": {
+    "decimal_separator": "小数点分隔符",
+    "thousands_separator": "千位分隔符",
+    "digit_grouping": "数字分组",
+    "quantity_precision": "数量精度",
+    "price_precision": "价格精度",
+    "currency_precision": "货币精度",
+    "exchange_rate_precision": "汇率精度",
+    "percentage_precision": "百分比精度",
+    "weight_precision": "重量精度",
+    "currency_symbol_position": "货币符号位置",
+    "currency_spacing": "符号与金额之间的空格",
+    "negative_format": "负数格式",
+    "multi_currency_enabled": "多币种模式",
+    "rounding_method": "舍入方法",
+    "cash_rounding_enabled": "现金舍入",
+    "cash_rounding_increment": "现金舍入增量",
+    "date_format": "日期格式",
+    "time_format": "时间格式",
+    "week_start_day": "一周的第一天",
+    "calendar_system": "日历系统",
+    "measurement_system": "计量系统",
+    "default_weight_uom": "默认重量单位",
+    "default_length_uom": "默认长度单位",
+    "default_volume_uom": "默认体积单位",
+    "default_temperature_uom": "默认温度单位",
+    "default_area_uom": "默认面积单位",
+    "fiscal_year_start_month": "财政年度起始月",
+    "fiscal_year_start_day": "财政年度起始日",
+    "fiscal_calendar_type": "财务日历类型",
+    "cost_method": "成本核算方法",
+    "tax_inclusive_pricing": "含税定价",
+    "default_document_language": "文档语言",
+    "default_paper_size": "默认纸张大小",
+    "text_direction": "文本方向"
+  },
+  "options": {
+    "decimal_separator": {
+      "dot": "点 (1234.56)",
+      "comma": "逗号 (1234,56)"
+    },
+    "thousands_separator": {
+      "comma": "逗号 (1,234)",
+      "dot": "点 (1.234)",
+      "space": "空格 (1 234)",
+      "apostrophe": "撇号 (1'234)",
+      "none": "无 (1234)"
+    },
+    "digit_grouping": {
+      "standard": "标准 (1,234,567)",
+      "indian": "印度式 (12,34,567)",
+      "none": "不分组"
+    },
+    "currency_symbol_position": {
+      "before": "金额前 ($100)",
+      "after": "金额后 (100€)"
+    },
+    "negative_format": {
+      "minus_before": "前置负号 (-100)",
+      "minus_after": "后置负号 (100-)",
+      "parentheses": "括号 ((100))"
+    },
+    "rounding_method": {
+      "half_up": "标准（四舍五入）",
+      "half_even": "银行家舍入（四舍六入五成双）",
+      "ceiling": "始终向上舍入",
+      "floor": "始终向下舍入"
+    },
+    "cash_rounding_increment": {
+      "0_01": "0.01",
+      "0_05": "0.05",
+      "0_10": "0.10",
+      "0_25": "0.25",
+      "0_50": "0.50",
+      "1_00": "1.00"
+    },
+    "date_format": {
+      "YYYY-MM-DD": "2026-03-31 (ISO 8601)",
+      "DD/MM/YYYY": "31/03/2026",
+      "MM/DD/YYYY": "03/31/2026",
+      "DD_MM_YYYY": "31.03.2026",
+      "YYYY/MM/DD": "2026/03/31",
+      "DD-MM-YYYY": "31-03-2026"
+    },
+    "time_format": {
+      "24h": "24小时制 (14:30)",
+      "12h": "12小时制 (2:30 PM)"
+    },
+    "week_start_day": {
+      "monday": "星期一",
+      "sunday": "星期日",
+      "saturday": "星期六"
+    },
+    "calendar_system": {
+      "gregorian": "公历",
+      "hijri": "伊斯兰历（回历）",
+      "thai_buddhist": "泰国佛历",
+      "persian": "波斯历（贾拉利历）",
+      "japanese": "日本年号"
+    },
+    "measurement_system": {
+      "metric": "公制",
+      "imperial": "英制"
+    },
+    "default_weight_uom": {
+      "kg": "千克 (kg)",
+      "g": "克 (g)",
+      "mg": "毫克 (mg)",
+      "t": "公吨 (t)",
+      "lb": "磅 (lb)",
+      "oz": "盎司 (oz)"
+    },
+    "default_length_uom": {
+      "m": "米 (m)",
+      "cm": "厘米 (cm)",
+      "mm": "毫米 (mm)",
+      "ft": "英尺 (ft)",
+      "in": "英寸 (in)",
+      "yd": "码 (yd)"
+    },
+    "default_volume_uom": {
+      "L": "升 (L)",
+      "mL": "毫升 (mL)",
+      "m3": "立方米 (m³)",
+      "gal": "加仑 (gal)",
+      "fl_oz": "液量盎司 (fl oz)",
+      "ft3": "立方英尺 (ft³)"
+    },
+    "default_temperature_uom": {
+      "celsius": "摄氏度 (°C)",
+      "fahrenheit": "华氏度 (°F)"
+    },
+    "default_area_uom": {
+      "m2": "平方米 (m²)",
+      "ft2": "平方英尺 (ft²)",
+      "hectare": "公顷",
+      "acre": "英亩"
+    },
+    "fiscal_calendar_type": {
+      "standard": "标准（日历月）",
+      "445_week": "4-4-5周（零售业）",
+      "454_week": "4-5-4周（零售业）",
+      "544_week": "5-4-4周（零售业）"
+    },
+    "cost_method": {
+      "standard": "标准成本法",
+      "average": "加权平均法",
+      "fifo": "先进先出法 (FIFO)"
+    },
+    "default_paper_size": {
+      "A4": "A4 (210 × 297 mm)",
+      "letter": "Letter (8.5 × 11 in)",
+      "legal": "Legal (8.5 × 14 in)"
+    },
+    "text_direction": {
+      "ltr": "从左到右",
+      "rtl": "从右到左"
+    },
+    "months": {
+      "1": "一月",
+      "2": "二月",
+      "3": "三月",
+      "4": "四月",
+      "5": "五月",
+      "6": "六月",
+      "7": "七月",
+      "8": "八月",
+      "9": "九月",
+      "10": "十月",
+      "11": "十一月",
+      "12": "十二月"
+    }
+  },
+  "descriptions": {
+    "decimal_separator": "整数部分和小数部分之间的字符。例如：1234.56（点）或 1234,56（逗号）。",
+    "thousands_separator": "为提高可读性而对数字进行分组的字符。例如：1,234（逗号）或 1.234（点）。",
+    "digit_grouping": "数字的分组方式。标准：1,234,567。印度式：12,34,567（拉克和千万）。",
+    "quantity_precision": "物品数量的小数位数（例如：2.5 kg 或 2.5000 kg）。",
+    "price_precision": "订单和发票中单价的小数位数。",
+    "currency_precision": "货币总额的小数位数。JPY 使用 0 位，KWD 使用 3 位。",
+    "exchange_rate_precision": "货币汇率的小数位数。越高 = 转换越精确。",
+    "percentage_precision": "税率和折扣等百分比的小数位数。",
+    "weight_precision": "库存和生产中重量值的小数位数。",
+    "currency_symbol_position": "货币符号相对于金额的显示位置。例如：$100（前）或 100€（后）。",
+    "currency_spacing": "在货币符号和金额之间添加空格。例如：$ 100 或 100 € 而不是 $100 或 100€。",
+    "negative_format": "负数的显示方式。会计格式使用括号：(100) 而不是 -100。",
+    "multi_currency_enabled": "允许使用基础货币以外的货币进行交易、开具发票和生成报告。",
+    "rounding_method": "计算值的舍入方式。银行家舍入（四舍六入五成双）可减少累积舍入偏差。",
+    "cash_rounding_enabled": "将现金支付总额舍入到最接近的实物面额。例如：瑞士舍入到 0.05 CHF。",
+    "cash_rounding_increment": "舍入到的最小现金面额。例如：0.05（五分硬币）、0.10（一角硬币）或 1.00（整数单位）。",
+    "date_format": "系统中日期的显示方式。不影响日期的内部存储方式。",
+    "time_format": "12 小时制显示 AM/PM（2:30 PM）。24 小时制使用军用时间（14:30）。",
+    "week_start_day": "日历和周报中一周的第一天。因地区而异。",
+    "calendar_system": "用于日期显示的日历。内部存储始终使用公历。伊斯兰历在沙特阿拉伯很常见。",
+    "measurement_system": "组织的默认单位制。各个字段仍可使用任何单位。",
+    "default_weight_uom": "创建新物品或材料时默认预选的重量单位。",
+    "default_length_uom": "新物品尺寸默认预选的长度单位。",
+    "default_volume_uom": "液体或散装材料默认预选的体积单位。",
+    "default_temperature_uom": "冷链、食品安全和环境监测的默认温度单位。",
+    "default_area_uom": "仓库面积和生产区域的默认面积单位。",
+    "fiscal_year_start_month": "财政年度开始的月份。例如：英国/印度为四月，澳大利亚为七月。",
+    "fiscal_year_start_day": "财政年度开始的日期。例如：英国从4月6日开始。",
+    "fiscal_calendar_type": "标准使用日历月。零售日历（4-4-5、4-5-4、5-4-4）使用固定周期进行一致的比较。",
+    "cost_method": "库存成本的计算方式。平均：加权平均。标准：预定成本。FIFO：最旧的库存优先。",
+    "tax_inclusive_pricing": "启用后，系统中输入的价格已包含税费。在欧盟、澳大利亚和新西兰很常见。",
+    "default_document_language": "生成的 PDF、发票和报告所使用的语言。输入区域代码（例如：en、de、fr）。",
+    "default_paper_size": "生成的 PDF 的纸张大小。A4 是全球标准。Letter 在美国和加拿大使用。",
+    "text_direction": "生成的文档的文本方向。RTL 用于阿拉伯语、希伯来语、波斯语和乌尔都语。"
+  },
+  "errors": {
+    "separator_conflict": "小数点分隔符和千位分隔符不能使用相同的字符。",
+    "digit_grouping_requires_separator": "数字分组需要千位分隔符。",
+    "fiscal_day_exceeds_month": "所选月份中不存在该日期。",
+    "save_failed": "保存设置失败。请重试。"
+  }
+}

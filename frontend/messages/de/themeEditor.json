@@ -555,6 +555,25 @@
       "label": "Schalter",
       "description": "Spur, Daumen und Beschriftungsabstand der Schalter",
       "allControls": "Steuert Spurgröße, Daumengröße, Randradius, Beschriftungsabstand und Animation der Schalter."
+    },
+    "toast": {
+      "label": "Toast",
+      "description": "Platzierung, Form, Abstände und Typografie von Toast-Benachrichtigungen",
+      "allControls": "Steuert Platzierung, Form, Rahmen, Abstände, Typografie und Schaltflächen von Toast-Benachrichtigungen.",
+      "placement": "Platzierung",
+      "position": "Position auf dem Bildschirm",
+      "stackGap": "Stapelabstand",
+      "contentGap": "Inhaltsabstand",
+      "minWidth": "Mindestbreite",
+      "maxWidth": "Maximalbreite",
+      "titleSize": "Titelgröße",
+      "descriptionSize": "Beschreibungsgröße",
+      "descriptionOpacity": "Beschreibung Deckkraft",
+      "icon": "Indikator-Symbol",
+      "actionButton": "Aktionsschaltfläche",
+      "actionFontSize": "Schriftgröße",
+      "closeButton": "Schließen-Schaltfläche",
+      "closeOpacity": "Deckkraft"
     }
   },
   "preview": {

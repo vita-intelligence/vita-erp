@@ -1,0 +1,245 @@
+{
+  "page": {
+    "title": "설정"
+  },
+  "tabs": {
+    "general": "일반"
+  },
+  "save": "변경 사항 저장",
+  "saving": "저장 중...",
+  "saved": "설정이 성공적으로 저장되었습니다.",
+  "no_changes": "저장할 변경 사항이 없습니다.",
+  "sections": {
+    "number_formatting": "숫자 서식",
+    "number_formatting_description": "시스템 전체에서 숫자가 표시되는 방식 — 소수점 기호, 천 단위 구분 기호, 자릿수 그룹화.",
+    "precision": "정밀도",
+    "precision_description": "시스템 전체에서 다양한 유형의 값에 사용되는 소수점 이하 자릿수.",
+    "currency_display": "통화 표시",
+    "currency_display_description": "금액이 표시되는 방식 — 기호 위치, 간격, 음수 스타일.",
+    "rounding": "반올림",
+    "rounding_description": "계산 및 현금 거래에 대한 반올림 규칙.",
+    "date_time": "날짜 및 시간",
+    "date_time_description": "시스템 전체에서 사용되는 날짜 형식, 시간 형식, 달력 체계, 주 시작 요일.",
+    "measurement": "측정 단위",
+    "measurement_description": "새 품목 및 자재 생성 시 기본으로 선택되는 측정 단위.",
+    "fiscal": "회계 및 재무",
+    "fiscal_description": "회계 연도 설정, 재고 원가 계산 방법, 세금 동작.",
+    "document_defaults": "문서 기본값",
+    "document_defaults_description": "생성되는 문서 및 보고서의 언어, 용지 크기, 텍스트 방향."
+  },
+  "fields": {
+    "decimal_separator": "소수점 기호",
+    "thousands_separator": "천 단위 구분 기호",
+    "digit_grouping": "자릿수 그룹화",
+    "quantity_precision": "수량 정밀도",
+    "price_precision": "가격 정밀도",
+    "currency_precision": "통화 정밀도",
+    "exchange_rate_precision": "환율 정밀도",
+    "percentage_precision": "백분율 정밀도",
+    "weight_precision": "중량 정밀도",
+    "currency_symbol_position": "통화 기호 위치",
+    "currency_spacing": "기호와 금액 사이의 공백",
+    "negative_format": "음수 표시 형식",
+    "multi_currency_enabled": "다중 통화 모드",
+    "rounding_method": "반올림 방법",
+    "cash_rounding_enabled": "현금 반올림",
+    "cash_rounding_increment": "현금 반올림 단위",
+    "date_format": "날짜 형식",
+    "time_format": "시간 형식",
+    "week_start_day": "주 시작 요일",
+    "calendar_system": "달력 체계",
+    "measurement_system": "측정 단위 체계",
+    "default_weight_uom": "기본 중량 단위",
+    "default_length_uom": "기본 길이 단위",
+    "default_volume_uom": "기본 부피 단위",
+    "default_temperature_uom": "기본 온도 단위",
+    "default_area_uom": "기본 면적 단위",
+    "fiscal_year_start_month": "회계 연도 시작 월",
+    "fiscal_year_start_day": "회계 연도 시작 일",
+    "fiscal_calendar_type": "회계 달력 유형",
+    "cost_method": "원가 계산 방법",
+    "tax_inclusive_pricing": "세금 포함 가격",
+    "default_document_language": "문서 언어",
+    "default_paper_size": "기본 용지 크기",
+    "text_direction": "텍스트 방향"
+  },
+  "options": {
+    "decimal_separator": {
+      "dot": "점 (1234.56)",
+      "comma": "쉼표 (1234,56)"
+    },
+    "thousands_separator": {
+      "comma": "쉼표 (1,234)",
+      "dot": "점 (1.234)",
+      "space": "공백 (1 234)",
+      "apostrophe": "아포스트로피 (1'234)",
+      "none": "없음 (1234)"
+    },
+    "digit_grouping": {
+      "standard": "표준 (1,234,567)",
+      "indian": "인도식 (12,34,567)",
+      "none": "그룹화 없음"
+    },
+    "currency_symbol_position": {
+      "before": "금액 앞 ($100)",
+      "after": "금액 뒤 (100€)"
+    },
+    "negative_format": {
+      "minus_before": "앞에 마이너스 (-100)",
+      "minus_after": "뒤에 마이너스 (100-)",
+      "parentheses": "괄호 ((100))"
+    },
+    "rounding_method": {
+      "half_up": "표준 (반올림)",
+      "half_even": "은행 반올림 (짝수 반올림)",
+      "ceiling": "항상 올림",
+      "floor": "항상 내림"
+    },
+    "cash_rounding_increment": {
+      "0_01": "0.01",
+      "0_05": "0.05",
+      "0_10": "0.10",
+      "0_25": "0.25",
+      "0_50": "0.50",
+      "1_00": "1.00"
+    },
+    "date_format": {
+      "YYYY-MM-DD": "2026-03-31 (ISO 8601)",
+      "DD/MM/YYYY": "31/03/2026",
+      "MM/DD/YYYY": "03/31/2026",
+      "DD_MM_YYYY": "31.03.2026",
+      "YYYY/MM/DD": "2026/03/31",
+      "DD-MM-YYYY": "31-03-2026"
+    },
+    "time_format": {
+      "24h": "24시간제 (14:30)",
+      "12h": "12시간제 (2:30 PM)"
+    },
+    "week_start_day": {
+      "monday": "월요일",
+      "sunday": "일요일",
+      "saturday": "토요일"
+    },
+    "calendar_system": {
+      "gregorian": "그레고리력",
+      "hijri": "히지라력 (이슬람력)",
+      "thai_buddhist": "태국 불력",
+      "persian": "페르시아력 (잘랄리력)",
+      "japanese": "일본 연호"
+    },
+    "measurement_system": {
+      "metric": "미터법",
+      "imperial": "야드파운드법"
+    },
+    "default_weight_uom": {
+      "kg": "킬로그램 (kg)",
+      "g": "그램 (g)",
+      "mg": "밀리그램 (mg)",
+      "t": "미터톤 (t)",
+      "lb": "파운드 (lb)",
+      "oz": "온스 (oz)"
+    },
+    "default_length_uom": {
+      "m": "미터 (m)",
+      "cm": "센티미터 (cm)",
+      "mm": "밀리미터 (mm)",
+      "ft": "피트 (ft)",
+      "in": "인치 (in)",
+      "yd": "야드 (yd)"
+    },
+    "default_volume_uom": {
+      "L": "리터 (L)",
+      "mL": "밀리리터 (mL)",
+      "m3": "세제곱미터 (m³)",
+      "gal": "갤런 (gal)",
+      "fl_oz": "액량 온스 (fl oz)",
+      "ft3": "세제곱피트 (ft³)"
+    },
+    "default_temperature_uom": {
+      "celsius": "섭씨 (°C)",
+      "fahrenheit": "화씨 (°F)"
+    },
+    "default_area_uom": {
+      "m2": "제곱미터 (m²)",
+      "ft2": "제곱피트 (ft²)",
+      "hectare": "헥타르",
+      "acre": "에이커"
+    },
+    "fiscal_calendar_type": {
+      "standard": "표준 (역월)",
+      "445_week": "4-4-5주 (소매업)",
+      "454_week": "4-5-4주 (소매업)",
+      "544_week": "5-4-4주 (소매업)"
+    },
+    "cost_method": {
+      "standard": "표준 원가 계산",
+      "average": "가중 평균법",
+      "fifo": "선입선출법 (FIFO)"
+    },
+    "default_paper_size": {
+      "A4": "A4 (210 × 297 mm)",
+      "letter": "레터 (8.5 × 11 in)",
+      "legal": "리걸 (8.5 × 14 in)"
+    },
+    "text_direction": {
+      "ltr": "왼쪽에서 오른쪽",
+      "rtl": "오른쪽에서 왼쪽"
+    },
+    "months": {
+      "1": "1월",
+      "2": "2월",
+      "3": "3월",
+      "4": "4월",
+      "5": "5월",
+      "6": "6월",
+      "7": "7월",
+      "8": "8월",
+      "9": "9월",
+      "10": "10월",
+      "11": "11월",
+      "12": "12월"
+    }
+  },
+  "descriptions": {
+    "decimal_separator": "정수부와 소수부 사이의 문자. 예: 1234.56 (점) 또는 1234,56 (쉼표).",
+    "thousands_separator": "가독성을 위해 자릿수를 그룹화하는 문자. 예: 1,234 (쉼표) 또는 1.234 (점).",
+    "digit_grouping": "자릿수 그룹화 방식. 표준: 1,234,567. 인도식: 12,34,567 (라크 및 크로르).",
+    "quantity_precision": "품목 수량의 소수점 이하 자릿수 (예: 2.5 kg 또는 2.5000 kg).",
+    "price_precision": "주문서 및 송장의 단가에 대한 소수점 이하 자릿수.",
+    "currency_precision": "금액 합계의 소수점 이하 자릿수. JPY는 0, KWD는 3을 사용합니다.",
+    "exchange_rate_precision": "환율의 소수점 이하 자릿수. 높을수록 더 정확한 환산이 가능합니다.",
+    "percentage_precision": "세율 및 할인율 등 백분율의 소수점 이하 자릿수.",
+    "weight_precision": "재고 및 생산에서 중량 값의 소수점 이하 자릿수.",
+    "currency_symbol_position": "금액에 대한 통화 기호의 표시 위치. 예: $100 (앞) 또는 100€ (뒤).",
+    "currency_spacing": "통화 기호와 금액 사이에 공백을 추가합니다. 예: $100이나 100€ 대신 $ 100이나 100 €.",
+    "negative_format": "음수 표시 방식. 회계 형식에서는 -100 대신 괄호를 사용: (100).",
+    "multi_currency_enabled": "기본 통화 외의 통화로 거래, 송장, 보고서를 사용할 수 있습니다.",
+    "rounding_method": "계산된 값의 반올림 방법. 은행 반올림(짝수 반올림)은 누적 반올림 오차를 줄입니다.",
+    "cash_rounding_enabled": "현금 결제 합계를 가장 가까운 물리적 화폐 단위로 반올림합니다. 예: 스위스에서는 0.05 CHF로 반올림합니다.",
+    "cash_rounding_increment": "반올림할 최소 현금 단위. 예: 0.05 (5센트 동전), 0.10 (10센트 동전), 또는 1.00 (정수 단위).",
+    "date_format": "시스템 전체에서 날짜가 표시되는 방식. 내부적으로 날짜가 저장되는 방식에는 영향을 미치지 않습니다.",
+    "time_format": "12시간제는 AM/PM을 표시합니다 (2:30 PM). 24시간제는 군용 시간을 사용합니다 (14:30).",
+    "week_start_day": "달력 및 주간 보고서에서 주의 첫 번째 요일. 지역에 따라 다릅니다.",
+    "calendar_system": "날짜 표시에 사용되는 달력. 내부 저장은 항상 그레고리력을 사용합니다. 히지라력은 사우디아라비아에서 일반적입니다.",
+    "measurement_system": "조직의 기본 단위 체계. 개별 필드에서는 여전히 모든 단위를 사용할 수 있습니다.",
+    "default_weight_uom": "새 품목 또는 자재 생성 시 기본으로 선택되는 중량 단위.",
+    "default_length_uom": "새 품목의 치수에 기본으로 선택되는 길이 단위.",
+    "default_volume_uom": "액체 또는 벌크 자재에 기본으로 선택되는 부피 단위.",
+    "default_temperature_uom": "콜드체인, 식품 안전, 환경 모니터링을 위한 기본 온도 단위.",
+    "default_area_uom": "창고 바닥 면적 및 생산 구역을 위한 기본 면적 단위.",
+    "fiscal_year_start_month": "회계 연도가 시작되는 월. 예: 영국/인도는 4월, 호주는 7월.",
+    "fiscal_year_start_day": "회계 연도가 시작되는 일. 예: 영국은 4월 6일 시작.",
+    "fiscal_calendar_type": "표준은 역월을 사용합니다. 소매 달력(4-4-5, 4-5-4, 5-4-4)은 일관된 비교를 위해 고정 주 기간을 사용합니다.",
+    "cost_method": "재고 원가 계산 방법. 평균: 가중 평균. 표준: 미리 정해진 원가. FIFO: 가장 오래된 재고부터.",
+    "tax_inclusive_pricing": "활성화하면 시스템에 입력된 가격에 이미 세금이 포함됩니다. EU, 호주, 뉴질랜드에서 일반적입니다.",
+    "default_document_language": "생성되는 PDF, 송장, 보고서에 사용되는 언어. 로케일 코드를 입력하세요 (예: en, de, fr).",
+    "default_paper_size": "생성되는 PDF의 용지 크기. A4는 전 세계 표준입니다. 레터는 미국과 캐나다에서 사용됩니다.",
+    "text_direction": "생성되는 문서의 텍스트 방향. RTL은 아랍어, 히브리어, 페르시아어, 우르두어에 사용됩니다."
+  },
+  "errors": {
+    "separator_conflict": "소수점 기호와 천 단위 구분 기호에 같은 문자를 사용할 수 없습니다.",
+    "digit_grouping_requires_separator": "자릿수 그룹화에는 천 단위 구분 기호가 필요합니다.",
+    "fiscal_day_exceeds_month": "선택한 월에는 이 날이 존재하지 않습니다.",
+    "save_failed": "설정 저장에 실패했습니다. 다시 시도해 주세요."
+  }
+}

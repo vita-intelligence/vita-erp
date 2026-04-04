@@ -555,6 +555,25 @@
       "label": "スイッチ",
       "description": "トグルスイッチのトラック、サム、ラベル間隔",
       "allControls": "トグルスイッチのトラックサイズ、サムサイズ、ボーダー半径、ラベル間隔、アニメーションを制御します。"
+    },
+    "toast": {
+      "label": "トースト",
+      "description": "トースト通知の配置、形状、間隔、タイポグラフィ",
+      "allControls": "トースト通知の配置、形状、ボーダー、間隔、タイポグラフィ、ボタンを制御します。",
+      "placement": "配置",
+      "position": "画面上の位置",
+      "stackGap": "スタック間隔",
+      "contentGap": "コンテンツ間隔",
+      "minWidth": "最小幅",
+      "maxWidth": "最大幅",
+      "titleSize": "タイトルサイズ",
+      "descriptionSize": "説明サイズ",
+      "descriptionOpacity": "説明の不透明度",
+      "icon": "インジケーターアイコン",
+      "actionButton": "アクションボタン",
+      "actionFontSize": "フォントサイズ",
+      "closeButton": "閉じるボタン",
+      "closeOpacity": "不透明度"
     }
   },
   "preview": {

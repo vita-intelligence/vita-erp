@@ -46,6 +46,8 @@ import {
   type HeadingProps as AriaHeadingProps,
   type DateValue,
 } from "react-aria-components";
+import { useCursorTrack } from "@/hooks/useCursorTrack";
+import { useThemeStore } from "@/stores/theme";
 
 // ── Calendar Root ───────────────────────────────────────────────────────────
 
@@ -68,6 +70,35 @@ function CalendarRootInner<T extends DateValue = DateValue>(
   }: CalendarRootProps<T>,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
+  const trackIntensity = useThemeStore((s) =>
+    parseFloat(s.tokens.calendarCursorTrack ?? "0"),
+  );
+  const trackRestore = useThemeStore((s) =>
+    parseFloat(s.tokens.calendarCursorTrackRestore ?? "300"),
+  );
+  const { onMouseMove: trackMove, onMouseLeave: trackLeave } = useCursorTrack(
+    "calendar",
+    trackIntensity,
+    trackRestore,
+  );
+
+  const mergedMouseMove: React.MouseEventHandler | undefined =
+    trackIntensity > 0 || onMouseMove
+      ? (e) => {
+          if (trackIntensity > 0) trackMove(e as React.MouseEvent<HTMLElement>);
+          onMouseMove?.(e);
+        }
+      : undefined;
+
+  const mergedMouseLeave: React.MouseEventHandler | undefined =
+    trackIntensity > 0 || onMouseLeave
+      ? (e) => {
+          if (trackIntensity > 0)
+            trackLeave(e as React.MouseEvent<HTMLElement>);
+          onMouseLeave?.(e);
+        }
+      : undefined;
+
   return (
     <AriaCalendar<T>
       {...ariaProps}
@@ -96,8 +127,8 @@ function CalendarRootInner<T extends DateValue = DateValue>(
           " rotateZ(var(--vita-calendar-rotate-z, 0deg))",
         ...style,
       }}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
+      onMouseMove={mergedMouseMove}
+      onMouseLeave={mergedMouseLeave}
     >
       {children}
     </AriaCalendar>

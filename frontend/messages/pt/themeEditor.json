@@ -555,6 +555,25 @@
       "label": "Interruptor",
       "description": "Trilha, controle deslizante e espaçamento do rótulo dos interruptores",
       "allControls": "Controla o tamanho da trilha, tamanho do controle, raio da borda, espaçamento do rótulo e animação dos interruptores."
+    },
+    "toast": {
+      "label": "Toast",
+      "description": "Posicionamento, forma, espaçamento e tipografia das notificações toast",
+      "allControls": "Controla o posicionamento, forma, borda, espaçamento, tipografia e botões das notificações toast.",
+      "placement": "Posicionamento",
+      "position": "Posição na tela",
+      "stackGap": "Espaço de empilhamento",
+      "contentGap": "Espaço do conteúdo",
+      "minWidth": "Largura mínima",
+      "maxWidth": "Largura máxima",
+      "titleSize": "Tamanho do título",
+      "descriptionSize": "Tamanho da descrição",
+      "descriptionOpacity": "Opacidade da descrição",
+      "icon": "Ícone indicador",
+      "actionButton": "Botão de ação",
+      "actionFontSize": "Tamanho da fonte",
+      "closeButton": "Botão fechar",
+      "closeOpacity": "Opacidade"
     }
   },
   "preview": {

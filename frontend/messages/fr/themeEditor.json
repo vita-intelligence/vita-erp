@@ -555,6 +555,25 @@
       "label": "Interrupteur",
       "description": "Piste, curseur et espacement du libellé des interrupteurs",
       "allControls": "Contrôle la taille de la piste, la taille du curseur, le rayon de bordure, l'espacement du libellé et l'animation des interrupteurs."
+    },
+    "toast": {
+      "label": "Toast",
+      "description": "Placement, forme, espacement et typographie des notifications toast",
+      "allControls": "Contrôle le placement, la forme, la bordure, l'espacement, la typographie et les boutons des notifications toast.",
+      "placement": "Placement",
+      "position": "Position à l'écran",
+      "stackGap": "Espacement de pile",
+      "contentGap": "Espacement du contenu",
+      "minWidth": "Largeur minimale",
+      "maxWidth": "Largeur maximale",
+      "titleSize": "Taille du titre",
+      "descriptionSize": "Taille de description",
+      "descriptionOpacity": "Opacité de description",
+      "icon": "Icône indicateur",
+      "actionButton": "Bouton d'action",
+      "actionFontSize": "Taille de police",
+      "closeButton": "Bouton fermer",
+      "closeOpacity": "Opacité"
     }
   },
   "preview": {

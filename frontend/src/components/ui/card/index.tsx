@@ -23,6 +23,9 @@ import {
   type ReactNode,
 } from "react";
 
+import { useCursorTrack } from "@/hooks/useCursorTrack";
+import { useThemeStore } from "@/stores/theme";
+
 // ── Shared sub-component type ───────────────────────────────────────────────
 
 type SlotProps = HTMLAttributes<HTMLDivElement> & {
@@ -39,9 +42,23 @@ function CardRootInner(
   { className, style, children, ...htmlProps }: CardRootProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
+  const trackIntensity = useThemeStore((s) =>
+    parseFloat(s.tokens.cardCursorTrack ?? "0"),
+  );
+  const trackRestore = useThemeStore((s) =>
+    parseFloat(s.tokens.cardCursorTrackRestore ?? "300"),
+  );
+  const { onMouseMove, onMouseLeave } = useCursorTrack(
+    "card",
+    trackIntensity,
+    trackRestore,
+  );
+  const trackProps = trackIntensity > 0 ? { onMouseMove, onMouseLeave } : {};
+
   return (
     <div
       {...htmlProps}
+      {...trackProps}
       ref={ref}
       data-slot="card"
       className={["vita-card", className].filter(Boolean).join(" ")}

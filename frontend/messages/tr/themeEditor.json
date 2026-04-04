@@ -555,6 +555,25 @@
       "label": "Anahtar",
       "description": "Geçiş anahtarlarının iz, başlık ve etiket aralığı",
       "allControls": "Geçiş anahtarlarının iz boyutu, başlık boyutu, kenar yarıçapı, etiket aralığı ve animasyonunu kontrol eder."
+    },
+    "toast": {
+      "label": "Bildirim",
+      "description": "Bildirim kutularının yerleşimi, şekli, boşlukları ve tipografisi",
+      "allControls": "Bildirim kutularının yerleşimini, şeklini, kenarlığını, boşluklarını, tipografisini ve düğmelerini kontrol eder.",
+      "placement": "Yerleşim",
+      "position": "Ekrandaki konum",
+      "stackGap": "Yığın boşluğu",
+      "contentGap": "İçerik boşluğu",
+      "minWidth": "Minimum genişlik",
+      "maxWidth": "Maksimum genişlik",
+      "titleSize": "Başlık boyutu",
+      "descriptionSize": "Açıklama boyutu",
+      "descriptionOpacity": "Açıklama opaklığı",
+      "icon": "Gösterge simgesi",
+      "actionButton": "Eylem düğmesi",
+      "actionFontSize": "Yazı boyutu",
+      "closeButton": "Kapat düğmesi",
+      "closeOpacity": "Opaklık"
     }
   },
   "preview": {

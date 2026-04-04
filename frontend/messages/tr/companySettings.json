@@ -1,0 +1,245 @@
+{
+  "page": {
+    "title": "Ayarlar"
+  },
+  "tabs": {
+    "general": "Genel"
+  },
+  "save": "Değişiklikleri Kaydet",
+  "saving": "Kaydediliyor...",
+  "saved": "Ayarlar başarıyla kaydedildi.",
+  "no_changes": "Kaydedilecek değişiklik yok.",
+  "sections": {
+    "number_formatting": "Sayı Biçimlendirme",
+    "number_formatting_description": "Sayıların sistem genelinde nasıl görüntülendiği — ondalık ve binlik ayırıcılar, basamak gruplama.",
+    "precision": "Hassasiyet",
+    "precision_description": "Sistem genelinde farklı değer türleri için kullanılan ondalık basamak sayısı.",
+    "currency_display": "Para Birimi Gösterimi",
+    "currency_display_description": "Para değerlerinin nasıl biçimlendirildiği — sembol konumu, boşluk ve negatif sayı stili.",
+    "rounding": "Yuvarlama",
+    "rounding_description": "Hesaplamalar ve nakit işlemler için yuvarlama kuralları.",
+    "date_time": "Tarih ve Saat",
+    "date_time_description": "Sistem genelinde kullanılan tarih biçimi, saat biçimi, takvim sistemi ve hafta başlangıç günü.",
+    "measurement": "Ölçü Birimleri",
+    "measurement_description": "Yeni öğeler ve malzemeler oluşturulurken varsayılan olarak seçilen ölçü birimleri.",
+    "fiscal": "Mali ve Finansal",
+    "fiscal_description": "Mali yıl yapılandırması, envanter maliyetlendirme yöntemi ve vergi davranışı.",
+    "document_defaults": "Belge Varsayılanları",
+    "document_defaults_description": "Oluşturulan belgeler ve raporlar için dil, kağıt boyutu ve metin yönü."
+  },
+  "fields": {
+    "decimal_separator": "Ondalık Ayırıcı",
+    "thousands_separator": "Binlik Ayırıcı",
+    "digit_grouping": "Basamak Gruplama",
+    "quantity_precision": "Miktar Hassasiyeti",
+    "price_precision": "Fiyat Hassasiyeti",
+    "currency_precision": "Para Birimi Hassasiyeti",
+    "exchange_rate_precision": "Döviz Kuru Hassasiyeti",
+    "percentage_precision": "Yüzde Hassasiyeti",
+    "weight_precision": "Ağırlık Hassasiyeti",
+    "currency_symbol_position": "Para Birimi Sembol Konumu",
+    "currency_spacing": "Sembol ile Tutar Arasındaki Boşluk",
+    "negative_format": "Negatif Sayı Biçimi",
+    "multi_currency_enabled": "Çoklu Para Birimi Modu",
+    "rounding_method": "Yuvarlama Yöntemi",
+    "cash_rounding_enabled": "Nakit Yuvarlama",
+    "cash_rounding_increment": "Nakit Yuvarlama Artışı",
+    "date_format": "Tarih Biçimi",
+    "time_format": "Saat Biçimi",
+    "week_start_day": "Haftanın İlk Günü",
+    "calendar_system": "Takvim Sistemi",
+    "measurement_system": "Ölçü Sistemi",
+    "default_weight_uom": "Varsayılan Ağırlık Birimi",
+    "default_length_uom": "Varsayılan Uzunluk Birimi",
+    "default_volume_uom": "Varsayılan Hacim Birimi",
+    "default_temperature_uom": "Varsayılan Sıcaklık Birimi",
+    "default_area_uom": "Varsayılan Alan Birimi",
+    "fiscal_year_start_month": "Mali Yıl Başlangıç Ayı",
+    "fiscal_year_start_day": "Mali Yıl Başlangıç Günü",
+    "fiscal_calendar_type": "Mali Takvim Türü",
+    "cost_method": "Maliyetlendirme Yöntemi",
+    "tax_inclusive_pricing": "Vergi Dahil Fiyatlandırma",
+    "default_document_language": "Belge Dili",
+    "default_paper_size": "Varsayılan Kağıt Boyutu",
+    "text_direction": "Metin Yönü"
+  },
+  "options": {
+    "decimal_separator": {
+      "dot": "Nokta (1234.56)",
+      "comma": "Virgül (1234,56)"
+    },
+    "thousands_separator": {
+      "comma": "Virgül (1,234)",
+      "dot": "Nokta (1.234)",
+      "space": "Boşluk (1 234)",
+      "apostrophe": "Kesme işareti (1'234)",
+      "none": "Yok (1234)"
+    },
+    "digit_grouping": {
+      "standard": "Standart (1,234,567)",
+      "indian": "Hint (12,34,567)",
+      "none": "Gruplama yok"
+    },
+    "currency_symbol_position": {
+      "before": "Tutardan önce ($100)",
+      "after": "Tutardan sonra (100€)"
+    },
+    "negative_format": {
+      "minus_before": "Önce eksi (-100)",
+      "minus_after": "Sonra eksi (100-)",
+      "parentheses": "Parantez ((100))"
+    },
+    "rounding_method": {
+      "half_up": "Standart (yarıyı yukarı)",
+      "half_even": "Bankacı yuvarlaması (yarıyı çifte)",
+      "ceiling": "Her zaman yukarı yuvarla",
+      "floor": "Her zaman aşağı yuvarla"
+    },
+    "cash_rounding_increment": {
+      "0_01": "0.01",
+      "0_05": "0.05",
+      "0_10": "0.10",
+      "0_25": "0.25",
+      "0_50": "0.50",
+      "1_00": "1.00"
+    },
+    "date_format": {
+      "YYYY-MM-DD": "2026-03-31 (ISO 8601)",
+      "DD/MM/YYYY": "31/03/2026",
+      "MM/DD/YYYY": "03/31/2026",
+      "DD_MM_YYYY": "31.03.2026",
+      "YYYY/MM/DD": "2026/03/31",
+      "DD-MM-YYYY": "31-03-2026"
+    },
+    "time_format": {
+      "24h": "24 saat (14:30)",
+      "12h": "12 saat (2:30 PM)"
+    },
+    "week_start_day": {
+      "monday": "Pazartesi",
+      "sunday": "Pazar",
+      "saturday": "Cumartesi"
+    },
+    "calendar_system": {
+      "gregorian": "Miladi",
+      "hijri": "Hicri (İslami)",
+      "thai_buddhist": "Tay Budist",
+      "persian": "Farsça (Celali)",
+      "japanese": "Japon İmparatorluk"
+    },
+    "measurement_system": {
+      "metric": "Metrik",
+      "imperial": "İngiliz (Imperial)"
+    },
+    "default_weight_uom": {
+      "kg": "Kilogram (kg)",
+      "g": "Gram (g)",
+      "mg": "Miligram (mg)",
+      "t": "Metrik ton (t)",
+      "lb": "Libre (lb)",
+      "oz": "Ons (oz)"
+    },
+    "default_length_uom": {
+      "m": "Metre (m)",
+      "cm": "Santimetre (cm)",
+      "mm": "Milimetre (mm)",
+      "ft": "Fit (ft)",
+      "in": "İnç (in)",
+      "yd": "Yarda (yd)"
+    },
+    "default_volume_uom": {
+      "L": "Litre (L)",
+      "mL": "Mililitre (mL)",
+      "m3": "Metreküp (m³)",
+      "gal": "Galon (gal)",
+      "fl_oz": "Sıvı ons (fl oz)",
+      "ft3": "Fit küp (ft³)"
+    },
+    "default_temperature_uom": {
+      "celsius": "Santigrat (°C)",
+      "fahrenheit": "Fahrenhayt (°F)"
+    },
+    "default_area_uom": {
+      "m2": "Metrekare (m²)",
+      "ft2": "Fit kare (ft²)",
+      "hectare": "Hektar",
+      "acre": "Akre"
+    },
+    "fiscal_calendar_type": {
+      "standard": "Standart (takvim ayları)",
+      "445_week": "4-4-5 hafta (perakende)",
+      "454_week": "4-5-4 hafta (perakende)",
+      "544_week": "5-4-4 hafta (perakende)"
+    },
+    "cost_method": {
+      "standard": "Standart maliyetlendirme",
+      "average": "Ağırlıklı ortalama",
+      "fifo": "İlk giren, ilk çıkar (FIFO)"
+    },
+    "default_paper_size": {
+      "A4": "A4 (210 × 297 mm)",
+      "letter": "Letter (8.5 × 11 in)",
+      "legal": "Legal (8.5 × 14 in)"
+    },
+    "text_direction": {
+      "ltr": "Soldan sağa",
+      "rtl": "Sağdan sola"
+    },
+    "months": {
+      "1": "Ocak",
+      "2": "Şubat",
+      "3": "Mart",
+      "4": "Nisan",
+      "5": "Mayıs",
+      "6": "Haziran",
+      "7": "Temmuz",
+      "8": "Ağustos",
+      "9": "Eylül",
+      "10": "Ekim",
+      "11": "Kasım",
+      "12": "Aralık"
+    }
+  },
+  "descriptions": {
+    "decimal_separator": "Tam sayı ve kesirli kısım arasındaki karakter. Örn.: 1234.56 (nokta) veya 1234,56 (virgül).",
+    "thousands_separator": "Okunabilirlik için basamakları gruplayan karakter. Örn.: 1,234 (virgül) veya 1.234 (nokta).",
+    "digit_grouping": "Basamakların nasıl gruplandığı. Standart: 1,234,567. Hint: 12,34,567 (lakh ve crore).",
+    "quantity_precision": "Öğe miktarları için ondalık basamak sayısı (örn.: 2.5 kg veya 2.5000 kg).",
+    "price_precision": "Sipariş ve faturalardaki birim fiyatlar için ondalık basamak sayısı.",
+    "currency_precision": "Para toplamları için ondalık basamak sayısı. JPY 0, KWD 3 kullanır.",
+    "exchange_rate_precision": "Döviz kurları için ondalık basamak sayısı. Daha yüksek = daha doğru dönüşümler.",
+    "percentage_precision": "Vergi oranları ve indirimler gibi yüzdeler için ondalık basamak sayısı.",
+    "weight_precision": "Envanter ve üretimdeki ağırlık değerleri için ondalık basamak sayısı.",
+    "currency_symbol_position": "Para birimi sembolünün tutara göre konumu. Örn.: $100 (önce) veya 100€ (sonra).",
+    "currency_spacing": "Para birimi sembolü ile tutar arasına boşluk ekler. Örn.: $100 veya 100€ yerine $ 100 veya 100 €.",
+    "negative_format": "Negatif sayıların nasıl gösterileceği. Muhasebe biçimi -100 yerine parantez kullanır: (100).",
+    "multi_currency_enabled": "Temel para biriminiz dışındaki para birimlerinde işlem, fatura ve rapor kullanımına izin verir.",
+    "rounding_method": "Hesaplanan değerlerin nasıl yuvarlanacağı. Bankacı yuvarlaması (yarıyı çifte) kümülatif yuvarlama sapmasını azaltır.",
+    "cash_rounding_enabled": "Nakit ödeme toplamlarını en yakın fiziksel kupüre yuvarlar. Örn.: İsviçre 0.05 CHF'ye yuvarlar.",
+    "cash_rounding_increment": "Yuvarlanacak en küçük nakit kupür. Örn.: 0.05 (beşlik), 0.10 (onluk) veya 1.00 (tam birim).",
+    "date_format": "Tarihlerin sistem genelinde nasıl görüntülendiği. Tarihlerin dahili olarak nasıl saklandığını etkilemez.",
+    "time_format": "12 saat biçimi AM/PM gösterir (2:30 PM). 24 saat biçimi askeri saat kullanır (14:30).",
+    "week_start_day": "Takvimlerde ve haftalık raporlarda haftanın ilk günü. Bölgeye göre değişir.",
+    "calendar_system": "Tarih gösterimi için kullanılan takvim. Dahili depolama her zaman Miladi takvimi kullanır. Hicri, Suudi Arabistan'da yaygındır.",
+    "measurement_system": "Kuruluşun varsayılan birim sistemi. Bireysel alanlar yine de herhangi bir birimi kullanabilir.",
+    "default_weight_uom": "Yeni öğeler veya malzemeler oluştururken varsayılan olarak seçilen ağırlık birimi.",
+    "default_length_uom": "Yeni öğelerin boyutları için varsayılan olarak seçilen uzunluk birimi.",
+    "default_volume_uom": "Sıvı veya dökme malzemeler için varsayılan olarak seçilen hacim birimi.",
+    "default_temperature_uom": "Soğuk zincir, gıda güvenliği ve çevresel izleme için varsayılan sıcaklık birimi.",
+    "default_area_uom": "Depo zemin alanı ve üretim bölgeleri için varsayılan alan birimi.",
+    "fiscal_year_start_month": "Mali yılınızın başladığı ay. Örn.: İngiltere/Hindistan için Nisan, Avustralya için Temmuz.",
+    "fiscal_year_start_day": "Mali yılınızın başladığı ayın günü. Örn.: İngiltere 6 Nisan'da başlar.",
+    "fiscal_calendar_type": "Standart, takvim aylarını kullanır. Perakende takvimleri (4-4-5, 4-5-4, 5-4-4) tutarlı karşılaştırmalar için sabit hafta dönemleri kullanır.",
+    "cost_method": "Envanter maliyetlerinin nasıl hesaplandığı. Ortalama: ağırlıklı ortalama. Standart: önceden belirlenen maliyet. FIFO: en eski stok önce.",
+    "tax_inclusive_pricing": "Etkinleştirildiğinde, sisteme girilen fiyatlar zaten vergi içerir. AB, Avustralya ve Yeni Zelanda'da yaygındır.",
+    "default_document_language": "Oluşturulan PDF'ler, faturalar ve raporlar için kullanılan dil. Bir yerel ayar kodu girin (örn.: en, de, fr).",
+    "default_paper_size": "Oluşturulan PDF'ler için kağıt boyutu. A4 dünya genelinde standarttır. Letter ABD ve Kanada'da kullanılır.",
+    "text_direction": "Oluşturulan belgeler için metin yönü. RTL, Arapça, İbranice, Farsça ve Urduca için kullanılır."
+  },
+  "errors": {
+    "separator_conflict": "Ondalık ayırıcı ve binlik ayırıcı aynı karakteri kullanamaz.",
+    "digit_grouping_requires_separator": "Basamak gruplama bir binlik ayırıcı gerektirir.",
+    "fiscal_day_exceeds_month": "Bu gün seçilen ayda mevcut değil.",
+    "save_failed": "Ayarlar kaydedilemedi. Lütfen tekrar deneyin."
+  }
+}

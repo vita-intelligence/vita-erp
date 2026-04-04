@@ -24,6 +24,9 @@ import {
   type ButtonProps as AriaButtonProps,
 } from "react-aria-components";
 
+import { useCursorTrack } from "@/hooks/useCursorTrack";
+import { useThemeStore } from "@/stores/theme";
+
 // ── Types ───────────────────────────────────────────────────────────────────
 
 export type ButtonVariant =
@@ -112,9 +115,26 @@ function ButtonRootInner(
   const variantStyle = VARIANT_STYLES[variant];
   const sizeStyle = SIZE_STYLES[size];
 
+  const trackIntensity = useThemeStore((s) =>
+    parseFloat(s.tokens.btnCursorTrack ?? "0"),
+  );
+  const trackRestore = useThemeStore((s) =>
+    parseFloat(s.tokens.btnCursorTrackRestore ?? "300"),
+  );
+  const { onMouseMove, onMouseLeave } = useCursorTrack(
+    "btn",
+    trackIntensity,
+    trackRestore,
+  );
+  const trackProps =
+    trackIntensity > 0 && !ariaProps.isDisabled
+      ? { onMouseMove, onMouseLeave }
+      : {};
+
   return (
     <AriaButton
       {...ariaProps}
+      {...trackProps}
       ref={ref}
       data-slot="button"
       data-variant={variant}

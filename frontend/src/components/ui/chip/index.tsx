@@ -14,6 +14,9 @@ import {
   type ReactNode,
 } from "react";
 
+import { useCursorTrack } from "@/hooks/useCursorTrack";
+import { useThemeStore } from "@/stores/theme";
+
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
 const IDLE_TRANSFORM = [
@@ -118,9 +121,23 @@ function ChipRootInner(
 ) {
   const colorStyle = resolveColors(color, variant);
 
+  const trackIntensity = useThemeStore((s) =>
+    parseFloat(s.tokens.badgeCursorTrack ?? "0"),
+  );
+  const trackRestore = useThemeStore((s) =>
+    parseFloat(s.tokens.badgeCursorTrackRestore ?? "300"),
+  );
+  const { onMouseMove, onMouseLeave } = useCursorTrack(
+    "badge",
+    trackIntensity,
+    trackRestore,
+  );
+  const trackProps = trackIntensity > 0 ? { onMouseMove, onMouseLeave } : {};
+
   return (
     <span
       ref={ref}
+      {...trackProps}
       data-slot="chip"
       data-color={color}
       data-variant={variant}

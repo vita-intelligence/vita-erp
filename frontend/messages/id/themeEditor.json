@@ -555,6 +555,25 @@
       "label": "Sakelar",
       "description": "Trek, jempol, dan jarak label sakelar toggle",
       "allControls": "Mengontrol ukuran trek, ukuran jempol, radius border, jarak label, dan animasi sakelar toggle."
+    },
+    "toast": {
+      "label": "Toast",
+      "description": "Penempatan, bentuk, jarak, dan tipografi notifikasi toast",
+      "allControls": "Mengontrol penempatan, bentuk, batas, jarak, tipografi, dan tombol notifikasi toast.",
+      "placement": "Penempatan",
+      "position": "Posisi di layar",
+      "stackGap": "Jarak tumpukan",
+      "contentGap": "Jarak konten",
+      "minWidth": "Lebar minimum",
+      "maxWidth": "Lebar maksimum",
+      "titleSize": "Ukuran judul",
+      "descriptionSize": "Ukuran deskripsi",
+      "descriptionOpacity": "Opasitas deskripsi",
+      "icon": "Ikon indikator",
+      "actionButton": "Tombol aksi",
+      "actionFontSize": "Ukuran font",
+      "closeButton": "Tombol tutup",
+      "closeOpacity": "Opasitas"
     }
   },
   "preview": {
