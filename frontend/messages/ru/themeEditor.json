@@ -10,11 +10,16 @@
     "livePreview": "Предпросмотр",
     "hoverToTest": "наведите и нажмите для теста",
     "clickToPreview": "нажмите для предпросмотра",
-    "moveCursor": "переместите курсор на карточку"
+    "moveCursor": "переместите курсор на карточку",
+    "searchPlaceholder": "Поиск компонентов..."
   },
   "groups": {
     "foundation": "Основа",
-    "components": "Компоненты"
+    "formControls": "Элементы форм",
+    "buttonsNav": "Кнопки и навигация",
+    "layout": "Макет",
+    "dataDisplay": "Отображение данных",
+    "feedback": "Обратная связь"
   },
   "modes": {
     "light": "светлый",
@@ -684,6 +689,18 @@
       "navDashboard": "Панель управления",
       "navOrders": "Заказы",
       "navInventory": "Инвентарь"
+    },
+    "toast": {
+      "default": "По умолчанию",
+      "success": "Успех",
+      "warning": "Предупреждение",
+      "danger": "Ошибка",
+      "info": "Информация",
+      "defaultMessage": "Стандартное уведомление",
+      "successMessage": "Операция завершена",
+      "warningMessage": "Проверьте настройки",
+      "dangerMessage": "Что-то пошло не так",
+      "infoMessage": "Доступно новое обновление"
     },
     "badges": {
       "completed": "Завершено",

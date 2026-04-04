@@ -10,11 +10,16 @@
     "livePreview": "Canli onizleme",
     "hoverToTest": "test etmek icin gezdirin ve tiklayin",
     "clickToPreview": "onizlemek icin tiklayin",
-    "moveCursor": "imleci kartin uzerine getirin"
+    "moveCursor": "imleci kartin uzerine getirin",
+    "searchPlaceholder": "Bileşen ara..."
   },
   "groups": {
     "foundation": "Temel",
-    "components": "Bilesenler"
+    "formControls": "Form Kontrolleri",
+    "buttonsNav": "Düğmeler ve Gezinme",
+    "layout": "Düzen",
+    "dataDisplay": "Veri Görünümü",
+    "feedback": "Geri Bildirim"
   },
   "modes": {
     "light": "acik",
@@ -684,6 +689,18 @@
       "navDashboard": "Pano",
       "navOrders": "Siparisler",
       "navInventory": "Envanter"
+    },
+    "toast": {
+      "default": "Varsayılan",
+      "success": "Başarılı",
+      "warning": "Uyarı",
+      "danger": "Tehlike",
+      "info": "Bilgi",
+      "defaultMessage": "Varsayılan bildirim mesajı",
+      "successMessage": "İşlem tamamlandı",
+      "warningMessage": "Ayarlarınızı kontrol edin",
+      "dangerMessage": "Bir hata oluştu",
+      "infoMessage": "Yeni güncelleme mevcut"
     },
     "badges": {
       "completed": "Tamamlandı",

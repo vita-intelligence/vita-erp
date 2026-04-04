@@ -10,11 +10,16 @@
     "livePreview": "लाइव पूर्वावलोकन",
     "hoverToTest": "परीक्षण के लिए होवर और क्लिक करें",
     "clickToPreview": "पूर्वावलोकन के लिए क्लिक करें",
-    "moveCursor": "कार्ड पर कर्सर ले जाएँ"
+    "moveCursor": "कार्ड पर कर्सर ले जाएँ",
+    "searchPlaceholder": "कॉम्पोनेंट खोजें..."
   },
   "groups": {
     "foundation": "आधार",
-    "components": "घटक"
+    "formControls": "फॉर्म नियंत्रण",
+    "buttonsNav": "बटन और नेविगेशन",
+    "layout": "लेआउट",
+    "dataDisplay": "डेटा प्रदर्शन",
+    "feedback": "प्रतिक्रिया"
   },
   "modes": {
     "light": "लाइट",
@@ -684,6 +689,18 @@
       "navDashboard": "डैशबोर्ड",
       "navOrders": "ऑर्डर",
       "navInventory": "इन्वेंट्री"
+    },
+    "toast": {
+      "default": "डिफ़ॉल्ट",
+      "success": "सफलता",
+      "warning": "चेतावनी",
+      "danger": "खतरा",
+      "info": "जानकारी",
+      "defaultMessage": "डिफ़ॉल्ट टोस्ट संदेश",
+      "successMessage": "ऑपरेशन पूरा हुआ",
+      "warningMessage": "अपनी सेटिंग्स जांचें",
+      "dangerMessage": "कुछ गलत हो गया",
+      "infoMessage": "नया अपडेट उपलब्ध"
     },
     "badges": {
       "completed": "पूर्ण",

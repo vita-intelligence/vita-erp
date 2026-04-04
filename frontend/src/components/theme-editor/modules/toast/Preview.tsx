@@ -17,37 +17,37 @@ export function Preview() {
         <button
           type="button"
           className="rounded-vita-sm border border-vita-neutral-200 px-3 py-1.5 text-xs text-vita-text-secondary transition-colors hover:bg-vita-neutral-100"
-          onClick={() => toast("Default toast message")}
+          onClick={() => toast(t("preview.toast.defaultMessage"))}
         >
-          Default
+          {t("preview.toast.default")}
         </button>
         <button
           type="button"
           className="rounded-vita-sm border border-vita-neutral-200 px-3 py-1.5 text-xs text-vita-text-secondary transition-colors hover:bg-vita-neutral-100"
-          onClick={() => toast.success("Operation completed")}
+          onClick={() => toast.success(t("preview.toast.successMessage"))}
         >
-          Success
+          {t("preview.toast.success")}
         </button>
         <button
           type="button"
           className="rounded-vita-sm border border-vita-neutral-200 px-3 py-1.5 text-xs text-vita-text-secondary transition-colors hover:bg-vita-neutral-100"
-          onClick={() => toast.warning("Check your settings")}
+          onClick={() => toast.warning(t("preview.toast.warningMessage"))}
         >
-          Warning
+          {t("preview.toast.warning")}
         </button>
         <button
           type="button"
           className="rounded-vita-sm border border-vita-neutral-200 px-3 py-1.5 text-xs text-vita-text-secondary transition-colors hover:bg-vita-neutral-100"
-          onClick={() => toast.danger("Something went wrong")}
+          onClick={() => toast.danger(t("preview.toast.dangerMessage"))}
         >
-          Danger
+          {t("preview.toast.danger")}
         </button>
         <button
           type="button"
           className="rounded-vita-sm border border-vita-neutral-200 px-3 py-1.5 text-xs text-vita-text-secondary transition-colors hover:bg-vita-neutral-100"
-          onClick={() => toast.info("New update available")}
+          onClick={() => toast.info(t("preview.toast.infoMessage"))}
         >
-          Info
+          {t("preview.toast.info")}
         </button>
       </div>
     </div>

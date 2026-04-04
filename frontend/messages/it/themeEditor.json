@@ -10,11 +10,16 @@
     "livePreview": "Anteprima dal vivo",
     "hoverToTest": "passa il cursore e clicca per testare",
     "clickToPreview": "clicca per l'anteprima",
-    "moveCursor": "muovi il cursore sulla scheda"
+    "moveCursor": "muovi il cursore sulla scheda",
+    "searchPlaceholder": "Cerca componenti..."
   },
   "groups": {
-    "foundation": "Fondamenti",
-    "components": "Componenti"
+    "foundation": "Fondamenta",
+    "formControls": "Controlli modulo",
+    "buttonsNav": "Pulsanti e navigazione",
+    "layout": "Layout",
+    "dataDisplay": "Visualizzazione dati",
+    "feedback": "Feedback"
   },
   "modes": {
     "light": "chiaro",
@@ -684,6 +689,18 @@
       "navDashboard": "Dashboard",
       "navOrders": "Ordini",
       "navInventory": "Inventario"
+    },
+    "toast": {
+      "default": "Predefinito",
+      "success": "Successo",
+      "warning": "Avviso",
+      "danger": "Pericolo",
+      "info": "Info",
+      "defaultMessage": "Messaggio toast predefinito",
+      "successMessage": "Operazione completata",
+      "warningMessage": "Controlla le impostazioni",
+      "dangerMessage": "Qualcosa è andato storto",
+      "infoMessage": "Nuovo aggiornamento disponibile"
     },
     "badges": {
       "completed": "Completato",

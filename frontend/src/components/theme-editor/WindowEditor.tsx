@@ -1,6 +1,6 @@
 "use client";
 
-import { GripHorizontal, RotateCcw, X } from "lucide-react";
+import { GripHorizontal, RotateCcw, Search, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Tooltip } from "@/components/ui/tooltip";
 import { useThemeStore } from "@/stores/theme";
 
-import { groupedModules, THEME_EDITOR_MODULES } from "./config";
+import { GROUP_I18N_KEY, groupedModules, THEME_EDITOR_MODULES } from "./config";
 import { ModeSwitcher } from "./ModeSwitcher";
 
 const GROUPS = groupedModules();
@@ -175,12 +175,26 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
   }
 
   function groupLabel(group: string): string {
+    const key = GROUP_I18N_KEY[group] ?? group.toLowerCase();
     try {
-      return t(`groups.${group.toLowerCase()}`);
+      return t(`groups.${key}`);
     } catch {
       return group;
     }
   }
+
+  const [search, setSearch] = useState("");
+  const searchLower = search.toLowerCase().trim();
+
+  /** All modules whose label matches the search query. */
+  const searchResults = searchLower
+    ? THEME_EDITOR_MODULES.filter((m) =>
+        moduleLabel(m.id).toLowerCase().includes(searchLower),
+      )
+    : [];
+
+  const isSearching = searchLower.length > 0;
+
   const active =
     THEME_EDITOR_MODULES.find((m) => m.id === activeTab) ??
     THEME_EDITOR_MODULES[0];
@@ -474,72 +488,153 @@ export function WindowEditor({ activeTab, setActiveTab, onClose }: Props) {
           </div>
         </div>
 
-        {/* Group selector */}
+        {/* Search bar */}
         {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
         <div
-          className="flex shrink-0 items-center gap-1 overflow-x-auto border-b px-3 py-1.5"
-          style={{
-            background: "var(--vita-surface)",
-            borderBottomColor: "var(--vita-neutral-200)",
-          }}
+          className="flex shrink-0 items-center gap-2 border-b px-3 py-1.5"
+          style={{ borderBottomColor: "var(--vita-neutral-200)" }}
           onMouseDown={(e) => e.stopPropagation()}
         >
-          {GROUPS.map(({ group }) => (
+          <Search
+            size={12}
+            style={{ color: "var(--vita-text-muted)", flexShrink: 0 }}
+          />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder={t("chrome.searchPlaceholder")}
+            className="min-w-0 flex-1 bg-transparent text-xs outline-none"
+            style={{
+              color: "var(--vita-text-primary)",
+              caretColor: "var(--vita-primary)",
+            }}
+          />
+          {search && (
             <button
-              key={group}
               type="button"
-              className="whitespace-nowrap px-2.5 py-0.5 text-xs font-medium transition-colors"
-              style={
-                activeGroup === group
-                  ? {
-                      background: "var(--vita-primary)",
-                      color: "var(--vita-text-on-primary)",
-                    }
-                  : {
-                      background: "transparent",
-                      color: "var(--vita-text-secondary)",
-                    }
-              }
-              onClick={() => switchGroup(group)}
+              className="p-0.5"
+              style={{ color: "var(--vita-text-muted)" }}
+              onClick={() => setSearch("")}
             >
-              {groupLabel(group)}
+              <X size={11} />
             </button>
-          ))}
+          )}
         </div>
 
-        {/* Module tabs — only active group's items (horizontally scrollable) */}
-        {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
-        <div
-          ref={tabsRef}
-          className="flex shrink-0 items-center overflow-x-auto border-b px-1"
-          style={{
-            borderBottomColor: "var(--vita-neutral-200)",
-            scrollbarWidth: "none",
-          }}
-          onMouseDown={(e) => e.stopPropagation()}
-        >
-          {activeGroupItems.map((m) => (
-            <button
-              key={m.id}
-              type="button"
-              className="relative px-3 py-2 text-xs font-medium font-vita-heading whitespace-nowrap transition-colors"
-              style={
-                activeTab === m.id
-                  ? { color: "var(--vita-primary)" }
-                  : { color: "var(--vita-text-muted)" }
-              }
-              onClick={() => setActiveTab(m.id)}
+        {isSearching ? (
+          /* Search results — flat list */
+          /* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */
+          <div
+            ref={tabsRef}
+            className="flex shrink-0 flex-col overflow-y-auto border-b"
+            style={{
+              borderBottomColor: "var(--vita-neutral-200)",
+              maxHeight: "160px",
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+          >
+            {searchResults.length === 0 ? (
+              <p
+                className="px-3 py-3 text-xs"
+                style={{ color: "var(--vita-text-muted)" }}
+              >
+                {t("preview.noResults")}
+              </p>
+            ) : (
+              searchResults.map((m) => (
+                <button
+                  key={m.id}
+                  type="button"
+                  className="px-3 py-1.5 text-left text-xs font-medium font-vita-heading transition-colors"
+                  style={
+                    activeTab === m.id
+                      ? {
+                          background: "var(--vita-primary)",
+                          color: "var(--vita-text-on-primary)",
+                        }
+                      : { color: "var(--vita-text-secondary)" }
+                  }
+                  onClick={() => {
+                    setActiveTab(m.id);
+                    setSearch("");
+                  }}
+                >
+                  {moduleLabel(m.id)}
+                </button>
+              ))
+            )}
+          </div>
+        ) : (
+          <>
+            {/* Group selector */}
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
+            <div
+              className="flex shrink-0 items-center gap-1 overflow-x-auto border-b px-3 py-1.5"
+              style={{
+                background: "var(--vita-surface)",
+                borderBottomColor: "var(--vita-neutral-200)",
+              }}
+              onMouseDown={(e) => e.stopPropagation()}
             >
-              {moduleLabel(m.id)}
-              {activeTab === m.id && (
-                <span
-                  className="absolute bottom-0 left-0 right-0 h-0.5"
-                  style={{ background: "var(--vita-primary)" }}
-                />
-              )}
-            </button>
-          ))}
-        </div>
+              {GROUPS.map(({ group }) => (
+                <button
+                  key={group}
+                  type="button"
+                  className="whitespace-nowrap px-2.5 py-0.5 text-xs font-medium transition-colors"
+                  style={
+                    activeGroup === group
+                      ? {
+                          background: "var(--vita-primary)",
+                          color: "var(--vita-text-on-primary)",
+                        }
+                      : {
+                          background: "transparent",
+                          color: "var(--vita-text-secondary)",
+                        }
+                  }
+                  onClick={() => switchGroup(group)}
+                >
+                  {groupLabel(group)}
+                </button>
+              ))}
+            </div>
+
+            {/* Module tabs — only active group's items */}
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}
+            <div
+              ref={tabsRef}
+              className="flex shrink-0 items-center overflow-x-auto border-b px-1"
+              style={{
+                borderBottomColor: "var(--vita-neutral-200)",
+                scrollbarWidth: "none",
+              }}
+              onMouseDown={(e) => e.stopPropagation()}
+            >
+              {activeGroupItems.map((m) => (
+                <button
+                  key={m.id}
+                  type="button"
+                  className="relative px-3 py-2 text-xs font-medium font-vita-heading whitespace-nowrap transition-colors"
+                  style={
+                    activeTab === m.id
+                      ? { color: "var(--vita-primary)" }
+                      : { color: "var(--vita-text-muted)" }
+                  }
+                  onClick={() => setActiveTab(m.id)}
+                >
+                  {moduleLabel(m.id)}
+                  {activeTab === m.id && (
+                    <span
+                      className="absolute bottom-0 left-0 right-0 h-0.5"
+                      style={{ background: "var(--vita-primary)" }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
 
         {/* Content */}
         {/* biome-ignore lint/a11y/noStaticElementInteractions: stop drag propagation */}

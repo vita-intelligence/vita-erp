@@ -10,11 +10,16 @@
     "livePreview": "Pré-visualização ao vivo",
     "hoverToTest": "passe o cursor e clique para testar",
     "clickToPreview": "clique para pré-visualizar",
-    "moveCursor": "mova o cursor sobre o cartão"
+    "moveCursor": "mova o cursor sobre o cartão",
+    "searchPlaceholder": "Buscar componentes..."
   },
   "groups": {
-    "foundation": "Fundação",
-    "components": "Componentes"
+    "foundation": "Fundamentos",
+    "formControls": "Controles de formulário",
+    "buttonsNav": "Botões e navegação",
+    "layout": "Layout",
+    "dataDisplay": "Exibição de dados",
+    "feedback": "Feedback"
   },
   "modes": {
     "light": "claro",
@@ -684,6 +689,18 @@
       "navDashboard": "Painel",
       "navOrders": "Pedidos",
       "navInventory": "Inventário"
+    },
+    "toast": {
+      "default": "Padrão",
+      "success": "Sucesso",
+      "warning": "Aviso",
+      "danger": "Perigo",
+      "info": "Info",
+      "defaultMessage": "Mensagem toast padrão",
+      "successMessage": "Operação concluída",
+      "warningMessage": "Verifique suas configurações",
+      "dangerMessage": "Algo deu errado",
+      "infoMessage": "Nova atualização disponível"
     },
     "badges": {
       "completed": "Concluído",

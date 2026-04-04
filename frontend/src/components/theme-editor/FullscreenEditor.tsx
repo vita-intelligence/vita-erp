@@ -1,13 +1,13 @@
 "use client";
 
-import { RotateCcw, X } from "lucide-react";
+import { RotateCcw, Search, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 import { Button } from "@/components/ui/button";
 import { useThemeStore } from "@/stores/theme";
 
-import { groupedModules, THEME_EDITOR_MODULES } from "./config";
+import { GROUP_I18N_KEY, groupedModules, THEME_EDITOR_MODULES } from "./config";
 import { ModeSwitcher } from "./ModeSwitcher";
 import { PreviewExternalProvider } from "./modules/_shared";
 
@@ -85,12 +85,24 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
   }
 
   function groupLabel(group: string): string {
+    const key = GROUP_I18N_KEY[group] ?? group.toLowerCase();
     try {
-      return t(`groups.${group.toLowerCase()}`);
+      return t(`groups.${key}`);
     } catch {
       return group;
     }
   }
+
+  const [search, setSearch] = useState("");
+  const searchLower = search.toLowerCase().trim();
+
+  const searchResults = searchLower
+    ? THEME_EDITOR_MODULES.filter((m) =>
+        moduleLabel(m.id).toLowerCase().includes(searchLower),
+      )
+    : [];
+
+  const isSearching = searchLower.length > 0;
 
   return (
     <div className="fixed inset-0 z-vita-modal flex flex-col bg-vita-background font-vita-sans">
@@ -164,13 +176,46 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
 
         {/* Desktop: grouped sidebar */}
         <nav className="hidden w-56 shrink-0 flex-col border-r border-vita-neutral-200 bg-vita-surface md:flex">
+          {/* Search */}
+          <div
+            className="flex shrink-0 items-center gap-2 border-b px-4 py-2.5"
+            style={{ borderBottomColor: "var(--vita-neutral-200)" }}
+          >
+            <Search
+              size={13}
+              style={{ color: "var(--vita-text-muted)", flexShrink: 0 }}
+            />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={t("chrome.searchPlaceholder")}
+              className="min-w-0 flex-1 bg-transparent text-xs outline-none"
+              style={{
+                color: "var(--vita-text-primary)",
+                caretColor: "var(--vita-primary)",
+              }}
+            />
+            {search && (
+              <button
+                type="button"
+                className="p-0.5"
+                style={{ color: "var(--vita-text-muted)" }}
+                onClick={() => setSearch("")}
+              >
+                <X size={12} />
+              </button>
+            )}
+          </div>
+
           <div className="flex-1 overflow-y-auto py-2">
-            {GROUPS.map(({ group, items }) => (
-              <div key={group} className="mb-1">
-                <p className="px-4 pb-1 pt-3 text-[10px] font-semibold uppercase tracking-widest text-vita-text-muted">
-                  {groupLabel(group)}
+            {isSearching ? (
+              searchResults.length === 0 ? (
+                <p className="px-4 py-3 text-xs text-vita-text-muted">
+                  {t("preview.noResults")}
                 </p>
-                {items.map((m) => (
+              ) : (
+                searchResults.map((m) => (
                   <button
                     key={m.id}
                     type="button"
@@ -183,7 +228,10 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
                           }
                         : { color: "var(--vita-text-secondary)" }
                     }
-                    onClick={() => setActiveTab(m.id)}
+                    onClick={() => {
+                      setActiveTab(m.id);
+                      setSearch("");
+                    }}
                   >
                     <p className="text-sm font-medium font-vita-heading">
                       {moduleLabel(m.id)}
@@ -199,9 +247,47 @@ export function FullscreenEditor({ activeTab, setActiveTab, onClose }: Props) {
                       {moduleDescription(m.id)}
                     </p>
                   </button>
-                ))}
-              </div>
-            ))}
+                ))
+              )
+            ) : (
+              GROUPS.map(({ group, items }) => (
+                <div key={group} className="mb-1">
+                  <p className="px-4 pb-1 pt-3 text-[10px] font-semibold uppercase tracking-widest text-vita-text-muted">
+                    {groupLabel(group)}
+                  </p>
+                  {items.map((m) => (
+                    <button
+                      key={m.id}
+                      type="button"
+                      className="w-full px-4 py-2.5 text-left transition-colors"
+                      style={
+                        activeTab === m.id
+                          ? {
+                              background: "var(--vita-primary)",
+                              color: "var(--vita-text-on-primary)",
+                            }
+                          : { color: "var(--vita-text-secondary)" }
+                      }
+                      onClick={() => setActiveTab(m.id)}
+                    >
+                      <p className="text-sm font-medium font-vita-heading">
+                        {moduleLabel(m.id)}
+                      </p>
+                      <p
+                        className="text-xs leading-tight"
+                        style={
+                          activeTab === m.id
+                            ? { color: "var(--vita-text-on-primary-muted)" }
+                            : { color: "var(--vita-text-muted)" }
+                        }
+                      >
+                        {moduleDescription(m.id)}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              ))
+            )}
           </div>
           <div className="border-t border-vita-neutral-200 p-3">
             <button

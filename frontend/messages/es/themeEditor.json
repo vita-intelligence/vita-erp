@@ -10,11 +10,16 @@
     "livePreview": "Vista previa en vivo",
     "hoverToTest": "pase el cursor y haga clic para probar",
     "clickToPreview": "haga clic para previsualizar",
-    "moveCursor": "mueva el cursor sobre la tarjeta"
+    "moveCursor": "mueva el cursor sobre la tarjeta",
+    "searchPlaceholder": "Buscar componentes..."
   },
   "groups": {
     "foundation": "Fundamentos",
-    "components": "Componentes"
+    "formControls": "Controles de formulario",
+    "buttonsNav": "Botones y navegación",
+    "layout": "Diseño",
+    "dataDisplay": "Visualización",
+    "feedback": "Retroalimentación"
   },
   "modes": {
     "light": "claro",
@@ -684,6 +689,18 @@
       "navDashboard": "Panel",
       "navOrders": "Órdenes",
       "navInventory": "Inventario"
+    },
+    "toast": {
+      "default": "Predeterminado",
+      "success": "Éxito",
+      "warning": "Advertencia",
+      "danger": "Peligro",
+      "info": "Info",
+      "defaultMessage": "Mensaje de notificación predeterminado",
+      "successMessage": "Operación completada",
+      "warningMessage": "Revise su configuración",
+      "dangerMessage": "Algo salió mal",
+      "infoMessage": "Nueva actualización disponible"
     },
     "badges": {
       "completed": "Completado",

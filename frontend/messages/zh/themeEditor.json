@@ -10,11 +10,16 @@
     "livePreview": "实时预览",
     "hoverToTest": "悬停并点击以测试",
     "clickToPreview": "点击预览",
-    "moveCursor": "将光标移至卡片上"
+    "moveCursor": "将光标移至卡片上",
+    "searchPlaceholder": "搜索组件..."
   },
   "groups": {
     "foundation": "基础",
-    "components": "组件"
+    "formControls": "表单控件",
+    "buttonsNav": "按钮与导航",
+    "layout": "布局",
+    "dataDisplay": "数据展示",
+    "feedback": "反馈"
   },
   "modes": {
     "light": "浅色",
@@ -684,6 +689,18 @@
       "navDashboard": "仪表板",
       "navOrders": "订单",
       "navInventory": "库存"
+    },
+    "toast": {
+      "default": "默认",
+      "success": "成功",
+      "warning": "警告",
+      "danger": "危险",
+      "info": "信息",
+      "defaultMessage": "默认提示消息",
+      "successMessage": "操作已完成",
+      "warningMessage": "请检查您的设置",
+      "dangerMessage": "出了点问题",
+      "infoMessage": "有新的更新可用"
     },
     "badges": {
       "completed": "已完成",

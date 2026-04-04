@@ -77,6 +77,16 @@ export type ThemeModule = {
   resetKeys: (keyof ThemeTokens)[];
 };
 
+/** Maps group display names to i18n keys under `themeEditor.groups.*`. */
+export const GROUP_I18N_KEY: Record<string, string> = {
+  Foundation: "foundation",
+  "Form Controls": "formControls",
+  "Buttons & Nav": "buttonsNav",
+  Layout: "layout",
+  "Data Display": "dataDisplay",
+  Feedback: "feedback",
+};
+
 /** Returns modules ordered and grouped — preserves insertion order. */
 export function groupedModules(): { group: string; items: ThemeModule[] }[] {
   const map = new Map<string, ThemeModule[]>();
@@ -165,7 +175,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Shape, weight, shadow, and border of all button variants",
     component: ButtonsModule,
     preview: ButtonsPreview,
-    group: "Components",
+    group: "Buttons & Nav",
     resetKeys: [
       "btnRadius",
       "btnBorderTop",
@@ -198,7 +208,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Radius, border, and label style of text inputs and fields",
     component: InputsModule,
     preview: InputsPreview,
-    group: "Components",
+    group: "Form Controls",
     resetKeys: [
       "inputRadius",
       "inputBorderTop",
@@ -226,7 +236,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Shape, border, and shadow of cards and content panels",
     component: CardsModule,
     preview: CardsPreview,
-    group: "Components",
+    group: "Layout",
     resetKeys: [
       "cardRadius",
       "cardBorderTop",
@@ -255,7 +265,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Shape and weight of status badges, chips, and tags",
     component: BadgesModule,
     preview: BadgesPreview,
-    group: "Components",
+    group: "Data Display",
     resetKeys: [
       "badgeRadius",
       "badgeBorderTop",
@@ -288,7 +298,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Shape, spacing, and typography of collapsible sections",
     component: AccordionModule,
     preview: AccordionPreview,
-    group: "Components",
+    group: "Layout",
     resetKeys: [
       "accordionRadius",
       "accordionBorderWidth",
@@ -310,7 +320,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Inline alert banners and modal confirmation dialogs",
     component: AlertsModule,
     preview: AlertsPreview,
-    group: "Components",
+    group: "Feedback",
     resetKeys: [
       "alertRadius",
       "alertBorderWidth",
@@ -337,7 +347,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Dropdown popover and list items for search and combo fields",
     component: AutocompleteModule,
     preview: AutocompletePreview,
-    group: "Components",
+    group: "Form Controls",
     resetKeys: [
       "autocompletePopoverRadius",
       "autocompletePopoverBorderTop",
@@ -362,7 +372,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Size, shape, border, and group overlap for user avatars",
     component: AvatarModule,
     preview: AvatarPreview,
-    group: "Components",
+    group: "Data Display",
     resetKeys: [
       "avatarRadius",
       "avatarBorderTop",
@@ -394,7 +404,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Font, spacing, and separator style of navigation trails",
     component: BreadcrumbsModule,
     preview: BreadcrumbsPreview,
-    group: "Components",
+    group: "Buttons & Nav",
     resetKeys: [
       "breadcrumbsFontSize",
       "breadcrumbsFontWeight",
@@ -420,7 +430,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Shape, gap, and border of connected button containers",
     component: ButtonGroupModule,
     preview: ButtonGroupPreview,
-    group: "Components",
+    group: "Buttons & Nav",
     resetKeys: [
       "buttonGroupGap",
       "buttonGroupBorderTop",
@@ -439,7 +449,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "Shape, cell sizing, and typography of calendar panels and date pickers",
     component: CalendarModule,
     preview: CalendarPreview,
-    group: "Components",
+    group: "Layout",
     resetKeys: [
       "calendarRadius",
       "calendarBorderTop",
@@ -469,7 +479,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "Size, shape, border, indicator, and label of checkbox controls",
     component: CheckboxModule,
     preview: CheckboxPreview,
-    group: "Components",
+    group: "Form Controls",
     resetKeys: [
       "checkboxSize",
       "checkboxRadius",
@@ -493,7 +503,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "Spacing, container shape, and label style of grouped checkboxes",
     component: CheckboxGroupModule,
     preview: CheckboxGroupPreview,
-    group: "Components",
+    group: "Form Controls",
     resetKeys: [
       "checkboxGroupGap",
       "checkboxGroupRadius",
@@ -514,7 +524,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Popover, color area, sliders, thumbs, and swatch styling",
     component: ColorPickerModule,
     preview: ColorPickerPreview,
-    group: "Components",
+    group: "Form Controls",
     resetKeys: [
       "colorPickerPopoverRadius",
       "colorPickerPopoverShadow",
@@ -540,7 +550,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Popover shape, trigger button, and list item styling",
     component: ComboBoxModule,
     preview: ComboBoxPreview,
-    group: "Components",
+    group: "Form Controls",
     resetKeys: [
       "comboBoxPopoverRadius",
       "comboBoxPopoverShadow",
@@ -563,7 +573,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Trigger, popover, and indicator of date picker fields",
     component: DatePickerModule,
     preview: DatePickerPreview,
-    group: "Components",
+    group: "Form Controls",
     resetKeys: [
       "datePickerTriggerRadius",
       "datePickerTriggerBorderWidth",
@@ -585,7 +595,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Thickness and shape of divider lines",
     component: SeparatorModule,
     preview: SeparatorPreview,
-    group: "Components",
+    group: "Layout",
     resetKeys: ["separatorThickness", "separatorRadius"],
   },
   {
@@ -594,7 +604,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Shape and animation speed of loading skeletons",
     component: SkeletonModule,
     preview: SkeletonPreview,
-    group: "Components",
+    group: "Data Display",
     resetKeys: [
       "skeletonRadius",
       "skeletonBaseColor",
@@ -607,7 +617,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Track, thumb, and animation of range sliders",
     component: SliderModule,
     preview: SliderPreview,
-    group: "Components",
+    group: "Form Controls",
     resetKeys: [
       "sliderTrackHeight",
       "sliderTrackRadius",
@@ -632,7 +642,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Size and stroke width of loading spinners",
     component: SpinnerModule,
     preview: SpinnerPreview,
-    group: "Components",
+    group: "Data Display",
     resetKeys: [
       "spinnerSizeSm",
       "spinnerSizeMd",
@@ -648,7 +658,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Track, thumb, and label gap of toggle switches",
     component: SwitchModule,
     preview: SwitchPreview,
-    group: "Components",
+    group: "Form Controls",
     resetKeys: [
       "switchTrackWidth",
       "switchTrackHeight",
@@ -665,7 +675,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
     description: "Tab list, items, active indicator, and panel padding",
     component: TabsModule,
     preview: TabsPreview,
-    group: "Components",
+    group: "Buttons & Nav",
     resetKeys: [
       "tabsListRadius",
       "tabsListPadding",
@@ -694,7 +704,7 @@ export const THEME_EDITOR_MODULES: ThemeModule[] = [
       "Placement, shape, spacing, and typography of toast notifications",
     component: ToastModule,
     preview: ToastPreview,
-    group: "Components",
+    group: "Feedback",
     resetKeys: [
       "toastPlacement",
       "toastRadius",

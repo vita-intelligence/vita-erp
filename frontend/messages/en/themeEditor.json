@@ -10,11 +10,16 @@
     "livePreview": "Live preview",
     "hoverToTest": "hover & click to test",
     "clickToPreview": "click to preview",
-    "moveCursor": "move cursor over card"
+    "moveCursor": "move cursor over card",
+    "searchPlaceholder": "Search components..."
   },
   "groups": {
     "foundation": "Foundation",
-    "components": "Components"
+    "formControls": "Form Controls",
+    "buttonsNav": "Buttons & Nav",
+    "layout": "Layout",
+    "dataDisplay": "Data Display",
+    "feedback": "Feedback"
   },
   "modes": {
     "light": "light",
@@ -579,6 +584,18 @@
       "navDashboard": "Dashboard",
       "navOrders": "Orders",
       "navInventory": "Inventory"
+    },
+    "toast": {
+      "default": "Default",
+      "success": "Success",
+      "warning": "Warning",
+      "danger": "Danger",
+      "info": "Info",
+      "defaultMessage": "Default toast message",
+      "successMessage": "Operation completed",
+      "warningMessage": "Check your settings",
+      "dangerMessage": "Something went wrong",
+      "infoMessage": "New update available"
     }
   },
   "modules": {

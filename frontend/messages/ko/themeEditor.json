@@ -10,11 +10,16 @@
     "livePreview": "실시간 미리보기",
     "hoverToTest": "호버 및 클릭하여 테스트",
     "clickToPreview": "클릭하여 미리보기",
-    "moveCursor": "카드 위로 커서 이동"
+    "moveCursor": "카드 위로 커서 이동",
+    "searchPlaceholder": "컴포넌트 검색..."
   },
   "groups": {
     "foundation": "기초",
-    "components": "컴포넌트"
+    "formControls": "폼 컨트롤",
+    "buttonsNav": "버튼 & 내비게이션",
+    "layout": "레이아웃",
+    "dataDisplay": "데이터 표시",
+    "feedback": "피드백"
   },
   "modes": {
     "light": "라이트",
@@ -684,6 +689,18 @@
       "navDashboard": "대시보드",
       "navOrders": "주문",
       "navInventory": "재고"
+    },
+    "toast": {
+      "default": "기본",
+      "success": "성공",
+      "warning": "경고",
+      "danger": "위험",
+      "info": "정보",
+      "defaultMessage": "기본 토스트 메시지",
+      "successMessage": "작업이 완료되었습니다",
+      "warningMessage": "설정을 확인하세요",
+      "dangerMessage": "문제가 발생했습니다",
+      "infoMessage": "새 업데이트가 있습니다"
     },
     "badges": {
       "completed": "완료",

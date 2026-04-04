@@ -10,11 +10,16 @@
     "livePreview": "Live-Vorschau",
     "hoverToTest": "zum Testen darüberfahren und klicken",
     "clickToPreview": "zum Vorschauen klicken",
-    "moveCursor": "Cursor über die Karte bewegen"
+    "moveCursor": "Cursor über die Karte bewegen",
+    "searchPlaceholder": "Komponenten suchen..."
   },
   "groups": {
     "foundation": "Grundlagen",
-    "components": "Komponenten"
+    "formControls": "Formularelemente",
+    "buttonsNav": "Buttons & Navigation",
+    "layout": "Layout",
+    "dataDisplay": "Datenanzeige",
+    "feedback": "Feedback"
   },
   "modes": {
     "light": "hell",
@@ -684,6 +689,18 @@
       "navDashboard": "Dashboard",
       "navOrders": "Aufträge",
       "navInventory": "Inventar"
+    },
+    "toast": {
+      "default": "Standard",
+      "success": "Erfolg",
+      "warning": "Warnung",
+      "danger": "Fehler",
+      "info": "Info",
+      "defaultMessage": "Standard-Toast-Nachricht",
+      "successMessage": "Vorgang abgeschlossen",
+      "warningMessage": "Überprüfen Sie Ihre Einstellungen",
+      "dangerMessage": "Etwas ist schiefgelaufen",
+      "infoMessage": "Neues Update verfügbar"
     },
     "badges": {
       "completed": "Abgeschlossen",

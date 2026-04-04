@@ -10,11 +10,16 @@
     "livePreview": "ライブプレビュー",
     "hoverToTest": "ホバー＆クリックでテスト",
     "clickToPreview": "クリックでプレビュー",
-    "moveCursor": "カードの上にカーソルを移動"
+    "moveCursor": "カードの上にカーソルを移動",
+    "searchPlaceholder": "コンポーネントを検索..."
   },
   "groups": {
     "foundation": "基盤",
-    "components": "コンポーネント"
+    "formControls": "フォーム要素",
+    "buttonsNav": "ボタンとナビ",
+    "layout": "レイアウト",
+    "dataDisplay": "データ表示",
+    "feedback": "フィードバック"
   },
   "modes": {
     "light": "ライト",
@@ -684,6 +689,18 @@
       "navDashboard": "ダッシュボード",
       "navOrders": "オーダー",
       "navInventory": "在庫"
+    },
+    "toast": {
+      "default": "デフォルト",
+      "success": "成功",
+      "warning": "警告",
+      "danger": "危険",
+      "info": "情報",
+      "defaultMessage": "デフォルトのトーストメッセージ",
+      "successMessage": "操作が完了しました",
+      "warningMessage": "設定を確認してください",
+      "dangerMessage": "エラーが発生しました",
+      "infoMessage": "新しいアップデートがあります"
     },
     "badges": {
       "completed": "完了",

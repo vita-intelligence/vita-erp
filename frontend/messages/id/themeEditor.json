@@ -10,11 +10,16 @@
     "livePreview": "Pratinjau langsung",
     "hoverToTest": "arahkan & klik untuk menguji",
     "clickToPreview": "klik untuk pratinjau",
-    "moveCursor": "gerakkan kursor ke atas kartu"
+    "moveCursor": "gerakkan kursor ke atas kartu",
+    "searchPlaceholder": "Cari komponen..."
   },
   "groups": {
-    "foundation": "Fondasi",
-    "components": "Komponen"
+    "foundation": "Dasar",
+    "formControls": "Kontrol Formulir",
+    "buttonsNav": "Tombol & Navigasi",
+    "layout": "Tata Letak",
+    "dataDisplay": "Tampilan Data",
+    "feedback": "Umpan Balik"
   },
   "modes": {
     "light": "terang",
@@ -684,6 +689,18 @@
       "navDashboard": "Dasbor",
       "navOrders": "Pesanan",
       "navInventory": "Inventaris"
+    },
+    "toast": {
+      "default": "Default",
+      "success": "Sukses",
+      "warning": "Peringatan",
+      "danger": "Bahaya",
+      "info": "Info",
+      "defaultMessage": "Pesan toast default",
+      "successMessage": "Operasi selesai",
+      "warningMessage": "Periksa pengaturan Anda",
+      "dangerMessage": "Terjadi kesalahan",
+      "infoMessage": "Pembaruan baru tersedia"
     },
     "badges": {
       "completed": "Selesai",

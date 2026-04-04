@@ -167,7 +167,7 @@ function VitaToast({
           boxShadow: "var(--vita-toast-shadow)",
           minWidth: "var(--vita-toast-min-width, 320px)",
           maxWidth: "var(--vita-toast-max-width, 420px)",
-          viewTransitionName: toastItem.key,
+          viewTransitionName: `vita-toast-${toastItem.key}`,
         } as CSSProperties
       }
     >

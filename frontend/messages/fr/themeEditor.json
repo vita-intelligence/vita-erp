@@ -10,11 +10,16 @@
     "livePreview": "Aperçu en direct",
     "hoverToTest": "survolez et cliquez pour tester",
     "clickToPreview": "cliquez pour prévisualiser",
-    "moveCursor": "déplacez le curseur sur la carte"
+    "moveCursor": "déplacez le curseur sur la carte",
+    "searchPlaceholder": "Rechercher des composants..."
   },
   "groups": {
     "foundation": "Fondation",
-    "components": "Composants"
+    "formControls": "Champs de formulaire",
+    "buttonsNav": "Boutons et navigation",
+    "layout": "Mise en page",
+    "dataDisplay": "Affichage",
+    "feedback": "Retour"
   },
   "modes": {
     "light": "clair",
@@ -684,6 +689,18 @@
       "navDashboard": "Tableau de bord",
       "navOrders": "Commandes",
       "navInventory": "Inventaire"
+    },
+    "toast": {
+      "default": "Par défaut",
+      "success": "Succès",
+      "warning": "Avertissement",
+      "danger": "Danger",
+      "info": "Info",
+      "defaultMessage": "Message de notification par défaut",
+      "successMessage": "Opération terminée",
+      "warningMessage": "Vérifiez vos paramètres",
+      "dangerMessage": "Une erreur est survenue",
+      "infoMessage": "Nouvelle mise à jour disponible"
     },
     "badges": {
       "completed": "Terminé",

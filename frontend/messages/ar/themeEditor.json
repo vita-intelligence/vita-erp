@@ -10,11 +10,16 @@
     "livePreview": "معاينة مباشرة",
     "hoverToTest": "مرّر واضغط للاختبار",
     "clickToPreview": "اضغط للمعاينة",
-    "moveCursor": "حرّك المؤشر فوق البطاقة"
+    "moveCursor": "حرّك المؤشر فوق البطاقة",
+    "searchPlaceholder": "بحث في المكونات..."
   },
   "groups": {
     "foundation": "الأساسيات",
-    "components": "المكوّنات"
+    "formControls": "عناصر النماذج",
+    "buttonsNav": "الأزرار والتنقل",
+    "layout": "التخطيط",
+    "dataDisplay": "عرض البيانات",
+    "feedback": "التنبيهات"
   },
   "modes": {
     "light": "فاتح",
@@ -684,6 +689,18 @@
       "navDashboard": "لوحة المعلومات",
       "navOrders": "الأوامر",
       "navInventory": "المخزون"
+    },
+    "toast": {
+      "default": "افتراضي",
+      "success": "نجاح",
+      "warning": "تحذير",
+      "danger": "خطر",
+      "info": "معلومات",
+      "defaultMessage": "رسالة إشعار افتراضية",
+      "successMessage": "تمت العملية بنجاح",
+      "warningMessage": "تحقق من إعداداتك",
+      "dangerMessage": "حدث خطأ ما",
+      "infoMessage": "تحديث جديد متاح"
     },
     "badges": {
       "completed": "مكتمل",
