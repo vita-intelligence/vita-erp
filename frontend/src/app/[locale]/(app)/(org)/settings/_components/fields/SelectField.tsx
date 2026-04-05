@@ -28,6 +28,7 @@ export default function SelectField({
   optionKey,
   control,
   t,
+  isDisabled,
 }: SelectFieldProps) {
   return (
     <div className="py-4">
@@ -48,6 +49,7 @@ export default function SelectField({
               field.onChange(String(key) as CompanySettings[typeof name]);
             }}
             aria-label={t(`fields.${name}`)}
+            isDisabled={isDisabled}
           >
             <SelectTrigger>
               <SelectValue />

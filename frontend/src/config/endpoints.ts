@@ -32,4 +32,8 @@ export const ENDPOINTS = {
   company: {
     settings: "/company/settings/",
   },
+
+  rbac: {
+    mePermissions: "/rbac/me/permissions/",
+  },
 } as const;

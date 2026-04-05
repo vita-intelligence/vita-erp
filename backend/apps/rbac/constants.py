@@ -30,3 +30,11 @@ ACTION_CHOICES = [
     (ACTION_DELETE, "Delete"),
     (ACTION_EXPORT, "Export"),
 ]
+
+# ---------------------------------------------------------------------------
+# Module codes — the nouns paired with actions to form permissions.
+# Each ERP module that needs RBAC gating registers its code here so views
+# can reference it consistently (see apps.rbac.permissions.HasModulePermission).
+# ---------------------------------------------------------------------------
+
+MODULE_COMPANY_SETTINGS = "company_settings"

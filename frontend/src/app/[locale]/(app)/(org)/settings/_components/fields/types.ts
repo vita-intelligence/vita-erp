@@ -7,4 +7,6 @@ export type SettingsFieldProps = {
   name: keyof CompanySettings;
   control: Control<CompanySettings>;
   t: ReturnType<typeof useTranslations>;
+  /** Render the field in view-only mode (no editing). */
+  isDisabled?: boolean;
 };

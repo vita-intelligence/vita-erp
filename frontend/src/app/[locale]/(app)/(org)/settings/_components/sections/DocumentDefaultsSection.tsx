@@ -18,7 +18,7 @@ import Section from "../fields/Section";
 import SelectField from "../fields/SelectField";
 import type { SettingsFieldProps } from "../fields/types";
 
-type Props = Pick<SettingsFieldProps, "control" | "t">;
+type Props = Pick<SettingsFieldProps, "control" | "t" | "isDisabled">;
 
 /** Native language names — displayed in each language's own script/label. */
 const LOCALE_NATIVE_NAMES: Record<(typeof I18N.locales)[number], string> = {
@@ -38,7 +38,11 @@ const LOCALE_NATIVE_NAMES: Record<(typeof I18N.locales)[number], string> = {
   id: "Bahasa Indonesia",
 };
 
-export default function DocumentDefaultsSection({ control, t }: Props) {
+export default function DocumentDefaultsSection({
+  control,
+  t,
+  isDisabled,
+}: Props) {
   const languageLabel = t("fields.default_document_language");
   return (
     <Section
@@ -51,6 +55,7 @@ export default function DocumentDefaultsSection({ control, t }: Props) {
         optionKey="default_paper_size"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="text_direction"
@@ -58,6 +63,7 @@ export default function DocumentDefaultsSection({ control, t }: Props) {
         optionKey="text_direction"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <div className="py-4">
         <span className="block text-sm font-medium text-vita-text-primary">
@@ -79,6 +85,7 @@ export default function DocumentDefaultsSection({ control, t }: Props) {
               aria-label={languageLabel}
               allowsCustomValue={false}
               menuTrigger="focus"
+              isDisabled={isDisabled}
             >
               <ComboBoxInputGroup>
                 <ComboBoxInput

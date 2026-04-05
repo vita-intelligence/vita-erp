@@ -9,6 +9,7 @@
   "saving": "Menyimpan...",
   "saved": "Pengaturan berhasil disimpan.",
   "no_changes": "Tidak ada perubahan untuk disimpan.",
+  "read_only_notice": "Anda memiliki akses hanya-lihat ke pengaturan ini. Hubungi administrator Anda untuk izin edit.",
   "sections": {
     "number_formatting": "Format Angka",
     "number_formatting_description": "Bagaimana angka ditampilkan di seluruh sistem — pemisah desimal dan ribuan, pengelompokan digit.",

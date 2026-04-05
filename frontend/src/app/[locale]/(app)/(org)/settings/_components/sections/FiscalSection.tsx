@@ -20,11 +20,11 @@ import SelectField from "../fields/SelectField";
 import SwitchField from "../fields/SwitchField";
 import type { SettingsFieldProps } from "../fields/types";
 
-type Props = Pick<SettingsFieldProps, "control" | "t">;
+type Props = Pick<SettingsFieldProps, "control" | "t" | "isDisabled">;
 
 const MONTHS = Array.from({ length: 12 }, (_, i) => String(i + 1));
 
-export default function FiscalSection({ control, t }: Props) {
+export default function FiscalSection({ control, t, isDisabled }: Props) {
   return (
     <Section
       title={t("sections.fiscal")}
@@ -48,6 +48,7 @@ export default function FiscalSection({ control, t }: Props) {
                 field.onChange(Number(key));
               }}
               aria-label={t("fields.fiscal_year_start_month")}
+              isDisabled={isDisabled}
             >
               <SelectTrigger>
                 <SelectValue />
@@ -75,6 +76,7 @@ export default function FiscalSection({ control, t }: Props) {
         max={31}
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="fiscal_calendar_type"
@@ -82,6 +84,7 @@ export default function FiscalSection({ control, t }: Props) {
         optionKey="fiscal_calendar_type"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="cost_method"
@@ -89,8 +92,14 @@ export default function FiscalSection({ control, t }: Props) {
         optionKey="cost_method"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
-      <SwitchField name="tax_inclusive_pricing" control={control} t={t} />
+      <SwitchField
+        name="tax_inclusive_pricing"
+        control={control}
+        t={t}
+        isDisabled={isDisabled}
+      />
     </Section>
   );
 }

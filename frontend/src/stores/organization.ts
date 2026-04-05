@@ -15,14 +15,23 @@
 import { create } from "zustand";
 
 import { selectOrganization as selectOrgApi } from "@/services/organization";
+import { fetchMyPermissions, type PermissionsResponse } from "@/services/rbac";
 import type { OrganizationDetail } from "@/types/api";
 
 type OrgState = {
   currentOrg: OrganizationDetail | null;
   isLoading: boolean;
 
-  /** Select an org — calls backend to get org-scoped JWT cookies. */
+  /** RBAC permissions for the current user in the active org.
+   * Null = not loaded yet. Owner short-circuits all checks. */
+  permissions: PermissionsResponse | null;
+
+  /** Select an org — calls backend to get org-scoped JWT cookies and
+   * loads the caller's permissions for that org. */
   selectOrganization: (orgId: string) => Promise<boolean>;
+
+  /** Refresh permissions for the current org (e.g. after role change). */
+  loadPermissions: () => Promise<void>;
 
   /** Clear org state (on logout or org switch). */
   clearOrganization: () => void;
@@ -31,20 +40,39 @@ type OrgState = {
 export const useOrgStore = create<OrgState>()((set) => ({
   currentOrg: null,
   isLoading: false,
+  permissions: null,
 
   async selectOrganization(orgId: string) {
     set({ isLoading: true });
     try {
       const org = await selectOrgApi(orgId);
-      set({ currentOrg: org, isLoading: false });
+      // Load permissions after the org_id cookie is set so the
+      // /rbac/me/permissions/ request carries the new org context.
+      let permissions: PermissionsResponse | null = null;
+      try {
+        permissions = await fetchMyPermissions();
+      } catch {
+        // Permissions endpoint failed — leave null so UI can react
+        // (usually means no access to the org's tenant DB).
+      }
+      set({ currentOrg: org, permissions, isLoading: false });
       return true;
     } catch {
-      set({ currentOrg: null, isLoading: false });
+      set({ currentOrg: null, permissions: null, isLoading: false });
       return false;
     }
   },
 
+  async loadPermissions() {
+    try {
+      const permissions = await fetchMyPermissions();
+      set({ permissions });
+    } catch {
+      set({ permissions: null });
+    }
+  },
+
   clearOrganization() {
-    set({ currentOrg: null, isLoading: false });
+    set({ currentOrg: null, permissions: null, isLoading: false });
   },
 }));

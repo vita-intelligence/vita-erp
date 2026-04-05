@@ -9,6 +9,7 @@
   "saving": "保存中...",
   "saved": "设置已成功保存。",
   "no_changes": "没有需要保存的更改。",
+  "read_only_notice": "您对这些设置只有查看权限。请联系管理员获取编辑权限。",
   "sections": {
     "number_formatting": "数字格式",
     "number_formatting_description": "系统中数字的显示方式——小数点分隔符、千位分隔符、数字分组。",

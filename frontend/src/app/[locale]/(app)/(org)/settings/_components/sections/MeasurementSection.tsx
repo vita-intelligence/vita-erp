@@ -12,9 +12,9 @@ import Section from "../fields/Section";
 import SelectField from "../fields/SelectField";
 import type { SettingsFieldProps } from "../fields/types";
 
-type Props = Pick<SettingsFieldProps, "control" | "t">;
+type Props = Pick<SettingsFieldProps, "control" | "t" | "isDisabled">;
 
-export default function MeasurementSection({ control, t }: Props) {
+export default function MeasurementSection({ control, t, isDisabled }: Props) {
   return (
     <Section
       title={t("sections.measurement")}
@@ -26,6 +26,7 @@ export default function MeasurementSection({ control, t }: Props) {
         optionKey="measurement_system"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="default_weight_uom"
@@ -33,6 +34,7 @@ export default function MeasurementSection({ control, t }: Props) {
         optionKey="default_weight_uom"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="default_length_uom"
@@ -40,6 +42,7 @@ export default function MeasurementSection({ control, t }: Props) {
         optionKey="default_length_uom"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="default_volume_uom"
@@ -47,6 +50,7 @@ export default function MeasurementSection({ control, t }: Props) {
         optionKey="default_volume_uom"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="default_temperature_uom"
@@ -54,6 +58,7 @@ export default function MeasurementSection({ control, t }: Props) {
         optionKey="default_temperature_uom"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="default_area_uom"
@@ -61,6 +66,7 @@ export default function MeasurementSection({ control, t }: Props) {
         optionKey="default_area_uom"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
     </Section>
   );

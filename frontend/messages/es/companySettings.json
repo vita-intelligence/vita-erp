@@ -9,6 +9,7 @@
   "saving": "Guardando...",
   "saved": "Configuraci\u00f3n guardada correctamente.",
   "no_changes": "No hay cambios que guardar.",
+  "read_only_notice": "Tiene acceso solo de lectura a estas configuraciones. Contacte a su administrador para permisos de edición.",
   "sections": {
     "number_formatting": "Formato de n\u00fameros",
     "number_formatting_description": "C\u00f3mo se muestran los n\u00fameros en el sistema: separadores decimales y de miles, agrupaci\u00f3n de d\u00edgitos.",

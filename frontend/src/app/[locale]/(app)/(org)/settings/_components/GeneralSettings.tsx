@@ -9,6 +9,7 @@ import { type Control, useForm } from "react-hook-form";
 import { ButtonRoot } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/toast";
+import { usePermission } from "@/hooks/usePermission";
 import { updateCompanySettings } from "@/services/company-settings";
 
 import { useCompanySettings } from "../_hooks/useCompanySettings";
@@ -28,7 +29,11 @@ import PrecisionSection from "./sections/PrecisionSection";
 import RoundingSection from "./sections/RoundingSection";
 
 type TFn = SettingsFieldProps["t"];
-type SectionRenderer = (control: Control<CompanySettings>, t: TFn) => ReactNode;
+type SectionRenderer = (
+  control: Control<CompanySettings>,
+  t: TFn,
+  isDisabled: boolean,
+) => ReactNode;
 
 const SECTIONS: {
   id: string;
@@ -38,42 +43,66 @@ const SECTIONS: {
   {
     id: "number_formatting",
     titleKey: "sections.number_formatting",
-    render: (control, t) => <NumberFormattingSection control={control} t={t} />,
+    render: (control, t, isDisabled) => (
+      <NumberFormattingSection
+        control={control}
+        t={t}
+        isDisabled={isDisabled}
+      />
+    ),
   },
   {
     id: "precision",
     titleKey: "sections.precision",
-    render: (control, t) => <PrecisionSection control={control} t={t} />,
+    render: (control, t, isDisabled) => (
+      <PrecisionSection control={control} t={t} isDisabled={isDisabled} />
+    ),
   },
   {
     id: "currency_display",
     titleKey: "sections.currency_display",
-    render: (control, t) => <CurrencyDisplaySection control={control} t={t} />,
+    render: (control, t, isDisabled) => (
+      <CurrencyDisplaySection control={control} t={t} isDisabled={isDisabled} />
+    ),
   },
   {
     id: "rounding",
     titleKey: "sections.rounding",
-    render: (control, t) => <RoundingSection control={control} t={t} />,
+    render: (control, t, isDisabled) => (
+      <RoundingSection control={control} t={t} isDisabled={isDisabled} />
+    ),
   },
   {
     id: "date_time",
     titleKey: "sections.date_time",
-    render: (control, t) => <DateTimeSection control={control} t={t} />,
+    render: (control, t, isDisabled) => (
+      <DateTimeSection control={control} t={t} isDisabled={isDisabled} />
+    ),
   },
   {
     id: "measurement",
     titleKey: "sections.measurement",
-    render: (control, t) => <MeasurementSection control={control} t={t} />,
+    render: (control, t, isDisabled) => (
+      <MeasurementSection control={control} t={t} isDisabled={isDisabled} />
+    ),
   },
   {
     id: "fiscal",
     titleKey: "sections.fiscal",
-    render: (control, t) => <FiscalSection control={control} t={t} />,
+    render: (control, t, isDisabled) => (
+      <FiscalSection control={control} t={t} isDisabled={isDisabled} />
+    ),
   },
   {
     id: "document_defaults",
     titleKey: "sections.document_defaults",
-    render: (control, t) => <DocumentDefaultsSection control={control} t={t} />,
+    render: (control, t, isDisabled) => (
+      <DocumentDefaultsSection
+        control={control}
+        t={t}
+        isDisabled={isDisabled}
+      />
+    ),
   },
 ];
 
@@ -109,6 +138,7 @@ function GeneralSettingsForm({
   onSectionChange,
 }: { settings: CompanySettingsResponse } & GeneralSettingsProps) {
   const t = useTranslations("companySettings");
+  const canEdit = usePermission("company_settings", "write");
   const {
     control,
     handleSubmit,
@@ -147,6 +177,18 @@ function GeneralSettingsForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {!canEdit && (
+        <output
+          className="mb-4 block rounded-vita-md border px-4 py-3 text-sm"
+          style={{
+            backgroundColor: "var(--vita-neutral-50)",
+            borderColor: "var(--vita-neutral-200)",
+            color: "var(--vita-text-secondary)",
+          }}
+        >
+          {t("read_only_notice")}
+        </output>
+      )}
       <div className="flex min-h-[60vh] flex-col gap-6 md:flex-row">
         {/* Sidebar nav */}
         <nav className="shrink-0 md:w-56" aria-label={t("page.title")}>
@@ -205,28 +247,32 @@ function GeneralSettingsForm({
         </nav>
 
         {/* Active section content */}
-        <div className="min-w-0 flex-1">{active.render(control, t)}</div>
+        <div className="min-w-0 flex-1">
+          {active.render(control, t, !canEdit)}
+        </div>
       </div>
 
-      {/* Sticky save bar */}
-      <div
-        className="sticky bottom-0 -mx-6 mt-6 flex items-center gap-3 border-t px-6 py-4"
-        style={{
-          backgroundColor: "var(--vita-background)",
-          borderColor: "color-mix(in srgb, currentColor 15%, transparent)",
-        }}
-      >
-        <ButtonRoot type="submit" isDisabled={!isDirty || isSubmitting}>
-          {isSubmitting ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              {t("saving")}
-            </>
-          ) : (
-            t("save")
-          )}
-        </ButtonRoot>
-      </div>
+      {/* Sticky save bar — hidden in read-only mode */}
+      {canEdit && (
+        <div
+          className="sticky bottom-0 -mx-6 mt-6 flex items-center gap-3 border-t px-6 py-4"
+          style={{
+            backgroundColor: "var(--vita-background)",
+            borderColor: "color-mix(in srgb, currentColor 15%, transparent)",
+          }}
+        >
+          <ButtonRoot type="submit" isDisabled={!isDirty || isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                {t("saving")}
+              </>
+            ) : (
+              t("save")
+            )}
+          </ButtonRoot>
+        </div>
+      )}
     </form>
   );
 }

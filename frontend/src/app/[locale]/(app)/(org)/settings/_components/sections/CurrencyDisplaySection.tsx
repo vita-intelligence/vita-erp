@@ -9,9 +9,13 @@ import SelectField from "../fields/SelectField";
 import SwitchField from "../fields/SwitchField";
 import type { SettingsFieldProps } from "../fields/types";
 
-type Props = Pick<SettingsFieldProps, "control" | "t">;
+type Props = Pick<SettingsFieldProps, "control" | "t" | "isDisabled">;
 
-export default function CurrencyDisplaySection({ control, t }: Props) {
+export default function CurrencyDisplaySection({
+  control,
+  t,
+  isDisabled,
+}: Props) {
   return (
     <Section
       title={t("sections.currency_display")}
@@ -23,6 +27,7 @@ export default function CurrencyDisplaySection({ control, t }: Props) {
         optionKey="currency_symbol_position"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="negative_format"
@@ -30,8 +35,14 @@ export default function CurrencyDisplaySection({ control, t }: Props) {
         optionKey="negative_format"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
-      <SwitchField name="currency_spacing" control={control} t={t} />
+      <SwitchField
+        name="currency_spacing"
+        control={control}
+        t={t}
+        isDisabled={isDisabled}
+      />
     </Section>
   );
 }

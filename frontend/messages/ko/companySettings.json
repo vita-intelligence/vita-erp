@@ -9,6 +9,7 @@
   "saving": "저장 중...",
   "saved": "설정이 성공적으로 저장되었습니다.",
   "no_changes": "저장할 변경 사항이 없습니다.",
+  "read_only_notice": "이 설정에 대해 보기 전용 액세스 권한이 있습니다. 편집 권한은 관리자에게 문의하세요.",
   "sections": {
     "number_formatting": "숫자 서식",
     "number_formatting_description": "시스템 전체에서 숫자가 표시되는 방식 — 소수점 기호, 천 단위 구분 기호, 자릿수 그룹화.",

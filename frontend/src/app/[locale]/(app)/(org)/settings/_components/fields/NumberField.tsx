@@ -17,6 +17,7 @@ export default function NumberField({
   max,
   control,
   t,
+  isDisabled,
 }: NumberFieldProps) {
   return (
     <div className="py-4">
@@ -39,6 +40,7 @@ export default function NumberField({
               field.onChange(Number(e.target.value))
             }
             aria-label={t(`fields.${name}`)}
+            disabled={isDisabled}
           />
         )}
       />

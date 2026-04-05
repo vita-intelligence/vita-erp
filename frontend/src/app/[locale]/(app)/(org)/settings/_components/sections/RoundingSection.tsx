@@ -6,7 +6,7 @@ import SelectField from "../fields/SelectField";
 import SwitchField from "../fields/SwitchField";
 import type { SettingsFieldProps } from "../fields/types";
 
-type Props = Pick<SettingsFieldProps, "control" | "t">;
+type Props = Pick<SettingsFieldProps, "control" | "t" | "isDisabled">;
 
 const CASH_ROUNDING_INCREMENTS = [
   "0.01",
@@ -17,7 +17,7 @@ const CASH_ROUNDING_INCREMENTS = [
   "1.00",
 ] as const;
 
-export default function RoundingSection({ control, t }: Props) {
+export default function RoundingSection({ control, t, isDisabled }: Props) {
   return (
     <Section
       title={t("sections.rounding")}
@@ -29,14 +29,21 @@ export default function RoundingSection({ control, t }: Props) {
         optionKey="rounding_method"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
-      <SwitchField name="cash_rounding_enabled" control={control} t={t} />
+      <SwitchField
+        name="cash_rounding_enabled"
+        control={control}
+        t={t}
+        isDisabled={isDisabled}
+      />
       <SelectField
         name="cash_rounding_increment"
         options={CASH_ROUNDING_INCREMENTS}
         optionKey="cash_rounding_increment"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
     </Section>
   );

@@ -10,9 +10,9 @@ import Section from "../fields/Section";
 import SelectField from "../fields/SelectField";
 import type { SettingsFieldProps } from "../fields/types";
 
-type Props = Pick<SettingsFieldProps, "control" | "t">;
+type Props = Pick<SettingsFieldProps, "control" | "t" | "isDisabled">;
 
-export default function DateTimeSection({ control, t }: Props) {
+export default function DateTimeSection({ control, t, isDisabled }: Props) {
   return (
     <Section
       title={t("sections.date_time")}
@@ -24,6 +24,7 @@ export default function DateTimeSection({ control, t }: Props) {
         optionKey="date_format"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="time_format"
@@ -31,6 +32,7 @@ export default function DateTimeSection({ control, t }: Props) {
         optionKey="time_format"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="week_start_day"
@@ -38,6 +40,7 @@ export default function DateTimeSection({ control, t }: Props) {
         optionKey="week_start_day"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="calendar_system"
@@ -45,6 +48,7 @@ export default function DateTimeSection({ control, t }: Props) {
         optionKey="calendar_system"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
     </Section>
   );

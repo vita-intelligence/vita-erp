@@ -9,6 +9,7 @@
   "saving": "Saving...",
   "saved": "Settings saved successfully.",
   "no_changes": "No changes to save.",
+  "read_only_notice": "You have view-only access to these settings. Contact your administrator for edit permissions.",
   "sections": {
     "number_formatting": "Number Formatting",
     "number_formatting_description": "How numbers are displayed across the system — decimal and thousands separators, digit grouping.",

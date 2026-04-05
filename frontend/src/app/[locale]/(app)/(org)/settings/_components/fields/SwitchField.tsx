@@ -6,7 +6,12 @@ import { Switch } from "@/components/ui/switch";
 
 import type { SettingsFieldProps } from "./types";
 
-export default function SwitchField({ name, control, t }: SettingsFieldProps) {
+export default function SwitchField({
+  name,
+  control,
+  t,
+  isDisabled,
+}: SettingsFieldProps) {
   return (
     <Controller
       name={name}
@@ -22,7 +27,11 @@ export default function SwitchField({ name, control, t }: SettingsFieldProps) {
             </span>
           </div>
           <div className="shrink-0 pt-0.5">
-            <Switch isSelected={Boolean(field.value)} onChange={field.onChange}>
+            <Switch
+              isSelected={Boolean(field.value)}
+              onChange={field.onChange}
+              isDisabled={isDisabled}
+            >
               <Switch.Control>
                 <Switch.Thumb />
               </Switch.Control>

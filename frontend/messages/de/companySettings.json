@@ -9,6 +9,7 @@
   "saving": "Wird gespeichert...",
   "saved": "Einstellungen erfolgreich gespeichert.",
   "no_changes": "Keine Änderungen zum Speichern.",
+  "read_only_notice": "Sie haben nur Leserechte für diese Einstellungen. Wenden Sie sich an Ihren Administrator für Bearbeitungsrechte.",
   "sections": {
     "number_formatting": "Zahlenformatierung",
     "number_formatting_description": "Wie Zahlen im System angezeigt werden — Dezimal- und Tausendertrennzeichen, Zifferngruppierung.",

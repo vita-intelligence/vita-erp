@@ -19,6 +19,9 @@ from apps.company.services.company_settings import (
 )
 from apps.company.services.locale_defaults import get_defaults_for_country
 from apps.company.tests.factories import CompanySettingsFactory
+from apps.organizations.tests.factories import MembershipFactory
+from apps.rbac.constants import ROLE_OWNER
+from apps.rbac.models import Role, UserRole
 
 pytestmark = pytest.mark.django_db
 
@@ -37,11 +40,26 @@ def verified_user():
 
 @pytest.fixture()
 def auth_client(client, verified_user):
-    """Client logged in as a verified user."""
+    """Client logged in as a verified user with Owner role in an active org.
+
+    Sets up the full tenant + RBAC chain so endpoints gated by
+    HasOrgContext/HasOrgMembership/HasModulePermission respond as if the
+    caller has full access. Individual tests that need a different role
+    should build their own client.
+    """
+    membership = MembershipFactory(user=verified_user)
+    owner_role = Role.objects.create(
+        name=ROLE_OWNER,
+        description="Full access.",
+        is_system=True,
+    )
+    UserRole.objects.create(user_id=verified_user.id, role=owner_role)
+
     client.post(
         "/api/v1/auth/login/",
         {"email": verified_user.email, "password": DEFAULT_PASSWORD},
     )
+    client.post(f"/api/v1/organizations/{membership.organization.id}/select/")
     return client
 
 

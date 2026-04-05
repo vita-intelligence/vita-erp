@@ -9,6 +9,7 @@
   "saving": "Salvataggio...",
   "saved": "Impostazioni salvate con successo.",
   "no_changes": "Nessuna modifica da salvare.",
+  "read_only_notice": "Hai accesso in sola lettura a queste impostazioni. Contatta il tuo amministratore per le autorizzazioni di modifica.",
   "sections": {
     "number_formatting": "Formato numeri",
     "number_formatting_description": "Come i numeri vengono visualizzati nel sistema — separatori decimali e delle migliaia, raggruppamento cifre.",

@@ -9,6 +9,7 @@
   "saving": "保存中...",
   "saved": "設定が正常に保存されました。",
   "no_changes": "保存する変更はありません。",
+  "read_only_notice": "これらの設定には閲覧のみのアクセス権があります。編集権限については管理者に連絡してください。",
   "sections": {
     "number_formatting": "数値の書式",
     "number_formatting_description": "システム全体での数値の表示方法 — 小数点記号、桁区切り記号、桁グループ化。",

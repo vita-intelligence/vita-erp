@@ -4,9 +4,9 @@ import NumberField from "../fields/NumberField";
 import Section from "../fields/Section";
 import type { SettingsFieldProps } from "../fields/types";
 
-type Props = Pick<SettingsFieldProps, "control" | "t">;
+type Props = Pick<SettingsFieldProps, "control" | "t" | "isDisabled">;
 
-export default function PrecisionSection({ control, t }: Props) {
+export default function PrecisionSection({ control, t, isDisabled }: Props) {
   return (
     <Section
       title={t("sections.precision")}
@@ -18,6 +18,7 @@ export default function PrecisionSection({ control, t }: Props) {
         max={10}
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <NumberField
         name="price_precision"
@@ -25,6 +26,7 @@ export default function PrecisionSection({ control, t }: Props) {
         max={10}
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <NumberField
         name="currency_precision"
@@ -32,6 +34,7 @@ export default function PrecisionSection({ control, t }: Props) {
         max={10}
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <NumberField
         name="exchange_rate_precision"
@@ -39,6 +42,7 @@ export default function PrecisionSection({ control, t }: Props) {
         max={10}
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <NumberField
         name="percentage_precision"
@@ -46,6 +50,7 @@ export default function PrecisionSection({ control, t }: Props) {
         max={10}
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <NumberField
         name="weight_precision"
@@ -53,6 +58,7 @@ export default function PrecisionSection({ control, t }: Props) {
         max={10}
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
     </Section>
   );

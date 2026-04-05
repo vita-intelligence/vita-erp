@@ -9,9 +9,13 @@ import Section from "../fields/Section";
 import SelectField from "../fields/SelectField";
 import type { SettingsFieldProps } from "../fields/types";
 
-type Props = Pick<SettingsFieldProps, "control" | "t">;
+type Props = Pick<SettingsFieldProps, "control" | "t" | "isDisabled">;
 
-export default function NumberFormattingSection({ control, t }: Props) {
+export default function NumberFormattingSection({
+  control,
+  t,
+  isDisabled,
+}: Props) {
   return (
     <Section
       title={t("sections.number_formatting")}
@@ -23,6 +27,7 @@ export default function NumberFormattingSection({ control, t }: Props) {
         optionKey="decimal_separator"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="thousands_separator"
@@ -30,6 +35,7 @@ export default function NumberFormattingSection({ control, t }: Props) {
         optionKey="thousands_separator"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
       <SelectField
         name="digit_grouping"
@@ -37,6 +43,7 @@ export default function NumberFormattingSection({ control, t }: Props) {
         optionKey="digit_grouping"
         control={control}
         t={t}
+        isDisabled={isDisabled}
       />
     </Section>
   );

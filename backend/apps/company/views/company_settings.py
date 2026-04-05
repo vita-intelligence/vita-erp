@@ -20,17 +20,34 @@ from apps.company.serializers.company_settings import (
     CompanySettingsUpdateSerializer,
 )
 from apps.company.services.company_settings import get_settings, update_settings
+from apps.organizations.permissions import HasOrgContext, HasOrgMembership
+from apps.rbac.constants import (
+    ACTION_READ,
+    ACTION_WRITE,
+    MODULE_COMPANY_SETTINGS,
+)
+from apps.rbac.permissions import HasModulePermission
 
 
 class CompanySettingsView(APIView):
     """Retrieve or update the org's CompanySettings singleton.
 
-    GET requires any authenticated org member.
-    PATCH requires org admin/owner (RBAC check to be wired when
-    permission classes are built for tenant-scoped endpoints).
+    GET requires `company_settings:read`; PATCH requires `company_settings:write`.
+    Owner role bypasses both checks.
     """
 
-    permission_classes = [IsAuthenticated, IsEmailVerified]
+    permission_classes = [
+        IsAuthenticated,
+        IsEmailVerified,
+        HasOrgContext,
+        HasOrgMembership,
+        HasModulePermission,
+    ]
+    rbac_module = MODULE_COMPANY_SETTINGS
+    rbac_action_map = {
+        "GET": ACTION_READ,
+        "PATCH": ACTION_WRITE,
+    }
 
     def get(self, request) -> Response:
         settings = get_settings()

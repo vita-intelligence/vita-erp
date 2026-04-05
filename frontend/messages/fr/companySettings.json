@@ -9,6 +9,7 @@
   "saving": "Enregistrement...",
   "saved": "Param\u00e8tres enregistr\u00e9s avec succ\u00e8s.",
   "no_changes": "Aucune modification \u00e0 enregistrer.",
+  "read_only_notice": "Vous avez un accès en lecture seule à ces paramètres. Contactez votre administrateur pour obtenir les autorisations de modification.",
   "sections": {
     "number_formatting": "Format des nombres",
     "number_formatting_description": "Comment les nombres sont affich\u00e9s dans le syst\u00e8me \u2014 s\u00e9parateurs d\u00e9cimaux et de milliers, regroupement des chiffres.",
