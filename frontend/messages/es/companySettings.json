@@ -78,6 +78,8 @@
     "fiscal_calendar_type": "Tipo de calendario fiscal",
     "cost_method": "M\u00e9todo de costeo",
     "tax_inclusive_pricing": "Precios con impuestos incluidos",
+    "default_tax_rate": "Tasa de impuesto predeterminada (%)",
+    "tax_label": "Etiqueta de impuesto",
     "default_document_language": "Idioma de documentos",
     "default_paper_size": "Tama\u00f1o de papel predeterminado",
     "text_direction": "Direcci\u00f3n del texto"
@@ -250,6 +252,8 @@
     "fiscal_calendar_type": "El est\u00e1ndar usa meses calendario. Los calendarios de comercio (4-4-5, 4-5-4, 5-4-4) usan per\u00edodos de semanas fijas para comparaciones consistentes.",
     "cost_method": "C\u00f3mo se calculan los costos de inventario. Promedio: media ponderada. Est\u00e1ndar: costo predeterminado. FIFO: existencias m\u00e1s antiguas primero.",
     "tax_inclusive_pricing": "Cuando est\u00e1 activado, los precios ingresados en el sistema ya incluyen impuestos. Com\u00fan en la UE, Australia y Nueva Zelanda.",
+    "default_tax_rate": "El porcentaje de impuesto predeterminado aplicado a documentos nuevos. Entre 0 y 100.",
+    "tax_label": "El nombre que usa tu región para este impuesto: IVA, VAT, GST, Sales Tax, etc.",
     "default_document_language": "Idioma utilizado para PDFs, facturas e informes generados. Ingrese un c\u00f3digo de idioma (ej.: en, de, fr).",
     "default_paper_size": "Tama\u00f1o de papel para PDFs generados. A4 es el est\u00e1ndar mundial. Letter se usa en EE. UU. y Canad\u00e1.",
     "text_direction": "Direcci\u00f3n del texto para documentos generados. RTL se usa para \u00e1rabe, hebreo, persa y urdu."

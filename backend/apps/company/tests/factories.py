@@ -37,6 +37,8 @@ class CompanySettingsFactory(factory.django.DjangoModelFactory):
     fiscal_calendar_type = "standard"
     cost_method = "average"
     tax_inclusive_pricing = False
+    default_tax_rate = "0.000"
+    tax_label = "Tax"
     default_document_language = "en"
     default_paper_size = "A4"
     text_direction = "ltr"

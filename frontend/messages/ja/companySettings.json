@@ -78,6 +78,8 @@
     "fiscal_calendar_type": "会計カレンダーの種類",
     "cost_method": "原価計算方法",
     "tax_inclusive_pricing": "税込価格",
+    "default_tax_rate": "デフォルト税率 (%)",
+    "tax_label": "税ラベル",
     "default_document_language": "ドキュメント言語",
     "default_paper_size": "デフォルト用紙サイズ",
     "text_direction": "テキスト方向"
@@ -250,6 +252,8 @@
     "fiscal_calendar_type": "標準は暦月を使用します。小売カレンダー（4-4-5、4-5-4、5-4-4）は一貫した比較のために固定週期間を使用します。",
     "cost_method": "在庫原価の計算方法。平均：加重平均。標準：所定原価。FIFO：最も古い在庫から。",
     "tax_inclusive_pricing": "有効にすると、システムに入力された価格にはすでに税金が含まれます。EU、オーストラリア、ニュージーランドで一般的です。",
+    "default_tax_rate": "新規ドキュメントに適用されるデフォルトの税率です。0から100の間。",
+    "tax_label": "お住まいの地域で使用されるこの税の名称：消費税、VAT、GSTなど。",
     "default_document_language": "生成されるPDF、請求書、レポートで使用される言語。ロケールコードを入力してください（例：en、de、fr）。",
     "default_paper_size": "生成されるPDFの用紙サイズ。A4は世界標準です。レターは米国とカナダで使用されます。",
     "text_direction": "生成されるドキュメントのテキスト方向。RTLはアラビア語、ヘブライ語、ペルシア語、ウルドゥー語で使用されます。"

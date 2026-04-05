@@ -89,6 +89,8 @@ class CompanySettingsAdmin(admin.ModelAdmin):
                     "fiscal_calendar_type",
                     "cost_method",
                     "tax_inclusive_pricing",
+                    "default_tax_rate",
+                    "tax_label",
                 )
             },
         ),

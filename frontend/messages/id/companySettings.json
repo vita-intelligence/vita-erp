@@ -78,6 +78,8 @@
     "fiscal_calendar_type": "Jenis Kalender Fiskal",
     "cost_method": "Metode Biaya",
     "tax_inclusive_pricing": "Harga Termasuk Pajak",
+    "default_tax_rate": "Tarif Pajak Default (%)",
+    "tax_label": "Label Pajak",
     "default_document_language": "Bahasa Dokumen",
     "default_paper_size": "Ukuran Kertas Default",
     "text_direction": "Arah Teks"
@@ -250,6 +252,8 @@
     "fiscal_calendar_type": "Standar menggunakan bulan kalender. Kalender ritel (4-4-5, 4-5-4, 5-4-4) menggunakan periode minggu tetap untuk perbandingan yang konsisten.",
     "cost_method": "Bagaimana biaya inventaris dihitung. Rata-rata: rata-rata tertimbang. Standar: biaya yang ditentukan sebelumnya. FIFO: stok paling lama lebih dulu.",
     "tax_inclusive_pricing": "Saat diaktifkan, harga yang dimasukkan dalam sistem sudah termasuk pajak. Umum di UE, Australia, dan Selandia Baru.",
+    "default_tax_rate": "Persentase pajak default yang diterapkan pada dokumen baru. Antara 0 dan 100.",
+    "tax_label": "Nama yang digunakan wilayah Anda untuk pajak ini: PPN, VAT, GST, Sales Tax, dll.",
     "default_document_language": "Bahasa yang digunakan untuk PDF, faktur, dan laporan yang dihasilkan. Masukkan kode lokal (contoh: en, de, fr).",
     "default_paper_size": "Ukuran kertas untuk PDF yang dihasilkan. A4 adalah standar di seluruh dunia. Letter digunakan di AS dan Kanada.",
     "text_direction": "Arah teks untuk dokumen yang dihasilkan. RTL digunakan untuk bahasa Arab, Ibrani, Persia, dan Urdu."

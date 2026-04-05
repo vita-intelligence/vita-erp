@@ -78,6 +78,8 @@
     "fiscal_calendar_type": "회계 달력 유형",
     "cost_method": "원가 계산 방법",
     "tax_inclusive_pricing": "세금 포함 가격",
+    "default_tax_rate": "기본 세율 (%)",
+    "tax_label": "세금 라벨",
     "default_document_language": "문서 언어",
     "default_paper_size": "기본 용지 크기",
     "text_direction": "텍스트 방향"
@@ -250,6 +252,8 @@
     "fiscal_calendar_type": "표준은 역월을 사용합니다. 소매 달력(4-4-5, 4-5-4, 5-4-4)은 일관된 비교를 위해 고정 주 기간을 사용합니다.",
     "cost_method": "재고 원가 계산 방법. 평균: 가중 평균. 표준: 미리 정해진 원가. FIFO: 가장 오래된 재고부터.",
     "tax_inclusive_pricing": "활성화하면 시스템에 입력된 가격에 이미 세금이 포함됩니다. EU, 호주, 뉴질랜드에서 일반적입니다.",
+    "default_tax_rate": "새 문서에 적용되는 기본 세금 비율입니다. 0과 100 사이.",
+    "tax_label": "해당 지역에서 이 세금을 부르는 이름: 부가세, VAT, GST, Sales Tax 등.",
     "default_document_language": "생성되는 PDF, 송장, 보고서에 사용되는 언어. 로케일 코드를 입력하세요 (예: en, de, fr).",
     "default_paper_size": "생성되는 PDF의 용지 크기. A4는 전 세계 표준입니다. 레터는 미국과 캐나다에서 사용됩니다.",
     "text_direction": "생성되는 문서의 텍스트 방향. RTL은 아랍어, 히브리어, 페르시아어, 우르두어에 사용됩니다."

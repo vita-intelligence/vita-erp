@@ -78,6 +78,8 @@
     "fiscal_calendar_type": "Geschäftskalendertyp",
     "cost_method": "Kostenmethode",
     "tax_inclusive_pricing": "Bruttopreise (inkl. Steuer)",
+    "default_tax_rate": "Standard-Steuersatz (%)",
+    "tax_label": "Steuerbezeichnung",
     "default_document_language": "Dokumentsprache",
     "default_paper_size": "Standard-Papierformat",
     "text_direction": "Textrichtung"
@@ -250,6 +252,8 @@
     "fiscal_calendar_type": "Standard verwendet Kalendermonate. Einzelhandelskalender (4-4-5, 4-5-4, 5-4-4) verwenden feste Wochenperioden für konsistente Vergleiche.",
     "cost_method": "Wie Bestandskosten berechnet werden. Durchschnitt: gewichtetes Mittel. Standard: vorbestimmte Kosten. FIFO: ältester Bestand zuerst.",
     "tax_inclusive_pricing": "Wenn aktiviert, enthalten die im System eingegebenen Preise bereits die Steuer. Üblich in der EU, Australien und Neuseeland.",
+    "default_tax_rate": "Der Standard-Steuerprozentsatz für neue Dokumente. Zwischen 0 und 100.",
+    "tax_label": "Der in Ihrer Region übliche Name dieser Steuer: USt, GST, Sales Tax, IVA usw.",
     "default_document_language": "Sprache für generierte PDFs, Rechnungen und Berichte. Geben Sie einen Sprachcode ein (z. B. en, de, fr).",
     "default_paper_size": "Papierformat für generierte PDFs. A4 ist weltweit Standard. Letter wird in den USA und Kanada verwendet.",
     "text_direction": "Textrichtung für generierte Dokumente. RTL wird für Arabisch, Hebräisch, Persisch und Urdu verwendet."

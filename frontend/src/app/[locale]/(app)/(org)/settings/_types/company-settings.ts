@@ -105,6 +105,10 @@ export const companySettingsSchema = z
     fiscal_calendar_type: z.enum(FISCAL_CALENDAR_TYPES),
     cost_method: z.enum(COST_METHODS),
     tax_inclusive_pricing: z.boolean(),
+    default_tax_rate: z.string().regex(/^\d+(\.\d{1,3})?$/, {
+      message: "must be a decimal between 0 and 100 with up to 3 decimals",
+    }),
+    tax_label: z.string().max(20),
 
     // Document defaults
     default_document_language: z.string().min(2).max(10),

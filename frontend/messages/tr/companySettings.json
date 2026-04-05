@@ -78,6 +78,8 @@
     "fiscal_calendar_type": "Mali Takvim Türü",
     "cost_method": "Maliyetlendirme Yöntemi",
     "tax_inclusive_pricing": "Vergi Dahil Fiyatlandırma",
+    "default_tax_rate": "Varsayılan vergi oranı (%)",
+    "tax_label": "Vergi etiketi",
     "default_document_language": "Belge Dili",
     "default_paper_size": "Varsayılan Kağıt Boyutu",
     "text_direction": "Metin Yönü"

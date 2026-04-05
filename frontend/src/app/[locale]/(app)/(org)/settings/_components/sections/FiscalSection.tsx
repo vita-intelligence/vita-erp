@@ -3,6 +3,7 @@
 import { ListBox, ListBoxItem } from "@heroui/react";
 import { Controller } from "react-hook-form";
 
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectPopover,
@@ -100,6 +101,56 @@ export default function FiscalSection({ control, t, isDisabled }: Props) {
         t={t}
         isDisabled={isDisabled}
       />
+      <div className="py-4">
+        <span className="block text-sm font-medium text-vita-text-primary">
+          {t("fields.default_tax_rate")}
+        </span>
+        <span className="mb-2 block text-xs text-vita-text-muted">
+          {t("descriptions.default_tax_rate")}
+        </span>
+        <Controller
+          name="default_tax_rate"
+          control={control}
+          render={({ field }) => (
+            <Input
+              type="number"
+              min={0}
+              max={100}
+              step={0.001}
+              value={String(field.value ?? "")}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                field.onChange(e.target.value)
+              }
+              aria-label={t("fields.default_tax_rate")}
+              disabled={isDisabled}
+            />
+          )}
+        />
+      </div>
+      <div className="py-4">
+        <span className="block text-sm font-medium text-vita-text-primary">
+          {t("fields.tax_label")}
+        </span>
+        <span className="mb-2 block text-xs text-vita-text-muted">
+          {t("descriptions.tax_label")}
+        </span>
+        <Controller
+          name="tax_label"
+          control={control}
+          render={({ field }) => (
+            <Input
+              type="text"
+              maxLength={20}
+              value={String(field.value ?? "")}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                field.onChange(e.target.value)
+              }
+              aria-label={t("fields.tax_label")}
+              disabled={isDisabled}
+            />
+          )}
+        />
+      </div>
     </Section>
   );
 }

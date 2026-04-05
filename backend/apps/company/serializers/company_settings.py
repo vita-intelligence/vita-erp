@@ -166,6 +166,14 @@ class CompanySettingsUpdateSerializer(serializers.Serializer):
         required=False,
     )
     tax_inclusive_pricing = serializers.BooleanField(required=False)
+    default_tax_rate = serializers.DecimalField(
+        max_digits=6,
+        decimal_places=3,
+        min_value=0,
+        max_value=100,
+        required=False,
+    )
+    tax_label = serializers.CharField(max_length=20, required=False)
 
     # Document defaults
     default_document_language = serializers.CharField(

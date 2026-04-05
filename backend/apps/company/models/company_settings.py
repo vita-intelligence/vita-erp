@@ -241,6 +241,18 @@ class CompanySettings(models.Model):
         default=COST_METHOD_AVERAGE,
     )
     tax_inclusive_pricing = models.BooleanField(default=False)
+    default_tax_rate = models.DecimalField(
+        max_digits=6,
+        decimal_places=3,
+        default="0.000",
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        help_text="Default tax percentage applied across the system (0–100).",
+    )
+    tax_label = models.CharField(
+        max_length=20,
+        default="Tax",
+        help_text="Local name for tax (VAT, GST, Sales Tax, IVA, etc.).",
+    )
 
     # === Document Defaults ===
 

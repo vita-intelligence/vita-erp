@@ -414,6 +414,8 @@ class TestGetSettings:
             "fiscal_calendar_type",
             "cost_method",
             "tax_inclusive_pricing",
+            "default_tax_rate",
+            "tax_label",
             "default_document_language",
             "default_paper_size",
             "text_direction",
@@ -492,6 +494,41 @@ class TestPatchSettings:
         response = auth_client.patch(
             URL,
             {"fiscal_year_start_month": 2, "fiscal_year_start_day": 30},
+            format="json",
+        )
+        assert response.status_code == 400
+
+    def test_patch_tax_rate_above_max(self, auth_client, settings_row):
+        response = auth_client.patch(
+            URL,
+            {"default_tax_rate": "150.000"},
+            format="json",
+        )
+        assert response.status_code == 400
+
+    def test_patch_tax_rate_below_min(self, auth_client, settings_row):
+        response = auth_client.patch(
+            URL,
+            {"default_tax_rate": "-5.000"},
+            format="json",
+        )
+        assert response.status_code == 400
+
+    def test_patch_tax_rate_valid(self, auth_client, settings_row):
+        response = auth_client.patch(
+            URL,
+            {"default_tax_rate": "20.500", "tax_label": "VAT"},
+            format="json",
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert data["default_tax_rate"] == "20.500"
+        assert data["tax_label"] == "VAT"
+
+    def test_patch_tax_label_too_long(self, auth_client, settings_row):
+        response = auth_client.patch(
+            URL,
+            {"tax_label": "x" * 25},
             format="json",
         )
         assert response.status_code == 400

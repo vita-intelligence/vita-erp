@@ -96,6 +96,8 @@ _INTERNATIONAL_DEFAULTS: dict[str, object] = {
     "fiscal_calendar_type": "standard",
     "cost_method": COST_METHOD_AVERAGE,
     "tax_inclusive_pricing": False,
+    "default_tax_rate": "0.000",
+    "tax_label": "Tax",
     "default_document_language": "en",
     "default_paper_size": PAPER_SIZE_A4,
     "text_direction": TEXT_DIR_LTR,
@@ -156,16 +158,22 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "date_format": DATE_FMT_EU_SLASH,
         "default_document_language": "es",
         "default_paper_size": PAPER_SIZE_LETTER,
+        "default_tax_rate": "16.000",
+        "tax_label": "IVA",
     },
     # --- UK & Ireland ---
     "GB": {
         "date_format": DATE_FMT_EU_SLASH,
         "fiscal_year_start_month": 4,
         "fiscal_year_start_day": 6,
+        "default_tax_rate": "20.000",
+        "tax_label": "VAT",
     },
     "IE": {
         "date_format": DATE_FMT_EU_SLASH,
         "tax_inclusive_pricing": True,
+        "default_tax_rate": "23.000",
+        "tax_label": "VAT",
     },
     # --- Western Europe ---
     "DE": {
@@ -173,12 +181,16 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_DOT,
         "default_document_language": "de",
+        "default_tax_rate": "19.000",
+        "tax_label": "VAT",
     },
     "AT": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_DOT,
         "default_document_language": "de",
+        "default_tax_rate": "20.000",
+        "tax_label": "VAT",
     },
     "CH": {
         "thousands_separator": THOUSANDS_SEP_APOSTROPHE,
@@ -187,18 +199,24 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "cash_rounding_enabled": True,
         "cash_rounding_increment": "0.05",
         "default_document_language": "de",
+        "default_tax_rate": "8.100",
+        "tax_label": "VAT",
     },
     "NL": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_SLASH,
         "tax_inclusive_pricing": True,
+        "default_tax_rate": "21.000",
+        "tax_label": "VAT",
     },
     "BE": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_SLASH,
         "tax_inclusive_pricing": True,
+        "default_tax_rate": "21.000",
+        "tax_label": "VAT",
     },
     # --- Southern Europe ---
     "FR": {
@@ -207,6 +225,8 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "date_format": DATE_FMT_EU_SLASH,
         "tax_inclusive_pricing": True,
         "default_document_language": "fr",
+        "default_tax_rate": "20.000",
+        "tax_label": "VAT",
     },
     "ES": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
@@ -214,6 +234,8 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "date_format": DATE_FMT_EU_SLASH,
         "tax_inclusive_pricing": True,
         "default_document_language": "es",
+        "default_tax_rate": "21.000",
+        "tax_label": "IVA",
     },
     "IT": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
@@ -221,6 +243,8 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "date_format": DATE_FMT_EU_SLASH,
         "tax_inclusive_pricing": True,
         "default_document_language": "it",
+        "default_tax_rate": "22.000",
+        "tax_label": "IVA",
     },
     "PT": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
@@ -228,6 +252,8 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "date_format": DATE_FMT_EU_SLASH,
         "tax_inclusive_pricing": True,
         "default_document_language": "pt",
+        "default_tax_rate": "23.000",
+        "tax_label": "IVA",
     },
     # --- Nordic ---
     "SE": {
@@ -236,48 +262,66 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "date_format": DATE_FMT_ISO,
         "cash_rounding_enabled": True,
         "cash_rounding_increment": "1.00",
+        "default_tax_rate": "25.000",
+        "tax_label": "Moms",
     },
     "NO": {
         **_COMMA_DECIMAL_SPACE_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_DOT,
+        "default_tax_rate": "25.000",
+        "tax_label": "MVA",
     },
     "DK": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_DOT,
+        "default_tax_rate": "25.000",
+        "tax_label": "Moms",
     },
     "FI": {
         **_COMMA_DECIMAL_SPACE_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_DOT,
+        "default_tax_rate": "24.000",
+        "tax_label": "ALV",
     },
     # --- Eastern Europe ---
     "PL": {
         **_COMMA_DECIMAL_SPACE_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_DOT,
+        "default_tax_rate": "23.000",
+        "tax_label": "VAT",
     },
     "RU": {
         **_COMMA_DECIMAL_SPACE_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_DOT,
         "default_document_language": "ru",
+        "default_tax_rate": "20.000",
+        "tax_label": "НДС",
     },
     "UA": {
         **_COMMA_DECIMAL_SPACE_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_DOT,
+        "default_tax_rate": "20.000",
+        "tax_label": "ПДВ",
     },
     "CZ": {
         **_COMMA_DECIMAL_SPACE_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_DOT,
+        "default_tax_rate": "21.000",
+        "tax_label": "DPH",
     },
     "RO": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         **_SYMBOL_AFTER_SPACED,
         "date_format": DATE_FMT_EU_DOT,
+        "default_tax_rate": "19.000",
+        "tax_label": "TVA",
     },
     # --- Middle East (RTL) ---
     "SA": {
@@ -287,6 +331,8 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "calendar_system": CALENDAR_HIJRI,
         "text_direction": TEXT_DIR_RTL,
         "default_document_language": "ar",
+        "default_tax_rate": "15.000",
+        "tax_label": "VAT",
     },
     "AE": {
         "date_format": DATE_FMT_EU_SLASH,
@@ -294,17 +340,23 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "week_start_day": WEEK_START_SATURDAY,
         "text_direction": TEXT_DIR_RTL,
         "default_document_language": "ar",
+        "default_tax_rate": "5.000",
+        "tax_label": "VAT",
     },
     "IL": {
         "date_format": DATE_FMT_EU_DOT,
         "week_start_day": WEEK_START_SUNDAY,
         "text_direction": TEXT_DIR_RTL,
+        "default_tax_rate": "17.000",
+        "tax_label": "Ma'am",
     },
     "IR": {
         "date_format": DATE_FMT_ISO,
         "week_start_day": WEEK_START_SATURDAY,
         "calendar_system": CALENDAR_PERSIAN,
         "text_direction": TEXT_DIR_RTL,
+        "default_tax_rate": "9.000",
+        "tax_label": "VAT",
     },
     "EG": {
         "date_format": DATE_FMT_EU_SLASH,
@@ -312,6 +364,8 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "week_start_day": WEEK_START_SATURDAY,
         "text_direction": TEXT_DIR_RTL,
         "default_document_language": "ar",
+        "default_tax_rate": "14.000",
+        "tax_label": "VAT",
     },
     # --- South Asia ---
     "IN": {
@@ -320,6 +374,8 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "time_format": TIME_FMT_12H,
         "fiscal_year_start_month": 4,
         "default_document_language": "hi",
+        "default_tax_rate": "18.000",
+        "tax_label": "GST",
     },
     "PK": {
         "digit_grouping": DIGIT_GROUPING_INDIAN,
@@ -327,11 +383,15 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "time_format": TIME_FMT_12H,
         "week_start_day": WEEK_START_SATURDAY,
         "text_direction": TEXT_DIR_RTL,
+        "default_tax_rate": "18.000",
+        "tax_label": "Sales Tax",
     },
     "BD": {
         "digit_grouping": DIGIT_GROUPING_INDIAN,
         "date_format": DATE_FMT_EU_SLASH,
         "time_format": TIME_FMT_12H,
+        "default_tax_rate": "15.000",
+        "tax_label": "VAT",
     },
     # --- East Asia ---
     "JP": {
@@ -340,40 +400,58 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "calendar_system": CALENDAR_JAPANESE,
         "fiscal_year_start_month": 4,
         "default_document_language": "ja",
+        "default_tax_rate": "10.000",
+        "tax_label": "Consumption Tax",
     },
     "CN": {
         "date_format": DATE_FMT_JP,
         "default_document_language": "zh",
+        "default_tax_rate": "13.000",
+        "tax_label": "VAT",
     },
     "KR": {
         "date_format": DATE_FMT_JP,
         "default_document_language": "ko",
+        "default_tax_rate": "10.000",
+        "tax_label": "VAT",
     },
     "TW": {
         "date_format": DATE_FMT_JP,
         "default_document_language": "zh",
+        "default_tax_rate": "5.000",
+        "tax_label": "VAT",
     },
     # --- Southeast Asia ---
     "TH": {
         "date_format": DATE_FMT_EU_SLASH,
         "calendar_system": CALENDAR_THAI_BUDDHIST,
+        "default_tax_rate": "7.000",
+        "tax_label": "VAT",
     },
     "ID": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         "date_format": DATE_FMT_EU_SLASH,
         "default_document_language": "id",
+        "default_tax_rate": "11.000",
+        "tax_label": "PPN",
     },
     "VN": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         "date_format": DATE_FMT_EU_SLASH,
         "currency_precision": 0,
+        "default_tax_rate": "10.000",
+        "tax_label": "VAT",
     },
     "MY": {
         "date_format": DATE_FMT_EU_SLASH,
+        "default_tax_rate": "6.000",
+        "tax_label": "SST",
     },
     "PH": {
         "date_format": DATE_FMT_US,
         "time_format": TIME_FMT_12H,
+        "default_tax_rate": "12.000",
+        "tax_label": "VAT",
     },
     # --- Oceania ---
     "AU": {
@@ -381,49 +459,69 @@ _COUNTRY_OVERRIDES: dict[str, dict[str, object]] = {
         "time_format": TIME_FMT_12H,
         "fiscal_year_start_month": 7,
         "tax_inclusive_pricing": True,
+        "default_tax_rate": "10.000",
+        "tax_label": "GST",
     },
     "NZ": {
         "date_format": DATE_FMT_EU_SLASH,
         "fiscal_year_start_month": 4,
         "tax_inclusive_pricing": True,
+        "default_tax_rate": "15.000",
+        "tax_label": "GST",
     },
     # --- South America ---
     "BR": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         "date_format": DATE_FMT_EU_SLASH,
         "default_document_language": "pt",
+        "default_tax_rate": "18.000",
+        "tax_label": "ICMS",
     },
     "AR": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         "date_format": DATE_FMT_EU_SLASH,
         "default_document_language": "es",
+        "default_tax_rate": "21.000",
+        "tax_label": "IVA",
     },
     "CL": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         "date_format": DATE_FMT_EU_SLASH,
         "default_document_language": "es",
+        "default_tax_rate": "19.000",
+        "tax_label": "IVA",
     },
     "CO": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         "date_format": DATE_FMT_EU_SLASH,
         "default_document_language": "es",
+        "default_tax_rate": "19.000",
+        "tax_label": "IVA",
     },
     # --- Africa ---
     "ZA": {
         **_COMMA_DECIMAL_SPACE_THOUSANDS,
         "date_format": DATE_FMT_ISO,
+        "default_tax_rate": "15.000",
+        "tax_label": "VAT",
     },
     "NG": {
         "date_format": DATE_FMT_EU_SLASH,
+        "default_tax_rate": "7.500",
+        "tax_label": "VAT",
     },
     "KE": {
         "date_format": DATE_FMT_EU_SLASH,
+        "default_tax_rate": "16.000",
+        "tax_label": "VAT",
     },
     # --- Turkey ---
     "TR": {
         **_COMMA_DECIMAL_DOT_THOUSANDS,
         "date_format": DATE_FMT_EU_DOT,
         "default_document_language": "tr",
+        "default_tax_rate": "20.000",
+        "tax_label": "KDV",
     },
 }
 

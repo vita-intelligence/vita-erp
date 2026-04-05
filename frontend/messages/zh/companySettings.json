@@ -78,6 +78,8 @@
     "fiscal_calendar_type": "财务日历类型",
     "cost_method": "成本核算方法",
     "tax_inclusive_pricing": "含税定价",
+    "default_tax_rate": "默认税率 (%)",
+    "tax_label": "税务标签",
     "default_document_language": "文档语言",
     "default_paper_size": "默认纸张大小",
     "text_direction": "文本方向"
@@ -250,6 +252,8 @@
     "fiscal_calendar_type": "标准使用日历月。零售日历（4-4-5、4-5-4、5-4-4）使用固定周期进行一致的比较。",
     "cost_method": "库存成本的计算方式。平均：加权平均。标准：预定成本。FIFO：最旧的库存优先。",
     "tax_inclusive_pricing": "启用后，系统中输入的价格已包含税费。在欧盟、澳大利亚和新西兰很常见。",
+    "default_tax_rate": "应用于新文档的默认税收百分比。介于 0 和 100 之间。",
+    "tax_label": "您所在地区对此税的称呼：增值税、VAT、GST、Sales Tax 等。",
     "default_document_language": "生成的 PDF、发票和报告所使用的语言。输入区域代码（例如：en、de、fr）。",
     "default_paper_size": "生成的 PDF 的纸张大小。A4 是全球标准。Letter 在美国和加拿大使用。",
     "text_direction": "生成的文档的文本方向。RTL 用于阿拉伯语、希伯来语、波斯语和乌尔都语。"

@@ -78,6 +78,8 @@
     "fiscal_calendar_type": "Tipo di calendario fiscale",
     "cost_method": "Metodo di costo",
     "tax_inclusive_pricing": "Prezzi IVA inclusa",
+    "default_tax_rate": "Aliquota fiscale predefinita (%)",
+    "tax_label": "Etichetta fiscale",
     "default_document_language": "Lingua documenti",
     "default_paper_size": "Formato carta predefinito",
     "text_direction": "Direzione del testo"
@@ -250,6 +252,8 @@
     "fiscal_calendar_type": "Lo standard usa i mesi di calendario. I calendari per la vendita al dettaglio (4-4-5, 4-5-4, 5-4-4) usano periodi settimanali fissi per confronti coerenti.",
     "cost_method": "Come vengono calcolati i costi di inventario. Media: media ponderata. Standard: costo predeterminato. FIFO: scorte più vecchie per prime.",
     "tax_inclusive_pricing": "Quando attivato, i prezzi inseriti nel sistema includono già l'imposta. Comune nell'UE, in Australia e in Nuova Zelanda.",
+    "default_tax_rate": "La percentuale di imposta predefinita applicata ai nuovi documenti. Tra 0 e 100.",
+    "tax_label": "Il nome utilizzato nella tua regione per questa imposta: IVA, VAT, GST, Sales Tax, ecc.",
     "default_document_language": "Lingua utilizzata per i PDF, le fatture e i report generati. Inserire un codice lingua (es.: en, de, fr).",
     "default_paper_size": "Formato carta per i PDF generati. A4 è lo standard mondiale. Letter è usato negli USA e in Canada.",
     "text_direction": "Direzione del testo per i documenti generati. RTL è usato per arabo, ebraico, persiano e urdu."

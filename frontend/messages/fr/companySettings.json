@@ -78,6 +78,8 @@
     "fiscal_calendar_type": "Type de calendrier fiscal",
     "cost_method": "M\u00e9thode de co\u00fbt",
     "tax_inclusive_pricing": "Prix TTC (toutes taxes comprises)",
+    "default_tax_rate": "Taux de taxe par défaut (%)",
+    "tax_label": "Libellé de la taxe",
     "default_document_language": "Langue des documents",
     "default_paper_size": "Format de papier par d\u00e9faut",
     "text_direction": "Direction du texte"
@@ -250,6 +252,8 @@
     "fiscal_calendar_type": "Le standard utilise les mois calendaires. Les calendriers de commerce (4-4-5, 4-5-4, 5-4-4) utilisent des p\u00e9riodes de semaines fixes pour des comparaisons coh\u00e9rentes.",
     "cost_method": "Comment les co\u00fbts de stock sont calcul\u00e9s. Moyenne : moyenne pond\u00e9r\u00e9e. Standard : co\u00fbt pr\u00e9d\u00e9termin\u00e9. FIFO : stock le plus ancien en premier.",
     "tax_inclusive_pricing": "Lorsqu\u2019activ\u00e9, les prix saisis dans le syst\u00e8me incluent d\u00e9j\u00e0 la taxe. Courant dans l\u2019UE, en Australie et en Nouvelle-Z\u00e9lande.",
+    "default_tax_rate": "Le pourcentage de taxe par défaut appliqué aux nouveaux documents. Entre 0 et 100.",
+    "tax_label": "Le nom utilisé dans votre région pour cette taxe : TVA, VAT, GST, Sales Tax, IVA, etc.",
     "default_document_language": "Langue utilis\u00e9e pour les PDF, factures et rapports g\u00e9n\u00e9r\u00e9s. Entrez un code de langue (ex. : en, de, fr).",
     "default_paper_size": "Format de papier pour les PDF g\u00e9n\u00e9r\u00e9s. A4 est le standard mondial. Letter est utilis\u00e9 aux \u00c9tats-Unis et au Canada.",
     "text_direction": "Direction du texte pour les documents g\u00e9n\u00e9r\u00e9s. RTL est utilis\u00e9 pour l\u2019arabe, l\u2019h\u00e9breu, le persan et l\u2019ourdou."

@@ -78,6 +78,8 @@
     "fiscal_calendar_type": "Tipo de Calendário Fiscal",
     "cost_method": "Método de Custeio",
     "tax_inclusive_pricing": "Preço com Impostos Inclusos",
+    "default_tax_rate": "Taxa de imposto padrão (%)",
+    "tax_label": "Rótulo do imposto",
     "default_document_language": "Idioma dos Documentos",
     "default_paper_size": "Tamanho de Papel Padrão",
     "text_direction": "Direção do Texto"
@@ -250,6 +252,8 @@
     "fiscal_calendar_type": "Padrão usa meses do calendário. Calendários de varejo (4-4-5, 4-5-4, 5-4-4) usam períodos de semanas fixas para comparações consistentes.",
     "cost_method": "Como os custos de estoque são calculados. Média: média ponderada. Padrão: custo predeterminado. FIFO: estoque mais antigo primeiro.",
     "tax_inclusive_pricing": "Quando ativado, os preços inseridos no sistema já incluem impostos. Comum na UE, Austrália e Nova Zelândia.",
+    "default_tax_rate": "O percentual de imposto padrão aplicado a novos documentos. Entre 0 e 100.",
+    "tax_label": "O nome que sua região usa para este imposto: IVA, ICMS, VAT, GST, Sales Tax, etc.",
     "default_document_language": "Idioma usado para PDFs, faturas e relatórios gerados. Insira um código de localidade (ex.: en, de, fr).",
     "default_paper_size": "Tamanho do papel para PDFs gerados. A4 é o padrão mundial. Carta é usado nos EUA e Canadá.",
     "text_direction": "Direção do texto para documentos gerados. RTL é usado para árabe, hebraico, farsi e urdu."
