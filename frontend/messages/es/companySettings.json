@@ -92,6 +92,7 @@
     "default_tax_rate": "Tasa de impuesto predeterminada (%)",
     "tax_label": "Etiqueta de impuesto",
     "default_document_language": "Idioma de documentos",
+    "default_ui_language": "Idioma de la interfaz",
     "default_paper_size": "Tama\u00f1o de papel predeterminado",
     "text_direction": "Direcci\u00f3n del texto"
   },
@@ -266,6 +267,7 @@
     "default_tax_rate": "El porcentaje de impuesto predeterminado aplicado a documentos nuevos. Entre 0 y 100.",
     "tax_label": "El nombre que usa tu región para este impuesto: IVA, VAT, GST, Sales Tax, etc.",
     "default_document_language": "Idioma utilizado para PDFs, facturas e informes generados. Ingrese un c\u00f3digo de idioma (ej.: en, de, fr).",
+    "default_ui_language": "Idioma de interfaz predeterminado para los nuevos usuarios de esta organizaci\u00f3n. Los usuarios pueden cambiarlo en su propia configuraci\u00f3n.",
     "default_paper_size": "Tama\u00f1o de papel para PDFs generados. A4 es el est\u00e1ndar mundial. Letter se usa en EE. UU. y Canad\u00e1.",
     "text_direction": "Dirección del diseño para toda la interfaz de la aplicación (menús, formularios, tablas) Y documentos generados. RTL invierte todo el diseño para árabe, hebreo, farsi y urdu — se aplica inmediatamente al guardar."
   },

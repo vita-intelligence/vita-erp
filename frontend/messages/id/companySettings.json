@@ -92,6 +92,7 @@
     "default_tax_rate": "Tarif Pajak Default (%)",
     "tax_label": "Label Pajak",
     "default_document_language": "Bahasa Dokumen",
+    "default_ui_language": "Bahasa Antarmuka",
     "default_paper_size": "Ukuran Kertas Default",
     "text_direction": "Arah Teks"
   },
@@ -266,6 +267,7 @@
     "default_tax_rate": "Persentase pajak default yang diterapkan pada dokumen baru. Antara 0 dan 100.",
     "tax_label": "Nama yang digunakan wilayah Anda untuk pajak ini: PPN, VAT, GST, Sales Tax, dll.",
     "default_document_language": "Bahasa yang digunakan untuk PDF, faktur, dan laporan yang dihasilkan. Masukkan kode lokal (contoh: en, de, fr).",
+    "default_ui_language": "Bahasa antarmuka default untuk pengguna baru yang bergabung dengan organisasi ini. Pengguna dapat mengubahnya di pengaturan mereka sendiri.",
     "default_paper_size": "Ukuran kertas untuk PDF yang dihasilkan. A4 adalah standar di seluruh dunia. Letter digunakan di AS dan Kanada.",
     "text_direction": "Arah tata letak untuk seluruh antarmuka aplikasi (menu, formulir, tabel) DAN dokumen yang dihasilkan. RTL membalik seluruh tata letak untuk bahasa Arab, Ibrani, Farsi, dan Urdu — berlaku segera setelah disimpan."
   },

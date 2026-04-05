@@ -40,6 +40,7 @@ class CompanySettingsFactory(factory.django.DjangoModelFactory):
     default_tax_rate = "0.000"
     tax_label = "Tax"
     default_document_language = "en"
+    default_ui_language = "en"
     default_paper_size = "A4"
     text_direction = "ltr"
 

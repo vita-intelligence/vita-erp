@@ -92,6 +92,7 @@
     "default_tax_rate": "默认税率 (%)",
     "tax_label": "税务标签",
     "default_document_language": "文档语言",
+    "default_ui_language": "界面语言",
     "default_paper_size": "默认纸张大小",
     "text_direction": "文本方向"
   },
@@ -266,6 +267,7 @@
     "default_tax_rate": "应用于新文档的默认税收百分比。介于 0 和 100 之间。",
     "tax_label": "您所在地区对此税的称呼：增值税、VAT、GST、Sales Tax 等。",
     "default_document_language": "生成的 PDF、发票和报告所使用的语言。输入区域代码（例如：en、de、fr）。",
+    "default_ui_language": "新加入此组织的用户的默认界面语言。用户可在个人设置中自行更改。",
     "default_paper_size": "生成的 PDF 的纸张大小。A4 是全球标准。Letter 在美国和加拿大使用。",
     "text_direction": "整个应用程序界面（菜单、表单、表格）和生成文档的布局方向。RTL 会为阿拉伯语、希伯来语、波斯语和乌尔都语翻转整个布局 — 保存后立即生效。"
   },

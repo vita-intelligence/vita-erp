@@ -260,6 +260,11 @@ class CompanySettings(models.Model):
         max_length=10,
         default="en",
     )
+    default_ui_language = models.CharField(
+        max_length=10,
+        default="en",
+        help_text="Default interface language for users in this organization.",
+    )
     default_paper_size = models.CharField(
         max_length=10,
         choices=PAPER_SIZE_CHOICES,

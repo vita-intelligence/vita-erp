@@ -12,11 +12,13 @@
 
 import { EditorMount } from "@/components/theme-editor";
 
+import LocaleEnforcer from "./_components/LocaleEnforcer";
 import OrgGuard from "./_components/OrgGuard";
 
 export default function OrgLayout({ children }: { children: React.ReactNode }) {
   return (
     <OrgGuard>
+      <LocaleEnforcer />
       <div
         className="min-h-screen text-vita-text-secondary"
         style={{ backgroundColor: "var(--vita-background)" }}

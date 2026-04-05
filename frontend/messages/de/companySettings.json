@@ -92,6 +92,7 @@
     "default_tax_rate": "Standard-Steuersatz (%)",
     "tax_label": "Steuerbezeichnung",
     "default_document_language": "Dokumentsprache",
+    "default_ui_language": "Oberflächensprache",
     "default_paper_size": "Standard-Papierformat",
     "text_direction": "Textrichtung"
   },
@@ -266,6 +267,7 @@
     "default_tax_rate": "Der Standard-Steuerprozentsatz für neue Dokumente. Zwischen 0 und 100.",
     "tax_label": "Der in Ihrer Region übliche Name dieser Steuer: USt, GST, Sales Tax, IVA usw.",
     "default_document_language": "Sprache für generierte PDFs, Rechnungen und Berichte. Geben Sie einen Sprachcode ein (z. B. en, de, fr).",
+    "default_ui_language": "Standardsprache der Oberfläche für neue Benutzer dieser Organisation. Benutzer können dies in ihren eigenen Einstellungen ändern.",
     "default_paper_size": "Papierformat für generierte PDFs. A4 ist weltweit Standard. Letter wird in den USA und Kanada verwendet.",
     "text_direction": "Layout-Richtung für die gesamte App-Oberfläche (Menüs, Formulare, Tabellen) UND generierte Dokumente. RTL spiegelt das komplette Layout für Arabisch, Hebräisch, Farsi und Urdu — wirkt sofort nach dem Speichern."
   },

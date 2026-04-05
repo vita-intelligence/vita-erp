@@ -92,6 +92,7 @@
     "default_tax_rate": "Taux de taxe par défaut (%)",
     "tax_label": "Libellé de la taxe",
     "default_document_language": "Langue des documents",
+    "default_ui_language": "Langue de l'interface",
     "default_paper_size": "Format de papier par d\u00e9faut",
     "text_direction": "Direction du texte"
   },
@@ -266,6 +267,7 @@
     "default_tax_rate": "Le pourcentage de taxe par défaut appliqué aux nouveaux documents. Entre 0 et 100.",
     "tax_label": "Le nom utilisé dans votre région pour cette taxe : TVA, VAT, GST, Sales Tax, IVA, etc.",
     "default_document_language": "Langue utilis\u00e9e pour les PDF, factures et rapports g\u00e9n\u00e9r\u00e9s. Entrez un code de langue (ex. : en, de, fr).",
+    "default_ui_language": "Langue de l'interface par d\u00e9faut pour les nouveaux utilisateurs rejoignant cette organisation. Les utilisateurs peuvent la modifier dans leurs propres param\u00e8tres.",
     "default_paper_size": "Format de papier pour les PDF g\u00e9n\u00e9r\u00e9s. A4 est le standard mondial. Letter est utilis\u00e9 aux \u00c9tats-Unis et au Canada.",
     "text_direction": "Direction de mise en page pour toute l'interface de l'application (menus, formulaires, tableaux) ET documents générés. Le RTL inverse toute la disposition pour l'arabe, l'hébreu, le farsi et l'ourdou — effet immédiat après enregistrement."
   },

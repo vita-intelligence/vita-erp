@@ -99,6 +99,7 @@ class CompanySettingsAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "default_document_language",
+                    "default_ui_language",
                     "default_paper_size",
                     "text_direction",
                 )

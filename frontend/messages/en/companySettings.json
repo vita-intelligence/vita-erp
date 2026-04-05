@@ -92,6 +92,7 @@
     "default_tax_rate": "Default Tax Rate (%)",
     "tax_label": "Tax Label",
     "default_document_language": "Document Language",
+    "default_ui_language": "UI Language",
     "default_paper_size": "Default Paper Size",
     "text_direction": "Text Direction"
   },
@@ -266,6 +267,7 @@
     "default_tax_rate": "The default tax percentage applied to new documents. Between 0 and 100.",
     "tax_label": "The name your region uses for this tax: VAT, GST, Sales Tax, IVA, etc.",
     "default_document_language": "Language used for generated PDFs, invoices, and reports. Enter a locale code (e.g., en, de, fr).",
+    "default_ui_language": "Default interface language for new users joining this organization. Users can override this in their own settings.",
     "default_paper_size": "Paper size for generated PDFs. A4 is standard worldwide. Letter is used in the US and Canada.",
     "text_direction": "Layout direction for the entire app interface (menus, forms, tables) AND generated documents. RTL flips the whole layout for Arabic, Hebrew, Farsi, and Urdu — takes effect immediately when saved."
   },

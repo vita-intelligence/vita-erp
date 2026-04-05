@@ -92,6 +92,7 @@
     "default_tax_rate": "Taxa de imposto padrão (%)",
     "tax_label": "Rótulo do imposto",
     "default_document_language": "Idioma dos Documentos",
+    "default_ui_language": "Idioma da Interface",
     "default_paper_size": "Tamanho de Papel Padrão",
     "text_direction": "Direção do Texto"
   },
@@ -266,6 +267,7 @@
     "default_tax_rate": "O percentual de imposto padrão aplicado a novos documentos. Entre 0 e 100.",
     "tax_label": "O nome que sua região usa para este imposto: IVA, ICMS, VAT, GST, Sales Tax, etc.",
     "default_document_language": "Idioma usado para PDFs, faturas e relatórios gerados. Insira um código de localidade (ex.: en, de, fr).",
+    "default_ui_language": "Idioma de interface padrão para novos usuários que ingressam nesta organização. Os usuários podem alterá-lo em suas próprias configurações.",
     "default_paper_size": "Tamanho do papel para PDFs gerados. A4 é o padrão mundial. Carta é usado nos EUA e Canadá.",
     "text_direction": "Direção do layout para toda a interface do aplicativo (menus, formulários, tabelas) E documentos gerados. RTL inverte todo o layout para árabe, hebraico, farsi e urdu — tem efeito imediato ao salvar."
   },

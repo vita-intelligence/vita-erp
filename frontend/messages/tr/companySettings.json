@@ -92,6 +92,7 @@
     "default_tax_rate": "Varsayılan vergi oranı (%)",
     "tax_label": "Vergi etiketi",
     "default_document_language": "Belge Dili",
+    "default_ui_language": "Arayüz Dili",
     "default_paper_size": "Varsayılan Kağıt Boyutu",
     "text_direction": "Metin Yönü"
   },
@@ -264,6 +265,7 @@
     "cost_method": "Envanter maliyetlerinin nasıl hesaplandığı. Ortalama: ağırlıklı ortalama. Standart: önceden belirlenen maliyet. FIFO: en eski stok önce.",
     "tax_inclusive_pricing": "Etkinleştirildiğinde, sisteme girilen fiyatlar zaten vergi içerir. AB, Avustralya ve Yeni Zelanda'da yaygındır.",
     "default_document_language": "Oluşturulan PDF'ler, faturalar ve raporlar için kullanılan dil. Bir yerel ayar kodu girin (örn.: en, de, fr).",
+    "default_ui_language": "Bu kuruluşa katılan yeni kullanıcılar için varsayılan arayüz dili. Kullanıcılar bunu kendi ayarlarından değiştirebilir.",
     "default_paper_size": "Oluşturulan PDF'ler için kağıt boyutu. A4 dünya genelinde standarttır. Letter ABD ve Kanada'da kullanılır.",
     "text_direction": "Tüm uygulama arayüzü (menüler, formlar, tablolar) VE oluşturulan belgeler için düzen yönü. RTL, Arapça, İbranice, Farsça ve Urduca için düzenin tamamını çevirir — kaydedildiğinde hemen devreye girer."
   },

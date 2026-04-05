@@ -92,6 +92,7 @@
     "default_tax_rate": "기본 세율 (%)",
     "tax_label": "세금 라벨",
     "default_document_language": "문서 언어",
+    "default_ui_language": "인터페이스 언어",
     "default_paper_size": "기본 용지 크기",
     "text_direction": "텍스트 방향"
   },
@@ -266,6 +267,7 @@
     "default_tax_rate": "새 문서에 적용되는 기본 세금 비율입니다. 0과 100 사이.",
     "tax_label": "해당 지역에서 이 세금을 부르는 이름: 부가세, VAT, GST, Sales Tax 등.",
     "default_document_language": "생성되는 PDF, 송장, 보고서에 사용되는 언어. 로케일 코드를 입력하세요 (예: en, de, fr).",
+    "default_ui_language": "이 조직에 참여하는 신규 사용자의 기본 인터페이스 언어. 사용자는 자신의 설정에서 변경할 수 있습니다.",
     "default_paper_size": "생성되는 PDF의 용지 크기. A4는 전 세계 표준입니다. 레터는 미국과 캐나다에서 사용됩니다.",
     "text_direction": "전체 앱 인터페이스(메뉴, 양식, 테이블) 및 생성된 문서의 레이아웃 방향입니다. RTL은 아랍어, 히브리어, 페르시아어, 우르두어의 전체 레이아웃을 뒤집습니다 — 저장 시 즉시 적용됩니다."
   },

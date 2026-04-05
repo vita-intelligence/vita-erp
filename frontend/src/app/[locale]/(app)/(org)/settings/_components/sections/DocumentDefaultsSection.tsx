@@ -38,12 +38,85 @@ const LOCALE_NATIVE_NAMES: Record<(typeof I18N.locales)[number], string> = {
   id: "Bahasa Indonesia",
 };
 
+type LanguageFieldName = "default_document_language" | "default_ui_language";
+
+function LanguageComboField({
+  name,
+  control,
+  t,
+  isDisabled,
+}: {
+  name: LanguageFieldName;
+  control: Props["control"];
+  t: Props["t"];
+  isDisabled: Props["isDisabled"];
+}) {
+  const label = t(`fields.${name}`);
+  return (
+    <div className="py-4">
+      <span className="block text-sm font-medium text-vita-text-primary">
+        {label}
+      </span>
+      <span className="mb-2 block text-xs text-vita-text-muted">
+        {t(`descriptions.${name}`)}
+      </span>
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <ComboBox
+            selectedKey={String(field.value)}
+            onSelectionChange={(key) => {
+              if (key == null) return;
+              field.onChange(String(key));
+            }}
+            aria-label={label}
+            allowsCustomValue={false}
+            menuTrigger="focus"
+            isDisabled={isDisabled}
+          >
+            <ComboBoxInputGroup>
+              <ComboBoxInput
+                style={{
+                  flex: 1,
+                  border: "none",
+                  outline: "none",
+                  background: "transparent",
+                  padding: "8px 12px",
+                  fontSize: "var(--vita-input-font-size, 14px)",
+                  color: "var(--vita-text-primary)",
+                }}
+              />
+              <ComboBoxTrigger />
+            </ComboBoxInputGroup>
+            <ComboBoxPopover>
+              <ComboBoxListBox>
+                {I18N.locales.map((code) => (
+                  <ListBox.Item
+                    key={code}
+                    id={code}
+                    textValue={`${LOCALE_NATIVE_NAMES[code]} ${code}`}
+                  >
+                    {LOCALE_NATIVE_NAMES[code]}{" "}
+                    <span style={{ color: "var(--vita-text-muted)" }}>
+                      ({code})
+                    </span>
+                  </ListBox.Item>
+                ))}
+              </ComboBoxListBox>
+            </ComboBoxPopover>
+          </ComboBox>
+        )}
+      />
+    </div>
+  );
+}
+
 export default function DocumentDefaultsSection({
   control,
   t,
   isDisabled,
 }: Props) {
-  const languageLabel = t("fields.default_document_language");
   return (
     <Section
       title={t("sections.document_defaults")}
@@ -65,62 +138,18 @@ export default function DocumentDefaultsSection({
         t={t}
         isDisabled={isDisabled}
       />
-      <div className="py-4">
-        <span className="block text-sm font-medium text-vita-text-primary">
-          {languageLabel}
-        </span>
-        <span className="mb-2 block text-xs text-vita-text-muted">
-          {t("descriptions.default_document_language")}
-        </span>
-        <Controller
-          name="default_document_language"
-          control={control}
-          render={({ field }) => (
-            <ComboBox
-              selectedKey={String(field.value)}
-              onSelectionChange={(key) => {
-                if (key == null) return;
-                field.onChange(String(key));
-              }}
-              aria-label={languageLabel}
-              allowsCustomValue={false}
-              menuTrigger="focus"
-              isDisabled={isDisabled}
-            >
-              <ComboBoxInputGroup>
-                <ComboBoxInput
-                  style={{
-                    flex: 1,
-                    border: "none",
-                    outline: "none",
-                    background: "transparent",
-                    padding: "8px 12px",
-                    fontSize: "var(--vita-input-font-size, 14px)",
-                    color: "var(--vita-text-primary)",
-                  }}
-                />
-                <ComboBoxTrigger />
-              </ComboBoxInputGroup>
-              <ComboBoxPopover>
-                <ComboBoxListBox>
-                  {I18N.locales.map((code) => (
-                    <ListBox.Item
-                      key={code}
-                      id={code}
-                      textValue={`${LOCALE_NATIVE_NAMES[code]} ${code}`}
-                    >
-                      {LOCALE_NATIVE_NAMES[code]}{" "}
-                      <span style={{ color: "var(--vita-text-muted)" }}>
-                        ({code})
-                      </span>
-                    </ListBox.Item>
-                  ))}
-                </ComboBoxListBox>
-              </ComboBoxPopover>
-            </ComboBox>
-          )}
-        />
-      </div>
+      <LanguageComboField
+        name="default_document_language"
+        control={control}
+        t={t}
+        isDisabled={isDisabled}
+      />
+      <LanguageComboField
+        name="default_ui_language"
+        control={control}
+        t={t}
+        isDisabled={isDisabled}
+      />
     </Section>
   );
 }

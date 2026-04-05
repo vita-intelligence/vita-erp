@@ -92,6 +92,7 @@
     "default_tax_rate": "Aliquota fiscale predefinita (%)",
     "tax_label": "Etichetta fiscale",
     "default_document_language": "Lingua documenti",
+    "default_ui_language": "Lingua interfaccia",
     "default_paper_size": "Formato carta predefinito",
     "text_direction": "Direzione del testo"
   },
@@ -266,6 +267,7 @@
     "default_tax_rate": "La percentuale di imposta predefinita applicata ai nuovi documenti. Tra 0 e 100.",
     "tax_label": "Il nome utilizzato nella tua regione per questa imposta: IVA, VAT, GST, Sales Tax, ecc.",
     "default_document_language": "Lingua utilizzata per i PDF, le fatture e i report generati. Inserire un codice lingua (es.: en, de, fr).",
+    "default_ui_language": "Lingua predefinita dell'interfaccia per i nuovi utenti che si uniscono a questa organizzazione. Gli utenti possono modificarla nelle proprie impostazioni.",
     "default_paper_size": "Formato carta per i PDF generati. A4 è lo standard mondiale. Letter è usato negli USA e in Canada.",
     "text_direction": "Direzione del layout per l'intera interfaccia dell'app (menu, moduli, tabelle) E documenti generati. RTL ribalta l'intero layout per arabo, ebraico, farsi e urdu — ha effetto immediato al salvataggio."
   },

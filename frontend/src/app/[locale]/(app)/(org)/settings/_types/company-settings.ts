@@ -112,6 +112,7 @@ export const companySettingsSchema = z
 
     // Document defaults
     default_document_language: z.string().min(2).max(10),
+    default_ui_language: z.string().min(2).max(10),
     default_paper_size: z.enum(PAPER_SIZES),
     text_direction: z.enum(TEXT_DIRECTIONS),
   })

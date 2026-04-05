@@ -180,6 +180,10 @@ class CompanySettingsUpdateSerializer(serializers.Serializer):
         max_length=10,
         required=False,
     )
+    default_ui_language = serializers.CharField(
+        max_length=10,
+        required=False,
+    )
     default_paper_size = serializers.ChoiceField(
         choices=CompanySettings.default_paper_size.field.choices,
         required=False,

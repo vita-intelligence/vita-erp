@@ -417,6 +417,7 @@ class TestGetSettings:
             "default_tax_rate",
             "tax_label",
             "default_document_language",
+            "default_ui_language",
             "default_paper_size",
             "text_direction",
             "created_at",
