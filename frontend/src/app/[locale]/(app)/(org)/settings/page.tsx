@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   Tab,
@@ -16,29 +16,57 @@ import GeneralSettings from "./_components/GeneralSettings";
 const TAB_IDS = ["general"] as const;
 type SettingsTab = (typeof TAB_IDS)[number];
 
-function getHashTab(): SettingsTab {
-  if (typeof window === "undefined") return "general";
-  const hash = window.location.hash.replace("#", "");
-  return TAB_IDS.includes(hash as SettingsTab)
-    ? (hash as SettingsTab)
+/** Parses `#main/sub` → [main, sub]. Invalid main falls back to the default. */
+function parseHash(): { tab: SettingsTab; section: string | null } {
+  if (typeof window === "undefined") return { tab: "general", section: null };
+  const raw = window.location.hash.replace("#", "");
+  const [main, sub] = raw.split("/");
+  const tab = TAB_IDS.includes(main as SettingsTab)
+    ? (main as SettingsTab)
     : "general";
+  return { tab, section: sub || null };
 }
 
 export default function SettingsPage() {
   const t = useTranslations("companySettings");
-  const [activeTab, setActiveTab] = useState<SettingsTab>(getHashTab);
+  const [{ tab: activeTab, section: activeSection }, setHashState] =
+    useState(parseHash);
 
   useEffect(() => {
-    const onHashChange = () => setActiveTab(getHashTab());
+    const onHashChange = () => setHashState(parseHash());
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  const handleTabChange = useCallback((key: React.Key) => {
-    const tab = String(key) as SettingsTab;
-    setActiveTab(tab);
-    window.history.replaceState(null, "", `#${tab}`);
+  const writeHash = useCallback((tab: SettingsTab, section: string | null) => {
+    const hash = section ? `#${tab}/${section}` : `#${tab}`;
+    window.history.replaceState(null, "", hash);
   }, []);
+
+  const handleTabChange = useCallback(
+    (key: React.Key) => {
+      const tab = String(key) as SettingsTab;
+      setHashState({ tab, section: null });
+      writeHash(tab, null);
+    },
+    [writeHash],
+  );
+
+  const handleSectionChange = useCallback(
+    (section: string) => {
+      setHashState((prev) => ({ tab: prev.tab, section }));
+      writeHash(activeTab, section);
+    },
+    [activeTab, writeHash],
+  );
+
+  const generalProps = useMemo(
+    () => ({
+      activeSection: activeTab === "general" ? activeSection : null,
+      onSectionChange: handleSectionChange,
+    }),
+    [activeTab, activeSection, handleSectionChange],
+  );
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-10">
@@ -58,7 +86,7 @@ export default function SettingsPage() {
 
         <TabPanel id="general">
           <div className="pt-6">
-            <GeneralSettings />
+            <GeneralSettings {...generalProps} />
           </div>
         </TabPanel>
       </Tabs>
