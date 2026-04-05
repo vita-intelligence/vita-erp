@@ -78,7 +78,6 @@ _INTERNATIONAL_DEFAULTS: dict[str, object] = {
     "currency_symbol_position": CURRENCY_POS_BEFORE,
     "currency_spacing": False,
     "negative_format": NEGATIVE_FMT_MINUS_BEFORE,
-    "multi_currency_enabled": False,
     "rounding_method": ROUNDING_HALF_UP,
     "cash_rounding_enabled": False,
     "cash_rounding_increment": "0.01",

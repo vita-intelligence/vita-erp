@@ -79,7 +79,6 @@ export const companySettingsSchema = z
     currency_symbol_position: z.enum(CURRENCY_POSITIONS),
     currency_spacing: z.boolean(),
     negative_format: z.enum(NEGATIVE_FORMATS),
-    multi_currency_enabled: z.boolean(),
 
     // Rounding
     rounding_method: z.enum(ROUNDING_METHODS),

@@ -32,7 +32,6 @@ export default function CurrencyDisplaySection({ control, t }: Props) {
         t={t}
       />
       <SwitchField name="currency_spacing" control={control} t={t} />
-      <SwitchField name="multi_currency_enabled" control={control} t={t} />
     </Section>
   );
 }

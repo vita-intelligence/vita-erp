@@ -89,7 +89,6 @@ class CompanySettingsUpdateSerializer(serializers.Serializer):
         choices=CompanySettings.negative_format.field.choices,
         required=False,
     )
-    multi_currency_enabled = serializers.BooleanField(required=False)
 
     # Rounding
     rounding_method = serializers.ChoiceField(

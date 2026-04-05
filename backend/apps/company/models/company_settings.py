@@ -143,7 +143,6 @@ class CompanySettings(models.Model):
         choices=NEGATIVE_FORMAT_CHOICES,
         default=NEGATIVE_FMT_MINUS_BEFORE,
     )
-    multi_currency_enabled = models.BooleanField(default=False)
 
     # === Rounding ===
 

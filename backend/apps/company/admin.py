@@ -43,7 +43,6 @@ class CompanySettingsAdmin(admin.ModelAdmin):
                     "currency_symbol_position",
                     "currency_spacing",
                     "negative_format",
-                    "multi_currency_enabled",
                 )
             },
         ),

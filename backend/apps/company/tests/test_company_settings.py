@@ -378,7 +378,6 @@ class TestGetSettings:
             "currency_symbol_position",
             "currency_spacing",
             "negative_format",
-            "multi_currency_enabled",
             "rounding_method",
             "cash_rounding_enabled",
             "cash_rounding_increment",

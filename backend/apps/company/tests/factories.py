@@ -19,7 +19,6 @@ class CompanySettingsFactory(factory.django.DjangoModelFactory):
     currency_symbol_position = "before"
     currency_spacing = False
     negative_format = "minus_before"
-    multi_currency_enabled = False
     rounding_method = "half_up"
     cash_rounding_enabled = False
     cash_rounding_increment = "0.01"
