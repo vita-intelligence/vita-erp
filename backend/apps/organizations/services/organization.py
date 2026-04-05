@@ -155,6 +155,7 @@ def create_organization(
             migrate_org_database(db_name)
             _create_owner_role(org, user)
             _create_company_settings(org, user, request)
+            _create_company_theme(org, user, request)
         except Exception:
             logger.exception("Failed to provision org database: %s", db_name)
             org.delete()
@@ -237,6 +238,26 @@ def _create_company_settings(
             request=request,
         )
         logger.info("CompanySettings created for org %s", org.slug)
+    finally:
+        clear_current_org_db()
+
+
+def _create_company_theme(
+    org: Organization,
+    user: User,
+    request: HttpRequest | None = None,
+) -> None:
+    """Create default CompanyTheme in the org database."""
+    from apps.company.services.company_theme import create_default_theme
+    from apps.organizations.context import clear_current_org_db, set_current_org_db
+    from apps.organizations.db import register_org_database
+
+    db_alias = register_org_database(org.db_name)
+    set_current_org_db(db_alias)
+
+    try:
+        create_default_theme(user_id=user.id, request=request)
+        logger.info("CompanyTheme created for org %s", org.slug)
     finally:
         clear_current_org_db()
 

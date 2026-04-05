@@ -3,13 +3,32 @@
     "title": "Configurações"
   },
   "tabs": {
-    "general": "Geral"
+    "general": "Geral",
+    "theme": "Tema"
   },
   "save": "Salvar Alterações",
   "saving": "Salvando...",
   "saved": "Configurações salvas com sucesso.",
   "no_changes": "Nenhuma alteração para salvar.",
   "read_only_notice": "Você tem acesso somente leitura a essas configurações. Entre em contato com o administrador para permissões de edição.",
+  "theme": {
+    "title": "Aparência",
+    "description": "Personalize a aparência do aplicativo para todos os membros da sua organização.",
+    "preset_section_title": "Predefinição",
+    "trigger_toggle_label": "Mostrar paleta em cada página",
+    "trigger_toggle_description": "Quando ativado, um ícone de paleta arrastável permanece na tela em todas as páginas da organização. Clique em qualquer lugar para abrir o editor.",
+    "open_editor_label": "Editar tema agora",
+    "open_editor_description": "Abre o editor de tema aqui mesmo. Funciona mesmo quando a paleta está oculta.",
+    "open_editor": "Abrir editor",
+    "close_editor": "Fechar editor",
+    "unsaved_changes_title": "Você tem alterações de tema não salvas.",
+    "discard": "Descartar",
+    "save": "Salvar alterações",
+    "saving": "Salvando...",
+    "save_success": "Tema salvo.",
+    "save_failed": "Falha ao salvar o tema. Tente novamente.",
+    "read_only_notice": "Você tem acesso somente leitura às configurações de tema. Entre em contato com o administrador para permissões de edição."
+  },
   "sections": {
     "number_formatting": "Formatação de Números",
     "number_formatting_description": "Como os números são exibidos no sistema — separadores decimal e de milhar, agrupamento de dígitos.",

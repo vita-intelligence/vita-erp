@@ -3,13 +3,32 @@
     "title": "Ayarlar"
   },
   "tabs": {
-    "general": "Genel"
+    "general": "Genel",
+    "theme": "Tema"
   },
   "save": "Değişiklikleri Kaydet",
   "saving": "Kaydediliyor...",
   "saved": "Ayarlar başarıyla kaydedildi.",
   "no_changes": "Kaydedilecek değişiklik yok.",
   "read_only_notice": "Bu ayarlara yalnızca görüntüleme erişiminiz var. Düzenleme izinleri için yöneticinize başvurun.",
+  "theme": {
+    "title": "Görünüm",
+    "description": "Kuruluşunuzdaki herkes için uygulamanın görünümünü ve hissini özelleştirin.",
+    "preset_section_title": "Ön ayar",
+    "trigger_toggle_label": "Paleti her sayfada göster",
+    "trigger_toggle_description": "Etkinleştirildiğinde, sürüklenebilir bir palet simgesi kuruluş sayfalarında ekranda kalır. Düzenleyiciyi açmak için herhangi bir yere tıklayın.",
+    "open_editor_label": "Temayı şimdi düzenle",
+    "open_editor_description": "Tema düzenleyicisini burada açar. Palet gizliyken bile çalışır.",
+    "open_editor": "Düzenleyiciyi aç",
+    "close_editor": "Düzenleyiciyi kapat",
+    "unsaved_changes_title": "Kaydedilmemiş tema değişiklikleriniz var.",
+    "discard": "Vazgeç",
+    "save": "Değişiklikleri kaydet",
+    "saving": "Kaydediliyor...",
+    "save_success": "Tema kaydedildi.",
+    "save_failed": "Tema kaydedilemedi. Lütfen tekrar deneyin.",
+    "read_only_notice": "Tema ayarlarına yalnızca görüntüleme erişiminiz var. Düzenleme izinleri için yöneticinize başvurun."
+  },
   "sections": {
     "number_formatting": "Sayı Biçimlendirme",
     "number_formatting_description": "Sayıların sistem genelinde nasıl görüntülendiği — ondalık ve binlik ayırıcılar, basamak gruplama.",

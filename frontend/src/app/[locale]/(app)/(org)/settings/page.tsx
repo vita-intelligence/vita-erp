@@ -12,8 +12,9 @@ import {
 } from "@/components/ui/tabs";
 
 import GeneralSettings from "./_components/GeneralSettings";
+import ThemeSettings from "./_components/ThemeSettings";
 
-const TAB_IDS = ["general"] as const;
+const TAB_IDS = ["general", "theme"] as const;
 type SettingsTab = (typeof TAB_IDS)[number];
 
 /** Parses `#main/sub` → [main, sub]. Invalid main falls back to the default. */
@@ -82,11 +83,21 @@ export default function SettingsPage() {
             {t("tabs.general")}
             <TabIndicator />
           </Tab>
+          <Tab id="theme">
+            {t("tabs.theme")}
+            <TabIndicator />
+          </Tab>
         </TabList>
 
         <TabPanel id="general">
           <div className="pt-6">
             <GeneralSettings {...generalProps} />
+          </div>
+        </TabPanel>
+
+        <TabPanel id="theme">
+          <div className="pt-6">
+            <ThemeSettings />
           </div>
         </TabPanel>
       </Tabs>

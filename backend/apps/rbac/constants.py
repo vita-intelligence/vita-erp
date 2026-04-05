@@ -38,3 +38,4 @@ ACTION_CHOICES = [
 # ---------------------------------------------------------------------------
 
 MODULE_COMPANY_SETTINGS = "company_settings"
+MODULE_COMPANY_THEME = "company_theme"

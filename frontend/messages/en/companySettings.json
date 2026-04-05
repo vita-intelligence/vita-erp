@@ -3,13 +3,32 @@
     "title": "Settings"
   },
   "tabs": {
-    "general": "General"
+    "general": "General",
+    "theme": "Theme"
   },
   "save": "Save Changes",
   "saving": "Saving...",
   "saved": "Settings saved successfully.",
   "no_changes": "No changes to save.",
   "read_only_notice": "You have view-only access to these settings. Contact your administrator for edit permissions.",
+  "theme": {
+    "title": "Appearance",
+    "description": "Customize the look and feel of the app for everyone in your organization.",
+    "preset_section_title": "Preset",
+    "trigger_toggle_label": "Show palette on every page",
+    "trigger_toggle_description": "When enabled, a draggable palette icon stays on screen across org pages. Click it anywhere to open the editor.",
+    "open_editor_label": "Edit theme now",
+    "open_editor_description": "Opens the theme editor right here. Works even when the palette is hidden.",
+    "open_editor": "Open editor",
+    "close_editor": "Close editor",
+    "unsaved_changes_title": "You have unsaved theme changes.",
+    "discard": "Discard",
+    "save": "Save changes",
+    "saving": "Saving...",
+    "save_success": "Theme saved.",
+    "save_failed": "Failed to save theme. Please try again.",
+    "read_only_notice": "You have view-only access to theme settings. Contact your administrator for edit permissions."
+  },
   "sections": {
     "number_formatting": "Number Formatting",
     "number_formatting_description": "How numbers are displayed across the system — decimal and thousands separators, digit grouping.",

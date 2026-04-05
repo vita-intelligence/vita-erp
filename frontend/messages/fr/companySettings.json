@@ -3,13 +3,32 @@
     "title": "Param\u00e8tres"
   },
   "tabs": {
-    "general": "G\u00e9n\u00e9ral"
+    "general": "G\u00e9n\u00e9ral",
+    "theme": "Thème"
   },
   "save": "Enregistrer les modifications",
   "saving": "Enregistrement...",
   "saved": "Param\u00e8tres enregistr\u00e9s avec succ\u00e8s.",
   "no_changes": "Aucune modification \u00e0 enregistrer.",
   "read_only_notice": "Vous avez un accès en lecture seule à ces paramètres. Contactez votre administrateur pour obtenir les autorisations de modification.",
+  "theme": {
+    "title": "Apparence",
+    "description": "Personnalisez l'apparence de l'application pour tous les membres de votre organisation.",
+    "preset_section_title": "Préréglage",
+    "trigger_toggle_label": "Afficher la palette sur chaque page",
+    "trigger_toggle_description": "Lorsqu'activé, une icône de palette déplaçable reste à l'écran sur toutes les pages de l'organisation. Cliquez-la n'importe où pour ouvrir l'éditeur.",
+    "open_editor_label": "Modifier le thème maintenant",
+    "open_editor_description": "Ouvre l'éditeur de thème ici même. Fonctionne même lorsque la palette est masquée.",
+    "open_editor": "Ouvrir l'éditeur",
+    "close_editor": "Fermer l'éditeur",
+    "unsaved_changes_title": "Vous avez des modifications de thème non enregistrées.",
+    "discard": "Annuler",
+    "save": "Enregistrer les modifications",
+    "saving": "Enregistrement...",
+    "save_success": "Thème enregistré.",
+    "save_failed": "Échec de l'enregistrement du thème. Veuillez réessayer.",
+    "read_only_notice": "Vous avez un accès en lecture seule aux paramètres du thème. Contactez votre administrateur pour obtenir les autorisations de modification."
+  },
   "sections": {
     "number_formatting": "Format des nombres",
     "number_formatting_description": "Comment les nombres sont affich\u00e9s dans le syst\u00e8me \u2014 s\u00e9parateurs d\u00e9cimaux et de milliers, regroupement des chiffres.",

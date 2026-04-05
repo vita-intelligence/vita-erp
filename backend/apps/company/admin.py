@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from apps.company.models import CompanySettings
+from apps.company.models import CompanySettings, CompanyTheme
 
 
 @admin.register(CompanySettings)
@@ -102,5 +102,17 @@ class CompanySettingsAdmin(admin.ModelAdmin):
                 )
             },
         ),
+        ("Metadata", {"fields": ("id", "created_at", "updated_at")}),
+    )
+
+
+@admin.register(CompanyTheme)
+class CompanyThemeAdmin(admin.ModelAdmin):
+    """Admin for company theme — view the org's active mode and customizations."""
+
+    list_display = ("__str__", "active_mode", "updated_at")
+    readonly_fields = ("id", "created_at", "updated_at")
+    fieldsets = (
+        ("Theme", {"fields": ("active_mode", "tokens_by_mode")}),
         ("Metadata", {"fields": ("id", "created_at", "updated_at")}),
     )

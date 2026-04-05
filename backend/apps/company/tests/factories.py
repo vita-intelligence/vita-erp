@@ -1,6 +1,6 @@
 import factory
 
-from apps.company.models import CompanySettings
+from apps.company.models import CompanySettings, CompanyTheme
 
 
 class CompanySettingsFactory(factory.django.DjangoModelFactory):
@@ -40,3 +40,11 @@ class CompanySettingsFactory(factory.django.DjangoModelFactory):
     default_document_language = "en"
     default_paper_size = "A4"
     text_direction = "ltr"
+
+
+class CompanyThemeFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = CompanyTheme
+
+    active_mode = "light"
+    tokens_by_mode: dict[str, dict[str, str]] = {}  # noqa: RUF012 — factory-boy expects a class attribute

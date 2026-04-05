@@ -3,13 +3,32 @@
     "title": "设置"
   },
   "tabs": {
-    "general": "常规"
+    "general": "常规",
+    "theme": "主题"
   },
   "save": "保存更改",
   "saving": "保存中...",
   "saved": "设置已成功保存。",
   "no_changes": "没有需要保存的更改。",
   "read_only_notice": "您对这些设置只有查看权限。请联系管理员获取编辑权限。",
+  "theme": {
+    "title": "外观",
+    "description": "为您组织中的每个人自定义应用程序的外观和感觉。",
+    "preset_section_title": "预设",
+    "trigger_toggle_label": "在每个页面显示调色板",
+    "trigger_toggle_description": "启用后，可拖动的调色板图标会留在组织页面的屏幕上。在任何地方点击它以打开编辑器。",
+    "open_editor_label": "立即编辑主题",
+    "open_editor_description": "在此处直接打开主题编辑器。即使调色板被隐藏也能正常工作。",
+    "open_editor": "打开编辑器",
+    "close_editor": "关闭编辑器",
+    "unsaved_changes_title": "您有未保存的主题更改。",
+    "discard": "放弃",
+    "save": "保存更改",
+    "saving": "正在保存...",
+    "save_success": "主题已保存。",
+    "save_failed": "保存主题失败。请重试。",
+    "read_only_notice": "您对主题设置只有查看权限。请联系管理员获取编辑权限。"
+  },
   "sections": {
     "number_formatting": "数字格式",
     "number_formatting_description": "系统中数字的显示方式——小数点分隔符、千位分隔符、数字分组。",

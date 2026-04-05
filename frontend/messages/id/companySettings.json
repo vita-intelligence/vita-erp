@@ -3,13 +3,32 @@
     "title": "Pengaturan"
   },
   "tabs": {
-    "general": "Umum"
+    "general": "Umum",
+    "theme": "Tema"
   },
   "save": "Simpan Perubahan",
   "saving": "Menyimpan...",
   "saved": "Pengaturan berhasil disimpan.",
   "no_changes": "Tidak ada perubahan untuk disimpan.",
   "read_only_notice": "Anda memiliki akses hanya-lihat ke pengaturan ini. Hubungi administrator Anda untuk izin edit.",
+  "theme": {
+    "title": "Tampilan",
+    "description": "Sesuaikan tampilan aplikasi untuk semua anggota organisasi Anda.",
+    "preset_section_title": "Preset",
+    "trigger_toggle_label": "Tampilkan palet di setiap halaman",
+    "trigger_toggle_description": "Saat diaktifkan, ikon palet yang dapat diseret tetap di layar di seluruh halaman organisasi. Klik di mana saja untuk membuka editor.",
+    "open_editor_label": "Edit tema sekarang",
+    "open_editor_description": "Membuka editor tema di sini. Berfungsi bahkan ketika palet disembunyikan.",
+    "open_editor": "Buka editor",
+    "close_editor": "Tutup editor",
+    "unsaved_changes_title": "Anda memiliki perubahan tema yang belum disimpan.",
+    "discard": "Buang",
+    "save": "Simpan perubahan",
+    "saving": "Menyimpan...",
+    "save_success": "Tema disimpan.",
+    "save_failed": "Gagal menyimpan tema. Silakan coba lagi.",
+    "read_only_notice": "Anda memiliki akses hanya-lihat ke pengaturan tema. Hubungi administrator Anda untuk izin edit."
+  },
   "sections": {
     "number_formatting": "Format Angka",
     "number_formatting_description": "Bagaimana angka ditampilkan di seluruh sistem — pemisah desimal dan ribuan, pengelompokan digit.",

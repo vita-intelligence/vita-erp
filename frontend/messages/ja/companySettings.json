@@ -3,13 +3,32 @@
     "title": "設定"
   },
   "tabs": {
-    "general": "一般"
+    "general": "一般",
+    "theme": "テーマ"
   },
   "save": "変更を保存",
   "saving": "保存中...",
   "saved": "設定が正常に保存されました。",
   "no_changes": "保存する変更はありません。",
   "read_only_notice": "これらの設定には閲覧のみのアクセス権があります。編集権限については管理者に連絡してください。",
+  "theme": {
+    "title": "外観",
+    "description": "組織のすべてのメンバーのためにアプリの外観をカスタマイズします。",
+    "preset_section_title": "プリセット",
+    "trigger_toggle_label": "すべてのページでパレットを表示",
+    "trigger_toggle_description": "有効にすると、ドラッグ可能なパレットアイコンが組織のすべてのページの画面に表示されます。どこでもクリックしてエディタを開けます。",
+    "open_editor_label": "今すぐテーマを編集",
+    "open_editor_description": "テーマエディタをここで直接開きます。パレットが非表示でも動作します。",
+    "open_editor": "エディタを開く",
+    "close_editor": "エディタを閉じる",
+    "unsaved_changes_title": "保存されていないテーマの変更があります。",
+    "discard": "破棄",
+    "save": "変更を保存",
+    "saving": "保存中...",
+    "save_success": "テーマが保存されました。",
+    "save_failed": "テーマの保存に失敗しました。もう一度お試しください。",
+    "read_only_notice": "テーマ設定には閲覧のみのアクセス権があります。編集権限については管理者に連絡してください。"
+  },
   "sections": {
     "number_formatting": "数値の書式",
     "number_formatting_description": "システム全体での数値の表示方法 — 小数点記号、桁区切り記号、桁グループ化。",

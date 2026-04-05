@@ -3,13 +3,32 @@
     "title": "Impostazioni"
   },
   "tabs": {
-    "general": "Generale"
+    "general": "Generale",
+    "theme": "Tema"
   },
   "save": "Salva modifiche",
   "saving": "Salvataggio...",
   "saved": "Impostazioni salvate con successo.",
   "no_changes": "Nessuna modifica da salvare.",
   "read_only_notice": "Hai accesso in sola lettura a queste impostazioni. Contatta il tuo amministratore per le autorizzazioni di modifica.",
+  "theme": {
+    "title": "Aspetto",
+    "description": "Personalizza l'aspetto dell'app per tutti i membri della tua organizzazione.",
+    "preset_section_title": "Preset",
+    "trigger_toggle_label": "Mostra palette in ogni pagina",
+    "trigger_toggle_description": "Quando attivata, un'icona palette trascinabile rimane sullo schermo nelle pagine dell'organizzazione. Cliccala ovunque per aprire l'editor.",
+    "open_editor_label": "Modifica tema ora",
+    "open_editor_description": "Apre l'editor del tema direttamente qui. Funziona anche quando la palette è nascosta.",
+    "open_editor": "Apri editor",
+    "close_editor": "Chiudi editor",
+    "unsaved_changes_title": "Hai modifiche al tema non salvate.",
+    "discard": "Annulla",
+    "save": "Salva modifiche",
+    "saving": "Salvataggio...",
+    "save_success": "Tema salvato.",
+    "save_failed": "Impossibile salvare il tema. Riprova.",
+    "read_only_notice": "Hai accesso in sola lettura alle impostazioni del tema. Contatta il tuo amministratore per le autorizzazioni di modifica."
+  },
   "sections": {
     "number_formatting": "Formato numeri",
     "number_formatting_description": "Come i numeri vengono visualizzati nel sistema — separatori decimali e delle migliaia, raggruppamento cifre.",

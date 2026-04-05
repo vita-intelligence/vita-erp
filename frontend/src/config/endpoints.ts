@@ -31,6 +31,7 @@ export const ENDPOINTS = {
 
   company: {
     settings: "/company/settings/",
+    theme: "/company/theme/",
   },
 
   rbac: {

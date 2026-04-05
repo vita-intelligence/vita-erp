@@ -16,6 +16,7 @@ import { create } from "zustand";
 
 import { selectOrganization as selectOrgApi } from "@/services/organization";
 import { fetchMyPermissions, type PermissionsResponse } from "@/services/rbac";
+import { useThemeStore } from "@/stores/theme";
 import type { OrganizationDetail } from "@/types/api";
 
 type OrgState = {
@@ -55,6 +56,9 @@ export const useOrgStore = create<OrgState>()((set) => ({
         // Permissions endpoint failed — leave null so UI can react
         // (usually means no access to the org's tenant DB).
       }
+      // Load org-scoped theme and apply it. loadFromServer handles its
+      // own failures so a missing theme row doesn't block org selection.
+      await useThemeStore.getState().loadFromServer();
       set({ currentOrg: org, permissions, isLoading: false });
       return true;
     } catch {

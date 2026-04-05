@@ -3,13 +3,32 @@
     "title": "Configuraci\u00f3n"
   },
   "tabs": {
-    "general": "General"
+    "general": "General",
+    "theme": "Tema"
   },
   "save": "Guardar cambios",
   "saving": "Guardando...",
   "saved": "Configuraci\u00f3n guardada correctamente.",
   "no_changes": "No hay cambios que guardar.",
   "read_only_notice": "Tiene acceso solo de lectura a estas configuraciones. Contacte a su administrador para permisos de edición.",
+  "theme": {
+    "title": "Apariencia",
+    "description": "Personaliza el aspecto de la aplicación para todos los miembros de tu organización.",
+    "preset_section_title": "Preajuste",
+    "trigger_toggle_label": "Mostrar paleta en cada página",
+    "trigger_toggle_description": "Cuando está habilitado, un icono de paleta arrastrable permanece en pantalla en las páginas de la organización. Haz clic en cualquier lugar para abrir el editor.",
+    "open_editor_label": "Editar tema ahora",
+    "open_editor_description": "Abre el editor de tema aquí mismo. Funciona incluso cuando la paleta está oculta.",
+    "open_editor": "Abrir editor",
+    "close_editor": "Cerrar editor",
+    "unsaved_changes_title": "Tienes cambios de tema sin guardar.",
+    "discard": "Descartar",
+    "save": "Guardar cambios",
+    "saving": "Guardando...",
+    "save_success": "Tema guardado.",
+    "save_failed": "Error al guardar el tema. Inténtalo de nuevo.",
+    "read_only_notice": "Tienes acceso solo de lectura a la configuración del tema. Contacta a tu administrador para permisos de edición."
+  },
   "sections": {
     "number_formatting": "Formato de n\u00fameros",
     "number_formatting_description": "C\u00f3mo se muestran los n\u00fameros en el sistema: separadores decimales y de miles, agrupaci\u00f3n de d\u00edgitos.",

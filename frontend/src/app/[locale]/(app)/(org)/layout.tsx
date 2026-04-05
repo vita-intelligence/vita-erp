@@ -10,6 +10,8 @@
  * inherit the active theme automatically.
  */
 
+import { EditorMount } from "@/components/theme-editor";
+
 import OrgGuard from "./_components/OrgGuard";
 
 export default function OrgLayout({ children }: { children: React.ReactNode }) {
@@ -21,6 +23,7 @@ export default function OrgLayout({ children }: { children: React.ReactNode }) {
       >
         {children}
       </div>
+      <EditorMount />
     </OrgGuard>
   );
 }

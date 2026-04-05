@@ -12,7 +12,7 @@ import { Palette } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-import { ThemeEditor } from "./ThemeEditor";
+import { useThemeStore } from "@/stores/theme";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
@@ -54,9 +54,9 @@ function loadPosition(): Position {
 // ── Component ────────────────────────────────────────────────────────────────
 
 export function FloatingTrigger() {
+  const toggleEditor = useThemeStore((s) => s.toggleEditor);
   const [mounted, setMounted] = useState(false);
   const [pos, setPos] = useState<Position>({ x: 0, y: 0 });
-  const [editorOpen, setEditorOpen] = useState(false);
   const [dragging, setDragging] = useState(false);
   const didDrag = useRef(false);
   const posRef = useRef(pos);
@@ -121,9 +121,9 @@ export function FloatingTrigger() {
 
   const onClick = useCallback(() => {
     if (!didDrag.current) {
-      setEditorOpen(true);
+      toggleEditor();
     }
-  }, []);
+  }, [toggleEditor]);
 
   if (!mounted) return null;
 
@@ -162,13 +162,6 @@ export function FloatingTrigger() {
       >
         <Palette size={20} />
       </button>
-
-      {/* Theme editor */}
-      <ThemeEditor
-        mode="window"
-        open={editorOpen}
-        onClose={() => setEditorOpen(false)}
-      />
     </>,
     document.body,
   );

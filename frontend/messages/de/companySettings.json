@@ -3,13 +3,32 @@
     "title": "Einstellungen"
   },
   "tabs": {
-    "general": "Allgemein"
+    "general": "Allgemein",
+    "theme": "Design"
   },
   "save": "Änderungen speichern",
   "saving": "Wird gespeichert...",
   "saved": "Einstellungen erfolgreich gespeichert.",
   "no_changes": "Keine Änderungen zum Speichern.",
   "read_only_notice": "Sie haben nur Leserechte für diese Einstellungen. Wenden Sie sich an Ihren Administrator für Bearbeitungsrechte.",
+  "theme": {
+    "title": "Erscheinungsbild",
+    "description": "Passen Sie das Aussehen der App für alle in Ihrer Organisation an.",
+    "preset_section_title": "Voreinstellung",
+    "trigger_toggle_label": "Palette auf jeder Seite anzeigen",
+    "trigger_toggle_description": "Wenn aktiviert, bleibt ein verschiebbares Paletten-Symbol auf allen Organisationsseiten sichtbar. Klicken Sie es überall an, um den Editor zu öffnen.",
+    "open_editor_label": "Design jetzt bearbeiten",
+    "open_editor_description": "Öffnet den Design-Editor direkt hier. Funktioniert auch wenn die Palette ausgeblendet ist.",
+    "open_editor": "Editor öffnen",
+    "close_editor": "Editor schließen",
+    "unsaved_changes_title": "Sie haben ungespeicherte Designänderungen.",
+    "discard": "Verwerfen",
+    "save": "Änderungen speichern",
+    "saving": "Wird gespeichert...",
+    "save_success": "Design gespeichert.",
+    "save_failed": "Design konnte nicht gespeichert werden. Bitte erneut versuchen.",
+    "read_only_notice": "Sie haben nur Leserechte für die Designeinstellungen. Wenden Sie sich an Ihren Administrator für Bearbeitungsrechte."
+  },
   "sections": {
     "number_formatting": "Zahlenformatierung",
     "number_formatting_description": "Wie Zahlen im System angezeigt werden — Dezimal- und Tausendertrennzeichen, Zifferngruppierung.",
