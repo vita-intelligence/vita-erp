@@ -11,6 +11,17 @@
   "saved": "Pengaturan berhasil disimpan.",
   "no_changes": "Tidak ada perubahan untuk disimpan.",
   "read_only_notice": "Anda memiliki akses hanya-lihat ke pengaturan ini. Hubungi administrator Anda untuk izin edit.",
+  "preview": {
+    "title": "Pratinjau langsung",
+    "number": "Angka",
+    "currency": "Mata uang",
+    "quantity": "Jumlah",
+    "price": "Harga",
+    "percentage": "Persentase",
+    "weight": "Berat",
+    "date": "Tanggal",
+    "time": "Waktu"
+  },
   "theme": {
     "title": "Tampilan",
     "description": "Sesuaikan tampilan aplikasi untuk semua anggota organisasi Anda.",
@@ -256,7 +267,7 @@
     "tax_label": "Nama yang digunakan wilayah Anda untuk pajak ini: PPN, VAT, GST, Sales Tax, dll.",
     "default_document_language": "Bahasa yang digunakan untuk PDF, faktur, dan laporan yang dihasilkan. Masukkan kode lokal (contoh: en, de, fr).",
     "default_paper_size": "Ukuran kertas untuk PDF yang dihasilkan. A4 adalah standar di seluruh dunia. Letter digunakan di AS dan Kanada.",
-    "text_direction": "Arah teks untuk dokumen yang dihasilkan. RTL digunakan untuk bahasa Arab, Ibrani, Persia, dan Urdu."
+    "text_direction": "Arah tata letak untuk seluruh antarmuka aplikasi (menu, formulir, tabel) DAN dokumen yang dihasilkan. RTL membalik seluruh tata letak untuk bahasa Arab, Ibrani, Farsi, dan Urdu — berlaku segera setelah disimpan."
   },
   "errors": {
     "separator_conflict": "Pemisah desimal dan pemisah ribuan tidak boleh menggunakan karakter yang sama.",

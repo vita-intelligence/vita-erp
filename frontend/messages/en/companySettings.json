@@ -11,6 +11,17 @@
   "saved": "Settings saved successfully.",
   "no_changes": "No changes to save.",
   "read_only_notice": "You have view-only access to these settings. Contact your administrator for edit permissions.",
+  "preview": {
+    "title": "Live preview",
+    "number": "Number",
+    "currency": "Currency",
+    "quantity": "Quantity",
+    "price": "Price",
+    "percentage": "Percentage",
+    "weight": "Weight",
+    "date": "Date",
+    "time": "Time"
+  },
   "theme": {
     "title": "Appearance",
     "description": "Customize the look and feel of the app for everyone in your organization.",
@@ -256,7 +267,7 @@
     "tax_label": "The name your region uses for this tax: VAT, GST, Sales Tax, IVA, etc.",
     "default_document_language": "Language used for generated PDFs, invoices, and reports. Enter a locale code (e.g., en, de, fr).",
     "default_paper_size": "Paper size for generated PDFs. A4 is standard worldwide. Letter is used in the US and Canada.",
-    "text_direction": "Text direction for generated documents. RTL is used for Arabic, Hebrew, Farsi, and Urdu."
+    "text_direction": "Layout direction for the entire app interface (menus, forms, tables) AND generated documents. RTL flips the whole layout for Arabic, Hebrew, Farsi, and Urdu — takes effect immediately when saved."
   },
   "errors": {
     "separator_conflict": "Decimal separator and thousands separator cannot use the same character.",

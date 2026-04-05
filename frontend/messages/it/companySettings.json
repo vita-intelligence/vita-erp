@@ -11,6 +11,17 @@
   "saved": "Impostazioni salvate con successo.",
   "no_changes": "Nessuna modifica da salvare.",
   "read_only_notice": "Hai accesso in sola lettura a queste impostazioni. Contatta il tuo amministratore per le autorizzazioni di modifica.",
+  "preview": {
+    "title": "Anteprima dal vivo",
+    "number": "Numero",
+    "currency": "Valuta",
+    "quantity": "Quantità",
+    "price": "Prezzo",
+    "percentage": "Percentuale",
+    "weight": "Peso",
+    "date": "Data",
+    "time": "Ora"
+  },
   "theme": {
     "title": "Aspetto",
     "description": "Personalizza l'aspetto dell'app per tutti i membri della tua organizzazione.",
@@ -256,7 +267,7 @@
     "tax_label": "Il nome utilizzato nella tua regione per questa imposta: IVA, VAT, GST, Sales Tax, ecc.",
     "default_document_language": "Lingua utilizzata per i PDF, le fatture e i report generati. Inserire un codice lingua (es.: en, de, fr).",
     "default_paper_size": "Formato carta per i PDF generati. A4 è lo standard mondiale. Letter è usato negli USA e in Canada.",
-    "text_direction": "Direzione del testo per i documenti generati. RTL è usato per arabo, ebraico, persiano e urdu."
+    "text_direction": "Direzione del layout per l'intera interfaccia dell'app (menu, moduli, tabelle) E documenti generati. RTL ribalta l'intero layout per arabo, ebraico, farsi e urdu — ha effetto immediato al salvataggio."
   },
   "errors": {
     "separator_conflict": "Il separatore decimale e il separatore delle migliaia non possono usare lo stesso carattere.",

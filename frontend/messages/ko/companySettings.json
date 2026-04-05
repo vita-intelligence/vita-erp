@@ -11,6 +11,17 @@
   "saved": "설정이 성공적으로 저장되었습니다.",
   "no_changes": "저장할 변경 사항이 없습니다.",
   "read_only_notice": "이 설정에 대해 보기 전용 액세스 권한이 있습니다. 편집 권한은 관리자에게 문의하세요.",
+  "preview": {
+    "title": "실시간 미리보기",
+    "number": "숫자",
+    "currency": "통화",
+    "quantity": "수량",
+    "price": "가격",
+    "percentage": "백분율",
+    "weight": "무게",
+    "date": "날짜",
+    "time": "시간"
+  },
   "theme": {
     "title": "모양",
     "description": "조직의 모든 구성원을 위해 앱의 모양과 느낌을 사용자 지정합니다.",
@@ -256,7 +267,7 @@
     "tax_label": "해당 지역에서 이 세금을 부르는 이름: 부가세, VAT, GST, Sales Tax 등.",
     "default_document_language": "생성되는 PDF, 송장, 보고서에 사용되는 언어. 로케일 코드를 입력하세요 (예: en, de, fr).",
     "default_paper_size": "생성되는 PDF의 용지 크기. A4는 전 세계 표준입니다. 레터는 미국과 캐나다에서 사용됩니다.",
-    "text_direction": "생성되는 문서의 텍스트 방향. RTL은 아랍어, 히브리어, 페르시아어, 우르두어에 사용됩니다."
+    "text_direction": "전체 앱 인터페이스(메뉴, 양식, 테이블) 및 생성된 문서의 레이아웃 방향입니다. RTL은 아랍어, 히브리어, 페르시아어, 우르두어의 전체 레이아웃을 뒤집습니다 — 저장 시 즉시 적용됩니다."
   },
   "errors": {
     "separator_conflict": "소수점 기호와 천 단위 구분 기호에 같은 문자를 사용할 수 없습니다.",

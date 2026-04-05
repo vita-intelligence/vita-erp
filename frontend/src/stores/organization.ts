@@ -16,6 +16,7 @@ import { create } from "zustand";
 
 import { selectOrganization as selectOrgApi } from "@/services/organization";
 import { fetchMyPermissions, type PermissionsResponse } from "@/services/rbac";
+import { useCompanySettingsStore } from "@/stores/companySettings";
 import { useThemeStore } from "@/stores/theme";
 import type { OrganizationDetail } from "@/types/api";
 
@@ -59,6 +60,9 @@ export const useOrgStore = create<OrgState>()((set) => ({
       // Load org-scoped theme and apply it. loadFromServer handles its
       // own failures so a missing theme row doesn't block org selection.
       await useThemeStore.getState().loadFromServer();
+      // Load org-scoped company settings so formatters app-wide reflect
+      // the new org's display preferences immediately.
+      await useCompanySettingsStore.getState().loadFromServer();
       set({ currentOrg: org, permissions, isLoading: false });
       return true;
     } catch {
@@ -77,6 +81,7 @@ export const useOrgStore = create<OrgState>()((set) => ({
   },
 
   clearOrganization() {
+    useCompanySettingsStore.getState().clear();
     set({ currentOrg: null, permissions: null, isLoading: false });
   },
 }));

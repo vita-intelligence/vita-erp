@@ -4,13 +4,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
-import { type Control, useForm } from "react-hook-form";
+import { type Control, type FieldErrors, useForm } from "react-hook-form";
 
 import { ButtonRoot } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/toast";
 import { usePermission } from "@/hooks/usePermission";
 import { updateCompanySettings } from "@/services/company-settings";
+import { useCompanySettingsStore } from "@/stores/companySettings";
 
 import { useCompanySettings } from "../_hooks/useCompanySettings";
 import {
@@ -18,6 +19,7 @@ import {
   type CompanySettingsResponse,
   companySettingsSchema,
 } from "../_types/company-settings";
+import { FormatPreview } from "./FormatPreview";
 import type { SettingsFieldProps } from "./fields/types";
 import CurrencyDisplaySection from "./sections/CurrencyDisplaySection";
 import DateTimeSection from "./sections/DateTimeSection";
@@ -155,6 +157,25 @@ function GeneralSettingsForm({
       : SECTION_IDS[0];
   const active = SECTIONS.find((s) => s.id === activeSection) ?? SECTIONS[0];
 
+  const onInvalid = (formErrors: FieldErrors<CompanySettings>) => {
+    // Surface the first validation error as a toast so the user learns
+    // what's blocking the save (cross-field refines like separator_conflict
+    // aren't otherwise visible anywhere in the current UI).
+    const firstField = Object.keys(formErrors)[0] as
+      | keyof CompanySettings
+      | undefined;
+    if (!firstField) return;
+    const errorMessage = formErrors[firstField]?.message;
+    const translationKey = errorMessage
+      ? `errors.${errorMessage}`
+      : "errors.save_failed";
+    try {
+      toast.danger(t(translationKey));
+    } catch {
+      toast.danger(t("errors.save_failed"));
+    }
+  };
+
   const onSubmit = async (data: CompanySettings) => {
     const patch: Partial<CompanySettings> = {};
     for (const key of Object.keys(dirtyFields) as (keyof CompanySettings)[]) {
@@ -170,13 +191,16 @@ function GeneralSettingsForm({
       const fresh = await updateCompanySettings(patch);
       toast.success(t("saved"));
       reset(extractFormValues(fresh));
+      // Push fresh row into the app-wide store so every consumer of
+      // useFormatters re-renders immediately with the new values.
+      useCompanySettingsStore.getState().updateLocal(fresh);
     } catch {
       toast.danger(t("errors.save_failed"));
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)}>
       {!canEdit && (
         <output
           className="mb-4 block rounded-vita-md border px-4 py-3 text-sm"
@@ -189,6 +213,7 @@ function GeneralSettingsForm({
           {t("read_only_notice")}
         </output>
       )}
+      <FormatPreview control={control} />
       <div className="flex min-h-[60vh] flex-col gap-6 md:flex-row">
         {/* Sidebar nav */}
         <nav className="shrink-0 md:w-56" aria-label={t("page.title")}>

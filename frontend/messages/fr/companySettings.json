@@ -11,6 +11,17 @@
   "saved": "Param\u00e8tres enregistr\u00e9s avec succ\u00e8s.",
   "no_changes": "Aucune modification \u00e0 enregistrer.",
   "read_only_notice": "Vous avez un accès en lecture seule à ces paramètres. Contactez votre administrateur pour obtenir les autorisations de modification.",
+  "preview": {
+    "title": "Aperçu en direct",
+    "number": "Nombre",
+    "currency": "Devise",
+    "quantity": "Quantité",
+    "price": "Prix",
+    "percentage": "Pourcentage",
+    "weight": "Poids",
+    "date": "Date",
+    "time": "Heure"
+  },
   "theme": {
     "title": "Apparence",
     "description": "Personnalisez l'apparence de l'application pour tous les membres de votre organisation.",
@@ -256,7 +267,7 @@
     "tax_label": "Le nom utilisé dans votre région pour cette taxe : TVA, VAT, GST, Sales Tax, IVA, etc.",
     "default_document_language": "Langue utilis\u00e9e pour les PDF, factures et rapports g\u00e9n\u00e9r\u00e9s. Entrez un code de langue (ex. : en, de, fr).",
     "default_paper_size": "Format de papier pour les PDF g\u00e9n\u00e9r\u00e9s. A4 est le standard mondial. Letter est utilis\u00e9 aux \u00c9tats-Unis et au Canada.",
-    "text_direction": "Direction du texte pour les documents g\u00e9n\u00e9r\u00e9s. RTL est utilis\u00e9 pour l\u2019arabe, l\u2019h\u00e9breu, le persan et l\u2019ourdou."
+    "text_direction": "Direction de mise en page pour toute l'interface de l'application (menus, formulaires, tableaux) ET documents générés. Le RTL inverse toute la disposition pour l'arabe, l'hébreu, le farsi et l'ourdou — effet immédiat après enregistrement."
   },
   "errors": {
     "separator_conflict": "Le s\u00e9parateur d\u00e9cimal et le s\u00e9parateur de milliers ne peuvent pas utiliser le m\u00eame caract\u00e8re.",

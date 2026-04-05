@@ -11,6 +11,17 @@
   "saved": "设置已成功保存。",
   "no_changes": "没有需要保存的更改。",
   "read_only_notice": "您对这些设置只有查看权限。请联系管理员获取编辑权限。",
+  "preview": {
+    "title": "实时预览",
+    "number": "数字",
+    "currency": "货币",
+    "quantity": "数量",
+    "price": "价格",
+    "percentage": "百分比",
+    "weight": "重量",
+    "date": "日期",
+    "time": "时间"
+  },
   "theme": {
     "title": "外观",
     "description": "为您组织中的每个人自定义应用程序的外观和感觉。",
@@ -256,7 +267,7 @@
     "tax_label": "您所在地区对此税的称呼：增值税、VAT、GST、Sales Tax 等。",
     "default_document_language": "生成的 PDF、发票和报告所使用的语言。输入区域代码（例如：en、de、fr）。",
     "default_paper_size": "生成的 PDF 的纸张大小。A4 是全球标准。Letter 在美国和加拿大使用。",
-    "text_direction": "生成的文档的文本方向。RTL 用于阿拉伯语、希伯来语、波斯语和乌尔都语。"
+    "text_direction": "整个应用程序界面（菜单、表单、表格）和生成文档的布局方向。RTL 会为阿拉伯语、希伯来语、波斯语和乌尔都语翻转整个布局 — 保存后立即生效。"
   },
   "errors": {
     "separator_conflict": "小数点分隔符和千位分隔符不能使用相同的字符。",
