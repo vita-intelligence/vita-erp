@@ -1,0 +1,35 @@
+{
+  "noPermission": "Você não tem permissão para ver o organograma.",
+  "createRole": "Criar função",
+  "cancel": "Cancelar",
+  "untitledRole": "Função sem título",
+  "systemBadge": "Sistema",
+  "panel": {
+    "title": "Detalhes da função",
+    "loading": "Carregando...",
+    "name": "Nome",
+    "description": "Descrição",
+    "permissions": "Permissões",
+    "members": "Membros",
+    "systemFullAccess": "Funções de sistema têm acesso completo a todos os módulos."
+  },
+  "members": {
+    "noMembers": "Nenhum membro atribuído",
+    "searchPlaceholder": "Pesquisar membros...",
+    "addMemberLabel": "Adicionar membro"
+  },
+  "grid": {
+    "module": "Módulo"
+  },
+  "modules": {
+    "company_settings": "Configurações da Empresa",
+    "company_theme": "Tema da Empresa",
+    "organogram": "Organograma"
+  },
+  "actions": {
+    "read": "Ler",
+    "write": "Escrever",
+    "delete": "Excluir",
+    "export": "Exportar"
+  }
+}

@@ -4,7 +4,8 @@
   },
   "tabs": {
     "general": "Genel",
-    "theme": "Tema"
+    "theme": "Tema",
+    "roles": "Roller"
   },
   "save": "Değişiklikleri Kaydet",
   "saving": "Kaydediliyor...",

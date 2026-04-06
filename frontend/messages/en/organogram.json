@@ -1,0 +1,35 @@
+{
+  "noPermission": "You do not have permission to view the organization chart.",
+  "createRole": "Create Role",
+  "cancel": "Cancel",
+  "untitledRole": "Untitled Role",
+  "systemBadge": "System",
+  "panel": {
+    "title": "Role Details",
+    "loading": "Loading...",
+    "name": "Name",
+    "description": "Description",
+    "permissions": "Permissions",
+    "members": "Members",
+    "systemFullAccess": "System roles have full access to all modules."
+  },
+  "members": {
+    "noMembers": "No members assigned",
+    "searchPlaceholder": "Search members...",
+    "addMemberLabel": "Add member"
+  },
+  "grid": {
+    "module": "Module"
+  },
+  "modules": {
+    "company_settings": "Company Settings",
+    "company_theme": "Company Theme",
+    "organogram": "Organization Chart"
+  },
+  "actions": {
+    "read": "Read",
+    "write": "Write",
+    "delete": "Delete",
+    "export": "Export"
+  }
+}

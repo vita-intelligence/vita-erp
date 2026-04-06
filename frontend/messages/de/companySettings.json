@@ -4,7 +4,8 @@
   },
   "tabs": {
     "general": "Allgemein",
-    "theme": "Design"
+    "theme": "Design",
+    "roles": "Rollen"
   },
   "save": "Änderungen speichern",
   "saving": "Wird gespeichert...",

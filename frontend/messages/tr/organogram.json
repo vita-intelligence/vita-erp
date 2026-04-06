@@ -1,0 +1,35 @@
+{
+  "noPermission": "Organizasyon şemasını görüntüleme yetkiniz yok.",
+  "createRole": "Rol Oluştur",
+  "cancel": "İptal",
+  "untitledRole": "İsimsiz Rol",
+  "systemBadge": "Sistem",
+  "panel": {
+    "title": "Rol Detayları",
+    "loading": "Yükleniyor...",
+    "name": "Ad",
+    "description": "Açıklama",
+    "permissions": "İzinler",
+    "members": "Üyeler",
+    "systemFullAccess": "Sistem rolleri tüm modüllere tam erişime sahiptir."
+  },
+  "members": {
+    "noMembers": "Atanmış üye yok",
+    "searchPlaceholder": "Üye ara...",
+    "addMemberLabel": "Üye ekle"
+  },
+  "grid": {
+    "module": "Modül"
+  },
+  "modules": {
+    "company_settings": "Şirket Ayarları",
+    "company_theme": "Şirket Teması",
+    "organogram": "Organizasyon Şeması"
+  },
+  "actions": {
+    "read": "Okuma",
+    "write": "Yazma",
+    "delete": "Silme",
+    "export": "Dışa Aktarma"
+  }
+}

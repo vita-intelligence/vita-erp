@@ -36,5 +36,13 @@ export const ENDPOINTS = {
 
   rbac: {
     mePermissions: "/rbac/me/permissions/",
+    roles: "/rbac/roles/",
+    role: (id: string) => `/rbac/roles/${id}/`,
+    rolePermissions: (id: string) => `/rbac/roles/${id}/permissions/`,
+    roleMembers: (id: string) => `/rbac/roles/${id}/members/`,
+    roleMember: (roleId: string, userId: string) =>
+      `/rbac/roles/${roleId}/members/${userId}/`,
+    organogram: "/rbac/organogram/",
+    orgMembers: "/rbac/org-members/",
   },
 } as const;

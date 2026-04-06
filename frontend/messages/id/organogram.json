@@ -1,0 +1,35 @@
+{
+  "noPermission": "Anda tidak memiliki izin untuk melihat bagan organisasi.",
+  "createRole": "Buat Peran",
+  "cancel": "Batal",
+  "untitledRole": "Peran Tanpa Judul",
+  "systemBadge": "Sistem",
+  "panel": {
+    "title": "Detail Peran",
+    "loading": "Memuat...",
+    "name": "Nama",
+    "description": "Deskripsi",
+    "permissions": "Izin",
+    "members": "Anggota",
+    "systemFullAccess": "Peran sistem memiliki akses penuh ke semua modul."
+  },
+  "members": {
+    "noMembers": "Tidak ada anggota yang ditugaskan",
+    "searchPlaceholder": "Cari anggota...",
+    "addMemberLabel": "Tambah anggota"
+  },
+  "grid": {
+    "module": "Modul"
+  },
+  "modules": {
+    "company_settings": "Pengaturan Perusahaan",
+    "company_theme": "Tema Perusahaan",
+    "organogram": "Bagan Organisasi"
+  },
+  "actions": {
+    "read": "Baca",
+    "write": "Tulis",
+    "delete": "Hapus",
+    "export": "Ekspor"
+  }
+}

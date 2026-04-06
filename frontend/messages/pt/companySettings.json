@@ -4,7 +4,8 @@
   },
   "tabs": {
     "general": "Geral",
-    "theme": "Tema"
+    "theme": "Tema",
+    "roles": "Funções"
   },
   "save": "Salvar Alterações",
   "saving": "Salvando...",

@@ -1,0 +1,35 @@
+{
+  "noPermission": "ليس لديك صلاحية لعرض الهيكل التنظيمي.",
+  "createRole": "إنشاء دور",
+  "cancel": "إلغاء",
+  "untitledRole": "دور بدون عنوان",
+  "systemBadge": "نظام",
+  "panel": {
+    "title": "تفاصيل الدور",
+    "loading": "جاري التحميل...",
+    "name": "الاسم",
+    "description": "الوصف",
+    "permissions": "الصلاحيات",
+    "members": "الأعضاء",
+    "systemFullAccess": "أدوار النظام لديها صلاحيات كاملة لجميع الوحدات."
+  },
+  "members": {
+    "noMembers": "لا يوجد أعضاء معيّنون",
+    "searchPlaceholder": "البحث عن أعضاء...",
+    "addMemberLabel": "إضافة عضو"
+  },
+  "grid": {
+    "module": "الوحدة"
+  },
+  "modules": {
+    "company_settings": "إعدادات الشركة",
+    "company_theme": "سمة الشركة",
+    "organogram": "الهيكل التنظيمي"
+  },
+  "actions": {
+    "read": "قراءة",
+    "write": "كتابة",
+    "delete": "حذف",
+    "export": "تصدير"
+  }
+}

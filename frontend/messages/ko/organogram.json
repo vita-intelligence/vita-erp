@@ -1,0 +1,35 @@
+{
+  "noPermission": "조직도를 볼 수 있는 권한이 없습니다.",
+  "createRole": "역할 생성",
+  "cancel": "취소",
+  "untitledRole": "이름 없는 역할",
+  "systemBadge": "시스템",
+  "panel": {
+    "title": "역할 상세",
+    "loading": "로딩 중...",
+    "name": "이름",
+    "description": "설명",
+    "permissions": "권한",
+    "members": "멤버",
+    "systemFullAccess": "시스템 역할은 모든 모듈에 대한 전체 접근 권한을 가집니다."
+  },
+  "members": {
+    "noMembers": "배정된 멤버가 없습니다",
+    "searchPlaceholder": "멤버 검색...",
+    "addMemberLabel": "멤버 추가"
+  },
+  "grid": {
+    "module": "모듈"
+  },
+  "modules": {
+    "company_settings": "회사 설정",
+    "company_theme": "회사 테마",
+    "organogram": "조직도"
+  },
+  "actions": {
+    "read": "읽기",
+    "write": "쓰기",
+    "delete": "삭제",
+    "export": "내보내기"
+  }
+}

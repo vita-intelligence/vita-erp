@@ -1,0 +1,35 @@
+{
+  "noPermission": "Vous n'avez pas la permission de voir l'organigramme.",
+  "createRole": "Créer un rôle",
+  "cancel": "Annuler",
+  "untitledRole": "Rôle sans titre",
+  "systemBadge": "Système",
+  "panel": {
+    "title": "Détails du rôle",
+    "loading": "Chargement...",
+    "name": "Nom",
+    "description": "Description",
+    "permissions": "Permissions",
+    "members": "Membres",
+    "systemFullAccess": "Les rôles système ont un accès complet à tous les modules."
+  },
+  "members": {
+    "noMembers": "Aucun membre assigné",
+    "searchPlaceholder": "Rechercher des membres...",
+    "addMemberLabel": "Ajouter un membre"
+  },
+  "grid": {
+    "module": "Module"
+  },
+  "modules": {
+    "company_settings": "Paramètres de l'entreprise",
+    "company_theme": "Thème de l'entreprise",
+    "organogram": "Organigramme"
+  },
+  "actions": {
+    "read": "Lire",
+    "write": "Écrire",
+    "delete": "Supprimer",
+    "export": "Exporter"
+  }
+}

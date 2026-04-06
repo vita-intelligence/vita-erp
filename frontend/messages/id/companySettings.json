@@ -4,7 +4,8 @@
   },
   "tabs": {
     "general": "Umum",
-    "theme": "Tema"
+    "theme": "Tema",
+    "roles": "Peran"
   },
   "save": "Simpan Perubahan",
   "saving": "Menyimpan...",

@@ -7,7 +7,7 @@ useful for debugging via shell or custom admin routing.
 
 from django.contrib import admin
 
-from apps.rbac.models import Role, RolePermission, UserRole
+from apps.rbac.models import OrganogramLayout, Role, RolePermission, UserRole
 
 
 class RolePermissionInline(admin.TabularInline):
@@ -41,3 +41,11 @@ class UserRoleAdmin(admin.ModelAdmin):
     search_fields = ("user_id",)
     readonly_fields = ("id", "assigned_at")
     ordering = ("-assigned_at",)
+
+
+@admin.register(OrganogramLayout)
+class OrganogramLayoutAdmin(admin.ModelAdmin):
+    """Admin for the organogram canvas layout."""
+
+    list_display = ("__str__", "updated_at")
+    readonly_fields = ("id", "created_at", "updated_at")

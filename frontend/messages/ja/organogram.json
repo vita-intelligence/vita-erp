@@ -1,0 +1,35 @@
+{
+  "noPermission": "組織図を表示する権限がありません。",
+  "createRole": "ロールを作成",
+  "cancel": "キャンセル",
+  "untitledRole": "無題のロール",
+  "systemBadge": "システム",
+  "panel": {
+    "title": "ロール詳細",
+    "loading": "読み込み中...",
+    "name": "名前",
+    "description": "説明",
+    "permissions": "権限",
+    "members": "メンバー",
+    "systemFullAccess": "システムロールはすべてのモジュールへの完全なアクセス権を持っています。"
+  },
+  "members": {
+    "noMembers": "メンバーが割り当てられていません",
+    "searchPlaceholder": "メンバーを検索...",
+    "addMemberLabel": "メンバーを追加"
+  },
+  "grid": {
+    "module": "モジュール"
+  },
+  "modules": {
+    "company_settings": "会社設定",
+    "company_theme": "会社テーマ",
+    "organogram": "組織図"
+  },
+  "actions": {
+    "read": "読み取り",
+    "write": "書き込み",
+    "delete": "削除",
+    "export": "エクスポート"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "noPermission": "आपको संगठन चार्ट देखने की अनुमति नहीं है।",
+  "createRole": "भूमिका बनाएँ",
+  "cancel": "रद्द करें",
+  "untitledRole": "बिना नाम की भूमिका",
+  "systemBadge": "सिस्टम",
+  "panel": {
+    "title": "भूमिका विवरण",
+    "loading": "लोड हो रहा है...",
+    "name": "नाम",
+    "description": "विवरण",
+    "permissions": "अनुमतियाँ",
+    "members": "सदस्य",
+    "systemFullAccess": "सिस्टम भूमिकाओं को सभी मॉड्यूल तक पूर्ण पहुँच प्राप्त है।"
+  },
+  "members": {
+    "noMembers": "कोई सदस्य निर्धारित नहीं",
+    "searchPlaceholder": "सदस्य खोजें...",
+    "addMemberLabel": "सदस्य जोड़ें"
+  },
+  "grid": {
+    "module": "मॉड्यूल"
+  },
+  "modules": {
+    "company_settings": "कंपनी सेटिंग्स",
+    "company_theme": "कंपनी थीम",
+    "organogram": "संगठन चार्ट"
+  },
+  "actions": {
+    "read": "पढ़ें",
+    "write": "लिखें",
+    "delete": "हटाएँ",
+    "export": "निर्यात"
+  }
+}

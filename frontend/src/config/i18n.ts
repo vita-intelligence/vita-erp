@@ -23,6 +23,7 @@ export const I18N = {
     "formConstructor",
     "organizations",
     "companySettings",
+    "organogram",
   ],
 } as const;
 

@@ -1,0 +1,35 @@
+{
+  "noPermission": "您没有权限查看组织架构图。",
+  "createRole": "创建角色",
+  "cancel": "取消",
+  "untitledRole": "未命名角色",
+  "systemBadge": "系统",
+  "panel": {
+    "title": "角色详情",
+    "loading": "加载中...",
+    "name": "名称",
+    "description": "描述",
+    "permissions": "权限",
+    "members": "成员",
+    "systemFullAccess": "系统角色拥有所有模块的完整访问权限。"
+  },
+  "members": {
+    "noMembers": "暂无分配成员",
+    "searchPlaceholder": "搜索成员...",
+    "addMemberLabel": "添加成员"
+  },
+  "grid": {
+    "module": "模块"
+  },
+  "modules": {
+    "company_settings": "公司设置",
+    "company_theme": "公司主题",
+    "organogram": "组织架构图"
+  },
+  "actions": {
+    "read": "读取",
+    "write": "写入",
+    "delete": "删除",
+    "export": "导出"
+  }
+}

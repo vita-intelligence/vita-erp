@@ -1,0 +1,35 @@
+{
+  "noPermission": "Sie haben keine Berechtigung, das Organigramm anzuzeigen.",
+  "createRole": "Rolle erstellen",
+  "cancel": "Abbrechen",
+  "untitledRole": "Unbenannte Rolle",
+  "systemBadge": "System",
+  "panel": {
+    "title": "Rollendetails",
+    "loading": "Wird geladen...",
+    "name": "Name",
+    "description": "Beschreibung",
+    "permissions": "Berechtigungen",
+    "members": "Mitglieder",
+    "systemFullAccess": "Systemrollen haben vollen Zugriff auf alle Module."
+  },
+  "members": {
+    "noMembers": "Keine Mitglieder zugewiesen",
+    "searchPlaceholder": "Mitglieder suchen...",
+    "addMemberLabel": "Mitglied hinzufügen"
+  },
+  "grid": {
+    "module": "Modul"
+  },
+  "modules": {
+    "company_settings": "Unternehmenseinstellungen",
+    "company_theme": "Unternehmensdesign",
+    "organogram": "Organigramm"
+  },
+  "actions": {
+    "read": "Lesen",
+    "write": "Schreiben",
+    "delete": "Löschen",
+    "export": "Exportieren"
+  }
+}

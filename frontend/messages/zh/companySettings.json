@@ -4,7 +4,8 @@
   },
   "tabs": {
     "general": "常规",
-    "theme": "主题"
+    "theme": "主题",
+    "roles": "角色"
   },
   "save": "保存更改",
   "saving": "保存中...",

@@ -4,7 +4,8 @@
   },
   "tabs": {
     "general": "一般",
-    "theme": "テーマ"
+    "theme": "テーマ",
+    "roles": "ロール"
   },
   "save": "変更を保存",
   "saving": "保存中...",

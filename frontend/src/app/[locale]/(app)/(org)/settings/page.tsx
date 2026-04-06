@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
-
+import { Organogram } from "@/components/organogram";
 import {
   Tab,
   TabIndicator,
@@ -14,7 +14,7 @@ import {
 import GeneralSettings from "./_components/GeneralSettings";
 import ThemeSettings from "./_components/ThemeSettings";
 
-const TAB_IDS = ["general", "theme"] as const;
+const TAB_IDS = ["general", "theme", "roles"] as const;
 type SettingsTab = (typeof TAB_IDS)[number];
 
 /** Parses `#main/sub` → [main, sub]. Invalid main falls back to the default. */
@@ -87,6 +87,10 @@ export default function SettingsPage() {
             {t("tabs.theme")}
             <TabIndicator />
           </Tab>
+          <Tab id="roles">
+            {t("tabs.roles")}
+            <TabIndicator />
+          </Tab>
         </TabList>
 
         <TabPanel id="general">
@@ -98,6 +102,12 @@ export default function SettingsPage() {
         <TabPanel id="theme">
           <div className="pt-6">
             <ThemeSettings />
+          </div>
+        </TabPanel>
+
+        <TabPanel id="roles">
+          <div className="pt-6">
+            <Organogram />
           </div>
         </TabPanel>
       </Tabs>

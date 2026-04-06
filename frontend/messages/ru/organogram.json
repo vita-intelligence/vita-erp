@@ -1,0 +1,35 @@
+{
+  "noPermission": "У вас нет разрешения на просмотр организационной структуры.",
+  "createRole": "Создать роль",
+  "cancel": "Отмена",
+  "untitledRole": "Роль без названия",
+  "systemBadge": "Системная",
+  "panel": {
+    "title": "Детали роли",
+    "loading": "Загрузка...",
+    "name": "Название",
+    "description": "Описание",
+    "permissions": "Разрешения",
+    "members": "Участники",
+    "systemFullAccess": "Системные роли имеют полный доступ ко всем модулям."
+  },
+  "members": {
+    "noMembers": "Нет назначенных участников",
+    "searchPlaceholder": "Поиск участников...",
+    "addMemberLabel": "Добавить участника"
+  },
+  "grid": {
+    "module": "Модуль"
+  },
+  "modules": {
+    "company_settings": "Настройки компании",
+    "company_theme": "Тема компании",
+    "organogram": "Организационная структура"
+  },
+  "actions": {
+    "read": "Чтение",
+    "write": "Запись",
+    "delete": "Удаление",
+    "export": "Экспорт"
+  }
+}
