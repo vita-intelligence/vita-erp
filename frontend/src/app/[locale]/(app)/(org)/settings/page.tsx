@@ -70,7 +70,7 @@ export default function SettingsPage() {
   );
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10">
+    <div className="mx-auto w-full max-w-4xl px-6 py-10 lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1600px]">
       <div className="mb-8">
         <h1 className="text-2xl font-semibold text-vita-text-primary">
           {t("page.title")}

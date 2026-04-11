@@ -131,7 +131,7 @@ export default function ThemeSettings() {
       {/* Pending changes */}
       {dirty && canEdit && (
         <section
-          className="sticky bottom-0 flex items-center justify-between gap-4 rounded-vita-md border p-4"
+          className="sticky bottom-0 flex flex-col gap-3 rounded-vita-md border p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
           style={{
             backgroundColor: "var(--vita-neutral-50)",
             borderColor: "var(--vita-neutral-200)",
@@ -140,16 +140,22 @@ export default function ThemeSettings() {
           <span className="text-sm text-vita-text-primary">
             {t("theme.unsaved_changes_title")}
           </span>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap">
             <ButtonRoot
               variant="ghost"
               size="sm"
               onPress={discardChanges}
               isDisabled={isSaving}
+              className="flex-1 sm:flex-initial"
             >
               {t("theme.discard")}
             </ButtonRoot>
-            <ButtonRoot size="sm" onPress={handleSave} isDisabled={isSaving}>
+            <ButtonRoot
+              size="sm"
+              onPress={handleSave}
+              isDisabled={isSaving}
+              className="flex-1 sm:flex-initial"
+            >
               {isSaving ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

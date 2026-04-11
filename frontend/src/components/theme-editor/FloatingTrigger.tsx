@@ -11,8 +11,8 @@
 import { Palette } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-
 import { useThemeStore } from "@/stores/theme";
+import { useUninertElement } from "./hooks/useUninertElement";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
@@ -60,6 +60,11 @@ export function FloatingTrigger() {
   const [dragging, setDragging] = useState(false);
   const didDrag = useRef(false);
   const posRef = useRef(pos);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  // Keep the trigger clickable on top of open modals (react-aria would
+  // otherwise stamp `inert` on it via `ariaHideOutside`).
+  useUninertElement(buttonRef);
 
   useEffect(() => {
     setPos(loadPosition());
@@ -132,6 +137,8 @@ export function FloatingTrigger() {
       {/* Floating icon */}
       <button
         type="button"
+        ref={buttonRef}
+        data-vita-theme-editor="trigger"
         aria-label="Open theme editor"
         onPointerDown={onPointerDown}
         onClick={onClick}
@@ -141,7 +148,7 @@ export function FloatingTrigger() {
           top: pos.y,
           width: SIZE,
           height: SIZE,
-          zIndex: 99999,
+          zIndex: 2147483000,
           borderRadius: "50%",
           border: "none",
           cursor: dragging ? "grabbing" : "grab",

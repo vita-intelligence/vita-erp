@@ -79,12 +79,33 @@ export interface ModalBackdropProps
 }
 
 function ModalBackdropInner(
-  { className, style, children, ...ariaProps }: ModalBackdropProps,
+  {
+    className,
+    style,
+    children,
+    shouldCloseOnInteractOutside,
+    ...ariaProps
+  }: ModalBackdropProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
+  // While the theme editor is floating on top of a dismissable modal, clicks
+  // inside the editor (and any popovers it opens, which portal to body and
+  // would otherwise not match the editor DOM subtree) must not dismiss the
+  // modal behind it. A body-level flag is the simplest signal that covers
+  // arbitrarily-nested overlays. Callers can still override this predicate.
+  const defaultShouldClose = (element: Element) => {
+    if (typeof document !== "undefined") {
+      if (document.body.dataset.vitaThemeEditorOpen === "true") return false;
+    }
+    return !element.closest("[data-vita-theme-editor]");
+  };
+
   return (
     <AriaModalOverlay
       {...ariaProps}
+      shouldCloseOnInteractOutside={
+        shouldCloseOnInteractOutside ?? defaultShouldClose
+      }
       ref={ref}
       data-slot="modal-backdrop"
       className={["vita-modal-backdrop", className].filter(Boolean).join(" ")}
