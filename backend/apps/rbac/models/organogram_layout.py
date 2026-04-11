@@ -55,4 +55,4 @@ class OrganogramLayout(models.Model):
             if existing:
                 self.pk = existing.pk
                 self._state.adding = False
-        super().save(*args, **kwargs)
+        super().save(*args, **kwargs)  # type: ignore[arg-type]

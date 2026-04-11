@@ -54,7 +54,9 @@ class RoleDetailSerializer(serializers.ModelSerializer):
         read_only_fields = fields
 
     def get_permissions(self, obj: Role) -> list[dict]:
-        return list(obj.permissions.values("module_code", "action").order_by("module_code", "action"))
+        return [
+            dict(entry) for entry in obj.permissions.values("module_code", "action").order_by("module_code", "action")
+        ]
 
     def get_members(self, obj: Role) -> list[dict]:
         assignments = obj.user_assignments.order_by("assigned_at")

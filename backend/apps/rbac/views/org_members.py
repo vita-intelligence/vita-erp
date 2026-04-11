@@ -35,7 +35,7 @@ class OrgMemberListView(APIView):
     rbac_action_map = {"GET": "read"}
 
     def get(self, request: Request) -> Response:
-        org_id = request.tenant_org.id  # type: ignore[attr-defined]
+        org_id = request.tenant_org.id
         members = list_org_members(org_id)
         serializer = OrgMemberSerializer(members, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

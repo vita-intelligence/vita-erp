@@ -64,7 +64,7 @@ class RoleMemberView(APIView):
         user_id = str(serializer.validated_data["user_id"])
 
         # Verify user is an active member of this org
-        org_id = request.tenant_org.id  # type: ignore[attr-defined]
+        org_id = request.tenant_org.id
         if (
             not Membership.objects.using("default")
             .filter(
