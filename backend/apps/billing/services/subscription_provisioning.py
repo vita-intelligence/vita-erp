@@ -148,6 +148,7 @@ def create_org_from_checkout(
             migrate_org_database(db_name)
             _create_owner_role(org, user)
             _create_default_settings(org, user)
+            _seed_onboarding_form(org, user)
     except Exception:
         logger.exception("Failed to provision org DB for %s", slug)
         org.delete()
@@ -199,6 +200,14 @@ def _create_owner_role(org: Organization, user: User) -> None:
         UserRole.objects.create(user_id=user.id, role=owner_role)
     finally:
         clear_current_org_db()
+
+
+def _seed_onboarding_form(org: Organization, user: User) -> None:
+    """Create the singleton OnboardingForm row in the org database with
+    First Name / Last Name / Profile Photo as the default fields."""
+    from apps.org_accounts.services.onboarding import seed_default_onboarding_form
+
+    seed_default_onboarding_form(org, user.id)
 
 
 def _create_default_settings(org: Organization, user: User) -> None:

@@ -30,12 +30,30 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = fields
 
     def get_organizations(self, user: User) -> list[dict]:
-        from apps.organizations.models import Membership, Organization
+        """Return the user's active orgs with their per-org membership flags.
+
+        AuthGuard reads `requires_onboarding` from each entry to decide
+        whether to show the OnboardingRequired blocker for the active
+        org. Putting the flag on the org summary (rather than on the
+        top-level User) lets a user be onboarded in one org but not yet
+        in another.
+        """
+        from apps.organizations.models import Membership
         from apps.organizations.serializers import OrganizationSummarySerializer
 
-        org_ids = Membership.objects.filter(user=user, is_active=True).values_list("organization_id", flat=True)
-        orgs = Organization.objects.filter(id__in=org_ids).order_by("-created_at")
-        return OrganizationSummarySerializer(orgs, many=True).data  # type: ignore[no-any-return]
+        memberships = (
+            Membership.objects.filter(user=user, is_active=True)
+            .select_related("organization")
+            .order_by("-organization__created_at")
+        )
+        result: list[dict] = []
+        for membership in memberships:
+            org_data: dict = OrganizationSummarySerializer(membership.organization).data
+            org_data["membership_id"] = str(membership.id)
+            org_data["requires_onboarding"] = membership.requires_onboarding
+            org_data["onboarding_completed_at"] = membership.onboarding_completed_at
+            result.append(org_data)
+        return result
 
 
 class ChangePasswordSerializer(serializers.Serializer):

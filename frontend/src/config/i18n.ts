@@ -25,6 +25,7 @@ export const I18N = {
     "companySettings",
     "organogram",
     "billing",
+    "accounts",
   ],
 } as const;
 

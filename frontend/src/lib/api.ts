@@ -81,10 +81,26 @@ api.interceptors.response.use(
     } catch (refreshError) {
       processPendingRequests(refreshError);
 
-      // Refresh failed — redirect to login
+      // Refresh failed — usually means the user is logged out and we
+      // should redirect to /login. EXCEPT on public pages where being
+      // logged out is a perfectly valid state (accept-invite, verify-
+      // email, etc.). Those pages handle the "no user" branch in their
+      // own UI; force-redirecting kicks the user out before they can
+      // even see the page.
       if (typeof window !== "undefined") {
-        const locale = window.location.pathname.split("/")[1] || "en";
-        window.location.href = `/${locale}/login`;
+        const path = window.location.pathname;
+        const isPublicAuthPage =
+          path.includes("/accept-invite") ||
+          path.includes("/verify-email") ||
+          path.includes("/reset-password") ||
+          path.includes("/forgot-password") ||
+          path.includes("/register") ||
+          path.includes("/login");
+
+        if (!isPublicAuthPage) {
+          const locale = path.split("/")[1] || "en";
+          window.location.href = `/${locale}/login`;
+        }
       }
 
       return Promise.reject(refreshError);

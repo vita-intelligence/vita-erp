@@ -16,7 +16,8 @@
   "members": {
     "noMembers": "배정된 멤버가 없습니다",
     "searchPlaceholder": "멤버 검색...",
-    "addMemberLabel": "멤버 추가"
+    "addMemberLabel": "멤버 추가",
+    "inviteNewUser": "새 사용자 초대"
   },
   "grid": {
     "module": "모듈"

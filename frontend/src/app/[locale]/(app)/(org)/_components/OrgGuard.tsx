@@ -7,6 +7,8 @@ import { useEffect, useRef } from "react";
 import { useAuthStore } from "@/stores/auth";
 import { useOrgStore } from "@/stores/organization";
 
+import OnboardingRequired from "../../_components/OnboardingRequired";
+
 interface OrgGuardProps {
   children: React.ReactNode;
 }
@@ -60,6 +62,15 @@ export default function OrgGuard({ children }: OrgGuardProps) {
 
   if (!currentOrg) {
     return null;
+  }
+
+  // 4th gate state: org is selected but the user hasn't completed
+  // (or needs to re-complete) onboarding for it. Read the cached
+  // `requires_onboarding` flag from the user's organizations list,
+  // which the backend computes server-side and includes in /auth/me/.
+  const activeOrgMembership = organizations.find((o) => o.id === currentOrg.id);
+  if (activeOrgMembership?.requires_onboarding) {
+    return <OnboardingRequired />;
   }
 
   return <>{children}</>;

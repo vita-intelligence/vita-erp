@@ -4,9 +4,9 @@ import { Link } from "@heroui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import gsap from "gsap";
 import { Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -52,11 +52,22 @@ type RegisterForm = z.infer<ReturnType<typeof useRegisterSchema>>;
 export default function RegisterPage() {
   const t = useTranslations("auth");
   const router = useRouter();
+  const searchParams = useSearchParams();
   const formRef = useRef<HTMLFormElement>(null);
   const { fetchUser } = useAuthStore();
   const { serverError, handleApiError, clearError } = useServerError();
 
+  // Same pattern as the login page: pre-fill the email when the user
+  // came from an invite link, and bounce them back to /accept-invite
+  // after a successful register so the auto-accept logic runs.
+  const prefillEmail = searchParams.get("email") ?? "";
+  const inviteToken = searchParams.get("invite");
+
   const schema = useRegisterSchema();
+  const defaultValues = useMemo(
+    () => ({ email: prefillEmail, password: "", passwordConfirm: "" }),
+    [prefillEmail],
+  );
   const {
     register,
     handleSubmit,
@@ -64,7 +75,7 @@ export default function RegisterPage() {
     formState: { errors, isSubmitting },
   } = useForm<RegisterForm>({
     resolver: zodResolver(schema),
-    defaultValues: { email: "", password: "", passwordConfirm: "" },
+    defaultValues,
   });
 
   const passwordValue = watch("password");
@@ -90,7 +101,15 @@ export default function RegisterPage() {
     try {
       await registerUser({ email: data.email, password: data.password });
       await fetchUser();
-      router.push("/dashboard");
+      // If the user came here from an invite link, send them back to
+      // /accept-invite. They'll still need to verify email first, but
+      // the accept-invite page handles every state gracefully and the
+      // invite token survives the verify-email round trip via the URL.
+      if (inviteToken) {
+        router.push(`/accept-invite?token=${encodeURIComponent(inviteToken)}`);
+      } else {
+        router.push("/dashboard");
+      }
     } catch (err: unknown) {
       handleApiError(err);
     }
@@ -145,10 +164,14 @@ export default function RegisterPage() {
         {isSubmitting ? t("signing_up") : t("sign_up")}
       </button>
 
-      {/* Link to login */}
+      {/* Link to login — preserve invite token + email when bouncing back */}
       <div className="flex items-center justify-center">
         <Link
-          href="/login"
+          href={
+            inviteToken
+              ? `/login?email=${encodeURIComponent(prefillEmail)}&invite=${encodeURIComponent(inviteToken)}`
+              : "/login"
+          }
           className="font-mono text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-500 transition-colors hover:text-white"
         >
           {t("have_account")}

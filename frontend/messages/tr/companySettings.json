@@ -6,7 +6,8 @@
     "general": "Genel",
     "theme": "Tema",
     "roles": "Roller",
-    "billing": "Faturalama"
+    "billing": "Faturalama",
+    "members": "Üyeler"
   },
   "save": "Değişiklikleri Kaydet",
   "saving": "Kaydediliyor...",

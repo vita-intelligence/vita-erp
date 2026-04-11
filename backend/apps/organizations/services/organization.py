@@ -156,6 +156,7 @@ def create_organization(
             _create_owner_role(org, user)
             _create_company_settings(org, user, request)
             _create_company_theme(org, user, request)
+            _seed_onboarding_form(org, user)
         except Exception:
             logger.exception("Failed to provision org database: %s", db_name)
             org.delete()
@@ -265,6 +266,16 @@ def _create_company_theme(
         logger.info("CompanyTheme created for org %s", org.slug)
     finally:
         clear_current_org_db()
+
+
+def _seed_onboarding_form(org: Organization, user: User) -> None:
+    """Create the singleton OnboardingForm row in the org database with
+    First Name / Last Name / Profile Photo as the default fields.
+    Admin can edit, reorder, or delete those fields freely afterward."""
+    from apps.org_accounts.services.onboarding import seed_default_onboarding_form
+
+    seed_default_onboarding_form(org, user.id)
+    logger.info("OnboardingForm seeded for org %s", org.slug)
 
 
 def _is_postgres() -> bool:

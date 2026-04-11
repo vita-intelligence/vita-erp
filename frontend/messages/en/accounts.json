@@ -1,0 +1,81 @@
+{
+  "onboarding": {
+    "title": "Complete your profile",
+    "intro": "Before you can start using the workspace, please fill in the information below. Your administrator decides what's required.",
+    "submit": "Continue",
+    "submitting": "Saving...",
+    "logout": "Sign out",
+    "loadError": "We couldn't load the onboarding form. Please refresh the page or contact support.",
+    "refreshing": "Refreshing form..."
+  },
+  "members": {
+    "invitationsTitle": "Invitations",
+    "inviteButton": "Invite user",
+    "email": "Email",
+    "status": "Status",
+    "invitedAt": "Invited",
+    "actions": "",
+    "resend": "Resend",
+    "revoke": "Revoke",
+    "noInvitations": "No pending invitations.",
+    "formEditorTitle": "Onboarding form",
+    "formEditorDescription": "Drag fields in to design what every new member must fill in. Required fields are enforced when a user joins or logs in next.",
+    "saveForm": "Save",
+    "discard": "Discard",
+    "formLoadError": "Couldn't load the onboarding form.",
+    "inviteNewUser": "Invite new user"
+  },
+  "invitationStatus": {
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "revoked": "Revoked",
+    "expired": "Expired"
+  },
+  "invite": {
+    "title": "Invite a new user",
+    "description": "Send an invitation email. The recipient will create their account and join your organization.",
+    "descriptionWithRole": "The recipient will be assigned to this role automatically after they accept and complete onboarding.",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "name@example.com",
+    "send": "Send invitation",
+    "cancel": "Cancel",
+    "close": "Close",
+    "successMessage": "Invitation sent. They'll receive an email shortly."
+  },
+  "acceptInvite": {
+    "welcome": "Join {org}",
+    "loggedOutPrompt": "You've been invited as {email}. Sign in or create an account to accept.",
+    "signIn": "Sign in",
+    "createAccount": "Create account",
+    "wrongAccountTitle": "Wrong account",
+    "wrongAccountBody": "You're signed in as {current}, but the invitation is for {invited}. Sign out and try again.",
+    "logoutAndRetry": "Sign out and retry",
+    "accepting": "Joining your new organization...",
+    "acceptFailedTitle": "Couldn't accept the invitation",
+    "invalidTitle": "Invalid invitation",
+    "missingToken": "The invitation link is missing a token.",
+    "notFound": "We couldn't find this invitation. The link may have been mistyped or already used.",
+    "backToLogin": "Back to login",
+    "acceptedTitle": "Already accepted",
+    "acceptedDescription": "This invitation has already been accepted. Sign in to access your organization.",
+    "revokedTitle": "Invitation revoked",
+    "revokedDescription": "Your administrator revoked this invitation. Contact them if you think this is a mistake.",
+    "expiredTitle": "Invitation expired",
+    "expiredDescription": "This invitation expired. Ask your administrator to send a new one."
+  },
+  "errors": {
+    "email_invalid": "That email address doesn't look right.",
+    "already_member": "This person is already a member of your organization.",
+    "pending_exists": "There's already a pending invitation for this email.",
+    "create_failed": "We couldn't create the invitation. Please try again.",
+    "submission_failed": "We couldn't save your information. Please try again.",
+    "email_mismatch": "The invitation was sent to a different email.",
+    "expired": "The invitation has expired.",
+    "revoked": "The invitation was revoked.",
+    "already_accepted": "The invitation has already been accepted.",
+    "not_verified": "Verify your email address before accepting the invitation.",
+    "not_found": "Invitation not found.",
+    "accept_failed": "We couldn't accept the invitation. Please try again.",
+    "missing_token": "The invitation link is missing a token."
+  }
+}

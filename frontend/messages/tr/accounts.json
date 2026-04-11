@@ -1,0 +1,81 @@
+{
+  "onboarding": {
+    "title": "Profilinizi tamamlayın",
+    "intro": "Çalışma alanını kullanmaya başlamadan önce, lütfen aşağıdaki bilgileri doldurun. Yöneticiniz neyin gerekli olduğuna karar verir.",
+    "submit": "Devam et",
+    "submitting": "Kaydediliyor...",
+    "logout": "Çıkış yap",
+    "loadError": "Onboarding formunu yükleyemedik. Lütfen sayfayı yenileyin veya destek ile iletişime geçin.",
+    "refreshing": "Form yenileniyor..."
+  },
+  "members": {
+    "invitationsTitle": "Davetler",
+    "inviteButton": "Kullanıcı davet et",
+    "email": "E-posta",
+    "status": "Durum",
+    "invitedAt": "Davet edildi",
+    "actions": "",
+    "resend": "Yeniden gönder",
+    "revoke": "İptal et",
+    "noInvitations": "Bekleyen davet yok.",
+    "formEditorTitle": "Onboarding formu",
+    "formEditorDescription": "Her yeni üyenin doldurması gerekenleri tasarlamak için alanları sürükleyin. Zorunlu alanlar kullanıcının bir sonraki girişinde uygulanır.",
+    "saveForm": "Kaydet",
+    "discard": "Vazgeç",
+    "formLoadError": "Onboarding formu yüklenemedi.",
+    "inviteNewUser": "Yeni kullanıcı davet et"
+  },
+  "invitationStatus": {
+    "pending": "Beklemede",
+    "accepted": "Kabul edildi",
+    "revoked": "İptal edildi",
+    "expired": "Süresi doldu"
+  },
+  "invite": {
+    "title": "Yeni kullanıcı davet et",
+    "description": "Bir davet e-postası gönderin. Alıcı hesabını oluşturup organizasyonunuza katılacak.",
+    "descriptionWithRole": "Alıcı kabul edip onboarding'i tamamladıktan sonra otomatik olarak bu role atanacak.",
+    "emailLabel": "E-posta adresi",
+    "emailPlaceholder": "ad@ornek.com",
+    "send": "Daveti gönder",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "successMessage": "Davet gönderildi. Kısa süre içinde bir e-posta alacak."
+  },
+  "acceptInvite": {
+    "welcome": "{org} kuruluşuna katıl",
+    "loggedOutPrompt": "{email} olarak davet edildiniz. Kabul etmek için giriş yapın veya hesap oluşturun.",
+    "signIn": "Giriş yap",
+    "createAccount": "Hesap oluştur",
+    "wrongAccountTitle": "Yanlış hesap",
+    "wrongAccountBody": "{current} olarak giriş yaptınız, ancak davet {invited} içindir. Çıkış yapın ve tekrar deneyin.",
+    "logoutAndRetry": "Çıkış yap ve tekrar dene",
+    "accepting": "Yeni organizasyonunuza katılıyor...",
+    "acceptFailedTitle": "Davet kabul edilemedi",
+    "invalidTitle": "Geçersiz davet",
+    "missingToken": "Davet bağlantısında token eksik.",
+    "notFound": "Bu daveti bulamadık. Bağlantı yanlış yazılmış veya kullanılmış olabilir.",
+    "backToLogin": "Girişe dön",
+    "acceptedTitle": "Zaten kabul edildi",
+    "acceptedDescription": "Bu davet zaten kabul edildi. Organizasyonunuza erişmek için giriş yapın.",
+    "revokedTitle": "Davet iptal edildi",
+    "revokedDescription": "Yöneticiniz bu daveti iptal etti. Hatalı olduğunu düşünüyorsanız onlarla iletişime geçin.",
+    "expiredTitle": "Davetin süresi doldu",
+    "expiredDescription": "Bu davetin süresi doldu. Yöneticinizden yeni bir tane göndermesini isteyin."
+  },
+  "errors": {
+    "email_invalid": "Bu e-posta adresi doğru görünmüyor.",
+    "already_member": "Bu kişi zaten organizasyonunuzun üyesi.",
+    "pending_exists": "Bu e-posta için zaten bekleyen bir davet var.",
+    "create_failed": "Daveti oluşturamadık. Lütfen tekrar deneyin.",
+    "submission_failed": "Bilgilerinizi kaydedemedik. Lütfen tekrar deneyin.",
+    "email_mismatch": "Davet farklı bir e-postaya gönderildi.",
+    "expired": "Davetin süresi doldu.",
+    "revoked": "Davet iptal edildi.",
+    "already_accepted": "Davet zaten kabul edildi.",
+    "not_verified": "Daveti kabul etmeden önce e-postanızı doğrulayın.",
+    "not_found": "Davet bulunamadı.",
+    "accept_failed": "Daveti kabul edemedik. Lütfen tekrar deneyin.",
+    "missing_token": "Davet bağlantısında token eksik."
+  }
+}

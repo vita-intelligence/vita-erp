@@ -6,7 +6,8 @@
     "general": "一般",
     "theme": "テーマ",
     "roles": "ロール",
-    "billing": "請求"
+    "billing": "請求",
+    "members": "メンバー"
   },
   "save": "変更を保存",
   "saving": "保存中...",

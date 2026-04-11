@@ -16,7 +16,8 @@
   "members": {
     "noMembers": "暂无分配成员",
     "searchPlaceholder": "搜索成员...",
-    "addMemberLabel": "添加成员"
+    "addMemberLabel": "添加成员",
+    "inviteNewUser": "邀请新用户"
   },
   "grid": {
     "module": "模块"

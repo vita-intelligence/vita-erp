@@ -1,0 +1,81 @@
+{
+  "onboarding": {
+    "title": "Lengkapi profil Anda",
+    "intro": "Sebelum mulai menggunakan ruang kerja, harap isi informasi di bawah. Administrator Anda menentukan apa yang wajib.",
+    "submit": "Lanjutkan",
+    "submitting": "Menyimpan...",
+    "logout": "Keluar",
+    "loadError": "Kami tidak dapat memuat formulir onboarding. Silakan segarkan halaman atau hubungi dukungan.",
+    "refreshing": "Menyegarkan formulir..."
+  },
+  "members": {
+    "invitationsTitle": "Undangan",
+    "inviteButton": "Undang pengguna",
+    "email": "Email",
+    "status": "Status",
+    "invitedAt": "Diundang",
+    "actions": "",
+    "resend": "Kirim ulang",
+    "revoke": "Cabut",
+    "noInvitations": "Tidak ada undangan tertunda.",
+    "formEditorTitle": "Formulir onboarding",
+    "formEditorDescription": "Seret bidang untuk mendesain apa yang harus diisi setiap anggota baru. Bidang wajib diberlakukan saat pengguna login berikutnya.",
+    "saveForm": "Simpan",
+    "discard": "Buang",
+    "formLoadError": "Tidak dapat memuat formulir onboarding.",
+    "inviteNewUser": "Undang pengguna baru"
+  },
+  "invitationStatus": {
+    "pending": "Tertunda",
+    "accepted": "Diterima",
+    "revoked": "Dicabut",
+    "expired": "Kedaluwarsa"
+  },
+  "invite": {
+    "title": "Undang pengguna baru",
+    "description": "Kirim email undangan. Penerima akan membuat akun dan bergabung dengan organisasi Anda.",
+    "descriptionWithRole": "Penerima akan otomatis ditetapkan ke peran ini setelah mereka menerima dan menyelesaikan onboarding.",
+    "emailLabel": "Alamat email",
+    "emailPlaceholder": "nama@contoh.com",
+    "send": "Kirim undangan",
+    "cancel": "Batal",
+    "close": "Tutup",
+    "successMessage": "Undangan terkirim. Mereka akan menerima email segera."
+  },
+  "acceptInvite": {
+    "welcome": "Bergabung dengan {org}",
+    "loggedOutPrompt": "Anda diundang sebagai {email}. Masuk atau buat akun untuk menerima.",
+    "signIn": "Masuk",
+    "createAccount": "Buat akun",
+    "wrongAccountTitle": "Akun salah",
+    "wrongAccountBody": "Anda masuk sebagai {current}, tetapi undangan untuk {invited}. Keluar dan coba lagi.",
+    "logoutAndRetry": "Keluar dan coba lagi",
+    "accepting": "Bergabung dengan organisasi baru Anda...",
+    "acceptFailedTitle": "Tidak dapat menerima undangan",
+    "invalidTitle": "Undangan tidak valid",
+    "missingToken": "Tautan undangan tidak memiliki token.",
+    "notFound": "Kami tidak dapat menemukan undangan ini. Tautan mungkin salah ketik atau sudah digunakan.",
+    "backToLogin": "Kembali ke login",
+    "acceptedTitle": "Sudah diterima",
+    "acceptedDescription": "Undangan ini sudah diterima. Masuk untuk mengakses organisasi Anda.",
+    "revokedTitle": "Undangan dicabut",
+    "revokedDescription": "Administrator Anda mencabut undangan ini. Hubungi mereka jika Anda merasa ini kesalahan.",
+    "expiredTitle": "Undangan kedaluwarsa",
+    "expiredDescription": "Undangan ini kedaluwarsa. Mintalah administrator Anda mengirim yang baru."
+  },
+  "errors": {
+    "email_invalid": "Alamat email itu tampaknya tidak benar.",
+    "already_member": "Orang ini sudah menjadi anggota organisasi Anda.",
+    "pending_exists": "Sudah ada undangan tertunda untuk email ini.",
+    "create_failed": "Kami tidak dapat membuat undangan. Silakan coba lagi.",
+    "submission_failed": "Kami tidak dapat menyimpan informasi Anda. Silakan coba lagi.",
+    "email_mismatch": "Undangan dikirim ke email yang berbeda.",
+    "expired": "Undangan telah kedaluwarsa.",
+    "revoked": "Undangan dicabut.",
+    "already_accepted": "Undangan sudah diterima.",
+    "not_verified": "Verifikasi email Anda sebelum menerima undangan.",
+    "not_found": "Undangan tidak ditemukan.",
+    "accept_failed": "Kami tidak dapat menerima undangan. Silakan coba lagi.",
+    "missing_token": "Tautan undangan tidak memiliki token."
+  }
+}

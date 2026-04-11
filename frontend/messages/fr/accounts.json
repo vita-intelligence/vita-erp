@@ -1,0 +1,81 @@
+{
+  "onboarding": {
+    "title": "Complétez votre profil",
+    "intro": "Avant de commencer à utiliser l'espace de travail, veuillez remplir les informations ci-dessous. Votre administrateur décide ce qui est obligatoire.",
+    "submit": "Continuer",
+    "submitting": "Enregistrement...",
+    "logout": "Se déconnecter",
+    "loadError": "Nous n'avons pas pu charger le formulaire. Rechargez la page ou contactez le support.",
+    "refreshing": "Actualisation du formulaire..."
+  },
+  "members": {
+    "invitationsTitle": "Invitations",
+    "inviteButton": "Inviter un utilisateur",
+    "email": "E-mail",
+    "status": "Statut",
+    "invitedAt": "Invité",
+    "actions": "",
+    "resend": "Renvoyer",
+    "revoke": "Révoquer",
+    "noInvitations": "Aucune invitation en attente.",
+    "formEditorTitle": "Formulaire d'intégration",
+    "formEditorDescription": "Faites glisser des champs pour concevoir ce que chaque nouveau membre doit remplir. Les champs obligatoires sont appliqués à la prochaine connexion de l'utilisateur.",
+    "saveForm": "Enregistrer",
+    "discard": "Annuler",
+    "formLoadError": "Impossible de charger le formulaire.",
+    "inviteNewUser": "Inviter un nouvel utilisateur"
+  },
+  "invitationStatus": {
+    "pending": "En attente",
+    "accepted": "Acceptée",
+    "revoked": "Révoquée",
+    "expired": "Expirée"
+  },
+  "invite": {
+    "title": "Inviter un nouvel utilisateur",
+    "description": "Envoyez un e-mail d'invitation. Le destinataire créera son compte et rejoindra votre organisation.",
+    "descriptionWithRole": "Le destinataire sera automatiquement attribué à ce rôle après avoir accepté et terminé l'intégration.",
+    "emailLabel": "Adresse e-mail",
+    "emailPlaceholder": "nom@exemple.com",
+    "send": "Envoyer l'invitation",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "successMessage": "Invitation envoyée. Le destinataire recevra un e-mail sous peu."
+  },
+  "acceptInvite": {
+    "welcome": "Rejoindre {org}",
+    "loggedOutPrompt": "Vous avez été invité en tant que {email}. Connectez-vous ou créez un compte pour accepter.",
+    "signIn": "Se connecter",
+    "createAccount": "Créer un compte",
+    "wrongAccountTitle": "Mauvais compte",
+    "wrongAccountBody": "Vous êtes connecté en tant que {current}, mais l'invitation est pour {invited}. Déconnectez-vous et réessayez.",
+    "logoutAndRetry": "Se déconnecter et réessayer",
+    "accepting": "Connexion à votre nouvelle organisation...",
+    "acceptFailedTitle": "Impossible d'accepter l'invitation",
+    "invalidTitle": "Invitation invalide",
+    "missingToken": "Le lien d'invitation ne contient pas de jeton.",
+    "notFound": "Nous n'avons pas trouvé cette invitation. Le lien a peut-être été mal saisi ou déjà utilisé.",
+    "backToLogin": "Retour à la connexion",
+    "acceptedTitle": "Déjà acceptée",
+    "acceptedDescription": "Cette invitation a déjà été acceptée. Connectez-vous pour accéder à votre organisation.",
+    "revokedTitle": "Invitation révoquée",
+    "revokedDescription": "Votre administrateur a révoqué cette invitation. Contactez-le si vous pensez qu'il s'agit d'une erreur.",
+    "expiredTitle": "Invitation expirée",
+    "expiredDescription": "Cette invitation a expiré. Demandez à votre administrateur d'en envoyer une nouvelle."
+  },
+  "errors": {
+    "email_invalid": "Cette adresse e-mail ne semble pas correcte.",
+    "already_member": "Cette personne est déjà membre de votre organisation.",
+    "pending_exists": "Il y a déjà une invitation en attente pour cet e-mail.",
+    "create_failed": "Nous n'avons pas pu créer l'invitation. Réessayez.",
+    "submission_failed": "Nous n'avons pas pu enregistrer vos informations. Réessayez.",
+    "email_mismatch": "L'invitation a été envoyée à un autre e-mail.",
+    "expired": "L'invitation a expiré.",
+    "revoked": "L'invitation a été révoquée.",
+    "already_accepted": "L'invitation a déjà été acceptée.",
+    "not_verified": "Vérifiez votre e-mail avant d'accepter l'invitation.",
+    "not_found": "Invitation introuvable.",
+    "accept_failed": "Nous n'avons pas pu accepter l'invitation. Réessayez.",
+    "missing_token": "Le lien d'invitation ne contient pas de jeton."
+  }
+}

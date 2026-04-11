@@ -6,7 +6,8 @@
     "general": "常规",
     "theme": "主题",
     "roles": "角色",
-    "billing": "账单"
+    "billing": "账单",
+    "members": "成员"
   },
   "save": "保存更改",
   "saving": "保存中...",

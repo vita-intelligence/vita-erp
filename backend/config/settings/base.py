@@ -46,9 +46,15 @@ LOCAL_TENANT_APPS = [
     "apps.audit",
     "apps.rbac",
     "apps.company",
+    "apps.org_accounts",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_SHARED_APPS + LOCAL_TENANT_APPS
+# `django_cleanup` MUST be the last entry — it needs to register its
+# post_delete signal handlers AFTER every model is loaded so it can
+# delete the underlying file when an UserMediaAsset row is deleted.
+INSTALLED_APPS = (
+    DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_SHARED_APPS + LOCAL_TENANT_APPS + ["django_cleanup.apps.CleanupConfig"]
+)
 
 # ---------------------------------------------------------------------------
 # Custom User Model
@@ -217,6 +223,37 @@ LOCALE_PATHS = [BASE_DIR / "locale"]
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# ---------------------------------------------------------------------------
+# Media files
+# ---------------------------------------------------------------------------
+#
+# Two storage backends are wired up via Django's STORAGES setting:
+# - `default` — user-uploaded files (profile photos, onboarding media,
+#   any future ImageField/FileField). dev defaults to local filesystem;
+#   prod swaps to S3 / Azure Blob / R2 via env var.
+# - `staticfiles` — Django collected statics (admin assets, etc.).
+#
+# To switch storage backends in production, set:
+#   DEFAULT_FILE_STORAGE=storages.backends.s3boto3.S3Boto3Storage
+# and provide AWS_* / AZURE_* env vars per the chosen backend's docs.
+# `django-storages` is intentionally not bundled yet — added in the
+# follow-up commit when production deploy lands.
+
+MEDIA_URL = config("MEDIA_URL", default="/media/")
+MEDIA_ROOT = BASE_DIR / "media"
+
+STORAGES = {
+    "default": {
+        "BACKEND": config(
+            "DEFAULT_FILE_STORAGE",
+            default="django.core.files.storage.FileSystemStorage",
+        ),
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
 
 # ---------------------------------------------------------------------------
 # Default primary key

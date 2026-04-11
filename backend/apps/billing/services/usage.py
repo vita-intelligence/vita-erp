@@ -28,7 +28,8 @@ from django.db import connection, connections
 from apps.billing.models import BillingConfig, PermissionPrice
 from apps.organizations.db import register_org_database
 from apps.organizations.models import Membership, Organization
-from apps.rbac.models import RolePermission, UserRole
+from apps.rbac.constants import ROLE_OWNER
+from apps.rbac.models import Role, RolePermission, UserRole
 
 logger = logging.getLogger(__name__)
 
@@ -93,7 +94,15 @@ def get_user_cost_pence(user_id: str | UUID, org: Organization) -> int:
 
 def _get_user_permissions_in_org(user_id: str | UUID, org: Organization) -> set[tuple[str, str]]:
     """Return a deduplicated set of (module_code, action) permissions held
-    by the given user within the given org."""
+    by the given user within the given org.
+
+    Owner billing rule:
+    - The organization's creator (`org.created_by`) is the primary owner
+      and is free — returns an empty set regardless of roles.
+    - Any other user holding the Owner role is a secondary owner and is
+      charged for the full PermissionPrice catalog (Owner grants access
+      to everything, so billing mirrors that).
+    """
     db_alias = register_org_database(org.db_name)
 
     # Fetch the role IDs assigned to this user in the org DB
@@ -102,6 +111,23 @@ def _get_user_permissions_in_org(user_id: str | UUID, org: Organization) -> set[
     )
     if not role_ids:
         return set()
+
+    is_owner = (
+        Role.objects.using(db_alias)
+        .filter(
+            id__in=role_ids,
+            is_system=True,
+            name=ROLE_OWNER,
+        )
+        .exists()
+    )
+
+    if is_owner:
+        # Primary owner — the person whose card pays the subscription — is free.
+        if org.created_by_id is not None and str(org.created_by_id) == str(user_id):
+            return set()
+        # Secondary owner — full access, full charge.
+        return set(PermissionPrice.objects.values_list("module_code", "action"))
 
     # Fetch all permissions across those roles, deduped
     pairs = RolePermission.objects.using(db_alias).filter(role_id__in=role_ids).values_list("module_code", "action")

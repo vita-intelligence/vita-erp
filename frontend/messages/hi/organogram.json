@@ -16,7 +16,8 @@
   "members": {
     "noMembers": "कोई सदस्य निर्धारित नहीं",
     "searchPlaceholder": "सदस्य खोजें...",
-    "addMemberLabel": "सदस्य जोड़ें"
+    "addMemberLabel": "सदस्य जोड़ें",
+    "inviteNewUser": "नया उपयोगकर्ता आमंत्रित करें"
   },
   "grid": {
     "module": "मॉड्यूल"

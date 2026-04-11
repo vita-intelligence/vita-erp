@@ -27,6 +27,15 @@ export type OrganizationSummary = {
   status: OrgStatus;
   industry: string;
   country: string;
+  /** Membership row id for the current user in this org. */
+  membership_id?: string;
+  /**
+   * Cached gate read by AuthGuard. True when the user is missing
+   * at least one currently-required onboarding field for this org.
+   */
+  requires_onboarding?: boolean;
+  /** Diagnostic timestamp of the user's first successful onboarding submission. */
+  onboarding_completed_at?: string | null;
 };
 
 export type OrganizationDetail = OrganizationSummary & {

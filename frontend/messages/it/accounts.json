@@ -1,0 +1,81 @@
+{
+  "onboarding": {
+    "title": "Completa il tuo profilo",
+    "intro": "Prima di iniziare a usare lo spazio di lavoro, compila le informazioni qui sotto. L'amministratore decide cosa è obbligatorio.",
+    "submit": "Continua",
+    "submitting": "Salvataggio in corso...",
+    "logout": "Esci",
+    "loadError": "Non siamo riusciti a caricare il modulo. Ricarica la pagina o contatta il supporto.",
+    "refreshing": "Aggiornamento del modulo..."
+  },
+  "members": {
+    "invitationsTitle": "Inviti",
+    "inviteButton": "Invita utente",
+    "email": "Email",
+    "status": "Stato",
+    "invitedAt": "Invitato",
+    "actions": "",
+    "resend": "Reinvia",
+    "revoke": "Revoca",
+    "noInvitations": "Nessun invito in sospeso.",
+    "formEditorTitle": "Modulo di onboarding",
+    "formEditorDescription": "Trascina i campi per progettare ciò che ogni nuovo membro deve compilare. I campi obbligatori vengono applicati al prossimo accesso dell'utente.",
+    "saveForm": "Salva",
+    "discard": "Annulla",
+    "formLoadError": "Impossibile caricare il modulo di onboarding.",
+    "inviteNewUser": "Invita nuovo utente"
+  },
+  "invitationStatus": {
+    "pending": "In attesa",
+    "accepted": "Accettato",
+    "revoked": "Revocato",
+    "expired": "Scaduto"
+  },
+  "invite": {
+    "title": "Invita un nuovo utente",
+    "description": "Invia un'email di invito. Il destinatario creerà il proprio account e si unirà alla tua organizzazione.",
+    "descriptionWithRole": "Il destinatario sarà assegnato automaticamente a questo ruolo dopo aver accettato e completato l'onboarding.",
+    "emailLabel": "Indirizzo email",
+    "emailPlaceholder": "nome@esempio.com",
+    "send": "Invia invito",
+    "cancel": "Annulla",
+    "close": "Chiudi",
+    "successMessage": "Invito inviato. Il destinatario riceverà un'email a breve."
+  },
+  "acceptInvite": {
+    "welcome": "Unisciti a {org}",
+    "loggedOutPrompt": "Sei stato invitato come {email}. Accedi o crea un account per accettare.",
+    "signIn": "Accedi",
+    "createAccount": "Crea account",
+    "wrongAccountTitle": "Account sbagliato",
+    "wrongAccountBody": "Hai effettuato l'accesso come {current}, ma l'invito è per {invited}. Esci e riprova.",
+    "logoutAndRetry": "Esci e riprova",
+    "accepting": "Connessione alla tua nuova organizzazione...",
+    "acceptFailedTitle": "Impossibile accettare l'invito",
+    "invalidTitle": "Invito non valido",
+    "missingToken": "Manca il token nel link di invito.",
+    "notFound": "Non abbiamo trovato questo invito. Il link potrebbe essere stato digitato male o già usato.",
+    "backToLogin": "Torna al login",
+    "acceptedTitle": "Già accettato",
+    "acceptedDescription": "Questo invito è già stato accettato. Accedi per accedere alla tua organizzazione.",
+    "revokedTitle": "Invito revocato",
+    "revokedDescription": "Il tuo amministratore ha revocato questo invito. Contattalo se pensi sia un errore.",
+    "expiredTitle": "Invito scaduto",
+    "expiredDescription": "Questo invito è scaduto. Chiedi al tuo amministratore di inviarne uno nuovo."
+  },
+  "errors": {
+    "email_invalid": "Questo indirizzo email non sembra corretto.",
+    "already_member": "Questa persona è già membro della tua organizzazione.",
+    "pending_exists": "C'è già un invito in sospeso per questa email.",
+    "create_failed": "Non siamo riusciti a creare l'invito. Riprova.",
+    "submission_failed": "Non siamo riusciti a salvare le tue informazioni. Riprova.",
+    "email_mismatch": "L'invito è stato inviato a un'email diversa.",
+    "expired": "L'invito è scaduto.",
+    "revoked": "L'invito è stato revocato.",
+    "already_accepted": "L'invito è già stato accettato.",
+    "not_verified": "Verifica la tua email prima di accettare l'invito.",
+    "not_found": "Invito non trovato.",
+    "accept_failed": "Non siamo riusciti ad accettare l'invito. Riprova.",
+    "missing_token": "Manca il token nel link di invito."
+  }
+}

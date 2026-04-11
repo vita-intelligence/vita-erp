@@ -1,0 +1,81 @@
+{
+  "onboarding": {
+    "title": "完善您的资料",
+    "intro": "在开始使用工作区之前，请填写以下信息。您的管理员决定哪些是必填的。",
+    "submit": "继续",
+    "submitting": "正在保存...",
+    "logout": "退出登录",
+    "loadError": "无法加载表单。请刷新页面或联系支持。",
+    "refreshing": "正在刷新表单..."
+  },
+  "members": {
+    "invitationsTitle": "邀请",
+    "inviteButton": "邀请用户",
+    "email": "邮箱",
+    "status": "状态",
+    "invitedAt": "邀请时间",
+    "actions": "",
+    "resend": "重新发送",
+    "revoke": "撤销",
+    "noInvitations": "没有待处理的邀请。",
+    "formEditorTitle": "入职表单",
+    "formEditorDescription": "拖拽字段来设计每位新成员必须填写的内容。下次用户登录时，必填字段将被强制执行。",
+    "saveForm": "保存",
+    "discard": "放弃",
+    "formLoadError": "无法加载入职表单。",
+    "inviteNewUser": "邀请新用户"
+  },
+  "invitationStatus": {
+    "pending": "待处理",
+    "accepted": "已接受",
+    "revoked": "已撤销",
+    "expired": "已过期"
+  },
+  "invite": {
+    "title": "邀请新用户",
+    "description": "发送邀请邮件。收件人将创建账号并加入您的组织。",
+    "descriptionWithRole": "收件人接受邀请并完成入职后将自动被分配此角色。",
+    "emailLabel": "邮箱地址",
+    "emailPlaceholder": "name@example.com",
+    "send": "发送邀请",
+    "cancel": "取消",
+    "close": "关闭",
+    "successMessage": "邀请已发送。收件人将很快收到邮件。"
+  },
+  "acceptInvite": {
+    "welcome": "加入 {org}",
+    "loggedOutPrompt": "您已被邀请为 {email}。请登录或创建账号以接受邀请。",
+    "signIn": "登录",
+    "createAccount": "创建账号",
+    "wrongAccountTitle": "账号错误",
+    "wrongAccountBody": "您当前以 {current} 登录，但邀请是发给 {invited} 的。请退出并重试。",
+    "logoutAndRetry": "退出并重试",
+    "accepting": "正在加入您的新组织...",
+    "acceptFailedTitle": "无法接受邀请",
+    "invalidTitle": "无效的邀请",
+    "missingToken": "邀请链接缺少令牌。",
+    "notFound": "找不到此邀请。链接可能被错误输入或已被使用。",
+    "backToLogin": "返回登录",
+    "acceptedTitle": "已接受",
+    "acceptedDescription": "此邀请已被接受。请登录访问您的组织。",
+    "revokedTitle": "邀请已撤销",
+    "revokedDescription": "您的管理员已撤销此邀请。如认为有误请联系他们。",
+    "expiredTitle": "邀请已过期",
+    "expiredDescription": "此邀请已过期。请管理员发送新的邀请。"
+  },
+  "errors": {
+    "email_invalid": "该邮箱地址似乎不正确。",
+    "already_member": "此人已经是您组织的成员。",
+    "pending_exists": "此邮箱已有待处理的邀请。",
+    "create_failed": "无法创建邀请。请重试。",
+    "submission_failed": "无法保存您的信息。请重试。",
+    "email_mismatch": "邀请发送至不同的邮箱。",
+    "expired": "邀请已过期。",
+    "revoked": "邀请已被撤销。",
+    "already_accepted": "邀请已被接受。",
+    "not_verified": "在接受邀请前请验证邮箱。",
+    "not_found": "找不到邀请。",
+    "accept_failed": "无法接受邀请。请重试。",
+    "missing_token": "邀请链接缺少令牌。"
+  }
+}

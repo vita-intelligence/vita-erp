@@ -1,9 +1,10 @@
 "use client";
 
-import { X } from "lucide-react";
+import { UserPlus, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useMemo, useState } from "react";
 
+import InviteUserModal from "@/app/[locale]/(app)/(org)/settings/_components/members/InviteUserModal";
 import {
   ComboBox,
   ComboBoxInput,
@@ -21,17 +22,30 @@ type Props = {
   roleId: string;
   members: RoleMember[];
   isDisabled: boolean;
+  /**
+   * When true, the unassign (X) button is hidden on every member.
+   * Owner membership is locked server-side — nobody can be removed
+   * until a proper ownership-transfer flow exists — so surfacing
+   * the control would just error out on click.
+   */
+  isOwnerRole?: boolean;
 };
 
 /**
  * Displays assigned members with ability to add/remove.
  */
-export default function MemberList({ roleId, members, isDisabled }: Props) {
+export default function MemberList({
+  roleId,
+  members,
+  isDisabled,
+  isOwnerRole = false,
+}: Props) {
   const t = useTranslations("organogram");
   const { data: orgMembers } = useOrgMembers();
   const assignMutation = useAssignMember();
   const unassignMutation = useUnassignMember();
   const [search, setSearch] = useState("");
+  const [inviteOpen, setInviteOpen] = useState(false);
 
   const assignedIds = useMemo(
     () => new Set(members.map((m) => m.user_id)),
@@ -100,7 +114,7 @@ export default function MemberList({ roleId, members, isDisabled }: Props) {
             >
               {m.email}
             </span>
-            {!isDisabled && (
+            {!isDisabled && !isOwnerRole && (
               <button
                 type="button"
                 onClick={() => handleUnassign(m.user_id)}
@@ -121,9 +135,16 @@ export default function MemberList({ roleId, members, isDisabled }: Props) {
         ))}
       </div>
 
-      {/* Add member combobox */}
+      {/* Add existing member combobox + invite-new-user button */}
       {!isDisabled && (
-        <div style={{ marginTop: 12 }}>
+        <div
+          style={{
+            marginTop: 12,
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+          }}
+        >
           <ComboBox
             onSelectionChange={handleAssign}
             selectedKey={null}
@@ -162,8 +183,35 @@ export default function MemberList({ roleId, members, isDisabled }: Props) {
               </ComboBoxListBox>
             </ComboBoxPopover>
           </ComboBox>
+
+          <button
+            type="button"
+            onClick={() => setInviteOpen(true)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 6,
+              padding: "8px 12px",
+              borderRadius: 6,
+              border: "1px dashed var(--vita-border)",
+              background: "transparent",
+              color: "var(--vita-text-muted)",
+              fontSize: 12,
+              cursor: "pointer",
+            }}
+          >
+            <UserPlus size={13} />
+            {t("members.inviteNewUser")}
+          </button>
         </div>
       )}
+
+      <InviteUserModal
+        isOpen={inviteOpen}
+        onClose={() => setInviteOpen(false)}
+        preAssignedRoleId={roleId}
+      />
     </div>
   );
 }

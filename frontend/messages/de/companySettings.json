@@ -6,7 +6,8 @@
     "general": "Allgemein",
     "theme": "Design",
     "roles": "Rollen",
-    "billing": "Abrechnung"
+    "billing": "Abrechnung",
+    "members": "Mitglieder"
   },
   "save": "Änderungen speichern",
   "saving": "Wird gespeichert...",

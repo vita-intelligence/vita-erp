@@ -223,7 +223,19 @@ def assign_user_to_role(
 
 
 def unassign_user_from_role(role_id: str, user_id: str) -> str | None:
-    """Remove a user from a role. Returns error code on failure."""
+    """Remove a user from a role. Returns error code on failure.
+
+    The Owner role is locked: nobody can be unassigned from it through
+    this path. Self-removal and one owner removing another both bricked
+    orgs in the past, and until a proper ownership-transfer flow exists,
+    the only safe rule is "Owner membership is immutable here."
+    """
+    role = get_role(role_id)
+    if role is None:
+        return "role_not_found"
+    if role.is_system and role.name == ROLE_OWNER:
+        return "cannot_remove_owner"
+
     deleted_count, _ = UserRole.objects.filter(
         role_id=role_id,
         user_id=user_id,

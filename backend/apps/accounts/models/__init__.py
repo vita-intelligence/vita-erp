@@ -8,10 +8,12 @@ Only platform-level auth concerns live here:
 Org-specific data (profiles, 2FA, roles, permissions) lives in the org database.
 """
 
+from apps.accounts.models.invitation import Invitation
 from apps.accounts.models.session import Session
 from apps.accounts.models.user import User
 
 __all__ = [
+    "Invitation",
     "Session",
     "User",
 ]

@@ -16,7 +16,8 @@
   "members": {
     "noMembers": "メンバーが割り当てられていません",
     "searchPlaceholder": "メンバーを検索...",
-    "addMemberLabel": "メンバーを追加"
+    "addMemberLabel": "メンバーを追加",
+    "inviteNewUser": "新しいユーザーを招待"
   },
   "grid": {
     "module": "モジュール"

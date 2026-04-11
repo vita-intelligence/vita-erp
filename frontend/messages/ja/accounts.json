@@ -1,0 +1,81 @@
+{
+  "onboarding": {
+    "title": "プロフィールを完成させてください",
+    "intro": "ワークスペースの使用を開始する前に、以下の情報を入力してください。何が必須かは管理者が決定します。",
+    "submit": "続行",
+    "submitting": "保存中...",
+    "logout": "ログアウト",
+    "loadError": "オンボーディングフォームを読み込めませんでした。ページを再読み込みするか、サポートにお問い合わせください。",
+    "refreshing": "フォームを更新中..."
+  },
+  "members": {
+    "invitationsTitle": "招待",
+    "inviteButton": "ユーザーを招待",
+    "email": "メール",
+    "status": "ステータス",
+    "invitedAt": "招待日",
+    "actions": "",
+    "resend": "再送信",
+    "revoke": "取り消し",
+    "noInvitations": "保留中の招待はありません。",
+    "formEditorTitle": "オンボーディングフォーム",
+    "formEditorDescription": "フィールドをドラッグして、新しいメンバーが入力すべき内容を設計します。必須フィールドは次回ログイン時に適用されます。",
+    "saveForm": "保存",
+    "discard": "破棄",
+    "formLoadError": "オンボーディングフォームを読み込めませんでした。",
+    "inviteNewUser": "新規ユーザーを招待"
+  },
+  "invitationStatus": {
+    "pending": "保留中",
+    "accepted": "承認済み",
+    "revoked": "取り消し済み",
+    "expired": "期限切れ"
+  },
+  "invite": {
+    "title": "新規ユーザーを招待",
+    "description": "招待メールを送信します。受信者はアカウントを作成し、組織に参加します。",
+    "descriptionWithRole": "受信者は承認しオンボーディングを完了すると、自動的にこのロールが割り当てられます。",
+    "emailLabel": "メールアドレス",
+    "emailPlaceholder": "name@example.com",
+    "send": "招待を送信",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "successMessage": "招待を送信しました。まもなくメールが届きます。"
+  },
+  "acceptInvite": {
+    "welcome": "{org} に参加",
+    "loggedOutPrompt": "{email} として招待されました。承認するにはログインまたはアカウント作成してください。",
+    "signIn": "ログイン",
+    "createAccount": "アカウント作成",
+    "wrongAccountTitle": "アカウントが違います",
+    "wrongAccountBody": "{current} としてログインしていますが、招待は {invited} 宛てです。ログアウトして再試行してください。",
+    "logoutAndRetry": "ログアウトして再試行",
+    "accepting": "新しい組織に参加しています...",
+    "acceptFailedTitle": "招待を承認できませんでした",
+    "invalidTitle": "無効な招待",
+    "missingToken": "招待リンクにトークンがありません。",
+    "notFound": "招待が見つかりませんでした。リンクが間違っているか、すでに使用されている可能性があります。",
+    "backToLogin": "ログインに戻る",
+    "acceptedTitle": "承認済み",
+    "acceptedDescription": "この招待はすでに承認されています。ログインして組織にアクセスしてください。",
+    "revokedTitle": "招待が取り消されました",
+    "revokedDescription": "管理者がこの招待を取り消しました。誤りと思われる場合は連絡してください。",
+    "expiredTitle": "招待の有効期限が切れました",
+    "expiredDescription": "この招待は期限切れです。管理者に新しい招待を依頼してください。"
+  },
+  "errors": {
+    "email_invalid": "このメールアドレスは正しくないようです。",
+    "already_member": "この人はすでに組織のメンバーです。",
+    "pending_exists": "このメールには保留中の招待がすでにあります。",
+    "create_failed": "招待を作成できませんでした。再試行してください。",
+    "submission_failed": "情報を保存できませんでした。再試行してください。",
+    "email_mismatch": "招待は別のメールに送信されました。",
+    "expired": "招待は期限切れです。",
+    "revoked": "招待は取り消されました。",
+    "already_accepted": "招待はすでに承認されています。",
+    "not_verified": "招待を承認する前にメールを確認してください。",
+    "not_found": "招待が見つかりません。",
+    "accept_failed": "招待を承認できませんでした。再試行してください。",
+    "missing_token": "招待リンクにトークンがありません。"
+  }
+}

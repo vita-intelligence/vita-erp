@@ -6,7 +6,8 @@
     "general": "General",
     "theme": "Theme",
     "roles": "Roles",
-    "billing": "Billing"
+    "billing": "Billing",
+    "members": "Members"
   },
   "save": "Save Changes",
   "saving": "Saving...",

@@ -58,4 +58,15 @@ export const ENDPOINTS = {
     addons: "/billing/addons/",
     addonToggle: (slug: string) => `/billing/addons/${slug}/toggle/`,
   },
+
+  accounts: {
+    onboardingForm: "/accounts/onboarding-form/",
+    meOnboarding: "/accounts/me/onboarding/",
+    media: (assetId: string) => `/accounts/media/${assetId}/`,
+    invitations: "/accounts/invitations/",
+    invitation: (id: string) => `/accounts/invitations/${id}/`,
+    invitationResend: (id: string) => `/accounts/invitations/${id}/resend/`,
+    invitationLookup: "/accounts/invitations/lookup/",
+    invitationAccept: "/accounts/invitations/accept/",
+  },
 } as const;

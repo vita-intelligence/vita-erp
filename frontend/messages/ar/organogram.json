@@ -16,7 +16,8 @@
   "members": {
     "noMembers": "لا يوجد أعضاء معيّنون",
     "searchPlaceholder": "البحث عن أعضاء...",
-    "addMemberLabel": "إضافة عضو"
+    "addMemberLabel": "إضافة عضو",
+    "inviteNewUser": "دعوة مستخدم جديد"
   },
   "grid": {
     "module": "الوحدة"

@@ -16,7 +16,8 @@
   "members": {
     "noMembers": "Aucun membre assigné",
     "searchPlaceholder": "Rechercher des membres...",
-    "addMemberLabel": "Ajouter un membre"
+    "addMemberLabel": "Ajouter un membre",
+    "inviteNewUser": "Inviter un nouvel utilisateur"
   },
   "grid": {
     "module": "Module"

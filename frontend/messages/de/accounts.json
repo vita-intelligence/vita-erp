@@ -1,0 +1,81 @@
+{
+  "onboarding": {
+    "title": "Profil vervollständigen",
+    "intro": "Bevor Sie den Arbeitsbereich nutzen können, füllen Sie bitte die folgenden Informationen aus. Ihr Administrator entscheidet, was erforderlich ist.",
+    "submit": "Weiter",
+    "submitting": "Wird gespeichert...",
+    "logout": "Abmelden",
+    "loadError": "Wir konnten das Onboarding-Formular nicht laden. Bitte laden Sie die Seite neu oder kontaktieren Sie den Support.",
+    "refreshing": "Formular wird aktualisiert..."
+  },
+  "members": {
+    "invitationsTitle": "Einladungen",
+    "inviteButton": "Benutzer einladen",
+    "email": "E-Mail",
+    "status": "Status",
+    "invitedAt": "Eingeladen",
+    "actions": "",
+    "resend": "Erneut senden",
+    "revoke": "Zurückziehen",
+    "noInvitations": "Keine ausstehenden Einladungen.",
+    "formEditorTitle": "Onboarding-Formular",
+    "formEditorDescription": "Ziehen Sie Felder hinein, um zu gestalten, was jedes neue Mitglied ausfüllen muss. Pflichtfelder werden bei der nächsten Anmeldung erzwungen.",
+    "saveForm": "Speichern",
+    "discard": "Verwerfen",
+    "formLoadError": "Onboarding-Formular konnte nicht geladen werden.",
+    "inviteNewUser": "Neuen Benutzer einladen"
+  },
+  "invitationStatus": {
+    "pending": "Ausstehend",
+    "accepted": "Angenommen",
+    "revoked": "Zurückgezogen",
+    "expired": "Abgelaufen"
+  },
+  "invite": {
+    "title": "Neuen Benutzer einladen",
+    "description": "Senden Sie eine Einladungs-E-Mail. Der Empfänger erstellt sein Konto und tritt Ihrer Organisation bei.",
+    "descriptionWithRole": "Der Empfänger wird dieser Rolle automatisch zugewiesen, nachdem er die Einladung angenommen und das Onboarding abgeschlossen hat.",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "name@beispiel.com",
+    "send": "Einladung senden",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "successMessage": "Einladung gesendet. Der Empfänger erhält in Kürze eine E-Mail."
+  },
+  "acceptInvite": {
+    "welcome": "{org} beitreten",
+    "loggedOutPrompt": "Sie wurden als {email} eingeladen. Melden Sie sich an oder erstellen Sie ein Konto, um zu akzeptieren.",
+    "signIn": "Anmelden",
+    "createAccount": "Konto erstellen",
+    "wrongAccountTitle": "Falsches Konto",
+    "wrongAccountBody": "Sie sind als {current} angemeldet, aber die Einladung ist für {invited}. Melden Sie sich ab und versuchen Sie es erneut.",
+    "logoutAndRetry": "Abmelden und erneut versuchen",
+    "accepting": "Sie werden Ihrer neuen Organisation hinzugefügt...",
+    "acceptFailedTitle": "Einladung konnte nicht angenommen werden",
+    "invalidTitle": "Ungültige Einladung",
+    "missingToken": "Im Einladungslink fehlt ein Token.",
+    "notFound": "Wir konnten diese Einladung nicht finden. Der Link wurde möglicherweise falsch eingegeben oder bereits verwendet.",
+    "backToLogin": "Zurück zur Anmeldung",
+    "acceptedTitle": "Bereits angenommen",
+    "acceptedDescription": "Diese Einladung wurde bereits angenommen. Melden Sie sich an, um auf Ihre Organisation zuzugreifen.",
+    "revokedTitle": "Einladung zurückgezogen",
+    "revokedDescription": "Ihr Administrator hat diese Einladung zurückgezogen. Kontaktieren Sie ihn, falls Sie das für einen Fehler halten.",
+    "expiredTitle": "Einladung abgelaufen",
+    "expiredDescription": "Diese Einladung ist abgelaufen. Bitten Sie Ihren Administrator, eine neue zu senden."
+  },
+  "errors": {
+    "email_invalid": "Diese E-Mail-Adresse sieht nicht richtig aus.",
+    "already_member": "Diese Person ist bereits Mitglied Ihrer Organisation.",
+    "pending_exists": "Für diese E-Mail existiert bereits eine ausstehende Einladung.",
+    "create_failed": "Wir konnten die Einladung nicht erstellen. Bitte erneut versuchen.",
+    "submission_failed": "Wir konnten Ihre Informationen nicht speichern. Bitte erneut versuchen.",
+    "email_mismatch": "Die Einladung wurde an eine andere E-Mail gesendet.",
+    "expired": "Die Einladung ist abgelaufen.",
+    "revoked": "Die Einladung wurde zurückgezogen.",
+    "already_accepted": "Die Einladung wurde bereits angenommen.",
+    "not_verified": "Verifizieren Sie Ihre E-Mail-Adresse, bevor Sie die Einladung annehmen.",
+    "not_found": "Einladung nicht gefunden.",
+    "accept_failed": "Wir konnten die Einladung nicht annehmen. Bitte erneut versuchen.",
+    "missing_token": "Im Einladungslink fehlt ein Token."
+  }
+}

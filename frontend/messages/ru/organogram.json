@@ -16,7 +16,8 @@
   "members": {
     "noMembers": "Нет назначенных участников",
     "searchPlaceholder": "Поиск участников...",
-    "addMemberLabel": "Добавить участника"
+    "addMemberLabel": "Добавить участника",
+    "inviteNewUser": "Пригласить нового пользователя"
   },
   "grid": {
     "module": "Модуль"

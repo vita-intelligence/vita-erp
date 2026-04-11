@@ -42,6 +42,26 @@ class Membership(models.Model):
     )
     joined_at = models.DateTimeField(auto_now_add=True)
 
+    # ── Onboarding gate ──────────────────────────────────────────────────
+    # `requires_onboarding` is the cached gate AuthGuard reads. It's
+    # recomputed by `apps.org_accounts.services.onboarding` whenever the
+    # user submits or the org's onboarding form is edited; /auth/me/ does
+    # zero work and just reads this flag.
+    requires_onboarding = models.BooleanField(
+        default=True,
+        help_text="True when the user is missing at least one currently-required onboarding field.",
+    )
+    onboarding_completed_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="Diagnostic timestamp of first successful submission. Not the gate.",
+    )
+    onboarding_form_version_at_completion = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        help_text="OnboardingForm.version the user last cleared. Diagnostic only.",
+    )
+
     class Meta:
         db_table = "organizations_membership"
         constraints = [

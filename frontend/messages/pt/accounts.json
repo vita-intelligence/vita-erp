@@ -1,0 +1,81 @@
+{
+  "onboarding": {
+    "title": "Complete seu perfil",
+    "intro": "Antes de começar a usar o workspace, preencha as informações abaixo. Seu administrador decide o que é obrigatório.",
+    "submit": "Continuar",
+    "submitting": "Salvando...",
+    "logout": "Sair",
+    "loadError": "Não conseguimos carregar o formulário. Recarregue a página ou contate o suporte.",
+    "refreshing": "Atualizando formulário..."
+  },
+  "members": {
+    "invitationsTitle": "Convites",
+    "inviteButton": "Convidar usuário",
+    "email": "E-mail",
+    "status": "Status",
+    "invitedAt": "Convidado em",
+    "actions": "",
+    "resend": "Reenviar",
+    "revoke": "Revogar",
+    "noInvitations": "Nenhum convite pendente.",
+    "formEditorTitle": "Formulário de onboarding",
+    "formEditorDescription": "Arraste campos para projetar o que cada novo membro deve preencher. Campos obrigatórios são aplicados quando o usuário entra novamente.",
+    "saveForm": "Salvar",
+    "discard": "Descartar",
+    "formLoadError": "Não foi possível carregar o formulário.",
+    "inviteNewUser": "Convidar novo usuário"
+  },
+  "invitationStatus": {
+    "pending": "Pendente",
+    "accepted": "Aceito",
+    "revoked": "Revogado",
+    "expired": "Expirado"
+  },
+  "invite": {
+    "title": "Convidar novo usuário",
+    "description": "Envie um e-mail de convite. O destinatário criará a conta e entrará na sua organização.",
+    "descriptionWithRole": "O destinatário receberá automaticamente este papel após aceitar e completar o onboarding.",
+    "emailLabel": "Endereço de e-mail",
+    "emailPlaceholder": "nome@exemplo.com",
+    "send": "Enviar convite",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "successMessage": "Convite enviado. Será recebido por e-mail em breve."
+  },
+  "acceptInvite": {
+    "welcome": "Entrar em {org}",
+    "loggedOutPrompt": "Você foi convidado como {email}. Entre ou crie uma conta para aceitar.",
+    "signIn": "Entrar",
+    "createAccount": "Criar conta",
+    "wrongAccountTitle": "Conta errada",
+    "wrongAccountBody": "Você está conectado como {current}, mas o convite é para {invited}. Saia e tente novamente.",
+    "logoutAndRetry": "Sair e tentar novamente",
+    "accepting": "Conectando à sua nova organização...",
+    "acceptFailedTitle": "Não foi possível aceitar o convite",
+    "invalidTitle": "Convite inválido",
+    "missingToken": "Falta o token no link de convite.",
+    "notFound": "Não encontramos este convite. O link pode ter sido digitado errado ou já usado.",
+    "backToLogin": "Voltar ao login",
+    "acceptedTitle": "Já aceito",
+    "acceptedDescription": "Este convite já foi aceito. Entre para acessar sua organização.",
+    "revokedTitle": "Convite revogado",
+    "revokedDescription": "Seu administrador revogou este convite. Contate-o se acha que é um erro.",
+    "expiredTitle": "Convite expirado",
+    "expiredDescription": "Este convite expirou. Peça ao seu administrador para enviar um novo."
+  },
+  "errors": {
+    "email_invalid": "Este endereço de e-mail não parece correto.",
+    "already_member": "Esta pessoa já é membro da sua organização.",
+    "pending_exists": "Já existe um convite pendente para este e-mail.",
+    "create_failed": "Não foi possível criar o convite. Tente novamente.",
+    "submission_failed": "Não foi possível salvar suas informações. Tente novamente.",
+    "email_mismatch": "O convite foi enviado para um e-mail diferente.",
+    "expired": "O convite expirou.",
+    "revoked": "O convite foi revogado.",
+    "already_accepted": "O convite já foi aceito.",
+    "not_verified": "Verifique seu e-mail antes de aceitar o convite.",
+    "not_found": "Convite não encontrado.",
+    "accept_failed": "Não foi possível aceitar o convite. Tente novamente.",
+    "missing_token": "Falta o token no link de convite."
+  }
+}

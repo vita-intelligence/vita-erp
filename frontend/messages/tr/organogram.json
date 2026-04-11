@@ -16,7 +16,8 @@
   "members": {
     "noMembers": "Atanmış üye yok",
     "searchPlaceholder": "Üye ara...",
-    "addMemberLabel": "Üye ekle"
+    "addMemberLabel": "Üye ekle",
+    "inviteNewUser": "Yeni kullanıcı davet et"
   },
   "grid": {
     "module": "Modül"

@@ -130,3 +130,28 @@ class TestUnassignMember:
         response = client.delete(_member_url(str(custom.id), str(member.id)))
         assert response.status_code == 400
         assert response.json()["detail"] == "not_assigned"
+
+    def test_cannot_unassign_self_from_owner(self, client):
+        owner = UserFactory(is_verified=True)
+        membership = MembershipFactory(user=owner)
+        owner_role = _make_owner(owner)
+        _login_and_select_org(client, owner, membership.organization)
+
+        response = client.delete(_member_url(str(owner_role.id), str(owner.id)))
+        assert response.status_code == 400
+        assert response.json()["detail"] == "cannot_remove_owner"
+        assert UserRole.objects.filter(role=owner_role, user_id=owner.id).exists()
+
+    def test_cannot_unassign_other_owner(self, client):
+        owner = UserFactory(is_verified=True)
+        second_owner = UserFactory(is_verified=True)
+        membership = MembershipFactory(user=owner)
+        MembershipFactory(user=second_owner, organization=membership.organization)
+        owner_role = _make_owner(owner)
+        UserRole.objects.create(user_id=second_owner.id, role=owner_role)
+        _login_and_select_org(client, owner, membership.organization)
+
+        response = client.delete(_member_url(str(owner_role.id), str(second_owner.id)))
+        assert response.status_code == 400
+        assert response.json()["detail"] == "cannot_remove_owner"
+        assert UserRole.objects.filter(role=owner_role, user_id=second_owner.id).exists()

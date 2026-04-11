@@ -272,6 +272,7 @@ export default function RoleDetailPanel({
                           roleId={roleId}
                           members={role.members}
                           isDisabled={isReadOnly}
+                          isOwnerRole={isSystemRole && role.name === "Owner"}
                         />
                       </div>
                     </TabPanel>

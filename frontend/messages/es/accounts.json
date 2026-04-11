@@ -1,0 +1,81 @@
+{
+  "onboarding": {
+    "title": "Completa tu perfil",
+    "intro": "Antes de empezar a usar el espacio de trabajo, completa la información de abajo. Tu administrador decide qué es obligatorio.",
+    "submit": "Continuar",
+    "submitting": "Guardando...",
+    "logout": "Cerrar sesión",
+    "loadError": "No pudimos cargar el formulario. Recarga la página o contacta con soporte.",
+    "refreshing": "Actualizando formulario..."
+  },
+  "members": {
+    "invitationsTitle": "Invitaciones",
+    "inviteButton": "Invitar usuario",
+    "email": "Correo",
+    "status": "Estado",
+    "invitedAt": "Invitado",
+    "actions": "",
+    "resend": "Reenviar",
+    "revoke": "Revocar",
+    "noInvitations": "No hay invitaciones pendientes.",
+    "formEditorTitle": "Formulario de incorporación",
+    "formEditorDescription": "Arrastra campos para diseñar lo que cada nuevo miembro debe completar. Los campos obligatorios se aplican cuando un usuario inicia sesión.",
+    "saveForm": "Guardar",
+    "discard": "Descartar",
+    "formLoadError": "No se pudo cargar el formulario.",
+    "inviteNewUser": "Invitar nuevo usuario"
+  },
+  "invitationStatus": {
+    "pending": "Pendiente",
+    "accepted": "Aceptada",
+    "revoked": "Revocada",
+    "expired": "Expirada"
+  },
+  "invite": {
+    "title": "Invitar a un nuevo usuario",
+    "description": "Envía un correo de invitación. El destinatario creará su cuenta y se unirá a tu organización.",
+    "descriptionWithRole": "El destinatario será asignado a este rol automáticamente después de aceptar y completar la incorporación.",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "nombre@ejemplo.com",
+    "send": "Enviar invitación",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "successMessage": "Invitación enviada. Recibirá un correo en breve."
+  },
+  "acceptInvite": {
+    "welcome": "Únete a {org}",
+    "loggedOutPrompt": "Has sido invitado como {email}. Inicia sesión o crea una cuenta para aceptar.",
+    "signIn": "Iniciar sesión",
+    "createAccount": "Crear cuenta",
+    "wrongAccountTitle": "Cuenta incorrecta",
+    "wrongAccountBody": "Has iniciado sesión como {current}, pero la invitación es para {invited}. Cierra sesión e inténtalo de nuevo.",
+    "logoutAndRetry": "Cerrar sesión y reintentar",
+    "accepting": "Uniéndote a tu nueva organización...",
+    "acceptFailedTitle": "No se pudo aceptar la invitación",
+    "invalidTitle": "Invitación inválida",
+    "missingToken": "Al enlace de invitación le falta el token.",
+    "notFound": "No encontramos esta invitación. El enlace puede haberse escrito mal o ya haberse usado.",
+    "backToLogin": "Volver al inicio de sesión",
+    "acceptedTitle": "Ya aceptada",
+    "acceptedDescription": "Esta invitación ya ha sido aceptada. Inicia sesión para acceder a tu organización.",
+    "revokedTitle": "Invitación revocada",
+    "revokedDescription": "Tu administrador revocó esta invitación. Contacta con él si crees que es un error.",
+    "expiredTitle": "Invitación expirada",
+    "expiredDescription": "Esta invitación ha expirado. Pídele a tu administrador que envíe una nueva."
+  },
+  "errors": {
+    "email_invalid": "Esa dirección de correo no parece correcta.",
+    "already_member": "Esta persona ya es miembro de tu organización.",
+    "pending_exists": "Ya hay una invitación pendiente para este correo.",
+    "create_failed": "No pudimos crear la invitación. Inténtalo de nuevo.",
+    "submission_failed": "No pudimos guardar tu información. Inténtalo de nuevo.",
+    "email_mismatch": "La invitación se envió a un correo diferente.",
+    "expired": "La invitación ha expirado.",
+    "revoked": "La invitación fue revocada.",
+    "already_accepted": "La invitación ya ha sido aceptada.",
+    "not_verified": "Verifica tu correo antes de aceptar la invitación.",
+    "not_found": "Invitación no encontrada.",
+    "accept_failed": "No pudimos aceptar la invitación. Inténtalo de nuevo.",
+    "missing_token": "Al enlace de invitación le falta el token."
+  }
+}

@@ -16,7 +16,8 @@
   "members": {
     "noMembers": "Tidak ada anggota yang ditugaskan",
     "searchPlaceholder": "Cari anggota...",
-    "addMemberLabel": "Tambah anggota"
+    "addMemberLabel": "Tambah anggota",
+    "inviteNewUser": "Undang pengguna baru"
   },
   "grid": {
     "module": "Modul"

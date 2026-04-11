@@ -26,7 +26,22 @@ import {
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+
+/**
+ * Renders children into document.body so `position: fixed` modals
+ * escape any transformed ancestor (e.g. Card's perspective transform,
+ * which would otherwise trap fixed descendants inside its bounds).
+ */
+function ModalPortal({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) return null;
+  return createPortal(children, document.body);
+}
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -552,71 +567,70 @@ export function FormEditor({
         </div>
       )}
 
-      {/* Add field modal */}
-      <AddFieldModal
-        open={addModalOpen}
-        onClose={() => setAddModalOpen(false)}
-        onAdd={(type, label) => {
-          addField(
-            type,
-            label,
-            addModalTarget.hidden,
-            addModalTarget.parentGroupId,
-          );
-          setAddModalOpen(false);
-        }}
-      />
-
-      {/* Add group modal — simple inline prompt */}
-      {addGroupModalOpen && (
-        <AddGroupInlineModal
-          schema={schema}
-          onClose={() => setAddGroupModalOpen(false)}
-          onAdd={(label, repeat) => {
-            addGroup(label, repeat);
-            setAddGroupModalOpen(false);
+      {/* Modals are portaled to document.body so `position: fixed`
+          escapes the Card's 3D perspective transform ancestor. */}
+      <ModalPortal>
+        <AddFieldModal
+          open={addModalOpen}
+          onClose={() => setAddModalOpen(false)}
+          onAdd={(type, label) => {
+            addField(
+              type,
+              label,
+              addModalTarget.hidden,
+              addModalTarget.parentGroupId,
+            );
+            setAddModalOpen(false);
           }}
         />
-      )}
 
-      {/* Field config modal */}
-      {configField && (
-        <FieldConfigModal
-          field={configField}
-          allElements={schema.elements}
-          onSave={(updated) => {
-            updateField(updated);
-            setConfigField(null);
-          }}
-          onClose={() => setConfigField(null)}
-        />
-      )}
+        {addGroupModalOpen && (
+          <AddGroupInlineModal
+            schema={schema}
+            onClose={() => setAddGroupModalOpen(false)}
+            onAdd={(label, repeat) => {
+              addGroup(label, repeat);
+              setAddGroupModalOpen(false);
+            }}
+          />
+        )}
 
-      {/* Group config modal */}
-      {configGroup && (
-        <GroupConfigModal
-          group={configGroup}
-          schema={schema}
-          onSave={(updated) => {
-            updateGroup(updated);
-            setConfigGroup(null);
-          }}
-          onClose={() => setConfigGroup(null)}
-        />
-      )}
+        {configField && (
+          <FieldConfigModal
+            field={configField}
+            allElements={schema.elements}
+            onSave={(updated) => {
+              updateField(updated);
+              setConfigField(null);
+            }}
+            onClose={() => setConfigField(null)}
+          />
+        )}
 
-      {/* Form settings modal */}
-      {settingsOpen && (
-        <FormSettingsModal
-          settings={schema.settings ?? { layout: "single-page" }}
-          description={schema.description}
-          onSave={(settings, description) => {
-            setSchema({ ...schema, settings, description });
-            setSettingsOpen(false);
-          }}
-          onClose={() => setSettingsOpen(false)}
-        />
-      )}
+        {configGroup && (
+          <GroupConfigModal
+            group={configGroup}
+            schema={schema}
+            onSave={(updated) => {
+              updateGroup(updated);
+              setConfigGroup(null);
+            }}
+            onClose={() => setConfigGroup(null)}
+          />
+        )}
+
+        {settingsOpen && (
+          <FormSettingsModal
+            settings={schema.settings ?? { layout: "single-page" }}
+            description={schema.description}
+            onSave={(settings, description) => {
+              setSchema({ ...schema, settings, description });
+              setSettingsOpen(false);
+            }}
+            onClose={() => setSettingsOpen(false)}
+          />
+        )}
+      </ModalPortal>
     </div>
   );
 }
