@@ -11,10 +11,11 @@ import {
   Tabs,
 } from "@/components/ui/tabs";
 
+import BillingSettings from "./_components/BillingSettings";
 import GeneralSettings from "./_components/GeneralSettings";
 import ThemeSettings from "./_components/ThemeSettings";
 
-const TAB_IDS = ["general", "theme", "roles"] as const;
+const TAB_IDS = ["general", "theme", "roles", "billing"] as const;
 type SettingsTab = (typeof TAB_IDS)[number];
 
 /** Parses `#main/sub` → [main, sub]. Invalid main falls back to the default. */
@@ -91,6 +92,10 @@ export default function SettingsPage() {
             {t("tabs.roles")}
             <TabIndicator />
           </Tab>
+          <Tab id="billing">
+            {t("tabs.billing")}
+            <TabIndicator />
+          </Tab>
         </TabList>
 
         <TabPanel id="general">
@@ -108,6 +113,12 @@ export default function SettingsPage() {
         <TabPanel id="roles">
           <div className="pt-6">
             <Organogram />
+          </div>
+        </TabPanel>
+
+        <TabPanel id="billing">
+          <div className="pt-6">
+            <BillingSettings />
           </div>
         </TabPanel>
       </Tabs>

@@ -1,0 +1,73 @@
+{
+  "noSubscription": "Bu organizasyon için abonelik bulunamadı. Bunun hata olduğunu düşünüyorsanız destekle iletişime geçin.",
+  "plan": {
+    "title": "Geçerli plan",
+    "description": "Vita ERP platform aboneliği — temel ücret, kullanıcı başı lisans ve depolama.",
+    "trialEndsOn": "Deneme {date} tarihinde sona eriyor",
+    "nextBillingOn": "Sonraki fatura {date}",
+    "perMonth": "aylık",
+    "managedByStripe": "Ödeme yöntemi, faturalar ve iptal Stripe üzerinden yönetilir.",
+    "openPortal": "Faturalamayı yönet"
+  },
+  "usage": {
+    "title": "Kullanım",
+    "seats": "Kullanıcılar",
+    "seatsValue": "{count} aktif",
+    "seatsNote": "Her kullanıcı rollerindeki izinlere göre faturalanır. Dökümü aşağıda görün.",
+    "storage": "Depolama",
+    "storageNearlyFull": "Depolama neredeyse dolu. Yazma engelleme olmaması için aşağıdan kotanızı artırın.",
+    "updateQuota": "Güncelle"
+  },
+  "breakdown": {
+    "title": "Bu ayın dökümü",
+    "base": "Platform temel ücreti",
+    "users": "Kullanıcı lisansları ({count} kullanıcı)",
+    "storage": "Depolama ({gb} GB ücretli, {minimum} GB dahil)",
+    "total": "Toplam",
+    "perUser": "Kullanıcı başına ayrıntılar",
+    "user": "Kullanıcı",
+    "permissions": "İzinler",
+    "cost": "Maliyet",
+    "noPermissions": "Faturalanabilir izin yok"
+  },
+  "addons": {
+    "title": "Eklentiler",
+    "perMonth": "aylık",
+    "oneTime": "tek seferlik",
+    "add": "Ekle",
+    "remove": "Kaldır"
+  },
+  "invoices": {
+    "title": "Fatura geçmişi",
+    "number": "Numara",
+    "date": "Tarih",
+    "status": "Durum",
+    "amount": "Tutar",
+    "actions": "",
+    "view": "Görüntüle",
+    "empty": "Henüz fatura yok. İlk faturanız deneme süresi bittiğinde görünecek."
+  },
+  "banner": {
+    "trial": "Ücretsiz denemeniz {days} gün sonra sona eriyor. Tam erişimi korumak için bir ödeme yöntemi ekleyin.",
+    "pastDue": "Son ödemeniz başarısız oldu. Ödeme yönteminizi güncelleyene kadar yazma engellenecek.",
+    "updatePayment": "Ödeme yöntemini güncelle",
+    "locked": "Aboneliğiniz aktif değil. Tam erişimi geri almak için yeniden etkinleştirin.",
+    "reactivate": "Yeniden etkinleştir"
+  },
+  "subscriptionStatus": {
+    "trialing": "Deneme",
+    "active": "Etkin",
+    "past_due": "Vadesi geçmiş",
+    "canceled": "İptal edildi",
+    "unpaid": "Ödenmedi",
+    "paused": "Duraklatıldı",
+    "incomplete": "Tamamlanmadı"
+  },
+  "invoiceStatus": {
+    "draft": "Taslak",
+    "open": "Açık",
+    "paid": "Ödendi",
+    "uncollectible": "Tahsil edilemez",
+    "void": "Geçersiz"
+  }
+}

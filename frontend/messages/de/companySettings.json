@@ -5,7 +5,8 @@
   "tabs": {
     "general": "Allgemein",
     "theme": "Design",
-    "roles": "Rollen"
+    "roles": "Rollen",
+    "billing": "Abrechnung"
   },
   "save": "Änderungen speichern",
   "saving": "Wird gespeichert...",

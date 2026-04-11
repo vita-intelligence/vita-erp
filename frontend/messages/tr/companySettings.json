@@ -5,7 +5,8 @@
   "tabs": {
     "general": "Genel",
     "theme": "Tema",
-    "roles": "Roller"
+    "roles": "Roller",
+    "billing": "Faturalama"
   },
   "save": "Değişiklikleri Kaydet",
   "saving": "Kaydediliyor...",

@@ -1,13 +1,18 @@
 """
-Subscription — links an Organization to a Plan.
+Subscription — binds an Organization to its Stripe subscription.
 
-One-to-one relationship: each organization has exactly one active subscription.
-The subscription tracks billing cycle, current period, trial dates, and Stripe IDs.
+One row per organization. The `status` field mirrors Stripe's subscription
+lifecycle exactly (`trialing` / `active` / `past_due` / `canceled` / …) so
+webhooks translate 1:1.
 
-Stripe mapping:
-    Subscription         → Stripe Subscription
-    subscription.status  → stripe_subscription.status (identical values)
-    SubscriptionAddOn    → Stripe Subscription Item (additional line item)
+Subscription shape in Stripe (see BillingConfig for price definitions):
+    Item 1 — base       flat recurring @ base_price_pence
+    Item 2 — users      metered, quantity reported daily by cron
+    Item 3 — storage    recurring per-GB, quantity = (storage_quota_gb - minimum)
+
+The per-item Stripe IDs are stored here so the daily usage reporter knows
+which subscription item to call `create_usage_record` on, and so the UI
+storage adjuster knows which item to call `subscription_item.update` on.
 """
 
 from __future__ import annotations
@@ -25,11 +30,10 @@ from apps.billing.constants import (
     SUB_STATUS_TRIALING,
 )
 from apps.billing.models.add_on import AddOn
-from apps.billing.models.plan import Plan
 
 
 class Subscription(models.Model):
-    """An organization's active billing subscription."""
+    """An organization's billing subscription state, mirrored from Stripe."""
 
     id = models.UUIDField(
         primary_key=True,
@@ -41,14 +45,8 @@ class Subscription(models.Model):
         on_delete=models.CASCADE,
         related_name="subscription",
     )
-    plan = models.ForeignKey(
-        Plan,
-        on_delete=models.PROTECT,
-        related_name="subscriptions",
-        help_text="PROTECT prevents deleting a plan that has active subscriptions.",
-    )
 
-    # --- Status (mirrors Stripe) ---
+    # ── Status (mirrors Stripe) ───────────────────────────────────────────
     status = models.CharField(
         max_length=20,
         choices=SUB_STATUS_CHOICES,
@@ -61,46 +59,50 @@ class Subscription(models.Model):
         default=BILLING_CYCLE_MONTHLY,
     )
 
-    # --- Billing period ---
-    current_period_start = models.DateTimeField(
-        null=True,
-        blank=True,
-        help_text="Start of the current billing period.",
-    )
-    current_period_end = models.DateTimeField(
-        null=True,
-        blank=True,
-        help_text="End of the current billing period.",
-    )
+    # ── Billing period ────────────────────────────────────────────────────
+    current_period_start = models.DateTimeField(null=True, blank=True)
+    current_period_end = models.DateTimeField(null=True, blank=True)
 
-    # --- Trial ---
+    # ── Trial ─────────────────────────────────────────────────────────────
     trial_start = models.DateTimeField(null=True, blank=True)
     trial_end = models.DateTimeField(null=True, blank=True)
 
-    # --- Cancellation ---
-    canceled_at = models.DateTimeField(
-        null=True,
-        blank=True,
-        help_text="When the subscription was canceled. Null = not canceled.",
-    )
-    cancel_at_period_end = models.BooleanField(
-        default=False,
-        help_text="If True, subscription remains active until current_period_end.",
+    # ── Storage quota chosen by the org (in GB) ───────────────────────────
+    storage_quota_gb = models.PositiveIntegerField(
+        default=10,
+        help_text="Storage ceiling the org is paying for. Must be >= BillingConfig.storage_minimum_gb.",
     )
 
-    # --- Stripe integration ---
+    # ── Cancellation ──────────────────────────────────────────────────────
+    canceled_at = models.DateTimeField(null=True, blank=True)
+    cancel_at_period_end = models.BooleanField(
+        default=False,
+        help_text="If True, subscription remains active until current_period_end then stops auto-renewing.",
+    )
+
+    # ── Stripe integration ────────────────────────────────────────────────
     stripe_subscription_id = models.CharField(
         max_length=255,
         blank=True,
-        help_text="Stripe Subscription ID.",
+        help_text="Stripe Subscription ID. Empty until the subscription has been created in Stripe.",
     )
-    stripe_customer_id = models.CharField(
+    stripe_base_item_id = models.CharField(
         max_length=255,
         blank=True,
-        help_text="Stripe Customer ID for this organization.",
+        help_text="Stripe Subscription Item ID for the flat base-fee line.",
+    )
+    stripe_user_item_id = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Stripe Subscription Item ID for the metered per-user line.",
+    )
+    stripe_storage_item_id = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Stripe Subscription Item ID for the per-GB storage line.",
     )
 
-    # --- Timestamps ---
+    # ── Timestamps ────────────────────────────────────────────────────────
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -109,11 +111,10 @@ class Subscription(models.Model):
         indexes = [
             models.Index(fields=["status"]),
             models.Index(fields=["stripe_subscription_id"]),
-            models.Index(fields=["stripe_customer_id"]),
         ]
 
     def __str__(self) -> str:
-        return f"{self.organization_id} → {self.plan.slug} ({self.status})"
+        return f"{self.organization_id} — {self.status}"
 
     @property
     def is_accessible(self) -> bool:
@@ -122,14 +123,14 @@ class Subscription(models.Model):
 
     @property
     def is_trial_expired(self) -> bool:
-        """Whether the trial period has ended."""
+        """Whether the trial window has already closed."""
         if not self.trial_end:
             return False
         return timezone.now() > self.trial_end
 
 
 class SubscriptionAddOn(models.Model):
-    """An active add-on attached to a subscription."""
+    """A purchasable add-on activated on a subscription."""
 
     id = models.UUIDField(
         primary_key=True,
@@ -147,14 +148,12 @@ class SubscriptionAddOn(models.Model):
         related_name="subscription_activations",
     )
 
-    # --- Stripe integration ---
     stripe_subscription_item_id = models.CharField(
         max_length=255,
         blank=True,
-        help_text="Stripe Subscription Item ID for this add-on.",
+        help_text="Stripe Subscription Item ID for this add-on line.",
     )
 
-    # --- Timestamps ---
     activated_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

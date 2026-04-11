@@ -1,0 +1,73 @@
+{
+  "noSubscription": "Aucun abonnement trouvé pour cette organisation. Contactez le support si vous pensez qu'il s'agit d'une erreur.",
+  "plan": {
+    "title": "Plan actuel",
+    "description": "Abonnement à la plateforme Vita ERP — frais de base, licences par utilisateur et stockage.",
+    "trialEndsOn": "L'essai se termine le {date}",
+    "nextBillingOn": "Prochaine facture le {date}",
+    "perMonth": "par mois",
+    "managedByStripe": "Le moyen de paiement, les factures et l'annulation sont gérés via Stripe.",
+    "openPortal": "Gérer la facturation"
+  },
+  "usage": {
+    "title": "Utilisation",
+    "seats": "Utilisateurs",
+    "seatsValue": "{count} actifs",
+    "seatsNote": "Chaque utilisateur est facturé selon les autorisations de ses rôles. Voir le détail ci-dessous.",
+    "storage": "Stockage",
+    "storageNearlyFull": "Le stockage est presque plein. Augmentez votre quota ci-dessous pour éviter tout blocage d'écriture.",
+    "updateQuota": "Mettre à jour"
+  },
+  "breakdown": {
+    "title": "Détail du mois",
+    "base": "Frais de plateforme de base",
+    "users": "Licences utilisateur ({count} utilisateurs)",
+    "storage": "Stockage ({gb} Go payés, {minimum} Go inclus)",
+    "total": "Total",
+    "perUser": "Détails par utilisateur",
+    "user": "Utilisateur",
+    "permissions": "Autorisations",
+    "cost": "Coût",
+    "noPermissions": "Aucune autorisation facturable"
+  },
+  "addons": {
+    "title": "Modules complémentaires",
+    "perMonth": "par mois",
+    "oneTime": "paiement unique",
+    "add": "Ajouter",
+    "remove": "Retirer"
+  },
+  "invoices": {
+    "title": "Historique des factures",
+    "number": "Numéro",
+    "date": "Date",
+    "status": "Statut",
+    "amount": "Montant",
+    "actions": "",
+    "view": "Voir",
+    "empty": "Aucune facture pour le moment. La première apparaîtra à la fin de votre essai."
+  },
+  "banner": {
+    "trial": "Votre essai gratuit se termine dans {days} jours. Ajoutez un moyen de paiement pour conserver l'accès complet.",
+    "pastDue": "Votre dernier paiement a échoué. Les écritures seront bloquées jusqu'à la mise à jour de votre moyen de paiement.",
+    "updatePayment": "Mettre à jour le moyen de paiement",
+    "locked": "Votre abonnement est inactif. Réactivez-le pour retrouver l'accès complet.",
+    "reactivate": "Réactiver"
+  },
+  "subscriptionStatus": {
+    "trialing": "Essai",
+    "active": "Active",
+    "past_due": "En retard",
+    "canceled": "Annulée",
+    "unpaid": "Impayée",
+    "paused": "En pause",
+    "incomplete": "Incomplète"
+  },
+  "invoiceStatus": {
+    "draft": "Brouillon",
+    "open": "Ouverte",
+    "paid": "Payée",
+    "uncollectible": "Irrécouvrable",
+    "void": "Annulée"
+  }
+}

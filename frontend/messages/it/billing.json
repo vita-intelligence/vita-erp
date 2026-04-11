@@ -1,0 +1,73 @@
+{
+  "noSubscription": "Nessun abbonamento trovato per questa organizzazione. Contatta l'assistenza se pensi si tratti di un errore.",
+  "plan": {
+    "title": "Piano attuale",
+    "description": "Abbonamento alla piattaforma Vita ERP — canone base, licenze per utente e archiviazione.",
+    "trialEndsOn": "La prova termina il {date}",
+    "nextBillingOn": "Prossima fattura il {date}",
+    "perMonth": "al mese",
+    "managedByStripe": "Metodo di pagamento, fatture e annullamento sono gestiti tramite Stripe.",
+    "openPortal": "Gestisci fatturazione"
+  },
+  "usage": {
+    "title": "Utilizzo",
+    "seats": "Utenti",
+    "seatsValue": "{count} attivi",
+    "seatsNote": "Ogni utente viene fatturato in base ai permessi assegnati ai suoi ruoli. Vedi il dettaglio qui sotto.",
+    "storage": "Archiviazione",
+    "storageNearlyFull": "L'archiviazione è quasi piena. Aumenta la quota qui sotto per evitare il blocco delle scritture.",
+    "updateQuota": "Aggiorna"
+  },
+  "breakdown": {
+    "title": "Dettaglio del mese",
+    "base": "Canone base della piattaforma",
+    "users": "Licenze utente ({count} utenti)",
+    "storage": "Archiviazione ({gb} GB pagati, {minimum} GB inclusi)",
+    "total": "Totale",
+    "perUser": "Dettagli per utente",
+    "user": "Utente",
+    "permissions": "Permessi",
+    "cost": "Costo",
+    "noPermissions": "Nessun permesso fatturabile"
+  },
+  "addons": {
+    "title": "Componenti aggiuntivi",
+    "perMonth": "al mese",
+    "oneTime": "pagamento unico",
+    "add": "Aggiungi",
+    "remove": "Rimuovi"
+  },
+  "invoices": {
+    "title": "Cronologia fatture",
+    "number": "Numero",
+    "date": "Data",
+    "status": "Stato",
+    "amount": "Importo",
+    "actions": "",
+    "view": "Visualizza",
+    "empty": "Nessuna fattura ancora. La prima comparirà al termine della prova."
+  },
+  "banner": {
+    "trial": "La tua prova gratuita termina tra {days} giorni. Aggiungi un metodo di pagamento per mantenere l'accesso completo.",
+    "pastDue": "L'ultimo pagamento non è andato a buon fine. Le scritture saranno bloccate finché non aggiorni il metodo di pagamento.",
+    "updatePayment": "Aggiorna metodo di pagamento",
+    "locked": "Il tuo abbonamento è inattivo. Riattivalo per ripristinare l'accesso completo.",
+    "reactivate": "Riattiva"
+  },
+  "subscriptionStatus": {
+    "trialing": "Prova",
+    "active": "Attiva",
+    "past_due": "Scaduta",
+    "canceled": "Annullata",
+    "unpaid": "Non pagata",
+    "paused": "In pausa",
+    "incomplete": "Incompleta"
+  },
+  "invoiceStatus": {
+    "draft": "Bozza",
+    "open": "Aperta",
+    "paid": "Pagata",
+    "uncollectible": "Inesigibile",
+    "void": "Annullata"
+  }
+}

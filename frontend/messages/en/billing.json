@@ -1,0 +1,73 @@
+{
+  "noSubscription": "No subscription found for this organization. Contact support if you believe this is an error.",
+  "plan": {
+    "title": "Current plan",
+    "description": "Vita ERP platform subscription — base fee, metered per-user licensing, and storage.",
+    "trialEndsOn": "Trial ends on {date}",
+    "nextBillingOn": "Next bill on {date}",
+    "perMonth": "per month",
+    "managedByStripe": "Payment method, invoices, and cancellation are managed via Stripe.",
+    "openPortal": "Manage billing"
+  },
+  "usage": {
+    "title": "Usage",
+    "seats": "Users",
+    "seatsValue": "{count} active",
+    "seatsNote": "Each user is billed by the permissions held across their roles. See the breakdown below.",
+    "storage": "Storage",
+    "storageNearlyFull": "Storage is almost full. Raise your quota below to avoid being locked out of writes.",
+    "updateQuota": "Update"
+  },
+  "breakdown": {
+    "title": "This month's breakdown",
+    "base": "Base platform fee",
+    "users": "User licensing ({count} users)",
+    "storage": "Storage ({gb} GB paid, {minimum} GB included)",
+    "total": "Total",
+    "perUser": "Per-user details",
+    "user": "User",
+    "permissions": "Permissions",
+    "cost": "Cost",
+    "noPermissions": "No billable permissions"
+  },
+  "addons": {
+    "title": "Add-ons",
+    "perMonth": "per month",
+    "oneTime": "one-time",
+    "add": "Add",
+    "remove": "Remove"
+  },
+  "invoices": {
+    "title": "Invoice history",
+    "number": "Number",
+    "date": "Date",
+    "status": "Status",
+    "amount": "Amount",
+    "actions": "",
+    "view": "View",
+    "empty": "No invoices yet. Your first invoice will appear after your trial ends."
+  },
+  "banner": {
+    "trial": "Your free trial ends in {days} days. Add a payment method to keep full access.",
+    "pastDue": "Your last payment failed. Your writes will be blocked until you update your payment method.",
+    "updatePayment": "Update payment method",
+    "locked": "Your subscription is inactive. Reactivate to regain full access.",
+    "reactivate": "Reactivate"
+  },
+  "subscriptionStatus": {
+    "trialing": "Trial",
+    "active": "Active",
+    "past_due": "Past due",
+    "canceled": "Canceled",
+    "unpaid": "Unpaid",
+    "paused": "Paused",
+    "incomplete": "Incomplete"
+  },
+  "invoiceStatus": {
+    "draft": "Draft",
+    "open": "Open",
+    "paid": "Paid",
+    "uncollectible": "Uncollectible",
+    "void": "Void"
+  }
+}

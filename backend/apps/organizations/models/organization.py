@@ -102,6 +102,15 @@ class Organization(models.Model):
         related_name="created_organizations",
     )
 
+    # Stripe customer ID lives on the org (not the subscription) so it survives
+    # subscription cancellation + resubscribe without losing the saved payment
+    # method and invoice history in Stripe.
+    stripe_customer_id = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Stripe Customer ID for this organization.",
+    )
+
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

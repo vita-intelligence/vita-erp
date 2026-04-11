@@ -1,0 +1,73 @@
+{
+  "noSubscription": "No se encontró ninguna suscripción para esta organización. Contacta con soporte si crees que es un error.",
+  "plan": {
+    "title": "Plan actual",
+    "description": "Suscripción a la plataforma Vita ERP — tarifa base, licencias por usuario y almacenamiento.",
+    "trialEndsOn": "La prueba termina el {date}",
+    "nextBillingOn": "Próxima factura el {date}",
+    "perMonth": "por mes",
+    "managedByStripe": "El método de pago, las facturas y la cancelación se gestionan a través de Stripe.",
+    "openPortal": "Gestionar facturación"
+  },
+  "usage": {
+    "title": "Uso",
+    "seats": "Usuarios",
+    "seatsValue": "{count} activos",
+    "seatsNote": "Cada usuario se factura por los permisos que tiene en sus roles. Consulta el desglose a continuación.",
+    "storage": "Almacenamiento",
+    "storageNearlyFull": "El almacenamiento está casi lleno. Amplía tu cuota abajo para no quedar bloqueado.",
+    "updateQuota": "Actualizar"
+  },
+  "breakdown": {
+    "title": "Desglose de este mes",
+    "base": "Tarifa base de la plataforma",
+    "users": "Licencias de usuario ({count} usuarios)",
+    "storage": "Almacenamiento ({gb} GB pagados, {minimum} GB incluidos)",
+    "total": "Total",
+    "perUser": "Detalles por usuario",
+    "user": "Usuario",
+    "permissions": "Permisos",
+    "cost": "Coste",
+    "noPermissions": "Sin permisos facturables"
+  },
+  "addons": {
+    "title": "Complementos",
+    "perMonth": "al mes",
+    "oneTime": "pago único",
+    "add": "Añadir",
+    "remove": "Quitar"
+  },
+  "invoices": {
+    "title": "Historial de facturas",
+    "number": "Número",
+    "date": "Fecha",
+    "status": "Estado",
+    "amount": "Importe",
+    "actions": "",
+    "view": "Ver",
+    "empty": "Aún no hay facturas. La primera aparecerá al finalizar tu período de prueba."
+  },
+  "banner": {
+    "trial": "Tu prueba gratuita termina en {days} días. Añade un método de pago para mantener el acceso completo.",
+    "pastDue": "Tu último pago falló. La escritura se bloqueará hasta que actualices tu método de pago.",
+    "updatePayment": "Actualizar método de pago",
+    "locked": "Tu suscripción está inactiva. Reactívala para recuperar el acceso completo.",
+    "reactivate": "Reactivar"
+  },
+  "subscriptionStatus": {
+    "trialing": "Prueba",
+    "active": "Activa",
+    "past_due": "Vencida",
+    "canceled": "Cancelada",
+    "unpaid": "Sin pagar",
+    "paused": "Pausada",
+    "incomplete": "Incompleta"
+  },
+  "invoiceStatus": {
+    "draft": "Borrador",
+    "open": "Abierta",
+    "paid": "Pagada",
+    "uncollectible": "Incobrable",
+    "void": "Anulada"
+  }
+}

@@ -5,7 +5,8 @@
   "tabs": {
     "general": "General",
     "theme": "Theme",
-    "roles": "Roles"
+    "roles": "Roles",
+    "billing": "Billing"
   },
   "save": "Save Changes",
   "saving": "Saving...",

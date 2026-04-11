@@ -1,15 +1,16 @@
 {
   "page": {
-    "title": "Configuraci\u00f3n"
+    "title": "Configuración"
   },
   "tabs": {
     "general": "General",
     "theme": "Tema",
-    "roles": "Roles"
+    "roles": "Roles",
+    "billing": "Facturación"
   },
   "save": "Guardar cambios",
   "saving": "Guardando...",
-  "saved": "Configuraci\u00f3n guardada correctamente.",
+  "saved": "Configuración guardada correctamente.",
   "no_changes": "No hay cambios que guardar.",
   "read_only_notice": "Tiene acceso solo de lectura a estas configuraciones. Contacte a su administrador para permisos de edición.",
   "preview": {
@@ -42,60 +43,60 @@
     "read_only_notice": "Tienes acceso solo de lectura a la configuración del tema. Contacta a tu administrador para permisos de edición."
   },
   "sections": {
-    "number_formatting": "Formato de n\u00fameros",
-    "number_formatting_description": "C\u00f3mo se muestran los n\u00fameros en el sistema: separadores decimales y de miles, agrupaci\u00f3n de d\u00edgitos.",
-    "precision": "Precisi\u00f3n",
-    "precision_description": "N\u00famero de decimales utilizados para los distintos tipos de valores en todo el sistema.",
-    "currency_display": "Visualizaci\u00f3n de moneda",
-    "currency_display_description": "C\u00f3mo se formatean los valores monetarios: posici\u00f3n del s\u00edmbolo, espaciado y formato de n\u00fameros negativos.",
+    "number_formatting": "Formato de números",
+    "number_formatting_description": "Cómo se muestran los números en el sistema: separadores decimales y de miles, agrupación de dígitos.",
+    "precision": "Precisión",
+    "precision_description": "Número de decimales utilizados para los distintos tipos de valores en todo el sistema.",
+    "currency_display": "Visualización de moneda",
+    "currency_display_description": "Cómo se formatean los valores monetarios: posición del símbolo, espaciado y formato de números negativos.",
     "rounding": "Redondeo",
-    "rounding_description": "Reglas de redondeo para c\u00e1lculos y transacciones en efectivo.",
+    "rounding_description": "Reglas de redondeo para cálculos y transacciones en efectivo.",
     "date_time": "Fecha y hora",
-    "date_time_description": "Formato de fecha, formato de hora, sistema de calendario y d\u00eda de inicio de semana utilizados en el sistema.",
+    "date_time_description": "Formato de fecha, formato de hora, sistema de calendario y día de inicio de semana utilizados en el sistema.",
     "measurement": "Medidas",
-    "measurement_description": "Unidades de medida predeterminadas preseleccionadas al crear nuevos art\u00edculos y materiales.",
+    "measurement_description": "Unidades de medida predeterminadas preseleccionadas al crear nuevos artículos y materiales.",
     "fiscal": "Fiscal y financiero",
-    "fiscal_description": "Configuraci\u00f3n del a\u00f1o fiscal, m\u00e9todo de costeo de inventario y comportamiento fiscal.",
+    "fiscal_description": "Configuración del año fiscal, método de costeo de inventario y comportamiento fiscal.",
     "document_defaults": "Valores predeterminados de documentos",
-    "document_defaults_description": "Idioma, tama\u00f1o de papel y direcci\u00f3n del texto para documentos e informes generados."
+    "document_defaults_description": "Idioma, tamaño de papel y dirección del texto para documentos e informes generados."
   },
   "fields": {
     "decimal_separator": "Separador decimal",
     "thousands_separator": "Separador de miles",
-    "digit_grouping": "Agrupaci\u00f3n de d\u00edgitos",
-    "quantity_precision": "Precisi\u00f3n de cantidad",
-    "price_precision": "Precisi\u00f3n de precio",
-    "currency_precision": "Precisi\u00f3n de moneda",
-    "exchange_rate_precision": "Precisi\u00f3n de tipo de cambio",
-    "percentage_precision": "Precisi\u00f3n de porcentaje",
-    "weight_precision": "Precisi\u00f3n de peso",
-    "currency_symbol_position": "Posici\u00f3n del s\u00edmbolo de moneda",
-    "currency_spacing": "Espacio entre s\u00edmbolo y monto",
-    "negative_format": "Formato de n\u00fameros negativos",
-    "rounding_method": "M\u00e9todo de redondeo",
+    "digit_grouping": "Agrupación de dígitos",
+    "quantity_precision": "Precisión de cantidad",
+    "price_precision": "Precisión de precio",
+    "currency_precision": "Precisión de moneda",
+    "exchange_rate_precision": "Precisión de tipo de cambio",
+    "percentage_precision": "Precisión de porcentaje",
+    "weight_precision": "Precisión de peso",
+    "currency_symbol_position": "Posición del símbolo de moneda",
+    "currency_spacing": "Espacio entre símbolo y monto",
+    "negative_format": "Formato de números negativos",
+    "rounding_method": "Método de redondeo",
     "cash_rounding_enabled": "Redondeo de efectivo",
     "cash_rounding_increment": "Incremento de redondeo de efectivo",
     "date_format": "Formato de fecha",
     "time_format": "Formato de hora",
-    "week_start_day": "Primer d\u00eda de la semana",
+    "week_start_day": "Primer día de la semana",
     "calendar_system": "Sistema de calendario",
     "measurement_system": "Sistema de medidas",
     "default_weight_uom": "Unidad de peso predeterminada",
     "default_length_uom": "Unidad de longitud predeterminada",
     "default_volume_uom": "Unidad de volumen predeterminada",
     "default_temperature_uom": "Unidad de temperatura predeterminada",
-    "default_area_uom": "Unidad de \u00e1rea predeterminada",
-    "fiscal_year_start_month": "Mes de inicio del a\u00f1o fiscal",
-    "fiscal_year_start_day": "D\u00eda de inicio del a\u00f1o fiscal",
+    "default_area_uom": "Unidad de área predeterminada",
+    "fiscal_year_start_month": "Mes de inicio del año fiscal",
+    "fiscal_year_start_day": "Día de inicio del año fiscal",
     "fiscal_calendar_type": "Tipo de calendario fiscal",
-    "cost_method": "M\u00e9todo de costeo",
+    "cost_method": "Método de costeo",
     "tax_inclusive_pricing": "Precios con impuestos incluidos",
     "default_tax_rate": "Tasa de impuesto predeterminada (%)",
     "tax_label": "Etiqueta de impuesto",
     "default_document_language": "Idioma de documentos",
     "default_ui_language": "Idioma de la interfaz",
-    "default_paper_size": "Tama\u00f1o de papel predeterminado",
-    "text_direction": "Direcci\u00f3n del texto"
+    "default_paper_size": "Tamaño de papel predeterminado",
+    "text_direction": "Dirección del texto"
   },
   "options": {
     "decimal_separator": {
@@ -106,25 +107,25 @@
       "comma": "Coma (1,234)",
       "dot": "Punto (1.234)",
       "space": "Espacio (1 234)",
-      "apostrophe": "Ap\u00f3strofo (1'234)",
+      "apostrophe": "Apóstrofo (1'234)",
       "none": "Ninguno (1234)"
     },
     "digit_grouping": {
-      "standard": "Est\u00e1ndar (1,234,567)",
+      "standard": "Estándar (1,234,567)",
       "indian": "Indio (12,34,567)",
-      "none": "Sin agrupaci\u00f3n"
+      "none": "Sin agrupación"
     },
     "currency_symbol_position": {
       "before": "Antes del monto ($100)",
-      "after": "Despu\u00e9s del monto (100\u20ac)"
+      "after": "Después del monto (100€)"
     },
     "negative_format": {
       "minus_before": "Menos antes (-100)",
-      "minus_after": "Menos despu\u00e9s (100-)",
-      "parentheses": "Par\u00e9ntesis ((100))"
+      "minus_after": "Menos después (100-)",
+      "parentheses": "Paréntesis ((100))"
     },
     "rounding_method": {
-      "half_up": "Est\u00e1ndar (redondeo hacia arriba)",
+      "half_up": "Estándar (redondeo hacia arriba)",
       "half_even": "Redondeo bancario (mitad par)",
       "ceiling": "Siempre redondear hacia arriba",
       "floor": "Siempre redondear hacia abajo"
@@ -152,31 +153,31 @@
     "week_start_day": {
       "monday": "Lunes",
       "sunday": "Domingo",
-      "saturday": "S\u00e1bado"
+      "saturday": "Sábado"
     },
     "calendar_system": {
       "gregorian": "Gregoriano",
-      "hijri": "Hijri (isl\u00e1mico)",
-      "thai_buddhist": "Budista tailand\u00e9s",
+      "hijri": "Hijri (islámico)",
+      "thai_buddhist": "Budista tailandés",
       "persian": "Persa (Jalali)",
-      "japanese": "Imperial japon\u00e9s"
+      "japanese": "Imperial japonés"
     },
     "measurement_system": {
-      "metric": "M\u00e9trico",
+      "metric": "Métrico",
       "imperial": "Imperial"
     },
     "default_weight_uom": {
       "kg": "Kilogramo (kg)",
       "g": "Gramo (g)",
       "mg": "Miligramo (mg)",
-      "t": "Tonelada m\u00e9trica (t)",
+      "t": "Tonelada métrica (t)",
       "lb": "Libra (lb)",
       "oz": "Onza (oz)"
     },
     "default_length_uom": {
       "m": "Metro (m)",
-      "cm": "Cent\u00edmetro (cm)",
-      "mm": "Mil\u00edmetro (mm)",
+      "cm": "Centímetro (cm)",
+      "mm": "Milímetro (mm)",
       "ft": "Pie (ft)",
       "in": "Pulgada (in)",
       "yd": "Yarda (yd)"
@@ -184,36 +185,36 @@
     "default_volume_uom": {
       "L": "Litro (L)",
       "mL": "Mililitro (mL)",
-      "m3": "Metro c\u00fabico (m\u00b3)",
-      "gal": "Gal\u00f3n (gal)",
-      "fl_oz": "Onza l\u00edquida (fl oz)",
-      "ft3": "Pie c\u00fabico (ft\u00b3)"
+      "m3": "Metro cúbico (m³)",
+      "gal": "Galón (gal)",
+      "fl_oz": "Onza líquida (fl oz)",
+      "ft3": "Pie cúbico (ft³)"
     },
     "default_temperature_uom": {
-      "celsius": "Celsius (\u00b0C)",
-      "fahrenheit": "Fahrenheit (\u00b0F)"
+      "celsius": "Celsius (°C)",
+      "fahrenheit": "Fahrenheit (°F)"
     },
     "default_area_uom": {
-      "m2": "Metro cuadrado (m\u00b2)",
-      "ft2": "Pie cuadrado (ft\u00b2)",
-      "hectare": "Hect\u00e1rea",
+      "m2": "Metro cuadrado (m²)",
+      "ft2": "Pie cuadrado (ft²)",
+      "hectare": "Hectárea",
       "acre": "Acre"
     },
     "fiscal_calendar_type": {
-      "standard": "Est\u00e1ndar (meses calendario)",
+      "standard": "Estándar (meses calendario)",
       "445_week": "4-4-5 semanas (comercio)",
       "454_week": "4-5-4 semanas (comercio)",
       "544_week": "5-4-4 semanas (comercio)"
     },
     "cost_method": {
-      "standard": "Costeo est\u00e1ndar",
+      "standard": "Costeo estándar",
       "average": "Promedio ponderado",
       "fifo": "Primero en entrar, primero en salir (FIFO)"
     },
     "default_paper_size": {
-      "A4": "A4 (210 \u00d7 297 mm)",
-      "letter": "Letter (8.5 \u00d7 11 in)",
-      "legal": "Legal (8.5 \u00d7 14 in)"
+      "A4": "A4 (210 × 297 mm)",
+      "letter": "Letter (8.5 × 11 in)",
+      "legal": "Legal (8.5 × 14 in)"
     },
     "text_direction": {
       "ltr": "De izquierda a derecha",
@@ -235,47 +236,47 @@
     }
   },
   "descriptions": {
-    "decimal_separator": "Car\u00e1cter entre la parte entera y la parte decimal. Ej.: 1234.56 (punto) o 1234,56 (coma).",
-    "thousands_separator": "Car\u00e1cter que agrupa d\u00edgitos para facilitar la lectura. Ej.: 1,234 (coma) o 1.234 (punto).",
-    "digit_grouping": "C\u00f3mo se agrupan los d\u00edgitos. Est\u00e1ndar: 1,234,567. Indio: 12,34,567 (lakhs y crores).",
-    "quantity_precision": "N\u00famero de decimales para cantidades de art\u00edculos (ej.: 2.5 kg o 2.5000 kg).",
-    "price_precision": "N\u00famero de decimales para precios unitarios en pedidos y facturas.",
-    "currency_precision": "N\u00famero de decimales para totales monetarios. JPY usa 0, KWD usa 3.",
-    "exchange_rate_precision": "N\u00famero de decimales para tipos de cambio. Mayor = conversiones m\u00e1s precisas.",
-    "percentage_precision": "N\u00famero de decimales para porcentajes como tasas de impuestos y descuentos.",
-    "weight_precision": "N\u00famero de decimales para valores de peso en inventario y producci\u00f3n.",
-    "currency_symbol_position": "D\u00f3nde aparece el s\u00edmbolo de moneda en relaci\u00f3n al monto. Ej.: $100 (antes) o 100\u20ac (despu\u00e9s).",
-    "currency_spacing": "A\u00f1adir un espacio entre el s\u00edmbolo de moneda y el monto. Ej.: $ 100 o 100 \u20ac en lugar de $100 o 100\u20ac.",
-    "negative_format": "C\u00f3mo se muestran los n\u00fameros negativos. El formato contable usa par\u00e9ntesis: (100) en lugar de -100.",
-    "rounding_method": "C\u00f3mo se redondean los valores calculados. El redondeo bancario (mitad par) reduce el sesgo de redondeo acumulativo.",
-    "cash_rounding_enabled": "Redondear totales de pagos en efectivo a la denominaci\u00f3n f\u00edsica m\u00e1s cercana. Ej.: Suiza redondea a 0.05 CHF.",
-    "cash_rounding_increment": "La denominaci\u00f3n de efectivo m\u00e1s peque\u00f1a para redondear. Ej.: 0.05 (cinco centavos), 0.10 (diez centavos) o 1.00 (unidades enteras).",
-    "date_format": "C\u00f3mo se muestran las fechas en todo el sistema. No afecta c\u00f3mo se almacenan las fechas internamente.",
+    "decimal_separator": "Carácter entre la parte entera y la parte decimal. Ej.: 1234.56 (punto) o 1234,56 (coma).",
+    "thousands_separator": "Carácter que agrupa dígitos para facilitar la lectura. Ej.: 1,234 (coma) o 1.234 (punto).",
+    "digit_grouping": "Cómo se agrupan los dígitos. Estándar: 1,234,567. Indio: 12,34,567 (lakhs y crores).",
+    "quantity_precision": "Número de decimales para cantidades de artículos (ej.: 2.5 kg o 2.5000 kg).",
+    "price_precision": "Número de decimales para precios unitarios en pedidos y facturas.",
+    "currency_precision": "Número de decimales para totales monetarios. JPY usa 0, KWD usa 3.",
+    "exchange_rate_precision": "Número de decimales para tipos de cambio. Mayor = conversiones más precisas.",
+    "percentage_precision": "Número de decimales para porcentajes como tasas de impuestos y descuentos.",
+    "weight_precision": "Número de decimales para valores de peso en inventario y producción.",
+    "currency_symbol_position": "Dónde aparece el símbolo de moneda en relación al monto. Ej.: $100 (antes) o 100€ (después).",
+    "currency_spacing": "Añadir un espacio entre el símbolo de moneda y el monto. Ej.: $ 100 o 100 € en lugar de $100 o 100€.",
+    "negative_format": "Cómo se muestran los números negativos. El formato contable usa paréntesis: (100) en lugar de -100.",
+    "rounding_method": "Cómo se redondean los valores calculados. El redondeo bancario (mitad par) reduce el sesgo de redondeo acumulativo.",
+    "cash_rounding_enabled": "Redondear totales de pagos en efectivo a la denominación física más cercana. Ej.: Suiza redondea a 0.05 CHF.",
+    "cash_rounding_increment": "La denominación de efectivo más pequeña para redondear. Ej.: 0.05 (cinco centavos), 0.10 (diez centavos) o 1.00 (unidades enteras).",
+    "date_format": "Cómo se muestran las fechas en todo el sistema. No afecta cómo se almacenan las fechas internamente.",
     "time_format": "El formato de 12 horas muestra AM/PM (2:30 PM). El formato de 24 horas usa horario militar (14:30).",
-    "week_start_day": "Primer d\u00eda de la semana en calendarios e informes semanales. Var\u00eda seg\u00fan la regi\u00f3n.",
-    "calendar_system": "Calendario utilizado para mostrar fechas. El almacenamiento interno siempre usa el gregoriano. Hijri es com\u00fan en Arabia Saudita.",
-    "measurement_system": "Sistema de unidades predeterminado para la organizaci\u00f3n. Los campos individuales pueden usar cualquier unidad.",
-    "default_weight_uom": "Unidad de peso predeterminada preseleccionada al crear nuevos art\u00edculos o materiales.",
-    "default_length_uom": "Unidad de longitud predeterminada preseleccionada para dimensiones de nuevos art\u00edculos.",
-    "default_volume_uom": "Unidad de volumen predeterminada preseleccionada para l\u00edquidos o materiales a granel.",
-    "default_temperature_uom": "Unidad de temperatura predeterminada para cadena de fr\u00edo, seguridad alimentaria y monitoreo ambiental.",
-    "default_area_uom": "Unidad de \u00e1rea predeterminada para espacios de almac\u00e9n y zonas de producci\u00f3n.",
-    "fiscal_year_start_month": "Mes en que comienza su a\u00f1o fiscal. Ej.: abril para Reino Unido/India, julio para Australia.",
-    "fiscal_year_start_day": "D\u00eda del mes en que comienza su a\u00f1o fiscal. Ej.: Reino Unido comienza el 6 de abril.",
-    "fiscal_calendar_type": "El est\u00e1ndar usa meses calendario. Los calendarios de comercio (4-4-5, 4-5-4, 5-4-4) usan per\u00edodos de semanas fijas para comparaciones consistentes.",
-    "cost_method": "C\u00f3mo se calculan los costos de inventario. Promedio: media ponderada. Est\u00e1ndar: costo predeterminado. FIFO: existencias m\u00e1s antiguas primero.",
-    "tax_inclusive_pricing": "Cuando est\u00e1 activado, los precios ingresados en el sistema ya incluyen impuestos. Com\u00fan en la UE, Australia y Nueva Zelanda.",
+    "week_start_day": "Primer día de la semana en calendarios e informes semanales. Varía según la región.",
+    "calendar_system": "Calendario utilizado para mostrar fechas. El almacenamiento interno siempre usa el gregoriano. Hijri es común en Arabia Saudita.",
+    "measurement_system": "Sistema de unidades predeterminado para la organización. Los campos individuales pueden usar cualquier unidad.",
+    "default_weight_uom": "Unidad de peso predeterminada preseleccionada al crear nuevos artículos o materiales.",
+    "default_length_uom": "Unidad de longitud predeterminada preseleccionada para dimensiones de nuevos artículos.",
+    "default_volume_uom": "Unidad de volumen predeterminada preseleccionada para líquidos o materiales a granel.",
+    "default_temperature_uom": "Unidad de temperatura predeterminada para cadena de frío, seguridad alimentaria y monitoreo ambiental.",
+    "default_area_uom": "Unidad de área predeterminada para espacios de almacén y zonas de producción.",
+    "fiscal_year_start_month": "Mes en que comienza su año fiscal. Ej.: abril para Reino Unido/India, julio para Australia.",
+    "fiscal_year_start_day": "Día del mes en que comienza su año fiscal. Ej.: Reino Unido comienza el 6 de abril.",
+    "fiscal_calendar_type": "El estándar usa meses calendario. Los calendarios de comercio (4-4-5, 4-5-4, 5-4-4) usan períodos de semanas fijas para comparaciones consistentes.",
+    "cost_method": "Cómo se calculan los costos de inventario. Promedio: media ponderada. Estándar: costo predeterminado. FIFO: existencias más antiguas primero.",
+    "tax_inclusive_pricing": "Cuando está activado, los precios ingresados en el sistema ya incluyen impuestos. Común en la UE, Australia y Nueva Zelanda.",
     "default_tax_rate": "El porcentaje de impuesto predeterminado aplicado a documentos nuevos. Entre 0 y 100.",
     "tax_label": "El nombre que usa tu región para este impuesto: IVA, VAT, GST, Sales Tax, etc.",
-    "default_document_language": "Idioma utilizado para PDFs, facturas e informes generados. Ingrese un c\u00f3digo de idioma (ej.: en, de, fr).",
-    "default_ui_language": "Idioma de interfaz predeterminado para los nuevos usuarios de esta organizaci\u00f3n. Los usuarios pueden cambiarlo en su propia configuraci\u00f3n.",
-    "default_paper_size": "Tama\u00f1o de papel para PDFs generados. A4 es el est\u00e1ndar mundial. Letter se usa en EE. UU. y Canad\u00e1.",
+    "default_document_language": "Idioma utilizado para PDFs, facturas e informes generados. Ingrese un código de idioma (ej.: en, de, fr).",
+    "default_ui_language": "Idioma de interfaz predeterminado para los nuevos usuarios de esta organización. Los usuarios pueden cambiarlo en su propia configuración.",
+    "default_paper_size": "Tamaño de papel para PDFs generados. A4 es el estándar mundial. Letter se usa en EE. UU. y Canadá.",
     "text_direction": "Dirección del diseño para toda la interfaz de la aplicación (menús, formularios, tablas) Y documentos generados. RTL invierte todo el diseño para árabe, hebreo, farsi y urdu — se aplica inmediatamente al guardar."
   },
   "errors": {
-    "separator_conflict": "El separador decimal y el separador de miles no pueden usar el mismo car\u00e1cter.",
-    "digit_grouping_requires_separator": "La agrupaci\u00f3n de d\u00edgitos requiere un separador de miles.",
-    "fiscal_day_exceeds_month": "Este d\u00eda no existe en el mes seleccionado.",
-    "save_failed": "Error al guardar la configuraci\u00f3n. Por favor, int\u00e9ntelo de nuevo."
+    "separator_conflict": "El separador decimal y el separador de miles no pueden usar el mismo carácter.",
+    "digit_grouping_requires_separator": "La agrupación de dígitos requiere un separador de miles.",
+    "fiscal_day_exceeds_month": "Este día no existe en el mes seleccionado.",
+    "save_failed": "Error al guardar la configuración. Por favor, inténtelo de nuevo."
   }
 }

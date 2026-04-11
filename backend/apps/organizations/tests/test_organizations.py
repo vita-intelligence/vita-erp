@@ -9,7 +9,7 @@ import pytest
 from rest_framework.test import APIClient
 
 from apps.accounts.tests.factories import DEFAULT_PASSWORD, UserFactory
-from apps.billing.models import Plan, Subscription
+from apps.billing.models import BillingConfig, Subscription
 from apps.organizations.models import Membership
 from apps.organizations.tests.factories import MembershipFactory, OrganizationFactory
 from apps.platform_audit.models import AuditLog
@@ -36,21 +36,9 @@ def auth_client(client, verified_user):
 
 
 @pytest.fixture()
-def trial_plan():
-    """Ensure a trial plan exists for org creation tests."""
-    plan, _ = Plan.objects.get_or_create(
-        slug="free-trial",
-        defaults={
-            "name": "Free Trial",
-            "is_trial": True,
-            "trial_duration_days": 14,
-            "base_price_monthly": 0,
-            "base_price_annual": 0,
-            "is_active": True,
-            "is_public": False,
-        },
-    )
-    return plan
+def billing_config():
+    """Ensure the singleton BillingConfig exists for org creation tests."""
+    return BillingConfig.load()
 
 
 # All required fields for org creation
@@ -73,7 +61,7 @@ def org_data(**overrides):
 
 @pytest.mark.django_db
 class TestCreateOrganization:
-    def test_create_success(self, auth_client, verified_user, trial_plan):
+    def test_create_success(self, auth_client, verified_user, billing_config):
         response = auth_client.post(
             "/api/v1/organizations/",
             org_data(name="Acme Manufacturing"),
@@ -85,7 +73,7 @@ class TestCreateOrganization:
         assert data["country"] == "US"
         assert "slug" in data
 
-    def test_create_sets_org_scoped_cookies(self, auth_client, verified_user, trial_plan):
+    def test_create_sets_org_scoped_cookies(self, auth_client, verified_user, billing_config):
         response = auth_client.post(
             "/api/v1/organizations/",
             org_data(name="Cookie Test Org"),
@@ -94,7 +82,7 @@ class TestCreateOrganization:
         assert "vita_access" in response.cookies
         assert "vita_refresh" in response.cookies
 
-    def test_create_creates_membership(self, auth_client, verified_user, trial_plan):
+    def test_create_creates_membership(self, auth_client, verified_user, billing_config):
         auth_client.post(
             "/api/v1/organizations/",
             org_data(name="Membership Test Org"),
@@ -104,7 +92,7 @@ class TestCreateOrganization:
             is_active=True,
         ).exists()
 
-    def test_create_creates_subscription(self, auth_client, verified_user, trial_plan):
+    def test_create_creates_subscription(self, auth_client, verified_user, billing_config):
         response = auth_client.post(
             "/api/v1/organizations/",
             org_data(name="Subscription Test Org"),
@@ -112,10 +100,10 @@ class TestCreateOrganization:
         org_id = response.json()["id"]
         sub = Subscription.objects.get(organization_id=org_id)
         assert sub.status == "trialing"
-        assert sub.plan == trial_plan
         assert sub.trial_end is not None
+        assert sub.storage_quota_gb == billing_config.storage_minimum_gb
 
-    def test_create_logs_audit_event(self, auth_client, verified_user, trial_plan):
+    def test_create_logs_audit_event(self, auth_client, verified_user, billing_config):
         auth_client.post(
             "/api/v1/organizations/",
             org_data(name="Audit Test Org"),
@@ -125,7 +113,7 @@ class TestCreateOrganization:
             action="org_created",
         ).exists()
 
-    def test_create_custom_slug(self, auth_client, verified_user, trial_plan):
+    def test_create_custom_slug(self, auth_client, verified_user, billing_config):
         response = auth_client.post(
             "/api/v1/organizations/",
             org_data(name="Custom Slug Org", slug="my-custom-slug"),
@@ -133,7 +121,7 @@ class TestCreateOrganization:
         assert response.status_code == 201
         assert response.json()["slug"] == "my-custom-slug"
 
-    def test_create_duplicate_slug(self, auth_client, verified_user, trial_plan):
+    def test_create_duplicate_slug(self, auth_client, verified_user, billing_config):
         OrganizationFactory(slug="taken-slug")
         response = auth_client.post(
             "/api/v1/organizations/",
@@ -141,14 +129,14 @@ class TestCreateOrganization:
         )
         assert response.status_code == 400
 
-    def test_create_reserved_slug(self, auth_client, verified_user, trial_plan):
+    def test_create_reserved_slug(self, auth_client, verified_user, billing_config):
         response = auth_client.post(
             "/api/v1/organizations/",
             org_data(name="Admin Org", slug="admin"),
         )
         assert response.status_code == 400
 
-    def test_create_max_orgs_reached(self, auth_client, verified_user, trial_plan):
+    def test_create_max_orgs_reached(self, auth_client, verified_user, billing_config):
         for _i in range(3):
             MembershipFactory(user=verified_user)
 
@@ -159,7 +147,7 @@ class TestCreateOrganization:
         assert response.status_code == 400
         assert response.json()["detail"] == "max_orgs_reached"
 
-    def test_create_missing_required_fields(self, auth_client, verified_user, trial_plan):
+    def test_create_missing_required_fields(self, auth_client, verified_user, billing_config):
         response = auth_client.post(
             "/api/v1/organizations/",
             {"name": "Missing Fields Org"},

@@ -1,0 +1,73 @@
+{
+  "noSubscription": "Für diese Organisation wurde kein Abonnement gefunden. Bitte kontaktieren Sie den Support, wenn Sie glauben, dass dies ein Fehler ist.",
+  "plan": {
+    "title": "Aktueller Plan",
+    "description": "Vita ERP-Plattform-Abonnement — Grundgebühr, nutzerbasierte Lizenzen und Speicher.",
+    "trialEndsOn": "Testzeitraum endet am {date}",
+    "nextBillingOn": "Nächste Rechnung am {date}",
+    "perMonth": "pro Monat",
+    "managedByStripe": "Zahlungsmethode, Rechnungen und Kündigung werden über Stripe verwaltet.",
+    "openPortal": "Abrechnung verwalten"
+  },
+  "usage": {
+    "title": "Nutzung",
+    "seats": "Benutzer",
+    "seatsValue": "{count} aktiv",
+    "seatsNote": "Jeder Benutzer wird nach den Berechtigungen seiner Rollen abgerechnet. Siehe Aufschlüsselung unten.",
+    "storage": "Speicher",
+    "storageNearlyFull": "Speicher ist fast voll. Erhöhen Sie Ihr Kontingent unten, um Schreibsperren zu vermeiden.",
+    "updateQuota": "Aktualisieren"
+  },
+  "breakdown": {
+    "title": "Aufschlüsselung dieses Monats",
+    "base": "Grundgebühr der Plattform",
+    "users": "Nutzerlizenzen ({count} Nutzer)",
+    "storage": "Speicher ({gb} GB bezahlt, {minimum} GB inklusive)",
+    "total": "Gesamt",
+    "perUser": "Details pro Nutzer",
+    "user": "Nutzer",
+    "permissions": "Berechtigungen",
+    "cost": "Kosten",
+    "noPermissions": "Keine abrechenbaren Berechtigungen"
+  },
+  "addons": {
+    "title": "Erweiterungen",
+    "perMonth": "pro Monat",
+    "oneTime": "Einmalzahlung",
+    "add": "Hinzufügen",
+    "remove": "Entfernen"
+  },
+  "invoices": {
+    "title": "Rechnungsverlauf",
+    "number": "Nummer",
+    "date": "Datum",
+    "status": "Status",
+    "amount": "Betrag",
+    "actions": "",
+    "view": "Ansehen",
+    "empty": "Noch keine Rechnungen. Ihre erste Rechnung erscheint nach Ablauf des Testzeitraums."
+  },
+  "banner": {
+    "trial": "Ihr kostenloser Testzeitraum endet in {days} Tagen. Fügen Sie eine Zahlungsmethode hinzu, um den vollen Zugriff zu behalten.",
+    "pastDue": "Ihre letzte Zahlung ist fehlgeschlagen. Schreibvorgänge werden blockiert, bis Sie Ihre Zahlungsmethode aktualisieren.",
+    "updatePayment": "Zahlungsmethode aktualisieren",
+    "locked": "Ihr Abonnement ist inaktiv. Reaktivieren Sie es, um den vollen Zugriff wiederherzustellen.",
+    "reactivate": "Reaktivieren"
+  },
+  "subscriptionStatus": {
+    "trialing": "Testphase",
+    "active": "Aktiv",
+    "past_due": "Überfällig",
+    "canceled": "Gekündigt",
+    "unpaid": "Unbezahlt",
+    "paused": "Pausiert",
+    "incomplete": "Unvollständig"
+  },
+  "invoiceStatus": {
+    "draft": "Entwurf",
+    "open": "Offen",
+    "paid": "Bezahlt",
+    "uncollectible": "Uneinbringlich",
+    "void": "Storniert"
+  }
+}

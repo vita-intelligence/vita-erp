@@ -5,7 +5,8 @@
   "tabs": {
     "general": "Umum",
     "theme": "Tema",
-    "roles": "Peran"
+    "roles": "Peran",
+    "billing": "Penagihan"
   },
   "save": "Simpan Perubahan",
   "saving": "Menyimpan...",

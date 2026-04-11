@@ -1,0 +1,73 @@
+{
+  "noSubscription": "Nenhuma assinatura encontrada para esta organização. Contate o suporte se achar que é um erro.",
+  "plan": {
+    "title": "Plano atual",
+    "description": "Assinatura da plataforma Vita ERP — taxa base, licenças por usuário e armazenamento.",
+    "trialEndsOn": "Período de teste termina em {date}",
+    "nextBillingOn": "Próxima cobrança em {date}",
+    "perMonth": "por mês",
+    "managedByStripe": "Forma de pagamento, faturas e cancelamento são gerenciados pelo Stripe.",
+    "openPortal": "Gerenciar cobrança"
+  },
+  "usage": {
+    "title": "Uso",
+    "seats": "Usuários",
+    "seatsValue": "{count} ativos",
+    "seatsNote": "Cada usuário é cobrado pelas permissões que ele tem em seus papéis. Veja o detalhamento abaixo.",
+    "storage": "Armazenamento",
+    "storageNearlyFull": "O armazenamento está quase cheio. Aumente sua cota abaixo para evitar bloqueio de gravações.",
+    "updateQuota": "Atualizar"
+  },
+  "breakdown": {
+    "title": "Detalhamento deste mês",
+    "base": "Taxa base da plataforma",
+    "users": "Licenças de usuário ({count} usuários)",
+    "storage": "Armazenamento ({gb} GB pagos, {minimum} GB incluídos)",
+    "total": "Total",
+    "perUser": "Detalhes por usuário",
+    "user": "Usuário",
+    "permissions": "Permissões",
+    "cost": "Custo",
+    "noPermissions": "Sem permissões cobráveis"
+  },
+  "addons": {
+    "title": "Complementos",
+    "perMonth": "por mês",
+    "oneTime": "pagamento único",
+    "add": "Adicionar",
+    "remove": "Remover"
+  },
+  "invoices": {
+    "title": "Histórico de faturas",
+    "number": "Número",
+    "date": "Data",
+    "status": "Status",
+    "amount": "Valor",
+    "actions": "",
+    "view": "Ver",
+    "empty": "Nenhuma fatura ainda. A primeira aparecerá ao fim do período de teste."
+  },
+  "banner": {
+    "trial": "Seu período de teste termina em {days} dias. Adicione um método de pagamento para manter o acesso completo.",
+    "pastDue": "Seu último pagamento falhou. As gravações serão bloqueadas até atualizar o método de pagamento.",
+    "updatePayment": "Atualizar método de pagamento",
+    "locked": "Sua assinatura está inativa. Reative para recuperar o acesso completo.",
+    "reactivate": "Reativar"
+  },
+  "subscriptionStatus": {
+    "trialing": "Período de teste",
+    "active": "Ativa",
+    "past_due": "Vencida",
+    "canceled": "Cancelada",
+    "unpaid": "Não paga",
+    "paused": "Pausada",
+    "incomplete": "Incompleta"
+  },
+  "invoiceStatus": {
+    "draft": "Rascunho",
+    "open": "Aberta",
+    "paid": "Paga",
+    "uncollectible": "Incobrável",
+    "void": "Anulada"
+  }
+}

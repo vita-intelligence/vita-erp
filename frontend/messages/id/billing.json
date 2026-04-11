@@ -1,0 +1,73 @@
+{
+  "noSubscription": "Tidak ada langganan untuk organisasi ini. Hubungi dukungan jika Anda merasa ini adalah kesalahan.",
+  "plan": {
+    "title": "Paket saat ini",
+    "description": "Langganan platform Vita ERP — biaya dasar, lisensi per pengguna, dan penyimpanan.",
+    "trialEndsOn": "Masa percobaan berakhir pada {date}",
+    "nextBillingOn": "Tagihan berikutnya pada {date}",
+    "perMonth": "per bulan",
+    "managedByStripe": "Metode pembayaran, faktur, dan pembatalan dikelola melalui Stripe.",
+    "openPortal": "Kelola penagihan"
+  },
+  "usage": {
+    "title": "Penggunaan",
+    "seats": "Pengguna",
+    "seatsValue": "{count} aktif",
+    "seatsNote": "Setiap pengguna ditagih berdasarkan izin yang dimiliki dalam perannya. Lihat rincian di bawah.",
+    "storage": "Penyimpanan",
+    "storageNearlyFull": "Penyimpanan hampir penuh. Naikkan kuota di bawah untuk menghindari penguncian tulis.",
+    "updateQuota": "Perbarui"
+  },
+  "breakdown": {
+    "title": "Rincian bulan ini",
+    "base": "Biaya dasar platform",
+    "users": "Lisensi pengguna ({count} pengguna)",
+    "storage": "Penyimpanan ({gb} GB dibayar, {minimum} GB termasuk)",
+    "total": "Total",
+    "perUser": "Rincian per pengguna",
+    "user": "Pengguna",
+    "permissions": "Izin",
+    "cost": "Biaya",
+    "noPermissions": "Tidak ada izin yang dapat ditagih"
+  },
+  "addons": {
+    "title": "Add-on",
+    "perMonth": "per bulan",
+    "oneTime": "sekali bayar",
+    "add": "Tambah",
+    "remove": "Hapus"
+  },
+  "invoices": {
+    "title": "Riwayat faktur",
+    "number": "Nomor",
+    "date": "Tanggal",
+    "status": "Status",
+    "amount": "Jumlah",
+    "actions": "",
+    "view": "Lihat",
+    "empty": "Belum ada faktur. Faktur pertama akan muncul setelah masa percobaan berakhir."
+  },
+  "banner": {
+    "trial": "Masa percobaan gratis Anda berakhir dalam {days} hari. Tambahkan metode pembayaran untuk mempertahankan akses penuh.",
+    "pastDue": "Pembayaran terakhir Anda gagal. Operasi tulis akan diblokir hingga Anda memperbarui metode pembayaran.",
+    "updatePayment": "Perbarui metode pembayaran",
+    "locked": "Langganan Anda tidak aktif. Aktifkan kembali untuk mendapatkan akses penuh.",
+    "reactivate": "Aktifkan kembali"
+  },
+  "subscriptionStatus": {
+    "trialing": "Masa percobaan",
+    "active": "Aktif",
+    "past_due": "Tertunggak",
+    "canceled": "Dibatalkan",
+    "unpaid": "Belum dibayar",
+    "paused": "Dijeda",
+    "incomplete": "Belum selesai"
+  },
+  "invoiceStatus": {
+    "draft": "Draf",
+    "open": "Terbuka",
+    "paid": "Lunas",
+    "uncollectible": "Tidak tertagih",
+    "void": "Batal"
+  }
+}

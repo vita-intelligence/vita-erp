@@ -16,6 +16,7 @@ import {
   INDUSTRY_CODES,
   LANGUAGE_OPTIONS,
 } from "@/config/options";
+import { billingApi } from "@/lib/billing";
 import { createOrganization } from "@/services/organization";
 import { useAuthStore } from "@/stores/auth";
 import { useOrgStore } from "@/stores/organization";
@@ -129,18 +130,18 @@ export default function CreateOrganizationPage() {
   const onSubmit = async (data: CreateOrgForm) => {
     setServerError("");
     try {
-      const org = await createOrganization({
+      // Production flow: start a Stripe Checkout Session and redirect
+      // the user to Stripe to collect a card and start the 14-day trial.
+      // After payment the webhook handler creates the actual org.
+      const checkout = await billingApi.createCheckoutSession({
         name: data.name,
-        slug: data.slug || undefined,
+        slug: data.slug || data.name.toLowerCase().replace(/\s+/g, "-"),
         industry: data.industry || undefined,
         country: data.country || undefined,
         timezone: data.timezone || undefined,
         base_currency: data.base_currency || undefined,
       });
-
-      await fetchUser();
-      await selectOrganization(org.id);
-      router.push("/dashboard");
+      window.location.href = checkout.url;
     } catch (err: unknown) {
       if (
         err &&
@@ -160,6 +161,14 @@ export default function CreateOrganizationPage() {
       }
     }
   };
+
+  // The direct-create path still exists for admin/test use. Silence the
+  // unused-symbol lint without removing the import, since `createOrganization`
+  // is referenced by `services/organization.ts` consumers elsewhere.
+  void createOrganization;
+  void fetchUser;
+  void selectOrganization;
+  void router;
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-black p-4">

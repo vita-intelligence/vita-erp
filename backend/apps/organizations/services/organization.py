@@ -24,7 +24,7 @@ from django.db import transaction
 from django.utils import timezone
 from django.utils.text import slugify
 
-from apps.billing.constants import SUB_STATUS_TRIALING, TRIAL_DURATION_DAYS
+from apps.billing.constants import SUB_STATUS_TRIALING
 from apps.organizations.constants import (
     AUDIT_ORG_CREATED,
     MAX_ORGS_PER_USER,
@@ -166,25 +166,30 @@ def create_organization(
 
 
 def _create_trial_subscription(org: Organization) -> None:
-    """Create a trial subscription for the organization."""
-    from apps.billing.models import Plan, Subscription
+    """Create a placeholder trial subscription for the organization.
 
-    trial_plan = Plan.objects.filter(is_trial=True, is_active=True).first()
-    if not trial_plan:
-        logger.warning("No active trial plan found — creating subscription without plan")
-        return
-
-    now = timezone.now()
+    NOTE: this is a stub that matches the current (pre-Stripe) flow. Once the
+    Stripe Checkout flow is wired up, org creation is driven by a
+    `customer.subscription.created` webhook and this function goes away —
+    Stripe will already have the real subscription by the time the org
+    record is created, and we'll store the Stripe IDs directly.
+    """
     from datetime import timedelta
+
+    from apps.billing.models import BillingConfig, Subscription
+
+    config = BillingConfig.load()
+    now = timezone.now()
+    trial_end = now + timedelta(days=config.trial_duration_days)
 
     Subscription.objects.create(
         organization=org,
-        plan=trial_plan,
         status=SUB_STATUS_TRIALING,
         trial_start=now,
-        trial_end=now + timedelta(days=TRIAL_DURATION_DAYS),
+        trial_end=trial_end,
         current_period_start=now,
-        current_period_end=now + timedelta(days=TRIAL_DURATION_DAYS),
+        current_period_end=trial_end,
+        storage_quota_gb=config.storage_minimum_gb,
     )
 
 

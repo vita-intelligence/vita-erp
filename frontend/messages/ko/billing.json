@@ -1,0 +1,73 @@
+{
+  "noSubscription": "이 조직에 대한 구독을 찾을 수 없습니다. 오류라고 생각되면 지원팀에 문의하세요.",
+  "plan": {
+    "title": "현재 플랜",
+    "description": "Vita ERP 플랫폼 구독 — 기본 요금, 사용자당 라이선스 및 저장소.",
+    "trialEndsOn": "평가판이 {date}에 종료됩니다",
+    "nextBillingOn": "다음 청구일: {date}",
+    "perMonth": "/ 월",
+    "managedByStripe": "결제 수단, 청구서, 취소는 Stripe를 통해 관리됩니다.",
+    "openPortal": "결제 관리"
+  },
+  "usage": {
+    "title": "사용량",
+    "seats": "사용자",
+    "seatsValue": "{count}명 활성",
+    "seatsNote": "각 사용자는 역할에서 부여된 권한에 따라 청구됩니다. 아래 내역을 참조하세요.",
+    "storage": "저장소",
+    "storageNearlyFull": "저장소가 거의 가득 찼습니다. 쓰기 차단을 피하려면 아래에서 한도를 늘리세요.",
+    "updateQuota": "업데이트"
+  },
+  "breakdown": {
+    "title": "이번 달 내역",
+    "base": "플랫폼 기본 요금",
+    "users": "사용자 라이선스 ({count}명)",
+    "storage": "저장소 ({gb} GB 유료, {minimum} GB 포함)",
+    "total": "합계",
+    "perUser": "사용자별 세부사항",
+    "user": "사용자",
+    "permissions": "권한",
+    "cost": "비용",
+    "noPermissions": "청구 가능한 권한 없음"
+  },
+  "addons": {
+    "title": "부가 기능",
+    "perMonth": "/ 월",
+    "oneTime": "일회성",
+    "add": "추가",
+    "remove": "제거"
+  },
+  "invoices": {
+    "title": "청구서 기록",
+    "number": "번호",
+    "date": "날짜",
+    "status": "상태",
+    "amount": "금액",
+    "actions": "",
+    "view": "보기",
+    "empty": "아직 청구서가 없습니다. 평가판이 종료되면 첫 청구서가 표시됩니다."
+  },
+  "banner": {
+    "trial": "무료 평가판이 {days}일 후에 종료됩니다. 전체 액세스를 유지하려면 결제 수단을 추가하세요.",
+    "pastDue": "최근 결제가 실패했습니다. 결제 수단을 업데이트할 때까지 쓰기가 차단됩니다.",
+    "updatePayment": "결제 수단 업데이트",
+    "locked": "구독이 비활성화되었습니다. 전체 액세스를 복원하려면 재활성화하세요.",
+    "reactivate": "재활성화"
+  },
+  "subscriptionStatus": {
+    "trialing": "평가판",
+    "active": "활성",
+    "past_due": "연체",
+    "canceled": "취소됨",
+    "unpaid": "미결제",
+    "paused": "일시중지",
+    "incomplete": "미완료"
+  },
+  "invoiceStatus": {
+    "draft": "초안",
+    "open": "미결",
+    "paid": "결제됨",
+    "uncollectible": "회수 불가",
+    "void": "무효"
+  }
+}

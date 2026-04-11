@@ -1,0 +1,73 @@
+{
+  "noSubscription": "未找到此组织的订阅。如果您认为这是错误，请联系支持。",
+  "plan": {
+    "title": "当前方案",
+    "description": "Vita ERP 平台订阅 — 基础费用、按用户计费及存储。",
+    "trialEndsOn": "试用将于 {date} 结束",
+    "nextBillingOn": "下次账单 {date}",
+    "perMonth": "每月",
+    "managedByStripe": "支付方式、发票和取消均通过 Stripe 管理。",
+    "openPortal": "管理账单"
+  },
+  "usage": {
+    "title": "用量",
+    "seats": "用户",
+    "seatsValue": "{count} 活跃",
+    "seatsNote": "每个用户根据其角色所拥有的权限进行计费。详见下方。",
+    "storage": "存储",
+    "storageNearlyFull": "存储空间即将用完。请在下方提高您的配额，以避免被锁定写入。",
+    "updateQuota": "更新"
+  },
+  "breakdown": {
+    "title": "本月明细",
+    "base": "平台基础费用",
+    "users": "用户许可 ({count} 个用户)",
+    "storage": "存储 (已付 {gb} GB，含 {minimum} GB)",
+    "total": "合计",
+    "perUser": "按用户查看",
+    "user": "用户",
+    "permissions": "权限",
+    "cost": "费用",
+    "noPermissions": "无可计费权限"
+  },
+  "addons": {
+    "title": "附加组件",
+    "perMonth": "每月",
+    "oneTime": "一次性",
+    "add": "添加",
+    "remove": "移除"
+  },
+  "invoices": {
+    "title": "发票历史",
+    "number": "编号",
+    "date": "日期",
+    "status": "状态",
+    "amount": "金额",
+    "actions": "",
+    "view": "查看",
+    "empty": "暂无发票。首张发票将在试用结束后显示。"
+  },
+  "banner": {
+    "trial": "您的免费试用将在 {days} 天后结束。请添加支付方式以保持完整访问。",
+    "pastDue": "您的上一笔付款失败。在您更新支付方式之前，写入操作将被阻止。",
+    "updatePayment": "更新支付方式",
+    "locked": "您的订阅已失效。请重新激活以恢复完整访问。",
+    "reactivate": "重新激活"
+  },
+  "subscriptionStatus": {
+    "trialing": "试用中",
+    "active": "已激活",
+    "past_due": "已逾期",
+    "canceled": "已取消",
+    "unpaid": "未支付",
+    "paused": "已暂停",
+    "incomplete": "未完成"
+  },
+  "invoiceStatus": {
+    "draft": "草稿",
+    "open": "未结",
+    "paid": "已支付",
+    "uncollectible": "无法收回",
+    "void": "作废"
+  }
+}

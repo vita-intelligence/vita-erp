@@ -45,4 +45,17 @@ export const ENDPOINTS = {
     organogram: "/rbac/organogram/",
     orgMembers: "/rbac/org-members/",
   },
+
+  billing: {
+    subscription: "/billing/subscription/",
+    usage: "/billing/usage/",
+    breakdown: "/billing/breakdown/",
+    invoices: "/billing/invoices/",
+    storageQuota: "/billing/storage-quota/",
+    checkoutSession: "/billing/checkout-session/",
+    checkoutSessionStatus: (id: string) => `/billing/checkout-session/${id}/`,
+    customerPortal: "/billing/customer-portal/",
+    addons: "/billing/addons/",
+    addonToggle: (slug: string) => `/billing/addons/${slug}/toggle/`,
+  },
 } as const;

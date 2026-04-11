@@ -71,6 +71,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Billing guards — run last so they see the authenticated user and
+    # resolved tenant org. They only block writes; reads always flow
+    # through so users can view their billing state to fix problems.
+    "apps.billing.middleware.SubscriptionStatusMiddleware",
+    "apps.billing.middleware.StorageQuotaMiddleware",
 ]
 
 # ---------------------------------------------------------------------------
@@ -218,3 +223,25 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # ---------------------------------------------------------------------------
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# ---------------------------------------------------------------------------
+# Stripe — billing integration
+# ---------------------------------------------------------------------------
+#
+# All three keys default to empty strings so local dev and test environments
+# that don't touch Stripe can boot without setting env vars. Real operations
+# will raise an explicit error at call time if keys are missing — see
+# `apps.billing.stripe.client.get_stripe_client`.
+#
+# Variable conventions:
+#   STRIPE_SECRET_KEY      — sk_test_* in dev, sk_live_* in prod
+#   STRIPE_PUBLIC_KEY      — pk_test_* in dev, pk_live_* in prod
+#   STRIPE_WEBHOOK_SECRET  — whsec_* (unique per endpoint; use `stripe listen`
+#                            in dev to get a rotating one)
+#   STRIPE_API_VERSION     — pin the Stripe API version the app is tested against
+#                            so silent upstream changes don't break us
+
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY", default="")
+STRIPE_PUBLIC_KEY = config("STRIPE_PUBLIC_KEY", default="")
+STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET", default="")
+STRIPE_API_VERSION = config("STRIPE_API_VERSION", default="2026-03-25.dahlia")

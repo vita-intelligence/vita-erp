@@ -12,6 +12,7 @@
 
 import { EditorMount } from "@/components/theme-editor";
 
+import { BillingBanner } from "../_components/BillingBanner";
 import LocaleEnforcer from "./_components/LocaleEnforcer";
 import OrgGuard from "./_components/OrgGuard";
 
@@ -23,6 +24,7 @@ export default function OrgLayout({ children }: { children: React.ReactNode }) {
         className="min-h-screen text-vita-text-secondary"
         style={{ backgroundColor: "var(--vita-background)" }}
       >
+        <BillingBanner />
         {children}
       </div>
       <EditorMount />

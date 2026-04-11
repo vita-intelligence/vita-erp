@@ -1,0 +1,73 @@
+{
+  "noSubscription": "この組織のサブスクリプションが見つかりません。誤りと思われる場合はサポートにお問い合わせください。",
+  "plan": {
+    "title": "現在のプラン",
+    "description": "Vita ERP プラットフォーム サブスクリプション — 基本料金、ユーザー単位のライセンス、ストレージ。",
+    "trialEndsOn": "トライアルは {date} に終了します",
+    "nextBillingOn": "次回請求: {date}",
+    "perMonth": "/ 月",
+    "managedByStripe": "支払い方法、請求書、解約は Stripe で管理されます。",
+    "openPortal": "請求を管理"
+  },
+  "usage": {
+    "title": "使用状況",
+    "seats": "ユーザー",
+    "seatsValue": "{count} 人がアクティブ",
+    "seatsNote": "各ユーザーは、ロールで保持している権限に基づいて課金されます。内訳は下記をご覧ください。",
+    "storage": "ストレージ",
+    "storageNearlyFull": "ストレージがほぼいっぱいです。書き込みがロックされないよう、下記で容量を増やしてください。",
+    "updateQuota": "更新"
+  },
+  "breakdown": {
+    "title": "今月の内訳",
+    "base": "プラットフォーム基本料金",
+    "users": "ユーザー ライセンス ({count} 人)",
+    "storage": "ストレージ ({gb} GB 購入 / {minimum} GB 含む)",
+    "total": "合計",
+    "perUser": "ユーザー別の詳細",
+    "user": "ユーザー",
+    "permissions": "権限",
+    "cost": "料金",
+    "noPermissions": "課金対象の権限なし"
+  },
+  "addons": {
+    "title": "アドオン",
+    "perMonth": "/ 月",
+    "oneTime": "一回のみ",
+    "add": "追加",
+    "remove": "削除"
+  },
+  "invoices": {
+    "title": "請求履歴",
+    "number": "番号",
+    "date": "日付",
+    "status": "ステータス",
+    "amount": "金額",
+    "actions": "",
+    "view": "表示",
+    "empty": "請求書はまだありません。最初の請求書はトライアル終了後に表示されます。"
+  },
+  "banner": {
+    "trial": "無料トライアルはあと {days} 日で終了します。フルアクセスを維持するには支払い方法を追加してください。",
+    "pastDue": "直近の支払いに失敗しました。支払い方法を更新するまで書き込みはブロックされます。",
+    "updatePayment": "支払い方法を更新",
+    "locked": "サブスクリプションが無効です。再アクティブ化してフルアクセスを復元してください。",
+    "reactivate": "再アクティブ化"
+  },
+  "subscriptionStatus": {
+    "trialing": "トライアル中",
+    "active": "有効",
+    "past_due": "支払い遅延",
+    "canceled": "キャンセル済み",
+    "unpaid": "未払い",
+    "paused": "一時停止中",
+    "incomplete": "未完了"
+  },
+  "invoiceStatus": {
+    "draft": "下書き",
+    "open": "未決済",
+    "paid": "支払い済み",
+    "uncollectible": "回収不能",
+    "void": "無効"
+  }
+}

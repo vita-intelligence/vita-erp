@@ -12,6 +12,8 @@ urlpatterns = [
     path("api/v1/organizations/", include("apps.organizations.urls")),
     path("api/v1/company/", include("apps.company.urls")),
     path("api/v1/rbac/", include("apps.rbac.urls")),
+    path("api/v1/billing/", include(("apps.billing.urls", "billing"), namespace="billing")),
+    path("webhooks/", include(("apps.billing.urls_webhook", "billing-webhook"), namespace="billing-webhook")),
 ]
 
 # Serve media files in development (Django dev server only)

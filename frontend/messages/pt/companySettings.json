@@ -5,7 +5,8 @@
   "tabs": {
     "general": "Geral",
     "theme": "Tema",
-    "roles": "Funções"
+    "roles": "Funções",
+    "billing": "Faturamento"
   },
   "save": "Salvar Alterações",
   "saving": "Salvando...",

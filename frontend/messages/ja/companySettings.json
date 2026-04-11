@@ -5,7 +5,8 @@
   "tabs": {
     "general": "一般",
     "theme": "テーマ",
-    "roles": "ロール"
+    "roles": "ロール",
+    "billing": "請求"
   },
   "save": "変更を保存",
   "saving": "保存中...",
