@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # TODO: Add staging deploy steps when infrastructure is ready
       # Examples: build Docker images, push to registry, SSH deploy, kubectl apply, etc.
@@ -38,7 +38,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # TODO: Add production deploy steps when infrastructure is ready
       # Examples: build Docker images, push to registry, SSH deploy, kubectl apply, etc.
