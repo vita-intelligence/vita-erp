@@ -33,7 +33,7 @@ jobs:
 
       - name: Set up Python
         if: hashFiles('backend/pyproject.toml') != ''
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version-file: backend/.python-version
 
@@ -97,7 +97,7 @@ jobs:
 
       - name: Set up Python
         if: steps.check.outputs.exists == 'true'
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version-file: backend/.python-version
 
